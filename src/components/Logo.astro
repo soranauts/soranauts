@@ -1,7 +1,8 @@
 ---
-import { SITE } from '~/utils/config';
+import { Image } from 'astro:assets';
+import soranautsLogo from '~/assets/images/logo.png';
 ---
 
 <span class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
-  🚀 {SITE?.name}
+  <Image src={soranautsLogo} alt="Soranauts" width="250" height="64"/>
 </span>

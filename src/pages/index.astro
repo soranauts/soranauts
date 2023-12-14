@@ -4,16 +4,15 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+/** import Features2 from '~/components/widgets/Features2.astro'; **/
 import Steps from '~/components/widgets/Steps.astro';
-import Content from '~/components/widgets/Content.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'Soranauts | SORA Blockchain & Polkaswap Onboarding Initiative',
   ignoreTitleTemplate: true,
 };
 ---
@@ -25,28 +24,22 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
+        text: 'Try Polkaswap',
+        href: 'https://polkaswap.io/',
         target: '_blank',
-        icon: 'tabler:download',
       },
-      { text: 'Learn more', href: '#features' },
+      { text: 'Learn More', href: '#features' },
     ]}
-    image={{ src: '~/assets/images/hero.png', alt: 'AstroWind Hero Image' }}
+    image={{ src: '~/assets/images/polkaswap-sora-blockchain.jpg', alt: 'Unlock the Future of Interoperability with SORA and Polkaswap' }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white highlight"> Astro 4.0</span> + Tailwind CSS
+      Unlock the Future of Interoperability with SORA and Polkaswap
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 4.0
-        + Tailwind CSS.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-       Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages
-      & Blogs.
+      Step into a new era of financial technology with SORA and Polkaswap, your dynamic duo for seamless crypto interoperability. 
+      This isn’t just about bridging gaps between digital currencies; it’s about unifying an entire ecosystem under one, user-centric platform. 
+      It’s about a vision for a future where financial freedom is in the hands of the many, not the few.
     </Fragment>
   </Hero>
 
@@ -59,266 +52,92 @@ const metadata = {
   <Features
     id="features"
     tagline="Features"
-    title="What you get with AstroWind"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022."
+    title="What You Get with the SORA Economic Model"
+    subtitle="SORA is building a next-generation blockchain ecosystem designed specifically for decentralized applications in finance, economics, and beyond."
     items={[
       {
-        title: 'Astro + Tailwind CSS Integration',
+        title: 'Supranational Economic System',
         description:
-          'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
-        icon: 'tabler:brand-tailwind',
+          'The SORA <a href="https://wiki.sora.org/sora-economy.html" class="font-medium text-indigo-500 dark:text-indigo-400 hover:underline">economic model</a> is built with the intention to create a supranational world economic system. The concept was ratified by the SORA community under an upgrade named "SORA: The New Economic Order".',
+        icon: 'tabler:building-bank',
       },
       {
-        title: 'Ready-to-use Components',
+        title: 'Token Bonding Curve',
         description:
-          'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
-        icon: 'tabler:components',
+          'The SORA economic system uses a <a href="https://soranauts.com/soras-token-bonding-curve-dollar-tbcd-explained" class="font-medium text-indigo-500 dark:text-indigo-400 hover:underline">token bonding curve</a> to regulate the issuance and de-issuance of XOR tokens. This approach ensures a rational way of managing the token supply, promoting stability in the token\'s value over time.',
+        icon: 'tabler:chart-bar',
       },
       {
-        title: 'Best Practices',
+        title: 'On-chain Governance',
         description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check',
+          'SORA is building an on-chain <a href="https://wiki.sora.org/sora-governance.html" class=\"font-medium text-indigo-500 dark:text-indigo-400 hover:underline\">governance</a> system based on the XOR token. This system empowers token holders to decide on the allocation of XOR for the creation of goods and services, thereby democratizing the economic decision-making process.',
+        icon: 'tabler:file-invoice',
       },
       {
-        title: 'Excellent Page Speed',
+        title: 'Financial Inclusion',
         description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        icon: 'tabler:rocket',
+          'SORA envisions an economic order that offers <a href="https://wiki.sora.org/introduction.html" class="font-medium text-indigo-500 dark:text-indigo-400 hover:underline">financial inclusion</a> to all. The decentralized and democratic structure of the model allows for broad participation, ensuring that every participant has a say in the economic decision-making.',
+        icon: 'tabler:building-monument',
       },
       {
-        title: 'Search Engine Optimization (SEO)',
-        description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
+        title: 'Credit Creation',
+        description: 'The SORA economic model believes in credit creation for producing new goods or services. This approach adheres to the Disaggregated General Quantity <a href="https://www.youtube.com/watch?v=KEfdlctvHH4https://twitter.com/polkaswap/status/1730182491074630048https://twitter.com/polkaswap/status/1730182491074630048" class="font-medium text-indigo-500 dark:text-indigo-400 hover:underline">Theory of Credit</a> in macroeconomics, which posits that money supply has a direct impact on price levels. By creating credit for production, SORA aims to stimulate economic growth and development.',
         icon: 'tabler:arrows-right-left',
       },
       {
-        title: 'Open to new ideas and contributions',
+        title: 'XOR as Legal Tender',
         description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
-        icon: 'tabler:bulb',
+          'XOR, the native token of the SORA network, is positioned as a supranational currency. The use of <a href="https://wiki.sora.org/introduction.html#the-case-for-xor" class="font-medium text-indigo-500 dark:text-indigo-400 hover:underline">XOR as legal tender</a> can lead to increased economic growth without the burden of debt. This feature makes XOR a viable funding option for productive investments, facilitated through an open governance process.',
+        icon: 'tabler:wallet',
       },
     ]}
   />
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
-    items={[
-      {
-        title: 'Built on top of Astro 4.0',
-        description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
-      },
-      {
-        title: 'Styled using Tailwind CSS',
-        description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
-      },
-      {
-        title: 'Cross-browser compatibility',
-        description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-       Gain a competitive advantage by incorporating industry leading practices
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
-      },
-      {
-        title: 'Multiple layout possibilities',
-        description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
-      },
-      {
-        title: 'Fully responsive design',
-        description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
-      },
-      {
-        title: 'Integration of media',
-        description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
-    }}
-  >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
-      },
-      {
-        title: 'Continuous improvement',
-        description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
-      },
-      {
-        title: 'Time and resource efficiency',
-        description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
-      },
-      {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
-    }}
-  >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
 
   <!-- Steps Widget ****************** -->
 
   <Steps
-    title="Get your dream website up and running in no time with AstroWind."
+    title="Seamlessly Bridge Assets from Ethereum to Polkaswap Using HASHI Technology"
     items={[
       {
-        title: 'Step 1: <span class="font-medium">Download</span>',
+        title: 'Step 1: <span class="font-medium">Set Up Connection</span>',
         description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
+          'First, you need to <a href="https://polkaswap.io/#/wallet" class=\"font-medium text-indigo-500 dark:text-indigo-400 hover:underline\">connect</a> your Ethereum wallet (or other wallets in the list) that holds your tokens to the Polkaswap site. Click \"Connect Wallet\" and select the wallet provider you used on Ethereum like MetaMask. Make sure it has the assets you want to bridge over.',
+        icon: 'tabler:network',
       },
       {
-        title: 'Step 2: <span class="font-medium">Add content</em>',
+        title: 'Step 2: <span class="font-medium">Initiate Bridge Transfer</em>',
         description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
+          'After connecting, click \"Bridge\" and select the asset & amount you want to bridge from Ethereum to Polkaswap. Enter the Polkadot address you want the tokens bridged to. Approve the transaction in your connected Ethereum wallet. For more information, check out this <a href="https://medium.com/polkaswap-community-collective/how-to-use-the-hashi-bridge-eb69e88bc87" class="font-medium text-indigo-500 dark:text-indigo-400 hover:underline">detailed guide</a>.',
+        icon: 'tabler:building-bridge-2',
       },
       {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
+        title: 'Step 3: <span class="font-medium">Track Bridge Status</span>',
         description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
+          'Once initiated, you can track the progress of your asset bridge by viewing your recent Polkaswap <a href="https://twitter.com/polkaswap/status/1730182491074630048" class="font-medium text-indigo-500 dark:text-indigo-400 hover:underline">transactions</a>. It may take a few minutes to reflect. After it processes successfully, your chosen ERC-20 tokens will become available in your Polkadot wallet!',
+        icon: 'tabler:status-change',
       },
       {
         title: 'Ready!',
-        icon: 'tabler:check',
+        description:
+          'And that\'s it! In just 3 steps - connect wallet, initiate bridge, track transfer - you can seamlessly bring assets from Ethereum over to the interoperable Polkaswap DEX. <a href="https://t.me/polkaswap" class="font-medium text-indigo-500 dark:text-indigo-400 hover:underline">Let us know</a> if you need any clarification or have additional questions!',
+        icon: 'tabler:circle-check',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
+      src: '~/assets/images/polkaswap-HASHI-bridge.jpg',
+      alt: 'Seamlessly Bridge Assets from Ethereum to Polkaswap Using HASHI Technology',
     }}
   />
-
-  <!-- Features2 Widget ************** -->
-
-  <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    tagline="Components"
-    items={[
-      {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: 'flat-color-icons:template',
-      },
-      {
-        title: 'Heros',
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: 'flat-color-icons:gallery',
-      },
-      {
-        title: 'Features',
-        description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval',
-      },
-      {
-        title: 'Content',
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document',
-      },
-      {
-        title: 'Call-to-Action',
-        description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
-        icon: 'flat-color-icons:advertising',
-      },
-      {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange',
-      },
-      {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
-        icon: 'flat-color-icons:voice-presentation',
-      },
-      {
-        title: 'Contact',
-        description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
-        icon: 'flat-color-icons:business-contact',
-      },
-      {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: 'flat-color-icons:database',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features2>
-
+  
+  <!-- Features2 Widget
+  
+  ************** -->
+  
   <!-- HighlightedPosts Widget ******* -->
 
   <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
+    title="Expand expertise on SORA, Polkaswap and web3 in our crypto education blog"
+    information={`Our blog serves as an ever-growing knowledge hub focused on building literacy across core concepts and tools in the decentralized space. Read up on the latest deep dives explaining how SORA's innovations like cross-chain liquidity and XOR staking work under the hood.
                 `}
   />
 
@@ -326,74 +145,60 @@ const metadata = {
 
   <FAQs
     title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    subtitle="SORA's Next-Generation Cryptoeconomy"
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Why AstroWind?',
+        title: 'What is the relationship between SORA and Polkadot networks?',
         description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+          "SORA utilizes Polkadot's Substrate framework to build its blockchain technology. It's designed to eventually integrate (very soon) with the Polkadot ecosystem using bridges and other cross-chain features.",
       },
       {
-        title: 'What do I need to start?',
+        title: 'What is Polkaswap?',
         description:
-          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+          'Polkaswap is a decentralized exchange (DEX) built on the SORA network. It allows for trading cryptocurrency token pairs in a permissionless manner through liquidity pools rather than traditional order books.',
       },
       {
-        title: 'How to install the Astro + Tailwind CSS template?',
+        title: 'What fee structure does trading on Polkaswap have?',
         description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+          "Trading fees on Polkaswap use the PSWAP token. Fees are 0.3% per trade for takers, while maker trades earn a 0.15% rebate on fees. 4% of fees are burned and others go towards incentives and operations.",
       },
       {
-        title: "What's something that you don't understand?",
+        title: "How can I store and access SORA tokens?",
         description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+          "SORA tokens can be stored in wallets like the SORA Wallet or Fearless Wallet. These wallets provide easy access to SORA's network and DeFi tools.",
       },
       {
-        title: 'What is something that you would like to try again?',
+        title: 'What types of staking rewards are available with SORA?',
         description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+          "There are validation, liquidity mining, and fixed APY locking options for yields. Validators also earn some transaction fees from the network.",
       },
       {
-        title: 'If you could only ask one question to each person you meet, what would that question be?',
+        title: 'Does Polkaswap support integration with hardware wallets?',
         description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+          "At this time, Polkaswap does not offer direct integration with popular hardware wallets like Ledger or Trezor. There is currently no option to connect those devices to Polkaswap.",
       },
     ]}
   />
-
-  <!-- Stats Widget ****************** -->
-
-  <Stats
-    stats={[
-      { title: 'Downloads', amount: '132K' },
-      { title: 'Stars', amount: '24.8K' },
-      { title: 'Forks', amount: '10.3K' },
-      { title: 'Users', amount: '48.4K' },
-    ]}
-  />
-
-  <!-- CallToAction Widget *********** -->
 
   <CallToAction
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
+        text: 'Get Started',
+        href: 'https://wiki.sora.org/polkaswap.html',
         target: '_blank',
-        icon: 'tabler:download',
+        icon: 'tabler:outbound',
       },
     ]}
   >
     <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
+      Try Polkaswap Today
     </Fragment>
 
     <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
+      Tap into the revolutionary convenience of a genuinely decentralized exchange where you alone control your assets, directly access unique crypto opportunities, and partake in the next-gen ecosystem reshaping finance.
     </Fragment>
   </CallToAction>
 </Layout>

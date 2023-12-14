@@ -1,33 +1,13 @@
----
-import '@fontsource-variable/inter';
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
----
-
-<style is:inline is:global>
+<Fragment>
+<style is: inline is: global>{`
   :root {
     --aw-font-sans: 'Inter Variable';
     --aw-font-serif: var(--aw-font-sans);
     --aw-font-heading: var(--aw-font-sans);
 
-    --aw-color-primary: rgb(157, 36, 169);
-    --aw-color-secondary: rgb(118, 29, 130);
-    --aw-color-accent: rgb(109 40 217);
+    --aw-color-primary: rgb(46, 15, 172);
+    --aw-color-secondary: rgb(166, 37, 168);
+    --aw-color-accent: rgb(210, 31, 107);
 
     --aw-color-text-heading: rgb(0 0 0); 
     --aw-color-text-default: rgb(16 16 16);
@@ -45,9 +25,9 @@ import '@fontsource-variable/inter';
     --aw-font-serif: var(--aw-font-sans);
     --aw-font-heading: var(--aw-font-sans);
 
-    --aw-color-primary: rgb(157, 36, 169);
-    --aw-color-secondary: rgb(118, 29, 130);
-    --aw-color-accent: rgb(109 40 217);
+    --aw-color-primary: rgb(46, 15, 172);
+    --aw-color-secondary: rgb(166, 37, 168);
+    --aw-color-accent: rgb(210, 31, 107);
 
     --aw-color-text-heading: rgb(0 0 0); 
     --aw-color-text-default: rgb(229 236 246);
@@ -57,4 +37,6 @@ import '@fontsource-variable/inter';
     ::selection {background-color: black; color: snow}
 
   }
-</style>
+`}</style>
+
+</Fragment>;
