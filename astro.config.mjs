@@ -10,6 +10,7 @@ import partytown from '@astrojs/partytown';
 /* import compress from 'astro-compress'; */
 import icon from 'astro-icon';
 import tasks from './src/utils/tasks';
+import { defineConfig, squooshImageService } from 'astro/config';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter.mjs';
 
@@ -28,6 +29,10 @@ export default defineConfig({
   site: SITE.site,
   base: SITE.base,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
+ 
+  image: {
+    service: squooshImageService(),
+  },
 
   output: 'static',
 
