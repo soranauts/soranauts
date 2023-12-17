@@ -1,8 +1,8 @@
 site:
   name: Soranauts
-  site: 'https://www.soranauts.com'
+  site: 'https://www.soranauts.com/'
   base: '/'
-  trailingSlash: false
+  trailingSlash: true
 
   googleSiteVerificationId: yXyKtMMJ86TxxPObH5ceyTloGUc2ZdXkVbTRV1xHso4
 
