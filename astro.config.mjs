@@ -1,7 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { defineConfig } from 'astro/config';
+import { defineConfig, squooshImageService } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
@@ -10,7 +10,6 @@ import partytown from '@astrojs/partytown';
 /* import compress from 'astro-compress'; */
 import icon from 'astro-icon';
 import tasks from './src/utils/tasks';
-import { defineConfig, squooshImageService } from 'astro/config';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter.mjs';
 
