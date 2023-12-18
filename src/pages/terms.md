@@ -3,7 +3,7 @@ title: 'Terms and Conditions'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-Last updated: December 11, 2023
+Last updated: December 18, 2023
 
 Website Disclaimer
 ------------------
@@ -22,7 +22,7 @@ All purchases of our merchandise are final and non-refundable. We make no promis
 Local Laws and Rules
 --------------------
 
-By accessing the Site and purchasing any of our merchandize, you agree to comply with all applicable laws in your jurisdiction when utilizing any information provided on the Site. You agree that you are solely responsible for understanding and complying with any and all laws, rules, regulations, and governmental orders that may apply to you in connection with your use of the Site.
+By accessing the Site and purchasing any digital assets on any network, you should comply with all applicable laws in your jurisdiction when utilizing any information provided on the Site. You agree that you are solely responsible for understanding and complying with any and all laws, rules, regulations, and governmental orders that may apply to you in connection with your use of the Site.
 
 Changes and Amendments
 ----------------------
