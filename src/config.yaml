@@ -11,7 +11,7 @@ metadata:
   title:
     default: Soranauts
     template: #'%s — Soranauts'
-  description: "\U0001F680 Soranauts is an onboarding initiative welcoming newcomers to join the Polkaswap DEX and SORA blockchain ecosystems. Embark on a journey of freedom and style."
+  description: "Soranauts is an onboarding initiative for the Polkaswap decentralized exchange & SORA blockchain ecosystems. Embark on a journey of freedom & style."
   robots:
     index: true
     follow: true
