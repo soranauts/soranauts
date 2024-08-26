@@ -25,6 +25,11 @@
     "typescript-esbuild": "^0.3.2",
     "unpic": "^3.15.0"
   },
+  "overrides": {
+    "astro-icon": {
+      "@iconify/tools": "^4.0.5"
+    }
+  },
   "devDependencies": {
     "@astrojs/mdx": "^2.0.0",
     "@astrojs/partytown": "^2.0.2",
