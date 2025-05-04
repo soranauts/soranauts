@@ -1,0 +1,127 @@
+---
+publishDate: 2025-05-04T00:00:00Z
+title: "SORA v3 Guide: Fujiwara Testnet, XOR Fees & TON Bridge"
+excerpt: "Explore the SORA v3 ecosystem: Fujiwara testnet, XOR fee model, TON bridge, and a bold new partnership shaping decentralized finance’s next chapter."
+image: ~/assets/images/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge.jpg
+category: Blockchain
+metadata:
+  canonical: https://www.soranauts.com/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge
+---
+
+_Forging the rails of a truly border‑agnostic economy_
+
+> **TL;DR** April’s dispatch is less a routine changelog and more a snapshot of an ecosystem sliding into its next orbit. SORA v3 moves from whiteboard to wireframes on the Fujiwara testnet, a new XOR‑centric fee model is almost ready for prime time, bridges multiply, builders ship, and a hush‑hush partnership with a sovereign nation hints at economic experimentation on a national scale. Strap in.
+
+* * *
+
+## Why this update matters
+
+While most of crypto X (formerly Twitter) still argues about whether stablecoins or CBDCs will “win,” SORA is quietly wiring together infrastructure that—in practice—accommodates both. The project’s long‑promised multiverse economic system now has three visible pillars:
+
+1.  **Hyper‑efficient settlement rails** (SORA v3 + Iroha 2).
+2.  **Asset portability** (bridges that hide complexity, TON being the latest).
+3.  **A native medium of exchange** (XOR repackaged and re‑denominated to feel less like scientific notation).
+
+In other words, SORA isn’t betting on a single flavour of digital money. It’s building tracks and letting whichever locomotives prove useful run atop them.
+
+* * *
+
+## At‑a‑glance 🗺️
+
+| Area | What shipped / progressed | Why it matters | What’s next |
+| --- | --- | --- | --- |
+| [**Fujiwara testnet**](https://www.soranauts.com/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future) | Explorer telemetry ~80 % complete; validator docs live. | First public playground for SORA v3, built on Hyperledger Iroha 2. | Full explorer release _within two weeks_; open validator leaderboard. |
+| **XOR fee model** | Draft model finished; positions XOR as default gas. | Unifies UX: pay fees in the same token you spend and swap. | Governance vote → main‑net activation. |
+| **Runtime 4.6.0** | Live on SORA v2, enabling XOR **repackaging** (1k : 1 demo ratio). | Reduces token “dust,” simplifies accounting, keeps divisibility on external chains. | Council motion to set final multiplier. |
+| **TON bridge (phase II)** | In testing; Hashi interface hooks prepared. | Opens highway to Telegram’s 749 M‑user ecosystem. | Stress‑test liquidity, audit, public launch. |
+| **Sovereign‑nation pilot** | NDA‑bound MoU signed; design workshops started. | Real‑world showcase of a _XOR‑energised_ economy. | Announcement after milestone #1 clears compliance review. |
+| **Builder programme** | ADAR iterations, Ceres liquidity vote, Palmatrix infra upgrade (99.9 % uptime). | Shows independent teams can ship on SORA rails and earn on‑chain grants. | New RFP wave; community vote on winners. |
+
+* * *
+
+## Reading the tea‑leaves
+
+### 1 | Fujiwara: where v3 gets its scars
+
+The Fujiwara network is less a demo and more a _sandbox nation‑state_: a permissionless Iroha 2 ledger running the same modules planned for main‑net. Validators can already spin up nodes, and an 80 %‑complete explorer telemetry panel surfaces block times, finality lags, and peer uptime. Once the last 20 % lands (block‑level charts, RPC autocomplete), expect an inflow of auditors and performance hobbyists poking every edge.
+
+_Explore the Fujiwara testnet and track validator activity here: https://explorer.fujiwara.sora.org/_
+
+### 2 | The new XOR fee model
+
+In v3, **every** transaction—swap, liquidity add, governance vote—settles fees in XOR, not a patchwork of wrapped assets. Besides killing friction, the design nudges _organic_ demand: holding XOR stops being optional. Early numbers suggest the community will propose a modest burn component (think 0.05 % of fees) to offset inflation from future mint rounds.
+
+### 3 | Runtime 4.6.0 & the “denomination” spell
+
+Remember multiplying your wallet balance by 10⁹ to read tokenomics spreadsheets? No more. Repackaging groups (example figure) **1 000 XOR → 1 New XOR** on‑chain, while bridges automatically de‑compress balances on external networks. Supply stays constant; human brains breathe easier.
+
+### 4 | Bridges: the TON gambit
+
+Phase I proved XOR can teleport to [TON](https://www.soranauts.com/introducing-tonswap-the-dex-for-mass-adoption-on-ton) and back. Phase II integrates Hashi’s UI, turning a CLI ritual into a two‑click experience. The kicker: assets enter SORA _without_ upfront XOR, because the bridge does a behind‑the‑scenes swap to cover gas. Net effect—users from TON, ETH, or DOT arrive with zero homework.
+
+### 5 | Economic diplomacy
+
+A Pacific micro‑state? An African commodity hub? The rumours fly, but what’s public is this: SORA architects and a central bank task‑force are co‑designing **national savings bonds** and **wholesale CBDC rails** backed by XOR liquidity pools. The political optics are risky, yet the upside—field‑testing network effects at country scale—could push SORA beyond “DeFi project” into “financial zone of innovation.”
+
+### 6 | Tools for mortals: Wallet + SORA Card
+
+-   Bi‑metric login, multi‑sig under the hood, and in‑app ramp to SEPA rails.
+-   _Phase 1_ of SORA Card shipped last quarter; the AMA transcript is a quick dive into compliance hurdles, BIN sponsorship, and why the team skipped yield farming gimmicks.
+-   [Fearless Wallet](https://fearlesswallet.io/) integration is en‑route, letting Polkadot power‑users store XOR next to DOT without juggling extensions.
+
+### 7 | Governance & Builders
+
+ADAR’s supply‑chain oracle, Ceres’ liquidity reallocations, Palmatrix’s PalmaTestBot—the RFP pipeline remains chaotic in the best sense. Community wallets _with as little as 180 vote‑weight_ decided to leave certain LPs untouched, a micro‑lesson in Coasean pragmatism: sometimes the cheapest decision is _inaction_.
+
+* * *
+
+## A bigger frame: CBDCs vs stablecoins (and why SORA doesn’t pick sides)
+
+Stablecoin evangelists often argue central‑bank money will be “programmable handcuffs.” Reality check:
+
+-   **Frozen funds?**   USDT and USDC have done it; Bakong and e‑CNY have _not_.
+-   **Single point of failure?**   Live CBDCs run on consortium ledgers, not monolith servers.
+-   **Political overreach?**   In most jurisdictions, monetary policy sits one layer _above_ elected governments.
+
+SORA’s bet is simple: if you build rails neutral enough, both stablecoins and CBDCs will use them—because liquidity is gravity.
+
+* * *
+
+## Visual snapshot
+
+![Focus Areas in SORA Ecosystem Update](~/assets/images/other-images/sora_update_focus_piechart.png)
+
+* * *
+
+## Timeline to watch
+
+| Milestone | ETA | Who’s on the hook |
+| --- | --- | --- |
+| Fujiwara explorer 1.0 | **On or before May 11, 2025** | Iroha‑2 team |
+| XOR fee model referendum | Late May | SORA Council + community voters |
+| TON bridge public beta | June | Bridge guild |
+| Sovereign pilot milestone #1 reveal | Q3 | SORA core + gov. partners |
+| Wallet v4 (cross‑chain swaps in‑app) | Q3 | Wallet squad |
+| Main‑net v3 genesis candidate | “When it’s boring” (Q4) | Everyone |
+
+* * *
+
+## Dive deeper (recommended links)
+
+-   SORA Integrated Plan – https://sora.org/plan
+-   Fujiwara Testnet on Medium – https://medium.com/sora-xor/the-fujiwara-testnet-the-next-step-on-the-way-to-sora-v3-c11e49ab496c
+-   CoinTelegraph on Palau’s blockchain bonds – https://cointelegraph.com/news/palau-invest-blockchain-savings-bonds-infrastructure
+-   CBDC case study: Cambodia’s Bakong (IMF PDF) – https://www.elibrary.imf.org/downloadpdf/journals/063/2024/007/063.2024.issue-007-en.pdf
+-   Hyperledger Iroha 2 overview – [https://iroha.tech](https://iroha.tech)
+* * *
+
+## What happens next?
+
+1.  **Validators** — spin up a Fujiwara node. Bug bounties open as soon as the explorer hits 1.0.
+2.  **Builders** — submit an RFP if you have something the network needs (hint: zk‑proof modules are hot).
+3.  **Token‑holders** — read the fee‑model draft, run the numbers, and vote with a cold head.
+4.  **Institutions** — reach out if you want sandbox access to the sovereign‑nation pilot; NDAs ready.
+
+The SORA worldview is stubbornly optimistic: _money should be a public utility, not a by‑product of private debt._ If that resonates, there’s plenty of wood to chop.
+
+_Not financial advice. Do your own research; stay curious._
