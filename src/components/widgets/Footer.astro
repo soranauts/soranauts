@@ -1,7 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import { SITE } from '~/utils/config';
 import { getHomePermalink } from '~/utils/permalinks';
+import soranautsLogo from '~/assets/images/new-logo-250x80.png';
 
 interface Link {
   text?: string;
@@ -32,16 +34,27 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
     <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
       <div class="col-span-12 lg:col-span-4">
         <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={getHomePermalink()}>{SITE?.name}</a>
+          <a class="inline-block" href={getHomePermalink()}>
+            <Image 
+              src={soranautsLogo} 
+              alt="Soranauts" 
+              class="image-rendering-crisp-edges w-[225px] h-[72px] object-contain"
+            />
+          </a>
         </div>
         <div class="text-sm text-muted">
           {
-            secondaryLinks.map(({ text, href }) => (
-              <a
-                class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out mr-2 rtl:mr-0 rtl:ml-2"
-                href={href}
-                set:html={text}
-              />
+            secondaryLinks.map(({ text, href }, index) => (
+              <>
+                <a
+                  class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
+                  href={href}
+                  set:html={text}
+                />
+                {index < secondaryLinks.length - 1 && (
+                  <span class="mx-2 text-gray-400 dark:text-gray-500">|</span>
+                )}
+              </>
             ))
           }
         </div>

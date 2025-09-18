@@ -1,46 +1,62 @@
 ---
 title: 'About'
 layout: '~/layouts/MarkdownLayout.astro'
+lastUpdated: '2025-09-12'
 ---
 
-Soranauts is an educational initiative focused on onboarding users to the world of decentralized finance (DeFi) through the Polkadot ecosystem. Our goal is to empower people by providing easy-to-understand resources about projects like SORA and Polkaswap.
+We’re your guides into the evolving world of Web3, with a focus on SORA, Polkaswap, and the tools shaping a fair and decentralized economy. Our mission is to make these technologies approachable, practical, and exciting—not just for experts, but for anyone ready to explore.
 
-We believe blockchain technology and decentralized applications have immense potential to provide financial services to billions of underserved people globally. Our mission is to help explain these complex technologies so anyone can understand and harness their capabilities.
+---
 
-Empowering Through Education
-----------------------------
+## Our Mission
 
-The blockchain and web3 space contains all kinds of new terminology that can confuse newcomers. Soranauts seeks to cut through the jargon and provide straightforward educational materials to make decentralized finance accessible for everyone.
+SORA is pioneering a new kind of blockchain economy: one that is self-sustaining, governed by the community, and built to empower people everywhere. But with all the jargon, technical layers, and hype cycles, it can be hard to see what’s real and why it matters.
 
-We explain topics like:
+That’s why we’re here. We want to:
 
--   Non-custodial wallets
--   Atomic swaps
--   Automated market makers
--   Yield farming
--   Gas fees
+- Demystify SORA, Polkaswap, and decentralized finance  
+- Translate complex concepts into clear, useful knowledge  
+- Help real users—not just observers—understand and participate in the SORA ecosystem  
 
-And many other DeFi concepts step-by-step for beginners. Our ultimate goal is to onboard the next million users to decentralized applications running on Polkadot.
+---
 
-SORA and Polkaswap
-------------------
+## What We Do
 
-SORA is a decentralized economic system built on the Polkadot network. It features a token-based economy that does not depend on external value inputs and is self-sustaining.
+We create educational resources for people at every stage of their journey. You’ll find:
 
-Polkaswap is a non-custodial, decentralized exchange built on SORA for swapping tokens and providing liquidity. As Polkadot's first decentralized exchange, Polkaswap serves as the primary entry point for accessing and utilizing the SORA network.
+- Step-by-step guides (wallets, bridging, staking, liquidity, etc.)  
+- Explanations of new innovations (governance models, token economics, SORA Card, KUSD, and more)  
+- Up-to-date coverage of ecosystem projects and their global impact  
+- Practical tips so you can use tools safely and effectively  
 
-As part of the Polkadot ecosystem, SORA and Polkaswap represent the future of finance - decentralized, open source, transparent, and accessible by anyone with an internet connection. Soranauts aims to promote education around the capabilities of these revolutionary technologies.
+We also explore broader Web3 topics—like decentralized identity, digital ownership, sustainable economics, and DAOs—and how they connect to SORA’s mission.
 
-More Than Just Finance
-----------------------
+---
 
-While decentralized finance serves as the starting point of web3, blockchain technology has potential far beyond finance alone to transform many industries. Supply chain, identity, certificates, intellectual property, voting, cloud storage, and computing are just some examples.
+## Why SORA and Polkaswap?
 
-Soranauts provides perspective not just on decentralized finance but the broader spheres of blockchain technology and web3. The world of web3 encompasses culture like art, music, governance, ethics, sustainability, and more.
+With the launch of **SORA v3**, the network now runs independently on **Hyperledger Iroha**, no longer relying on Polkadot or Kusama parachains. This upgrade strengthens SORA’s unique vision: a decentralized, community-governed economy with the tools to scale globally.
 
-We cover it all as we progress on this journey into the internet of value.
+At the center of this vision is **Polkaswap**, a non-custodial decentralized exchange that enables trading, liquidity, and cross-chain interoperability. While SORA maintains bridges to other ecosystems—including Polkadot and Ethereum—we’re focused on building a strong, self-sustaining network of our own.
 
-Join the Community
-------------------
+These aren’t just radical ideas—they’re real infrastructure, and they’re maturing fast. We’ll help you see how they work, why they matter, and how you can take part.
 
-We invite you to join us on this adventure into the new world of web3! Follow Soranauts through our website and social media channels. Together we can help educate and empower the next generation of blockchain and Polkadot users.
+---
+
+## Beyond Just Tech
+
+We believe Web3 isn’t only about code and tokens. It’s also about people, culture, and values. That’s why we explore:
+
+- Community governance through DAOs  
+- How digital ownership is reshaping culture, media, and access  
+- Privacy, security, and ethics in decentralized systems  
+- How blockchain tools impact emerging markets and underserved communities  
+
+---
+
+## Join Us
+
+Curiosity is enough to begin. Whether you’re just Web3-curious or already building in the ecosystem, you’re welcome here.  
+
+Follow our blog, join our community channels, share your ideas, and help shape a better, more inclusive financial future with SORA.
+

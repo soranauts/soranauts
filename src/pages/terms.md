@@ -1,26 +1,60 @@
 ---
 title: 'Terms and Conditions'
 layout: '~/layouts/MarkdownLayout.astro'
+lastUpdated: '2025-01-17'
 ---
 
-Last updated: December 18, 2023
+By accessing and using this website, you agree to the following terms. If you do not agree, please do not use this site.  
 
-## Website Disclaimer
+---
 
-The information provided by Soranauts ("we," "us," or "our") on [soranauts.com](https://www.soranauts.com) (the "Site") is for general informational purposes only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site.
+## General Information  
 
-UNDER NO CIRCUMSTANCE SHALL WE HAVE ANY LIABILITY TO YOU FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF THE SITE OR RELIANCE ON ANY INFORMATION PROVIDED ON THE SITE. YOUR USE OF THE SITE AND YOUR RELIANCE ON ANY INFORMATION ON THE SITE IS SOLELY AT YOUR OWN RISK.
+The content on this site is provided for general informational and educational purposes only. Nothing here should be taken as financial, investment, or legal advice. Always do your own research before making decisions.  
 
-## Financial Disclaimer
+---
 
-The Site is not intended to provide any financial, investment, tax, legal or other advice. The information on the Site does not take into account your personal circumstances or objectives. You should always conduct your own independent research and/or speak with a qualified investment / financial advisor before making any financial decisions.
+## Intellectual Property  
 
-All purchases of our merchandise are final and non-refundable. We make no promises or guarantees regarding any merchandize you may purchase from us.
+All content on this site—including articles, graphics, logos, and design—is the property of Soranauts (unless otherwise stated) and is protected by copyright and other intellectual property laws.  
+- You may not copy, reproduce, distribute, or modify our content without prior permission.  
+- You are welcome to share links to our content as long as it is properly credited.  
 
-## Local Laws and Rules
+---
 
-By accessing the Site and purchasing any digital assets on any network, you should comply with all applicable laws in your jurisdiction when utilizing any information provided on the Site. You agree that you are solely responsible for understanding and complying with any and all laws, rules, regulations, and governmental orders that may apply to you in connection with your use of the Site.
+## User Responsibilities  
 
-## Changes and Amendments
+When using this website, you agree not to:  
+- Upload or transmit any malicious code, malware, or harmful content.  
+- Attempt to disrupt or interfere with the functionality of the site.  
+- Use automated systems (such as bots or scrapers) without authorization.  
 
-We reserve the right to modify these terms at any time at our sole discretion. Changes and amendments will take effect immediately upon posting to the Site. Your continued use of the Site signifies agreement with the updated terms and conditions.
+---
+
+## Third-Party Links  
+
+This website may link to third-party websites (such as external resources, social media, or partner sites). We are not responsible for the content, privacy practices, or accuracy of information on those external sites.  
+
+---
+
+## Disclaimer of Warranties  
+
+This website is provided “as is” and “as available.” We make no warranties or representations of any kind, express or implied, regarding the availability, accuracy, or reliability of the site or its content.  
+
+---
+
+## Limitation of Liability  
+
+To the fullest extent permitted by law, Soranauts is not liable for any direct, indirect, incidental, or consequential damages that may arise from your use of this website or reliance on its content.  
+
+---
+
+## Governing Law  
+
+These terms are governed by the laws of the United States. By using this site, you consent to the exclusive jurisdiction of the courts in that region for any disputes.  
+
+---
+
+## Changes to These Terms  
+
+We may update these Terms and Conditions from time to time. Any changes will be posted on this page with a revised “Last updated” date.

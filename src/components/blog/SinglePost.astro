@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 import Image from '~/components/common/Image.astro';
 import PostTags from '~/components/blog/Tags.astro';
 import SocialShare from '~/components/common/SocialShare.astro';
+import TableOfContents from '~/components/blog/TableOfContents.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
@@ -26,6 +27,18 @@ const { Content } = post;
         <p>
           <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
           <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time>
+          {
+            post.updateDate && post.updateDate.getTime() !== post.publishDate.getTime() && (
+              <>
+                {' '}
+                ·{' '}
+                <span class="inline-block">
+                  <Icon name="tabler:edit" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400 mr-1" />
+                  Updated {getFormattedDate(post.updateDate)}
+                </span>
+              </>
+            )
+          }
           {
             post.category && (
               <>
@@ -71,8 +84,14 @@ const { Content } = post;
         )
       }
     </header>
+
+    <!-- Table of Contents -->
+    <div class="mx-auto px-6 sm:px-6 max-w-3xl">
+      <TableOfContents />
+    </div>
+
     <div
-      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-md prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px]"
+      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-md prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-link dark:prose-a:text-link prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px]"
     >
       {
         Content ? (
@@ -82,6 +101,30 @@ const { Content } = post;
         )
       }
     </div>
+
+    <!-- Financial Disclaimer -->
+    <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 mb-6">
+      <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 p-4 rounded-r-md">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-amber-800 dark:text-amber-200">
+              Financial Disclaimer
+            </h3>
+            <div class="mt-2 text-sm text-amber-700 dark:text-amber-300">
+              <p>
+                <strong>Financial Disclaimer:</strong> This content is for informational and educational purposes only and should not be considered financial, investment, or trading advice. The information provided about SORA, Polkaswap, TONSWAP, and other cryptocurrencies is not intended as investment recommendations. Cryptocurrency investments are highly volatile and risky, and you may lose some or all of your invested capital. DeFi protocols carry additional risks including smart contract vulnerabilities, impermanent loss, and regulatory changes. Always conduct your own research (DYOR) and consult with qualified financial advisors before making any investment decisions. Past performance does not guarantee future results. The authors and Soranauts are not responsible for any financial losses incurred from following information on this website.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
       <PostTags tags={post.tags} class="mr-5 rtl:mr-0 rtl:ml-5" />
       <SocialShare url={url} text={post.title} class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600" />

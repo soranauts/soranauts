@@ -1,6 +1,6 @@
 site:
   name: Soranauts
-  site: 'https://www.soranauts.com/'
+  site: 'https://soranauts.com/'
   base: '/'
   trailingSlash: false
 
@@ -11,7 +11,7 @@ metadata:
   title:
     default: Soranauts
     template: #'%s — Soranauts'
-  description: "Soranauts is an onboarding initiative for the Polkaswap decentralized exchange & SORA blockchain ecosystems. Embark on a journey of freedom & style."
+  description: "Explore the SORA blockchain and Polkaswap, a decentralized exchange for seamless crypto swaps. Learn, trade, and join the SORA ecosystem today."
   robots:
     index: true
     follow: true
@@ -79,14 +79,14 @@ ui:
         heading: rgb(0 0 0)
         muted: rgb(40 40 40)
         bgPage: rgb(255 255 255)
-        primary: rgb(0 124 220)
-        secondary: rgb(30 58 138)
-        accent: rgb(109 40 217)
+        primary: rgb(226 41 46)
+        secondary: rgb(180 29 34)
+        accent: rgb(239 68 68)
         info: rgb(119 182 234)
         success: rgb(54 211 153)
         warning: rgb(251 189 35)
         error: rgb(248 114 114)
-        link: var(--ph-color-primary)
+        link: rgb(59 130 246)
         linkActive: var(--ph-color-link)
     dark:
       fonts: {}
@@ -102,5 +102,5 @@ ui:
         success: rgb(54 211 153)
         warning: rgb(251 189 35)
         error: rgb(248 114 114)
-        link: var(--ph-color-primary)
+        link: rgb(59 130 246)
         linkActive: var(--ph-color-link)

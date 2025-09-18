@@ -39,7 +39,7 @@ export const footerData = {
     {
       title: 'Builders',
       links: [
-        { text: 'Ceres Tools', href: 'https://tools.cerestoken.io/' },
+        { text: 'TONSWAP', href: 'https://soranauts.com/introducing-tonswap-the-dex-for-mass-adoption-on-ton' },
         { text: 'ADAR Business', href: 'https://adar.com/' },
         { text: 'Demeter Farming', href: 'https://farming.deotoken.io/' },
         { text: 'Builders Programme', href: 'https://wiki.sora.org/sora-builders.html' },
