@@ -1,7 +1,7 @@
 ---
 title: 'Website Improvements'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-01-17'
+lastUpdated: '2025-01-18'
 metadata:
   robots:
     index: false
@@ -52,6 +52,12 @@ This document outlines all the improvements and enhancements made to the Soranau
 ### Table of Contents
 - **Matching Design**: TOC background now matches the header and vision banner colors
 - **Consistent Styling**: Unified color scheme across all site components
+- **Enhanced Functionality**: ✅ **COMPLETED** - Improved TOC with reliable expand/collapse behavior
+  - **Isolated JavaScript**: Completely separated TOC functionality from search modal to prevent conflicts
+  - **Single Event Listener**: Fixed buggy expansion by preventing multiple event listeners
+  - **Content Filtering**: Advanced filtering to exclude search-related content and non-article headings
+  - **Mobile Auto-Expand**: TOC automatically expands on mobile devices for better UX
+  - **Robust Initialization**: Multiple initialization attempts ensure TOC works across different loading conditions
 
 ### Content Management Features
 - **Automatic Last Updated**: Added automatic "Last updated" timestamps to all pages and blog posts
@@ -157,7 +163,14 @@ The following improvements and features are planned for future development:
   - **Token Analytics**: Supply metrics, inflation rates, and economic indicators
 
 ### Community Features
-- **Search Functionality**: Implement site-wide search to help users quickly find relevant content, blog posts, and resources
+- **Search Functionality**: ✅ **COMPLETED** - Implemented comprehensive site-wide search using Pagefind
+  - **Modal Interface**: Clean, accessible search modal with keyboard shortcuts (⌘K/Ctrl+K)
+  - **Real-time Search**: Instant search results as users type with debounced queries
+  - **Highlighted Results**: Search terms are highlighted in results for better visibility
+  - **Production Ready**: Search works in production builds and preview environments
+  - **SEO Optimized**: Static search index for fast, reliable search performance
+  - **Mobile Responsive**: Fully responsive design that works on all screen sizes
+  - **Development Friendly**: Graceful fallback in development mode with helpful messaging
 - **Interactive Elements**: Enhanced user engagement features
 - **Community Resources**: Expanded educational materials and guides
 - **Integration Tools**: Better integration with SORA ecosystem applications
