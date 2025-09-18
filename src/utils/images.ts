@@ -62,7 +62,18 @@ export const adaptOpenGraphImages = async (
 
   const adaptedImages = await Promise.all(
     images.map(async (image) => {
-      if (image?.url) {
+      if (image?.url && typeof image.url === 'string') {
+        // For Open Graph images, use direct URLs instead of processed images
+        if (image.url.startsWith('~/assets/images/')) {
+          const directUrl = image.url.replace('~/assets/images/', '/assets/images/');
+          return {
+            url: String(new URL(directUrl, astroSite)),
+            width: image?.width || defaultWidth,
+            height: image?.height || defaultHeight,
+          };
+        }
+        
+        // For other images, use the original processing
         const resolvedImage = (await findImage(image.url)) as ImageMetadata | undefined;
         if (!resolvedImage) {
           return {
@@ -79,7 +90,7 @@ export const adaptOpenGraphImages = async (
 
         if (typeof _image === 'object') {
           return {
-            url: typeof _image.src === 'string' ? String(new URL(_image.src, astroSite)) : 'pepe',
+            url: typeof _image.src === 'string' ? String(new URL(_image.src, astroSite)) : '',
             width: typeof _image.width === 'number' ? _image.width : undefined,
             height: typeof _image.height === 'number' ? _image.height : undefined,
           };

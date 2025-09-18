@@ -59,7 +59,7 @@ const enhancedMetadata = {
   />
 
   <!-- Twitter Image Meta Tag for Blog Posts -->
-  <meta name="twitter:image" content={typeof post.image === 'string' ? (post.image.startsWith('http') ? post.image : `${SITE.site}${post.image}`) : (post.image?.src ? `${SITE.site}${post.image.src}` : `${SITE.site}/_image?href=%2F%40fs%2FUsers%2Fdustinmatlock%2FDocuments%2FGitHub%2Fsoranauts%2Fsrc%2Fassets%2Fimages%2Fsoranauts-social-share.jpg%3ForigWidth%3D1200%26origHeight%3D630%26origFormat%3Djpg&w=1200&h=630&f=webp`)} />
+  <meta name="twitter:image" content={typeof post.image === 'string' ? (post.image.startsWith('http') ? post.image : (post.image.startsWith('~/assets/images/') ? `${SITE.site}${post.image.replace('~/assets/images/', '/assets/images/')}` : `${SITE.site}${post.image}`)) : (post.image?.src ? `${SITE.site}${post.image.src}` : `${SITE.site}/assets/images/soranauts-social-share.jpg`)} />
 
   <!-- Breadcrumb Schema -->
   <SchemaMarkup
