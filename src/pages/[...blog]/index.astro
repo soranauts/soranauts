@@ -60,7 +60,7 @@ const metadata = merge(
 ) as MetaData;
 ---
 
-<Layout post={{ ...post, image: image }} url={url} metadata={metadata}>
+<Layout post={{ ...post, image: image, originalImage: post.image }} url={url} metadata={metadata}>
   <SinglePost post={{ ...post, image: image }} url={url} />
   <ToBlogLink />
 </Layout>
