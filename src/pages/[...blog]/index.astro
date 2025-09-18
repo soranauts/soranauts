@@ -28,19 +28,9 @@ const image = (await findImage(post.image)) as ImageMetadata | string | undefine
 
 // Convert processed image to direct URL for Open Graph
 const getDirectImageUrl = (img: ImageMetadata | string | undefined): string => {
-  if (!img) return '';
-  if (typeof img === 'string') {
-    if (img.startsWith('http')) return img;
-    if (img.startsWith('~/assets/images/')) {
-      return `${SITE.site}${img.replace('~/assets/images/', '/')}`;
-    }
-    return `${SITE.site}${img}`;
-  }
-  // For ImageMetadata, we need to use the original image path
-  if (post.image && typeof post.image === 'string' && post.image.startsWith('~/assets/images/')) {
-    return `${SITE.site}${post.image.replace('~/assets/images/', '/')}`;
-  }
-  return '';
+  // Always use the social share image for consistency and reliability
+  // Individual blog post images need to be manually copied to public folder
+  return `${SITE.site}/soranauts-social-share.jpg`;
 };
 
 const directImageUrl = getDirectImageUrl(image);
