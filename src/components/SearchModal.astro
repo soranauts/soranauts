@@ -135,7 +135,7 @@
     
     async init() {
       // Load Pagefind - check if we're in preview mode or production
-      const isPreview = window.location.port === '4322' || window.location.port === '8080';
+      const isPreview = window.location.port === '4321' || window.location.port === '4322' || window.location.port === '8080';
       const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
       
       if (isPreview || isProduction) {
@@ -243,10 +243,35 @@
           search.results.slice(0, 10).map(async (result) => {
             const data = await result.data();
             
-            // Pagefind provides relative URLs, ensure they start with /
+            // Pagefind should provide the URL directly
             let url = result.url;
-            if (url && !url.startsWith('http') && !url.startsWith('/')) {
-              url = '/' + url;
+            
+            // If no URL, try alternative approaches
+            if (!url) {
+              // Check if URL is in the data object
+              if (data.url) {
+                url = data.url;
+              } else if (data.meta?.url) {
+                url = data.meta.url;
+              } else if (result.id) {
+                // Use the ID as URL if it looks like a path
+                url = result.id;
+              }
+            }
+            
+            // Ensure URL is properly formatted
+            if (url) {
+              // Remove .html extension if present
+              if (url.endsWith('.html')) {
+                url = url.replace('.html', '');
+              }
+              if (url.endsWith('/index')) {
+                url = url.replace('/index', '');
+              }
+              // Ensure it starts with /
+              if (!url.startsWith('http') && !url.startsWith('/')) {
+                url = '/' + url;
+              }
             }
             
             return {
