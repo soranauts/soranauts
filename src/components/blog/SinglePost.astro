@@ -45,7 +45,7 @@ const { Content } = post;
                 {' '}
                 ·{' '}
                 <a class="hover:underline inline-block" href={getPermalink(post.category, 'category')}>
-                  {post.category.replaceAll('-', ' ').replace(/sora ecosystem/gi, 'SORA Ecosystem').replace(/defi/gi, 'DeFi').replace(/\s+And\s+/g, ' and ').replace(/\b\w/g, l => l.toUpperCase())}
+                  {post.category.replaceAll('-', ' ').replace(/sora ecosystem/gi, 'SORA Ecosystem').replace(/defi/gi, 'DeFi').replace(/\s+And\s+/g, ' and ').replace(/\b(?!and\b)\w/g, l => l.toUpperCase())}
                 </a>
               </>
             )
