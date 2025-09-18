@@ -22,9 +22,10 @@ import type { MetaData as MetaDataType } from '~/types';
 
 export interface Props {
   metadata?: MetaDataType;
+  isBlogPost?: boolean;
 }
 
-const { metadata = {} } = Astro.props;
+const { metadata = {}, isBlogPost = false } = Astro.props;
 const { language, textDirection } = I18N;
 ---
 
@@ -37,8 +38,8 @@ const { language, textDirection } = I18N;
     <ApplyColorMode />
     <Metadata {...metadata} />
     
-    <!-- Twitter Image Meta Tag -->
-    <meta name="twitter:image" content={`${SITE.site}/soranauts-social-share.jpg`} />
+    <!-- Twitter Image Meta Tag - Only for non-blog pages -->
+    {!isBlogPost && <meta name="twitter:image" content={`${SITE.site}/soranauts-social-share.jpg`} />}
     
     <SiteVerification />
     <Analytics />
