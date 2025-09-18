@@ -125,12 +125,22 @@ const { title = "Table of Contents" } = Astro.props;
     }
   }
 
-  // Initialize TOC
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', generateTOC);
-  } else {
+  // Initialize TOC with multiple attempts
+  function initTOC() {
     generateTOC();
   }
+
+  // Try multiple initialization methods
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTOC);
+  } else {
+    initTOC();
+  }
+
+  // Also try after a delay
+  setTimeout(initTOC, 100);
+  setTimeout(initTOC, 500);
+  setTimeout(initTOC, 1000);
 </script>
 
 <style>
