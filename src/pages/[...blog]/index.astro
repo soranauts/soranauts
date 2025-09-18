@@ -23,7 +23,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post } = Astro.props as Props;
 
-const url = getCanonical(getPermalink(post.permalink, 'post'));
+const url = getCanonical(getPermalink(post.permalink || post.slug, 'post'));
 const image = (await findImage(post.image)) as ImageMetadata | string | undefined;
 
 // Convert processed image to direct URL for Open Graph

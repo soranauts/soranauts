@@ -33,7 +33,10 @@ const metadata = {
   openGraph: {
     type: 'blog',
   },
+  // For pagination pages, set canonical to the first page
+  canonical: currentPage > 1 ? 'https://soranauts.com/blog' : undefined,
 };
+
 ---
 
 <Layout metadata={metadata}>
