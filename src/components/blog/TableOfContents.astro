@@ -31,7 +31,7 @@ const { title = "Table of Contents" } = Astro.props;
 </div>
 
 <script>
-  // Auto-generate TOC from headings
+  // Simple TOC generation - no search functionality
   function generateTOC() {
     const tocList = document.getElementById('toc-list');
     const tocNav = document.getElementById('toc-nav');
@@ -43,23 +43,21 @@ const { title = "Table of Contents" } = Astro.props;
     const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
     
     if (headings.length === 0) {
-      // Hide TOC if no headings found
       tocContainer.style.display = 'none';
       return;
     }
 
     let tocHTML = '';
 
-    headings.forEach((heading, index) => {
+    headings.forEach((heading) => {
       const level = parseInt(heading.tagName.charAt(1));
       const text = heading.textContent || '';
       const id = heading.id || text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
 
-      // Skip financial disclaimer and other non-content headings
+      // Skip non-content headings
       if (text.toLowerCase().includes('financial disclaimer') ||
           text.toLowerCase().includes('disclaimer') ||
-          text.toLowerCase().includes('table of contents') ||
-          text.toLowerCase().includes('toc')) {
+          text.toLowerCase().includes('table of contents')) {
         return;
       }
 
@@ -86,11 +84,9 @@ const { title = "Table of Contents" } = Astro.props;
 
     tocList.innerHTML = tocHTML;
 
-    // Smart behavior: Auto-expand on mobile, remember state on desktop
+    // Auto-expand on mobile
     const isMobile = window.innerWidth < 768;
-    const savedState = localStorage.getItem('toc-expanded');
-
-    if (isMobile || savedState === 'true') {
+    if (isMobile) {
       expandTOC();
     }
 
@@ -114,11 +110,6 @@ const { title = "Table of Contents" } = Astro.props;
       tocNav.classList.remove('hidden');
       tocToggle.setAttribute('aria-expanded', 'true');
       chevron.style.transform = 'rotate(180deg)';
-
-      // Remember state on desktop
-      if (window.innerWidth >= 768) {
-        localStorage.setItem('toc-expanded', 'true');
-      }
     }
   }
 
@@ -131,32 +122,15 @@ const { title = "Table of Contents" } = Astro.props;
       tocNav.classList.add('hidden');
       tocToggle.setAttribute('aria-expanded', 'false');
       chevron.style.transform = 'rotate(0deg)';
-
-      // Remember state on desktop
-      if (window.innerWidth >= 768) {
-        localStorage.setItem('toc-expanded', 'false');
-      }
     }
   }
 
-  // Generate TOC when DOM is loaded
-  function initTOC() {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', generateTOC);
-    } else {
-      generateTOC();
-    }
+  // Initialize TOC
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', generateTOC);
+  } else {
+    generateTOC();
   }
-
-  // Initialize immediately and also on window load as backup
-  initTOC();
-  window.addEventListener('load', generateTOC);
-  
-  // Also try to initialize after a short delay to ensure DOM is ready
-  setTimeout(generateTOC, 100);
-  
-  // Try again after a longer delay to ensure everything is loaded
-  setTimeout(generateTOC, 500);
 </script>
 
 <style>
