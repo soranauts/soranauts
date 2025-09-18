@@ -21,6 +21,24 @@ const { post, url, metadata = {} } = Astro.props;
 // Calculate word count (rough estimate)
 const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.length > 0).length : 100;
 
+// Get direct image URL for social sharing
+const getDirectImageUrl = (): string => {
+  // Use the original image path from frontmatter
+  const originalImage = (post as any).originalImage || post.image;
+  if (!originalImage) return `${SITE.site}/soranauts-social-share.jpg`;
+  if (typeof originalImage === 'string') {
+    if (originalImage.startsWith('http')) return originalImage;
+    if (originalImage.startsWith('~/assets/images/')) {
+      return `${SITE.site}${originalImage.replace('~/assets/images/', '/')}`;
+    }
+    return `${SITE.site}${originalImage}`;
+  }
+  // Fallback to social share image
+  return `${SITE.site}/soranauts-social-share.jpg`;
+};
+
+const directImageUrl = getDirectImageUrl();
+
 // Create enhanced metadata for the blog post
 const enhancedMetadata = {
   ...metadata,
@@ -59,7 +77,7 @@ const enhancedMetadata = {
   />
 
   <!-- Twitter Image Meta Tag for Blog Posts -->
-  <meta name="twitter:image" content={typeof post.image === 'string' ? (post.image.startsWith('http') ? post.image : (post.image.startsWith('~/assets/images/') ? `${SITE.site}${post.image.replace('~/assets/images/', '/')}` : `${SITE.site}${post.image}`)) : `${SITE.site}/soranauts-social-share.jpg`} />
+  <meta name="twitter:image" content={directImageUrl} />
 
   <!-- Breadcrumb Schema -->
   <SchemaMarkup
