@@ -59,7 +59,7 @@ const enhancedMetadata = {
   />
 
   <!-- Twitter Image Meta Tag for Blog Posts -->
-  <meta name="twitter:image" content={typeof post.image === 'string' ? (post.image.startsWith('http') ? post.image : (post.image.startsWith('~/assets/images/') ? `${SITE.site}${post.image.replace('~/assets/images/', '/')}` : `${SITE.site}${post.image}`)) : (post.image?.src ? `${SITE.site}${post.image.src}` : `${SITE.site}/soranauts-social-share.jpg`)} />
+  <meta name="twitter:image" content={typeof post.image === 'string' ? (post.image.startsWith('http') ? post.image : (post.image.startsWith('~/assets/images/') ? `${SITE.site}${post.image.replace('~/assets/images/', '/')}` : `${SITE.site}${post.image}`)) : `${SITE.site}/soranauts-social-share.jpg`} />
 
   <!-- Breadcrumb Schema -->
   <SchemaMarkup
