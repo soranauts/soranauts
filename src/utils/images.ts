@@ -65,7 +65,7 @@ export const adaptOpenGraphImages = async (
       if (image?.url && typeof image.url === 'string') {
         // For Open Graph images, use direct URLs instead of processed images
         if (image.url.startsWith('~/assets/images/')) {
-          const directUrl = image.url.replace('~/assets/images/', '/assets/images/');
+          const directUrl = image.url.replace('~/assets/images/', '/');
           return {
             url: String(new URL(directUrl, astroSite)),
             width: image?.width || defaultWidth,
