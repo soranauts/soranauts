@@ -54,8 +54,8 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
               <>
                 {' '}
                 ·{' '}
-                <a class="capitalize hover:underline" href={getPermalink(post.category, 'category')}>
-                  {post.category.replaceAll('-', ' ')}
+                <a class="hover:underline" href={getPermalink(post.category, 'category')}>
+                  {post.category.replaceAll('-', ' ').replace('Sora Ecosystem', 'SORA Ecosystem')}
                 </a>
               </>
             )
