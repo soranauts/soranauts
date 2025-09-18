@@ -34,6 +34,8 @@
   (function() {
     'use strict';
     
+    let tocInitialized = false;
+    
     function generateTOC() {
       const tocList = document.getElementById('toc-list');
       const tocNav = document.getElementById('toc-nav');
@@ -114,15 +116,18 @@
         expandTOC();
       }
 
-      // Toggle functionality
-      tocToggle.addEventListener('click', () => {
-        const isExpanded = tocNav.classList.contains('hidden');
-        if (isExpanded) {
-          expandTOC();
-        } else {
-          collapseTOC();
-        }
-      });
+      // Only add event listener once
+      if (!tocInitialized) {
+        tocToggle.addEventListener('click', () => {
+          const isExpanded = tocNav.classList.contains('hidden');
+          if (isExpanded) {
+            expandTOC();
+          } else {
+            collapseTOC();
+          }
+        });
+        tocInitialized = true;
+      }
     }
 
     function expandTOC() {
@@ -151,7 +156,9 @@
 
     // Initialize TOC with multiple attempts
     function initTOC() {
-      generateTOC();
+      if (!tocInitialized) {
+        generateTOC();
+      }
     }
 
     // Try multiple initialization methods
