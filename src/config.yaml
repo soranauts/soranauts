@@ -79,7 +79,7 @@ ui:
         heading: rgb(0 0 0)
         muted: rgb(40 40 40)
         bgPage: rgb(255 255 255)
-        primary: rgb(226 41 46)
+        primary: rgb(227 36 45)
         secondary: rgb(180 29 34)
         accent: rgb(239 68 68)
         info: rgb(119 182 234)
