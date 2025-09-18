@@ -10,6 +10,7 @@ import ToBlogLink from '~/components/blog/ToBlogLink.astro';
 import { getCanonical, getPermalink } from '~/utils/permalinks';
 import { getStaticPathsBlogPost, blogPostRobots } from '~/utils/blog';
 import { findImage } from '~/utils/images';
+import { SITE } from '~/utils/config';
 import type { MetaData } from '~/types';
 
 export const prerender = true;
@@ -25,6 +26,25 @@ const { post } = Astro.props as Props;
 const url = getCanonical(getPermalink(post.permalink, 'post'));
 const image = (await findImage(post.image)) as ImageMetadata | string | undefined;
 
+// Convert processed image to direct URL for Open Graph
+const getDirectImageUrl = (img: ImageMetadata | string | undefined): string => {
+  if (!img) return '';
+  if (typeof img === 'string') {
+    if (img.startsWith('http')) return img;
+    if (img.startsWith('~/assets/images/')) {
+      return `${SITE.site}${img.replace('~/assets/images/', '/assets/images/')}`;
+    }
+    return `${SITE.site}${img}`;
+  }
+  // For ImageMetadata, we need to use the original image path
+  if (post.image && typeof post.image === 'string' && post.image.startsWith('~/assets/images/')) {
+    return `${SITE.site}${post.image.replace('~/assets/images/', '/assets/images/')}`;
+  }
+  return '';
+};
+
+const directImageUrl = getDirectImageUrl(image);
+
 const metadata = merge(
   {
     title: post.title,
@@ -35,7 +55,7 @@ const metadata = merge(
     },
     openGraph: {
       type: 'article',
-      ...(image ? { images: [{ url: image, width: (image as ImageMetadata)?.width, height: (image as ImageMetadata)?.height }] } : {}),
+      ...(directImageUrl ? { images: [{ url: directImageUrl, width: 1200, height: 630 }] } : {}),
     },
   },
   { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical || url } : {}) }
