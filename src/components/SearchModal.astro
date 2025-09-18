@@ -126,7 +126,11 @@
       // Load Pagefind - only in production
       if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
         try {
-          this.pagefind = await import('/pagefind/pagefind.js');
+          // Use eval to prevent Vite from trying to resolve the import at build time
+          const pagefindModule = await eval('import("/pagefind/pagefind.js")');
+          if (pagefindModule) {
+            this.pagefind = pagefindModule;
+          }
         } catch (error) {
           console.error('Failed to load Pagefind:', error);
         }
