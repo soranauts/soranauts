@@ -25,16 +25,19 @@ import '@fontsource-variable/inter';
     --aw-font-serif: var(--aw-font-sans);
     --aw-font-heading: var(--aw-font-sans);
 
-    --aw-color-primary: rgb(157, 36, 169);
-    --aw-color-secondary: rgb(118, 29, 130);
-    --aw-color-accent: rgb(109 40 217);
+    --aw-color-primary: rgb(226, 41, 46);
+    --aw-color-primary-hover: rgb(163, 24, 31);
+    --aw-color-secondary: rgb(180, 29, 34);
+    --aw-color-accent: rgb(239, 68, 68);
 
     --aw-color-text-heading: rgb(0 0 0); 
     --aw-color-text-default: rgb(16 16 16);
     --aw-color-text-muted: rgb(16 16 16 / 66%);
-    --aw-color-bg-page: rgb(255 255 255);
+    --aw-color-bg-page: rgb(255, 255, 255);
 
-    --aw-color-bg-page-dark: rgb(13, 11, 38);
+    --aw-color-bg-page-dark: rgb(15, 15, 20);
+
+    --ph-color-link: rgb(59 130 246);
 
     ::selection {background-color: lavender;}
 
@@ -45,16 +48,40 @@ import '@fontsource-variable/inter';
     --aw-font-serif: var(--aw-font-sans);
     --aw-font-heading: var(--aw-font-sans);
 
-    --aw-color-primary: rgb(157, 36, 169);
-    --aw-color-secondary: rgb(118, 29, 130);
-    --aw-color-accent: rgb(109 40 217);
+    --aw-color-primary: rgb(226, 41, 46);
+    --aw-color-primary-hover: rgb(163, 24, 31);
+    --aw-color-secondary: rgb(180, 29, 34);
+    --aw-color-accent: rgb(239, 68, 68);
 
     --aw-color-text-heading: rgb(0 0 0); 
     --aw-color-text-default: rgb(229 236 246);
     --aw-color-text-muted: rgb(229 236 246 / 66%);
     --aw-color-bg-page: var(--aw-color-bg-page-dark);
 
+    --ph-color-link: rgb(59 130 246);
+
     ::selection {background-color: black; color: snow}
 
+  }
+
+  /* Force content links to be red - Updated 2024 */
+  .prose a[href], .prose a[href].text-link,
+  a[href].text-link, a[href].font-medium.text-link {
+    color: rgb(239 68 68) !important;
+  }
+  
+  .dark .prose a[href], .dark .prose a[href].text-link,
+  .dark a[href].text-link, .dark a[href].font-medium.text-link {
+    color: rgb(239 68 68) !important;
+  }
+
+  /* Exclude header navigation and blog titles from red styling */
+  header nav a[href]:not(:hover), header nav a[href].hover\:text-link:not(:hover),
+  .dark header nav a[href]:not(:hover), .dark header nav a[href].hover\:text-link:not(:hover),
+  article h2 a[href]:not(:hover), article h2 a[href].hover\:text-link:not(:hover),
+  article h3 a[href]:not(:hover), article h3 a[href].hover\:text-link:not(:hover),
+  .dark article h2 a[href]:not(:hover), .dark article h2 a[href].hover\:text-link:not(:hover),
+  .dark article h3 a[href]:not(:hover), .dark article h3 a[href].hover\:text-link:not(:hover) {
+    color: inherit !important;
   }
 </style>

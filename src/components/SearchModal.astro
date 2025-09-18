@@ -1,0 +1,319 @@
+---
+// SearchModal.astro - Beautiful search modal component
+---
+
+<div id="search-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+  <!-- Backdrop -->
+  <div class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" id="search-backdrop"></div>
+  
+  <!-- Modal -->
+  <div class="relative flex min-h-full items-center justify-center p-4">
+    <div class="relative w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white shadow-2xl transition-all dark:bg-gray-900">
+      <!-- Header -->
+      <div class="border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Search Soranauts
+          </h3>
+          <button
+            id="search-close"
+            class="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+            aria-label="Close search"
+          >
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Search Input -->
+      <div class="px-6 py-4">
+        <div class="relative">
+          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="search-input"
+            class="block w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-400 dark:focus:ring-blue-400/20"
+            placeholder="Search articles, guides, and more..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+      </div>
+      
+      <!-- Search Results -->
+      <div id="search-results" class="max-h-96 overflow-y-auto px-6 pb-6">
+        <!-- Loading state -->
+        <div id="search-loading" class="hidden text-center py-8">
+          <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
+          <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Searching...</p>
+        </div>
+        
+        <!-- No results -->
+        <div id="search-no-results" class="hidden text-center py-8">
+          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.709M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No results found</h3>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Try different keywords or check your spelling.</p>
+        </div>
+        
+        <!-- Results container -->
+        <div id="search-results-list" class="space-y-2"></div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="border-t border-gray-200 px-6 py-3 dark:border-gray-700">
+        <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+          <div class="flex items-center space-x-4">
+            <span class="flex items-center">
+              <kbd class="rounded bg-gray-100 px-2 py-1 font-mono dark:bg-gray-800">⌘K</kbd>
+              <span class="ml-1">to search</span>
+            </span>
+            <span class="flex items-center">
+              <kbd class="rounded bg-gray-100 px-2 py-1 font-mono dark:bg-gray-800">Esc</kbd>
+              <span class="ml-1">to close</span>
+            </span>
+          </div>
+          <div class="text-right">
+            <span id="search-count" class="font-medium">0 results</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  class SearchModal {
+    modal: HTMLElement | null;
+    backdrop: HTMLElement | null;
+    input: HTMLInputElement | null;
+    closeBtn: HTMLElement | null;
+    results: HTMLElement | null;
+    loading: HTMLElement | null;
+    noResults: HTMLElement | null;
+    count: HTMLElement | null;
+    pagefind: any;
+    isOpen: boolean;
+    currentQuery: string;
+    debounceTimer: number | null;
+    
+    constructor() {
+      this.modal = document.getElementById('search-modal');
+      this.backdrop = document.getElementById('search-backdrop');
+      this.input = document.getElementById('search-input') as HTMLInputElement;
+      this.closeBtn = document.getElementById('search-close');
+      this.results = document.getElementById('search-results-list');
+      this.loading = document.getElementById('search-loading');
+      this.noResults = document.getElementById('search-no-results');
+      this.count = document.getElementById('search-count');
+      
+      this.pagefind = null;
+      this.isOpen = false;
+      this.currentQuery = '';
+      this.debounceTimer = null;
+      
+      this.init();
+    }
+    
+    async init() {
+      // Load Pagefind - only in production
+      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        try {
+          this.pagefind = await import('/pagefind/pagefind.js');
+        } catch (error) {
+          console.error('Failed to load Pagefind:', error);
+        }
+      } else {
+        // In development, show a message that search is only available in production
+        console.log('Search is only available in production builds. Run "npm run build" to test search functionality.');
+      }
+      
+      this.bindEvents();
+    }
+    
+    bindEvents() {
+      // Open modal
+      document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+          e.preventDefault();
+          this.open();
+        }
+      });
+      
+      // Search trigger button
+      const searchTrigger = document.getElementById('search-trigger');
+      if (searchTrigger) {
+        searchTrigger.addEventListener('click', () => this.open());
+      }
+      
+      // Close modal
+      this.closeBtn?.addEventListener('click', () => this.close());
+      this.backdrop?.addEventListener('click', () => this.close());
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen) {
+          this.close();
+        }
+      });
+      
+      // Search input
+      this.input?.addEventListener('input', (e) => {
+        const target = e.target as HTMLInputElement;
+        this.debounceSearch(target.value);
+      });
+      
+      // Focus management
+      this.input?.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          this.close();
+        }
+      });
+    }
+    
+    open() {
+      this.modal?.classList.remove('hidden');
+      this.isOpen = true;
+      this.input?.focus();
+      document.body.style.overflow = 'hidden';
+      
+      // Clear previous results
+      this.clearResults();
+    }
+    
+    close() {
+      this.modal?.classList.add('hidden');
+      this.isOpen = false;
+      if (this.input) this.input.value = '';
+      this.currentQuery = '';
+      document.body.style.overflow = '';
+      this.clearResults();
+    }
+    
+    debounceSearch(query: string) {
+      if (this.debounceTimer) {
+        clearTimeout(this.debounceTimer);
+      }
+      this.debounceTimer = window.setTimeout(() => {
+        this.search(query);
+      }, 300);
+    }
+    
+    async search(query: string) {
+      if (!this.pagefind) {
+        this.showDevelopmentMessage();
+        return;
+      }
+      
+      if (!query.trim()) {
+        this.clearResults();
+        return;
+      }
+      
+      this.currentQuery = query;
+      this.showLoading();
+      
+      try {
+        const search = await this.pagefind.search(query);
+        const results = await Promise.all(
+          search.results.slice(0, 10).map(async (result) => {
+            const data = await result.data();
+            return {
+              url: result.url,
+              title: data.meta?.title || 'Untitled',
+              excerpt: data.excerpt || '',
+              content: data.content || ''
+            };
+          })
+        );
+        
+        this.displayResults(results, query);
+      } catch (error) {
+        console.error('Search error:', error);
+        this.showError();
+      }
+    }
+    
+    showLoading() {
+      this.loading?.classList.remove('hidden');
+      this.noResults?.classList.add('hidden');
+      if (this.results) this.results.innerHTML = '';
+    }
+    
+    clearResults() {
+      this.loading?.classList.add('hidden');
+      this.noResults?.classList.add('hidden');
+      if (this.results) this.results.innerHTML = '';
+      if (this.count) this.count.textContent = '0 results';
+    }
+    
+    displayResults(results: any[], query: string) {
+      this.loading?.classList.add('hidden');
+      
+      if (results.length === 0) {
+        this.noResults?.classList.remove('hidden');
+        if (this.count) this.count.textContent = '0 results';
+        return;
+      }
+      
+      this.noResults?.classList.add('hidden');
+      if (this.count) this.count.textContent = `${results.length} result${results.length !== 1 ? 's' : ''}`;
+      
+      if (this.results) {
+        this.results.innerHTML = results.map(result => `
+          <a href="${result.url}" class="block rounded-lg border border-gray-200 p-4 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800">
+            <h4 class="font-medium text-gray-900 dark:text-white">${this.highlightText(result.title, query)}</h4>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">${this.highlightText(result.excerpt, query)}</p>
+          </a>
+        `).join('');
+      }
+    }
+    
+    highlightText(text: string, query: string) {
+      if (!query) return text;
+      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      return text.replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-800 px-1 rounded">$1</mark>');
+    }
+    
+    showError() {
+      this.loading?.classList.add('hidden');
+      this.noResults?.classList.remove('hidden');
+      if (this.noResults) {
+        this.noResults.innerHTML = `
+          <svg class="mx-auto h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+          </svg>
+          <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Search Error</h3>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Unable to search. Please try again later.</p>
+        `;
+      }
+    }
+    
+    showDevelopmentMessage() {
+      this.loading?.classList.add('hidden');
+      this.noResults?.classList.remove('hidden');
+      if (this.noResults) {
+        this.noResults.innerHTML = `
+          <svg class="mx-auto h-12 w-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Search in Development</h3>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Search is only available in production builds. Run <code class="bg-gray-100 dark:bg-gray-800 px-1 rounded">npm run build</code> to test search functionality.</p>
+        `;
+      }
+      if (this.count) this.count.textContent = 'Development mode';
+    }
+  }
+  
+  // Initialize search modal when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new SearchModal();
+  });
+</script>

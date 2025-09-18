@@ -12,9 +12,9 @@
     --aw-color-text-heading: rgb(0 0 0); 
     --aw-color-text-default: rgb(16 16 16);
     --aw-color-text-muted: rgb(16 16 16 / 66%);
-    --aw-color-bg-page: rgb(255 255 255);
+    --aw-color-bg-page: rgb(255, 255, 255);
 
-    --aw-color-bg-page-dark: rgb(13, 11, 38);
+    --aw-color-bg-page-dark: rgb(15, 15, 20);
 
     ::selection {background-color: lavender;}
 

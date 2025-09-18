@@ -1,32 +1,64 @@
 ---
 title: 'Privacy Policy'
 layout: '~/layouts/MarkdownLayout.astro'
+lastUpdated: '2025-09-17'
 ---
 
-Last updated: December 11, 2023
+> **Summary**  
+> We only collect anonymous analytics through PostHog to understand how our website is used.  
+> Analytics are only enabled if you consent to cookies, and IP addresses are anonymized before storage.  
 
-Soranauts ("we," "us," or "our") respects the privacy of our users ("user," "you," or "your"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website [soranauts.com](https://www.soranauts.com), including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the "Site").
+---
 
-Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
+## Information We Collect  
 
-We reserve the right to make changes to this Privacy Policy at any time and for any reason. We will alert you about any changes by updating the "Last Updated" date of this Privacy Policy.
+We do not sell, rent, or trade your personal information. The only information collected on this website is anonymized analytics data, which helps us understand how visitors use the site.  
 
-You are encouraged to periodically review this Privacy Policy to stay informed of updates. You will be deemed to have been made aware of, will be subject to, and will be deemed to have accepted the changes in any revised Privacy Policy by your continued use of the Site after the date such revised Privacy Policy is posted.
+### Analytics  
+We use [PostHog](https://posthog.com) to track usage patterns such as page views and general website interactions.  
+- IP addresses are automatically anonymized before storage.  
+- Data does not include personally identifiable information.  
+- Analytics cookies are only set if you **consent** to them via our cookie banner.  
+- If you reject analytics cookies, PostHog tracking is disabled.  
 
-## Collection of your Personal Information
+For more information, see [PostHog’s Privacy Policy](https://posthog.com/privacy).  
 
-We do not collect any personal information about you unless you voluntarily provide it to us. However, you may be required to provide certain personal information to us when you elect to use certain products or services on the Site. We collect this information in order to record and support your participation in the activities you select.
+---
 
-## Cookies
+## Cookies and Consent  
 
-As is common practice with websites, our Site may use "cookies" - small data files that are saved to your computer or device that tracks, saves and stores information about your interactions and usage of the Site. This allows the Site to provide a tailored experience and remember your preferences. Users may choose to disable cookies or opt out through their browser settings, however, doing so may adversely impact your user experience and how the site functions.
+This website uses a cookie consent tool (**vanilla-cookieconsent**) to give you control over how cookies are used.  
 
-## No Use of Site Data for Marketing Purposes
+- **Essential cookies**: Required for the website to function and cannot be disabled.  
+- **Analytics cookies**: Used only if you consent. These power PostHog analytics.  
 
-As previously mentioned, we do not collect typical user data. In the event this changes in the future and such data is collected, you can be assured we will not sell your Site usage data or use it for any marketing purposes unless you provide your consent.
+You can manage or withdraw your consent at any time through the cookie banner or by clearing cookies in your browser.  
 
-## Changes To This Privacy Policy
+### Types of Cookies  
 
-This Privacy Policy is effective as of the last updated date displayed at the top of this Privacy Policy. We may update this Privacy Policy from time to time as necessary to protect our users and provide them notice of any important changes that could impact them.
+| Category          | Purpose                                   | Example / Notes                          | Expiry         |  
+|-------------------|-------------------------------------------|------------------------------------------|----------------|  
+| Essential         | Required for core site functionality      | Session management, security              | Session only   |  
+| Analytics (PostHog) | Helps us understand site usage and improve performance. Data is anonymized (IP anonymization enabled). | Page views, interaction tracking | Varies (typically up to 1 year, only if consented) |  
 
-We encourage our users to frequently check this page for any changes and remain informed on how we are protecting your privacy. You acknowledge and agree that it is your responsibility to review this privacy policy periodically and become aware of modifications.
+---
+
+## Third-Party Services  
+
+We may embed third-party content (such as videos or social media posts) that could set their own cookies. These are outside of our control but will only load if you interact with them.  
+
+---
+
+## Your Rights  
+
+Depending on your location (e.g., GDPR in the EU, CCPA in California), you may have the following rights:  
+
+- The right to access the data we hold about you.  
+- The right to request deletion of your data.  
+- The right to withdraw cookie consent at any time.  
+
+---
+
+## Changes to This Policy  
+
+We may update this Privacy Policy from time to time. Updates will be posted on this page with a revised “Last updated” date.  

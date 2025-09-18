@@ -1,0 +1,161 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = "Table of Contents" } = Astro.props;
+---
+
+<div class="toc-container mb-8 p-6 bg-page dark:bg-[#222C36e6] rounded-lg border-l-4 border-blue-500">
+  <button
+    class="toc-toggle w-full text-left text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md p-2 -m-2 transition-colors duration-200"
+    aria-expanded="false"
+    aria-controls="toc-nav"
+  >
+    <div class="flex items-center">
+      <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+      </svg>
+      {title}
+    </div>
+    <svg class="toc-chevron w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+
+  <nav class="toc-nav hidden" id="toc-nav">
+    <ul class="space-y-2" id="toc-list">
+      <!-- TOC items will be populated by JavaScript -->
+    </ul>
+  </nav>
+</div>
+
+<script>
+  // Auto-generate TOC from headings
+  function generateTOC() {
+    const tocList = document.getElementById('toc-list');
+    const tocNav = document.getElementById('toc-nav');
+    const tocToggle = document.querySelector('.toc-toggle');
+    const tocContainer = document.querySelector('.toc-container');
+
+    if (!tocList || !tocNav || !tocToggle || !tocContainer) return;
+
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    if (headings.length === 0) {
+      // Hide TOC if no headings found
+      tocContainer.style.display = 'none';
+      return;
+    }
+
+    let tocHTML = '';
+
+    headings.forEach((heading, index) => {
+      const level = parseInt(heading.tagName.charAt(1));
+      const text = heading.textContent || '';
+      const id = heading.id || text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
+
+      // Skip financial disclaimer and other non-content headings
+      if (text.toLowerCase().includes('financial disclaimer') ||
+          text.toLowerCase().includes('disclaimer') ||
+          text.toLowerCase().includes('table of contents') ||
+          text.toLowerCase().includes('toc')) {
+        return;
+      }
+
+      // Ensure heading has an ID
+      if (!heading.id) {
+        heading.id = id;
+      }
+
+      // Add indentation based on level
+      const indentClass = level > 2 ? 'ml-4' : level > 3 ? 'ml-8' : '';
+      const fontClass = level === 1 ? 'font-semibold' : level === 2 ? 'font-medium' : '';
+
+      tocHTML += `
+        <li class="${indentClass}">
+          <a
+            href="#${id}"
+            class="block py-1 px-2 rounded text-sm transition-colors duration-200 hover:bg-blue-100 hover:text-blue-700 dark:hover:bg-blue-900 dark:hover:text-blue-300 text-gray-700 dark:text-gray-300 ${fontClass}"
+          >
+            ${text}
+          </a>
+        </li>
+      `;
+    });
+
+    tocList.innerHTML = tocHTML;
+
+    // Smart behavior: Auto-expand on mobile, remember state on desktop
+    const isMobile = window.innerWidth < 768;
+    const savedState = localStorage.getItem('toc-expanded');
+
+    if (isMobile || savedState === 'true') {
+      expandTOC();
+    }
+
+    // Toggle functionality
+    tocToggle.addEventListener('click', () => {
+      const isExpanded = tocNav.classList.contains('hidden');
+      if (isExpanded) {
+        expandTOC();
+      } else {
+        collapseTOC();
+      }
+    });
+  }
+
+  function expandTOC() {
+    const tocNav = document.getElementById('toc-nav');
+    const tocToggle = document.querySelector('.toc-toggle');
+    const chevron = document.querySelector('.toc-chevron');
+
+    if (tocNav && tocToggle && chevron) {
+      tocNav.classList.remove('hidden');
+      tocToggle.setAttribute('aria-expanded', 'true');
+      chevron.style.transform = 'rotate(180deg)';
+
+      // Remember state on desktop
+      if (window.innerWidth >= 768) {
+        localStorage.setItem('toc-expanded', 'true');
+      }
+    }
+  }
+
+  function collapseTOC() {
+    const tocNav = document.getElementById('toc-nav');
+    const tocToggle = document.querySelector('.toc-toggle');
+    const chevron = document.querySelector('.toc-chevron');
+
+    if (tocNav && tocToggle && chevron) {
+      tocNav.classList.add('hidden');
+      tocToggle.setAttribute('aria-expanded', 'false');
+      chevron.style.transform = 'rotate(0deg)';
+
+      // Remember state on desktop
+      if (window.innerWidth >= 768) {
+        localStorage.setItem('toc-expanded', 'false');
+      }
+    }
+  }
+
+  // Generate TOC when DOM is loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', generateTOC);
+  } else {
+    generateTOC();
+  }
+</script>
+
+<style>
+  .toc-container {
+    position: sticky;
+    top: 100px;
+  }
+
+  @media (max-width: 768px) {
+    .toc-container {
+      position: static;
+    }
+  }
+</style>
+
