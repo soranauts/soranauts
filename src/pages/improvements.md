@@ -3,6 +3,8 @@ title: 'Website Improvements'
 layout: '~/layouts/MarkdownLayout.astro'
 lastUpdated: '2025-01-18'
 metadata:
+  title: 'Website Improvements | Soranauts'
+  description: 'Internal changelog documenting website improvements, new features, and technical enhancements for the Soranauts community.'
   robots:
     index: false
     follow: false
@@ -37,10 +39,25 @@ This document outlines the key improvements and enhancements made to the Soranau
 - **Accessibility**: Improved keyboard navigation and screen reader support
 - **Content Management**: Automatic "last updated" timestamps on all pages
 
+### 🔍 SEO & Schema Optimization
+- **Meta Tags**: ✅ **COMPLETED** - Comprehensive meta tags for all pages
+  - Title, description, and keywords optimization
+  - Open Graph tags for social media sharing
+  - Twitter Cards with proper image handling
+- **Schema Markup**: ✅ **COMPLETED** - JSON-LD structured data implementation
+  - Website and Organization schema on homepage
+  - Article schema for all blog posts
+  - Breadcrumb navigation schema
+- **Social Sharing**: ✅ **COMPLETED** - Enhanced social media integration
+  - Twitter image meta tags for all pages
+  - Open Graph images for Facebook/LinkedIn
+  - Proper canonical URLs to prevent duplicate content
+- **Sitemap**: ✅ **COMPLETED** - Enhanced XML sitemap with news and image extensions
+- **Search Engine Optimization**: ✅ **COMPLETED** - Full SEO audit and implementation
+
 ## 🚀 Future Roadmap
 
 ### Planned Features
-- **SEO Optimization**: Schema markup and comprehensive SEO improvements
 - **SORA Tools Page**: Real-time price tracking, portfolio analytics, and DeFi calculators
 - **Performance**: Further Core Web Vitals optimization
 - **API Integration**: Connect with SORA network APIs for live data

@@ -18,13 +18,31 @@ export interface Props {
 
 const { post, url } = Astro.props;
 const { Content } = post;
+
+// Calculate word count (rough estimate)
+const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.length > 0).length : 100;
 ---
+
 
 <section class="py-8 sm:py-16 lg:py-20 mx-auto">
   <article>
     <header class={post.image ? '' : ''}>
       <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
         <p>
+          <a href="/" class="hover:underline inline-block">Home</a>
+          {' '}·{' '}
+          <a href="/blog" class="hover:underline inline-block">Blog</a>
+          {
+            post.category && (
+              <>
+                {' '}·{' '}
+                <a class="hover:underline inline-block" href={getPermalink(post.category, 'category')}>
+                  {post.category.replaceAll('-', ' ').replace(/sora ecosystem/gi, 'SORA Ecosystem').replace(/defi/gi, 'DeFi').replace(/\s+And\s+/g, ' and ').replace(/\b(?!and\b)\w/g, l => l.toUpperCase())}
+                </a>
+              </>
+            )
+          }
+          {' '}·{' '}
           <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
           <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time>
           {
@@ -36,17 +54,6 @@ const { Content } = post;
                   <Icon name="tabler:edit" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400 mr-1" />
                   Updated {getFormattedDate(post.updateDate)}
                 </span>
-              </>
-            )
-          }
-          {
-            post.category && (
-              <>
-                {' '}
-                ·{' '}
-                <a class="hover:underline inline-block" href={getPermalink(post.category, 'category')}>
-                  {post.category.replaceAll('-', ' ').replace(/sora ecosystem/gi, 'SORA Ecosystem').replace(/defi/gi, 'DeFi').replace(/\s+And\s+/g, ' and ').replace(/\b(?!and\b)\w/g, l => l.toUpperCase())}
-                </a>
               </>
             )
           }

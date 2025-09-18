@@ -1,6 +1,6 @@
 site:
   name: Soranauts
-  site: 'https://soranauts.com/'
+  site: 'https://soranauts.com'
   base: '/'
   trailingSlash: false
 

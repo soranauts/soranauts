@@ -1,7 +1,7 @@
 ---
 import '~/assets/styles/tailwind.css';
 
-import { I18N } from '~/utils/config';
+import { I18N, SITE } from '~/utils/config';
 
 import CommonMeta from '~/components/common/CommonMeta.astro';
 import Favicons from '~/components/Favicons.astro';
@@ -13,6 +13,7 @@ import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 import SimpleCookieConsent from '~/components/SimpleCookieConsent.astro';
 import SearchModal from '~/components/SearchModal.astro';
+import SchemaMarkup from '~/components/SEO/SchemaMarkup.astro';
 
 // Uncomment line below to activate View Transitions
 // import { ViewTransitions } from 'astro:transitions';
@@ -35,8 +36,16 @@ const { language, textDirection } = I18N;
     <CustomStyles />
     <ApplyColorMode />
     <Metadata {...metadata} />
+    
+    <!-- Twitter Image Meta Tag -->
+    <meta name="twitter:image" content={`${SITE.site}/_image?href=%2F%40fs%2FUsers%2Fdustinmatlock%2FDocuments%2FGitHub%2Fsoranauts%2Fsrc%2Fassets%2Fimages%2Fsoranauts-social-share.jpg%3ForigWidth%3D1200%26origHeight%3D630%26origFormat%3Djpg&w=1200&h=630&f=webp`} />
+    
     <SiteVerification />
     <Analytics />
+    
+    <!-- Website Schema Markup -->
+    <SchemaMarkup type="website" data={{}} />
+    <SchemaMarkup type="organization" data={{}} />
 
     <!-- Uncomment line below to activate View Transitions -->
     <!-- <ViewTransitions fallback="swap" /> -->

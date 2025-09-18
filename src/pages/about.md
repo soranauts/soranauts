@@ -1,5 +1,5 @@
 ---
-title: 'About'
+title: 'About Soranauts - Your Guide to SORA & Web3'
 layout: '~/layouts/MarkdownLayout.astro'
 lastUpdated: '2025-09-12'
 ---

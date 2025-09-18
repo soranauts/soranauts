@@ -24,7 +24,7 @@ const currentPage = page.currentPage ?? 1;
 // const allTags = await findTags();
 
 const metadata = {
-  title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
+  title: `SORA & DeFi News${currentPage > 1 ? ` — Page ${currentPage}` : ''} | Soranauts`,
   robots: {
     index: blogListRobots?.index && currentPage === 1,
     follow: blogListRobots?.follow,
@@ -40,7 +40,7 @@ const metadata = {
     <Headline
       subtitle="This blog explores the rapidly evolving landscape of decentralization, how ecosystems like SORA, decentralized finance (DeFi), and decentralized apps (DApps) could disrupt traditional banking, investments, loans, transactions, and the future of money itself."
     >
-      Crypto Blog
+      SORA & DeFi News
     </Headline>
     <BlogList posts={page.data} />
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />

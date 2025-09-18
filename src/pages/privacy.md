@@ -2,6 +2,8 @@
 title: 'Privacy Policy'
 layout: '~/layouts/MarkdownLayout.astro'
 lastUpdated: '2025-09-17'
+metadata:
+  title: 'Privacy Policy | Soranauts'
 ---
 
 > **Summary**  

@@ -1,0 +1,108 @@
+---
+import { SITE } from '~/utils/config';
+
+export interface Props {
+  type: 'article' | 'website' | 'organization' | 'breadcrumb';
+  data: any;
+}
+
+const { type, data = {} } = Astro.props;
+
+function generateSchema() {
+  switch (type) {
+    case 'article':
+      return {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": data.title,
+        "description": data.description,
+        "image": data.image ? (typeof data.image === 'string' ? (data.image.startsWith('http') ? data.image : `${SITE.site}${data.image}`) : `${SITE.site}${data.image.src}`) : undefined,
+        "author": {
+          "@type": "Person",
+          "name": data.author || "Soranauts",
+          "url": SITE.site
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Soranauts",
+          "url": SITE.site,
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${SITE.site}/new-logo-250x80.webp`
+          }
+        },
+        "datePublished": data.publishedTime,
+        "dateModified": data.modifiedTime || data.publishedTime,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": data.url
+        },
+        "articleSection": data.category,
+        "keywords": data.tags?.join(', ') || data.category,
+        "wordCount": data.wordCount,
+        "timeRequired": data.readingTime
+      };
+
+    case 'website':
+      return {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Soranauts",
+        "url": SITE.site,
+        "description": "Explore the SORA blockchain and Polkaswap, a decentralized exchange for seamless crypto swaps. Learn, trade, and join the SORA ecosystem today.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Soranauts",
+          "url": SITE.site
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${SITE.site}?q={search_term_string}`
+          },
+          "query-input": "required name=search_term_string"
+        }
+      };
+
+    case 'organization':
+      return {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Soranauts",
+        "url": SITE.site,
+        "logo": `${SITE.site}/new-logo-250x80.webp`,
+        "description": "Your trusted source for SORA blockchain news, analysis, and educational content. Learn about Polkaswap, DeFi, and the future of decentralized finance.",
+        "sameAs": [
+          "https://twitter.com/soranauts"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": "English"
+        }
+      };
+
+    case 'breadcrumb':
+      return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": data.breadcrumbs.map((item: any, index: number) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      };
+
+    default:
+      return {};
+  }
+}
+
+const schema = generateSchema();
+---
+
+{Object.keys(schema).length > 0 && (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+)}

@@ -2,6 +2,8 @@
 title: 'Terms and Conditions'
 layout: '~/layouts/MarkdownLayout.astro'
 lastUpdated: '2025-01-17'
+metadata:
+  title: 'Terms and Conditions | Soranauts'
 ---
 
 By accessing and using this website, you agree to the following terms. If you do not agree, please do not use this site.  
