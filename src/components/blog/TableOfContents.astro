@@ -151,6 +151,12 @@ const { title = "Table of Contents" } = Astro.props;
   // Initialize immediately and also on window load as backup
   initTOC();
   window.addEventListener('load', generateTOC);
+  
+  // Also try to initialize after a short delay to ensure DOM is ready
+  setTimeout(generateTOC, 100);
+  
+  // Try again after a longer delay to ensure everything is loaded
+  setTimeout(generateTOC, 500);
 </script>
 
 <style>
