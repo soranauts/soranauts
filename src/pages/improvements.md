@@ -14,7 +14,7 @@ This document outlines the key improvements and enhancements made to the Soranau
 
 ### 🎨 Design & Branding
 - **New Logo**: Implemented horizontal logo design with consistent sizing across the site
-- **Color Scheme**: Unified red (#EF4444) accent color throughout for better brand recognition
+- **Color Scheme**: Unified red (#E3242D) accent color throughout for better brand recognition
 - **Visual Consistency**: Standardized styling across all components and pages
 
 ### 🔍 Search & Navigation
