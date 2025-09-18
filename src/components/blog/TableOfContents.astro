@@ -48,14 +48,44 @@
       const articleContent = document.querySelector('.prose') || document.querySelector('article') || document.body;
       const headings = articleContent ? articleContent.querySelectorAll('h1, h2, h3, h4, h5, h6') : [];
       
-      if (headings.length === 0) {
+      // Filter out headings that are likely from manual TOC or navigation
+      const filteredHeadings = Array.from(headings).filter(heading => {
+        const text = heading.textContent || '';
+        const parent = heading.parentElement;
+        
+        // Skip if it's in a TOC container or navigation
+        if (parent && (parent.classList.contains('toc-container') || 
+                      parent.classList.contains('toc-list') ||
+                      parent.classList.contains('nav') ||
+                      parent.classList.contains('navigation'))) {
+          return false;
+        }
+        
+        // Skip if it's a manual TOC heading
+        if (text.toLowerCase().includes('table of contents') ||
+            text.toLowerCase().includes('contents') ||
+            text.toLowerCase().includes('introduction:') ||
+            text.toLowerCase().includes('defining') ||
+            text.toLowerCase().includes('technology underpinning') ||
+            text.toLowerCase().includes('inside the') ||
+            text.toLowerCase().includes('token-based collaboration') ||
+            text.toLowerCase().includes('social implications') ||
+            text.toLowerCase().includes('financial & economic') ||
+            text.toLowerCase().includes('political ramifications')) {
+          return false;
+        }
+        
+        return true;
+      });
+      
+      if (filteredHeadings.length === 0) {
         tocContainer.style.display = 'none';
         return;
       }
 
       let tocHTML = '';
 
-      headings.forEach((heading) => {
+      filteredHeadings.forEach((heading) => {
         // Ensure this is actually a heading element
         if (!heading.tagName || !heading.tagName.match(/^H[1-6]$/)) {
           return;
@@ -67,21 +97,6 @@
 
         // Skip empty or very short headings
         if (!text || text.trim().length < 3) {
-          return;
-        }
-
-        // Skip non-content headings and search-related content
-        if (text.toLowerCase().includes('financial disclaimer') ||
-            text.toLowerCase().includes('disclaimer') ||
-            text.toLowerCase().includes('table of contents') ||
-            text.toLowerCase().includes('search soranauts') ||
-            text.toLowerCase().includes('no results found') ||
-            text.toLowerCase().includes('type to search') ||
-            text.toLowerCase().includes('searching...') ||
-            text.toLowerCase().includes('try different keywords') ||
-            text.toLowerCase().includes('search articles') ||
-            text.toLowerCase().includes('search modal') ||
-            text.toLowerCase().includes('search results')) {
           return;
         }
 
