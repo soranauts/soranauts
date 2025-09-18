@@ -242,8 +242,15 @@
         const results = await Promise.all(
           search.results.slice(0, 10).map(async (result) => {
             const data = await result.data();
+            
+            // Pagefind provides relative URLs, ensure they start with /
+            let url = result.url;
+            if (url && !url.startsWith('http') && !url.startsWith('/')) {
+              url = '/' + url;
+            }
+            
             return {
-              url: result.url || '#',
+              url: url || '#',
               title: data.meta?.title || 'Untitled',
               excerpt: data.excerpt || '',
               content: data.content || ''
