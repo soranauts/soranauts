@@ -44,8 +44,8 @@ const { Content } = post;
               <>
                 {' '}
                 ·{' '}
-                <a class="hover:underline inline-block" href={getPermalink(post.category, 'category')}>
-                  {post.category.replaceAll('-', ' ').replace('Sora Ecosystem', 'SORA Ecosystem')}
+                <a class="capitalize hover:underline inline-block" href={getPermalink(post.category, 'category')}>
+                  {post.category.replaceAll('-', ' ').replace(/sora ecosystem/gi, 'SORA Ecosystem')}
                 </a>
               </>
             )
