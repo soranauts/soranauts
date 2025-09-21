@@ -29,6 +29,7 @@ const metadata = {
   robots: {
     index: blogListRobots?.index && currentPage === 1,
     follow: blogListRobots?.follow,
+    noindex: currentPage > 1, // Explicitly noindex pagination pages
   },
   openGraph: {
     type: 'blog',

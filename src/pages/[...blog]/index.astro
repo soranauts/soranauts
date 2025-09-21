@@ -47,6 +47,7 @@ const metadata = merge(
   {
     title: post.title,
     description: post.excerpt,
+    canonical: url, // Always use the correct canonical URL
     robots: {
       index: blogPostRobots?.index,
       follow: blogPostRobots?.follow,
@@ -56,7 +57,7 @@ const metadata = merge(
       ...(directImageUrl ? { images: [{ url: directImageUrl, width: 1200, height: 630 }] } : {}),
     },
   },
-  { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical || url } : {}) }
+  { ...(post?.metadata ? { ...post.metadata } : {}) }
 ) as MetaData;
 ---
 
