@@ -22,9 +22,12 @@ const currentPage = page.currentPage ?? 1;
 const metadata = {
   title: `Category '${category}' ${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
   robots: {
-    index: blogCategoryRobots?.index,
+    index: blogCategoryRobots?.index && currentPage === 1,
     follow: blogCategoryRobots?.follow,
+    noindex: currentPage > 1, // Explicitly noindex pagination pages
   },
+  // Set canonical to first page for pagination
+  canonical: currentPage > 1 ? `https://soranauts.com/category/${category}` : undefined,
 };
 ---
 
