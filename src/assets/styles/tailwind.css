@@ -66,7 +66,25 @@
   left: 0;
   right: 0;
   bottom: 70px !important;
-  padding: 0 5px;
+  padding: 1.5rem 1rem;
+  background-color: var(--aw-color-bg-page);
+}
+
+.dark #header.expanded nav {
+  background-color: var(--aw-color-bg-page-dark);
+}
+
+#header.expanded nav ul {
+  @apply space-y-1;
+}
+
+#header.expanded nav ul li a,
+#header.expanded nav ul li button {
+  @apply py-3 text-xl pl-2 pr-4;
+}
+
+#header.expanded nav ul li ul li a {
+  @apply py-2 pl-2.5;
 }
 
 .dropdown:hover .dropdown-menu {
