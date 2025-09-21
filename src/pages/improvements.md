@@ -1,7 +1,7 @@
 ---
 title: 'Website Improvements'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-01-18'
+lastUpdated: '2025-09-21'
 metadata:
   title: 'Website Improvements | Soranauts'
   description: 'Internal changelog documenting website improvements, new features, and technical enhancements for the Soranauts community.'
