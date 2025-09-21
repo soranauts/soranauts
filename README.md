@@ -1,45 +1,44 @@
-# 🚀 AstroWind
+# 🌟 Soranauts
 
 <img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/lighthouse-score.png" align="right"
-     alt="AstroWind Lighthouse Score" width="100" height="358">
+     alt="Soranauts Lighthouse Score" width="100" height="358">
 
-🌟 _Most *starred* & *forked* Astro theme in 2022_. 🌟
+🚀 _Your gateway to the SORA ecosystem and DeFi innovation_. 🚀
 
-**AstroWind** is a free and open-source template to make your website using **[Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
+**Soranauts** is a comprehensive content platform built with **[Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)** that provides expert analysis, guides, and insights into the SORA blockchain ecosystem, DeFi protocols, and the future of decentralized finance.
 
 - ✅ **Production-ready** scores in **PageSpeed Insights** reports.
-- ✅ Integration with **Tailwind CSS** supporting **Dark mode** and **_RTL_**.
-- ✅ **Fast and SEO friendly blog** with automatic **RSS feed**, **MDX** support, **Categories & Tags**, **Social Share**, ...
+- ✅ **SORA-focused content** covering XOR, VAL, PSWAP tokens and ecosystem developments.
+- ✅ **Fast and SEO friendly blog** with automatic **RSS feed**, **MDX** support, **Categories & Tags**, **Social Share**.
 - ✅ **Image Optimization** (using new **Astro Assets** and **Unpic** for Universal image CDN).
-- ✅ Generation of **project sitemap** based on your routes.
-- ✅ **Open Graph tags** for social media sharing.
+- ✅ **DeFi & Blockchain guides** for traders, developers, and crypto enthusiasts.
+- ✅ **Open Graph tags** for social media sharing and **structured data** for search engines.
 - ✅ **Analytics** built-in Google Analytics, and Splitbee integration.
 
 <br>
 
-<img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/screenshot-astro3.png" alt="AstroWind Theme Screenshot">
+<img src="./src/assets/images/soranauts-website-preview.jpg" alt="Soranauts Website Preview" width="800" height="auto">
 
-[![onWidget](https://custom-icon-badges.demolab.com/badge/made%20by%20-onWidget-556bf2?style=flat-square&logo=onwidget&logoColor=white&labelColor=101827)](https://onwidget.com)
-[![License](https://img.shields.io/github/license/onwidget/astrowind?style=flat-square&color=dddddd&labelColor=000000)](https://github.com/onwidget/astrowind/blob/main/LICENSE.md)
-[![Maintained](https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg?style=flat-square)](https://github.com/onwidget)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/onwidget/astrowind#contributing)
-[![Known Vulnerabilities](https://snyk.io/test/github/onwidget/astrowind/badge.svg?style=flat-square)](https://snyk.io/test/github/onwidget/astrowind)
-[![Stars](https://img.shields.io/github/stars/onwidget/astrowind.svg?style=social&label=stars&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
-[![Forks](https://img.shields.io/github/forks/onwidget/astrowind.svg?style=social&label=forks&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
+[![SORA Ecosystem](https://img.shields.io/badge/ecosystem-SORA-ff6b35?style=flat-square&logo=polkadot&logoColor=white&labelColor=000000)](https://sora.org)
+[![License](https://img.shields.io/github/license/soranauts/soranauts?style=flat-square&color=dddddd&labelColor=000000)](https://github.com/soranauts/soranauts/blob/main/LICENSE.md)
+[![Maintained](https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg?style=flat-square)](https://github.com/soranauts)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/soranauts/soranauts#contributing)
+[![Website](https://img.shields.io/badge/website-soranauts.com-00d4aa?style=flat-square)](https://soranauts.com)
+[![SEO Optimized](https://img.shields.io/badge/SEO-optimized-green?style=flat-square)](https://soranauts.com)
 
 <br>
 
 <details open>
 <summary>Table of Contents</summary>
 
-- [Demo](#demo)
+- [Live Website](#live-website)
 - [Getting started](#getting-started)
   - [Project structure](#project-structure)
   - [Commands](#commands)
   - [Configuration](#configuration)
   - [Deploy](#deploy)
-- [Frequently Asked Questions](#frequently-asked-questions)
-- [Related Projects](#related-projects)
+- [Content Focus](#content-focus)
+- [Recent Updates](#recent-updates)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
@@ -48,21 +47,28 @@
 
 <br>
 
-## Demo
+## Live Website
 
-📌 [https://astrowind.vercel.app/](https://astrowind.vercel.app/)
+🌐 [https://soranauts.com](https://soranauts.com)
+
+Soranauts provides comprehensive coverage of the SORA ecosystem, including:
+- **SORA v3 updates** and blockchain innovations
+- **Polkaswap DEX** guides and trading strategies  
+- **Token analysis** for XOR, VAL, and PSWAP
+- **DeFi protocols** and investment strategies
+- **Blockchain technology** comparisons and guides
 
 <br>
 
 ## Getting started
 
-**AstroWind** tries to give you quick access to creating a website using [Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
+**Soranauts** is built using [Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/) for optimal performance and SEO. The platform focuses on delivering high-quality content about the SORA ecosystem with a clean, fast-loading interface.
 
-Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals..
+The site uses minimal JavaScript for core functionality while maintaining excellent performance scores and SEO optimization for maximum discoverability of SORA-related content.
 
 ### Project structure
 
-Inside **AstroWind** template, you'll see the following folders and files:
+Inside **Soranauts** project, you'll see the following folders and files:
 
 ```
 /
@@ -248,28 +254,67 @@ Clone this repository on own GitHub account and deploy to Vercel:
 
 <br>
 
-## Frequently Asked Questions
+## Content Focus
 
-- Why?
--
--
+Soranauts specializes in comprehensive coverage of:
+
+### 🚀 SORA Ecosystem
+- **SORA v3** blockchain innovations and updates
+- **Polkaswap DEX** features and trading strategies
+- **Token analysis** for XOR, VAL, and PSWAP
+- **Governance** and decentralized decision-making
+
+### 💰 DeFi & Trading
+- **Decentralized exchanges** comparison and guides
+- **Investment strategies** for crypto portfolios
+- **Market analysis** and price predictions
+- **Risk management** and security best practices
+
+### 🔗 Blockchain Technology
+- **Polkadot ecosystem** and parachain technology
+- **Consensus mechanisms** (Proof of Stake vs Proof of Work)
+- **Smart contracts** and development guides
+- **Cross-chain interoperability**
+
+## Recent Updates
+
+### 🔧 Technical Improvements (Latest)
+- ✅ **Fixed canonical URL bug** - Resolved incorrect canonical URL generation that was causing SEO issues
+- ✅ **Fixed breadcrumb schema** - Corrected structured data for better search engine understanding
+- ✅ **Enhanced mobile menu** - Improved spacing and indentation for better user experience
+- ✅ **SEO optimization** - Added proper robots meta tags and pagination handling
+
+### 📝 Content Updates
+- ✅ **47+ articles** covering SORA ecosystem and DeFi topics
+- ✅ **Chronological update checklist** for maintaining content freshness
+- ✅ **Category organization** for better content discovery
+- ✅ **Social media integration** for content sharing
 
 <br>
 
-## Related projects
+## Related Projects
 
-- [TailNext](https://tailnext.vercel.app/) - Free template using Next.js 14 and Tailwind CSS with the new App Router.
-- [Qwind](https://qwind.pages.dev/) - Free template to make your website using Qwik + Tailwind CSS.
+- [SORA Network](https://sora.org) - The official SORA blockchain network
+- [Polkaswap](https://polkaswap.io) - Decentralized exchange on SORA
+- [SORA Wiki](https://wiki.sora.org) - Comprehensive SORA ecosystem documentation
+- [AstroWind](https://github.com/onwidget/astrowind) - The original Astro template this project is based on
 
 ## Contributing
 
-If you have any idea, suggestions or find any bugs, feel free to open a discussion, an issue or create a pull request.
-That would be very useful for all of us and we would be happy to listen and take action.
+We welcome contributions to improve Soranauts! Whether you want to:
+
+- 📝 **Write content** about SORA ecosystem developments
+- 🐛 **Report bugs** or suggest improvements
+- 🔧 **Fix technical issues** or enhance functionality
+- 📊 **Improve SEO** or performance
+- 🎨 **Enhance design** or user experience
+
+Please feel free to open a discussion, create an issue, or submit a pull request. Your contributions help make Soranauts the go-to resource for SORA ecosystem information.
 
 ## Acknowledgements
 
-Initially created by [onWidget](https://onwidget.com) and maintained by a community of [contributors](https://github.com/onwidget/astrowind/graphs/contributors).
+Soranauts is built on the excellent [AstroWind](https://github.com/onwidget/astrowind) template by [onWidget](https://onwidget.com) and maintained by the Soranauts community. Special thanks to the SORA ecosystem team for their innovative blockchain technology and the contributors who help make this platform a valuable resource for the community.
 
 ## License
 
-**AstroWind** is licensed under the MIT license — see the [LICENSE](./LICENSE.md) file for details.
+**Soranauts** is licensed under the MIT license — see the [LICENSE](./LICENSE.md) file for details.
