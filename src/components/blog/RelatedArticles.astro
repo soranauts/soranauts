@@ -1,0 +1,76 @@
+---
+export interface Props {
+  currentArticle: {
+    slug: string;
+    tags: string[];
+    category: string;
+  };
+  allArticles: Array<{
+    slug: string;
+    title: string;
+    excerpt: string;
+    tags: string[];
+    category: string;
+    publishDate: Date;
+  }>;
+  maxArticles?: number;
+}
+
+const { currentArticle, allArticles, maxArticles = 3 } = Astro.props;
+
+// Calculate relevance score based on tag overlap
+function calculateRelevance(currentTags: string[], articleTags: string[]): number {
+  const matches = currentTags.filter(tag => articleTags.includes(tag)).length;
+  return matches;
+}
+
+// Find related articles
+let relatedArticles = allArticles
+  .filter(article => article.slug !== currentArticle.slug)
+  .map(article => ({
+    ...article,
+    relevanceScore: calculateRelevance(currentArticle.tags, article.tags)
+  }))
+  .filter(article => article.relevanceScore > 0) // Only show articles with matching tags
+  .sort((a, b) => b.relevanceScore - a.relevanceScore)
+  .slice(0, maxArticles);
+
+// If no related articles found, show recent articles from same category
+if (relatedArticles.length === 0) {
+  relatedArticles = allArticles
+    .filter(article => 
+      article.slug !== currentArticle.slug && 
+      article.category === currentArticle.category
+    )
+    .map(article => ({
+      ...article,
+      relevanceScore: 0
+    }))
+    .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
+    .slice(0, maxArticles);
+}
+---
+
+{relatedArticles.length > 0 && (
+  <div class="related-articles mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Related Articles</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {relatedArticles.map(article => (
+        <a 
+          href={`/${article.slug}`}
+          class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-300 hover:shadow-md transition-all duration-200 bg-white dark:bg-gray-800"
+        >
+          <h4 class="font-medium text-gray-900 dark:text-white mb-2 line-clamp-2">{article.title}</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-3">{article.excerpt}</p>
+          <div class="flex flex-wrap gap-1">
+            {article.tags.slice(0, 3).map(tag => (
+              <span class="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+)}

@@ -4,7 +4,9 @@ import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 import Announcement from '~/components/widgets/Announcement.astro';
 import SchemaMarkup from '~/components/SEO/SchemaMarkup.astro';
+import RelatedArticles from '~/components/blog/RelatedArticles.astro';
 import { SITE } from '~/utils/config';
+import { fetchPosts } from '~/utils/blog';
 
 import { headerData, footerData } from '~/navigation';
 
@@ -17,6 +19,9 @@ export interface Props {
 }
 
 const { post, url, metadata = {} } = Astro.props;
+
+// Fetch all posts for related articles
+const allPosts = await fetchPosts();
 
 // Calculate word count (rough estimate)
 const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.length > 0).length : 100;
@@ -93,6 +98,26 @@ const enhancedMetadata = {
   </slot>
   <main>
     <slot />
+    
+    <!-- Related Articles Section -->
+    <div class="container mx-auto px-4 py-8">
+      <RelatedArticles 
+        currentArticle={{
+          slug: post.slug,
+          tags: post.tags || [],
+          category: post.category || ''
+        }}
+        allArticles={allPosts.map(p => ({
+          slug: p.slug,
+          title: p.title,
+          excerpt: p.excerpt || '',
+          tags: p.tags || [],
+          category: p.category || '',
+          publishDate: p.publishDate
+        }))}
+        maxArticles={3}
+      />
+    </div>
   </main>
   <slot name="footer">
     <Footer {...footerData} />

@@ -49,7 +49,7 @@
       const headings = articleContent ? articleContent.querySelectorAll('h1, h2, h3, h4, h5, h6') : [];
       
       // Skip the first few headings as they might be from manual TOC
-      const skipFirstN = 3; // Skip first 3 headings which are likely manual TOC
+      const skipFirstN = 0; // Skip first 0 headings - no manual TOC in this article
       const headingsArray = Array.from(headings);
       const actualHeadings = headingsArray.slice(skipFirstN);
       

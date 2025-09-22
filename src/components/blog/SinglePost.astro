@@ -132,9 +132,15 @@ const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.l
       </div>
     </div>
 
-    <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
-      <PostTags tags={post.tags} class="mr-5 rtl:mr-0 rtl:ml-5" />
-      <SocialShare url={url} text={post.title} class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600" />
+    <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div class="flex-1">
+          <PostTags tags={post.tags} class="text-sm" />
+        </div>
+        <div class="flex-shrink-0">
+          <SocialShare url={url} text={post.title} class="text-gray-500 dark:text-slate-600" />
+        </div>
+      </div>
     </div>
   </article>
 </section>
