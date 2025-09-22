@@ -1,0 +1,277 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/widgets/Header.astro';
+import Footer from '~/components/widgets/Footer.astro';
+import { SITE } from '~/utils/config';
+import { headerData, footerData } from '~/navigation';
+import { getAllGlossaryTerms, getGlossaryTermsByCategory } from '~/data/sora-glossary';
+
+const allTerms = getAllGlossaryTerms();
+const termsByCategory = {
+  token: getGlossaryTermsByCategory('token'),
+  technology: getGlossaryTermsByCategory('technology'),
+  governance: getGlossaryTermsByCategory('governance'),
+  defi: getGlossaryTermsByCategory('defi'),
+  network: getGlossaryTermsByCategory('network'),
+  economics: getGlossaryTermsByCategory('economics')
+};
+
+const categoryLabels = {
+  token: 'Tokens',
+  technology: 'Technology',
+  governance: 'Governance',
+  defi: 'DeFi',
+  network: 'Network',
+  economics: 'Economics'
+};
+
+const categoryDescriptions = {
+  token: 'Core tokens and digital assets in the SORA ecosystem',
+  technology: 'Technical concepts and blockchain infrastructure',
+  governance: 'Democratic processes and decision-making mechanisms',
+  defi: 'Decentralized finance protocols and applications',
+  network: 'Network infrastructure and consensus mechanisms',
+  economics: 'Economic models and monetary policies'
+};
+---
+
+<Layout 
+  metadata={{
+    title: 'SORA Glossary | Comprehensive Guide to SORA Ecosystem Terms',
+    description: 'Complete glossary of SORA ecosystem terms, definitions, and concepts. Learn about XOR, VAL, PSWAP, governance, DeFi, and more.',
+    url: `${SITE.site}/glossary`,
+    type: 'website'
+  }}
+>
+  <Header {...headerData} isSticky showRssFeed showToggleTheme />
+  
+  <main class="py-8 sm:py-16 lg:py-20">
+    <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading mb-6">
+          SORA Glossary
+        </h1>
+        <p class="text-xl md:text-2xl text-muted dark:text-slate-400 max-w-3xl mx-auto">
+          Your comprehensive guide to SORA ecosystem terms, concepts, and definitions. 
+          Hover over any term to see its definition instantly.
+        </p>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="mb-8">
+        <div class="max-w-md mx-auto">
+          <div class="relative">
+            <input 
+              type="text" 
+              id="glossary-search"
+              placeholder="Search terms..."
+              class="w-full px-4 py-3 pl-10 pr-4 text-gray-900 dark:text-white bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="mb-8">
+        <div class="flex flex-wrap justify-center gap-2">
+          <button 
+            class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+            data-category="all"
+          >
+            All Terms ({allTerms.length})
+          </button>
+          {Object.entries(termsByCategory).map(([category, terms]) => (
+            <button 
+              class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+              data-category={category}
+            >
+              {categoryLabels[category]} ({terms.length})
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Glossary Content -->
+      <div id="glossary-content">
+        {Object.entries(termsByCategory).map(([category, terms]) => (
+          <div class="category-section mb-12" data-category={category}>
+            <div class="mb-6">
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                {categoryLabels[category]}
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400">
+                {categoryDescriptions[category]}
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {terms.map(term => (
+                <div class="glossary-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-md transition-shadow duration-200">
+                  <div class="flex items-start justify-between mb-3">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                      {term.term}
+                    </h3>
+                    <span class={`px-2 py-1 text-xs font-medium rounded-full ${{
+                      token: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+                      technology: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+                      governance: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+                      defi: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+                      network: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
+                      economics: 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200'
+                    }[term.category]}`}>
+                      {categoryLabels[term.category]}
+                    </span>
+                  </div>
+                  
+                  <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">
+                    {term.definition}
+                  </p>
+                  
+                  {term.examples && term.examples.length > 0 && (
+                    <div class="mb-4">
+                      <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">Examples:</h4>
+                      <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                        {term.examples.map(example => (
+                          <li class="flex items-center">
+                            <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-2 flex-shrink-0"></span>
+                            {example}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {term.relatedTerms && term.relatedTerms.length > 0 && (
+                    <div class="mb-4">
+                      <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">Related Terms:</h4>
+                      <div class="flex flex-wrap gap-1">
+                        {term.relatedTerms.map(related => (
+                          <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">
+                            {related}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {term.links && term.links.length > 0 && (
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">Learn More:</h4>
+                      <div class="space-y-1">
+                        {term.links.map(link => (
+                          <a 
+                            href={link.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="text-sm text-blue-600 dark:text-blue-400 hover:underline block"
+                          >
+                            {link.label} →
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- No Results Message -->
+      <div id="no-results" class="hidden text-center py-12">
+        <div class="text-gray-500 dark:text-gray-400">
+          <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.709M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+          <h3 class="text-lg font-medium mb-2">No terms found</h3>
+          <p>Try adjusting your search or browse by category</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer {...footerData} />
+</Layout>
+
+<script>
+  // Search functionality
+  const searchInput = document.getElementById('glossary-search') as HTMLInputElement;
+  const categoryFilters = document.querySelectorAll('.category-filter') as NodeListOf<HTMLButtonElement>;
+  const categorySections = document.querySelectorAll('.category-section') as NodeListOf<HTMLElement>;
+  const noResults = document.getElementById('no-results') as HTMLElement;
+  const glossaryContent = document.getElementById('glossary-content') as HTMLElement;
+
+  let currentCategory = 'all';
+  let currentSearch = '';
+
+  function filterContent() {
+    const searchTerm = currentSearch.toLowerCase();
+    let hasResults = false;
+
+    categorySections.forEach(section => {
+      const category = section.dataset.category;
+      const shouldShowCategory = currentCategory === 'all' || currentCategory === category;
+      
+      if (shouldShowCategory) {
+        const cards = section.querySelectorAll('.glossary-card') as NodeListOf<HTMLElement>;
+        let categoryHasResults = false;
+
+        cards.forEach(card => {
+          const termElement = card.querySelector('h3') as HTMLElement;
+          const definitionElement = card.querySelector('p') as HTMLElement;
+          const term = termElement?.textContent?.toLowerCase() || '';
+          const definition = definitionElement?.textContent?.toLowerCase() || '';
+          const matchesSearch = searchTerm === '' || term.includes(searchTerm) || definition.includes(searchTerm);
+          
+          if (matchesSearch) {
+            card.style.display = 'block';
+            categoryHasResults = true;
+            hasResults = true;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        section.style.display = categoryHasResults ? 'block' : 'none';
+      } else {
+        section.style.display = 'none';
+      }
+    });
+
+    if (noResults) noResults.style.display = hasResults ? 'none' : 'block';
+    if (glossaryContent) glossaryContent.style.display = hasResults ? 'block' : 'none';
+  }
+
+  // Search input handler
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = (e.target as HTMLInputElement).value;
+      filterContent();
+    });
+  }
+
+  // Category filter handlers
+  categoryFilters.forEach(filter => {
+    filter.addEventListener('click', () => {
+      // Update active state
+      categoryFilters.forEach(f => {
+        f.className = f.className.replace('bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200', 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300');
+      });
+      filter.className = filter.className.replace('bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300', 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200');
+
+      // Update current category
+      currentCategory = filter.dataset.category || 'all';
+      filterContent();
+    });
+  });
+
+  // Initialize
+  filterContent();
+</script>

@@ -85,7 +85,7 @@ This document outlines the key improvements and enhancements made to the Soranau
 
 ### Phase 1: Quick Wins (Easy to Implement)
 - **Related Articles**: ✅ **COMPLETED** - Display related content at the end of each post with tag-based matching and perfect visual consistency
-- **SORA Glossary**: Comprehensive glossary page with hover definitions
+- **SORA Glossary**: ✅ **COMPLETED** - Comprehensive glossary page with hover definitions and inline tooltips
 - **Last Updated Dates**: ✅ **COMPLETED** - More prominent display of content freshness
 - **Content Freshness Indicators**: Visual indicators for recently updated content
 - **Most Popular Articles**: Widget showing trending content

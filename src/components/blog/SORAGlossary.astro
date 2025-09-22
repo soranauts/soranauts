@@ -1,0 +1,119 @@
+---
+// SORA Glossary Component
+// Provides hover tooltips and detailed definitions for SORA ecosystem terms
+
+export interface Props {
+  term: string;
+  definition: string;
+  category?: 'token' | 'technology' | 'governance' | 'defi' | 'network' | 'economics';
+  relatedTerms?: string[];
+  class?: string;
+}
+
+const { term, definition, category = 'technology', relatedTerms = [], class: className = '' } = Astro.props;
+
+// Category styling
+const categoryStyles = {
+  token: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
+  technology: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
+  governance: 'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800',
+  defi: 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800',
+  network: 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-200 dark:border-indigo-800',
+  economics: 'bg-pink-50 dark:bg-pink-900/20 border-pink-200 dark:border-pink-800'
+};
+
+const categoryLabels = {
+  token: 'Token',
+  technology: 'Technology',
+  governance: 'Governance',
+  defi: 'DeFi',
+  network: 'Network',
+  economics: 'Economics'
+};
+
+const categoryStyle = categoryStyles[category] || categoryStyles.technology;
+const categoryLabel = categoryLabels[category] || 'Technology';
+---
+
+<span 
+  class={`sora-glossary-term inline-block cursor-help border-b border-dotted border-gray-400 dark:border-gray-500 hover:border-gray-600 dark:hover:border-gray-400 transition-colors duration-200 ${className}`}
+  data-glossary-term={term}
+  data-glossary-definition={definition}
+  data-glossary-category={category}
+  data-glossary-related={relatedTerms.join(',')}
+  title={`${term} - Click for definition`}
+>
+  {term}
+</span>
+
+<style>
+  .sora-glossary-term {
+    position: relative;
+  }
+
+  .sora-glossary-term:hover::after {
+    content: attr(data-glossary-definition);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 200px;
+    max-width: 300px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #374151;
+    white-space: normal;
+    word-wrap: break-word;
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeInTooltip 0.2s ease-in-out forwards;
+  }
+
+  .dark .sora-glossary-term:hover::after {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+  }
+
+  @keyframes fadeInTooltip {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  /* Category-specific styling */
+  .sora-glossary-term[data-glossary-category="token"]:hover::after {
+    border-left: 4px solid #3b82f6;
+  }
+
+  .sora-glossary-term[data-glossary-category="technology"]:hover::after {
+    border-left: 4px solid #10b981;
+  }
+
+  .sora-glossary-term[data-glossary-category="governance"]:hover::after {
+    border-left: 4px solid #8b5cf6;
+  }
+
+  .sora-glossary-term[data-glossary-category="defi"]:hover::after {
+    border-left: 4px solid #f59e0b;
+  }
+
+  .sora-glossary-term[data-glossary-category="network"]:hover::after {
+    border-left: 4px solid #6366f1;
+  }
+
+  .sora-glossary-term[data-glossary-category="economics"]:hover::after {
+    border-left: 4px solid #ec4899;
+  }
+</style>
