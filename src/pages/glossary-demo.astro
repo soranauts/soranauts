@@ -1,0 +1,94 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/widgets/Header.astro';
+import Footer from '~/components/widgets/Footer.astro';
+import InlineGlossary from '~/components/blog/InlineGlossary.astro';
+import { SITE } from '~/utils/config';
+import { headerData, footerData } from '~/navigation';
+---
+
+<Layout 
+  metadata={{
+    title: 'SORA Glossary Demo | Inline Tooltips Example',
+    description: 'Demonstration of inline SORA glossary tooltips in action.',
+    url: `${SITE.site}/glossary-demo`,
+    type: 'website'
+  }}
+>
+  <Header {...headerData} isSticky showRssFeed showToggleTheme />
+  
+  <main class="py-8 sm:py-16 lg:py-20">
+    <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading mb-6">
+          SORA Glossary Demo
+        </h1>
+        <p class="text-xl md:text-2xl text-muted dark:text-slate-400 max-w-3xl mx-auto">
+          Hover over the highlighted terms below to see instant definitions and learn more about the SORA ecosystem.
+        </p>
+      </div>
+
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <h2>Understanding the SORA Ecosystem</h2>
+        
+        <p>
+          The <InlineGlossary term="SORA" /> network represents a revolutionary approach to decentralized finance, 
+          built on the foundation of <InlineGlossary term="Hyperledger Iroha" /> technology. 
+          At its core, SORA utilizes an <InlineGlossary term="Elastic Supply" /> model for its primary token, 
+          <InlineGlossary term="XOR" />, which automatically adjusts based on economic conditions.
+        </p>
+
+        <p>
+          The ecosystem is governed by the <InlineGlossary term="SORA Parliament" />, where 
+          <InlineGlossary term="VAL" /> token holders participate in democratic decision-making processes. 
+          This governance system ensures that the network remains decentralized and community-driven.
+        </p>
+
+        <h3>DeFi and Trading</h3>
+        
+        <p>
+          <InlineGlossary term="Polkaswap" /> serves as SORA's decentralized exchange, enabling 
+          cross-chain trading and liquidity aggregation. Users can provide liquidity to 
+          <InlineGlossary term="Liquidity Pool" />s and earn rewards through 
+          <InlineGlossary term="Yield Farming" /> strategies.
+        </p>
+
+        <p>
+          The <InlineGlossary term="Token Bonding Curve" /> mechanism ensures fair price discovery 
+          for <InlineGlossary term="PSWAP" /> tokens, while the network's 
+          <InlineGlossary term="Validator" />s secure the blockchain through 
+          <InlineGlossary term="Staking" /> mechanisms.
+        </p>
+
+        <h3>Real-World Applications</h3>
+        
+        <p>
+          SORAMITSU, the company behind SORA, has successfully deployed 
+          <InlineGlossary term="CBDC" /> solutions like Cambodia's Bakong, demonstrating 
+          the real-world viability of the technology. The upcoming 
+          <InlineGlossary term="SORA v3" /> will integrate with 
+          <InlineGlossary term="Polkadot" /> as a <InlineGlossary term="Parachain" />, 
+          enabling enhanced cross-chain functionality.
+        </p>
+
+        <p>
+          Developers can test new features on the <InlineGlossary term="Fujiwara Testnet" /> 
+          before they're deployed to the mainnet, ensuring stability and security for all users.
+        </p>
+
+        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mt-8">
+          <h4 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
+            💡 How to Use This Feature
+          </h4>
+          <p class="text-blue-800 dark:text-blue-200">
+            Simply hover over any highlighted term to see its definition instantly. 
+            The tooltips are color-coded by category and include related terms and examples. 
+            This makes complex SORA concepts accessible to both beginners and experts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer {...footerData} />
+</Layout>

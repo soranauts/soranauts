@@ -10,6 +10,10 @@ export const headerData = {
       text: 'Blog',
       href: getBlogPermalink(),
     },
+    {
+      text: 'Glossary',
+      href: '/glossary',
+    },
   ],
   actions: [{ text: 'SORA Wiki', href: 'https://wiki.sora.org/', target: '_blank' }],
 };
@@ -19,6 +23,7 @@ export const footerData = {
     {
       title: 'Learn',
       links: [
+        { text: 'SORA Glossary', href: '/glossary' },
         { text: 'Tokenomics', href: 'https://wiki.sora.org/tokenomics.html' },
         { text: 'Governance', href: 'https://wiki.sora.org/sora-governance.html' },
         { text: 'Staking', href: 'https://wiki.sora.org/nominating-validators.html' },
