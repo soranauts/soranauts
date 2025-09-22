@@ -1,6 +1,13 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/soramitsu-sora-polkaswap",
+      "destination": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",
