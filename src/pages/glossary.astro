@@ -39,8 +39,15 @@ const categoryDescriptions = {
   metadata={{
     title: 'SORA Glossary | Comprehensive Guide to SORA Ecosystem Terms',
     description: 'Complete glossary of SORA ecosystem terms, definitions, and concepts. Learn about XOR, VAL, PSWAP, governance, DeFi, and more.',
-    url: `${SITE.site}/glossary`,
-    type: 'website'
+    openGraph: {
+      url: `${SITE.site}/glossary`,
+      type: 'website',
+      images: [{
+        url: `${SITE.site}/sora-glossary-social-share.jpg`,
+        width: 1200,
+        height: 630
+      }]
+    }
   }}
 >
   <Header {...headerData} isSticky showRssFeed showToggleTheme />
@@ -152,9 +159,12 @@ const categoryDescriptions = {
                       <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">Related Terms:</h4>
                       <div class="flex flex-wrap gap-1">
                         {term.relatedTerms.map(related => (
-                          <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">
+                          <button 
+                            class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 cursor-pointer"
+                            onclick={`scrollToTerm('${related}')`}
+                          >
                             {related}
-                          </span>
+                          </button>
                         ))}
                       </div>
                     </div>
@@ -272,6 +282,92 @@ const categoryDescriptions = {
     });
   });
 
+  // Function to scroll to a specific term
+  function scrollToTerm(termName: string) {
+    console.log('scrollToTerm called with:', termName);
+    
+    // First, make sure all content is visible by clearing filters
+    currentCategory = 'all';
+    currentSearch = '';
+    
+    // Update filter buttons to show "All Terms" as active
+    categoryFilters.forEach(f => {
+      f.className = f.className.replace('bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200', 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300');
+    });
+    const allTermsFilter = document.querySelector('[data-category="all"]') as HTMLButtonElement;
+    if (allTermsFilter) {
+      allTermsFilter.className = allTermsFilter.className.replace('bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300', 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200');
+    }
+    
+    // Clear search input
+    if (searchInput) {
+      searchInput.value = '';
+    }
+    
+    // Show all content
+    filterContent();
+    
+    // Find the term and scroll to it with multiple matching strategies
+    setTimeout(() => {
+      const termElements = document.querySelectorAll('h3');
+      let targetElement: HTMLElement | null = null;
+      
+      console.log('Looking for term:', termName);
+      console.log('Available terms:', Array.from(termElements).map(h3 => h3.textContent?.trim()));
+      
+      termElements.forEach(h3 => {
+        const termText = h3.textContent?.trim();
+        
+        // Try exact match first
+        if (termText === termName) {
+          targetElement = h3.closest('.glossary-card') as HTMLElement;
+          console.log('Found exact match:', termText);
+        }
+        // Try case-insensitive match
+        else if (termText?.toLowerCase() === termName.toLowerCase()) {
+          targetElement = h3.closest('.glossary-card') as HTMLElement;
+          console.log('Found case-insensitive match:', termText);
+        }
+        // Try partial match (for terms with special characters)
+        else if (termText?.toLowerCase().includes(termName.toLowerCase()) || termName.toLowerCase().includes(termText?.toLowerCase() || '')) {
+          targetElement = h3.closest('.glossary-card') as HTMLElement;
+          console.log('Found partial match:', termText);
+        }
+      });
+      
+      if (targetElement) {
+        console.log('Scrolling to element:', targetElement);
+        (targetElement as HTMLElement).scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+        
+        // Add a highlight effect
+        (targetElement as HTMLElement).style.transition = 'background-color 0.3s ease';
+        (targetElement as HTMLElement).style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
+        setTimeout(() => {
+          (targetElement as HTMLElement).style.backgroundColor = '';
+        }, 2000);
+      } else {
+        console.log('No matching term found for:', termName);
+      }
+    }, 100);
+  }
+
+  // Make scrollToTerm globally available
+  (window as any).scrollToTerm = scrollToTerm;
+
   // Initialize
   filterContent();
+
+  // Handle URL parameter for direct term navigation
+  const urlParams = new URLSearchParams(window.location.search);
+  const targetTerm = urlParams.get('term');
+  
+  if (targetTerm) {
+    // Small delay to ensure content is loaded
+    setTimeout(() => {
+      scrollToTerm(targetTerm);
+    }, 300);
+  }
 </script>
