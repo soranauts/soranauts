@@ -68,6 +68,11 @@ export default defineConfig({
     rehypePlugins: [responsiveTablesRehypePlugin],
   },
 
+  mdx: {
+    remarkPlugins: [readingTimeRemarkPlugin],
+    rehypePlugins: [responsiveTablesRehypePlugin],
+  },
+
   vite: {
     resolve: {
       alias: {

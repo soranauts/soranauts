@@ -1,0 +1,125 @@
+/* Progressive Enhancement Glossary Tooltip Styles */
+
+/* Basic glossary term styling */
+.glossary-term {
+  text-decoration: underline dotted;
+  cursor: pointer;
+  position: relative;
+  color: #1f2937;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.glossary-term:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.glossary-term:hover {
+  color: #3b82f6;
+}
+
+/* Dark mode support */
+.dark .glossary-term {
+  color: #f9fafb;
+}
+
+.dark .glossary-term:hover {
+  color: #60a5fa;
+}
+
+/* Tooltip positioning */
+.glossary-tip {
+  position: absolute;
+  z-index: 20;
+  max-width: 28rem;
+  padding: .6rem .8rem;
+  border-radius: .5rem;
+  background: #111;
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(0,0,0,.24);
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Dark mode tooltip */
+.dark .glossary-tip {
+  background: #1f2937;
+  border: 1px solid #374151;
+  color: #f9fafb;
+}
+
+/* Pure CSS fallback: show on hover/focus-within */
+.glossary-term:hover + .glossary-tip,
+.glossary-term:focus + .glossary-tip { 
+  display: block; 
+}
+
+/* Hide by default */
+.glossary-tip[hidden] {
+  display: none !important;
+}
+
+/* Mobile-specific positioning */
+@media (max-width: 768px) {
+  .glossary-tip {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    right: 20px !important;
+    max-width: none !important;
+    max-height: 200px !important;
+    overflow-y: auto !important;
+    z-index: 99999 !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+  }
+}
+
+/* Disable glossary functionality in tables to avoid positioning issues */
+table .glossary-term {
+  text-decoration: none !important;
+  cursor: default !important;
+  color: inherit !important;
+}
+
+table .glossary-term:hover {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+table .glossary-tip {
+  display: none !important;
+}
+
+/* Disable tooltips in headings to avoid visual interference */
+h1 .glossary-term,
+h2 .glossary-term,
+h3 .glossary-term,
+h4 .glossary-term,
+h5 .glossary-term,
+h6 .glossary-term {
+  text-decoration: none !important;
+  cursor: default !important;
+  color: inherit !important;
+}
+
+h1 .glossary-term:hover,
+h2 .glossary-term:hover,
+h3 .glossary-term:hover,
+h4 .glossary-term:hover,
+h5 .glossary-term:hover,
+h6 .glossary-term:hover {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+h1 .glossary-tip,
+h2 .glossary-tip,
+h3 .glossary-tip,
+h4 .glossary-tip,
+h5 .glossary-tip,
+h6 .glossary-tip {
+  display: none !important;
+}

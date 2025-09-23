@@ -7,12 +7,12 @@ export const headerData = {
       href: '/about',
     },
     {
-      text: 'Blog',
-      href: getBlogPermalink(),
-    },
-    {
       text: 'Glossary',
       href: '/glossary',
+    },
+    {
+      text: 'Blog',
+      href: getBlogPermalink(),
     },
   ],
   actions: [{ text: 'SORA Wiki', href: 'https://wiki.sora.org/', target: '_blank' }],

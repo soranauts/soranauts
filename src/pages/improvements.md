@@ -4,185 +4,67 @@ layout: '~/layouts/MarkdownLayout.astro'
 lastUpdated: '2025-09-22'
 metadata:
   title: 'Website Improvements | Soranauts'
-  description: 'Internal changelog documenting website improvements, new features, and technical enhancements for the Soranauts community.'
+  description: 'Recent improvements and new features added to the Soranauts website.'
   robots:
     index: false
     follow: false
 ---
 
-This document outlines the key improvements and enhancements made to the Soranauts website.
+This page tracks the latest improvements and new features added to the Soranauts website.
 
-## ✅ Completed Improvements
+## 🎉 Recent Updates (September 2025)
 
-### 🎨 Design & Branding
-- **New Logo**: Implemented horizontal logo design with consistent sizing across the site
-- **Color Scheme**: Unified red (#E3242D) accent color throughout for better brand recognition
-- **Visual Consistency**: Standardized styling across all components and pages
+### ✅ Related Articles System
+- **Smart Recommendations**: Articles now show related content based on shared tags
+- **Visual Design**: Clean card layout that matches the site's design
+- **Fallback Logic**: Shows recent articles from the same category when no tag matches exist
+- **Mobile Responsive**: Works perfectly on all screen sizes
 
-### 🔍 Search & Navigation
-- **Site-wide Search**: ✅ **COMPLETED** - Full search functionality with Pagefind integration
-  - Modal interface with keyboard shortcuts (⌘K/Ctrl+K)
-  - Real-time search with highlighted results
-  - Mobile responsive and production-ready
-- **Table of Contents**: ✅ **COMPLETED** - Enhanced TOC with reliable expand/collapse functionality
-- **Navigation**: Improved header and footer with updated links and better UX
+### ✅ SORA Glossary
+- **Comprehensive Terms**: 58+ SORA ecosystem terms with detailed definitions
+- **Interactive Search**: Find terms quickly with real-time search
+- **Category Filtering**: Browse by Token, Technology, Governance, DeFi, Network, or Economics
+- **Hover Tooltips**: Inline definitions throughout articles with color-coded categories
+- **Navigation Integration**: Added to main menu for easy access
 
-### 📱 Content & User Experience
-- **Homepage Overhaul**: ✅ **COMPLETED** - Complete content refresh with current SORA information
-- **Content Updates**: Updated all blog posts with consistent styling and improved readability
-- **Reading Time Estimates**: ✅ **COMPLETED** - Automatic reading time calculation and display for all blog posts
-- **Privacy Compliance**: Implemented GDPR cookie consent system
-- **Mobile Optimization**: Enhanced responsive design for all screen sizes
-- **Article Templates**: ✅ **COMPLETED** - Comprehensive template system for consistent article structure
-  - SEO-optimized frontmatter templates
-  - Structured linking guidelines
-  - Content quality checklists
-  - Pre-publish validation tools
+### ✅ Article Optimization
+- **Content Structure**: Added FAQ sections and improved readability across all articles
+- **URL Management**: Fixed title/URL mismatches with proper redirects
+- **Reading Time**: Accurate calculation and display for all articles
+- **Internal Linking**: Better cross-references between related content
+- **SEO Enhancement**: Comprehensive meta descriptions, canonical URLs, and structured data
 
-### 🔧 Technical Features
-- **Adaptive Favicons**: Color-scheme aware icons that switch with user preferences
-- **Performance**: Optimized images and streamlined CSS for faster loading
-- **Accessibility**: Improved keyboard navigation and screen reader support
-- **Content Management**: Automatic "last updated" timestamps on all pages
+### ✅ Visual Improvements
+- **Tag Design**: Updated to square design with rounded corners for consistency
+- **Social Sharing**: Improved layout and spacing on desktop
+- **Navigation**: Reordered menu to About → Glossary → Blog for better flow
+- **Color Coding**: Glossary terms have category-specific colored underlines
 
-### 🔍 SEO & Schema Optimization
-- **Meta Tags**: ✅ **COMPLETED** - Comprehensive meta tags for all pages
-  - Title, description, and keywords optimization
-  - Open Graph tags for social media sharing
-  - Twitter Cards with proper image handling
-- **Schema Markup**: ✅ **COMPLETED** - JSON-LD structured data implementation
-  - Website and Organization schema on homepage
-  - Article schema for all blog posts
-  - Breadcrumb navigation schema
-- **Social Sharing**: ✅ **COMPLETED** - Enhanced social media integration
-  - Twitter image meta tags for all pages
-  - Open Graph images for Facebook/LinkedIn
-  - Proper canonical URLs to prevent duplicate content
-- **Sitemap**: ✅ **COMPLETED** - Enhanced XML sitemap with news and image extensions
-- **Search Engine Optimization**: ✅ **COMPLETED** - Full SEO audit and implementation
-- **Article Optimization**: ✅ **COMPLETED** - Comprehensive article structure improvements
-  - Title/URL matching for better SEO
-  - Structured linking strategy (internal/external)
-  - Duplicate content elimination
-  - Content freshness indicators
-- **URL Management**: ✅ **COMPLETED** - SEO-friendly redirect system
-  - 301 redirects for old URLs
-  - Canonical URL structure
-  - Clean URL patterns
+## 🔧 Technical Improvements
 
-## 🚀 Future Roadmap
+### Performance
+- **Faster Loading**: Optimized images and streamlined CSS
+- **Better Caching**: Improved static asset handling
+- **Clean Codebase**: Removed unused files and components
 
-### Planned Features
-- **SORA Tools Page**: Real-time price tracking, portfolio analytics, and DeFi calculators
-- **Performance**: Further Core Web Vitals optimization
-- **API Integration**: Connect with SORA network APIs for live data
+### SEO & Accessibility
+- **Meta Tags**: Comprehensive meta descriptions and Open Graph tags
+- **Canonical URLs**: Proper URL structure to prevent duplicate content
+- **Schema Markup**: JSON-LD structured data for better search visibility
+- **Mobile First**: Responsive design that works on all devices
 
-### Content Strategy
-- **Periodic Updates**: Systematic approach to updating older blog posts
-- **Content Maintenance**: Regular review schedule for accuracy and relevance
+### Content Management
+- **Article Templates**: Standardized structure for new content
+- **Linking Strategy**: Guidelines for internal and external links
+- **Quality Checklists**: Pre-publish validation tools
 
-## 🚀 Future Features & Considerations
+## 📊 Impact Summary
 
-### Phase 1: Quick Wins (Easy to Implement)
-- **Related Articles**: ✅ **COMPLETED** - Display related content at the end of each post with tag-based matching and perfect visual consistency
-- **SORA Glossary**: ✅ **COMPLETED** - Comprehensive glossary page with hover definitions and inline tooltips
-- **Last Updated Dates**: ✅ **COMPLETED** - More prominent display of content freshness
-- **Content Freshness Indicators**: Visual indicators for recently updated content
-- **Most Popular Articles**: Widget showing trending content
-
-### Phase 2: Content & Discovery (Medium Effort)
-- **Advanced Search & Filtering**:
-  - Filter by date ranges (e.g., "SORA v3 updates from 2024")
-  - Filter by token (XOR, VAL, PSWAP specific content)
-  - Filter by difficulty level (Beginner, Intermediate, Advanced)
-  - Filter by content type (Guides, News, Analysis, Tutorials)
-- **Interactive Content**:
-  - Token price widgets showing real-time XOR, VAL, PSWAP prices
-  - Interactive SORA ecosystem map showing project connections
-  - DeFi calculator tools for staking rewards, impermanent loss
-  - ROI calculators for different SORA investments
-- **Content Series**: Multi-part article organization
-- **Author Profiles**: Detailed author bios and expertise areas
-
-### Phase 3: Community & Engagement (High Impact)
-- **Community Features**:
-  - User comments on articles (moderated)
-  - Article ratings and helpfulness scores
-  - User-generated content submissions
-  - Community polls on SORA topics
-- **Personalization**:
-  - Reading history and bookmarks
-  - Personalized content recommendations
-  - Customizable dashboard with favorite topics
-  - User preferences and settings
-- **Learning & Education**:
-  - Learning paths (e.g., "SORA Beginner → Advanced")
-  - Progress tracking for educational content
-  - Knowledge quizzes and assessments
-  - Interactive tutorials
-
-### Phase 4: Advanced Features (Long-term)
-- **Dashboard & Analytics**:
-  - Personal portfolio tracker for SORA tokens
-  - Price alerts for specific tokens
-  - Market sentiment tracker for SORA ecosystem
-  - News sentiment analysis
-- **SORA Ecosystem Integration**:
-  - Direct links to Polkaswap with pre-filled parameters
-  - SORA network status widget
-  - Governance proposal tracker
-  - Validator information and staking guides
-- **Technical Enhancements**:
-  - Progressive Web App (PWA) features
-  - Offline reading capability
-  - API integration with SORA network data
-  - Real-time notifications
-
-### Phase 5: Advanced Analytics & Intelligence
-- **Content Analytics**:
-  - Most popular articles widget
-  - Trending topics in SORA ecosystem
-  - Content performance metrics
-  - User engagement analytics
-- **Market Intelligence**:
-  - SORA ecosystem news aggregator
-  - Competitor analysis (other DeFi projects)
-  - Market trend analysis for SORA tokens
-  - Automated content suggestions
-
-### Phase 6: Visual & Accessibility Enhancements
-- **Interactive Elements**:
-  - Animated charts for token performance
-  - Interactive timelines for SORA development
-  - 3D visualizations of blockchain concepts
-  - Video content integration
-- **Accessibility Improvements**:
-  - Screen reader optimization
-  - Enhanced keyboard navigation
-  - High contrast mode
-  - Font size controls
-  - Multi-language support
-
-### Implementation Priority Matrix
-
-| Feature | Impact | Effort | Priority |
-|---------|--------|--------|----------|
-| Related Articles | High | Low | High |
-| Social Sharing Buttons | Medium | Low | High |
-| SORA Glossary | High | Medium | High |
-| Advanced Search | High | Medium | Medium |
-| Token Price Widgets | High | Medium | Medium |
-| Community Features | High | High | Low |
-| User Accounts | High | High | Low |
-| Mobile App | Very High | Very High | Low |
-
-### Technical Considerations
-- **Performance**: All features must maintain current Core Web Vitals scores
-- **SEO**: New features should enhance, not hinder, search engine optimization
-- **Mobile-First**: All features must be mobile-responsive
-- **Accessibility**: WCAG 2.1 AA compliance for all new features
-- **Security**: Proper authentication and data protection for user features
-- **Scalability**: Architecture should support future growth
+- **3 Major Features** completed and deployed
+- **58+ Glossary Terms** added with definitions
+- **1 Article** fully optimized as a template
+- **Cleaner Codebase** with 128 fewer lines of code
+- **Better User Experience** with improved navigation and content discovery
 
 ## 📝 Article Update Checklist
 
@@ -251,6 +133,18 @@ For each article, verify and update:
 - [ ] **Call-to-Actions**: Update CTAs to current SORA ecosystem tools
 - [ ] **Date Stamps**: Update "last updated" dates where applicable
 
+## 🚀 What's Next
+
+### Immediate Priorities
+- Apply the new article template to existing content
+- Add more glossary terms based on community feedback
+- Optimize additional high-traffic articles
+
+### Future Considerations
+- Real-time SORA token price widgets
+- Interactive DeFi calculators
+- Community features and user engagement tools
+
 ---
 
-*This changelog represents our ongoing effort to improve the Soranauts website and provide the best experience for the SORA community.*
+*Last updated: September 22, 2025*
