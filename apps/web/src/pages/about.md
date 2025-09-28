@@ -24,7 +24,7 @@ That’s why we’re here. We want to:
 
 We create educational resources for people at every stage of their journey. You’ll find:
 
-- Step-by-step guides (wallets, bridging, staking, liquidity, etc.)  
+- Step-by-step guides (wallets, bridging, staking, pool participation, etc.)  
 - Explanations of new innovations (governance models, token economics, SORA Card, KUSD, and more)  
 - Up-to-date coverage of ecosystem projects and their global impact  
 - Practical tips so you can use tools safely and effectively  
