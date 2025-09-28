@@ -1,10 +1,10 @@
 {
   "name": "soranauts-monorepo",
   "private": true,
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@9.12.2",
   "engines": {
-    "node": ">=20 <21",
-    "pnpm": ">=6.0.0"
+    "node": "20.x",
+    "pnpm": "9.12.2"
   },
   "workspaces": [
     "apps/*",
@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "preinstall": "node -e \"if (!process.env.npm_execpath || !process.env.npm_execpath.includes('pnpm')) { console.error('Use pnpm to install'); process.exit(1) }\"",
-    "build": "pnpm -r build",
+    "build": "pnpm --filter @soranauts/web build",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
     "dev": "pnpm --filter ./apps/web dev",
