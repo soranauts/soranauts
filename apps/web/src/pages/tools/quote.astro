@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import QuoteToolClient from '../../components/tools/QuoteToolClient';
+import QueryProvider from '../../components/providers/QueryProvider';
+import { SITE } from '../../utils/config';
+---
+
+<Layout 
+  metadata={{
+    title: "Quote Tool",
+    description: "Get instant quotes for SORA token swaps"
+  }}
+>
+  <main class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        SORA Quote Tool
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400 mb-8">
+        Get instant quotes for swapping tokens on the SORA network. Enter your desired tokens and amount to see the best route and pricing.
+      </p>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+          SORA Quote Tool
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400">
+          Quote tool is temporarily disabled during build. Please check back later.
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>

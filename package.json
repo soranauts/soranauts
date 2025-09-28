@@ -1,61 +1,22 @@
 {
-  "name": "@onwidget/astrowind",
-  "description": "AstroWind: A free template using Astro 3.0 and Tailwind CSS. Astro starter theme.",
-  "version": "1.0.0-beta.10",
+  "name": "soranauts-monorepo",
   "private": true,
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build && pagefind --site dist",
-    "preview": "astro preview",
-    "astro": "astro",
-    "format": "prettier -w .",
-    "lint:eslint": "eslint . --ext .js,.ts,.astro"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/rss": "^4.0.1",
-    "@astrojs/sitemap": "^3.0.3",
-    "@astrolib/analytics": "^0.5.0",
-    "@astrolib/seo": "^1.0.0-beta.5",
-    "@fontsource-variable/inter": "^5.0.16",
-    "astro": "^4.0.6",
-    "astro-icon": "1.0.0-next.2",
-    "limax": "4.1.0",
-    "lodash.merge": "^4.6.2",
-    "typescript-esbuild": "^0.3.2",
-    "unpic": "^3.15.0",
-    "vanilla-cookieconsent": "^3.1.0"
-  },
-  "overrides": {
-    "astro-icon": {
-      "@iconify/tools": "^4.0.5"
-    }
-  },
-  "devDependencies": {
-    "@astrojs/mdx": "^2.0.0",
-    "@astrojs/partytown": "^2.0.2",
-    "@astrojs/tailwind": "5.0.3",
-    "@iconify-json/flat-color-icons": "^1.1.9",
-    "@iconify-json/tabler": "^1.1.100",
-    "@tailwindcss/typography": "^0.5.10",
-    "@types/lodash.merge": "^4.6.9",
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
-    "eslint": "^8.55.0",
-    "eslint-plugin-astro": "^0.30.0",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "js-yaml": "^4.1.0",
-    "mdast-util-to-string": "^4.0.0",
-    "pagefind": "^1.4.0",
-    "prettier": "^3.1.0",
-    "prettier-plugin-astro": "^0.12.2",
-    "reading-time": "^1.5.0",
-    "tailwind-merge": "^2.1.0",
-    "tailwindcss": "^3.4.0",
-    "typescript": "^5.3.3"
-  },
+  "packageManager": "pnpm@9.0.0",
   "engines": {
-    "node": ">=18.14.1"
+    "node": ">=20 <21",
+    "pnpm": ">=9.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "preinstall": "node -e \"if (!process.env.npm_execpath || !process.env.npm_execpath.includes('pnpm')) { console.error('Use pnpm to install'); process.exit(1) }\"",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "dev": "pnpm --filter ./apps/web dev",
+    "dev:web": "pnpm --filter ./apps/web dev",
+    "pre-push": "cd apps/web && pnpm install --frozen-lockfile && pnpm build && pnpm test"
   }
 }

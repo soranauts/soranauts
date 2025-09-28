@@ -1,0 +1,14 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the main token of the SORA network?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The primary token is XOR, which powers transactions, liquidity, and governance within the SORA ecosystem."
+      }
+    }
+  ]
+}

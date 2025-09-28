@@ -1,0 +1,204 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+/** import Features2 from '~/components/widgets/Features2.astro'; **/
+import Steps from '~/components/widgets/Steps.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'SORA Blockchain & Polkaswap | Soranauts',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Try Polkaswap',
+        href: 'https://polkaswap.io/',
+        target: '_blank',
+      },
+      { text: 'Learn More', href: '#features' },
+    ]}
+    image={{ src: '~/assets/images/polkaswap-sora-blockchain.jpg', alt: 'SORA Blockchain Decentralized Finance Platform - Polkaswap DEX Trading Interface' }}
+  >
+    <Fragment slot="title">
+      Unlock the Future of Finance with SORA
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      SORA is building a new economic system designed for fairness, transparency, and global accessibility. 
+      At the heart of this ecosystem is Polkaswap — a decentralized exchange where you can swap, trade, and 
+      access digital assets without barriers.
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="features"
+    tagline="Features"
+    title="What You Get with the SORA Economic Model"
+    subtitle="SORA is building a next-generation blockchain ecosystem designed for global finance, decentralized apps, and a fairer economy."
+    items={[
+      {
+        title: 'Supranational Economic System',
+        description:
+          'SORA is creating a truly global economic network — beyond borders, beyond banks. The community calls it <a href="https://wiki.sora.org/sora-economy.html" class="font-medium text-link dark:text-link hover:underline">SORA: The New Economic Order</a>.',
+        icon: 'tabler:building-bank',
+      },
+      {
+        title: 'Token Bonding Curve',
+        description:
+          'The XOR token supply is managed by a unique <a href="https://wiki.sora.org/tbc.html" class="font-medium text-link dark:text-link hover:underline">bonding curve</a>, keeping issuance and redemption stable and transparent. This ensures long-term price stability and fair access.',
+        icon: 'tabler:chart-bar',
+      },
+      {
+        title: 'On-chain Governance',
+        description:
+          'Decisions in SORA are made by the community. Holders of XOR can vote on how resources are allocated, ensuring a democratic and <a href="https://wiki.sora.org/sora-governance.html" class="font-medium text-link dark:text-link hover:underline">decentralized system</a>.',
+        icon: 'tabler:file-invoice',
+      },
+      {
+        title: 'Financial Inclusion',
+        description:
+          'SORA is designed to give everyone access to fair financial tools. Its open <a href="https://wiki.sora.org/introduction.html" class="font-medium text-link dark:text-link hover:underline">governance structure</a> allows broad participation, so no one is left out.',
+        icon: 'tabler:building-monument',
+      },
+      {
+        title: 'Credit Creation',
+        description: 'Instead of relying on debt, SORA introduces <a href="https://wiki.sora.org/sora-academy.html" class="font-medium text-link dark:text-link hover:underline">credit creation</a> for productive goods and services, supporting real growth and development.',
+        icon: 'tabler:arrows-right-left',
+      },
+      {
+        title: 'XOR as Legal Tender',
+        description:
+          'XOR isn\'t just a token — it can function as <a href="https://wiki.sora.org/xor.html" class="font-medium text-link dark:text-link hover:underline">supranational money</a>. This opens up possibilities for cross-border trade, investment, and growth without debt burdens.',
+        icon: 'tabler:wallet',
+      },
+    ]}
+  />
+
+  <!-- Get Started Widget ****************** -->
+
+  <Steps
+    title="Get Started with SORA"
+    items={[
+      {
+        title: 'Connect Your Wallet',
+        description:
+          'Start by <a href="https://wiki.sora.org/polkaswap-connect-wallet.html" class="font-medium text-link dark:text-link hover:underline">connecting your wallet</a> to Polkaswap or downloading <a href="https://fearlesswallet.io" class="font-medium text-link dark:text-link hover:underline">Fearless Wallet</a> for mobile access. Both support the full SORA ecosystem.',
+        icon: 'tabler:wallet',
+      },
+      {
+        title: 'Explore the Ecosystem',
+        description:
+          'Discover SORA\'s decentralized exchange, governance system, and economic model. Learn about <a href="https://wiki.sora.org/tokenomics.html" class="font-medium text-link dark:text-link hover:underline">XOR tokenomics</a> and how the <a href="https://wiki.sora.org/tbc.html" class="font-medium text-link dark:text-link hover:underline">Token Bonding Curve</a> works.',
+        icon: 'tabler:building-bank',
+      },
+      {
+        title: 'Join the Community',
+        description:
+          'Connect with fellow SORA enthusiasts on <a href="https://t.me/sora_xor" class="font-medium text-link dark:text-link hover:underline">Telegram</a>, follow updates on <a href="https://x.com/sora_xor" class="font-medium text-link dark:text-link hover:underline">Twitter</a>, and participate in <a href="https://wiki.sora.org/sora-governance.html" class="font-medium text-link dark:text-link hover:underline">governance</a>.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Start Learning',
+        description:
+          'Dive deeper with our <a href="/blog" class="font-medium text-link dark:text-link hover:underline">educational content</a> and explore the <a href="https://wiki.sora.org/sora-academy.html" class="font-medium text-link dark:text-link hover:underline">SORA Academy</a> for comprehensive guides on decentralized finance and blockchain technology.',
+        icon: 'tabler:book',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/polkaswap-logo-sora-decentralized-exchange.jpg',
+      alt: 'Polkaswap Logo - SORA Decentralized Exchange Platform',
+    }}
+  />
+  
+  <!-- Features2 Widget
+  
+  ************** -->
+  
+  <!-- HighlightedPosts Widget ******* -->
+
+  <BlogLatestPosts
+    title="Master SORA's Revolutionary DeFi Ecosystem"
+    information={`Stay ahead with expert analysis of SORA's cutting-edge innovations: V3 upgrades, Polkaswap's advanced DEX features, and the Token Bonding Curve's unique economics. Our comprehensive guides break down complex DeFi concepts into actionable insights for traders, developers, and blockchain enthusiasts.
+                `}
+  />
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="Everything You Need to Know About SORA"
+    subtitle="Master the Revolutionary DeFi Ecosystem"
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'What makes SORA V3 different from other blockchains?',
+        description:
+          "SORA V3 introduces groundbreaking features like the Token Bonding Curve for stable tokenomics, advanced cross-chain bridges, and a unique governance model. Built on <a href='https://iroha.tech/' class='font-medium text-link dark:text-link hover:underline'>Hyperledger Iroha</a> with Polkadot integration, SORA offers superior scalability, interoperability, and enterprise-grade security compared to traditional blockchains.",
+      },
+      {
+        title: 'How does Polkaswap compare to other DEXs?',
+        description:
+          "Polkaswap features minimal slippage that improves with liquidity depth, supports multiple token standards, and provides liquidity mining rewards. Unlike centralized exchanges, you maintain full control of your assets while accessing advanced DeFi features and <a href='https://wiki.sora.org/polkaswap.html' class='font-medium text-link dark:text-link hover:underline'>cross-chain trading capabilities</a>.",
+      },
+      {
+        title: 'What are the benefits of the Token Bonding Curve?',
+        description:
+          "The TBC ensures price stability and fair token distribution by automatically adjusting XOR supply based on demand. This creates a more predictable economic model compared to traditional inflationary tokenomics, while providing transparent price discovery and reducing market manipulation. Learn more about <a href='https://wiki.sora.org/tokenomics.html' class='font-medium text-link dark:text-link hover:underline'>SORA's tokenomics</a>.",
+      },
+      {
+        title: "How do I get started with SORA and Polkaswap?",
+        description:
+          "Start by downloading <a href='https://fearlesswallet.io' class='font-medium text-link dark:text-link hover:underline'>Fearless Wallet</a> or connecting to Polkaswap.io. You can bridge assets from other networks, provide liquidity for rewards, or simply trade tokens. The ecosystem is designed for both beginners and advanced users. Track development progress with the <a href='https://wiki.sora.org/integrated-plan.html' class='font-medium text-link dark:text-link hover:underline'>SORA Integrated Plan</a>.",
+      },
+      {
+        title: 'What staking and yield opportunities are available?',
+        description:
+          "SORA offers multiple earning opportunities: validator staking for network security, liquidity provision on Polkaswap for trading fees, and fixed-term locking for guaranteed yields. The ecosystem rewards long-term participants while maintaining sustainable tokenomics through the TBC mechanism. Explore <a href='https://wiki.sora.org/sora-academy.html' class='font-medium text-link dark:text-link hover:underline'>SORA Academy</a> for detailed guides.",
+      },
+      {
+        title: 'Is SORA secure and decentralized?',
+        description:
+          "Yes, SORA is a decentralized network with a community-driven governance system and a validator set that secures the chain. The Token Bonding Curve provides a framework for economic stability and fair token issuance. SORA has undergone professional security reviews, including a <a href='/documents/polkaswap-audit.pdf' class='font-medium text-link dark:text-link hover:underline'>Polkaswap audit by Tevora Threat Research Group</a>, ensuring a higher level of trust for users. Looking forward, SORA is evolving toward its v3 upgrade on Hyperledger Iroha while maintaining bridges to Polkadot, Kusama, and other ecosystems for interoperability. Learn more about <a href='https://wiki.sora.org/sora-governance.html' class='font-medium text-link dark:text-link hover:underline'>SORA's governance model</a>.",
+      },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Get Started',
+        href: 'https://polkaswap.io/',
+        target: '_blank',
+        icon: 'tabler:external-link',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Experience true decentralization.
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Polkaswap lets you bridge, swap, and grow your assets without middlemen.
+    </Fragment>
+  </CallToAction>
+</Layout>
