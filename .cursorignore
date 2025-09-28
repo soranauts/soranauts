@@ -1,0 +1,17 @@
+public/**
+dist/**
+.build/**
+.cache/**
+.next/**
+.out/**
+node_modules/**
+**/coverage/**
+**/*.log
+**/*.lock
+**/.DS_Store
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.mp4
+**/*.pdf
