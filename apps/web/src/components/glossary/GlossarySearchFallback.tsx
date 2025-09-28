@@ -86,22 +86,22 @@ function Hit({ hit, onAliasClick, onTagClick }: {
   onTagClick: (tag: string) => void;
 }) {
   return (
-    <div 
+    <a
+      href={`/glossary/${hit.slug}`}
       id={`glossary-${hit.slug}`}
-      className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow scroll-mt-24"
+      className="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-red-300 dark:hover:border-red-600 transition-all cursor-pointer scroll-mt-24"
+      aria-label={`Open ${hit.term} term page`}
     >
       <div className="flex items-start justify-between mb-3">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-          <a 
-            href={`/glossary/${hit.slug}`}
-            className="hover:text-red-600 dark:hover:text-red-400 transition-colors"
-            aria-label={`Open ${hit.term} term page`}
-          >
-            {hit.term}
-          </a>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white hover:text-red-600 dark:hover:text-red-400 transition-colors">
+          {hit.term}
         </h3>
         <button
-          onClick={() => onTagClick(hit.category)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onTagClick(hit.category);
+          }}
           className={`px-2 py-1 rounded-full text-xs font-medium transition-colors hover:opacity-80 cursor-pointer ${
             hit.category === 'token' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
             hit.category === 'technology' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
@@ -127,7 +127,11 @@ function Hit({ hit, onAliasClick, onTagClick }: {
             {hit.aliases.slice(1).map((alias: string) => (
               <button
                 key={alias}
-                onClick={() => onAliasClick(alias)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onAliasClick(alias);
+                }}
                 className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
                 title={`Jump to ${alias}`}
               >
@@ -143,7 +147,11 @@ function Hit({ hit, onAliasClick, onTagClick }: {
           {hit.tags.slice(0, 5).map((tag: string) => (
             <button
               key={tag}
-              onClick={() => onTagClick(tag)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onTagClick(tag);
+              }}
               className="px-2 py-1 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs rounded hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors cursor-pointer"
               title={`Filter by ${tag} tag`}
             >
@@ -152,7 +160,7 @@ function Hit({ hit, onAliasClick, onTagClick }: {
           ))}
         </div>
       )}
-    </div>
+    </a>
   );
 }
 
