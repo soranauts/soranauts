@@ -113,6 +113,12 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.19
         version: 0.5.19(tailwindcss@3.4.17)
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/lodash.merge':
+        specifier: ^4.6.9
+        version: 4.6.9
       '@types/node':
         specifier: ^20.10.0
         version: 20.19.17
@@ -1529,6 +1535,15 @@ packages:
 
   '@types/hogan.js@3.0.5':
     resolution: {integrity: sha512-/uRaY3HGPWyLqOyhgvW9Aa43BNnLZrNeQxl2p8wqId4UHMfPKolSB+U7BlZyO1ng7MkLnyEAItsBzCG0SDhqrA==}
+
+  '@types/js-yaml@4.0.9':
+    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
+
+  '@types/lodash.merge@4.6.9':
+    resolution: {integrity: sha512-23sHDPmzd59kUgWyKGiOMO2Qb9YtqRO/x4IhkgNUiPQ1+5MUVqi6bCZeq9nBJ17msjIMbEIO5u+XW4Kz6aGUhQ==}
+
+  '@types/lodash@4.17.20':
+    resolution: {integrity: sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==}
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
@@ -5398,6 +5413,14 @@ snapshots:
       '@types/unist': 3.0.3
 
   '@types/hogan.js@3.0.5': {}
+
+  '@types/js-yaml@4.0.9': {}
+
+  '@types/lodash.merge@4.6.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash@4.17.20': {}
 
   '@types/mdast@4.0.4':
     dependencies:

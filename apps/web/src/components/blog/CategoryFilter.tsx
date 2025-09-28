@@ -58,7 +58,7 @@ export default function CategoryFilter({ categories, initialCategory, allPosts }
   const getCategoryPostCount = (category: string): number => {
     if (category === 'all') return allPosts.length;
     const normalizedCategory = normalizeCategory(category);
-    return allPosts.filter(post => normalizeCategory(post.category) === normalizedCategory).length;
+    return allPosts.filter(post => normalizeCategory(post.category || '') === normalizedCategory).length;
   };
 
   return (

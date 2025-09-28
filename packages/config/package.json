@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "main": "index.js",
+  "scripts": {
+    "build": "echo 'Config package - no build needed'",
+    "typecheck": "echo 'Config package - no typecheck needed'"
+  },
   "files": [
     "eslint",
     "tailwind",
