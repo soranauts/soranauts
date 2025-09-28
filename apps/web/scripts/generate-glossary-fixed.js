@@ -59,19 +59,14 @@ function generateSlug(term) {
 // Helper to generate aliases for search and linking
 function generateAliases(term, relatedTerms) {
   const aliases = new Set();
-  aliases.add(term); // Always include the main term
   
-  // Add related terms as potential aliases if they are short and single-word
-  relatedTerms.forEach(related => {
-    if (related.length <= 20 && !related.includes(' ')) { // Heuristic for short, single-word aliases
-      aliases.add(related);
-    }
-  });
+  // Add the term itself
+  aliases.add(term);
   
-  // Add common variations (e.g., "Token Bonding Curve" -> "TokenBondingCurve")
-  if (term.includes(' ')) {
-    aliases.add(term.replace(/\s+/g, ''));
-  }
+  // Only add meaningful aliases that people actually use
+  // For now, we'll be conservative and not add any automatic variations
+  // This prevents cluttering the glossary with technical variations like "SmartContract"
+  // Real aliases should be manually added to the glossary data if needed
   
   return Array.from(aliases);
 }

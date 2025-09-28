@@ -13,10 +13,7 @@
         "Polkaswap"
       ],
       "aliases": [
-        "XOR",
-        "VAL",
-        "PSWAP",
-        "Polkaswap"
+        "XOR"
       ],
       "tags": [
         "token",
@@ -60,13 +57,7 @@
         "HASHI"
       ],
       "aliases": [
-        "VAL",
-        "XOR",
-        "PSWAP",
-        "Validator",
-        "Staking",
-        "Deflationary",
-        "HASHI"
+        "VAL"
       ],
       "tags": [
         "token",
@@ -109,14 +100,7 @@
         "Buyback-and-burn"
       ],
       "aliases": [
-        "PSWAP",
-        "XOR",
-        "VAL",
-        "Polkaswap",
-        "DEX",
-        "Liquidity",
-        "Deflationary",
-        "Buyback-and-burn"
+        "PSWAP"
       ],
       "tags": [
         "token",
@@ -158,10 +142,7 @@
         "SORA Network"
       ],
       "aliases": [
-        "Polkaswap",
-        "DEX",
-        "Cross-chain",
-        "PSWAP"
+        "Polkaswap"
       ],
       "tags": [
         "defi",
@@ -201,13 +182,7 @@
         "Supranational"
       ],
       "aliases": [
-        "SORA Parliament",
-        "XOR",
-        "VAL",
-        "Sortition",
-        "Citizenship",
-        "Supranational",
-        "SORAParliament"
+        "SORA Parliament"
       ],
       "tags": [
         "governance",
@@ -251,12 +226,7 @@
         "WASM"
       ],
       "aliases": [
-        "Hyperledger Iroha",
-        "SORAMITSU",
-        "CBDC",
-        "Enterprise",
-        "WASM",
-        "HyperledgerIroha"
+        "Hyperledger Iroha"
       ],
       "tags": [
         "technology",
@@ -295,10 +265,7 @@
         "Hyperledger Iroha"
       ],
       "aliases": [
-        "Substrate",
-        "Polkadot",
-        "Parachain",
-        "Cross-chain"
+        "Substrate"
       ],
       "tags": [
         "technology",
@@ -334,10 +301,7 @@
         "Cross-chain"
       ],
       "aliases": [
-        "Parachain",
-        "Polkadot",
-        "XCM",
-        "Cross-chain"
+        "Parachain"
       ],
       "tags": [
         "network",
@@ -372,9 +336,7 @@
         "Smart Contracts"
       ],
       "aliases": [
-        "DeFi",
-        "Polkaswap",
-        "DEX"
+        "DeFi"
       ],
       "tags": [
         "defi",
@@ -408,10 +370,7 @@
         "Smart Contracts"
       ],
       "aliases": [
-        "DEX",
-        "Polkaswap",
-        "Trading",
-        "Cross-chain"
+        "DEX"
       ],
       "tags": [
         "defi",
@@ -446,9 +405,7 @@
         "Impermanent Loss"
       ],
       "aliases": [
-        "Liquidity Pool",
-        "DEX",
-        "LiquidityPool"
+        "Liquidity Pool"
       ],
       "tags": [
         "defi",
@@ -482,11 +439,7 @@
         "XOR"
       ],
       "aliases": [
-        "Staking",
-        "Validator",
-        "Rewards",
-        "Security",
-        "XOR"
+        "Staking"
       ],
       "tags": [
         "network",
@@ -520,11 +473,7 @@
         "Rewards"
       ],
       "aliases": [
-        "Validator",
-        "Staking",
-        "Consensus",
-        "Security",
-        "Rewards"
+        "Validator"
       ],
       "tags": [
         "network",
@@ -558,10 +507,7 @@
         "Blockchain Networks"
       ],
       "aliases": [
-        "Cross-chain",
-        "Polkaswap",
-        "Bridges",
-        "Interoperability"
+        "Cross-chain"
       ],
       "tags": [
         "technology",
@@ -595,9 +541,7 @@
         "Cross-border Payments"
       ],
       "aliases": [
-        "CBDC",
-        "SORAMITSU",
-        "Bakong"
+        "CBDC"
       ],
       "tags": [
         "economics",
@@ -640,9 +584,7 @@
         "Cross-border Payments"
       ],
       "aliases": [
-        "Bakong",
-        "CBDC",
-        "SORAMITSU"
+        "Bakong"
       ],
       "tags": [
         "economics",
@@ -676,9 +618,7 @@
         "Blockchain Infrastructure"
       ],
       "aliases": [
-        "SORAMITSU",
-        "CBDC",
-        "Bakong"
+        "SORAMITSU"
       ],
       "tags": [
         "network",
@@ -712,11 +652,7 @@
         "Substrate"
       ],
       "aliases": [
-        "Polkadot",
-        "Parachain",
-        "XCM",
-        "Cross-chain",
-        "Substrate"
+        "Polkadot"
       ],
       "tags": [
         "network",
@@ -751,10 +687,7 @@
         "Decentralization"
       ],
       "aliases": [
-        "Blockchain",
-        "Cryptography",
-        "Substrate",
-        "Decentralization"
+        "Blockchain"
       ],
       "tags": [
         "technology",
@@ -791,9 +724,7 @@
         "Supply Management"
       ],
       "aliases": [
-        "Token Bonding Curve",
-        "XOR",
-        "TokenBondingCurve"
+        "Token Bonding Curve"
       ],
       "tags": [
         "economics",
@@ -827,8 +758,7 @@
         "Democracy"
       ],
       "aliases": [
-        "Referendum",
-        "Democracy"
+        "Referendum"
       ],
       "tags": [
         "governance",
@@ -861,9 +791,7 @@
         "Economic Conditions"
       ],
       "aliases": [
-        "Elastic Supply",
-        "XOR",
-        "ElasticSupply"
+        "Elastic Supply"
       ],
       "tags": [
         "economics",
@@ -899,10 +827,7 @@
         "Fujiwara Testnet"
       ],
       "aliases": [
-        "SORA v3",
-        "CBDC",
-        "KUSD",
-        "SORAv3"
+        "SORA v3"
       ],
       "tags": [
         "technology",
@@ -938,10 +863,7 @@
         "Public Blockchain"
       ],
       "aliases": [
-        "Fujiwara Testnet",
-        "DeFi",
-        "Governance",
-        "FujiwaraTestnet"
+        "Fujiwara Testnet"
       ],
       "tags": [
         "technology",
@@ -977,9 +899,7 @@
         "Impermanent Loss"
       ],
       "aliases": [
-        "Yield Farming",
-        "PSWAP",
-        "YieldFarming"
+        "Yield Farming"
       ],
       "tags": [
         "defi",
@@ -1013,11 +933,7 @@
         "Risk"
       ],
       "aliases": [
-        "Impermanent Loss",
-        "Liquidity",
-        "AMM",
-        "Risk",
-        "ImpermanentLoss"
+        "Impermanent Loss"
       ],
       "tags": [
         "defi",
@@ -1057,10 +973,7 @@
         "Infrastructure"
       ],
       "aliases": [
-        "Integrated Plan",
-        "Cross-chain",
-        "Infrastructure",
-        "IntegratedPlan"
+        "Integrated Plan"
       ],
       "tags": [
         "governance",
@@ -1095,11 +1008,7 @@
         "Blockchain"
       ],
       "aliases": [
-        "Smart Contract",
-        "Automation",
-        "Code",
-        "Blockchain",
-        "SmartContract"
+        "Smart Contract"
       ],
       "tags": [
         "technology",
@@ -1130,10 +1039,7 @@
         "Supply Reduction"
       ],
       "aliases": [
-        "Deflationary",
-        "VAL",
-        "PSWAP",
-        "Scarcity"
+        "Deflationary"
       ],
       "tags": [
         "economics",
@@ -1167,9 +1073,7 @@
         "Supply Reduction"
       ],
       "aliases": [
-        "Buyback-and-burn",
-        "PSWAP",
-        "Deflationary"
+        "Buyback-and-burn"
       ],
       "tags": [
         "economics",
@@ -1202,10 +1106,7 @@
         "Multi-source"
       ],
       "aliases": [
-        "Liquidity Aggregation",
-        "Polkaswap",
-        "Multi-source",
-        "LiquidityAggregation"
+        "Liquidity Aggregation"
       ],
       "tags": [
         "defi",
@@ -1240,10 +1141,7 @@
         "Algorithm"
       ],
       "aliases": [
-        "Smart Routing",
-        "Polkaswap",
-        "Algorithm",
-        "SmartRouting"
+        "Smart Routing"
       ],
       "tags": [
         "defi",
@@ -1278,10 +1176,7 @@
         "Citizenship"
       ],
       "aliases": [
-        "Sortition",
-        "Governance",
-        "Democracy",
-        "Citizenship"
+        "Sortition"
       ],
       "tags": [
         "governance",
@@ -1316,14 +1211,7 @@
         "Trustless"
       ],
       "aliases": [
-        "HASHI",
-        "Cross-chain",
-        "Bridges",
-        "Interoperability",
-        "Ethereum",
-        "ERC-20",
-        "Polkaswap",
-        "Trustless"
+        "HASHI"
       ],
       "tags": [
         "technology",
@@ -1365,11 +1253,7 @@
         "Bond"
       ],
       "aliases": [
-        "Citizenship",
-        "XOR",
-        "Sortition",
-        "Governance",
-        "Bond"
+        "Citizenship"
       ],
       "tags": [
         "governance",
@@ -1403,10 +1287,7 @@
         "Constant Product"
       ],
       "aliases": [
-        "XYK Pools",
-        "Polkaswap",
-        "PSWAP",
-        "XYKPools"
+        "XYK Pools"
       ],
       "tags": [
         "defi",
@@ -1440,9 +1321,7 @@
         "Underserved Populations"
       ],
       "aliases": [
-        "Financial Inclusion",
-        "CBDC",
-        "FinancialInclusion"
+        "Financial Inclusion"
       ],
       "tags": [
         "economics",
@@ -1475,11 +1354,7 @@
         "Blockchain"
       ],
       "aliases": [
-        "Cross-border Payments",
-        "CBDC",
-        "Remittances",
-        "Blockchain",
-        "Cross-borderPayments"
+        "Cross-border Payments"
       ],
       "tags": [
         "economics",
@@ -1514,8 +1389,7 @@
         "Market Conditions"
       ],
       "aliases": [
-        "Economic Conditions",
-        "EconomicConditions"
+        "Economic Conditions"
       ],
       "tags": [
         "economics",
@@ -1547,12 +1421,7 @@
         "Scalability"
       ],
       "aliases": [
-        "Parallel Processing",
-        "Parachain",
-        "Polkadot",
-        "Throughput",
-        "Scalability",
-        "ParallelProcessing"
+        "Parallel Processing"
       ],
       "tags": [
         "technology",
@@ -1589,12 +1458,7 @@
         "Scarcity"
       ],
       "aliases": [
-        "Token Burning",
-        "VAL",
-        "PSWAP",
-        "Deflationary",
-        "Scarcity",
-        "TokenBurning"
+        "Token Burning"
       ],
       "tags": [
         "economics",
@@ -1630,8 +1494,7 @@
         "Supply Management"
       ],
       "aliases": [
-        "Price Stability",
-        "PriceStability"
+        "Price Stability"
       ],
       "tags": [
         "economics",
@@ -1664,12 +1527,7 @@
         "Consensus"
       ],
       "aliases": [
-        "XCM",
-        "Polkadot",
-        "Parachain",
-        "Cross-chain",
-        "Interoperability",
-        "Consensus"
+        "XCM"
       ],
       "tags": [
         "technology",
@@ -1704,9 +1562,7 @@
         "Trading"
       ],
       "aliases": [
-        "AMM",
-        "Polkaswap",
-        "Trading"
+        "AMM"
       ],
       "tags": [
         "defi",
@@ -1739,10 +1595,7 @@
         "Rewards"
       ],
       "aliases": [
-        "KUSD",
-        "Builders",
-        "Funding",
-        "Rewards"
+        "KUSD"
       ],
       "tags": [
         "token",
@@ -1776,12 +1629,7 @@
         "Cross-chain"
       ],
       "aliases": [
-        "Relay Chain",
-        "Polkadot",
-        "Parachain",
-        "Consensus",
-        "Cross-chain",
-        "RelayChain"
+        "Relay Chain"
       ],
       "tags": [
         "network",
@@ -1818,12 +1666,7 @@
         "Validators"
       ],
       "aliases": [
-        "Shared Security",
-        "Polkadot",
-        "Parachain",
-        "Security",
-        "Validators",
-        "SharedSecurity"
+        "Shared Security"
       ],
       "tags": [
         "network",
@@ -1859,11 +1702,7 @@
         "Hyperledger Iroha"
       ],
       "aliases": [
-        "SORA v2",
-        "Substrate",
-        "Polkadot",
-        "Parachain",
-        "SORAv2"
+        "SORA v2"
       ],
       "tags": [
         "network",
@@ -1898,10 +1737,7 @@
         "Council"
       ],
       "aliases": [
-        "Governance",
-        "Democracy",
-        "Referendum",
-        "Council"
+        "Governance"
       ],
       "tags": [
         "governance",
@@ -1936,11 +1772,7 @@
         "Governance"
       ],
       "aliases": [
-        "Democracy",
-        "Referendum",
-        "Sortition",
-        "Citizenship",
-        "Governance"
+        "Democracy"
       ],
       "tags": [
         "governance",
@@ -1975,11 +1807,7 @@
         "Democracy"
       ],
       "aliases": [
-        "SORA Council",
-        "Referendum",
-        "Governance",
-        "Democracy",
-        "SORACouncil"
+        "SORA Council"
       ],
       "tags": [
         "governance",
@@ -2014,12 +1842,7 @@
         "Proposals"
       ],
       "aliases": [
-        "Council Motion",
-        "Referendum",
-        "Democracy",
-        "Governance",
-        "Proposals",
-        "CouncilMotion"
+        "Council Motion"
       ],
       "tags": [
         "governance",
@@ -2055,12 +1878,7 @@
         "Polkadot"
       ],
       "aliases": [
-        "Polkadot Governance",
-        "Referendum",
-        "Democracy",
-        "Governance",
-        "Polkadot",
-        "PolkadotGovernance"
+        "Polkadot Governance"
       ],
       "tags": [
         "governance",
@@ -2094,10 +1912,7 @@
         "Price Discovery"
       ],
       "aliases": [
-        "Liquidity",
-        "Polkaswap",
-        "Trading",
-        "Slippage"
+        "Liquidity"
       ],
       "tags": [
         "defi",
@@ -2131,13 +1946,7 @@
         "Trading"
       ],
       "aliases": [
-        "Trading Fees",
-        "Polkaswap",
-        "PSWAP",
-        "Buyback-and-burn",
-        "Validators",
-        "Trading",
-        "TradingFees"
+        "Trading Fees"
       ],
       "tags": [
         "defi",
@@ -2173,11 +1982,7 @@
         "Hyperledger Iroha"
       ],
       "aliases": [
-        "Consensus",
-        "Validator",
-        "Security",
-        "BFT",
-        "Substrate"
+        "Consensus"
       ],
       "tags": [
         "network",
@@ -2212,10 +2017,7 @@
         "Network Protection"
       ],
       "aliases": [
-        "Security",
-        "Validator",
-        "Consensus",
-        "Cryptography"
+        "Security"
       ],
       "tags": [
         "network",
@@ -2249,11 +2051,7 @@
         "Governance"
       ],
       "aliases": [
-        "Rewards",
-        "Validator",
-        "Staking",
-        "PSWAP",
-        "Governance"
+        "Rewards"
       ],
       "tags": [
         "defi",
@@ -2288,11 +2086,7 @@
         "Cryptocurrency"
       ],
       "aliases": [
-        "SORA Card",
-        "XOR",
-        "Polkaswap",
-        "Cryptocurrency",
-        "SORACard"
+        "SORA Card"
       ],
       "tags": [
         "defi",
@@ -2354,5 +2148,5 @@
     }
   },
   "totalCount": 59,
-  "lastUpdated": "2025-09-28T22:27:46.399Z"
+  "lastUpdated": "2025-09-28T22:53:22.714Z"
 }
