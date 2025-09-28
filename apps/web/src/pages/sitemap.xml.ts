@@ -58,12 +58,6 @@ export const GET: APIRoute = async ({ site }) => {
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
-  <url>
-    <loc>${baseUrl}/tools/quote</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
   ${glossary.terms.map(term => `
   <url>
     <loc>${baseUrl}/glossary/${term.slug}</loc>
