@@ -68,62 +68,48 @@ The site uses minimal JavaScript for core functionality while maintaining excell
 
 ### Project structure
 
-Inside **Soranauts** project, you'll see the following folders and files:
+**Soranauts** is organized as a pnpm monorepo with the following structure:
 
 ```
 /
-├── public/
-│   ├── _headers
-│   └── robots.txt
-├── src/
-│   ├── assets/
-│   │   ├── favicons/
-│   │   ├── images/
-│   │   └── styles/
-│   │       └── tailwind.css
-│   ├── components/
-│   │   ├── blog/
-│   │   ├── common/
-│   │   ├── ui/
-│   │   ├── widgets/
-│   │   │   ├── Header.astro
-│   │   │   └── ...
-│   │   ├── CustomStyles.astro
-│   │   ├── Favicons.astro
-│   │   └── Logo.astro
-│   ├── content/
-│   │   ├── post/
-│   │   │   ├── post-slug-1.md
-│   │   │   ├── post-slug-2.mdx
-│   │   │   └── ...
-│   │   └-- config.ts
-│   ├── layouts/
-│   │   ├── Layout.astro
-│   │   ├── MarkdownLayout.astro
-│   │   └── PageLayout.astro
-│   ├── pages/
-│   │   ├── [...blog]/
-│   │   │   ├── [category]/
-│   │   │   ├── [tag]/
-│   │   │   ├── [...page].astro
-│   │   │   └── index.astro
-│   │   ├── index.astro
-│   │   ├── 404.astro
-│   │   ├-- rss.xml.ts
-│   │   └── ...
-│   ├── utils/
-│   ├── config.yaml
-│   └── navigation.js
-├── package.json
-├── astro.config.mjs
-└── ...
+├── apps/
+│   └── web/                    # Main Astro web application
+│       ├── src/
+│       │   ├── components/
+│       │   │   ├── glossary/   # Interactive glossary components
+│       │   │   ├── tools/      # React islands for tools
+│       │   │   ├── blog/
+│       │   │   ├── common/
+│       │   │   ├── ui/
+│       │   │   └── widgets/
+│       │   ├── pages/
+│       │   │   ├── glossary.astro
+│       │   │   ├── tools/
+│       │   │   └── api/
+│       │   ├── data/
+│       │   │   └── sora-glossary.ts
+│       │   ├── scripts/
+│       │   │   ├── generate-glossary-fixed.js
+│       │   │   └── indexGlossary.ts
+│       │   └── types/
+│       │       └── glossary.ts
+│       ├── public/
+│       │   └── glossary.json
+│       └── package.json
+├── packages/
+│   ├── chain/                  # Blockchain facade
+│   ├── config/                 # Shared configurations
+│   └── ui/                     # Shared UI components
+├── package.json                # Root package.json
+├── pnpm-workspace.yaml
+└── README.md
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory if they do not require any transformation or in the `assets/` directory if they are imported directly.
+**Key Features:**
+- **Monorepo Architecture**: Shared packages for chain interactions, configurations, and UI components
+- **React Islands**: Interactive components using Astro's React integration
+- **Glossary System**: Searchable database with Typesense integration and fallback search
+- **API Endpoints**: Rate-limited endpoints for blockchain interactions
 
 
 [![Edit AstroWind on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://githubbox.com/onwidget/astrowind/tree/main)  [![Open in Gitpod](https://svgshare.com/i/xdi.svg)](https://gitpod.io/?on=gitpod#https://github.com/onwidget/astrowind)  [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/onwidget/astrowind)   
@@ -138,13 +124,16 @@ All commands are run from the root of the project, from a terminal:
 
 | Command               | Action                                             |
 | :-------------------- | :------------------------------------------------- |
-| `npm install`         | Installs dependencies                              |
-| `npm run dev`         | Starts local dev server at `localhost:3000`        |
-| `npm run build`       | Build your production site to `./dist/`            |
-| `npm run preview`     | Preview your build locally, before deploying       |
-| `npm run format`      | Format codes with Prettier                         |
-| `npm run lint:eslint` | Run Eslint                                         |
-| `npm run astro ...`   | Run CLI commands like `astro add`, `astro preview` |
+| `pnpm install`        | Installs dependencies for the entire monorepo     |
+| `pnpm dev`            | Starts local dev server at `localhost:4321`       |
+| `pnpm build`          | Build your production site to `./dist/`            |
+| `pnpm preview`        | Preview your build locally, before deploying       |
+| `pnpm lint`           | Run ESLint across all packages                     |
+| `pnpm typecheck`      | Run TypeScript checks across all packages          |
+| `pnpm generate:glossary` | Generate glossary JSON data                       |
+| `pnpm index:glossary` | Index glossary data into Typesense                 |
+| `pnpm glossary:typesense` | Switch to Typesense search                       |
+| `pnpm glossary:fallback` | Switch to fallback search                        |
 
 <br>
 
@@ -270,6 +259,13 @@ Soranauts specializes in comprehensive coverage of:
 - **Market analysis** and price predictions
 - **Risk management** and security best practices
 
+### 📚 Interactive Glossary
+- **Searchable database** of 100+ SORA ecosystem terms
+- **Advanced search** with Typesense integration and fallback options
+- **Category filtering** (Tokens, Technology, Governance, DeFi, Network, Economics)
+- **Auto-linking** in blog posts with tooltips
+- **Deep linking** support for direct term access
+
 ### 🔗 Blockchain Technology
 - **Polkadot ecosystem** and parachain technology
 - **Consensus mechanisms** (Proof of Stake vs Proof of Work)
@@ -279,6 +275,10 @@ Soranauts specializes in comprehensive coverage of:
 ## Recent Updates
 
 ### 🔧 Technical Improvements (Latest)
+- ✅ **Interactive Glossary** - Built comprehensive searchable glossary with Typesense integration and fallback search
+- ✅ **React Islands Architecture** - Implemented Astro React islands for interactive components
+- ✅ **Monorepo Structure** - Migrated to pnpm monorepo with shared packages and configurations
+- ✅ **API Endpoints** - Added rate-limited quote API with proper error handling
 - ✅ **Fixed canonical URL bug** - Resolved incorrect canonical URL generation that was causing SEO issues
 - ✅ **Fixed breadcrumb schema** - Corrected structured data for better search engine understanding
 - ✅ **Enhanced mobile menu** - Improved spacing and indentation for better user experience

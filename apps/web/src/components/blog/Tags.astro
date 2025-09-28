@@ -1,0 +1,98 @@
+---
+import { getPermalink } from '~/utils/permalinks';
+
+import {  APP_BLOG } from '~/utils/config';
+import type { Post } from '~/types';
+
+export interface Props {
+  tags: Post['tags'];
+  class?: string;  
+  title?: string | undefined;
+  isCategory?: boolean;
+}
+
+const { tags, class: className = 'text-sm', title = undefined, isCategory = false } = Astro.props;
+---
+
+{
+  tags && Array.isArray(tags) && (
+    <>
+      <>
+        {title !== undefined && <span class="align-super font-normal underline underline-offset-4 decoration-2 dark:text-slate-400">{title}</span>}
+      </>
+      <ul class={`${className} flex flex-wrap gap-2.5 items-start`}>
+        {tags.slice(0, 3).map((tag) => (
+          <li class="bg-gray-100 dark:bg-slate-700 inline-block py-1 px-3 rounded text-xs font-medium transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-slate-600">
+            {!APP_BLOG?.tag?.isEnabled ? (
+              tag
+            ) : (
+              <a
+                href={getPermalink(tag, (isCategory ? 'category' : 'tag'))}
+                class="text-muted dark:text-slate-300 hover:text-primary dark:hover:text-gray-200"
+              >
+                {tag}
+              </a>
+            )}
+          </li>
+        ))}
+        {tags.length > 3 && (
+          <>
+            <li class="bg-gray-50 dark:bg-slate-800 inline-block py-1 px-3 rounded text-xs font-medium text-gray-500 dark:text-slate-400 cursor-pointer hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors duration-200" 
+                onclick="toggleMoreTags(this)" 
+                data-show-more="true">
+              +{tags.length - 3} more
+            </li>
+            {tags.slice(3).map((tag) => (
+              <li class="bg-gray-100 dark:bg-slate-700 py-1 px-3 rounded text-xs font-medium transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-slate-600 hidden" 
+                  data-hidden-tag="true">
+                {!APP_BLOG?.tag?.isEnabled ? (
+                  tag
+                ) : (
+                  <a
+                    href={getPermalink(tag, (isCategory ? 'category' : 'tag'))}
+                    class="text-muted dark:text-slate-300 hover:text-primary dark:hover:text-gray-200"
+                  >
+                    {tag}
+                  </a>
+                )}
+              </li>
+            ))}
+          </>
+        )}
+      </ul>
+      
+      <script is:inline>
+        // Simple, direct approach with debugging
+        function toggleMoreTags(element) {
+          console.log('toggleMoreTags called', element);
+          const hiddenTags = element.parentElement.querySelectorAll('[data-hidden-tag="true"]');
+          const showMore = element.getAttribute('data-show-more') === 'true';
+          
+          console.log('Hidden tags found:', hiddenTags.length, 'Show more:', showMore);
+          
+          hiddenTags.forEach(tag => {
+            if (showMore) {
+              tag.classList.remove('hidden');
+              console.log('Showing tag:', tag.textContent);
+            } else {
+              tag.classList.add('hidden');
+              console.log('Hiding tag:', tag.textContent);
+            }
+          });
+          
+          if (showMore) {
+            element.textContent = 'Show less';
+            element.setAttribute('data-show-more', 'false');
+          } else {
+            element.textContent = `+${hiddenTags.length} more`;
+            element.setAttribute('data-show-more', 'true');
+          }
+        }
+        
+        // Make function available globally immediately
+        window.toggleMoreTags = toggleMoreTags;
+        console.log('toggleMoreTags function defined and available globally');
+      </script>
+    </>
+  )
+}

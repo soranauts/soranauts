@@ -1,0 +1,64 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+
+import Layout from '~/layouts/PageLayout.astro';
+import BlogList from '~/components/blog/List.astro';
+import Headline from '~/components/blog/Headline.astro';
+import Pagination from '~/components/blog/Pagination.astro';
+import CategoryFilter from '~/components/blog/CategoryFilter.tsx';
+
+import { blogListRobots, getStaticPathsBlogList, findCategories, findTags, fetchPosts } from '~/utils/blog';
+
+export const prerender = true;
+
+export const getStaticPaths = (async ({ paginate }) => {
+  return await getStaticPathsBlogList({ paginate });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props as Props;
+const currentPage = page.currentPage ?? 1;
+
+const allCategories = await findCategories();
+const allTags = await findTags();
+
+// Get all posts for the category filter (not just paginated ones)
+const allPosts = await fetchPosts();
+
+const metadata = {
+  title: `SORA & DeFi News${currentPage > 1 ? ` — Page ${currentPage}` : ''} | Soranauts`,
+  description: "Stay ahead with expert analysis of SORA's cutting-edge innovations: V3 upgrades, Polkaswap's advanced DEX features, and the Token Bonding Curve's unique economics. Comprehensive DeFi guides for traders, developers, and blockchain enthusiasts.",
+  robots: {
+    index: blogListRobots?.index && currentPage === 1,
+    follow: blogListRobots?.follow,
+    noindex: currentPage > 1, // Explicitly noindex pagination pages
+  },
+  openGraph: {
+    type: 'blog',
+  },
+  // For pagination pages, set canonical to the first page
+  canonical: currentPage > 1 ? 'https://soranauts.com/blog' : undefined,
+};
+
+---
+
+<Layout metadata={metadata}>
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <Headline
+      subtitle="This blog explores the rapidly evolving landscape of decentralization, how ecosystems like SORA, decentralized finance (DeFi), and decentralized apps (DApps) could disrupt traditional banking, investments, loans, transactions, and the future of money itself."
+    >
+      SORA & DeFi News
+    </Headline>
+    
+    <!-- Category Filter Component -->
+    <CategoryFilter 
+      categories={allCategories}
+      allPosts={allPosts}
+      client:load
+    />
+    
+    <BlogList posts={page.data} />
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+  </section>
+</Layout>
