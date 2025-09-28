@@ -289,8 +289,13 @@
       "slug": "rewards",
       "priority": 1,
       "blob": "rewards rewards defi incentives distributed to network participants for contributing to network operations. in sora, rewards include val tokens for validators and stakers, pswap tokens for liquidity providers, and xor allocations for productive projects through governance. rewards validator staking pswap governance defi validator staking pswap governance validator staking pswap yield farming governance"
+    },
+    {
+      "slug": "sora-card",
+      "priority": 1,
+      "blob": "sora card sora-card defi a decentralized debit card that allows users to spend their cryptocurrency in the real world. the sora card bridges the gap between digital assets and traditional commerce, enabling users to make purchases at any merchant that accepts card payments while maintaining the benefits of decentralized finance. sora card xor polkaswap cryptocurrency soracard defi xor polkaswap cryptocurrency sora card xor polkaswap decentralized finance real-world payments cryptocurrency"
     }
   ],
-  "count": 58,
-  "lastUpdated": "2025-09-26T13:26:24.626Z"
+  "count": 59,
+  "lastUpdated": "2025-09-28T21:49:14.543Z"
 }

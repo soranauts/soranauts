@@ -42,15 +42,16 @@ if (post.title?.includes('SORAMITSU')) {
 
 // Get direct image URL for social sharing
 const getDirectImageUrl = (): string => {
-  // Use the original image path from frontmatter
-  const originalImage = (post as any).originalImage || post.image;
-  if (!originalImage) return `${SITE.site}/soranauts-social-share.jpg`;
-  if (typeof originalImage === 'string') {
-    if (originalImage.startsWith('http')) return originalImage;
-    if (originalImage.startsWith('~/assets/images/')) {
-      return `${SITE.site}${originalImage.replace('~/assets/images/', '/')}`;
+  // Use the processed image from Astro (which includes the hashed filename)
+  if (post.image) {
+    if (typeof post.image === 'string') {
+      if (post.image.startsWith('http')) return post.image;
+      return `${SITE.site}${post.image}`;
     }
-    return `${SITE.site}${originalImage}`;
+    // If it's an ImageMetadata object, use the src
+    if (post.image.src) {
+      return `${SITE.site}${post.image.src}`;
+    }
   }
   // Fallback to social share image
   return `${SITE.site}/soranauts-social-share.jpg`;
@@ -63,7 +64,17 @@ const enhancedMetadata = {
   ...metadata,
   title: post.title,
   description: post.excerpt,
-  image: post.image,
+  openGraph: {
+    ...metadata.openGraph,
+    images: [
+      {
+        url: directImageUrl,
+        width: 900,
+        height: 506,
+        alt: post.title
+      }
+    ]
+  },
   url: String(url),
   type: 'article',
   publishedTime: post.publishDate.toISOString(),
