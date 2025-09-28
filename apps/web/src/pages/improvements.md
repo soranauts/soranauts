@@ -6,8 +6,8 @@ metadata:
   title: 'Website Improvements | Soranauts'
   description: 'Recent improvements and new features added to the Soranauts website.'
   robots:
-    index: false
-    follow: false
+    index: true
+    follow: true
 ---
 
 This page tracks the latest improvements and new features added to the Soranauts website.
