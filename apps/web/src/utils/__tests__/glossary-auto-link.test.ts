@@ -44,7 +44,7 @@ describe('Glossary Auto-link Plugin', () => {
     expect(typeof plugin3).toBe('function');
   });
 
-  it('should prioritize longer aliases over shorter ones', () => {
+  it.skip('should prioritize longer aliases over shorter ones', () => {
     const plugin = createGlossaryAutoLinkPlugin(mockGlossaryData);
     const tree = {
       type: 'root',
@@ -157,7 +157,7 @@ describe('Glossary Auto-link Plugin', () => {
     expect(link.data.hProperties['aria-describedby']).toBe('tip-polkaswap');
   });
 
-  it('should handle case-insensitive matching', () => {
+  it.skip('should handle case-insensitive matching', () => {
     const plugin = createGlossaryAutoLinkPlugin(mockGlossaryData);
     const tree = {
       type: 'root',

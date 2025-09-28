@@ -28,7 +28,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
         
       - name: Build packages
-        run: pnpm -r build --filter=@soranauts/config
+        run: pnpm --filter @soranauts/config build
         
       # Temporarily disabled until TypeScript errors are resolved
       # - name: Type check
