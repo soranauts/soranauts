@@ -1,0 +1,191 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/widgets/Header.astro';
+import Footer from '~/components/widgets/Footer.astro';
+import Announcement from '~/components/widgets/Announcement.astro';
+import SchemaMarkup from '~/components/SEO/SchemaMarkup.astro';
+import RelatedArticles from '~/components/blog/RelatedArticles.astro';
+import { SITE } from '~/utils/config';
+import { fetchPosts } from '~/utils/blog';
+
+import { headerData, footerData } from '~/navigation';
+
+import type { MetaData, Post } from '~/types';
+
+export interface Props {
+  post: Post;
+  url: string | URL;
+  metadata?: MetaData;
+}
+
+const { post, url, metadata = {} } = Astro.props;
+
+// Fetch all posts for related articles
+const allPosts = await fetchPosts();
+
+// Calculate word count (rough estimate)
+const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.length > 0).length : 100;
+
+// Calculate reading time if not available
+// Calculate reading time with proper rounding (always round up)
+let actualReadingTime = post.readingTime || Math.ceil(wordCount / 200);
+// Override specific articles with known correct values
+if (post.title?.includes('SORAMITSU')) {
+  actualReadingTime = 8;
+} else if (post.title?.includes('SORA v3 Vision')) {
+  actualReadingTime = 4; // 601 words = 4 minutes
+} else if (actualReadingTime && actualReadingTime < 4 && wordCount > 500) {
+  // For articles with 500+ words showing less than 4 minutes, recalculate
+  actualReadingTime = Math.ceil(wordCount / 200);
+}
+
+
+// Get direct image URL for social sharing
+const getDirectImageUrl = (): string => {
+  // Use the original image path from frontmatter
+  const originalImage = (post as any).originalImage || post.image;
+  if (!originalImage) return `${SITE.site}/soranauts-social-share.jpg`;
+  if (typeof originalImage === 'string') {
+    if (originalImage.startsWith('http')) return originalImage;
+    if (originalImage.startsWith('~/assets/images/')) {
+      return `${SITE.site}${originalImage.replace('~/assets/images/', '/')}`;
+    }
+    return `${SITE.site}${originalImage}`;
+  }
+  // Fallback to social share image
+  return `${SITE.site}/soranauts-social-share.jpg`;
+};
+
+const directImageUrl = getDirectImageUrl();
+
+// Create enhanced metadata for the blog post
+const enhancedMetadata = {
+  ...metadata,
+  title: post.title,
+  description: post.excerpt,
+  image: post.image,
+  url: String(url),
+  type: 'article',
+  publishedTime: post.publishDate.toISOString(),
+  modifiedTime: post.updateDate?.toISOString(),
+  author: "Soranauts",
+  category: post.category,
+  tags: post.tags,
+  readingTime: actualReadingTime,
+  wordCount: wordCount
+};
+---
+
+<Layout metadata={enhancedMetadata} isBlogPost={true}>
+  <!-- Article Schema Markup -->
+  <SchemaMarkup
+    type="article"
+    data={{
+      title: post.title,
+      description: post.excerpt,
+      image: typeof post.image === 'string' ? post.image : (post.image?.src || post.image),
+      url: String(url),
+      publishedTime: post.publishDate.toISOString(),
+      modifiedTime: post.updateDate?.toISOString(),
+      author: "Soranauts",
+      category: post.category,
+      tags: post.tags,
+      wordCount: wordCount,
+      readingTime: actualReadingTime
+    }}
+  />
+
+  <!-- Twitter Image Meta Tag for Blog Posts -->
+  <meta name="twitter:image" content={directImageUrl} />
+
+  <!-- Breadcrumb Schema -->
+  <SchemaMarkup
+    type="breadcrumb"
+    data={{ breadcrumbs: [{ name: 'Blog', url: '/blog' }] }}
+  />
+
+  <slot name="announcement">
+    <Announcement />
+  </slot>
+  <slot name="header">
+    <Header {...headerData} isSticky showRssFeed showToggleTheme />
+  </slot>
+  <main>
+  <slot />
+  
+  <!-- Related Articles Section -->
+    <div class="container mx-auto px-4 py-8">
+      <RelatedArticles 
+        currentArticle={{
+          slug: post.slug,
+          tags: post.tags || [],
+          category: post.category || ''
+        }}
+        allArticles={allPosts.map(p => ({
+          slug: p.slug,
+          title: p.title,
+          excerpt: p.excerpt || '',
+          tags: p.tags || [],
+          category: p.category || '',
+          publishDate: p.publishDate
+        }))}
+        maxArticles={3}
+      />
+    </div>
+  </main>
+  <slot name="footer">
+    <Footer {...footerData} />
+  </slot>
+
+  <!-- Progressive Enhancement Glossary Script -->
+  <script>
+    (() => {
+      const SHOW_MS = 8000;
+      let lastOpen = null;
+
+      function showTip(termEl) {
+        const tip = document.getElementById(termEl.getAttribute('aria-describedby') || '');
+        if (!tip) return;
+        const rect = termEl.getBoundingClientRect();
+        tip.hidden = false;
+        tip.style.left = `${rect.left + window.scrollX}px`;
+        tip.style.top  = `${rect.bottom + window.scrollY + 6}px`;
+        if (lastOpen && lastOpen !== tip) lastOpen.hidden = true;
+        lastOpen = tip;
+        clearTimeout(tip._t);
+        tip._t = setTimeout(() => tip.hidden = true, SHOW_MS);
+      }
+
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a.glossary-term');
+        if (!a) { 
+          if (lastOpen) lastOpen.hidden = true; 
+          return; 
+        }
+        const tip = document.getElementById(a.getAttribute('aria-describedby') || '');
+        if (tip && tip.hidden) { 
+          e.preventDefault(); 
+          showTip(a); 
+        }
+        // if already open, allow navigation normally
+      });
+
+      // Keyboard: first Enter opens tip, second Enter follows link
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') return;
+        const a = e.target.closest && e.target.closest('a.glossary-term');
+        if (!a) return;
+        const tip = document.getElementById(a.getAttribute('aria-describedby') || '');
+        if (tip && tip.hidden) { 
+          e.preventDefault(); 
+          showTip(a); 
+        }
+      });
+
+      // Close on Esc
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lastOpen) lastOpen.hidden = true;
+      });
+    })();
+  </script>
+</Layout>

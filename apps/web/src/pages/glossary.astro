@@ -1,0 +1,52 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/widgets/Header.astro';
+import Footer from '~/components/widgets/Footer.astro';
+import GlossarySearchFallback from '~/components/glossary/GlossarySearchFallback';
+import { SITE } from '~/utils/config';
+import { headerData, footerData } from '~/navigation';
+
+// Get initial term from URL hash for deep linking
+const initialTerm = Astro.url.hash.replace('#', '');
+---
+
+<Layout 
+  metadata={{
+    title: 'SORA Glossary | Comprehensive Guide to SORA Ecosystem Terms',
+    description: 'Complete glossary of SORA ecosystem terms, definitions, and concepts. Learn about XOR, VAL, PSWAP, governance, DeFi, and more.',
+    openGraph: {
+      url: `${SITE.site}/glossary`,
+      type: 'website',
+      images: [{
+        url: `${SITE.site}/sora-glossary-social-share.jpg`,
+        width: 1200,
+        height: 630
+      }]
+    }
+    }}
+  >
+    <!-- Preload glossary search index for faster search -->
+    <link rel="preload" href="/glossary.index.json" as="fetch" type="application/json" crossorigin />
+    
+    <Header {...headerData} isSticky showRssFeed showToggleTheme />
+  
+  <main class="py-8 sm:py-16 lg:py-20">
+    <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading mb-6">
+          SORA Glossary
+        </h1>
+        <p class="text-xl md:text-2xl text-muted dark:text-slate-400 max-w-3xl mx-auto">
+          Your comprehensive guide to SORA ecosystem terms, concepts, and definitions. 
+          Search, filter, and explore with our interactive glossary.
+        </p>
+      </div>
+
+          <!-- Main Glossary Search Component -->
+          <GlossarySearchFallback client:load />
+    </div>
+  </main>
+
+  <Footer {...footerData} />
+</Layout>

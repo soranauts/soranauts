@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Type check
+        run: pnpm -w typecheck
+        
+      - name: Lint
+        run: pnpm -w lint
+        
+      - name: Build web app
+        working-directory: apps/web
+        run: pnpm build
+        
+      - name: Run unit tests
+        working-directory: apps/web
+        run: pnpm test:unit
+        
+      - name: Run E2E tests
+        working-directory: apps/web
+        run: pnpm e2e
+        
+      - name: Lighthouse CI
+        working-directory: apps/web
+        run: npx @lhci/cli autorun --config=lighthouserc.json
+        
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: |
+            apps/web/test-results/
+            apps/web/playwright-report/

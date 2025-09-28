@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+set -e
+
+echo "🔍 Pre-push checks: typecheck, lint, build, unit, e2e"
+pnpm -w typecheck
+pnpm -w lint
+pnpm --filter ./apps/web build
+pnpm --filter ./apps/web test:unit
+pnpm --filter ./apps/web e2e
+echo "✅ All good — pushing!"
