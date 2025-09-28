@@ -122,6 +122,9 @@ importers:
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
+      sharp:
+        specifier: ^0.34.4
+        version: 0.34.4
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
@@ -135,10 +138,10 @@ importers:
   packages/chain:
     dependencies:
       '@polkadot/api':
-        specifier: ^10.0.0
+        specifier: ^10.13.1
         version: 10.13.1
       '@polkadot/types':
-        specifier: ^10.0.0
+        specifier: ^10.13.1
         version: 10.13.1
       zod:
         specifier: ^3.22.0
@@ -4768,8 +4771,7 @@ snapshots:
 
   '@fontsource-variable/inter@5.2.8': {}
 
-  '@img/colour@1.0.0':
-    optional: true
+  '@img/colour@1.0.0': {}
 
   '@img/sharp-darwin-arm64@0.34.4':
     optionalDependencies:
@@ -6604,8 +6606,7 @@ snapshots:
 
   destr@2.0.5: {}
 
-  detect-libc@2.1.1:
-    optional: true
+  detect-libc@2.1.1: {}
 
   deterministic-object-hash@2.0.2:
     dependencies:
@@ -8377,7 +8378,6 @@ snapshots:
       '@img/sharp-win32-arm64': 0.34.4
       '@img/sharp-win32-ia32': 0.34.4
       '@img/sharp-win32-x64': 0.34.4
-    optional: true
 
   shebang-command@2.0.0:
     dependencies:
