@@ -151,6 +151,8 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
           processedParagraphs.add(node);
         }
       });
+      
+      return tree;
     };
   };
 }
