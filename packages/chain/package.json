@@ -10,8 +10,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@polkadot/api": "^10.13.1",
-    "@polkadot/types": "^10.13.1",
     "zod": "^3.22.0"
   },
   "devDependencies": {

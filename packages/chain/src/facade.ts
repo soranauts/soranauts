@@ -1,4 +1,3 @@
-import { ApiPromise, WsProvider } from '@polkadot/api';
 import { QuoteRequest, QuoteResponse, Balance, SwapHistory, ChainConfig } from './types';
 
 export interface Chain {
@@ -19,8 +18,7 @@ export interface Chain {
   };
 }
 
-export class SubstrateChain implements Chain {
-  private api: ApiPromise | null = null;
+export class IrohaChain implements Chain {
   private config: ChainConfig;
 
   constructor(config: ChainConfig) {
@@ -28,8 +26,8 @@ export class SubstrateChain implements Chain {
   }
 
   async init(): Promise<void> {
-    const wsProvider = new WsProvider(this.config.wsUrl);
-    this.api = await ApiPromise.create({ provider: wsProvider });
+    // TODO: Initialize Iroha connection
+    // This will connect to SORA v3 running on Hyperledger Iroha
   }
 
   accounts = {
@@ -49,13 +47,11 @@ export class SubstrateChain implements Chain {
 
   sora = {
     symbol: async (): Promise<string> => {
-      if (!this.api) throw new Error('API not initialized');
-      // TODO: Get XOR symbol from chain
+      // TODO: Get XOR symbol from SORA v3 (Iroha)
       return 'XOR';
     },
     balance: async (address: string): Promise<bigint> => {
-      if (!this.api) throw new Error('API not initialized');
-      // TODO: Get balance from chain
+      // TODO: Get balance from SORA v3 (Iroha)
       return BigInt(0);
     }
   };
