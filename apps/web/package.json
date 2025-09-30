@@ -33,6 +33,7 @@
     "@fontsource-variable/inter": "^5.2.8",
     "@sentry/astro": "^8.0.0",
     "@tanstack/react-query": "^5.0.0",
+    "@vercel/speed-insights": "^1.2.0",
     "algoliasearch": "^4.24.0",
     "astro": "^5.0.0",
     "astro-icon": "^0.8.2",
