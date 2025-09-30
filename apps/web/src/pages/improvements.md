@@ -1,7 +1,7 @@
 ---
 title: 'Website Improvements'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-09-28'
+lastUpdated: '2025-09-30'
 metadata:
   title: 'Website Improvements | Soranauts'
   description: 'Recent improvements and new features added to the Soranauts website.'
@@ -12,25 +12,38 @@ metadata:
 
 This page tracks the latest improvements and new features added to the Soranauts website.
 
-## 🎉 Recent Updates (September 2025)
+## 🎉 Latest Updates (September 2025)
 
-### ✅ Major Features Completed
-- **SORA Glossary**: 58+ comprehensive terms with interactive search, category filtering, and hover tooltips
-- **Related Articles**: Smart recommendations based on shared tags with clean card layout
-- **Article Optimization**: Enhanced content structure, FAQ sections, and improved SEO
-- **Visual Improvements**: Updated tag design, better navigation flow, and color-coded glossary terms
+### ✅ Core Features Launched
+- **SORA Glossary**: 59+ comprehensive terms with instant search, category filtering, and smart tooltips
+- **Smart Search**: Full-site search with proper categorization between articles and glossary terms
+- **Related Articles**: AI-powered recommendations based on content analysis and shared tags
+- **Enhanced Navigation**: Streamlined menu flow and improved internal linking system
 
-### ✅ Technical Enhancements
-- **Performance**: Optimized images, streamlined CSS, and improved caching
-- **SEO & Accessibility**: Comprehensive meta tags, canonical URLs, schema markup, and mobile-first design
-- **Content Management**: Standardized article templates and linking strategies
-- **Code Quality**: Cleaner codebase with removed unused components
+### ✅ Performance & Quality
+- **Speed Optimization**: Faster loading times with optimized images and efficient caching
+- **Mobile-First Design**: Seamless experience across all devices and screen sizes
+- **SEO Excellence**: Comprehensive meta tags, structured data, and search engine optimization
+- **Code Quality**: Clean, maintainable codebase with modern development practices
 
-### ✅ User Experience
-- **Navigation**: Reordered menu (About → Glossary → Blog) for better flow
-- **Internal Linking**: Enhanced cross-references and glossary term integration
-- **Reading Experience**: Accurate reading time calculation and improved readability
-- **Mobile Responsive**: All features work perfectly across all screen sizes
+## 🚀 Roadmap & Future Features
+
+### 🔄 In Development
+- **Content Optimization**: Systematic updates to 2023-2024 articles using enhanced templates
+- **Glossary Expansion**: Adding more SORA ecosystem terms and cross-references
+- **Performance Monitoring**: Real-time analytics and user engagement tracking
+
+### 💡 Planned Features
+- **Real-time SORA Token Widgets**: Live price tracking and market data (similar to former Ceres Tools)
+- **Portfolio Management**: Track SORA holdings, DeFi positions, and yield farming
+- **Interactive Calculators**: DeFi yield, token bonding curves, and staking rewards
+- **Mobile Applications**: Native iOS and Android apps for enhanced mobile experience
+- **Community Features**: User accounts, personalized dashboards, and social integration
+
+### 🎯 Long-term Vision
+- **Comprehensive SORA Tools Suite**: All-in-one platform for SORA ecosystem interaction
+- **Educational Platform**: Interactive tutorials and guided DeFi experiences
+- **Community Integration**: Enhanced connection with [Soranauts Telegram](https://t.me/Soranauts) and collaborative content creation
 
 ## 📝 Article Update Checklist
 
@@ -99,18 +112,6 @@ For each article, verify and update:
 - [ ] **Call-to-Actions**: Update CTAs to current SORA ecosystem tools
 - [ ] **Date Stamps**: Update "last updated" dates where applicable
 
-## 🚀 What's Next
-
-### Immediate Priorities
-- Continue updating articles from the checklist below using the optimized template
-- Expand glossary with additional SORA ecosystem terms
-- Monitor and improve user engagement with new features
-
-### Future Considerations
-- Real-time SORA token price widgets
-- Interactive DeFi calculators
-- Enhanced community features
-
 ---
 
-*Last updated: September 28, 2025*
+*Last updated: September 30, 2025*
