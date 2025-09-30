@@ -4,7 +4,7 @@ layout: '~/layouts/MarkdownLayout.astro'
 lastUpdated: '2025-09-30'
 metadata:
   title: 'Changelog | Soranauts'
-  description: 'Recent improvements and new features added to the Soranauts website.'
+  description: 'Track the latest SORA ecosystem updates, new features, and website improvements on Soranauts.'
   robots:
     index: true
     follow: true
