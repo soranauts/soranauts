@@ -259,11 +259,24 @@
       
       try {
         const search = await this.pagefind.search(query, {
-          filters: { type: ['article'] },
           excerptLength: 24
         });
+        
+        // Filter out glossary results - only include blog posts and other non-glossary content
+        const articleResults = search.results.filter(result => {
+          const url = result.url || '';
+          // Exclude glossary pages and other non-article content
+          return !url.includes('/glossary/') && 
+                 !url.includes('/glossary') &&
+                 url !== '/' &&
+                 url !== '/about' &&
+                 url !== '/privacy' &&
+                 url !== '/terms' &&
+                 url !== '/donate';
+        });
+        
         return await Promise.all(
-          search.results.slice(0, 8).map(async (result) => {
+          articleResults.slice(0, 8).map(async (result) => {
             const data = await result.data();
             
             // Pagefind should provide the URL directly
@@ -294,11 +307,31 @@
               if (!url.startsWith('http') && !url.startsWith('/')) {
                 url = '/' + url;
               }
+              // Fix double slashes
+              url = url.replace(/\/+/g, '/');
+            }
+            
+            // Extract title from various possible locations
+            let title = 'Untitled';
+            if (data.meta?.title) {
+              title = data.meta.title;
+            } else if (data.title) {
+              title = data.title;
+            } else if (result.title) {
+              title = result.title;
+            } else if (data.meta?.term) {
+              title = data.meta.term;
+            } else if (data.content) {
+              // Try to extract title from content if it starts with a heading
+              const headingMatch = data.content.match(/^#\s+(.+)$/m);
+              if (headingMatch) {
+                title = headingMatch[1];
+              }
             }
             
             return {
               url: url || '#',
-              title: data.meta?.title || 'Untitled',
+              title: title,
               excerpt: data.excerpt || '',
               content: data.content || ''
             };
@@ -316,12 +349,22 @@
       }
       
       try {
+        // Search all content and filter manually
         const search = await this.pagefind.search(query, {
-          filters: { type: ['glossary'] },
           excerptLength: 24
         });
+        
+        // Filter to only include glossary results - be more strict
+        const glossaryResults = search.results.filter(result => {
+          const url = result.url || '';
+          const id = result.id || '';
+          // Only include results that are clearly glossary-related
+          return (url && (url.includes('/glossary/') || url.includes('/glossary'))) ||
+                 (id && id.includes('glossary'));
+        });
+        
         return await Promise.all(
-          search.results.slice(0, 5).map(async (result) => {
+          glossaryResults.slice(0, 5).map(async (result) => {
             const data = await result.data();
             
             // Get URL from Pagefind
@@ -344,11 +387,31 @@
               if (!url.startsWith('http') && !url.startsWith('/')) {
                 url = '/' + url;
               }
+              // Fix double slashes
+              url = url.replace(/\/+/g, '/');
+            }
+            
+            // Extract title from various possible locations
+            let term = 'Untitled';
+            if (data.meta?.term) {
+              term = data.meta.term;
+            } else if (data.title) {
+              term = data.title;
+            } else if (result.title) {
+              term = result.title;
+            } else if (data.meta?.title) {
+              term = data.meta.title;
+            } else if (data.content) {
+              // Try to extract title from content if it starts with a heading
+              const headingMatch = data.content.match(/^#\s+(.+)$/m);
+              if (headingMatch) {
+                term = headingMatch[1];
+              }
             }
             
             return {
               url: url || '#',
-              term: data.meta?.term || 'Untitled',
+              term: term,
               definition: data.excerpt || '',
               category: data.meta?.category || '',
               slug: url?.replace('/glossary/', '') || '',

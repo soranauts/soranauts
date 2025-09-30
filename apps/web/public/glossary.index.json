@@ -3,299 +3,299 @@
     {
       "slug": "xor",
       "priority": 100,
-      "blob": "xor xor token the network utility token used for transaction fees (gas) where 50% of fees are burned and 50% go to validators. xor has elastic supply managed by a token bonding curve and can be used for staking, liquidity provision, and future sora parliament membership. xor val pswap polkaswap token val pswap polkaswap val pswap token bonding curve elastic supply polkaswap"
+      "blob": "xor xor token the network utility token used for transaction fees (gas) where 50% of fees are burned and 50% go to validators. xor has elastic supply managed by a token bonding curve and can be used for staking, liquidity provision, and future sora parliament membership. xor token val pswap polkaswap val pswap token bonding curve elastic supply polkaswap"
     },
     {
       "slug": "val",
       "priority": 95,
-      "blob": "val val token a validator reward token for the sora network used to reward validators and stake nominators. val has deflationary tokenomics with tokens burned on every transaction, and elastic rewards distributed as a percentage of daily burned tokens. val xor pswap validator staking deflationary hashi token xor pswap validator staking deflationary hashi xor pswap validator staking deflationary hashi"
+      "blob": "val val token a validator reward token for the sora network used to reward validators and stake nominators. val has deflationary tokenomics with tokens burned on every transaction, and elastic rewards distributed as a percentage of daily burned tokens. val token xor pswap validator staking deflationary hashi xor pswap validator staking deflationary hashi"
     },
     {
       "slug": "pswap",
       "priority": 90,
-      "blob": "pswap pswap token a deflationary token used to reward liquidity providers on polkaswap. pswap has a 10 billion max supply that decreases over time, with 0.3% trading fees used for buyback-and-burn, and rewards starting at 90% of burned tokens reminted for lps, decreasing to 35% after 5 years. pswap xor val polkaswap dex liquidity deflationary buyback-and-burn token xor val polkaswap dex liquidity deflationary xor val polkaswap dex liquidity deflationary buyback-and-burn"
+      "blob": "pswap pswap token a deflationary token used to reward liquidity providers on polkaswap. pswap has a 10 billion max supply that decreases over time, with 0.3% trading fees used for buyback-and-burn, and rewards starting at 90% of burned tokens reminted for lps, decreasing to 35% after 5 years. pswap token xor val polkaswap dex liquidity deflationary xor val polkaswap dex liquidity deflationary buyback-and-burn"
     },
     {
       "slug": "polkaswap",
       "priority": 80,
-      "blob": "polkaswap polkaswap defi a next-generation, cross-chain liquidity aggregator dex protocol built on sora network. polkaswap aggregates liquidity from multiple sources (amm dexs, order books, algorithms) and provides smart liquidity routing to find the best prices. it enables seamless trading of eth/erc-20 tokens, dot/ksm, btc, and future assets with high speed, low fees, and reduced impermanent loss through its unique liquidity infrastructure. polkaswap dex cross-chain pswap defi dex cross-chain pswap dex cross-chain liquidity aggregation pswap smart routing sora network"
+      "blob": "polkaswap polkaswap defi a next-generation, cross-chain liquidity aggregator dex protocol built on sora network. polkaswap aggregates liquidity from multiple sources (amm dexs, order books, algorithms) and provides smart liquidity routing to find the best prices. it enables seamless trading of eth/erc-20 tokens, dot/ksm, btc, and future assets with high speed, low fees, and reduced impermanent loss through its unique liquidity infrastructure. polkaswap defi dex cross-chain pswap dex cross-chain liquidity aggregation pswap smart routing sora network"
     },
     {
       "slug": "sora-parliament",
       "priority": 75,
-      "blob": "sora parliament sora-parliament governance the democratic governance system of sora using multi-body sortition with clear separation of powers. citizens are randomly selected (not token voting) and must post xor bonds for citizenship. features multiple bodies: rules committee, agenda council, interest panels, review panel, and policy jury. main task is allocating newly minted xor to productive projects. sora parliament xor val sortition citizenship supranational soraparliament governance xor val sortition citizenship supranational sora parliament xor val sortition citizenship multi-body governance supranational"
+      "blob": "sora parliament sora-parliament governance the democratic governance system of sora using multi-body sortition with clear separation of powers. citizens are randomly selected (not token voting) and must post xor bonds for citizenship. features multiple bodies: rules committee, agenda council, interest panels, review panel, and policy jury. main task is allocating newly minted xor to productive projects. sora parliament governance xor val sortition citizenship supranational sora parliament xor val sortition citizenship multi-body governance supranational"
     },
     {
       "slug": "hyperledger-iroha",
       "priority": 70,
-      "blob": "hyperledger iroha hyperledger-iroha technology an open-source, permissioned blockchain framework developed by soramitsu and part of the hyperledger foundation. designed for simplicity and fast deployment with granular permissions, built-in asset management, and byzantine fault tolerant consensus. iroha 2 (written in rust) adds wasm smart contracts and improved performance, making it suitable for enterprise systems, cbdcs, and national-level financial infrastructure. hyperledger iroha soramitsu cbdc enterprise wasm hyperledgeriroha technology soramitsu cbdc enterprise wasm hyperledger iroha soramitsu hyperledger foundation permissioned blockchain cbdc enterprise wasm"
+      "blob": "hyperledger iroha hyperledger-iroha technology an open-source, permissioned blockchain framework developed by soramitsu and part of the hyperledger foundation. designed for simplicity and fast deployment with granular permissions, built-in asset management, and byzantine fault tolerant consensus. iroha 2 (written in rust) adds wasm smart contracts and improved performance, making it suitable for enterprise systems, cbdcs, and national-level financial infrastructure. hyperledger iroha technology soramitsu cbdc enterprise wasm hyperledger iroha soramitsu hyperledger foundation permissioned blockchain cbdc enterprise wasm"
     },
     {
       "slug": "substrate",
       "priority": 65,
-      "blob": "substrate substrate technology a modular blockchain framework developed by parity technologies. sora v2 uses substrate to integrate with the polkadot ecosystem and enable cross-chain functionality, while sora v3 is migrating away from substrate to hyperledger iroha for improved efficiency and enterprise integration. substrate polkadot parachain cross-chain technology polkadot parachain cross-chain polkadot parachain cross-chain sora v2 sora v3 hyperledger iroha"
+      "blob": "substrate substrate technology a modular blockchain framework developed by parity technologies. sora v2 uses substrate to integrate with the polkadot ecosystem and enable cross-chain functionality, while sora v3 is migrating away from substrate to hyperledger iroha for improved efficiency and enterprise integration. substrate technology polkadot parachain cross-chain polkadot parachain cross-chain sora v2 sora v3 hyperledger iroha"
     },
     {
       "slug": "parachain",
       "priority": 60,
-      "blob": "parachain parachain network a parallel blockchain in the polkadot ecosystem that connects to the main relay chain and benefits from shared security. parachains can specialize in specific use cases (defi, privacy, smart contracts) while maintaining interoperability through cross-consensus messaging (xcm). they process transactions in parallel and are validated by the relay chain's validator set. parachain polkadot xcm cross-chain network polkadot xcm cross-chain polkadot relay chain xcm shared security parallel processing cross-chain"
+      "blob": "parachain parachain network a parallel blockchain in the polkadot ecosystem that connects to the main relay chain and benefits from shared security. parachains can specialize in specific use cases (defi, privacy, smart contracts) while maintaining interoperability through cross-consensus messaging (xcm). they process transactions in parallel and are validated by the relay chain's validator set. parachain network polkadot xcm cross-chain polkadot relay chain xcm shared security parallel processing cross-chain"
     },
     {
       "slug": "defi",
       "priority": 55,
-      "blob": "defi defi defi decentralized finance - financial services built on blockchain networks that operate without traditional financial intermediaries. sora provides defi services through polkaswap for trading, yield farming, and liquidity provision. defi polkaswap dex defi polkaswap dex polkaswap yield farming liquidity pool dex smart contracts"
+      "blob": "defi defi defi decentralized finance - financial services built on blockchain networks that operate without traditional financial intermediaries. sora provides defi services through polkaswap for trading, yield farming, and liquidity provision. defi defi polkaswap dex polkaswap yield farming liquidity pool dex smart contracts"
     },
     {
       "slug": "dex",
       "priority": 50,
-      "blob": "dex dex defi decentralized exchange - a cryptocurrency exchange that operates without a central authority, allowing users to trade directly with each other through smart contracts. polkaswap is sora's dex that provides cross-chain trading and liquidity aggregation. dex polkaswap trading cross-chain defi polkaswap trading cross-chain polkaswap liquidity pool trading cross-chain smart contracts"
+      "blob": "dex dex defi decentralized exchange - a cryptocurrency exchange that operates without a central authority, allowing users to trade directly with each other through smart contracts. polkaswap is sora's dex that provides cross-chain trading and liquidity aggregation. dex defi polkaswap trading cross-chain polkaswap liquidity pool trading cross-chain smart contracts"
     },
     {
       "slug": "liquidity-pool",
       "priority": 45,
-      "blob": "liquidity pool liquidity-pool defi a collection of tokens locked in smart contracts to facilitate trading on dexs. in polkaswap's liquidity aggregation system, pools can come from various sources including amm dexs, order books, and algorithms. the platform aggregates liquidity from multiple pools to provide better prices and reduced impermanent loss through smart routing. liquidity pool dex liquiditypool defi dex liquidity pool dex liquidity aggregation trading fees yield farming smart routing impermanent loss"
+      "blob": "liquidity pool liquidity-pool defi a collection of tokens locked in smart contracts to facilitate trading on dexs. in polkaswap's liquidity aggregation system, pools can come from various sources including amm dexs, order books, and algorithms. the platform aggregates liquidity from multiple pools to provide better prices and reduced impermanent loss through smart routing. liquidity pool defi dex liquidity pool dex liquidity aggregation trading fees yield farming smart routing impermanent loss"
     },
     {
       "slug": "staking",
       "priority": 40,
-      "blob": "staking staking network the process of locking tokens to support network security and earn rewards. sora users can stake xor tokens to validators and receive staking rewards. staking validator rewards security xor network validator rewards security xor validator rewards security xor"
+      "blob": "staking staking network the process of locking tokens to support network security and earn rewards. sora users can stake xor tokens to validators and receive staking rewards. staking network validator rewards security xor validator rewards security xor"
     },
     {
       "slug": "validator",
       "priority": 35,
-      "blob": "validator validator network a network participant that validates transactions and maintains the blockchain. validators in sora secure the network and earn rewards for their services. validator staking consensus security rewards network staking consensus security rewards staking consensus security rewards"
+      "blob": "validator validator network a network participant that validates transactions and maintains the blockchain. validators in sora secure the network and earn rewards for their services. validator network staking consensus security rewards staking consensus security rewards"
     },
     {
       "slug": "cross-chain",
       "priority": 30,
-      "blob": "cross-chain cross-chain technology the ability to transfer assets and data between different blockchain networks. sora enables cross-chain functionality through bridges and interoperability protocols, allowing users to trade assets from different blockchains on polkaswap. cross-chain polkaswap bridges interoperability technology polkaswap bridges polkaswap bridges interoperability blockchain networks"
+      "blob": "cross-chain cross-chain technology the ability to transfer assets and data between different blockchain networks. sora enables cross-chain functionality through bridges and interoperability protocols, allowing users to trade assets from different blockchains on polkaswap. cross-chain technology polkaswap bridges polkaswap bridges interoperability blockchain networks"
     },
     {
       "slug": "cbdc",
       "priority": 25,
-      "blob": "cbdc cbdc economics central bank digital currency - a digital form of a country's fiat currency issued by the central bank. soramitsu has successfully deployed multiple cbdcs including cambodia's bakong (8.5m users, $15.5m in payments), lao cbdc pilot, and fiji cbdc exploration. these blockchain-based systems enable financial inclusion, cross-border remittances, and interoperable digital payments. cbdc soramitsu bakong economics soramitsu bakong soramitsu bakong digital currency central bank financial inclusion cross-border payments"
+      "blob": "cbdc cbdc economics central bank digital currency - a digital form of a country's fiat currency issued by the central bank. soramitsu has successfully deployed multiple cbdcs including cambodia's bakong (8.5m users, $15.5m in payments), lao cbdc pilot, and fiji cbdc exploration. these blockchain-based systems enable financial inclusion, cross-border remittances, and interoperable digital payments. cbdc economics soramitsu bakong soramitsu bakong digital currency central bank financial inclusion cross-border payments"
     },
     {
       "slug": "bakong",
       "priority": 20,
-      "blob": "bakong bakong economics cambodia's national digital payment system built on blockchain technology by soramitsu. bakong is one of the most successful cbdc implementations, with over 20 million users and $70 billion in transactions, demonstrating the potential of blockchain-based digital currencies. bakong cbdc soramitsu economics cbdc soramitsu cbdc soramitsu digital currency financial inclusion cross-border payments"
+      "blob": "bakong bakong economics cambodia's national digital payment system built on blockchain technology by soramitsu. bakong is one of the most successful cbdc implementations, with over 20 million users and $70 billion in transactions, demonstrating the potential of blockchain-based digital currencies. bakong economics cbdc soramitsu cbdc soramitsu digital currency financial inclusion cross-border payments"
     },
     {
       "slug": "soramitsu",
       "priority": 15,
-      "blob": "soramitsu soramitsu network a japanese fintech company that develops blockchain infrastructure and digital identity solutions. soramitsu is the company behind the sora network and has implemented successful cbdc projects including cambodia's bakong and lao cbdc pilot. soramitsu cbdc bakong network cbdc bakong sora network cbdc bakong hyperledger iroha blockchain infrastructure"
+      "blob": "soramitsu soramitsu network a japanese fintech company that develops blockchain infrastructure and digital identity solutions. soramitsu is the company behind the sora network and has implemented successful cbdc projects including cambodia's bakong and lao cbdc pilot. soramitsu network cbdc bakong sora network cbdc bakong hyperledger iroha blockchain infrastructure"
     },
     {
       "slug": "polkadot",
       "priority": 10,
-      "blob": "polkadot polkadot network a heterogeneous multi-chain network that enables different blockchains to transfer messages and value in a trust-free fashion. polkadot provides shared security, cross-chain interoperability, and parallel processing through its relay chain and parachain architecture. polkadot parachain xcm cross-chain substrate network parachain xcm cross-chain substrate parachain relay chain xcm shared security cross-chain substrate"
+      "blob": "polkadot polkadot network a heterogeneous multi-chain network that enables different blockchains to transfer messages and value in a trust-free fashion. polkadot provides shared security, cross-chain interoperability, and parallel processing through its relay chain and parachain architecture. polkadot network parachain xcm cross-chain substrate parachain relay chain xcm shared security cross-chain substrate"
     },
     {
       "slug": "blockchain",
       "priority": 5,
-      "blob": "blockchain blockchain technology a distributed ledger technology that maintains a continuously growing list of records secured using cryptography. sora operates on blockchain technology, currently using substrate framework and transitioning to hyperledger iroha for enhanced enterprise capabilities. blockchain cryptography substrate decentralization technology cryptography substrate distributed ledger cryptography substrate hyperledger iroha decentralization"
+      "blob": "blockchain blockchain technology a distributed ledger technology that maintains a continuously growing list of records secured using cryptography. sora operates on blockchain technology, currently using substrate framework and transitioning to hyperledger iroha for enhanced enterprise capabilities. blockchain technology cryptography substrate distributed ledger cryptography substrate hyperledger iroha decentralization"
     },
     {
       "slug": "token-bonding-curve",
       "priority": 1,
-      "blob": "token bonding curve token-bonding-curve economics a smart contract that manages the supply of xor in a rational way without human involvement. the tbc automatically adjusts xor supply based on economic conditions to maintain price stability, expanding supply during growth and contracting during decline. token bonding curve xor tokenbondingcurve economics xor token bonding curve xor elastic supply smart contract price stability supply management"
+      "blob": "token bonding curve token-bonding-curve economics a smart contract that manages the supply of xor in a rational way without human involvement. the tbc automatically adjusts xor supply based on economic conditions to maintain price stability, expanding supply during growth and contracting during decline. token bonding curve economics xor token bonding curve xor elastic supply smart contract price stability supply management"
     },
     {
       "slug": "referendum",
       "priority": 1,
-      "blob": "referendum referendum governance a democracy referenda in sora's current governance system (polkadot v1 governance). after a council motion is approved by the sora council, it becomes a democracy referenda where the entire community can vote on specific proposals, parameter changes, or network upgrades. referendum democracy governance democracy sora council council motion polkadot governance democracy"
+      "blob": "referendum referendum governance a democracy referenda in sora's current governance system (polkadot v1 governance). after a council motion is approved by the sora council, it becomes a democracy referenda where the entire community can vote on specific proposals, parameter changes, or network upgrades. referendum governance democracy sora council council motion polkadot governance democracy"
     },
     {
       "slug": "elastic-supply",
       "priority": 1,
-      "blob": "elastic supply elastic-supply economics a monetary policy where token supply automatically adjusts based on economic conditions and demand. unlike conventional tokenomics with limited supply, sora's xor uses elastic supply managed by the token bonding curve (tbc) smart contract without human involvement. the tbc manages xor supply rationally to maintain price stability, with the supply expanding or contracting based on market conditions and economic activity. elastic supply xor elasticsupply economics xor elastic supply xor token bonding curve monetary policy price stability smart contract economic conditions"
+      "blob": "elastic supply elastic-supply economics a monetary policy where token supply automatically adjusts based on economic conditions and demand. unlike conventional tokenomics with limited supply, sora's xor uses elastic supply managed by the token bonding curve (tbc) smart contract without human involvement. the tbc manages xor supply rationally to maintain price stability, with the supply expanding or contracting based on market conditions and economic activity. elastic supply economics xor elastic supply xor token bonding curve monetary policy price stability smart contract economic conditions"
     },
     {
       "slug": "sora-v3",
       "priority": 1,
-      "blob": "sora v3 sora-v3 technology the latest version of sora built on hyperledger iroha 2, featuring the sora v3 hub chain that enables seamless collaboration between permissioned and decentralized systems. designed for cbdcs, government integration, and economic sovereignty while maintaining borderless financial activities. sora v3 cbdc kusd sorav3 technology cbdc kusd sora hyperledger iroha cbdc hub chain economic sovereignty kusd fujiwara testnet"
+      "blob": "sora v3 sora-v3 technology the latest version of sora built on hyperledger iroha 2, featuring the sora v3 hub chain that enables seamless collaboration between permissioned and decentralized systems. designed for cbdcs, government integration, and economic sovereignty while maintaining borderless financial activities. sora v3 technology cbdc kusd sora hyperledger iroha cbdc hub chain economic sovereignty kusd fujiwara testnet"
     },
     {
       "slug": "fujiwara-testnet",
       "priority": 1,
-      "blob": "fujiwara testnet fujiwara-testnet technology the first testnet for sora v3, named after the influential fujiwara family that shaped japan's heian period. this crucial milestone enables experimentation with key sora v3 features including defi capabilities, sora parliament governance, and network stability testing. as the first public blockchain implementation of iroha-based infrastructure, it provides valuable insights for the transition from private to public blockchain features. fujiwara testnet defi governance fujiwaratestnet technology defi governance fujiwara testnet sora v3 hyperledger iroha sora parliament defi governance public blockchain"
+      "blob": "fujiwara testnet fujiwara-testnet technology the first testnet for sora v3, named after the influential fujiwara family that shaped japan's heian period. this crucial milestone enables experimentation with key sora v3 features including defi capabilities, sora parliament governance, and network stability testing. as the first public blockchain implementation of iroha-based infrastructure, it provides valuable insights for the transition from private to public blockchain features. fujiwara testnet technology defi governance fujiwara testnet sora v3 hyperledger iroha sora parliament defi governance public blockchain"
     },
     {
       "slug": "yield-farming",
       "priority": 1,
-      "blob": "yield farming yield-farming defi a defi strategy where users provide liquidity to protocols and earn rewards. in polkaswap, users can farm pswap tokens by providing liquidity to xyk pools, with rewards distributed through the platform's liquidity aggregation system. polkaswap's unique infrastructure reduces impermanent loss risks while providing competitive yields through multi-source liquidity aggregation. yield farming pswap yieldfarming defi pswap yield farming liquidity provision pswap xyk pools liquidity aggregation impermanent loss"
+      "blob": "yield farming yield-farming defi a defi strategy where users provide liquidity to protocols and earn rewards. in polkaswap, users can farm pswap tokens by providing liquidity to xyk pools, with rewards distributed through the platform's liquidity aggregation system. polkaswap's unique infrastructure reduces impermanent loss risks while providing competitive yields through multi-source liquidity aggregation. yield farming defi pswap yield farming liquidity provision pswap xyk pools liquidity aggregation impermanent loss"
     },
     {
       "slug": "impermanent-loss",
       "priority": 1,
-      "blob": "impermanent loss impermanent-loss defi a temporary loss of value that can occur when providing liquidity to automated market makers (amms) due to price volatility of the paired assets. for example, if you provide 1 eth and 2000 usdc to a pool, and eth price doubles, you may end up with fewer eth tokens when withdrawing due to the automated rebalancing. impermanent loss liquidity amm risk impermanentloss defi liquidity amm risk impermanent loss liquidity amm price volatility risk"
+      "blob": "impermanent loss impermanent-loss defi a temporary loss of value that can occur when providing liquidity to automated market makers (amms) due to price volatility of the paired assets. for example, if you provide 1 eth and 2000 usdc to a pool, and eth price doubles, you may end up with fewer eth tokens when withdrawing due to the automated rebalancing. impermanent loss defi liquidity amm risk impermanent loss liquidity amm price volatility risk"
     },
     {
       "slug": "integrated-plan",
       "priority": 1,
-      "blob": "integrated plan integrated-plan governance a comprehensive development roadmap for the sora ecosystem separated into business, backend, web, and mobile/other tracks. the plan tracks development progress with completion percentages and includes key milestones like sora v3 network launch, sora parliament implementation, and cross-chain infrastructure development. integrated plan cross-chain infrastructure integratedplan governance cross-chain infrastructure integrated plan sora v3 sora parliament development roadmap cross-chain infrastructure"
+      "blob": "integrated plan integrated-plan governance a comprehensive development roadmap for the sora ecosystem separated into business, backend, web, and mobile/other tracks. the plan tracks development progress with completion percentages and includes key milestones like sora v3 network launch, sora parliament implementation, and cross-chain infrastructure development. integrated plan governance cross-chain infrastructure integrated plan sora v3 sora parliament development roadmap cross-chain infrastructure"
     },
     {
       "slug": "smart-contract",
       "priority": 1,
-      "blob": "smart contract smart-contract technology self-executing contracts with the terms of the agreement directly written into code. in sora, smart contracts like the token bonding curve automatically manage token supply and economic parameters without human intervention. smart contract automation code blockchain smartcontract technology automation code blockchain smart contract token bonding curve automation code blockchain"
+      "blob": "smart contract smart-contract technology self-executing contracts with the terms of the agreement directly written into code. in sora, smart contracts like the token bonding curve automatically manage token supply and economic parameters without human intervention. smart contract technology automation code blockchain smart contract token bonding curve automation code blockchain"
     },
     {
       "slug": "deflationary",
       "priority": 1,
-      "blob": "deflationary deflationary economics a tokenomic model where the total supply of tokens decreases over time. in sora, both val and pswap are deflationary tokens - val tokens are burned on every network transaction, while pswap tokens are burned on every polkaswap transaction, creating scarcity and potential value appreciation. deflationary val pswap scarcity economics val pswap scarcity val pswap token burning scarcity supply reduction"
+      "blob": "deflationary deflationary economics a tokenomic model where the total supply of tokens decreases over time. in sora, both val and pswap are deflationary tokens - val tokens are burned on every network transaction, while pswap tokens are burned on every polkaswap transaction, creating scarcity and potential value appreciation. deflationary economics val pswap scarcity val pswap token burning scarcity supply reduction"
     },
     {
       "slug": "buyback-and-burn",
       "priority": 1,
-      "blob": "buyback-and-burn buyback-and-burn economics a tokenomic mechanism where tokens are purchased from the market and permanently destroyed. pswap uses a buyback-and-burn model where 0.3% of trading fees are used to buy pswap tokens from the market and burn them, reducing total supply and potentially increasing token value. buyback-and-burn pswap deflationary economics pswap deflationary pswap deflationary token burning trading fees supply reduction"
+      "blob": "buyback-and-burn buyback-and-burn economics a tokenomic mechanism where tokens are purchased from the market and permanently destroyed. pswap uses a buyback-and-burn model where 0.3% of trading fees are used to buy pswap tokens from the market and burn them, reducing total supply and potentially increasing token value. buyback-and-burn economics pswap deflationary pswap deflationary token burning trading fees supply reduction"
     },
     {
       "slug": "liquidity-aggregation",
       "priority": 1,
-      "blob": "liquidity aggregation liquidity-aggregation defi a technology that combines liquidity from multiple sources (amm dexs, order books, algorithms) to provide better prices and reduced slippage. polkaswap uses advanced liquidity aggregation to source the best prices from various liquidity pools and trading venues. liquidity aggregation polkaswap multi-source liquidityaggregation defi polkaswap multi-source liquidity aggregation polkaswap liquidity pool smart routing price optimization multi-source"
+      "blob": "liquidity aggregation liquidity-aggregation defi a technology that combines liquidity from multiple sources (amm dexs, order books, algorithms) to provide better prices and reduced slippage. polkaswap uses advanced liquidity aggregation to source the best prices from various liquidity pools and trading venues. liquidity aggregation defi polkaswap multi-source liquidity aggregation polkaswap liquidity pool smart routing price optimization multi-source"
     },
     {
       "slug": "smart-routing",
       "priority": 1,
-      "blob": "smart routing smart-routing defi an algorithm that automatically finds the optimal path for trading to minimize slippage and maximize returns. polkaswap's smart routing analyzes multiple liquidity sources and automatically routes trades through the best available pools to provide optimal pricing. smart routing polkaswap algorithm smartrouting defi polkaswap algorithm smart routing polkaswap liquidity aggregation price optimization slippage reduction algorithm"
+      "blob": "smart routing smart-routing defi an algorithm that automatically finds the optimal path for trading to minimize slippage and maximize returns. polkaswap's smart routing analyzes multiple liquidity sources and automatically routes trades through the best available pools to provide optimal pricing. smart routing defi polkaswap algorithm smart routing polkaswap liquidity aggregation price optimization slippage reduction algorithm"
     },
     {
       "slug": "sortition",
       "priority": 1,
-      "blob": "sortition sortition governance a governance mechanism where participants are randomly selected to make decisions, rather than through voting or token holdings. the sora parliament uses sortition as one of its core principles, randomly choosing citizens to participate in governance bodies, ensuring fair representation and preventing plutocracy. sortition governance democracy citizenship governance democracy citizenship sora parliament governance random selection democracy citizenship"
+      "blob": "sortition sortition governance a governance mechanism where participants are randomly selected to make decisions, rather than through voting or token holdings. the sora parliament uses sortition as one of its core principles, randomly choosing citizens to participate in governance bodies, ensuring fair representation and preventing plutocracy. sortition governance democracy citizenship sora parliament governance random selection democracy citizenship"
     },
     {
       "slug": "hashi",
       "priority": 1,
-      "blob": "hashi hashi technology sora's decentralized and trustless cross-chain bridge that enables secure asset transfers between ethereum and sora networks. hashi uses cryptographic proofs to validate transactions across chains, allowing users to move erc-20 tokens between ethereum and sora mainnet without centralized intermediaries. the bridge is integrated with polkaswap for seamless cross-chain trading. hashi cross-chain bridges interoperability ethereum erc-20 polkaswap trustless technology cross-chain bridges ethereum erc-20 polkaswap trustless cross-chain bridges interoperability ethereum erc-20 polkaswap trustless"
+      "blob": "hashi hashi technology sora's decentralized and trustless cross-chain bridge that enables secure asset transfers between ethereum and sora networks. hashi uses cryptographic proofs to validate transactions across chains, allowing users to move erc-20 tokens between ethereum and sora mainnet without centralized intermediaries. the bridge is integrated with polkaswap for seamless cross-chain trading. hashi technology cross-chain bridges ethereum erc-20 polkaswap trustless cross-chain bridges interoperability ethereum erc-20 polkaswap trustless"
     },
     {
       "slug": "citizenship",
       "priority": 1,
-      "blob": "citizenship citizenship governance a status in the sora parliament governance system where individuals become citizens by posting xor bonds. citizens are randomly selected through sortition to participate in various governance bodies and make decisions about xor allocation to productive projects. citizenship xor sortition governance bond governance xor sortition bond sora parliament xor sortition governance bond"
+      "blob": "citizenship citizenship governance a status in the sora parliament governance system where individuals become citizens by posting xor bonds. citizens are randomly selected through sortition to participate in various governance bodies and make decisions about xor allocation to productive projects. citizenship governance xor sortition bond sora parliament xor sortition governance bond"
     },
     {
       "slug": "xyk-pools",
       "priority": 1,
-      "blob": "xyk pools xyk-pools defi constant product market maker (cpmm) liquidity pools where the product of two token reserves remains constant (x * y = k). these are the primary liquidity pools on polkaswap where users can provide liquidity and earn pswap rewards through yield farming. xyk pools polkaswap pswap xykpools defi polkaswap pswap xyk pools polkaswap liquidity pool yield farming pswap constant product"
+      "blob": "xyk pools xyk-pools defi constant product market maker (cpmm) liquidity pools where the product of two token reserves remains constant (x * y = k). these are the primary liquidity pools on polkaswap where users can provide liquidity and earn pswap rewards through yield farming. xyk pools defi polkaswap pswap xyk pools polkaswap liquidity pool yield farming pswap constant product"
     },
     {
       "slug": "financial-inclusion",
       "priority": 1,
-      "blob": "financial inclusion financial-inclusion economics the principle of providing access to financial services to individuals and businesses who are excluded from traditional banking. cbdc implementations like cambodia's bakong promote financial inclusion by providing digital payment infrastructure to underserved populations. financial inclusion cbdc financialinclusion economics cbdc financial inclusion cbdc digital payments banking access underserved populations"
+      "blob": "financial inclusion financial-inclusion economics the principle of providing access to financial services to individuals and businesses who are excluded from traditional banking. cbdc implementations like cambodia's bakong promote financial inclusion by providing digital payment infrastructure to underserved populations. financial inclusion economics cbdc financial inclusion cbdc digital payments banking access underserved populations"
     },
     {
       "slug": "cross-border-payments",
       "priority": 1,
-      "blob": "cross-border payments cross-border-payments economics financial transactions between parties in different countries. cbdc implementations like bakong enable faster, cheaper, and more efficient cross-border remittances by using blockchain technology to reduce intermediaries and settlement times. cross-border payments cbdc remittances blockchain cross-borderpayments economics cbdc remittances blockchain cross-border payments cbdc remittances international transfer blockchain"
+      "blob": "cross-border payments cross-border-payments economics financial transactions between parties in different countries. cbdc implementations like bakong enable faster, cheaper, and more efficient cross-border remittances by using blockchain technology to reduce intermediaries and settlement times. cross-border payments economics cbdc remittances blockchain cross-border payments cbdc remittances international transfer blockchain"
     },
     {
       "slug": "economic-conditions",
       "priority": 1,
-      "blob": "economic conditions economic-conditions economics market factors and economic indicators that influence token supply and demand. in sora's elastic supply model, the token bonding curve responds to economic conditions by adjusting xor supply - expanding during growth periods and contracting during decline to maintain price stability. economic conditions economicconditions economics economic conditions elastic supply token bonding curve price stability market conditions"
+      "blob": "economic conditions economic-conditions economics market factors and economic indicators that influence token supply and demand. in sora's elastic supply model, the token bonding curve responds to economic conditions by adjusting xor supply - expanding during growth periods and contracting during decline to maintain price stability. economic conditions economics economic conditions elastic supply token bonding curve price stability market conditions"
     },
     {
       "slug": "parallel-processing",
       "priority": 1,
-      "blob": "parallel processing parallel-processing technology the ability to process multiple transactions simultaneously across different blockchain networks. polkadot parachains enable parallel processing by allowing multiple parachains to process transactions in parallel, significantly increasing overall network throughput compared to sequential processing. parallel processing parachain polkadot throughput scalability parallelprocessing technology parachain polkadot throughput scalability parallel processing parachain polkadot throughput scalability"
+      "blob": "parallel processing parallel-processing technology the ability to process multiple transactions simultaneously across different blockchain networks. polkadot parachains enable parallel processing by allowing multiple parachains to process transactions in parallel, significantly increasing overall network throughput compared to sequential processing. parallel processing technology parachain polkadot throughput scalability parallel processing parachain polkadot throughput scalability"
     },
     {
       "slug": "token-burning",
       "priority": 1,
-      "blob": "token burning token-burning economics the permanent removal of tokens from circulation by sending them to an unrecoverable address. in sora, token burning is used as a deflationary mechanism - val tokens are burned on every network transaction, and pswap tokens are burned on every polkaswap transaction to reduce supply over time. token burning val pswap deflationary scarcity tokenburning economics val pswap deflationary scarcity token burning val pswap deflationary supply reduction scarcity"
+      "blob": "token burning token-burning economics the permanent removal of tokens from circulation by sending them to an unrecoverable address. in sora, token burning is used as a deflationary mechanism - val tokens are burned on every network transaction, and pswap tokens are burned on every polkaswap transaction to reduce supply over time. token burning economics val pswap deflationary scarcity token burning val pswap deflationary supply reduction scarcity"
     },
     {
       "slug": "price-stability",
       "priority": 1,
-      "blob": "price stability price-stability economics the maintenance of relatively stable token prices over time through economic mechanisms. sora's token bonding curve maintains xor price stability by automatically adjusting supply based on market conditions - expanding supply during price increases and contracting during price decreases. price stability pricestability economics price stability elastic supply token bonding curve economic conditions supply management"
+      "blob": "price stability price-stability economics the maintenance of relatively stable token prices over time through economic mechanisms. sora's token bonding curve maintains xor price stability by automatically adjusting supply based on market conditions - expanding supply during price increases and contracting during price decreases. price stability economics price stability elastic supply token bonding curve economic conditions supply management"
     },
     {
       "slug": "xcm",
       "priority": 1,
-      "blob": "xcm xcm technology cross-consensus messaging - a messaging format that allows different consensus systems to communicate with each other. xcm enables interoperability between parachains in the polkadot ecosystem, allowing sora to communicate with other parachains. xcm polkadot parachain cross-chain interoperability consensus technology polkadot parachain cross-chain consensus polkadot parachain cross-chain interoperability consensus"
+      "blob": "xcm xcm technology cross-consensus messaging - a messaging format that allows different consensus systems to communicate with each other. xcm enables interoperability between parachains in the polkadot ecosystem, allowing sora to communicate with other parachains. xcm technology polkadot parachain cross-chain consensus polkadot parachain cross-chain interoperability consensus"
     },
     {
       "slug": "amm",
       "priority": 1,
-      "blob": "amm amm defi automated market maker - a protocol that uses mathematical formulas to price assets and provide liquidity automatically. polkaswap uses amm technology combined with liquidity aggregation to provide efficient trading with reduced impermanent loss. amm polkaswap trading defi polkaswap trading polkaswap liquidity pool impermanent loss xyk pools trading"
+      "blob": "amm amm defi automated market maker - a protocol that uses mathematical formulas to price assets and provide liquidity automatically. polkaswap uses amm technology combined with liquidity aggregation to provide efficient trading with reduced impermanent loss. amm defi polkaswap trading polkaswap liquidity pool impermanent loss xyk pools trading"
     },
     {
       "slug": "kusd",
       "priority": 1,
-      "blob": "kusd kusd token a stable asset in the sora economy designed for funding and rewarding builders. kusd provides price stability for ecosystem participants and is part of sora's comprehensive tokenomics system alongside xor, val, and pswap. kusd builders funding rewards token builders funding rewards sora economy stable asset builders funding rewards"
+      "blob": "kusd kusd token a stable asset in the sora economy designed for funding and rewarding builders. kusd provides price stability for ecosystem participants and is part of sora's comprehensive tokenomics system alongside xor, val, and pswap. kusd token builders funding rewards sora economy stable asset builders funding rewards"
     },
     {
       "slug": "relay-chain",
       "priority": 1,
-      "blob": "relay chain relay-chain network the central chain of the polkadot network that provides security, consensus, and cross-chain interoperability for all connected parachains. the relay chain coordinates the entire network and enables shared security across all parachains. relay chain polkadot parachain consensus cross-chain relaychain network polkadot parachain consensus cross-chain relay chain polkadot parachain shared security consensus cross-chain"
+      "blob": "relay chain relay-chain network the central chain of the polkadot network that provides security, consensus, and cross-chain interoperability for all connected parachains. the relay chain coordinates the entire network and enables shared security across all parachains. relay chain network polkadot parachain consensus cross-chain relay chain polkadot parachain shared security consensus cross-chain"
     },
     {
       "slug": "shared-security",
       "priority": 1,
-      "blob": "shared security shared-security network a security model where multiple blockchains share the same validator set and consensus mechanism. polkadot's shared security allows parachains like sora to benefit from the security of the entire network without maintaining their own validator set. shared security polkadot parachain security validators sharedsecurity network polkadot parachain security validators shared polkadot relay chain parachain security validators"
+      "blob": "shared security shared-security network a security model where multiple blockchains share the same validator set and consensus mechanism. polkadot's shared security allows parachains like sora to benefit from the security of the entire network without maintaining their own validator set. shared security network polkadot parachain security validators shared polkadot relay chain parachain security validators"
     },
     {
       "slug": "sora-v2",
       "priority": 1,
-      "blob": "sora v2 sora-v2 network the current version of the sora network built on substrate framework as a polkadot parachain. sora v2 provides defi services, cross-chain functionality, and serves as the foundation for the upcoming sora v3 migration to hyperledger iroha. sora v2 substrate polkadot parachain sorav2 network substrate polkadot parachain sora substrate polkadot parachain sora v3 hyperledger iroha"
+      "blob": "sora v2 sora-v2 network the current version of the sora network built on substrate framework as a polkadot parachain. sora v2 provides defi services, cross-chain functionality, and serves as the foundation for the upcoming sora v3 migration to hyperledger iroha. sora v2 network substrate polkadot parachain sora substrate polkadot parachain sora v3 hyperledger iroha"
     },
     {
       "slug": "governance",
       "priority": 1,
-      "blob": "governance governance governance the system of decision-making and rule enforcement in blockchain networks. sora implements multiple governance mechanisms including the current polkadot v1 governance system and the future sora parliament with sortition-based democracy. governance democracy referendum council governance democracy referendum council sora parliament polkadot governance democracy referendum council"
+      "blob": "governance governance governance the system of decision-making and rule enforcement in blockchain networks. sora implements multiple governance mechanisms including the current polkadot v1 governance system and the future sora parliament with sortition-based democracy. governance governance democracy referendum council sora parliament polkadot governance democracy referendum council"
     },
     {
       "slug": "democracy",
       "priority": 1,
-      "blob": "democracy democracy governance a governance system where decisions are made through collective participation. sora implements democratic governance through referendum voting in the current system and will use sortition-based democracy in the sora parliament, ensuring fair representation without plutocracy. democracy referendum sortition citizenship governance governance referendum sortition citizenship sora parliament referendum sortition citizenship governance"
+      "blob": "democracy democracy governance a governance system where decisions are made through collective participation. sora implements democratic governance through referendum voting in the current system and will use sortition-based democracy in the sora parliament, ensuring fair representation without plutocracy. democracy governance referendum sortition citizenship sora parliament referendum sortition citizenship governance"
     },
     {
       "slug": "sora-council",
       "priority": 1,
-      "blob": "sora council sora-council governance a governance body in sora's current polkadot v1 governance system that consists of elected members who can propose referenda and veto dangerous proposals. the council plays a key role in the governance process before transitioning to the sora parliament. sora council referendum governance democracy soracouncil governance referendum democracy sora council polkadot governance referendum council motion governance democracy"
+      "blob": "sora council sora-council governance a governance body in sora's current polkadot v1 governance system that consists of elected members who can propose referenda and veto dangerous proposals. the council plays a key role in the governance process before transitioning to the sora parliament. sora council governance referendum democracy sora council polkadot governance referendum council motion governance democracy"
     },
     {
       "slug": "council-motion",
       "priority": 1,
-      "blob": "council motion council-motion governance a proposal submitted by the sora council in the current governance system. when a council motion is approved, it triggers a democracy referendum where token holders can vote on the proposal, enabling community participation in governance decisions. council motion referendum democracy governance proposals councilmotion governance referendum democracy proposals council motion sora council referendum democracy governance proposals"
+      "blob": "council motion council-motion governance a proposal submitted by the sora council in the current governance system. when a council motion is approved, it triggers a democracy referendum where token holders can vote on the proposal, enabling community participation in governance decisions. council motion governance referendum democracy proposals council motion sora council referendum democracy governance proposals"
     },
     {
       "slug": "polkadot-governance",
       "priority": 1,
-      "blob": "polkadot governance polkadot-governance governance the governance system used by polkadot and its parachains, including sora's current governance model. it features council-based proposals, referendum voting, and technical committee oversight, providing a robust framework for network decision-making. polkadot governance referendum democracy governance polkadot polkadotgovernance governance referendum democracy polkadot sora council referendum democracy governance polkadot"
+      "blob": "polkadot governance polkadot-governance governance the governance system used by polkadot and its parachains, including sora's current governance model. it features council-based proposals, referendum voting, and technical committee oversight, providing a robust framework for network decision-making. polkadot governance governance referendum democracy polkadot sora council referendum democracy governance polkadot"
     },
     {
       "slug": "liquidity",
       "priority": 1,
-      "blob": "liquidity liquidity defi the availability of assets for trading without significantly affecting their price. in sora's ecosystem, liquidity is provided through polkaswap's aggregated pools, enabling efficient trading with reduced slippage and better price discovery. liquidity polkaswap trading slippage defi polkaswap trading slippage polkaswap liquidity pool trading slippage price discovery"
+      "blob": "liquidity liquidity defi the availability of assets for trading without significantly affecting their price. in sora's ecosystem, liquidity is provided through polkaswap's aggregated pools, enabling efficient trading with reduced slippage and better price discovery. liquidity defi polkaswap trading slippage polkaswap liquidity pool trading slippage price discovery"
     },
     {
       "slug": "trading-fees",
       "priority": 1,
-      "blob": "trading fees trading-fees defi charges applied to trading transactions on decentralized exchanges. in sora, trading fees on polkaswap are used for various purposes including pswap buyback-and-burn (0.3%), validator rewards, and network maintenance. trading fees polkaswap pswap buyback-and-burn validators trading tradingfees defi polkaswap pswap validators trading fees polkaswap pswap buyback-and-burn validators trading"
+      "blob": "trading fees trading-fees defi charges applied to trading transactions on decentralized exchanges. in sora, trading fees on polkaswap are used for various purposes including pswap buyback-and-burn (0.3%), validator rewards, and network maintenance. trading fees defi polkaswap pswap validators trading fees polkaswap pswap buyback-and-burn validators trading"
     },
     {
       "slug": "consensus",
       "priority": 1,
-      "blob": "consensus consensus network the mechanism by which blockchain networks agree on the validity of transactions and maintain a consistent state. sora uses various consensus mechanisms depending on the version - substrate consensus in v2 and byzantine fault tolerance (bft) consensus in hyperledger iroha for v3. consensus validator security bft substrate network validator security bft substrate validator security bft substrate hyperledger iroha"
+      "blob": "consensus consensus network the mechanism by which blockchain networks agree on the validity of transactions and maintain a consistent state. sora uses various consensus mechanisms depending on the version - substrate consensus in v2 and byzantine fault tolerance (bft) consensus in hyperledger iroha for v3. consensus network validator security bft substrate validator security bft substrate hyperledger iroha"
     },
     {
       "slug": "security",
       "priority": 1,
-      "blob": "security security network the protection of blockchain networks against attacks and malicious behavior. sora implements multiple security layers including validator-based consensus, shared security through polkadot, and cryptographic protection mechanisms. security validator consensus cryptography network validator consensus cryptography validator consensus shared security cryptography network protection"
+      "blob": "security security network the protection of blockchain networks against attacks and malicious behavior. sora implements multiple security layers including validator-based consensus, shared security through polkadot, and cryptographic protection mechanisms. security network validator consensus cryptography validator consensus shared security cryptography network protection"
     },
     {
       "slug": "rewards",
       "priority": 1,
-      "blob": "rewards rewards defi incentives distributed to network participants for contributing to network operations. in sora, rewards include val tokens for validators and stakers, pswap tokens for liquidity providers, and xor allocations for productive projects through governance. rewards validator staking pswap governance defi validator staking pswap governance validator staking pswap yield farming governance"
+      "blob": "rewards rewards defi incentives distributed to network participants for contributing to network operations. in sora, rewards include val tokens for validators and stakers, pswap tokens for liquidity providers, and xor allocations for productive projects through governance. rewards defi validator staking pswap governance validator staking pswap yield farming governance"
     },
     {
       "slug": "sora-card",
       "priority": 1,
-      "blob": "sora card sora-card defi a decentralized debit card that allows users to spend their cryptocurrency in the real world. the sora card bridges the gap between digital assets and traditional commerce, enabling users to make purchases at any merchant that accepts card payments while maintaining the benefits of decentralized finance. sora card xor polkaswap cryptocurrency soracard defi xor polkaswap cryptocurrency sora card xor polkaswap decentralized finance real-world payments cryptocurrency"
+      "blob": "sora card sora-card defi a decentralized debit card that allows users to spend their cryptocurrency in the real world. the sora card bridges the gap between digital assets and traditional commerce, enabling users to make purchases at any merchant that accepts card payments while maintaining the benefits of decentralized finance. sora card defi xor polkaswap cryptocurrency sora card xor polkaswap decentralized finance real-world payments cryptocurrency"
     }
   ],
   "count": 59,
-  "lastUpdated": "2025-09-28T22:27:46.399Z"
+  "lastUpdated": "2025-09-30T16:03:46.803Z"
 }
