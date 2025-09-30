@@ -134,11 +134,12 @@
     }
     
     async init() {
-      // Load Pagefind - check if we're in preview mode or production
-      const isPreview = window.location.port === '4321' || window.location.port === '4322' || window.location.port === '8080';
-      const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+      // Load Pagefind - check if we're in development vs production
+      const isDevelopment = (window.location.hostname === 'localhost' || 
+                            window.location.hostname === '127.0.0.1') && 
+                           (window.location.port === '4321' || window.location.port === '4322' || window.location.port === '8080');
       
-      if (isPreview || isProduction) {
+      if (!isDevelopment) {
         try {
           // Use eval to prevent Vite from trying to resolve the import at build time
           const pagefindModule = await eval('import("/pagefind/pagefind.js")');
