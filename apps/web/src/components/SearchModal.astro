@@ -225,11 +225,6 @@
     }
     
     async search(query: string) {
-      if (!this.pagefind) {
-        this.showDevelopmentMessage();
-        return;
-      }
-      
       if (!query.trim()) {
         this.clearResults();
         return;
@@ -239,9 +234,28 @@
       this.showLoading();
       
       try {
+        // Search both Pagefind (articles) and Typesense (glossary)
+        const [pagefindResults, glossaryResults] = await Promise.all([
+          this.searchArticles(query),
+          this.searchGlossary(query)
+        ]);
+        
+        await this.displayCombinedResults(pagefindResults, glossaryResults, query);
+      } catch (error) {
+        console.error('Search error:', error);
+        this.showError();
+      }
+    }
+    
+    async searchArticles(query: string) {
+      if (!this.pagefind) {
+        return [];
+      }
+      
+      try {
         const search = await this.pagefind.search(query);
-        const results = await Promise.all(
-          search.results.slice(0, 10).map(async (result) => {
+        return await Promise.all(
+          search.results.slice(0, 8).map(async (result) => {
             const data = await result.data();
             
             // Pagefind should provide the URL directly
@@ -249,31 +263,26 @@
             
             // If no URL, try alternative approaches
             if (!url) {
-              // Check if URL is in the data object
               if (data.url) {
                 url = data.url;
               } else if (data.meta?.url) {
                 url = data.meta.url;
               } else if (result.id) {
-                // Use the ID as URL if it looks like a path
                 url = result.id;
               }
             }
             
             // Ensure URL is properly formatted
             if (url) {
-              // Remove .html extension if present
               if (url.endsWith('.html')) {
                 url = url.replace('.html', '');
               }
               if (url.endsWith('/index')) {
                 url = url.replace('/index', '');
               }
-              // Remove trailing slash since site is configured with trailingSlash: false
               if (url.endsWith('/') && url !== '/') {
                 url = url.slice(0, -1);
               }
-              // Ensure it starts with /
               if (!url.startsWith('http') && !url.startsWith('/')) {
                 url = '/' + url;
               }
@@ -287,11 +296,20 @@
             };
           })
         );
-        
-        this.displayResults(results, query);
       } catch (error) {
-        console.error('Search error:', error);
-        this.showError();
+        console.error('Pagefind search error:', error);
+        return [];
+      }
+    }
+    
+    async searchGlossary(query: string) {
+      try {
+        // Import the glossary search function dynamically
+        const { searchGlossary } = await import('/src/lib/search/glossary.ts');
+        return await searchGlossary(query, 5);
+      } catch (error) {
+        console.error('Glossary search error:', error);
+        return [];
       }
     }
     
@@ -309,26 +327,68 @@
       if (this.count) this.count.textContent = '0 results';
     }
     
-    displayResults(results: any[], query: string) {
+    async displayCombinedResults(articles: any[], glossary: any[], query: string) {
       this.loading?.classList.add('hidden');
       this.initial?.classList.add('hidden');
       
-      if (results.length === 0) {
+      const totalResults = articles.length + glossary.length;
+      
+      if (totalResults === 0) {
         this.noResults?.classList.remove('hidden');
         if (this.count) this.count.textContent = '0 results';
         return;
       }
       
       this.noResults?.classList.add('hidden');
-      if (this.count) this.count.textContent = `${results.length} result${results.length !== 1 ? 's' : ''}`;
+      if (this.count) this.count.textContent = `${totalResults} result${totalResults !== 1 ? 's' : ''}`;
       
       if (this.results) {
-        this.results.innerHTML = results.map(result => `
-          <a href="${result.url}" class="block rounded-lg border border-gray-200 p-4 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800">
-            <h4 class="font-medium text-gray-900 dark:text-white">${this.highlightText(result.title, query)}</h4>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">${this.highlightText(result.excerpt, query)}</p>
-          </a>
-        `).join('');
+        let html = '';
+        
+        // Import the prioritization function
+        const { shouldPrioritizeGlossary } = await import('/src/lib/search/glossary.ts');
+        const showGlossaryFirst = shouldPrioritizeGlossary(query, glossary);
+        
+        // Glossary section
+        if (glossary.length > 0) {
+          html += `
+            <div class="mb-6">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">Glossary</h3>
+                <a href="/glossary?q=${encodeURIComponent(query)}" class="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                  View all glossary →
+                </a>
+              </div>
+              <div class="space-y-2">
+                ${glossary.map(item => `
+                  <a href="/glossary/${item.slug}" class="block rounded-lg border border-red-200 bg-red-50 p-3 transition-colors hover:bg-red-100 dark:border-red-700 dark:bg-red-900/20 dark:hover:bg-red-900/40">
+                    <h4 class="font-medium text-gray-900 dark:text-white">${this.highlightText(item.term, query)}</h4>
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">${this.highlightText(item.snippet || item.definition, query)}</p>
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+        
+        // Articles section
+        if (articles.length > 0) {
+          html += `
+            <div class="${glossary.length > 0 ? 'mt-6' : ''}">
+              <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide mb-3">Articles</h3>
+              <div class="space-y-2">
+                ${articles.map(result => `
+                  <a href="${result.url}" class="block rounded-lg border border-gray-200 p-3 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800">
+                    <h4 class="font-medium text-gray-900 dark:text-white">${this.highlightText(result.title, query)}</h4>
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">${this.highlightText(result.excerpt, query)}</p>
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+        
+        this.results.innerHTML = html;
       }
     }
     
