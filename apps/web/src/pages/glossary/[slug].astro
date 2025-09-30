@@ -99,11 +99,17 @@ const relatedTermsWithLinks = (term.relatedTerms?.map(r => {
       </div>
 
       <!-- Term Definition -->
-      <div class="prose prose-lg dark:prose-invert max-w-none mb-8">
+      <article 
+        data-pagefind-body
+        data-pagefind-filter={`type:glossary,category:${term.category}`}
+        data-pagefind-meta={`{"term":"${term.term}","category":"${term.category}","aliases":"${term.aliases?.join(',') || ''}"}`}
+        class="prose prose-lg dark:prose-invert max-w-none mb-8"
+      >
+        <h1>{term.term}</h1>
         <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
           {term.definition}
         </p>
-      </div>
+      </article>
 
       <!-- Aliases -->
       {term.aliases && term.aliases.length > 1 && (
