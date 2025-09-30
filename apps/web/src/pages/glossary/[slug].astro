@@ -85,16 +85,20 @@ const relatedTermsWithLinks = (term.relatedTerms?.map(r => {
           <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading text-gray-900 dark:text-white">
             {term.term}
           </h1>
-          <span class={`px-3 py-1 rounded-full text-sm font-medium ml-4 ${
-            term.category === 'token' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-            term.category === 'technology' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
-            term.category === 'governance' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' :
-            term.category === 'defi' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-            term.category === 'network' ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200' :
-            'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200'
-          }`}>
+          <a 
+            href={`/glossary#${encodeURIComponent(term.category)}`}
+            class={`px-3 py-1 rounded-full text-sm font-medium ml-4 transition-colors hover:opacity-80 cursor-pointer inline-block ${
+              term.category === 'token' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
+              term.category === 'technology' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
+              term.category === 'governance' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' :
+              term.category === 'defi' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
+              term.category === 'network' ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200' :
+              'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200'
+            }`}
+            title={`Filter by ${term.category} category in glossary`}
+          >
             {term.category}
-          </span>
+          </a>
         </div>
       </div>
 
@@ -105,7 +109,6 @@ const relatedTermsWithLinks = (term.relatedTerms?.map(r => {
         data-pagefind-meta={`{"term":"${term.term}","category":"${term.category}","aliases":"${term.aliases?.join(',') || ''}"}`}
         class="prose prose-lg dark:prose-invert max-w-none mb-8"
       >
-        <h1>{term.term}</h1>
         <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
           {term.definition}
         </p>
