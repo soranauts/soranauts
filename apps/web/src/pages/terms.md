@@ -1,7 +1,7 @@
 ---
 title: 'Terms and Conditions'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-01-17'
+lastUpdated: '2025-09-17'
 metadata:
   title: 'Terms and Conditions | Soranauts'
 ---
