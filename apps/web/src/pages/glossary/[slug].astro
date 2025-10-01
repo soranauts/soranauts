@@ -105,10 +105,18 @@ const relatedTermsWithLinks = (term.relatedTerms?.map(r => {
       <!-- Term Definition -->
       <article 
         data-pagefind-body
-        data-pagefind-filter={`type:glossary,category:${term.category}`}
-        data-pagefind-meta={`{"term":"${term.term}","category":"${term.category}","aliases":"${term.aliases?.join(',') || ''}"}`}
+        data-pagefind-url={`/glossary/${term.slug}/`}
+        data-pagefind-meta={`{"type":"glossary","term":"${term.term}","category":"${term.category}","aliases":["${term.aliases?.join('","') || ''}"]}`}
         class="prose prose-lg dark:prose-invert max-w-none mb-8"
       >
+        <!-- Add separate filter elements so Pagefind registers multiple filters -->
+        <span data-pagefind-filter="type:glossary"></span>
+        <span data-pagefind-filter={`category:${term.category}`}></span>
+
+        <!-- Optional: strengthen searchability for short all-caps terms -->
+        <span class="sr-only" aria-hidden="true">
+          {term.term} {term.aliases?.join(' ')} {term.category} glossary
+        </span>
         <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
           {term.definition}
         </p>

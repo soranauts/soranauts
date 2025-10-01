@@ -38,7 +38,7 @@
           <input
             type="text"
             id="search-input"
-            class="block w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-400 dark:focus:ring-blue-400/20"
+            class="block w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-900 placeholder-gray-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-red-400 dark:focus:ring-red-400/20"
             placeholder="Search articles, guides, and more..."
             autocomplete="off"
             spellcheck="false"
@@ -50,7 +50,7 @@
       <div id="search-results" class="max-h-96 overflow-y-auto px-6 pb-6">
         <!-- Loading state -->
         <div id="search-loading" class="hidden text-center py-8">
-          <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
+          <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-red-600 border-r-transparent"></div>
           <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Searching...</p>
         </div>
         
@@ -65,7 +65,7 @@
         
         <!-- Initial state -->
         <div id="search-initial" class="text-center py-8">
-          <svg class="mx-auto h-12 w-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="mx-auto h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Search Soranauts</h3>
@@ -135,23 +135,25 @@
     
     async init() {
       // Load Pagefind - check if we're in development vs production
-      const isDevelopment = (window.location.hostname === 'localhost' || 
-                            window.location.hostname === '127.0.0.1') && 
-                           (window.location.port === '4321' || window.location.port === '4322' || window.location.port === '8080');
+      // Only disable search in dev server (port 3000), not in preview server (port 4321)
+      const isDevServer = (window.location.hostname === 'localhost' || 
+                          window.location.hostname === '127.0.0.1') && 
+                         window.location.port === '3000';
       
-      if (!isDevelopment) {
+      if (!isDevServer) {
         try {
           // Use eval to prevent Vite from trying to resolve the import at build time
           const pagefindModule = await eval('import("/pagefind/pagefind.js")');
           if (pagefindModule) {
             this.pagefind = pagefindModule;
+            console.log('✅ Pagefind loaded successfully');
           }
         } catch (error) {
           console.error('Failed to load Pagefind:', error);
         }
       } else {
         // In development, show a message that search is only available in production
-        console.log('Search is only available in production builds. Run "npm run build" to test search functionality.');
+        console.log('Search is only available in production builds. Run "npm run build && npm run preview" to test search functionality.');
       }
       
       this.bindEvents();
@@ -262,23 +264,38 @@
           excerptLength: 24
         });
         
-        // Filter out glossary results - only include blog posts and other non-glossary content
-        const articleResults = search.results.filter(result => {
-          const url = result.url || '';
-          // Exclude glossary pages and other non-article content
-          return !url.includes('/glossary/') && 
-                 !url.includes('/glossary') &&
-                 url !== '/' &&
-                 url !== '/about' &&
-                 url !== '/privacy' &&
-                 url !== '/terms' &&
-                 url !== '/donate';
-        });
+        const results = search.results || [];
+        console.log('Total search results for articles:', results.length);
+
+        // Helper to fetch data() for all results (it's async per item)
+        const withData = await Promise.all(
+          results.map(async r => ({ r, d: await r.data() }))
+        );
+
+        // Now split by filters/meta.type - only include non-glossary content
+        const articleResults = [];
+
+        for (const { r, d } of withData) {
+          const filters = d.filters || {};
+          const meta = d.meta || {};
+
+          const types = Array.isArray(filters.type) ? filters.type : (filters.type ? [filters.type] : []);
+          const typeFromFilters = types.includes('glossary') ? 'glossary'
+                                : types.includes('article') ? 'article'
+                                : null;
+
+          const t = typeFromFilters || meta.type || null;
+
+          // Include as article if it's explicitly marked as article, or if it's not glossary
+          if (t !== 'glossary') {
+            articleResults.push({ result: r, data: d });
+          }
+        }
+        
+        console.log('Article results found:', articleResults.length);
         
         return await Promise.all(
-          articleResults.slice(0, 8).map(async (result) => {
-            const data = await result.data();
-            
+          articleResults.slice(0, 8).map(async ({ result, data }) => {
             // Pagefind should provide the URL directly
             let url = result.url;
             
@@ -349,32 +366,74 @@
       }
       
       try {
-        // Search all content and filter manually
+        // Search all content
         const search = await this.pagefind.search(query, {
           excerptLength: 24
         });
         
-        // Filter to only include glossary results - be more strict
-        const glossaryResults = search.results.filter(result => {
-          const url = result.url || '';
-          const id = result.id || '';
-          // Only include results that are clearly glossary-related
-          return (url && (url.includes('/glossary/') || url.includes('/glossary'))) ||
-                 (id && id.includes('glossary'));
-        });
+        const results = search.results || [];
+        console.log('Total search results:', results.length);
+
+        // Helper to fetch data() for all results (it's async per item)
+        const withData = await Promise.all(
+          results.map(async r => ({ r, d: await r.data() }))
+        );
+
+        // Now split by filters/meta.type
+        const glossaryResults = [];
+
+        for (const { r, d } of withData) {
+          const filters = d.filters || {};
+          const meta = d.meta || {};
+
+          // Debug logging
+          console.log('Checking result:', { 
+            url: r.url, 
+            id: r.id, 
+            score: r.score,
+            title: r.title,
+            filters,
+            meta
+          });
+
+          const types = Array.isArray(filters.type) ? filters.type : (filters.type ? [filters.type] : []);
+          const typeFromFilters = types.includes('glossary') ? 'glossary'
+                                : types.includes('article') ? 'article'
+                                : null;
+
+          const t = typeFromFilters || meta.type || null;
+
+          if (t === 'glossary') {
+            glossaryResults.push({ result: r, data: d });
+            console.log('Found glossary result:', { url: r.url, title: r.title, type: t });
+          }
+        }
+        
+        console.log('Glossary results found:', glossaryResults.length);
         
         return await Promise.all(
-          glossaryResults.slice(0, 5).map(async (result) => {
-            const data = await result.data();
+          glossaryResults.slice(0, 5).map(async ({ result, data }) => {
+            // Use the URL directly from Pagefind data (now properly set with data-pagefind-url)
+            let url = data.url || result.url;
             
-            // Get URL from Pagefind
-            let url = result.url;
-            if (!url && result.id) {
-              url = result.id;
+            // Fallback to constructing URL if not provided
+            if (!url) {
+              // Extract slug from the result URL or ID
+              let slug = '';
+              if (result.url) {
+                slug = result.url.replace('/glossary/', '').replace(/\/$/, '');
+              } else if (result.id) {
+                // Extract slug from ID if it contains glossary info
+                const idMatch = result.id.match(/glossary[\/\\]([^\/\\]+)/);
+                if (idMatch) {
+                  slug = idMatch[1];
+                }
+              }
+              url = slug ? `/glossary/${slug}/` : '#';
             }
             
-            // Format URL properly
-            if (url) {
+            // Ensure URL is properly formatted
+            if (url && url !== '#') {
               if (url.endsWith('.html')) {
                 url = url.replace('.html', '');
               }
@@ -409,12 +468,15 @@
               }
             }
             
+            // Extract slug from URL for the displayCombinedResults method
+            const slug = url?.replace('/glossary/', '').replace(/\/$/, '') || '';
+            
             return {
               url: url || '#',
               term: term,
               definition: data.excerpt || '',
               category: data.meta?.category || '',
-              slug: url?.replace('/glossary/', '') || '',
+              slug: slug,
               snippet: data.excerpt || ''
             };
           })
@@ -466,7 +528,7 @@
             <div class="mb-6">
               <div class="flex items-center justify-between mb-3">
                 <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">Glossary</h3>
-                <a href="/glossary?q=${encodeURIComponent(query)}" class="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                <a href="/glossary?q=${encodeURIComponent(query)}" class="text-xs text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
                   View all glossary →
                 </a>
               </div>
@@ -548,7 +610,7 @@
       this.noResults?.classList.remove('hidden');
       if (this.noResults) {
         this.noResults.innerHTML = `
-          <svg class="mx-auto h-12 w-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="mx-auto h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
