@@ -56,7 +56,17 @@ We believe Web3 isn’t only about code and tokens. It’s also about people, cu
 
 ## Join Us
 
-Curiosity is enough to begin. Whether you’re just Web3-curious or already building in the ecosystem, you’re welcome here.  
+Curiosity is enough to begin. Whether you're just Web3-curious or already building in the ecosystem, you're welcome here.  
 
 Follow our blog, join our community channels, share your ideas, and help shape a better, more inclusive financial future with SORA.
+
+### Connect With Us
+
+Join our [Soranauts Telegram community](https://t.me/Soranauts) to:
+- Get real-time updates on SORA ecosystem developments
+- Ask questions and get help from the community
+- Share your experiences and insights
+- Connect with other SORA enthusiasts and builders
+
+Our Telegram chat is an active space where we discuss the latest in SORA, Polkaswap, and the broader Web3 ecosystem. Whether you're new to SORA or a seasoned participant, you'll find valuable conversations and support.
 
