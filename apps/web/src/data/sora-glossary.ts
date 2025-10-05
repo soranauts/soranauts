@@ -489,6 +489,18 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
       { label: 'SORA Tokenomics', url: 'https://wiki.sora.org/tokenomics.html' }
     ]
   },
+  'TS': {
+    term: 'TS',
+    definition: 'The native token of TONSWAP, a decentralized exchange and launchpad built on The Open Network (TON) blockchain. TS powers platform governance, liquidity incentives, and transaction fee models, with 10% of all trading fees used to buy back and burn XOR tokens, creating a deflationary mechanism that benefits both TON and SORA ecosystems.',
+    category: 'token',
+    relatedTerms: ['TONSWAP', 'TON', 'XOR', 'DEX', 'Governance', 'Liquidity', 'Deflationary', 'Cross-chain'],
+    examples: ['Platform governance', 'Liquidity incentives', 'XOR buyback mechanism', 'Transaction fee distribution'],
+    links: [
+      { label: 'TONSWAP Website', url: 'https://tonswap.org/' },
+      { label: 'TONSWAP Roadmap', url: 'https://tonswap.org/roadmap' },
+      { label: 'TONSWAP FAQ', url: 'https://tonswap.org/faq' }
+    ]
+  },
   'Relay Chain': {
     term: 'Relay Chain',
     definition: 'The central chain of the Polkadot network that provides security, consensus, and cross-chain interoperability for all connected parachains. The relay chain coordinates the entire network and enables shared security across all parachains.',
