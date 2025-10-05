@@ -30,6 +30,20 @@
       ]
     },
     {
+      "source": "/best-decentralized-exchanges-dexs",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=0, must-revalidate" },
+        { "key": "Pragma", "value": "no-cache" },
+        { "key": "Expires", "value": "0" }
+      ]
+    },
+    {
+      "source": "/blog/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=300, must-revalidate" }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
