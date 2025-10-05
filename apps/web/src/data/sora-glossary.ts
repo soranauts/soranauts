@@ -87,11 +87,23 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
     term: 'Polkaswap',
     definition: 'A next-generation, cross-chain liquidity aggregator DEX protocol built on SORA network. Polkaswap aggregates liquidity from multiple sources (AMM DEXs, order books, algorithms) and provides smart liquidity routing to find the best prices. It enables seamless trading of ETH/ERC-20 tokens, DOT/KSM, BTC, and future assets with high speed, low fees, and reduced impermanent loss through its unique liquidity infrastructure.',
     category: 'defi',
-    relatedTerms: ['DEX', 'Cross-chain', 'Liquidity Aggregation', 'PSWAP', 'Smart Routing', 'SORA Network'],
+    relatedTerms: ['DEX', 'Cross-chain', 'Liquidity Aggregation', 'PSWAP', 'Smart Routing', 'SORA Network', 'TONSWAP'],
     examples: ['Cross-chain token swaps', 'Multi-source liquidity aggregation', 'Smart price routing', 'Reduced impermanent loss'],
     links: [
       { label: 'Polkaswap Exchange', url: 'https://polkaswap.io' },
       { label: 'Polkaswap Wiki', url: 'https://wiki.sora.org/polkaswap.html' }
+    ]
+  },
+  'TONSWAP': {
+    term: 'TONSWAP',
+    definition: 'A next-generation decentralized exchange (DEX) and launchpad built on The Open Network (TON) blockchain. TONSWAP combines cutting-edge concentrated liquidity technology with a user-friendly design, offering ultra-fast trades, near-zero fees, and seamless Telegram integration. It serves as a TON-native gateway for mobile-first DeFi access.',
+    category: 'defi',
+    relatedTerms: ['DEX', 'TON', 'SORA', 'Cross-chain', 'Polkaswap', 'Telegram', 'Mobile', 'Liquidity', 'Bridge', 'Launchpad', 'CLMM'],
+    examples: ['Mobile trading via Telegram', 'Concentrated liquidity provision', 'Token launchpad', 'Ultra-low fee swaps', 'Cross-chain liquidity access'],
+    links: [
+      { label: 'TONSWAP Website', url: 'https://tonswap.org/' },
+      { label: 'TONSWAP Roadmap', url: 'https://tonswap.org/roadmap' },
+      { label: 'TONSWAP FAQ', url: 'https://tonswap.org/faq' }
     ]
   },
   'Liquidity Pool': {
@@ -111,7 +123,7 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
     relatedTerms: ['XOR', 'Elastic Supply', 'Smart Contract', 'Price Stability', 'Supply Management'],
     examples: ['Automated supply adjustment', 'Price stability maintenance', 'Economic condition response'],
     links: [
-      { label: 'SORA Tokenomics', url: 'https://wiki.sora.org/tokenomics.html' }
+      { label: 'SORA Wiki - Token Bonding Curve', url: 'https://wiki.sora.org/tbc.html' }
     ]
   },
 

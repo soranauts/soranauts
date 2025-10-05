@@ -37,7 +37,7 @@ const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.l
               <>
                 {' '}·{' '}
                 <a class="hover:underline inline-block" href={getPermalink(post.category, 'category')}>
-                  {post.category.replaceAll('-', ' ').replace(/sora ecosystem/gi, 'SORA Ecosystem').replace(/defi/gi, 'DeFi').replace(/\s+And\s+/g, ' and ').replace(/\b(?!and\b)\w/g, l => l.toUpperCase())}
+                  {post.category.replaceAll('-', ' ').replace(/\band\b/g, '&').replace(/sora ecosystem/gi, 'SORA Ecosystem').replace(/defi/gi, 'DeFi').replace(/\b\w/g, l => l.toUpperCase())}
                 </a>
               </>
             )

@@ -1,7 +1,7 @@
 ---
 title: 'Changelog'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-09-30'
+lastUpdated: '2025-10-04'
 metadata:
   title: 'Changelog | Soranauts'
   description: 'Track the latest SORA ecosystem updates, new features, and website improvements on Soranauts.'
@@ -12,19 +12,19 @@ metadata:
 
 This page tracks the latest improvements and new features added to the Soranauts website.
 
-## 🎉 Latest Updates (September 2025)
+## 🎉 Latest Updates (October 2025)
 
-### ✅ Core Features Launched
-- **SORA Glossary**: 59+ comprehensive terms with instant search, category filtering, and smart tooltips
+### ✅ Recent Completions
+- **Best Decentralized Exchanges (DEXs)**: Updated with TONSWAP integration, enhanced SEO, and official SORA wiki links
+- **SORA Glossary**: 60+ comprehensive terms with instant search, category filtering, and smart tooltips
 - **Smart Search**: Full-site search with proper categorization between articles and glossary terms
 - **Related Articles**: AI-powered recommendations based on content analysis and shared tags
-- **Enhanced Navigation**: Streamlined menu flow and improved internal linking system
 
-### ✅ Performance & Quality
-- **Speed Optimization**: Faster loading times with optimized images and efficient caching
+### ✅ Core Features
+- **Enhanced Navigation**: Streamlined menu flow and improved internal linking system
+- **Performance Optimization**: Faster loading times with optimized images and efficient caching
 - **Mobile-First Design**: Seamless experience across all devices and screen sizes
 - **SEO Excellence**: Comprehensive meta tags, structured data, and search engine optimization
-- **Code Quality**: Clean, maintainable codebase with modern development practices
 
 ## 🚀 Roadmap & Future Features
 
@@ -49,7 +49,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 
 ### Priority 1: 2023 Articles (Foundation Content) - UPDATE FIRST
 - [x] **Soramitsu - Unveiling The Force Behind SORA And Polkaswap** (2023-10-04) - *✅ COMPLETED - Full optimization with Related Articles*
-- [ ] **Top 10 Decentralized Exchanges for Empowering Your Crypto Trading** (2023-10-09)
+- [x] **Best Decentralized Exchanges (DEXs)** (2023-10-09) - *✅ COMPLETED - Updated with TONSWAP integration, enhanced SEO, and official SORA wiki links*
 - [ ] **SORA's Token Bonding Curve Dollar (TBCD) Explained** (2023-10-11)
 - [ ] **Cryptocurrency Forecast - Top 10 Tokens to Watch in the 2024 Bull Run** (2023-10-22)
 - [ ] **Future of DeFi - A Detailed Forecast of XOR, VAL, and PSWAP Tokens** (2023-11-08)
@@ -114,4 +114,4 @@ For each article, verify and update:
 
 ---
 
-*Last updated: September 30, 2025*
+*Last updated: October 4, 2025*
