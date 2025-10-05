@@ -268,16 +268,25 @@ export default function GlossarySearchFallback() {
 
   // Handle tag click - filter by tag
   const handleTagClick = (tag: string) => {
-    // If it's a category, filter by category AND populate search field
-    if (['token', 'technology', 'governance', 'defi', 'network', 'economics'].includes(tag)) {
-      setSelectedCategory(tag);
-      setSearchInput(tag);
-      setSearchQuery(tag); // Also populate search field for consistency
+    if (__DEV__) {
+      console.log('🔍 [handleTagClick] clicked tag:', tag);
+    }
+    
+    const isCategory = ['token', 'technology', 'governance', 'defi', 'network', 'economics'].includes(tag);
+    
+    if (isCategory) {
+      // Toggle category; always clear search on category interactions
+      if (__DEV__) {
+        console.log('🔍 [handleTagClick] toggling category filter:', tag, 'current:', selectedCategory);
+      }
+      setSelectedCategory(prev => (prev === tag ? '' : tag));
+      setSearchInput('');
+      setSearchQuery('');
     } else {
-      // If it's a regular tag, search for it
+      // Tag as a search term; clear category
+      setSelectedCategory('');
       setSearchInput(tag);
       setSearchQuery(tag);
-      setSelectedCategory(''); // Clear category when searching
     }
   };
 
@@ -365,69 +374,69 @@ export default function GlossarySearchFallback() {
             setIsLoading(false);
             log('✅ [useEffect] Glossary data loaded successfully.');
 
-        // Handle hash-based deep linking after data is loaded
-        const handleHashChange = () => {
-          const hash = window.location.hash.slice(1);
-          if (!hash) return;
+            // Handle hash-based deep linking after data is loaded
+            const handleHashChange = () => {
+              const hash = window.location.hash.slice(1);
+              if (!hash) return;
 
-          // Check if it's a glossary slug
-          const slug = hash.replace(/^glossary-/, '');
-          let term = data.terms.find(t => t.slug === slug);
+              // Check if it's a glossary slug
+              const slug = hash.replace(/^glossary-/, '');
+              let term = data.terms.find(t => t.slug === slug);
 
-          // If no direct slug match, try to find by alias (case-insensitive)
-          if (!term) {
-            term = data.terms.find(t => 
-              t.aliases.some(alias => alias.toLowerCase() === slug.toLowerCase()) ||
-              t.term.toLowerCase() === slug.toLowerCase()
-            );
-          }
-
-          if (term) {
-            // Navigate to specific term
-            setSearchQuery('');
-            setSelectedCategory('');
-            setFocusedTermSlug(term.slug);
-
-            setTimeout(() => {
-              const element = document.getElementById(`glossary-${term.slug}`);
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                element.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
-                setTimeout(() => {
-                  element.style.backgroundColor = '';
-                }, 2000);
+              // If no direct slug match, try to find by alias (case-insensitive)
+              if (!term) {
+                term = data.terms.find(t => 
+                  t.aliases.some(alias => alias.toLowerCase() === slug.toLowerCase()) ||
+                  t.term.toLowerCase() === slug.toLowerCase()
+                );
               }
-            }, 100);
-          } else {
-            // Check if it's a tag or category filter
-            const decodedHash = decodeURIComponent(hash);
 
-            // Check if it matches a category
-            const matchingCategory = Object.values(data.categories).find(cat =>
-              cat.name.toLowerCase() === decodedHash.toLowerCase()
-            );
+              if (term) {
+                // Navigate to specific term
+                setSearchQuery('');
+                setSelectedCategory('');
+                setFocusedTermSlug(term.slug);
 
-            if (matchingCategory) {
-              setSelectedCategory(matchingCategory.name);
-              setSearchInput(matchingCategory.name);
-              setSearchQuery(matchingCategory.name);
-              setFocusedTermSlug(null);
-            } else {
-              // Treat as tag search
-              setSelectedCategory('');
-              setSearchInput(decodedHash);
-              setSearchQuery(decodedHash);
-              setFocusedTermSlug(null);
-            }
-          }
-        };
+                setTimeout(() => {
+                  const element = document.getElementById(`glossary-${term.slug}`);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    element.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
+                    setTimeout(() => {
+                      element.style.backgroundColor = '';
+                    }, 2000);
+                  }
+                }, 100);
+              } else {
+                // Check if it's a tag or category filter
+                const decodedHash = decodeURIComponent(hash);
 
-        handleHashChange();
-        window.addEventListener('hashchange', handleHashChange);
+                // Check if it matches a category
+                const matchingCategory = Object.values(data.categories).find(cat =>
+                  cat.name.toLowerCase() === decodedHash.toLowerCase()
+                );
 
-        return () => {
-          window.removeEventListener('hashchange', handleHashChange);
-        };
+                if (matchingCategory) {
+                  setSelectedCategory(matchingCategory.name);
+                  setSearchInput(matchingCategory.name);
+                  setSearchQuery(matchingCategory.name);
+                  setFocusedTermSlug(null);
+                } else {
+                  // Treat as tag search
+                  setSelectedCategory('');
+                  setSearchInput(decodedHash);
+                  setSearchQuery(decodedHash);
+                  setFocusedTermSlug(null);
+                }
+              }
+            };
+
+            handleHashChange();
+            window.addEventListener('hashchange', handleHashChange);
+
+            return () => {
+              window.removeEventListener('hashchange', handleHashChange);
+            };
           } catch (err) {
             if (!cancelled) {
               if (__DEV__) console.error('❌ [useEffect] Error during initial load:', err);
@@ -443,7 +452,14 @@ export default function GlossarySearchFallback() {
           cancelled = true;
           log('🔄 [useEffect] Component unmounted, cancelling pending operations.');
         };
-  }, []);
+      }, []);
+
+      // Cleanup on unmount
+      useEffect(() => {
+        return () => {
+          hasLoaded.current = false;
+        };
+      }, []);
 
   // Fallback: Use a callback ref to trigger loading when component is mounted
   const containerRef = useRef<HTMLDivElement>(null);
@@ -542,12 +558,45 @@ export default function GlossarySearchFallback() {
     );
   }
 
-  // Use precomputed index for faster filtering if available
+  // Single, explicit filtering pipeline with category > search precedence
+  const shouldUseSearch = searchQuery && !selectedCategory;
+  const useIndex = Boolean(preIdx) && shouldUseSearch;
+  
+  // Calculate filtered terms (no useMemo to avoid hooks order issues)
   const filteredTerms = (() => {
     if (!glossaryData?.terms) return [];
     
-    // If we have precomputed index and search query, use it for faster filtering
-    if (preIdx && searchQuery) {
+    // Debug logging
+    if (__DEV__) {
+      console.log('🔍 [filteredTerms] selectedCategory:', selectedCategory, 'searchQuery:', searchQuery);
+      console.log('🔍 [filteredTerms] shouldUseSearch:', shouldUseSearch, 'useIndex:', useIndex);
+      console.log('🔍 [filteredTerms] total terms:', glossaryData.terms.length);
+    }
+    
+    const base = glossaryData.terms;
+
+    // 1) Category filter first (takes precedence over search)
+    const byCategory = selectedCategory
+      ? base.filter(t => t.category === selectedCategory)
+      : base;
+
+    // 2) If no search query, return category results
+    if (!shouldUseSearch) {
+      if (__DEV__) {
+        console.log('🔍 [category-only] filtered terms count:', byCategory.length);
+        console.log('🔍 [category-only] token terms:', byCategory.filter(t => t.category === 'token').map(t => t.term));
+      }
+      return byCategory
+        .map(t => ({ t, s: scoreTerm(t, '') }))
+        .sort((a, b) => b.s - a.s)
+        .map(({ t }) => t);
+    }
+
+    // 3) Search filtering (only when no category selected)
+    let searchResults: GlossaryTerm[];
+    
+    if (useIndex && preIdx) {
+      // Use precomputed index for faster search
       const q = searchQuery.toLowerCase();
       const ranked = preIdx.map(i => {
         let s = 0;
@@ -559,31 +608,40 @@ export default function GlossarySearchFallback() {
         return { slug: i.slug, s };
       }).sort((a,b) => b.s - a.s);
       
-      // Map slugs back to full terms and apply category filter
-      return ranked
-        .map(({ slug }) => glossaryData.terms.find(t => t.slug === slug))
-        .filter(term => term && (!selectedCategory || term.category === selectedCategory))
+      searchResults = ranked
+        .map(({ slug }) => base.find(t => t.slug === slug))
         .filter(Boolean) as GlossaryTerm[];
+        
+      // Fallback for short queries that might not match in index
+      if (searchResults.length === 0 && q.length <= 2) {
+        if (__DEV__) {
+          console.log('🔍 [index-fallback] Short query, falling back to substring search');
+        }
+        searchResults = base.filter(t =>
+          t.term.toLowerCase().includes(q) ||
+          t.definition.toLowerCase().includes(q) ||
+          t.aliases?.some(a => a.toLowerCase().includes(q)) ||
+          t.tags?.some(tag => tag.toLowerCase().includes(q)) ||
+          t.relatedTerms?.some(r => r.toLowerCase().includes(q))
+        );
+      }
+    } else {
+      // Simple substring search
+      const q = searchQuery.toLowerCase();
+      searchResults = base.filter(t =>
+        t.term.toLowerCase().includes(q) ||
+        t.definition.toLowerCase().includes(q) ||
+        t.aliases?.some(a => a.toLowerCase().includes(q)) ||
+        t.tags?.some(tag => tag.toLowerCase().includes(q)) ||
+        t.relatedTerms?.some(r => r.toLowerCase().includes(q))
+      );
     }
     
-    // Fallback to original filtering logic
-    return glossaryData.terms
-      .filter(term => {
-        // Category filter
-        if (selectedCategory && term.category !== selectedCategory) return false;
-        
-        // Search filter
-        if (searchQuery) {
-          const searchLower = searchQuery.toLowerCase();
-          return term.term.toLowerCase().includes(searchLower) ||
-                 term.definition.toLowerCase().includes(searchLower) ||
-                 term.aliases.some(alias => alias.toLowerCase().includes(searchLower)) ||
-                 term.tags.some(tag => tag.toLowerCase().includes(searchLower)) ||
-                 term.relatedTerms.some(related => related.toLowerCase().includes(searchLower));
-        }
-        
-        return true;
-      })
+    if (__DEV__) {
+      console.log('🔍 [search] filtered terms count:', searchResults.length);
+    }
+    
+    return searchResults
       .map(t => ({ t, s: scoreTerm(t, searchQuery) }))
       .sort((a, b) => b.s - a.s)
       .map(({ t }) => t);
@@ -592,7 +650,7 @@ export default function GlossarySearchFallback() {
   const categories = Object.values(glossaryData.categories).sort((a, b) => a.name.localeCompare(b.name));
 
   return (
-    <div ref={setContainerRef} className="max-w-4xl mx-auto">
+    <div ref={setContainerRef} className="max-w-4xl mx-auto" data-testid="glossary-container">
       
       {/* Search Header */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
@@ -628,31 +686,26 @@ export default function GlossarySearchFallback() {
               >
                 All ({glossaryData?.terms.length || 0})
               </button>
-              {categories.map(category => (
-                <button
-                  key={category.name}
-                  onClick={() => {
-                    if (selectedCategory === category.name) {
-                      // Deselecting - clear both
-                      setSelectedCategory('');
-                      setSearchInput('');
-                      setSearchQuery('');
-                    } else {
-                      // Selecting - set both category and search
-                      setSelectedCategory(category.name);
-                      setSearchInput(category.name);
-                      setSearchQuery(category.name);
-                    }
-                  }}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                    selectedCategory === category.name
-                      ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                  }`}
-                >
-                  {category.name} ({category.count})
-                </button>
-              ))}
+              {categories.map(category => {
+                // Derive count from actual filtered results, not static category count
+                const categoryCount = selectedCategory === category.name 
+                  ? filteredTerms.length 
+                  : category.count;
+                
+                return (
+                  <button
+                    key={category.name}
+                    onClick={() => handleTagClick(category.name)}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                      selectedCategory === category.name
+                        ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    {category.name} ({categoryCount})
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

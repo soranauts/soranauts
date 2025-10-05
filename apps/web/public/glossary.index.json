@@ -98,7 +98,7 @@
     {
       "slug": "tonswap",
       "priority": 1,
-      "blob": "tonswap tonswap technology a decentralized exchange (dex) built on ton blockchain with a bridge to sora v3, designed for fast, mobile-friendly trading and seamless access to cross-chain liquidity. tonswap complements polkaswap by serving as a ton-native gateway, bringing telegram wallet users and ton liquidity into the sora ecosystem. tonswap technology dex ton sora cross-chain polkaswap telegram mobile liquidity bridge dex ton sora cross-chain polkaswap telegram mobile liquidity bridge"
+      "blob": "tonswap tonswap defi a next-generation decentralized exchange (dex) and launchpad built on the open network (ton) blockchain. tonswap combines cutting-edge concentrated liquidity technology with a user-friendly design, offering ultra-fast trades, near-zero fees, and seamless telegram integration. it serves as a ton-native gateway for mobile-first defi access. tonswap defi dex ton sora cross-chain polkaswap telegram mobile liquidity bridge launchpad clmm dex ton sora cross-chain polkaswap telegram mobile liquidity bridge launchpad clmm"
     },
     {
       "slug": "token-bonding-curve",
@@ -231,6 +231,11 @@
       "blob": "kusd kusd token a stable asset in the sora economy designed for funding and rewarding builders. kusd provides price stability for ecosystem participants and is part of sora's comprehensive tokenomics system alongside xor, val, and pswap. kusd token builders funding rewards sora economy stable asset builders funding rewards"
     },
     {
+      "slug": "ts",
+      "priority": 1,
+      "blob": "ts ts token the native token of tonswap, a decentralized exchange and launchpad built on the open network (ton) blockchain. ts powers platform governance, liquidity incentives, and transaction fee models, with 10% of all trading fees used to buy back and burn xor tokens, creating a deflationary mechanism that benefits both ton and sora ecosystems. ts token tonswap ton xor dex governance liquidity deflationary cross-chain tonswap ton xor dex governance liquidity deflationary cross-chain"
+    },
+    {
       "slug": "relay-chain",
       "priority": 1,
       "blob": "relay chain relay-chain network the central chain of the polkadot network that provides security, consensus, and cross-chain interoperability for all connected parachains. the relay chain coordinates the entire network and enables shared security across all parachains. relay chain network polkadot parachain consensus cross-chain relay chain polkadot parachain shared security consensus cross-chain"
@@ -301,6 +306,6 @@
       "blob": "sora card sora-card defi a decentralized debit card that allows users to spend their cryptocurrency in the real world. the sora card bridges the gap between digital assets and traditional commerce, enabling users to make purchases at any merchant that accepts card payments while maintaining the benefits of decentralized finance. sora card defi xor polkaswap cryptocurrency sora card xor polkaswap decentralized finance real-world payments cryptocurrency"
     }
   ],
-  "count": 60,
-  "lastUpdated": "2025-10-04T14:11:35.843Z"
+  "count": 61,
+  "lastUpdated": "2025-10-05T15:55:53.614Z"
 }

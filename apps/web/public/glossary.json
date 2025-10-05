@@ -1677,6 +1677,57 @@
       "priority": 1
     },
     {
+      "term": "TS",
+      "slug": "ts",
+      "definition": "The native token of TONSWAP, a decentralized exchange and launchpad built on The Open Network (TON) blockchain. TS powers platform governance, liquidity incentives, and transaction fee models, with 10% of all trading fees used to buy back and burn XOR tokens, creating a deflationary mechanism that benefits both TON and SORA ecosystems.",
+      "category": "token",
+      "relatedTerms": [
+        "TONSWAP",
+        "TON",
+        "XOR",
+        "DEX",
+        "Governance",
+        "Liquidity",
+        "Deflationary",
+        "Cross-chain"
+      ],
+      "aliases": [
+        "TS"
+      ],
+      "tags": [
+        "token",
+        "tonswap",
+        "ton",
+        "xor",
+        "dex",
+        "governance",
+        "liquidity",
+        "deflationary",
+        "cross-chain"
+      ],
+      "examples": [
+        "Platform governance",
+        "Liquidity incentives",
+        "XOR buyback mechanism",
+        "Transaction fee distribution"
+      ],
+      "links": [
+        {
+          "label": "TONSWAP Website",
+          "url": "https://tonswap.org/"
+        },
+        {
+          "label": "TONSWAP Roadmap",
+          "url": "https://tonswap.org/roadmap"
+        },
+        {
+          "label": "TONSWAP FAQ",
+          "url": "https://tonswap.org/faq"
+        }
+      ],
+      "priority": 1
+    },
+    {
       "term": "Relay Chain",
       "slug": "relay-chain",
       "definition": "The central chain of the Polkadot network that provides security, consensus, and cross-chain interoperability for all connected parachains. The relay chain coordinates the entire network and enables shared security across all parachains.",
@@ -2178,7 +2229,7 @@
   "categories": {
     "token": {
       "name": "token",
-      "count": 4,
+      "count": 5,
       "description": "SORA ecosystem tokens and digital assets"
     },
     "technology": {
@@ -2207,6 +2258,6 @@
       "description": "Decision-making systems and governance mechanisms"
     }
   },
-  "totalCount": 60,
-  "lastUpdated": "2025-10-05T13:16:06.167Z"
+  "totalCount": 61,
+  "lastUpdated": "2025-10-05T15:55:53.614Z"
 }
