@@ -89,7 +89,7 @@ export default function CategoryFilter({ categories, initialCategory, allPosts }
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
               }`}
             >
-              {category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()).replace(/\bSora\b/g, 'SORA').replace(/\bDefi\b/g, 'DeFi').replace(/\bAnd\b/g, '&')} ({postCount})
+              {category.replace(/-/g, ' ').replace(/\band\b/g, '&').replace(/\b\w/g, l => l.toUpperCase()).replace(/\bSora\b/g, 'SORA').replace(/\bDefi\b/g, 'DeFi')} ({postCount})
             </button>
           );
         })}

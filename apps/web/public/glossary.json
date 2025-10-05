@@ -139,7 +139,8 @@
         "Liquidity Aggregation",
         "PSWAP",
         "Smart Routing",
-        "SORA Network"
+        "SORA Network",
+        "TONSWAP"
       ],
       "aliases": [
         "Polkaswap"
@@ -148,7 +149,8 @@
         "defi",
         "dex",
         "cross-chain",
-        "pswap"
+        "pswap",
+        "tonswap"
       ],
       "examples": [
         "Cross-chain token swaps",
@@ -712,6 +714,64 @@
       "priority": 5
     },
     {
+      "term": "TONSWAP",
+      "slug": "tonswap",
+      "definition": "A next-generation decentralized exchange (DEX) and launchpad built on The Open Network (TON) blockchain. TONSWAP combines cutting-edge concentrated liquidity technology with a user-friendly design, offering ultra-fast trades, near-zero fees, and seamless Telegram integration. It serves as a TON-native gateway for mobile-first DeFi access.",
+      "category": "defi",
+      "relatedTerms": [
+        "DEX",
+        "TON",
+        "SORA",
+        "Cross-chain",
+        "Polkaswap",
+        "Telegram",
+        "Mobile",
+        "Liquidity",
+        "Bridge",
+        "Launchpad",
+        "CLMM"
+      ],
+      "aliases": [
+        "TONSWAP"
+      ],
+      "tags": [
+        "defi",
+        "dex",
+        "ton",
+        "sora",
+        "cross-chain",
+        "polkaswap",
+        "telegram",
+        "mobile",
+        "liquidity",
+        "bridge",
+        "launchpad",
+        "clmm"
+      ],
+      "examples": [
+        "Mobile trading via Telegram",
+        "Concentrated liquidity provision",
+        "Token launchpad",
+        "Ultra-low fee swaps",
+        "Cross-chain liquidity access"
+      ],
+      "links": [
+        {
+          "label": "TONSWAP Website",
+          "url": "https://tonswap.org/"
+        },
+        {
+          "label": "TONSWAP Roadmap",
+          "url": "https://tonswap.org/roadmap"
+        },
+        {
+          "label": "TONSWAP FAQ",
+          "url": "https://tonswap.org/faq"
+        }
+      ],
+      "priority": 1
+    },
+    {
       "term": "Token Bonding Curve",
       "slug": "token-bonding-curve",
       "definition": "A smart contract that manages the supply of XOR in a rational way without human involvement. The TBC automatically adjusts XOR supply based on economic conditions to maintain price stability, expanding supply during growth and contracting during decline.",
@@ -740,8 +800,8 @@
       ],
       "links": [
         {
-          "label": "SORA Tokenomics",
-          "url": "https://wiki.sora.org/tokenomics.html"
+          "label": "SORA Wiki - Token Bonding Curve",
+          "url": "https://wiki.sora.org/tbc.html"
         }
       ],
       "priority": 1
@@ -2133,7 +2193,7 @@
     },
     "defi": {
       "name": "defi",
-      "count": 14,
+      "count": 15,
       "description": "Decentralized finance protocols and DeFi concepts"
     },
     "economics": {
@@ -2147,6 +2207,6 @@
       "description": "Decision-making systems and governance mechanisms"
     }
   },
-  "totalCount": 59,
-  "lastUpdated": "2025-10-01T13:47:33.711Z"
+  "totalCount": 60,
+  "lastUpdated": "2025-10-05T13:16:06.167Z"
 }

@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/best-decentralized-exchanges-dexs-in-2025",
+      "destination": "/best-decentralized-exchanges-dexs",
+      "permanent": true
+    },
+    {
+      "source": "/soramitsu-sora-polkaswap",
+      "destination": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/glossary.json",

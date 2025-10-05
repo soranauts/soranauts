@@ -18,7 +18,7 @@
     {
       "slug": "polkaswap",
       "priority": 80,
-      "blob": "polkaswap polkaswap defi a next-generation, cross-chain liquidity aggregator dex protocol built on sora network. polkaswap aggregates liquidity from multiple sources (amm dexs, order books, algorithms) and provides smart liquidity routing to find the best prices. it enables seamless trading of eth/erc-20 tokens, dot/ksm, btc, and future assets with high speed, low fees, and reduced impermanent loss through its unique liquidity infrastructure. polkaswap defi dex cross-chain pswap dex cross-chain liquidity aggregation pswap smart routing sora network"
+      "blob": "polkaswap polkaswap defi a next-generation, cross-chain liquidity aggregator dex protocol built on sora network. polkaswap aggregates liquidity from multiple sources (amm dexs, order books, algorithms) and provides smart liquidity routing to find the best prices. it enables seamless trading of eth/erc-20 tokens, dot/ksm, btc, and future assets with high speed, low fees, and reduced impermanent loss through its unique liquidity infrastructure. polkaswap defi dex cross-chain pswap tonswap dex cross-chain liquidity aggregation pswap smart routing sora network tonswap"
     },
     {
       "slug": "sora-parliament",
@@ -94,6 +94,11 @@
       "slug": "blockchain",
       "priority": 5,
       "blob": "blockchain blockchain technology a distributed ledger technology that maintains a continuously growing list of records secured using cryptography. sora operates on blockchain technology, currently using substrate framework and transitioning to hyperledger iroha for enhanced enterprise capabilities. blockchain technology cryptography substrate distributed ledger cryptography substrate hyperledger iroha decentralization"
+    },
+    {
+      "slug": "tonswap",
+      "priority": 1,
+      "blob": "tonswap tonswap technology a decentralized exchange (dex) built on ton blockchain with a bridge to sora v3, designed for fast, mobile-friendly trading and seamless access to cross-chain liquidity. tonswap complements polkaswap by serving as a ton-native gateway, bringing telegram wallet users and ton liquidity into the sora ecosystem. tonswap technology dex ton sora cross-chain polkaswap telegram mobile liquidity bridge dex ton sora cross-chain polkaswap telegram mobile liquidity bridge"
     },
     {
       "slug": "token-bonding-curve",
@@ -296,6 +301,6 @@
       "blob": "sora card sora-card defi a decentralized debit card that allows users to spend their cryptocurrency in the real world. the sora card bridges the gap between digital assets and traditional commerce, enabling users to make purchases at any merchant that accepts card payments while maintaining the benefits of decentralized finance. sora card defi xor polkaswap cryptocurrency sora card xor polkaswap decentralized finance real-world payments cryptocurrency"
     }
   ],
-  "count": 59,
-  "lastUpdated": "2025-10-01T13:47:33.711Z"
+  "count": 60,
+  "lastUpdated": "2025-10-04T14:11:35.843Z"
 }
