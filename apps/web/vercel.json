@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/top-decentralized-exchanges-crypto-trading",
+      "destination": "/best-decentralized-exchanges-dexs",
+      "permanent": true
+    },
+    {
       "source": "/best-decentralized-exchanges-dexs-in-2025",
       "destination": "/best-decentralized-exchanges-dexs",
       "permanent": true
