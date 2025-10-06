@@ -16,6 +16,7 @@ import SimpleCookieConsent from '~/components/SimpleCookieConsent.astro';
 import SearchModal from '~/components/SearchModal.astro';
 import SchemaMarkup from '~/components/SEO/SchemaMarkup.astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
 // Uncomment line below to activate View Transitions
 // import { ViewTransitions } from 'astro:transitions';
@@ -63,6 +64,7 @@ const { language, textDirection } = I18N;
     <SimpleCookieConsent />
     <SearchModal />
     <SpeedInsights />
+    <VercelAnalytics />
 
     <style is:global>
       img {
