@@ -1,7 +1,7 @@
 ---
 title: 'Changelog'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-10-04'
+lastUpdated: '2025-10-09'
 metadata:
   title: 'Changelog | Soranauts'
   description: 'Track the latest SORA ecosystem updates, new features, and website improvements on Soranauts.'
@@ -15,6 +15,10 @@ This page tracks the latest improvements and new features added to the Soranauts
 ## 🎉 Latest Updates (October 2025)
 
 ### ✅ Recent Completions
+- **Understanding Crypto Bull Markets**: Enhanced with high-quality external links and streamlined structure
+- **SORA's Token Bonding Curve Dollar (TBCD)**: Updated with latest SORA v3 information and improved readability
+- **Blog Post Update Dates**: Added update date display to blog preview cards for better content transparency
+- **Glossary Auto-Linking Fix**: Resolved word concatenation issues in auto-linking system across all posts
 - **Best Decentralized Exchanges (DEXs)**: Updated with TONSWAP integration, enhanced SEO, and official SORA wiki links
 - **SORA Glossary**: 60+ comprehensive terms with instant search, category filtering, and smart tooltips
 - **Smart Search**: Full-site search with proper categorization between articles and glossary terms
@@ -25,13 +29,15 @@ This page tracks the latest improvements and new features added to the Soranauts
 - **Performance Optimization**: Faster loading times with optimized images and efficient caching
 - **Mobile-First Design**: Seamless experience across all devices and screen sizes
 - **SEO Excellence**: Comprehensive meta tags, structured data, and search engine optimization
+- **Content Management**: Systematic article updates with improved templates and quality standards
 
 ## 🚀 Roadmap & Future Features
 
 ### 🔄 In Development
-- **Content Optimization**: Systematic updates to 2023-2024 articles using enhanced templates
+- **Content Optimization**: Systematic updates to 2023-2024 articles using enhanced templates (4/17 Priority 1 articles completed)
 - **Glossary Expansion**: Adding more SORA ecosystem terms and cross-references
 - **Performance Monitoring**: Real-time analytics and user engagement tracking
+- **Technical Improvements**: Ongoing bug fixes and system optimizations
 
 ### 💡 Planned Features
 - **Real-time SORA Token Widgets**: Live price tracking and market data (similar to former Ceres Tools)
@@ -50,8 +56,8 @@ This page tracks the latest improvements and new features added to the Soranauts
 ### Priority 1: 2023 Articles (Foundation Content) - UPDATE FIRST
 - [x] **Soramitsu - Unveiling The Force Behind SORA And Polkaswap** (2023-10-04) - *✅ COMPLETED - Full optimization with Related Articles*
 - [x] **Best Decentralized Exchanges (DEXs)** (2023-10-09) - *✅ COMPLETED - Updated with TONSWAP integration, enhanced SEO, and official SORA wiki links*
-- [ ] **SORA's Token Bonding Curve Dollar (TBCD) Explained** (2023-10-11)
-- [ ] **Cryptocurrency Forecast - Top 10 Tokens to Watch in the 2024 Bull Run** (2023-10-22)
+- [x] **SORA's Token Bonding Curve Dollar (TBCD) Explained** (2023-10-11) - *✅ COMPLETED - Updated with latest SORA v3 information and improved readability*
+- [x] **Understanding Crypto Bull Markets: Patterns, Triggers, and Psychology** (2023-10-22) - *✅ COMPLETED - Enhanced with external links and streamlined structure*
 - [ ] **Future of DeFi - A Detailed Forecast of XOR, VAL, and PSWAP Tokens** (2023-11-08)
 - [ ] **The Differences Between Proof of Stake vs. Proof of Work Algorithms** (2023-11-24)
 - [ ] **The Power of DeFi Protocols - A Beginner's Crash Course & Guide** (2023-11-25)
@@ -111,7 +117,9 @@ For each article, verify and update:
 - [ ] **Internal Linking**: Add relevant internal links to newer content
 - [ ] **Call-to-Actions**: Update CTAs to current SORA ecosystem tools
 - [ ] **Date Stamps**: Update "last updated" dates where applicable
+- [ ] **External Links**: Add high-quality external links to enhance credibility
+- [ ] **Structure Optimization**: Remove redundant sections and improve content flow
 
 ---
 
-*Last updated: October 4, 2025*
+*Last updated: October 9, 2025*

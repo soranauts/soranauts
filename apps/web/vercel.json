@@ -14,6 +14,11 @@
       "source": "/soramitsu-sora-polkaswap",
       "destination": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
       "permanent": true
+    },
+    {
+      "source": "/2024-crypto-bull-run",
+      "destination": "/understanding-crypto-bull-markets-patterns-triggers-and-psychology",
+      "permanent": true
     }
   ]
 }

@@ -75,10 +75,10 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
         for (const child of node.children) {
           if (child.type === 'text') {
             let text = child.value;
-            let newText = text;
             let lastIndex = 0;
 
-            // Find and replace glossary terms
+            // Collect all matches first, then process them in order
+            const allMatches = [];
             for (const term of sortedTerms) {
               const regex = new RegExp(`\\b${escapeRegExp(term)}\\b`, 'gi');
               const matches = [...text.matchAll(regex)];
@@ -96,37 +96,51 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
                   const termCount = (beforeText.match(new RegExp(`\\b${escapeRegExp(term)}\\b`, 'gi')) || []).length;
                   
                   if (termCount === 0) { // First occurrence
-                    // Add text before the match
-                    if (startIndex > lastIndex) {
-                      newChildren.push({
-                        type: 'text',
-                        value: text.substring(lastIndex, startIndex)
-                      });
-                    }
-
-                    // Add the link with category-specific styling
-                    newChildren.push({
-                      type: 'link',
-                      url: `/glossary#glossary-${slug}`,
-                      children: [{
-                        type: 'text',
-                        value: match[0]
-                      }],
-                      data: {
-                        hProperties: {
-                          class: `glossary-term glossary-term-${category}`,
-                          'data-term': slug,
-                          'data-category': category,
-                          'aria-describedby': `tip-${slug}`
-                        }
-                      }
+                    allMatches.push({
+                      startIndex,
+                      endIndex,
+                      text: match[0],
+                      slug,
+                      category
                     });
-
-                    lastIndex = endIndex;
-                    hasChanges = true;
                   }
                 }
               }
+            }
+
+            // Sort matches by position
+            allMatches.sort((a, b) => a.startIndex - b.startIndex);
+
+            // Process matches in order
+            for (const match of allMatches) {
+              // Add text before the match
+              if (match.startIndex > lastIndex) {
+                newChildren.push({
+                  type: 'text',
+                  value: text.substring(lastIndex, match.startIndex)
+                });
+              }
+
+              // Add the link with category-specific styling
+              newChildren.push({
+                type: 'link',
+                url: `/glossary#glossary-${match.slug}`,
+                children: [{
+                  type: 'text',
+                  value: match.text
+                }],
+                data: {
+                  hProperties: {
+                    class: `glossary-term glossary-term-${match.category}`,
+                    'data-term': match.slug,
+                    'data-category': match.category,
+                    'aria-describedby': `tip-${match.slug}`
+                  }
+                }
+              });
+
+              lastIndex = match.endIndex;
+              hasChanges = true;
             }
 
             // Add remaining text
