@@ -50,6 +50,18 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
           <Icon name="tabler:clock" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400" />
           <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time>
           {
+            post.updateDate && post.updateDate.getTime() !== post.publishDate.getTime() && (
+              <>
+                {' '}
+                ·{' '}
+                <span class="inline-block">
+                  <Icon name="tabler:edit" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400 mr-1" />
+                  Updated {getFormattedDate(post.updateDate)}
+                </span>
+              </>
+            )
+          }
+          {
             post.category && (
               <>
                 {' '}
