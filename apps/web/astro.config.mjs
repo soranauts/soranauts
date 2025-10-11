@@ -15,7 +15,9 @@ import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/uti
 import { loadGlossaryAutoLinkPlugin } from './src/utils/glossary-auto-link.mjs';
 
 // Load the glossary auto-link plugin
+console.log('🔗 Loading glossary auto-link plugin in config...');
 const glossaryAutoLinkPlugin = await loadGlossaryAutoLinkPlugin();
+console.log('🔗 Plugin loaded successfully in config');
 
 import { ANALYTICS, SITE } from './src/utils/config.ts';
 

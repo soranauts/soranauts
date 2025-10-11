@@ -1,7 +1,7 @@
 ---
 title: 'Changelog'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-10-10'
+lastUpdated: '2025-10-11'
 metadata:
   title: 'Changelog | Soranauts'
   description: 'Track the latest SORA ecosystem updates, new features, and website improvements on Soranauts.'
@@ -15,6 +15,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 ## 🎉 Latest Updates (October 2025)
 
 ### ✅ Recent Completions
+- **Proof of Stake vs Proof of Work: Key Differences Explained**: Updated with comprehensive tags, high-value external links (Bitcoin whitepaper, Ethereum's Merge documentation), and enhanced frontmatter for better SEO and discoverability
 - **Enhanced Glossary Auto-Linking System**: Completely redesigned auto-linking plugin with smart distribution (links spread evenly throughout articles), intelligent prioritization (foundational terms get direct page links), and optimal SEO balance (mix of direct term pages, anchor links, and category links). Each term now links once per article with natural placement.
 - **Deep Dive into XOR, VAL, and PSWAP**: Comprehensive update with enhanced structure and glossary integration
 - **Understanding Crypto Bull Markets**: Enhanced with high-quality external links and streamlined structure
@@ -60,7 +61,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 - [x] **SORA's Token Bonding Curve Dollar (TBCD) Explained** (2023-10-11) - *✅ COMPLETED - Updated with latest SORA v3 information and improved readability*
 - [x] **Understanding Crypto Bull Markets: Patterns, Triggers, and Psychology** (2023-10-22) - *✅ COMPLETED - Enhanced with external links and streamlined structure*
 - [x] **Future of DeFi - A Detailed Forecast of XOR, VAL, and PSWAP Tokens** (2023-11-08) - *✅ COMPLETED - Comprehensive update with enhanced glossary integration*
-- [ ] **The Differences Between Proof of Stake vs. Proof of Work Algorithms** (2023-11-24)
+- [x] **The Differences Between Proof of Stake vs. Proof of Work Algorithms** (2023-11-24) - *✅ COMPLETED - Updated with comprehensive tags, high-value external links (Bitcoin whitepaper, Ethereum's Merge), and enhanced frontmatter*
 - [ ] **The Power of DeFi Protocols - A Beginner's Crash Course & Guide** (2023-11-25)
 - [ ] **A Beginner's Guide To Understanding NFTs And Where To Buy** (2023-11-26)
 - [ ] **A Guide to Understanding The Difference Between Blockchain And DeFi** (2023-11-28)
