@@ -1,11 +1,41 @@
 import { visit } from 'unist-util-visit';
 import { generateGlossarySlug } from './slugify.ts';
 
+const SKIP_TYPES = new Set(['link', 'inlineCode', 'code', 'image', 'imageReference']);
+
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function walkInline(node, fn) {
+  if (!node || !node.children) return;
+  node.children.forEach((child, idx) => {
+    if (child.type === 'text') {
+      fn(child, idx, node);
+    } else if (!SKIP_TYPES.has(child.type)) {
+      // recurse into strong/emphasis/delete/sup/sub, etc.
+      walkInline(child, fn);
+    }
+  });
+}
+
+// Filter overlapping ranges assuming items are sorted by startIndex asc
+function dedupeOverlaps(ranges) {
+  const out = [];
+  let cursor = -1;
+  for (const r of ranges) {
+    if (r.startIndex >= cursor) {
+      out.push(r);
+      cursor = r.endIndex;
+    }
+  }
+  return out;
+}
+
 // Configuration constants
 const MAX_LINKS_PER_ARTICLE = 15;  // Total unique terms to link per article
 const MAX_LINKS_PER_PARAGRAPH = 2; // Max links in any single paragraph
 const HIGH_PRIORITY_THRESHOLD = 90;
-const MEDIUM_PRIORITY_THRESHOLD = 50;
 
 /**
  * Creates a remark plugin that automatically links glossary terms in markdown content
@@ -54,33 +84,59 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
       });
   });
 
-  // Sort terms by length (longest first) to avoid partial matches
-  const sortedTerms = Array.from(termMap.keys()).sort((a, b) => b.length - a.length);
+  console.log('🔗 Plugin created successfully:', typeof createGlossaryAutoLinkPlugin);
 
   return function () {
     return (tree) => {
       console.log('🔗 Auto-link plugin processing tree...');
+      console.log('🔍 Tree type:', tree.type, 'Tree children count:', tree.children?.length);
+      console.log('🚀 Plugin function called successfully');
+
+      // Track manually linked terms to avoid double-linking
+      const manuallyLinkedTerms = new Set();
       
       // First pass: scan for manually linked glossary terms
-      const manuallyLinkedTerms = new Set();
       visit(tree, 'link', (node) => {
-        if (node.url && node.url.includes('/glossary')) {
-          // Extract slug from URL
-          const match = node.url.match(/\/glossary\/([^#?]+)|#glossary-([^?]+)|#([^?]+)/);
-          if (match) {
-            const slug = match[1] || match[2] || match[3];
-            manuallyLinkedTerms.add(slug);
-          }
+        if (node.url && node.url.startsWith('/glossary/')) {
+          const slug = node.url.replace('/glossary/', '');
+          manuallyLinkedTerms.add(slug);
         }
       });
 
-      // Second pass: collect all paragraphs and ALL term occurrences
+      // Build patterns for efficient matching
+      const patterns = [];
+      for (const [termLower, slug] of termMap.entries()) {
+        const priority = termPriorities.get(termLower) || 0;
+        const category = termCategories.get(termLower);
+        const isFoundational = termFoundational.has(slug);
+        
+        patterns.push({
+          term: termLower,
+          slug,
+          category,
+          priority,
+          isFoundational,
+          re: new RegExp(`\\b${escapeRegExp(termLower)}\\b`, 'gi')
+        });
+      }
+
+      // Sort patterns by priority (highest first) and length (longest first)
+      patterns.sort((a, b) => {
+        if (a.priority !== b.priority) return b.priority - a.priority;
+        return b.term.length - a.term.length;
+      });
+
+      // Track all term occurrences across the document
+      const termOccurrences = new Map();
       const paragraphs = [];
-      const termOccurrences = new Map(); // slug -> [ALL occurrences]
-      
+
+      // Second pass: collect all paragraphs and find term occurrences
       visit(tree, 'paragraph', (node, nodeIndex, parent) => {
+        console.log('📄 Found paragraph:', nodeIndex, 'parent:', parent?.type);
+        
         // Skip if parent is a table cell
         if (parent && (parent.type === 'tableCell' || parent.type === 'table')) {
+          console.log('⏭️ Skipping paragraph in table');
           return;
         }
 
@@ -92,261 +148,251 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
         );
 
         if (hasCodeOrLinks || !node.children) {
+          console.log('⏭️ Skipping paragraph with code/links or no children');
           return;
         }
 
-        const paragraphIndex = paragraphs.length;
-        paragraphs.push({ node, nodeIndex, parent });
+        paragraphs.push({ node, index: nodeIndex, parent });
+        const paragraphIndex = paragraphs.length - 1;
 
-        // Find ALL term occurrences in this paragraph
-        node.children.forEach((child, textNodeIndex) => {
-          if (child.type === 'text') {
-            const text = child.value;
-            const seenInThisParagraph = new Set(); // Track terms already found in THIS paragraph
+        // Find matches across all nested inline text nodes in this paragraph
+        const occurrences = [];
 
-            for (const term of sortedTerms) {
-              const regex = new RegExp(`\\b${escapeRegExp(term)}\\b`, 'gi');
-              const matches = [...text.matchAll(regex)];
+        walkInline(node, (textNode, idx, parentInline) => {
+          const text = textNode.value;
+          if (!text) return;
 
-              if (matches.length > 0) {
-                const termLower = term.toLowerCase();
-                if (termMap.has(termLower)) {
-                  const slug = termMap.get(termLower);
-                  
-                  // Skip if manually linked or already seen in this paragraph
-                  if (manuallyLinkedTerms.has(slug) || seenInThisParagraph.has(slug)) {
-                    continue;
-                  }
-
-                  seenInThisParagraph.add(slug);
-                  const category = termCategories.get(termLower);
-                  const priority = termPriorities.get(termLower) || 0;
-
-                  // Use first match in this text node
-                  const match = matches[0];
-
-                  // Store this occurrence
-                  if (!termOccurrences.has(slug)) {
-                    termOccurrences.set(slug, []);
-                  }
-
-                  termOccurrences.get(slug).push({
-                    paragraphIndex,
-                    textNodeIndex,
-                    startIndex: match.index,
-                    endIndex: match.index + match[0].length,
-                    text: match[0],
-                    slug,
-                    category,
-                    priority,
-                    isFoundational: termFoundational.has(slug)
-                  });
-                }
-              }
+          for (const pattern of patterns) {
+            // Reset regex lastIndex to avoid issues with global regex
+            pattern.re.lastIndex = 0;
+            
+            // iterate all matches
+            let m;
+            while ((m = pattern.re.exec(text)) !== null) {
+              occurrences.push({
+                parentInline,              // the parent that actually holds this text node
+                textNode,                  // the matched text node
+                textIndex: idx,            // index *within* parentInline.children (will re-find)
+                startIndex: m.index,
+                endIndex: m.index + m[0].length,
+                matchText: m[0],
+                slug: pattern.slug,
+                category: pattern.category,
+                priority: pattern.priority,
+                isFoundational: pattern.isFoundational
+              });
             }
           }
         });
+
+        // Group by the exact text node (so slicing happens per node)
+        const byNode = new Map();
+        for (const occ of occurrences) {
+          const key = occ.textNode; // object identity
+          if (!byNode.has(key)) byNode.set(key, []);
+          byNode.get(key).push(occ);
+        }
+
+        // For each text node: sort, drop overlaps, slice -> replace with [text, link, text...]
+        for (const [textNode, nodeOccs] of byNode.entries()) {
+          // Skip if manually linked
+          if (manuallyLinkedTerms.has(nodeOccs[0].slug)) continue;
+
+          // Sort by start position, then dedupe overlaps
+          nodeOccs.sort((a, b) => a.startIndex - b.startIndex);
+          const clean = dedupeOverlaps(nodeOccs);
+
+          if (clean.length === 0) continue;
+          
+          // Only process the first occurrence of each term in this text node
+          const uniqueBySlug = new Map();
+          clean.forEach(occ => {
+            if (!uniqueBySlug.has(occ.slug)) {
+              uniqueBySlug.set(occ.slug, occ);
+            }
+          });
+          const finalOccs = Array.from(uniqueBySlug.values());
+
+          // Store for later processing - only one occurrence per term per text node
+          finalOccs.forEach(occ => {
+            const slug = occ.slug;
+            if (!termOccurrences.has(slug)) {
+              termOccurrences.set(slug, []);
+            }
+            
+            const occurrences = termOccurrences.get(slug);
+            if (occurrences) {
+              occurrences.push({
+                paragraphIndex,
+                textNode,
+                parentInline: occ.parentInline,
+                textIndex: occ.textIndex,
+                startIndex: occ.startIndex,
+                endIndex: occ.endIndex,
+                matchText: occ.matchText,
+                slug: occ.slug,
+                category: occ.category,
+                priority: occ.priority,
+                isFoundational: occ.isFoundational
+              });
+            }
+          });
+        }
       });
 
-      if (paragraphs.length === 0) {
-        return tree; // No paragraphs to process
+      console.log('📊 Found', termOccurrences.size, 'unique terms across', paragraphs.length, 'paragraphs');
+
+      // Third pass: select best occurrences for each term (one per article)
+      const selectedOccurrences = new Map();
+      
+      for (const [slug, occurrences] of termOccurrences.entries()) {
+        if (occurrences.length === 0) continue;
+
+        // Score each occurrence based on priority, position, and context
+        const scoredOccurrences = occurrences.map((occ, index) => {
+          let score = occ.priority || 0;
+          
+          // Boost foundational terms
+          if (occ.isFoundational) {
+            score += 20;
+          }
+          
+          // Boost early paragraphs (first 1/3 of article)
+          const earlyParagraphThreshold = Math.ceil(paragraphs.length / 3);
+          if (occ.paragraphIndex < earlyParagraphThreshold) {
+            score += 10;
+          }
+          
+          // Boost medium paragraphs (middle 1/3)
+          const middleStart = Math.ceil(paragraphs.length / 3);
+          const middleEnd = Math.ceil(paragraphs.length * 2 / 3);
+          if (occ.paragraphIndex >= middleStart && occ.paragraphIndex < middleEnd) {
+            score += 5;
+          }
+          
+          return { ...occ, score, originalIndex: index };
+        });
+
+        // Sort by score (highest first), then by position
+        scoredOccurrences.sort((a, b) => {
+          if (a.score !== b.score) return b.score - a.score;
+          return a.paragraphIndex - b.paragraphIndex;
+        });
+
+        // Select the best occurrence
+        const bestOccurrence = scoredOccurrences[0];
+        selectedOccurrences.set(slug, bestOccurrence);
+        
+        console.log(`✅ Selected "${bestOccurrence.matchText}" (${slug}) with score ${bestOccurrence.score} in paragraph ${bestOccurrence.paragraphIndex}`);
       }
 
-      // Third pass: select top terms and choose best occurrence for even distribution
-      const uniqueTerms = Array.from(termOccurrences.keys());
+      console.log('🎯 Selected', selectedOccurrences.size, 'terms for linking');
       
-      // Score each unique term (use first occurrence for scoring)
-      const scoredTerms = uniqueTerms.map(slug => {
-        const occurrences = termOccurrences.get(slug);
-        const firstOccurrence = occurrences[0];
-        const score = calculateTermScore(firstOccurrence, termFoundational);
-        
-        return {
-          slug,
-          occurrences,
-          score,
-          priority: firstOccurrence.priority
-        };
-      });
-
-      // Sort by score and select top MAX_LINKS_PER_ARTICLE terms
-      scoredTerms.sort((a, b) => b.score - a.score);
-      const selectedTerms = scoredTerms.slice(0, MAX_LINKS_PER_ARTICLE);
-
-      // Calculate ideal spacing for even distribution
-      const totalParagraphs = paragraphs.length;
-      const numLinks = selectedTerms.length;
-      const idealSpacing = totalParagraphs / (numLinks + 1); // +1 to avoid edges
-
-      // For each selected term, choose the occurrence closest to its ideal position
-      const linksToAdd = new Map(); // paragraphIndex -> [links to add]
-      const paragraphLinkCounts = new Map(); // paragraphIndex -> count
-      const usedParagraphs = new Set(); // Track which paragraphs already have links
-
-      selectedTerms.forEach((term, index) => {
-        // Calculate ideal paragraph position for this term
-        const idealPosition = Math.floor((index + 1) * idealSpacing);
-        
-        // Find the occurrence closest to the ideal position
-        let bestOccurrence = null;
-        let bestDistance = Infinity;
-
-        for (const occurrence of term.occurrences) {
-          const pIndex = occurrence.paragraphIndex;
-          
-          // Check paragraph link limit
-          const currentCount = paragraphLinkCounts.get(pIndex) || 0;
-          if (currentCount >= MAX_LINKS_PER_PARAGRAPH) {
-            continue; // Skip if paragraph already has max links
-          }
-
-          // Calculate distance from ideal position
-          const distance = Math.abs(pIndex - idealPosition);
-          
-          // Prefer occurrences that are closer to ideal AND in unused paragraphs
-          const penalty = usedParagraphs.has(pIndex) ? 100 : 0;
-          const adjustedDistance = distance + penalty;
-
-          if (adjustedDistance < bestDistance) {
-            bestDistance = adjustedDistance;
-            bestOccurrence = occurrence;
-          }
-        }
-
-        if (bestOccurrence) {
-          const pIndex = bestOccurrence.paragraphIndex;
-          
-          // Add this link
-          if (!linksToAdd.has(pIndex)) {
-            linksToAdd.set(pIndex, []);
-          }
-          linksToAdd.get(pIndex).push(bestOccurrence);
-          
-          const currentCount = paragraphLinkCounts.get(pIndex) || 0;
-          paragraphLinkCounts.set(pIndex, currentCount + 1);
-          usedParagraphs.add(pIndex);
-        }
-      });
+      // Debug: Show what we're about to link
+      for (const [slug, occurrence] of selectedOccurrences.entries()) {
+        console.log(`🔗 Will link "${occurrence.matchText}" (${slug}) in paragraph ${occurrence.paragraphIndex}`);
+      }
 
       // Fourth pass: apply the links
-      linksToAdd.forEach((links, paragraphIndex) => {
+      const linksByParagraph = new Map();
+      
+      for (const [slug, occurrence] of selectedOccurrences.entries()) {
+        const paragraphIndex = occurrence.paragraphIndex;
+        if (!linksByParagraph.has(paragraphIndex)) {
+          linksByParagraph.set(paragraphIndex, []);
+        }
+        const paragraphLinks = linksByParagraph.get(paragraphIndex);
+        if (paragraphLinks) {
+          paragraphLinks.push(occurrence);
+        }
+      }
+
+      for (const [paragraphIndex, links] of linksByParagraph.entries()) {
         const { node } = paragraphs[paragraphIndex];
         
         // Group links by text node
-        const linksByTextNode = new Map();
+        const linksByNode = new Map();
         links.forEach(link => {
-          if (!linksByTextNode.has(link.textNodeIndex)) {
-            linksByTextNode.set(link.textNodeIndex, []);
+          if (!linksByNode.has(link.textNode)) {
+            linksByNode.set(link.textNode, []);
           }
-          linksByTextNode.get(link.textNodeIndex).push(link);
+          linksByNode.get(link.textNode).push(link);
         });
 
-        // Process each text node that has links
-        const newChildren = [];
-        node.children.forEach((child, textNodeIndex) => {
-          if (child.type === 'text' && linksByTextNode.has(textNodeIndex)) {
-            const text = child.value;
-            const nodeLinks = linksByTextNode.get(textNodeIndex);
-            
-            // Sort links by position
-            nodeLinks.sort((a, b) => a.startIndex - b.startIndex);
+        // Apply links to each text node
+        for (const [textNode, nodeLinks] of linksByNode.entries()) {
+          // Re-locate the current index of textNode in its parent
+          const parentInline = nodeLinks[0].parentInline;
+          const iNow = parentInline.children.indexOf(textNode);
+          if (iNow === -1) continue;
 
-            let lastIndex = 0;
-            for (const link of nodeLinks) {
-              // Add text before the link
-              if (link.startIndex > lastIndex) {
-                newChildren.push({
-                  type: 'text',
-                  value: text.substring(lastIndex, link.startIndex)
-                });
-              }
+          // Sort and dedupe overlaps
+          nodeLinks.sort((a, b) => a.startIndex - b.startIndex);
+          const clean = dedupeOverlaps(nodeLinks);
 
-              // Add the link
-              const linkUrl = getLinkDestination(link.slug, link.category, link.priority, link.isFoundational);
-              newChildren.push({
-                type: 'link',
-                url: linkUrl,
-                children: [{
-                  type: 'text',
-                  value: link.text
-                }],
-                data: {
-                  hProperties: {
-                    class: `glossary-term glossary-term-${link.category}`,
-                    'data-term': link.slug,
-                    'data-category': link.category,
-                    'aria-describedby': `tip-${link.slug}`
-                  }
+          const original = textNode.value;
+          let last = 0;
+          const newChildren = [];
+
+          for (const occ of clean) {
+            if (occ.startIndex > last) {
+              newChildren.push({ type: 'text', value: original.slice(last, occ.startIndex) });
+            }
+
+            const url = getLinkDestination(occ.slug, occ.category, occ.priority, occ.isFoundational);
+            newChildren.push({
+              type: 'link',
+              url,
+              data: {
+                hProperties: {
+                  class: `glossary-term glossary-term-${occ.category}`,
+                  'data-term': occ.slug,
+                  'data-category': occ.category,
+                  'aria-describedby': `tip-${occ.slug}`
                 }
-              });
+              },
+              children: [{ type: 'text', value: occ.matchText }]
+            });
 
-              lastIndex = link.endIndex;
-            }
-
-            // Add remaining text
-            if (lastIndex < text.length) {
-              newChildren.push({
-                type: 'text',
-                value: text.substring(lastIndex)
-              });
-            }
-          } else {
-            newChildren.push(child);
+            last = occ.endIndex;
           }
-        });
 
-        node.children = newChildren;
-      });
-      
-      return tree;
+          if (last < original.length) {
+            newChildren.push({ type: 'text', value: original.slice(last) });
+          }
+
+          // Replace the single text node with the new sequence
+          parentInline.children.splice(iNow, 1, ...newChildren);
+        }
+      }
+
+      console.log('🎉 Auto-linking complete!');
     };
   };
+
+  // Helper function to determine link destination based on priority and foundational status
+  function getLinkDestination(slug, category, priority, isFoundational) {
+    // Direct term pages for foundational terms with decent priority OR very high priority
+    if (isFoundational && priority >= 30) {
+      return `/glossary/${slug}`;  // Direct term page
+    }
+    if (priority >= HIGH_PRIORITY_THRESHOLD) { // HIGH_PRIORITY_THRESHOLD is 90
+      return `/glossary/${slug}`;  // Direct term page
+    }
+    
+    // Anchor links for medium priority
+    if (priority >= 20) {
+      return `/glossary#glossary-${slug}`;  // Anchor on main page
+    }
+    
+    // Category links for low priority
+    return `/glossary#${category}`;  // Category section
+  }
 }
 
 /**
- * Calculate relevance score for a term match
- */
-function calculateTermScore(match, termFoundational) {
-  let score = match.priority || 0;
-  
-  // Boost foundational terms
-  if (termFoundational.has(match.slug)) {
-    score += 20;
-  }
-  
-  return score;
-}
-
-/**
- * Determine link destination based on priority and foundational status
- */
-function getLinkDestination(slug, category, priority, isFoundational) {
-  // Direct term pages for foundational terms with decent priority OR very high priority
-  if (isFoundational && priority >= 50) {
-    return `/glossary/${slug}`;  // Direct term page
-  }
-  if (priority >= HIGH_PRIORITY_THRESHOLD) {
-    return `/glossary/${slug}`;  // Direct term page
-  }
-  
-  // Anchor links for medium priority
-  if (priority >= 45) {
-    return `/glossary#glossary-${slug}`;  // Anchor on main page
-  }
-  
-  // Category links for low priority
-  return `/glossary#${category}`;  // Category section
-}
-
-/**
- * Escape special regex characters in a string
- */
-function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-/**
- * Load glossary data and create the auto-link plugin
+ * Loads the glossary auto-link plugin with data from the JSON file
+ * @returns {Promise<Function>} - The loaded plugin function
  */
 export async function loadGlossaryAutoLinkPlugin() {
   try {
@@ -354,7 +400,9 @@ export async function loadGlossaryAutoLinkPlugin() {
     // Load the glossary data from the JSON file
     const glossaryData = await import('../../public/glossary.json');
     console.log('🔗 Glossary data loaded:', glossaryData.totalCount, 'terms');
-    return createGlossaryAutoLinkPlugin(glossaryData);
+    const plugin = createGlossaryAutoLinkPlugin(glossaryData);
+    console.log('🔗 Auto-link plugin loaded with', glossaryData.terms.length, 'terms');
+    return plugin;
   } catch (error) {
     console.warn('Failed to load glossary data for auto-linking:', error);
     return () => {}; // Return no-op plugin
