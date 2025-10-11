@@ -53,7 +53,7 @@ export const footerData = {
     {
       title: 'Builders',
       links: [
-        { text: 'TONSWAP', href: 'https://soranauts.com/introducing-tonswap-the-dex-for-mass-adoption-on-ton' },
+        { text: 'TONSWAP', href: 'https://tonswap.org/' },
         { text: 'ADAR Business', href: 'https://adar.com/' },
         { text: 'Demeter Farming', href: 'https://farming.deotoken.io/' },
         { text: 'Builders Programme', href: 'https://wiki.sora.org/sora-builders.html' },
