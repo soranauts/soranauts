@@ -1,7 +1,7 @@
 ---
 title: 'Changelog'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-10-12'
+lastUpdated: '2025-10-14'
 metadata:
   title: 'Changelog | Soranauts'
   description: 'Track the latest SORA ecosystem updates, new features, and website improvements on Soranauts.'
@@ -15,6 +15,8 @@ This page tracks the latest improvements and new features added to the Soranauts
 ## 🎉 Latest Updates (October 2025)
 
 ### ✅ Recent Completions
+- **Understanding NFTs with SORA and Polkaswap**: Updated with comprehensive tags, high-value external links (Ethereum NFT Standards, IPFS documentation), enhanced frontmatter, and improved glossary integration
+- **New Glossary Term - NFT**: Added comprehensive NFT definition with aliases, examples, and SORA ecosystem integration to the glossary
 - **DeFi Protocols Explained: A Beginner's Crash Course**: Updated with comprehensive tags, high-value external links (Ethereum's DeFi guide, TON's official documentation), enhanced frontmatter, and improved SORA/TONSWAP ecosystem integration
 - **Proof of Stake vs Proof of Work: Key Differences Explained**: Updated with comprehensive tags, high-value external links (Bitcoin whitepaper, Ethereum's Merge documentation), and enhanced frontmatter for better SEO and discoverability
 - **Enhanced Glossary Auto-Linking System**: Completely redesigned auto-linking plugin with smart distribution (links spread evenly throughout articles), intelligent prioritization (foundational terms get direct page links), and optimal SEO balance (mix of direct term pages, anchor links, and category links). Each term now links once per article with natural placement.
@@ -64,7 +66,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 - [x] **Future of DeFi - A Detailed Forecast of XOR, VAL, and PSWAP Tokens** (2023-11-08) - *✅ COMPLETED - Comprehensive update with enhanced glossary integration*
 - [x] **The Differences Between Proof of Stake vs. Proof of Work Algorithms** (2023-11-24) - *✅ COMPLETED - Updated with comprehensive tags, high-value external links (Bitcoin whitepaper, Ethereum's Merge), and enhanced frontmatter*
 - [x] **The Power of DeFi Protocols - A Beginner's Crash Course & Guide** (2023-11-25) - *✅ COMPLETED - Updated with comprehensive tags, high-value external links (Ethereum's DeFi guide, TON docs), and enhanced frontmatter*
-- [ ] **A Beginner's Guide To Understanding NFTs And Where To Buy** (2023-11-26)
+- [x] **Understanding NFTs with SORA and Polkaswap** (2023-11-26) - *✅ COMPLETED - Updated with comprehensive tags, high-value external links (Ethereum NFT Standards, IPFS), and enhanced frontmatter*
 - [ ] **A Guide to Understanding The Difference Between Blockchain And DeFi** (2023-11-28)
 - [ ] **Soramitsu and Central Bank of Solomon Islands Partner for CBDC** (2023-11-29)
 - [ ] **Why Cryptocurrencies Are Embracing Rust Programming on Blockchain** (2023-12-13)
@@ -125,4 +127,4 @@ For each article, verify and update:
 
 ---
 
-*Last updated: October 12, 2025*
+*Last updated: October 14, 2025*

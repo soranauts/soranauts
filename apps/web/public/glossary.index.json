@@ -76,6 +76,11 @@
       "blob": "cbdc cbdc economics central bank digital currency - a digital form of a country's fiat currency issued by the central bank. soramitsu has successfully deployed multiple cbdcs including cambodia's bakong (8.5m users, $15.5m in payments), lao cbdc pilot, and fiji cbdc exploration. these blockchain-based systems enable financial inclusion, cross-border remittances, and interoperable digital payments. cbdc economics soramitsu bakong soramitsu bakong digital currency central bank financial inclusion cross-border payments"
     },
     {
+      "slug": "nft",
+      "priority": 22,
+      "blob": "nft nft technology non-fungible token - a unique digital asset that represents ownership of a specific item or piece of content on the blockchain. in the sora ecosystem, nfts can be minted, traded, and pooled on polkaswap, with support for both divisible and extensible supply models. nfts can be created using ipfs links or local file uploads. nfts non-fungible token non-fungible tokens technology polkaswap ipfs blockchain divisible polkaswap ipfs digital asset blockchain divisible extensible supply"
+    },
+    {
       "slug": "bakong",
       "priority": 20,
       "blob": "bakong bakong economics cambodia's national digital payment system built on blockchain technology by soramitsu. bakong is one of the most successful cbdc implementations, with over 20 million users and $70 billion in transactions, demonstrating the potential of blockchain-based digital currencies. bakong economics cbdc soramitsu cbdc soramitsu digital currency financial inclusion cross-border payments"
@@ -306,6 +311,6 @@
       "blob": "sora card sora-card defi a decentralized debit card that allows users to spend their cryptocurrency in the real world. the sora card bridges the gap between digital assets and traditional commerce, enabling users to make purchases at any merchant that accepts card payments while maintaining the benefits of decentralized finance. sora card defi xor polkaswap cryptocurrency sora card xor polkaswap decentralized finance real-world payments cryptocurrency"
     }
   ],
-  "count": 61,
-  "lastUpdated": "2025-10-05T15:55:53.614Z"
+  "count": 62,
+  "lastUpdated": "2025-10-14T12:23:21.793Z"
 }

@@ -41,8 +41,7 @@
           "url": "https://wiki.sora.org/sora-governance.html"
         }
       ],
-      "priority": 100,
-      "foundational": true
+      "priority": 100
     },
     {
       "term": "VAL",
@@ -84,8 +83,7 @@
           "url": "https://wiki.sora.org/sora-governance.html"
         }
       ],
-      "priority": 95,
-      "foundational": true
+      "priority": 95
     },
     {
       "term": "PSWAP",
@@ -128,8 +126,7 @@
           "url": "https://polkaswap.io"
         }
       ],
-      "priority": 90,
-      "foundational": true
+      "priority": 90
     },
     {
       "term": "Polkaswap",
@@ -171,8 +168,7 @@
           "url": "https://wiki.sora.org/polkaswap.html"
         }
       ],
-      "priority": 80,
-      "foundational": true
+      "priority": 80
     },
     {
       "term": "SORA Parliament",
@@ -216,8 +212,7 @@
           "url": "https://medium.com/sora-xor/the-sora-parliament-af8184dae384"
         }
       ],
-      "priority": 75,
-      "foundational": false
+      "priority": 75
     },
     {
       "term": "Hyperledger Iroha",
@@ -256,8 +251,7 @@
           "url": "https://iroha.readthedocs.io"
         }
       ],
-      "priority": 70,
-      "foundational": false
+      "priority": 70
     },
     {
       "term": "Substrate",
@@ -293,8 +287,7 @@
           "url": "https://substrate.io"
         }
       ],
-      "priority": 65,
-      "foundational": false
+      "priority": 65
     },
     {
       "term": "Parachain",
@@ -330,8 +323,7 @@
           "url": "https://wiki.polkadot.com/learn/learn-parachains/"
         }
       ],
-      "priority": 60,
-      "foundational": false
+      "priority": 60
     },
     {
       "term": "DeFi",
@@ -365,8 +357,7 @@
           "url": "https://polkaswap.io"
         }
       ],
-      "priority": 55,
-      "foundational": true
+      "priority": 55
     },
     {
       "term": "DEX",
@@ -400,8 +391,7 @@
           "url": "https://polkaswap.io"
         }
       ],
-      "priority": 50,
-      "foundational": true
+      "priority": 50
     },
     {
       "term": "Liquidity Pool",
@@ -437,8 +427,7 @@
           "url": "https://wiki.sora.org/polkaswap.html"
         }
       ],
-      "priority": 45,
-      "foundational": false
+      "priority": 45
     },
     {
       "term": "Staking",
@@ -472,8 +461,7 @@
           "url": "https://wiki.sora.org/nominating-validators.html"
         }
       ],
-      "priority": 40,
-      "foundational": true
+      "priority": 40
     },
     {
       "term": "Validator",
@@ -507,8 +495,7 @@
           "url": "https://wiki.sora.org/nominating-validators.html"
         }
       ],
-      "priority": 35,
-      "foundational": true
+      "priority": 35
     },
     {
       "term": "Cross-chain",
@@ -540,8 +527,7 @@
           "url": "https://wiki.sora.org/polkaswap.html"
         }
       ],
-      "priority": 30,
-      "foundational": false
+      "priority": 30
     },
     {
       "term": "CBDC",
@@ -585,8 +571,51 @@
           "url": "https://soramitsu.co.jp/palau-digital-bonds"
         }
       ],
-      "priority": 25,
-      "foundational": false
+      "priority": 25
+    },
+    {
+      "term": "NFT",
+      "slug": "nft",
+      "definition": "Non-Fungible Token - a unique digital asset that represents ownership of a specific item or piece of content on the blockchain. In the SORA ecosystem, NFTs can be minted, traded, and pooled on Polkaswap, with support for both divisible and extensible supply models. NFTs can be created using IPFS links or local file uploads.",
+      "category": "technology",
+      "relatedTerms": [
+        "Polkaswap",
+        "IPFS",
+        "Digital Asset",
+        "Blockchain",
+        "Divisible",
+        "Extensible Supply"
+      ],
+      "aliases": [
+        "NFTs",
+        "Non-Fungible Token",
+        "Non-Fungible Tokens"
+      ],
+      "tags": [
+        "technology",
+        "polkaswap",
+        "ipfs",
+        "blockchain",
+        "divisible"
+      ],
+      "examples": [
+        "Digital art",
+        "Collectibles",
+        "Unique tokens",
+        "Fractional ownership",
+        "Liquidity pooling"
+      ],
+      "links": [
+        {
+          "label": "SORA Wiki - NFTs",
+          "url": "https://wiki.sora.org/nft-polkaswap.html"
+        },
+        {
+          "label": "Polkaswap Exchange",
+          "url": "https://polkaswap.io"
+        }
+      ],
+      "priority": 22
     },
     {
       "term": "Bakong",
@@ -620,8 +649,7 @@
           "url": "https://bakong.nbc.gov.kh/download/NBC_BAKONG_White_Paper.pdf"
         }
       ],
-      "priority": 20,
-      "foundational": false
+      "priority": 20
     },
     {
       "term": "SORAMITSU",
@@ -654,8 +682,7 @@
           "url": "https://soramitsu.co.jp/"
         }
       ],
-      "priority": 15,
-      "foundational": false
+      "priority": 15
     },
     {
       "term": "Polkadot",
@@ -691,8 +718,7 @@
           "url": "https://polkadot.network/"
         }
       ],
-      "priority": 10,
-      "foundational": false
+      "priority": 10
     },
     {
       "term": "Blockchain",
@@ -729,8 +755,7 @@
           "url": "https://soramitsu.co.jp/iroha"
         }
       ],
-      "priority": 5,
-      "foundational": true
+      "priority": 5
     },
     {
       "term": "TONSWAP",
@@ -788,8 +813,7 @@
           "url": "https://tonswap.org/faq"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Token Bonding Curve",
@@ -824,8 +848,7 @@
           "url": "https://wiki.sora.org/tbc.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Referendum",
@@ -856,8 +879,7 @@
           "url": "https://wiki.sora.org/sora-governance.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Elastic Supply",
@@ -893,8 +915,7 @@
           "url": "https://wiki.sora.org/tokenomics.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "SORA v3",
@@ -930,8 +951,7 @@
           "url": "https://wiki.sora.org/sora-v3.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Fujiwara Testnet",
@@ -968,8 +988,7 @@
           "url": "https://wiki.sora.org/sora-v3.html#why-the-fujiwara-testnet-matters"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Yield Farming",
@@ -1004,8 +1023,7 @@
           "url": "https://wiki.sora.org/polkaswap.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Impermanent Loss",
@@ -1044,8 +1062,7 @@
           "url": "https://cointelegraph.com/explained/what-is-impermanent-loss-and-how-to-avoid-it"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Integrated Plan",
@@ -1081,8 +1098,7 @@
           "url": "https://wiki.sora.org/integrated-plan.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Smart Contract",
@@ -1112,8 +1128,7 @@
         "Self-executing agreements"
       ],
       "links": [],
-      "priority": 1,
-      "foundational": true
+      "priority": 1
     },
     {
       "term": "Deflationary",
@@ -1147,8 +1162,7 @@
           "url": "https://wiki.sora.org/tokenomics.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Buyback-and-burn",
@@ -1181,8 +1195,7 @@
           "url": "https://wiki.sora.org/pswap.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Liquidity Aggregation",
@@ -1217,8 +1230,7 @@
           "url": "https://wiki.sora.org/polkaswap.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Smart Routing",
@@ -1253,8 +1265,7 @@
           "url": "https://wiki.sora.org/polkaswap.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Sortition",
@@ -1287,8 +1298,7 @@
           "url": "https://wiki.sora.org/sora-governance.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "HASHI",
@@ -1332,8 +1342,7 @@
           "url": "https://medium.com/polkaswap-community-collective/how-to-use-the-hashi-bridge-eb69e88bc87"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Citizenship",
@@ -1367,8 +1376,7 @@
           "url": "https://wiki.sora.org/sora-governance.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "XYK Pools",
@@ -1403,8 +1411,7 @@
           "url": "https://wiki.sora.org/polkaswap.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Financial Inclusion",
@@ -1437,8 +1444,7 @@
           "url": "https://www.japanpolicyforum.jp/economy/pt2024041523151814191.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Cross-border Payments",
@@ -1473,8 +1479,7 @@
           "url": "https://www.japanpolicyforum.jp/economy/pt2024041523151814191.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Economic Conditions",
@@ -1506,8 +1511,7 @@
           "url": "https://wiki.sora.org/tokenomics.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Parallel Processing",
@@ -1543,8 +1547,7 @@
           "url": "https://wiki.polkadot.com/learn/learn-parachains/"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Token Burning",
@@ -1581,8 +1584,7 @@
           "url": "https://wiki.sora.org/tokenomics.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Price Stability",
@@ -1614,8 +1616,7 @@
           "url": "https://wiki.sora.org/tokenomics.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "XCM",
@@ -1650,8 +1651,7 @@
           "url": "https://wiki.polkadot.network/docs/learn-crosschain"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "AMM",
@@ -1684,8 +1684,7 @@
           "url": "https://wiki.sora.org/polkaswap.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "KUSD",
@@ -1719,8 +1718,7 @@
           "url": "https://wiki.sora.org/tokenomics.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "TS",
@@ -1771,8 +1769,7 @@
           "url": "https://tonswap.org/faq"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Relay Chain",
@@ -1809,8 +1806,7 @@
           "url": "https://wiki.polkadot.network/docs/learn-architecture"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Shared Security",
@@ -1846,8 +1842,7 @@
           "url": "https://wiki.polkadot.network/docs/learn-security"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "SORA v2",
@@ -1882,8 +1877,7 @@
           "url": "https://sora.org/"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Governance",
@@ -1918,8 +1912,7 @@
           "url": "https://wiki.sora.org/sora-governance.html"
         }
       ],
-      "priority": 1,
-      "foundational": true
+      "priority": 1
     },
     {
       "term": "Democracy",
@@ -1954,8 +1947,7 @@
           "url": "https://wiki.sora.org/sora-governance.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "SORA Council",
@@ -1990,8 +1982,7 @@
           "url": "https://wiki.sora.org/sora-governance.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Council Motion",
@@ -2027,8 +2018,7 @@
           "url": "https://wiki.sora.org/sora-governance.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Polkadot Governance",
@@ -2062,8 +2052,7 @@
           "url": "https://wiki.polkadot.network/docs/learn-governance"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Liquidity",
@@ -2097,8 +2086,7 @@
           "url": "https://wiki.sora.org/polkaswap.html"
         }
       ],
-      "priority": 1,
-      "foundational": true
+      "priority": 1
     },
     {
       "term": "Trading Fees",
@@ -2134,8 +2122,7 @@
           "url": "https://wiki.sora.org/polkaswap.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Consensus",
@@ -2170,8 +2157,7 @@
           "url": "https://wiki.sora.org/"
         }
       ],
-      "priority": 1,
-      "foundational": true
+      "priority": 1
     },
     {
       "term": "Security",
@@ -2205,8 +2191,7 @@
           "url": "https://wiki.sora.org/"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "Rewards",
@@ -2241,8 +2226,7 @@
           "url": "https://wiki.sora.org/"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     },
     {
       "term": "SORA Card",
@@ -2283,8 +2267,7 @@
           "url": "https://wiki.sora.org/sora-card-kyc-tutorial.html"
         }
       ],
-      "priority": 1,
-      "foundational": false
+      "priority": 1
     }
   ],
   "categories": {
@@ -2295,7 +2278,7 @@
     },
     "technology": {
       "name": "technology",
-      "count": 10,
+      "count": 11,
       "description": "Blockchain technology, protocols, and technical concepts"
     },
     "network": {
@@ -2319,6 +2302,6 @@
       "description": "Decision-making systems and governance mechanisms"
     }
   },
-  "totalCount": 61,
-  "lastUpdated": "2025-10-05T15:55:53.614Z"
+  "totalCount": 62,
+  "lastUpdated": "2025-10-14T12:23:21.793Z"
 }
