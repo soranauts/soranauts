@@ -258,6 +258,18 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
     examples: ['Token Bonding Curve', 'Automated supply management', 'Self-executing agreements'],
     links: []
   },
+  'NFT': {
+    term: 'NFT',
+    definition: 'Non-Fungible Token - a unique digital asset that represents ownership of a specific item or piece of content on the blockchain. In the SORA ecosystem, NFTs can be minted, traded, and pooled on Polkaswap, with support for both divisible and extensible supply models. NFTs can be created using IPFS links or local file uploads.',
+    category: 'technology',
+    relatedTerms: ['Polkaswap', 'IPFS', 'Digital Asset', 'Blockchain', 'Divisible', 'Extensible Supply'],
+    examples: ['Digital art', 'Collectibles', 'Unique tokens', 'Fractional ownership', 'Liquidity pooling'],
+    aliases: ['NFTs', 'Non-Fungible Token', 'Non-Fungible Tokens'],
+    links: [
+      { label: 'SORA Wiki - NFTs', url: 'https://wiki.sora.org/nft-polkaswap.html' },
+      { label: 'Polkaswap Exchange', url: 'https://polkaswap.io' }
+    ]
+  },
   'Cross-chain': {
     term: 'Cross-chain',
     definition: 'The ability to transfer assets and data between different blockchain networks. SORA enables cross-chain functionality through bridges and interoperability protocols, allowing users to trade assets from different blockchains on Polkaswap.',

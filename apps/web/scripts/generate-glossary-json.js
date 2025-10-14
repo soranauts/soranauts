@@ -29,6 +29,7 @@ const TERM_PRIORITIES = {
   'Validator': 35,
   'Cross-chain': 30,
   'CBDC': 25,
+  'NFT': 22,
   'Bakong': 20,
   'SORAMITSU': 15,
   'Polkadot': 10,
@@ -100,7 +101,7 @@ function generateTags(term, category, relatedTerms) {
 // Process a single glossary term
 function processGlossaryTerm(term, data) {
   const slug = generateSlug(term);
-  const aliases = generateAliases(term, data.relatedTerms || []);
+  const aliases = data.aliases || generateAliases(term, data.relatedTerms || []);
   const tags = generateTags(term, data.category, data.relatedTerms || []);
   const priority = TERM_PRIORITIES[term] || 1;
   
