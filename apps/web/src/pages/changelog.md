@@ -1,7 +1,7 @@
 ---
 title: 'Changelog'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-10-14'
+lastUpdated: '2025-10-16'
 metadata:
   title: 'Changelog | Soranauts'
   description: 'Track the latest SORA ecosystem updates, new features, and website improvements on Soranauts.'
@@ -14,27 +14,18 @@ This page tracks the latest improvements and new features added to the Soranauts
 
 ## 🎉 Latest Updates (October 2025)
 
-### ✅ Recent Completions
-- **Understanding NFTs with SORA and Polkaswap**: Updated with comprehensive tags, high-value external links (Ethereum NFT Standards, IPFS documentation), enhanced frontmatter, and improved glossary integration
-- **New Glossary Term - NFT**: Added comprehensive NFT definition with aliases, examples, and SORA ecosystem integration to the glossary
-- **DeFi Protocols Explained: A Beginner's Crash Course**: Updated with comprehensive tags, high-value external links (Ethereum's DeFi guide, TON's official documentation), enhanced frontmatter, and improved SORA/TONSWAP ecosystem integration
-- **Proof of Stake vs Proof of Work: Key Differences Explained**: Updated with comprehensive tags, high-value external links (Bitcoin whitepaper, Ethereum's Merge documentation), and enhanced frontmatter for better SEO and discoverability
-- **Enhanced Glossary Auto-Linking System**: Completely redesigned auto-linking plugin with smart distribution (links spread evenly throughout articles), intelligent prioritization (foundational terms get direct page links), and optimal SEO balance (mix of direct term pages, anchor links, and category links). Each term now links once per article with natural placement.
-- **Deep Dive into XOR, VAL, and PSWAP**: Comprehensive update with enhanced structure and glossary integration
-- **Understanding Crypto Bull Markets**: Enhanced with high-quality external links and streamlined structure
-- **SORA's Token Bonding Curve Dollar (TBCD)**: Updated with latest SORA v3 information and improved readability
-- **Blog Post Update Dates**: Added update date display to blog preview cards for better content transparency
-- **Best Decentralized Exchanges (DEXs)**: Updated with TONSWAP integration, enhanced SEO, and official SORA wiki links
-- **SORA Glossary**: 60+ comprehensive terms with instant search, category filtering, and smart tooltips
-- **Smart Search**: Full-site search with proper categorization between articles and glossary terms
-- **Related Articles**: AI-powered recommendations based on content analysis and shared tags
+### ✅ Recent Major Updates
+- **Collapsible FAQs**: Implemented native HTML collapsible FAQs across articles with smooth animations and site-consistent red theming
+- **IPFS Glossary Term**: Added comprehensive IPFS definition to the SORA glossary with proper search indexing and auto-linking
+- **Understanding the Difference Between Blockchain and DeFi**: Comprehensive rewrite with enhanced structure, SORA-specific content, and collapsible FAQs
+- **Understanding NFTs with SORA and Polkaswap**: Major content enhancement with improved structure, expanded technical details, and better glossary integration
+- **Enhanced Link Management**: Fixed internal links to use proper relative paths instead of absolute URLs for better maintainability
 
-### ✅ Core Features
-- **Enhanced Navigation**: Streamlined menu flow and improved internal linking system
-- **Performance Optimization**: Faster loading times with optimized images and efficient caching
-- **Mobile-First Design**: Seamless experience across all devices and screen sizes
-- **SEO Excellence**: Comprehensive meta tags, structured data, and search engine optimization
-- **Content Management**: Systematic article updates with improved templates and quality standards
+### ✅ Technical Improvements
+- **FAQ Styling System**: Added global CSS for collapsible FAQs with red accent colors matching site theme
+- **Glossary Auto-Linking**: Enhanced system with strategic term placement for better user experience
+- **Content Structure**: Improved article organization with TL;DR sections, comparison tables, and comprehensive FAQs
+- **SEO Optimization**: Updated excerpts and metadata for better search engine visibility
 
 ## 🚀 Roadmap & Future Features
 
@@ -67,7 +58,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 - [x] **The Differences Between Proof of Stake vs. Proof of Work Algorithms** (2023-11-24) - *✅ COMPLETED - Updated with comprehensive tags, high-value external links (Bitcoin whitepaper, Ethereum's Merge), and enhanced frontmatter*
 - [x] **The Power of DeFi Protocols - A Beginner's Crash Course & Guide** (2023-11-25) - *✅ COMPLETED - Updated with comprehensive tags, high-value external links (Ethereum's DeFi guide, TON docs), and enhanced frontmatter*
 - [x] **Understanding NFTs with SORA and Polkaswap** (2023-11-26) - *✅ COMPLETED - Updated with comprehensive tags, high-value external links (Ethereum NFT Standards, IPFS), and enhanced frontmatter*
-- [ ] **A Guide to Understanding The Difference Between Blockchain And DeFi** (2023-11-28)
+- [x] **Understanding the Difference Between Blockchain and DeFi** (2023-11-28) - *✅ COMPLETED - Comprehensive rewrite with enhanced structure, SORA-specific content, and collapsible FAQs*
 - [ ] **Soramitsu and Central Bank of Solomon Islands Partner for CBDC** (2023-11-29)
 - [ ] **Why Cryptocurrencies Are Embracing Rust Programming on Blockchain** (2023-12-13)
 - [ ] **The Ultimate Guide To Asset Tokenization In Crypto & Blockchain** (2023-12-16)
@@ -127,4 +118,4 @@ For each article, verify and update:
 
 ---
 
-*Last updated: October 14, 2025*
+*Last updated: October 16, 2025*

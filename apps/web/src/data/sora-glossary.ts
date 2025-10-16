@@ -81,6 +81,18 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
       { label: 'Polkadot Parachains Guide', url: 'https://wiki.polkadot.com/learn/learn-parachains/' }
     ]
   },
+  'IPFS': {
+    term: 'IPFS',
+    definition: 'InterPlanetary File System - a peer-to-peer distributed file system that provides decentralized, content-addressed storage for digital assets. IPFS uses cryptographic hashing to create unique identifiers for files, ensuring data integrity and permanent accessibility. In the SORA ecosystem, IPFS is crucial for storing NFT metadata, images, and other digital assets in a censorship-resistant manner.',
+    category: 'technology',
+    relatedTerms: ['NFT', 'Decentralized Storage', 'Metadata', 'Content Addressing', 'Blockchain', 'Digital Assets'],
+    examples: ['NFT image storage', 'Decentralized hosting', 'Metadata storage', 'Content distribution'],
+    aliases: ['IPFS', 'InterPlanetary File System'],
+    links: [
+      { label: 'IPFS Documentation', url: 'https://docs.ipfs.tech/' },
+      { label: 'IPFS Protocol', url: 'https://ipfs.tech/' }
+    ]
+  },
 
   // DeFi Terms
   'Polkaswap': {

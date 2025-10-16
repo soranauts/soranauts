@@ -29,6 +29,7 @@ const TERM_PRIORITIES = {
   'Validator': 35,
   'Cross-chain': 30,
   'CBDC': 25,
+  'IPFS': 25,
   'NFT': 22,
   'Bakong': 20,
   'SORAMITSU': 15,
