@@ -71,14 +71,14 @@
       "blob": "cross-chain cross-chain technology the ability to transfer assets and data between different blockchain networks. sora enables cross-chain functionality through bridges and interoperability protocols, allowing users to trade assets from different blockchains on polkaswap. cross-chain technology polkaswap bridges polkaswap bridges interoperability blockchain networks"
     },
     {
+      "slug": "ipfs",
+      "priority": 25,
+      "blob": "ipfs ipfs technology interplanetary file system - a peer-to-peer distributed file system that provides decentralized, content-addressed storage for digital assets. ipfs uses cryptographic hashing to create unique identifiers for files, ensuring data integrity and permanent accessibility. in the sora ecosystem, ipfs is crucial for storing nft metadata, images, and other digital assets in a censorship-resistant manner. ipfs technology nft metadata blockchain nft decentralized storage metadata content addressing blockchain digital assets"
+    },
+    {
       "slug": "cbdc",
       "priority": 25,
       "blob": "cbdc cbdc economics central bank digital currency - a digital form of a country's fiat currency issued by the central bank. soramitsu has successfully deployed multiple cbdcs including cambodia's bakong (8.5m users, $15.5m in payments), lao cbdc pilot, and fiji cbdc exploration. these blockchain-based systems enable financial inclusion, cross-border remittances, and interoperable digital payments. cbdc economics soramitsu bakong soramitsu bakong digital currency central bank financial inclusion cross-border payments"
-    },
-    {
-      "slug": "nft",
-      "priority": 22,
-      "blob": "nft nft technology non-fungible token - a unique digital asset that represents ownership of a specific item or piece of content on the blockchain. in the sora ecosystem, nfts can be minted, traded, and pooled on polkaswap, with support for both divisible and extensible supply models. nfts can be created using ipfs links or local file uploads. nfts non-fungible token non-fungible tokens technology polkaswap ipfs blockchain divisible polkaswap ipfs digital asset blockchain divisible extensible supply"
     },
     {
       "slug": "bakong",
@@ -149,6 +149,11 @@
       "slug": "smart-contract",
       "priority": 1,
       "blob": "smart contract smart-contract technology self-executing contracts with the terms of the agreement directly written into code. in sora, smart contracts like the token bonding curve automatically manage token supply and economic parameters without human intervention. smart contract technology automation code blockchain smart contract token bonding curve automation code blockchain"
+    },
+    {
+      "slug": "nft",
+      "priority": 1,
+      "blob": "nft nft technology non-fungible token - a unique digital asset that represents ownership of a specific item or piece of content on the blockchain. in the sora ecosystem, nfts can be minted, traded, and pooled on polkaswap, with support for both divisible and extensible supply models. nfts can be created using ipfs links or local file uploads. nft technology polkaswap ipfs blockchain divisible polkaswap ipfs digital asset blockchain divisible extensible supply"
     },
     {
       "slug": "deflationary",
@@ -311,6 +316,6 @@
       "blob": "sora card sora-card defi a decentralized debit card that allows users to spend their cryptocurrency in the real world. the sora card bridges the gap between digital assets and traditional commerce, enabling users to make purchases at any merchant that accepts card payments while maintaining the benefits of decentralized finance. sora card defi xor polkaswap cryptocurrency sora card xor polkaswap decentralized finance real-world payments cryptocurrency"
     }
   ],
-  "count": 62,
-  "lastUpdated": "2025-10-14T12:23:21.793Z"
+  "count": 63,
+  "lastUpdated": "2025-10-15T15:26:15.990Z"
 }

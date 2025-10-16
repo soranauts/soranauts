@@ -115,3 +115,35 @@
 .dd *:first-child {
   margin-top: 0;
 }
+
+/* FAQ Collapsible Styling */
+details {
+  @apply border-b border-gray-700/30 py-4 transition-all duration-200;
+}
+
+details summary {
+  @apply cursor-pointer font-semibold text-lg flex justify-between items-center;
+  @apply hover:text-red-500 transition-colors duration-200;
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::after {
+  content: "▼";
+  @apply text-sm text-gray-500 transition-transform duration-200;
+}
+
+details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+details[open] summary {
+  @apply text-red-600 mb-3;
+}
+
+details > *:not(summary) {
+  @apply text-gray-300 leading-relaxed;
+}
