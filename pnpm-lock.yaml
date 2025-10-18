@@ -103,6 +103,9 @@ importers:
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
+      unist-util-visit-parents:
+        specifier: ^6.0.2
+        version: 6.0.2
       unpic:
         specifier: ^4.1.3
         version: 4.1.3
@@ -3629,8 +3632,8 @@ packages:
   unist-util-visit-children@3.0.0:
     resolution: {integrity: sha512-RgmdTfSBOg04sdPcpTSD1jzoNBjt9a80/ZCzp5cI9n1qPzLZWF9YdvWGN2zmTumP1HWhXKdUWexjy/Wy/lJ7tA==}
 
-  unist-util-visit-parents@6.0.1:
-    resolution: {integrity: sha512-L/PqWzfTP9lzzEa6CKs0k2nARxTdZduw3zyh8d2NVBnsyvHjSX4TWse388YrrQKbvI8w20fGjGlhgT96WwKykw==}
+  unist-util-visit-parents@6.0.2:
+    resolution: {integrity: sha512-goh1s1TBrqSqukSc8wrjwWhL0hiJxgA8m4kFxGlQ+8FYQ3C/m11FcTs4YYem7V664AhHVvgoQLk890Ssdsr2IQ==}
 
   unist-util-visit@5.0.0:
     resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
@@ -4202,7 +4205,7 @@ snapshots:
       unified: 11.0.5
       unist-util-remove-position: 5.0.0
       unist-util-visit: 5.0.0
-      unist-util-visit-parents: 6.0.1
+      unist-util-visit-parents: 6.0.2
       vfile: 6.0.3
     transitivePeerDependencies:
       - supports-color
@@ -6827,7 +6830,7 @@ snapshots:
       '@types/mdast': 4.0.4
       escape-string-regexp: 5.0.0
       unist-util-is: 6.0.0
-      unist-util-visit-parents: 6.0.1
+      unist-util-visit-parents: 6.0.2
 
   mdast-util-from-markdown@2.0.2:
     dependencies:
@@ -8167,7 +8170,7 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  unist-util-visit-parents@6.0.1:
+  unist-util-visit-parents@6.0.2:
     dependencies:
       '@types/unist': 3.0.3
       unist-util-is: 6.0.0
@@ -8176,7 +8179,7 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       unist-util-is: 6.0.0
-      unist-util-visit-parents: 6.0.1
+      unist-util-visit-parents: 6.0.2
 
   unpic@4.1.3: {}
 
