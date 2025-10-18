@@ -4,69 +4,77 @@ layout: '~/layouts/MarkdownLayout.astro'
 lastUpdated: '2025-09-12'
 ---
 
-We’re your guides into the evolving world of Web3, with a focus on SORA, Polkaswap, and the tools shaping a fair and decentralized economy. Our mission is to make these technologies approachable, practical, and exciting—not just for experts, but for anyone ready to explore.
+We’re explorers of the decentralized frontier — your guides into the evolving world of Web3, SORA, and Polkaswap.  
+Our mission is simple: make the next era of digital finance **approachable, practical, and inspiring** for everyone — not just the technically fluent.
 
 ---
 
 ## Our Mission
 
-SORA is pioneering a new kind of blockchain economy: one that is self-sustaining, governed by the community, and built to empower people everywhere. But with all the jargon, technical layers, and hype cycles, it can be hard to see what’s real and why it matters.
+SORA is pioneering a new kind of blockchain economy: **self-sustaining, community-governed, and designed to empower people everywhere.**  
 
-That’s why we’re here. We want to:
+But with all the jargon, noise, and hype cycles, understanding what’s real — and why it matters — isn’t always easy.  
+That’s why Soranauts exists. We help you:
 
 - Demystify SORA, Polkaswap, and decentralized finance  
-- Translate complex concepts into clear, useful knowledge  
-- Help real users—not just observers—understand and participate in the SORA ecosystem  
+- Translate complex ideas into clear, actionable knowledge  
+- Move from curious observer to active participant in the SORA ecosystem  
 
 ---
 
 ## What We Do
 
-We create educational resources for people at every stage of their journey. You’ll find:
+We create accessible resources for every stage of your Web3 journey.  
+You’ll find:
 
-- Step-by-step guides (wallets, bridging, staking, pool participation, etc.)  
-- Explanations of new innovations (governance models, token economics, SORA Card, KUSD, and more)  
-- Up-to-date coverage of ecosystem projects and their global impact  
-- Practical tips so you can use tools safely and effectively  
+- Step-by-step guides for wallets, bridging, staking, and liquidity pools  
+- Deep dives into innovations like governance, tokenomics, SORA Card, and KUSD  
+- Up-to-date insights on ecosystem projects and their real-world impact  
+- Practical safety and usage tips so you can participate confidently  
 
-We also explore broader Web3 topics—like decentralized identity, digital ownership, sustainable economics, and DAOs—and how they connect to SORA’s mission.
+Beyond SORA itself, we explore the broader Web3 landscape — from decentralized identity and DAOs to sustainable digital economies — showing how these ideas all connect.
 
 ---
 
 ## Why SORA and Polkaswap?
 
-With the launch of **SORA v3**, the network now runs independently on **Hyperledger Iroha**, no longer relying on Polkadot or Kusama parachains. This upgrade strengthens SORA’s unique vision: a decentralized, community-governed economy with the tools to scale globally.
+With the launch of **SORA v3**, the network now operates on **Hyperledger Iroha**, fully independent from Polkadot and Kusama parachains.  
+This marks a milestone for SORA: a **self-governing, scalable, and sovereign blockchain economy.**
 
-At the center of this vision is **Polkaswap**, a non-custodial decentralized exchange that enables trading, liquidity, and cross-chain interoperability. While SORA maintains bridges to other ecosystems—including Polkadot and Ethereum—we’re focused on building a strong, self-sustaining network of our own.
+At the center stands **Polkaswap** — a non-custodial decentralized exchange enabling secure, cross-chain liquidity and trading.  
+While SORA maintains bridges to Polkadot, Ethereum, and beyond, its focus is on building a **robust, interoperable economy of its own.**
 
-These aren’t just radical ideas—they’re real infrastructure, and they’re maturing fast. We’ll help you see how they work, why they matter, and how you can take part.
+These aren’t theoretical projects — they’re living systems that evolve daily.  
+We’re here to show how they work, why they matter, and how you can take part.
 
 ---
 
-## Beyond Just Tech
+## Beyond the Technology
 
-We believe Web3 isn’t only about code and tokens. It’s also about people, culture, and values. That’s why we explore:
+Web3 isn’t just about code or tokens — it’s about **people, values, and change.**  
+That’s why we explore:
 
-- Community governance through DAOs  
-- How digital ownership is reshaping culture, media, and access  
-- Privacy, security, and ethics in decentralized systems  
-- How blockchain tools impact emerging markets and underserved communities  
+- Decentralized governance and the rise of DAOs  
+- How digital ownership is reshaping art, media, and access  
+- Ethics, privacy, and autonomy in decentralized systems  
+- Real-world impacts in emerging markets and underserved communities  
+
+We believe the next generation of finance should be **open, fair, and built by everyone — together.**
 
 ---
 
 ## Join Us
 
-Curiosity is enough to begin. Whether you're just Web3-curious or already building in the ecosystem, you're welcome here.  
+Curiosity is all you need to start. Whether you’re Web3-curious or already building within the ecosystem, you’re part of this movement.  
 
-Follow our blog, join our community channels, share your ideas, and help shape a better, more inclusive financial future with SORA.
+Follow our blog, join our channels, share your insights, and help shape a more inclusive financial future with SORA.
 
 ### Connect With Us
 
-Join our [Soranauts Telegram community](https://t.me/Soranauts) to:
-- Get real-time updates on SORA ecosystem developments
-- Ask questions and get help from the community
-- Share your experiences and insights
-- Connect with other SORA enthusiasts and builders
+Join the [Soranauts Telegram community](https://t.me/Soranauts) to:  
+- Get real-time updates on SORA and Polkaswap  
+- Ask questions and get help from others  
+- Share your experiences and ideas  
+- Connect with builders, creators, and fellow explorers  
 
-Our Telegram chat is an active space where we discuss the latest in SORA, Polkaswap, and the broader Web3 ecosystem. Whether you're new to SORA or a seasoned participant, you'll find valuable conversations and support.
-
+Our chat is a welcoming, active hub for all things SORA and Web3 — a space to learn, collaborate, and grow.
