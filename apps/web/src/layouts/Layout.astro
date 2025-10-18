@@ -71,5 +71,25 @@ const { language, textDirection } = I18N;
         content-visibility: auto;
       }
     </style>
+
+    <!-- Remove glossary links from FAQ summaries to fix spacing issues -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Find all FAQ summaries and remove glossary links from them
+        document.querySelectorAll('details > summary a.glossary-term, details p summary a.glossary-term').forEach(link => {
+          // Replace the link with just the text content, preserving any surrounding whitespace
+          const textNode = document.createTextNode(link.textContent);
+          link.parentNode.replaceChild(textNode, link);
+        });
+        
+        // Ensure proper flex layout for FAQ summaries after link removal
+        document.querySelectorAll('details > summary, details p summary').forEach(summary => {
+          summary.style.display = 'flex';
+          summary.style.alignItems = 'center';
+          summary.style.justifyContent = 'space-between';
+          summary.style.width = '100%';
+        });
+      });
+    </script>
   </body>
 </html>

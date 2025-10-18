@@ -286,3 +286,34 @@ h6 .glossary-tip {
   padding: 0.25rem;
   margin: -0.25rem;
 }
+
+/* FAQ Summary Spacing Fix */
+/* Base styling for FAQ summaries - will be enhanced by JavaScript */
+details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+/* Ensure chevrons stay on the right side */
+details > summary svg,
+details > summary .chevron,
+details > summary [data-faq-chevron] {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Ensure text content can wrap properly */
+details > summary > *:not(svg):not(.chevron):not([data-faq-chevron]) {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Ensure glossary links in FAQ summaries don't break layout */
+details > summary .glossary-term,
+details p summary .glossary-term {
+  display: inline;
+  margin: 0;
+}
