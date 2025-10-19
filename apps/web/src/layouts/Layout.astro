@@ -53,6 +53,9 @@ const { language, textDirection } = I18N;
     <SchemaMarkup type="website" data={{}} />
     <SchemaMarkup type="organization" data={{}} />
 
+    <!-- ✅ Canonical Tag -->
+    <link rel="canonical" href={new URL(Astro.url.pathname, SITE.site).toString()} />
+
     <!-- Uncomment line below to activate View Transitions -->
     <!-- <ViewTransitions fallback="swap" /> -->
   </head>

@@ -1,7 +1,7 @@
 ---
 title: 'Changelog'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-10-18'
+lastUpdated: '2025-10-19'
 metadata:
   title: 'Changelog | Soranauts'
   description: 'Track the latest SORA ecosystem updates, new features, and website improvements on Soranauts.'
@@ -30,7 +30,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 ## 🚀 Roadmap & Future Features
 
 ### 🔄 In Development
-- **Content Optimization**: Systematic updates to 2023-2024 articles using enhanced templates (4/17 Priority 1 articles completed)
+- **Content Optimization**: Systematic updates to 2023-2024 articles using enhanced templates (13/17 Priority 1 articles completed)
 - **Glossary Expansion**: Adding more SORA ecosystem terms and cross-references
 - **Performance Monitoring**: Real-time analytics and user engagement tracking
 - **Technical Improvements**: Ongoing bug fixes and system optimizations
@@ -65,7 +65,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 - [x] **Bitcoin Market Cycles Explained** (2023-12-17) - *✅ COMPLETED - Renamed from "Bitcoin's (BTC) Price Prediction - 2024 - 2025 Crypto Bull Run", enhanced with internal/external links, collapsible FAQs, improved tags, and canonical URL*
 - [x] **Why SORA Blockchain is a New World Economic Order** (2023-12-18) - *✅ COMPLETED - Enhanced with collapsible FAQs, expanded tags (17 total), strategic internal/external links, and comprehensive SORA ecosystem coverage*
 - [x] **Apollo Protocol SORA Network** (2023-12-20) - *✅ COMPLETED - Enhanced with collapsible FAQs (11 total), expanded tags (12 total), strategic internal/external links, and comprehensive DeFi coverage*
-- [ ] **Understanding Parachains - Your Guide to Polkadot & Kusama Networks** (2023-12-21)
+- [x] **Polkadot & Kusama Parachains Explained: The Complete Guide** (2023-12-21) - *✅ COMPLETED - Comprehensive 2025 rewrite with technical accuracy updates (asynchronous backing, coretime, OpenGov), collapsible FAQs, strategic external links, and authoritative tone*
 - [ ] **Understanding SORA's (XOR) Token Supply: A Simple Explanation** (2023-12-25)
 
 ### Priority 2: 2024 Early Articles - UPDATE SECOND
@@ -118,4 +118,4 @@ For each article, verify and update:
 
 ---
 
-*Last updated: October 18, 2025*
+*Last updated: October 19, 2025*

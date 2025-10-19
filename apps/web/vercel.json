@@ -24,6 +24,11 @@
       "source": "/bitcoin-price-prediction-2024-2025-bull-run",
       "destination": "/bitcoin-market-cycles-explained",
       "permanent": true
+    },
+    {
+      "source": "/understanding-parachains-kusama-polkadot-guide",
+      "destination": "/polkadot-kusama-parachains",
+      "permanent": true
     }
   ]
 }
