@@ -75,9 +75,10 @@ function getOgManifest() {
   return ogManifest as Record<string, string>;
 }
 
-const pathname = String(Astro.url.pathname).replace(/^\/+|\/+$/g, '');
+const rawPath = String(Astro.url.pathname);
+const manifestKey = rawPath === '/' ? '/' : rawPath.replace(/\/+$/, '');
 const manifest = getOgManifest();
-const ogPath = manifest[pathname] || manifest.default;
+const ogPath = manifest[manifestKey] || manifest.default;
 if (!seoProps.openGraph?.images || seoProps.openGraph.images.length === 0) {
   seoProps.openGraph = {
     ...seoProps.openGraph,

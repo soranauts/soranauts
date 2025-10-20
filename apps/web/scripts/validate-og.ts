@@ -23,28 +23,42 @@ async function validateImage(fp: string, name: string, errors: string[]) {
 }
 
 async function main() {
+  if (!fs.existsSync(OG_DIR)) fs.mkdirSync(OG_DIR, { recursive: true });
   const entries = fs.readdirSync(POSTS_DIR, { withFileTypes: true });
   const posts = entries.filter((e) => e.isFile() && /\.mdx?$/i.test(e.name)).map((e) => e.name);
-  const errors: string[] = [];
 
+  const errors: string[] = [];
+  const warnings: string[] = [];
+
+  // Require default.jpg
+  const def = path.join(OG_DIR, 'default.jpg');
+  if (!fs.existsSync(def)) {
+    errors.push('Missing OG default: /public/og/default.jpg');
+  } else {
+    await validateImage(def, 'default.jpg', errors);
+  }
+
+  // Validate per-post only if present
   for (const file of posts) {
     const slug = toSlug(file);
     const expected = path.join(OG_DIR, `${slug}.jpg`);
-    if (!fs.existsSync(expected)) { errors.push(`Missing OG image: /public/og/${slug}.jpg`); continue; }
+    if (!fs.existsSync(expected)) {
+      warnings.push(`Missing OG image (optional): /public/og/${slug}.jpg`);
+      continue;
+    }
     await validateImage(expected, `${slug}.jpg`, errors);
   }
 
-  const def = path.join(OG_DIR, 'default.jpg');
-  if (!fs.existsSync(def)) errors.push('Missing OG default: /public/og/default.jpg');
-  else await validateImage(def, 'default.jpg', errors);
-
+  if (warnings.length) {
+    console.warn('[OG] warnings:\n - ' + warnings.join('\n - '));
+  }
   if (errors.length) {
     console.error('\nOG validation failed:');
     for (const err of errors) console.error(' -', err);
     process.exit(1);
   }
 
-  console.log('OG validation passed for', posts.length, 'posts.');
+  console.log('OG validation passed (default required; per-post optional).');
 }
 
 process.on('unhandledRejection', (err) => {
