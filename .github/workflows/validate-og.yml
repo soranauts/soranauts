@@ -1,0 +1,16 @@
+name: Validate OG Images
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Validate OGs
+        working-directory: apps/web
+        run: pnpm run prebuild

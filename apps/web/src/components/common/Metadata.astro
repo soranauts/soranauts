@@ -1,5 +1,6 @@
 ---
 import merge from 'lodash.merge';
+import fs from 'node:fs';
 import { AstroSeo } from '@astrolib/seo';
 
 import type { Props as AstroSeoProps } from '@astrolib/seo';
@@ -63,6 +64,26 @@ const seoProps: AstroSeoProps = merge(
     twitter: twitter,
   }
 );
+
+// Resolve default OG image via manifest only when a page doesn't provide images
+let ogManifest: Record<string, string> | undefined;
+function getOgManifest() {
+  if (!ogManifest) {
+    const manifestPath = new URL('../../../../public/og/manifest.json', import.meta.url);
+    ogManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8')) as Record<string, string>;
+  }
+  return ogManifest as Record<string, string>;
+}
+
+const pathname = String(Astro.url.pathname).replace(/^\/+|\/+$/g, '');
+const manifest = getOgManifest();
+const ogPath = manifest[pathname] || manifest.default;
+if (!seoProps.openGraph?.images || seoProps.openGraph.images.length === 0) {
+  seoProps.openGraph = {
+    ...seoProps.openGraph,
+    images: [{ url: `${SITE.site}${ogPath}`, width: 1200, height: 630 }],
+  };
+}
 ---
 
 <AstroSeo {...{ ...seoProps, openGraph: await adaptOpenGraphImages(seoProps?.openGraph, Astro.site) }} />
