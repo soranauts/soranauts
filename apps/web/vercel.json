@@ -12,6 +12,18 @@
   ],
   "redirects": [
     {
+      "source": "/soramitsu-sora-polkaswap{/}?",
+      "has": [{ "type": "host", "value": "www.soranauts.com" }],
+      "destination": "https://soranauts.com/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.soranauts.com" }],
+      "destination": "https://soranauts.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/top-decentralized-exchanges-crypto-trading",
       "destination": "/best-decentralized-exchanges-dexs",
       "permanent": true
@@ -23,6 +35,11 @@
     },
     {
       "source": "/soramitsu-sora-polkaswap",
+      "destination": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
+      "permanent": true
+    },
+    {
+      "source": "/soramitsu-sora-polkaswap/",
       "destination": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
       "permanent": true
     },

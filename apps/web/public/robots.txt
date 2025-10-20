@@ -2,6 +2,7 @@ User-agent: *
 Disallow:
 
 Sitemap: https://soranauts.com/sitemap.xml
+Sitemap: https://soranauts.com/sitemap-index.xml
 
 User-agent: Twitterbot
 Allow: /
