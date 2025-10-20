@@ -1,5 +1,4 @@
 {
-  "compression": true,
   "headers": [
     {
       "source": "/og/(.*)\\.(jpg|jpeg|png)",
