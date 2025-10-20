@@ -69,7 +69,7 @@ const seoProps: AstroSeoProps = merge(
 let ogManifest: Record<string, string> | undefined;
 function getOgManifest() {
   if (!ogManifest) {
-    const manifestPath = new URL('../../../../public/og/manifest.json', import.meta.url);
+    const manifestPath = new URL('../../../public/og/manifest.json', import.meta.url);
     ogManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8')) as Record<string, string>;
   }
   return ogManifest as Record<string, string>;
