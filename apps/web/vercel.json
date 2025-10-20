@@ -1,4 +1,15 @@
 {
+  "compression": true,
+  "headers": [
+    {
+      "source": "/og/(.*)\\.(jpg|jpeg|png)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800, immutable" },
+        { "key": "Accept-Ranges", "value": "bytes" },
+        { "key": "Timing-Allow-Origin", "value": "*" }
+      ]
+    }
+  ],
   "redirects": [
     {
       "source": "/top-decentralized-exchanges-crypto-trading",
