@@ -1,6 +1,7 @@
 ---
 import merge from 'lodash.merge';
 import fs from 'node:fs';
+import path from 'node:path';
 import { AstroSeo } from '@astrolib/seo';
 
 import type { Props as AstroSeoProps } from '@astrolib/seo';
@@ -69,7 +70,7 @@ const seoProps: AstroSeoProps = merge(
 let ogManifest: Record<string, string> | undefined;
 function getOgManifest() {
   if (!ogManifest) {
-    const manifestPath = new URL('../../../public/og/manifest.json', import.meta.url);
+    const manifestPath = path.join(process.cwd(), 'public', 'og', 'manifest.json');
     ogManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8')) as Record<string, string>;
   }
   return ogManifest as Record<string, string>;
