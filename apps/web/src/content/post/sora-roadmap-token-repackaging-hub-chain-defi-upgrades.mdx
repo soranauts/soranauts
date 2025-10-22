@@ -1,149 +1,199 @@
 ---
 publishDate: 2025-06-08T00:00:00Z
-title: "SORA Roadmap: Token Repackaging, Hub-Chain, DeFi Upgrades"
-excerpt: "SORA Update #87 unveils 100× token redenomination, hub-chain testnet, Polkaswap multi-sig, and SORA Card euro swaps—plus fresh tools for builders."
+updateDate: 2025-10-22T00:00:00Z
+title: "SORA Roadmap: Token Repackaging, Hub-Chain, and DeFi Upgrades"
+excerpt: "SORA Update #87 highlights the 100× token change, Hub-Chain progress, Polkaswap multi-sig, SORA Card euro swaps, and builder updates."
 image: ~/assets/images/sora-roadmap-token-repackaging-hub-chain-defi-upgrades.jpg
 category: "SORA Ecosystem"
 canonicalURL: https://soranauts.com/sora-roadmap-token-repackaging-hub-chain-defi-upgrades
+tags:
+  - SORA
+  - XOR
+  - token repackaging
+  - Hub-Chain
+  - Fujiwara Testnet
+  - Polkaswap
+  - SORA Card
+  - DeFi
+  - governance
+  - Hyperledger Iroha
 ---
 
-## TL;DR <a id="tldr"></a>  
-* **100 × token repackaging** is live on the [SORA network](https://sora.org) — balances auto-convert when bridged in.  
-* **Hub-Chain architecture** and the public **Fujiwara testnet** keep SORA V3 on schedule; validators wanted.  
-* **[Polkaswap](https://polkaswap.io)** now supports **multi-signature swaps** with time-locked expiry.  
-* **[SORA Card](https://soracard.com)** enables instant crypto ↔ EUR swaps; XOR pair next.  
-* Builders get fresh releases from **ADAR**, **Ceres**, **Demeter**, **Palmatrix**, and **TONSWAP**.  
-* Real-world pilots grow: Palau blockchain bonds & PNG CBDC trial.  
+## TL;DR
+* **100× token repackaging** is live on the [SORA network](https://sora.org) — balances auto-convert when bridged in.  
+* **Hub-Chain architecture** and the **Fujiwara testnet** push SORA v3 forward, expanding interoperability and validator testing.  
+* **Polkaswap** introduces **multi-signature swaps** with time-locked expiry.  
+* **[SORA Card](https://soracard.com)** enables instant crypto ↔ EUR swaps — XOR pair coming soon.  
+* Builders gain new tools from **Ceres**, **Demeter**, **TONSWAP**, and the **SORA RFP Board**.  
+* Real-world pilots grow: Palau blockchain bonds and PNG CBDC trial.  
+
+> 🪙 **Latest Network Update (October 2025):**  
+> The SORA Network has since completed its **1 : 1,000,000 denomination update** and launched **version 4.7.1**, which reduced transaction fees and improved validator synchronization.  
+> For full details, read  
+> **[Understanding SORA’s (XOR) Token Supply Explained](/sora-xor-token-supply-explained).**
+
+> 📘 **Source:** [SORA Ecosystem Update #87 — Official Medium Post](https://medium.com/sora-xor/sora-ecosystem-updates-87-may-33-2025-953d81e47581)
 
 ---
 
-## 1. 100 × Token Repackaging — Why It Matters <a id="1-100-token-repackaging--why-it-matters"></a>  
-The community-approved referendum re-denominates every **100 XOR → 1 XOR** and **100 TBC → 1 TBCD**. The change only affects assets *inside* the SORA network; legacy tokens on Ethereum or other chains convert automatically when bridged in.  
+## 1. 100× Token Repackaging — Why It Matters
+The community-approved referendum redenominated every **100 XOR → 1 XOR** and **100 TBC → 1 TBCD**.  
+The change only affected assets *inside* the SORA network; legacy tokens on Ethereum or other chains convert automatically when bridged in.  
 
-**Quick Start**  
+**Quick Start**
 1. Bridge legacy XOR into SORA.  
-2. Watch your balance shrink (digit-wise) while value stays the same.  
-3. Enjoy fewer fat-finger mistakes.  
+2. Watch your displayed balance shrink (digit-wise) while value stays the same.  
+3. Enjoy fewer decimal headaches when trading or sending.  
 
-For a deeper dive, see *“Understanding the TBCD and Its Role in the SORA Ecosystem”* on Medium.  
+For a deeper dive, see [Understanding the TBCD and Its Role in the SORA Ecosystem](/soras-token-bonding-curve-dollar-tbcd-explained).
 
 ---
 
-## 2. Hub-Chain Architecture — The Rails of SORA V3 <a id="2-hub-chain-architecture--the-rails-of-sora-v3"></a>  
-[SORA V3](https://soranauts.com/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future) pivots around a **hub-chain** that lets central banks, governments, and permissionless dApps interoperate on neutral ground:  
+## 2. Hub-Chain Architecture — The Rails of SORA v3
+[SORA v3](/sora-v3-blockchain-innovations-at-the-sora-economic-forum-2024) centers on a **Hub-Chain** that allows central banks, institutions, and permissionless dApps to interoperate on neutral ground.  
+
+For a deeper architectural overview, see the **SORA Wiki: Hub-Chain** (`https://wiki.sora.org/sora-v3`).
 
 | Benefit | Why It Matters |
-|---------|---------------|
-| **Resilience** | Economic activity isn’t bottlenecked by any single country’s infra. |
-| **Local sovereignty** | Each participant keeps policy control at the edge. |
+|----------|----------------|
+| **Resilience** | Economic activity isn’t bottlenecked by a single national infrastructure. |
+| **Local sovereignty** | Each participant maintains independent policy control at the edge. |
 | **Inter-network plumbing** | Asset creation, private transfers, and cross-chain swaps come standard. |
 
-> “The Palau blockchain savings-bond project shows how decentralized tech can bring **efficiency, security, and transparency** to national economies. By working with governments, we’re taking big steps toward financial accessibility for everyone.” — **Dr. Makoto Takemiya, Co-Founder of SORAMITSU**
+> “The Palau blockchain savings-bond project shows how decentralized tech can bring **efficiency, security, and transparency** to national economies. By working with governments, we’re taking big steps toward financial accessibility for everyone.” — **Dr. Makoto Takemiya**, Co-Founder of SORAMITSU
 
 ---
 
-## 3. Fujiwara Testnet — Hands-On With the Future <a id="3-fujiwara-testnet--hands-on-with-the-future"></a>  
-The public **Fujiwara** testnet rebuilds weekly. Spinning up a one-node validator takes about ten minutes:
+## 3. Fujiwara Testnet — Hands-On With the Future
+The **Fujiwara Testnet** serves as the proving ground for SORA v3’s Hub-Chain and Hyperledger Iroha 2 integration.  
+It allows developers and early validators to test new transaction logic, governance modules, and interoperability bridges in a sandboxed environment.  
 
-1. `git clone https://github.com/sora-xor/fujiwara`  
-2. `cd fujiwara && ./bootstrap.sh`  
-3. `sora --validator --name YOUR_NODE`  
+Fujiwara is **not rebuilt weekly** and **no longer uses manual bootstrap scripts**.  
+Participation is coordinated through the official [SORA Wiki](https://wiki.sora.org) and community governance channels, where public validator access will be announced. For underlying ledger details, review **Hyperledger Iroha 2 docs** (`https://iroha.readthedocs.io/`).
 
-**Validator Checklist**  
-* 4 vCPUs, 8 GB RAM, 200 GB SSD  
-* Static IP with P2P ports open  
-* Daily log snapshots to spot consensus hiccups  
+**Key Goals**
+- Validate Hub-Chain message-passing and subnet configuration.  
+- Test Iroha 2-based accounting precision and multi-asset handling.  
+- Prepare the migration path from SORA v2 (Substrate) to SORA v3 (Iroha 2 Hub).  
 
-Why bother? The hub-chain will let anyone — even central banks — spin up assets on a supranational platform while preserving privacy in their own sub-nets.  
+Follow Fujiwara developments via SORA’s Discord and governance threads — public participation will expand as the network matures.
 
 ---
 
-## 4. Polkaswap 2.0 — Multi-Sig + Expiry <a id="4-polkaswap-20--multi-sig--expiry"></a>  
-[Polkaswap](https://polkaswap.io) now lets you bundle **multi-signature orders** (up to 15 signers) and add an expiry block so stale trades self-cancel. Perfect for DAO treasuries, family funds, or any shared vault.  
+## 4. Polkaswap 2.0 — Multi-Sig + Expiry
+[Polkaswap](https://polkaswap.io) now lets users create **multi-signature orders** (up to 15 signers) with a built-in expiry block that automatically cancels stale trades.  
+This feature strengthens DAO treasuries, shared vaults, and multi-party swaps.  
 
-**Quick Start**  
-1. **Settings → Security → Enable Multi-Sig**.  
+Learn more in the **Polkaswap Docs** (`https://docs.polkaswap.io`).
+
+**Quick Start**
+1. Go to **Settings → Security → Enable Multi-Sig**.  
 2. Add co-signers’ SS58 addresses.  
-3. Tick **Auto-cancel after** and choose a block number.  
+3. Tick **Auto-cancel after** and select a block number.  
 
 ---
 
-## 5. SORA Card — Crypto ↔ EUR Goes Live <a id="5-sora-card--crypto-eur-goes-live"></a>  
-Version 1.3 of **SORA Card** unlocks instant swaps between **USDC, ETH, BTC, XRP**, and Euros. XOR support is in the next sprint.  
+## 5. SORA Card — Crypto ↔ EUR Goes Live
+Version 1.3 of **SORA Card** unlocks instant swaps between **USDC, ETH, BTC, XRP**, and Euros.  
+XOR integration is scheduled for the next sprint.  
 
-### Why It Rocks  
+### Why It Rocks
 * No extra KYC loop — reuse your existing SORA Card identity.  
 * Same-day SEPA withdrawals during banking hours.  
-* Unified P&L export: EUR ledger entries live beside crypto.  
+* Unified P&L export: EUR ledger entries appear beside crypto transactions.  
 
-Availability: SORA Card is currently limited to residents of the European Economic Area; global rollout is on the roadmap.  
+Availability: SORA Card currently serves residents of the European Economic Area; global rollout remains on the roadmap.  
 
 ---
 
-## 6. Builders’ Corner <a id="6-builders-corner"></a>  
+## 6. Builders’ Corner
 
 | Project | Fresh Goodies | Where to Dive In |
-|---------|---------------|------------------|
-| **ADAR** | Mobile UX refinements & Milestone-1 demo | [`t.me/adar_chat`](https://t.me/adar_chat) |
-| **Ceres Tools** | Price-parity fix & Apollo bug squash | [`Ceres on Medium`](https://tokenceres.medium.com/) |
-| **Demeter** | New LP pools with headline APR | Polkaswap → Farm tab |
-| **TONSWAP** | Telegram-native DEX for the TON network; SORA bridge proof-of-concept | [`t.me/TONSWAP_official`](https://t.me/TONSWAP_official) |
-| **RFP Board** | Open bounty list for SORA core & dApps | GitHub [`sora-xor/rfps`](https://github.com/sora-xor/rfps) |
+|----------|----------------|------------------|
+| **ADAR** | Mobile UX refinements & Milestone-1 demo | [t.me/adar_sora](https://t.me/adar_sora) |
+| **Ceres Tools** | Price-parity fix & Apollo bug squash | [Ceres on Medium](https://tokenceres.medium.com/) |
+| **Demeter** | New LP pools with headline APR | Polkaswap → **Farm** tab |
+| **TONSWAP** | Telegram-native DEX for TON network; SORA bridge proof-of-concept | [t.me/TONSWAP_official](https://t.me/TONSWAP_official) |
+| **RFP Board** | Open bounty list for SORA core & dApps | [GitHub: sora-xor/rfps](https://github.com/sora-xor/rfps) |
 
-Got talent? Pitch an RFP, snag a grant, and be in the next spotlight.
+Got talent? Pitch an RFP, earn a grant, and get featured in the next spotlight.
+
 
 ---
 
-## Quick Glossary <a id="quick-glossary"></a>  
+## Quick Glossary
 
 | Term | One-Line Definition |
 |------|--------------------|
 | **XOR** | Native utility & governance token of the SORA network. |
-| **TBCD** | *[Token Bonding Curve Dollar](https://soranauts.com/soras-token-bonding-curve-dollar-tbcd-explained)* — a stable asset minted by burning XOR at $1 parity. |
+| **TBCD** | *[Token Bonding Curve Dollar](/soras-token-bonding-curve-dollar-tbcd-explained)* — a stable asset minted by burning XOR at $1 parity. |
 | **PSWAP** | Polkaswap’s liquidity-mining & fee-rebate token. |
-| **Hub-Chain** | The SORA V3 backbone that links permissioned and permissionless networks while letting each keep local control. |
-| **Fujiwara** | First public testnet for SORA V3 — playground for validators and dApp devs. |
+| **Hub-Chain** | Backbone of SORA v3 linking permissioned and permissionless networks while preserving local sovereignty. |
+| **Fujiwara** | Iroha 2-based testnet for SORA v3, designed to evaluate Hub-Chain functions before mainnet deployment. |
 
 ---
 
-## 7. Governance & Real-World Pilots <a id="7-governance--real-world-pilots"></a>  
-Teams are shaping hub-chain fee models that appeal to both retail users and ministries. Live experiments include:
+## 7. Governance & Real-World Pilots
+Teams are shaping Hub-Chain fee models that balance retail affordability and institutional compliance.  
+Active real-world pilots include:  
 
-* **Palau Blockchain Bonds** — tokenised savings bonds on SORA V3.  
-* **PNG Digital Kina** — CBDC proof-of-concept riding the hub-chain rails.  
+* **Palau Blockchain Bonds** — tokenized savings bonds running on SORA v3 infrastructure.  
+* **PNG Digital Kina** — a CBDC proof-of-concept built on Hub-Chain rails using Hyperledger Iroha 2.  
 
-Join the discussion in the SORA Discord governance threads.  
-
----
-
-## 8. How to Get Involved 🚀 <a id="8-how-to-get-involved-🚀"></a>  
-1. **Spin up a Fujiwara validator** and post your node ID in `#validators`.  
-2. **Test Polkaswap multi-sig** with a 0.01 PSWAP dry run.  
-3. **Swap €10 in SORA Card** and share UX notes.  
-4. **Submit an RFP** or join an existing builder squad.  
-5. **[Subscribe to the Soranauts podcast](https://youtube.com/playlist?list=PLiUWvBgWafy6FtpgTZNAKn0q-L-1ZoF1p&si=4YU4C_zVBx8zVxti)** for Kai & Nova’s hot-take edition of these updates.  
-
-*Builder bounty:* film a 90-second multi-sig demo — best clip wins **5 PSWAP**.
+Join the ongoing discussions in the SORA Discord governance threads.
 
 ---
 
-## FAQ — Read This First <a id="faq—read-this-first"></a>  
+## 8. How to Get Involved 🚀
 
-**Q1. Will my old XOR on Ethereum auto-convert?**  
-Yes. When you bridge legacy XOR into the SORA network, the bridge automatically converts it to the new 1 : 100 denomination — no manual steps required.  
+- **Join the Fujiwara testnet:** Follow the validator/tutorial info in the **SORA Wiki** and watch for public slot announcements.
+- **Try Polkaswap multi-sig with expiry:** Multi-sig is live in the UI; signature aggregation works with the Fearless Wallet browser plugin. Setup steps are linked from the wiki.
+- **Kick the tires on SORA Card (crypto ↔ EUR):** Swaps for USDC/ETH/BTC/XRP ↔ EUR are live; XOR is slated for a future release. The AMA recap is linked from the announcement.
+- **Propose work via RFPs:** Submit ideas and improvements through the SORA **Request for Proposal** repos; governance curates proposals with community input.
+- **Join the dev community:** Hop into the **Decentralized Development** channel on the SORA Discord and follow the Integrated Plan summary in the wiki.
 
-**Q2. Does the hub-chain mean SORA is abandoning Polkadot?**  
-No. SORA V3 runs *alongside* the existing Polkadot-based SORA V2. A bridge will connect both, and the hub-chain simply adds a neutral settlement layer for sovereign players.  
-
-**Q3. How can I test Fujiwara today?**  
-Follow the validator tutorial in the [SORA Wiki](https://wiki.sora.org). A 4 vCPU VPS and open P2P ports are enough to join.  
-
-**Q4. Is SORA Card available outside Europe yet?**  
-Not yet. The physical and virtual cards are currently limited to residents of the European Economic Area. Global expansion is planned; check the [restricted-countries list](https://soracard.com/blacklist) for updates.  
 
 ---
 
-## Final Thought <a id="final-thought"></a>  
-From cleaner token units to enterprise-grade rails, SORA is laying the groundwork for a border-agnostic financial stack. Whether you’re a central-bank engineer or a meme-coin degen, there’s fresh code to hack on today — so fire up that terminal, join the community, and help shape the [New Economic Order](https://soranauts.com/sora-blockchain-new-world-economic-order).  
+## FAQs
 
-*Not financial advice. Always DYOR and buckle your seatbelt.*
+<details>
+<summary>Will my old XOR on Ethereum auto-convert?</summary>
+
+Yes. When you bridge legacy XOR into the SORA network, the bridge automatically converts it to the new denomination — no manual steps required.
+
+</details>
+
+<details>
+<summary>Does the Hub-Chain mean SORA is abandoning Polkadot?</summary>
+
+No. SORA v3 runs alongside the existing Polkadot-based SORA v2. A bridge will connect both, while the Hub-Chain adds a neutral settlement layer for sovereign participants.
+
+</details>
+
+<details>
+<summary>How can I test Fujiwara today?</summary>
+
+Validator guides and tooling are documented in the SORA Wiki. Public validator access will be announced through official governance channels.  
+
+</details>
+
+<details>
+<summary>How do Polkaswap multi-sig orders work?</summary>
+
+Multi-sig orders require a threshold of co-signers (up to 15) to approve before execution. You can enable this in Polkaswap under Settings → Security. See the Polkaswap Docs for details.
+
+</details>
+
+<details>
+<summary>Is SORA Card available outside Europe yet?</summary>
+
+Not yet. Physical and virtual cards are currently limited to residents of the European Economic Area. A global rollout is planned; see the [restricted countries list](https://soracard.com/blacklist) for updates.
+
+</details>
+
+---
+
+## Final Thought
+From cleaner token units to enterprise-grade rails, SORA is laying the groundwork for a border-agnostic financial stack.  
+Whether you’re a central-bank engineer or a meme-coin degen, there’s fresh code to hack on today — so fire up that terminal, join the community, and help shape the [New Economic Order](/sora-blockchain-new-world-economic-order).
