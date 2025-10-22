@@ -1,7 +1,7 @@
 ---
 title: 'Changelog'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-10-19'
+lastUpdated: '2025-10-22'
 metadata:
   title: 'Changelog | Soranauts'
   description: 'Track the latest SORA ecosystem updates, new features, and website improvements on Soranauts.'
@@ -97,7 +97,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 - [ ] **Understanding the Increase in the SORA (XOR) Token Supply and Its Role** (2025-02-21)
 - [ ] **The Fujiwara Testnet: Pioneering SORA v3's Decentralized Future** (2025-03-20)
 - [ ] **SORA v3 Guide: Fujiwara Testnet, XOR Fees & TON Bridge** (2025-05-04)
-- [ ] **SORA Roadmap: Token Repackaging, Hub-Chain, DeFi Upgrades** (2025-06-08)
+- [x] **SORA Roadmap: Token Repackaging, Hub-Chain, DeFi Upgrades** (2025-06-08) - *✅ COMPLETED - Link normalization, curated tags, authoritative external links, and folding FAQs (2025-10-22)*
 - [ ] **SORA v3 Vision, DeFi Milestones & Polkaswap News – Update #88** (2025-07-20)
 - [ ] **Richard Werner Exposes Central Banks & the SORA Alternative** (2025-07-29)
 - [ ] **How Polkaswap and TONSWAP Work Together on SORA** (2025-08-10)
@@ -118,4 +118,4 @@ For each article, verify and update:
 
 ---
 
-*Last updated: October 19, 2025*
+*Last updated: October 22, 2025*
