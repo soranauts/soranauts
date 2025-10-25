@@ -11,6 +11,8 @@ import { fetchPosts } from '~/utils/blog';
 import { headerData, footerData } from '~/navigation';
 
 import type { MetaData, Post } from '~/types';
+import fs from 'node:fs';
+import path from 'node:path';
 
 export interface Props {
   post: Post;
@@ -40,24 +42,17 @@ if (post.title?.includes('SORAMITSU')) {
 }
 
 
-// Get direct image URL for social sharing
-const getDirectImageUrl = (): string => {
-  // Use the processed image from Astro (which includes the hashed filename)
-  if (post.image) {
-    if (typeof post.image === 'string') {
-      if (post.image.startsWith('http')) return post.image;
-      return `${SITE.site}${post.image}`;
-    }
-    // If it's an ImageMetadata object, use the src
-    if (post.image.src) {
-      return `${SITE.site}${post.image.src}`;
-    }
-  }
-  // Fallback to social share image
-  return `${SITE.site}/soranauts-social-share.jpg`;
-};
+// Resolve the canonical OG image for this post from the /public/og manifest
+function getOgManifest(): Record<string, string> {
+  const manifestPath = path.join(process.cwd(), 'public', 'og', 'manifest.json');
+  const raw = fs.readFileSync(manifestPath, 'utf-8');
+  return JSON.parse(raw) as Record<string, string>;
+}
 
-const directImageUrl = getDirectImageUrl();
+const ogManifest = getOgManifest();
+const resolvedPathname = new URL(String(url), SITE.site).pathname.replace(/\/+$/, '') || '/';
+const ogPath = ogManifest[resolvedPathname] || ogManifest.default || '/og/default.jpg';
+const socialImageUrl = `${SITE.site}${ogPath}`;
 
 // Create enhanced metadata for the blog post
 const enhancedMetadata = {
@@ -68,9 +63,9 @@ const enhancedMetadata = {
     ...metadata.openGraph,
     images: [
       {
-        url: directImageUrl,
-        width: 900,
-        height: 506,
+        url: socialImageUrl,
+        width: 1200,
+        height: 630,
         alt: post.title
       }
     ]
@@ -94,7 +89,7 @@ const enhancedMetadata = {
     data={{
       title: post.title,
       description: post.excerpt,
-      image: typeof post.image === 'string' ? post.image : (post.image?.src || post.image),
+      image: socialImageUrl,
       url: String(url),
       publishedTime: post.publishDate.toISOString(),
       modifiedTime: post.updateDate?.toISOString(),
@@ -107,7 +102,11 @@ const enhancedMetadata = {
   />
 
   <!-- Twitter Image Meta Tag for Blog Posts -->
-  <meta name="twitter:image" content={directImageUrl} />
+  <meta name="twitter:image" content={socialImageUrl} />
+  <meta property="og:image" content={socialImageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={post.title} />
 
   <!-- Breadcrumb Schema -->
   <SchemaMarkup
@@ -127,6 +126,21 @@ const enhancedMetadata = {
       data-pagefind-filter={`type:article,category:${post.category || 'uncategorized'}`}
       data-pagefind-meta={`{"title":"${post.title}","date":"${post.publishDate.toISOString()}","category":"${post.category || ''}","tags":"${post.tags?.join(',') || ''}"}`}
     >
+      <header class="container mx-auto px-4 pt-4 pb-2 text-sm text-muted">
+        <span>
+          Published 
+          <time datetime={post.publishDate.toISOString()} itemprop="datePublished">
+            {post.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' })}
+          </time>
+        </span>
+        {post.updateDate && (
+          <span> · Last updated 
+            <time datetime={post.updateDate.toISOString()} itemprop="dateModified">
+              {post.updateDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' })}
+            </time>
+          </span>
+        )}
+      </header>
       <slot />
     </article>
   

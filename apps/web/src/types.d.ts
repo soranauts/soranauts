@@ -56,6 +56,10 @@ export interface MetaData {
 
   openGraph?: MetaDataOpenGraph;
   twitter?: MetaDataTwitter;
+
+  // For article pages
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 export interface MetaDataRobots {

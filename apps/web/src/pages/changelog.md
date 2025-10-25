@@ -47,9 +47,9 @@ This page tracks the latest improvements and new features added to the Soranauts
 - **Educational Platform**: Interactive tutorials and guided DeFi experiences
 - **Community Integration**: Enhanced connection with [Soranauts Telegram](https://t.me/Soranauts) and collaborative content creation
 
-## 📝 Article Update Checklist
+## 📝 Article Update Checklist (20/47 completed - 43%)
 
-### Priority 1: 2023 Articles (Foundation Content) - ✅ COMPLETED
+### Priority 1: 2023 Articles (Foundation Content) - ✅ COMPLETED (17/17 completed)
 - [x] **Soramitsu - Unveiling The Force Behind SORA And Polkaswap** (2023-10-04) - *✅ COMPLETED - Full optimization with Related Articles*
 - [x] **Best Decentralized Exchanges (DEXs)** (2023-10-09) - *✅ COMPLETED - Updated with TONSWAP integration, enhanced SEO, and official SORA wiki links*
 - [x] **SORA's Token Bonding Curve Dollar (TBCD) Explained** (2023-10-11) - *✅ COMPLETED - Updated with latest SORA v3 information and improved readability*
@@ -68,9 +68,9 @@ This page tracks the latest improvements and new features added to the Soranauts
 - [x] **Polkadot & Kusama Parachains Explained: The Complete Guide** (2023-12-21) - *✅ COMPLETED - Comprehensive 2025 rewrite with technical accuracy updates (asynchronous backing, coretime, OpenGov), collapsible FAQs, strategic external links, and authoritative tone*
 - [x] **Understanding SORA's (XOR) Token Supply: A Simple Explanation** (2023-12-25) - *✅ COMPLETED - Enhanced with collapsible FAQs, strategic external links, and 2025 repackaging information*
 
-### Priority 2: 2024 Early Articles - UPDATE NEXT (0/10 completed)
-- [ ] **Exploring SORA Kensetsu: A Genius DeFi Proposal on Polkaswap** (2024-01-03)
-- [ ] **Polkadot's Architecture: A Guide to its Multi-Chain Framework** (2024-01-07)
+### Priority 2: 2024 Early Articles - UPDATE NEXT (2/9 completed) ✅
+- [x] **SORA Kensetsu Explained: Stablecoins and DeFi on Polkaswap** (2024-01-03) - *✅ COMPLETED - Enhanced with comprehensive content improvements, SEO optimization, external/internal links, and interactive folding FAQ (2025-10-25)*
+- [x] **Polkadot's Architecture: A Guide to Its Multi-Chain Framework** (2024-01-07) - *✅ COMPLETED - Enhanced with content restructuring, SEO optimization, external/internal links, and interactive folding FAQ (2025-10-25)*
 - [ ] **Meme Coin vs. Traditional Cryptocurrency: What Sets Them Apart** (2024-01-10)
 - [ ] **Polkadot Parachain Winners: SORA Secures Parachain Slot** (2024-01-15)
 - [ ] **Bitcoin vs XOR for a New World Economic Order** (2024-01-17)
@@ -79,7 +79,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 - [ ] **Polkadot vs Ethereum: A Comparative Analysis (2024 Update)** (2024-01-23)
 - [ ] **WASM / Rust (Parity's Ink Substrate) vs EVM / Solidity (Ethereum)** (2024-01-27)
 
-### Priority 3: Most Recent Articles (2024-2025) - UPDATE LAST (0/25 completed)
+### Priority 3: Most Recent Articles (2024-2025) - UPDATE LAST (1/21 completed)
 - [ ] **Top 14 Polkadot and Kusama Projects to Watch in 2024** (2024-02-03)
 - [ ] **How SORA Blockchain Has Defied Crypto Hacks** (2024-02-27)
 - [ ] **SORA: Crypto Designed To Outperform Traditional Banking, Bull Or Bear** (2024-04-14)

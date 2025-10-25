@@ -89,3 +89,17 @@ if (!seoProps.openGraph?.images || seoProps.openGraph.images.length === 0) {
 ---
 
 <AstroSeo {...{ ...seoProps, openGraph: await adaptOpenGraphImages(seoProps?.openGraph, Astro.site) }} />
+
+<!-- Allow large image previews for Google/Discover -->
+<meta name="robots" content="index, follow, max-image-preview:large" />
+
+<!-- Article date meta (populated on blog posts) -->
+{(seoProps as any)?.openGraph && (Astro.props as any)?.publishedTime && (
+  <meta property="article:published_time" content={(Astro.props as any).publishedTime} />
+)}
+{(seoProps as any)?.openGraph && ((Astro.props as any)?.modifiedTime || (Astro.props as any)?.publishedTime) && (
+  <meta property="article:modified_time" content={(Astro.props as any).modifiedTime || (Astro.props as any).publishedTime} />
+)}
+{(seoProps as any)?.openGraph && ((Astro.props as any)?.modifiedTime || (Astro.props as any)?.publishedTime) && (
+  <meta property="og:updated_time" content={(Astro.props as any).modifiedTime || (Astro.props as any).publishedTime} />
+)}
