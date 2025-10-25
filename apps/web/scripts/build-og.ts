@@ -42,24 +42,50 @@ async function main() {
   for (const file of posts) {
     const slug = file.replace(/\.mdx?$/i, '');
     const out = path.join(OG_DIR, `${slug}.jpg`);
-    if (fs.existsSync(out)) continue;
 
     const postPath = path.join(POSTS_DIR, file);
     const fmImage = getFrontmatterImage(postPath);
+
+    let candidate: string | null = null;
     if (fmImage) {
       const cleaned = fmImage.replace(/^~\//, '/'); // normalize "~/" → "/"
       // Try public/ first
-      let candidate = path.join(PUBLIC_DIR, cleaned.replace(/^\//, ''));
-      // Fallback: try src/assets when frontmatter uses ~/assets/…
-      if (!fs.existsSync(candidate)) {
+      let tryPath = path.join(PUBLIC_DIR, cleaned.replace(/^\//, ''));
+      if (!fs.existsSync(tryPath)) {
         const SRC_ASSETS = path.join(SRC_DIR, cleaned.replace(/^\//, ''));
-        if (fs.existsSync(SRC_ASSETS)) candidate = SRC_ASSETS;
+        if (fs.existsSync(SRC_ASSETS)) tryPath = SRC_ASSETS;
       }
-      if (fs.existsSync(candidate)) {
-        console.log(`Using cover for OG: ${cleaned}`);
-        try { await makeOG(candidate, out); console.log('OG created:', out); continue; }
-        catch (e) { console.warn('OG create failed, copying default:', out, (e as Error)?.message); }
+      if (fs.existsSync(tryPath)) candidate = tryPath;
+    }
+
+    const force = process.env.FORCE_OG === '1';
+    if (fs.existsSync(out) && !force) {
+      try {
+        if (candidate) {
+          const srcStat = fs.statSync(candidate);
+          const ogStat = fs.statSync(out);
+          const isSrcNewer = srcStat.mtimeMs > ogStat.mtimeMs;
+          const maybeDifferentSize = srcStat.size !== ogStat.size; // safeguard if mtimes equal
+          if (!isSrcNewer && !maybeDifferentSize) {
+            console.log(`OG up-to-date: ${slug}`);
+            continue;
+          }
+          console.log(`Rebuilding OG for ${slug} (${isSrcNewer ? 'src newer' : 'size differs'})`);
+        } else {
+          console.log(`OG exists and no cover found, keeping: ${slug}`);
+          continue;
+        }
+      } catch (e) {
+        console.warn(`OG mtime check failed for ${slug}, rebuilding`, (e as Error)?.message);
       }
+    } else if (force && fs.existsSync(out)) {
+      console.log(`FORCE_OG=1, rebuilding OG for ${slug}`);
+    }
+
+    if (candidate) {
+      console.log(`Using cover for OG: ${path.relative(ROOT, candidate)}`);
+      try { await makeOG(candidate, out); console.log('OG created:', out); continue; }
+      catch (e) { console.warn('OG create failed, copying default:', out, (e as Error)?.message); }
     }
 
     fs.copyFileSync(defaultOG, out);
