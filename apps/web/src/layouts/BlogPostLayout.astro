@@ -126,21 +126,6 @@ const enhancedMetadata = {
       data-pagefind-filter={`type:article,category:${post.category || 'uncategorized'}`}
       data-pagefind-meta={`{"title":"${post.title}","date":"${post.publishDate.toISOString()}","category":"${post.category || ''}","tags":"${post.tags?.join(',') || ''}"}`}
     >
-      <header class="container mx-auto px-4 pt-4 pb-2 text-sm text-muted">
-        <span>
-          Published 
-          <time datetime={post.publishDate.toISOString()} itemprop="datePublished">
-            {post.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' })}
-          </time>
-        </span>
-        {post.updateDate && (
-          <span> · Last updated 
-            <time datetime={post.updateDate.toISOString()} itemprop="dateModified">
-              {post.updateDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' })}
-            </time>
-          </span>
-        )}
-      </header>
       <slot />
     </article>
   
