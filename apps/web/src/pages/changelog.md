@@ -15,6 +15,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 ## 🎉 Latest Updates (October 2025)
 
 ### ✅ Recent Major Updates
+- **Polkadot to Iroha: How SORA’s Governance Is Evolving**: Comprehensive modernization with TL;DR callout, timeline table, Polkadot vs SORA v3 comparison table, 5-step governance flow, foldable FAQs, high-value external references (Polkadot OpenGov, Iroha docs), strategic internal links, and expanded tags (12 total) (2025-10-30)
 - **Bitcoin vs XOR: Competing Visions for a New World Economic Order**: Comprehensive enhancement with TL;DR section, expanded tags (12 total), high-value external links (Bitcoin whitepaper, SORA official resources), strategic internal linking, collapsible FAQs, and structured resources section (2025-10-29)
 - **Collapsible FAQs**: Implemented native HTML collapsible FAQs across articles with smooth animations and site-consistent red theming
 - **IPFS Glossary Term**: Added comprehensive IPFS definition to the SORA glossary with proper search indexing and auto-linking
@@ -31,7 +32,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 ## 🚀 Roadmap & Future Features
 
 ### 🔄 In Development
-- **Content Optimization**: Systematic updates to 2023-2024 articles using enhanced templates (23/47 articles completed - 49%, including 17/17 Priority 1 articles completed ✅)
+- **Content Optimization**: Systematic updates to 2023-2024 articles using enhanced templates (24/47 articles completed - 51%, including 17/17 Priority 1 articles completed ✅)
 - **Glossary Expansion**: Adding more SORA ecosystem terms and cross-references
 - **Performance Monitoring**: Real-time analytics and user engagement tracking
 - **Technical Improvements**: Ongoing bug fixes and system optimizations
@@ -48,7 +49,7 @@ This page tracks the latest improvements and new features added to the Soranauts
 - **Educational Platform**: Interactive tutorials and guided DeFi experiences
 - **Community Integration**: Enhanced connection with [Soranauts Telegram](https://t.me/Soranauts) and collaborative content creation
 
-## 📝 Article Update Checklist (23/47 completed - 49%)
+## 📝 Article Update Checklist (24/47 completed - 51%)
 
 ### Priority 1: 2023 Articles (Foundation Content) - ✅ COMPLETED (17/17 completed)
 - [x] **Soramitsu - Unveiling The Force Behind SORA And Polkaswap** (2023-10-04) - *✅ COMPLETED - Full optimization with Related Articles*
@@ -69,13 +70,13 @@ This page tracks the latest improvements and new features added to the Soranauts
 - [x] **Polkadot & Kusama Parachains Explained: The Complete Guide** (2023-12-21) - *✅ COMPLETED - Comprehensive 2025 rewrite with technical accuracy updates (asynchronous backing, coretime, OpenGov), collapsible FAQs, strategic external links, and authoritative tone*
 - [x] **Understanding SORA's (XOR) Token Supply: A Simple Explanation** (2023-12-25) - *✅ COMPLETED - Enhanced with collapsible FAQs, strategic external links, and 2025 repackaging information*
 
-### Priority 2: 2024 Early Articles - UPDATE NEXT (5/9 completed) ✅
+### Priority 2: 2024 Early Articles - UPDATE NEXT (6/9 completed) ✅
 - [x] **SORA Kensetsu Explained: Stablecoins and DeFi on Polkaswap** (2024-01-03) - *✅ COMPLETED - Enhanced with comprehensive content improvements, SEO optimization, external/internal links, and interactive folding FAQ (2025-10-25)*
 - [x] **Polkadot's Architecture: A Guide to Its Multi-Chain Framework** (2024-01-07) - *✅ COMPLETED - Enhanced with content restructuring, SEO optimization, external/internal links, and interactive folding FAQ (2025-10-25)*
 - [x] **Meme Coins vs. Traditional Crypto: Hype, Culture, and Real Value** (2024-01-10) - *✅ COMPLETED - Enhanced with improved SEO, strategic internal/external links, collapsible FAQs, and modern content structure (2025-10-27)*
 - [x] **SORA's Parachain Legacy: From Polkadot to Iroha Hub Chain** (2024-01-15) - *✅ COMPLETED - Enhanced with comparison tables, strategic internal/external links, collapsible FAQs, and hub chain evolution focus (2025-10-28)*
 - [x] **Bitcoin vs XOR: Competing Visions for a New World Economic Order** (2024-01-17) - *✅ COMPLETED - Comprehensive enhancement with TL;DR section, expanded tags (12 total), high-value external links (Bitcoin whitepaper, SORA official resources), strategic internal linking, collapsible FAQs, and structured resources section (2025-10-29)*
-- [ ] **How Governance Works on Polkadot and Why SORA Uses It** (2024-01-19)
+- [x] **Polkadot to Iroha: How SORA’s Governance Is Evolving** (2024-01-19) - *✅ COMPLETED - TL;DR, timeline + comparison tables, 5-step governance flow, foldable FAQs, high-value external links, and SEO/tags refresh (2025-10-30)*
 - [ ] **Exploring the Scalability Advantage of Polkadot Parachains** (2024-01-22)
 - [ ] **Polkadot vs Ethereum: A Comparative Analysis (2024 Update)** (2024-01-23)
 - [ ] **WASM / Rust (Parity's Ink Substrate) vs EVM / Solidity (Ethereum)** (2024-01-27)

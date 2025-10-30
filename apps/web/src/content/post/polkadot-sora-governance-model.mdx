@@ -1,243 +1,207 @@
 ---
 publishDate: 2024-01-19T00:00:00Z
-title: 'How Governance Works on Polkadot and Why SORA Uses It'
-excerpt: Navigate the intricate world of Polkadot governance on blockchain - from referendum voting, treasury allocation, council ecosystem and why SORA uses it.
+updateDate: 2025-10-29T00:00:00Z
+title: "Polkadot to Iroha: How SORA’s Governance Is Evolving"
+excerpt: SORA’s governance evolved from Polkadot’s on-chain democracy to a sovereign Iroha system with transparent, validator-led decision making.
 image: ~/assets/images/polkadot-sora-governance-model.jpg
+imageAlt: "Illustration showing transition from Polkadot governance to SORA Iroha v3 sovereignty"
 category: "Blockchain Technology"
 canonicalURL: https://soranauts.com/polkadot-sora-governance-model
----Imagine a world where money works differently, not based on debt but on fair rules for everyone. This is what SORA aims to create with its own kind of digital government. It uses the Polkadot model to make choices about how money should work and helps projects grow by giving them new XOR tokens.
+tags:
+  - SORA
+  - Polkadot
+  - on-chain governance
+  - Hyperledger Iroha
+  - Iroha 2
+  - XOR
+  - SORA Parliament
+  - token bonding curve
+  - treasury
+  - parachain
+  - validators
+  - economic governance
+---
 
-Think of it like a club where members vote on big decisions, they use cool tools like sortition, which randomly picks people to help decide things so that it's all equal.
+SORA’s governance journey reflects how decentralized decision-making evolved from Polkadot’s shared framework to a fully sovereign Iroha-based system.
 
-In this exciting system, there are different groups who have special jobs in deciding and making rules. The XOR token is super important here because you need it for many things in the SORA world – like joining votes or paying fees.
+> **TL;DR — The Path from Polkadot to Iroha**
+> - SORA’s early governance mirrored Polkadot’s referenda, councils, and treasury.  
+> - The SORA Parliament pioneered community-driven monetary coordination with XOR.  
+> - SORA v3 now builds on Hyperledger Iroha for full sovereignty and faster iteration.  
+> - Validator councils and on-chain proposal flows will shape Governance 2.0.  
+> - Community voting remains central to SORA’s economy and treasury outcomes.
 
-Plus, there are smart ways to move money across different places with stuff like Polkaswap and HASHI bridges.
+## From Polkadot Inspiration to Iroha Sovereignty
 
-SORA cares a lot about helping countries who need better money systems and thinks their way can help economies grow strong. People who are part of the SORA community stay involved by talking about what happens next in their network.
+SORA’s early governance drew heavily from Polkadot — **on-chain referenda, community voting, and a transparent treasury**. That phase informed SORA’s “digital government,” where XOR holders helped steer monetary policy and funding.
 
-Ready to see how these pieces fit together? Let's jump into the story of SORA and find out why they chose Polkadot's way of doing things!
+With **SORA v3 on Hyperledger Iroha**, governance moves off Substrate toward a **sovereign, interoperable layer** that preserves SORA’s principles of transparency, inclusivity, and non-debt-based coordination.
 
 ### Key Takeaways
 
-- Polkadot lets people who have XOR tokens help make choices for SORA's future. This means money decisions are fair because everyone gets to vote on big ideas.
-- SORA uses a special tool called a [token bonding curve](https://soranauts.com/soras-token-bonding-curve-dollar-tbcd-explained) to keep the value of its coins stable. More people wanting XOR makes the price go up gently, and fewer people wanting it makes the price drop slowly.
-- With [HASHI technology](https://medium.com/polkaswap-community-collective/how-to-use-the-hashi-bridge-eb69e88bc87), you can easily change your things into different kinds of digital money within SORA. It's like having a magic bridge that connects different worlds of cash.
-- Being part of the Polkadot system gives SORA strength and flexibility. This way, it can work well with other blockchains and share information easily.
-- Anyone can join the SORA community to offer ideas or vote on how new money is used. Doing this helps good projects grow and keeps everything open for lots more people.
+- **Historical roots:** Polkadot-era councils and referenda gave XOR holders a voice.  
+- **Direction:** v3 introduces Iroha-native proposals, validator councils, and economic coordination.  
+- **Continuity:** The goal remains a **community-driven, adaptive monetary system**.  
+- **Economic link:** Polkaswap, Kensetsu, and TBCD tie governance to liquidity and funding flows.  
+- **Global aim:** Support builders and nations pursuing fair, debt-free digital economies.
 
-## Understanding SORA and its Governance Model
+### Timeline and Context
 
-Understanding SORA and its Governance Model. Grasping the unique governance structure of SORA is key—it's like unlocking a digital realm where monetary policy meets blockchain agility. Here, we unpack how this pioneering framework shapes an entire financial ecosystem within the dynamic Polkadot landscape.
+| Year | Event | Relevance |
+|------|-------|-----------|
+| 2020 | SORA built on Substrate | Adopted Polkadot governance model |
+| 2021 | SORA Parliament formed | Early governance experimentation |
+| 2023 | Polkaswap treasury integration | Economic governance testing |
+| 2024 | SORA v3 announced (Iroha) | Start of sovereignty phase |
+| 2025 | Governance modules in development | Validator and proposal logic underway |
 
-### SORA as an adaptive, non-debt-based monetary framework
+---
 
-SORA stands out because it changes the money game. It creates new coins without owing anyone back. This system is smart, shifting with the economy's needs to keep prices stable and fair for everyone.
+> ℹ️ **What changes for users?**  
+> Proposals and treasury actions will be more transparent and faster to execute under Iroha, while community voting remains central.
 
-SORA uses a special method called a [token bonding curve](https://hackernoon.com/what-is-a-bonding-curve-and-how-does-it-affect-token-price). Think of it like a thermometer that goes up or down, helping control how many coins are in use.
+For monetary design context that informs governance, see [Bitcoin vs XOR](/bitcoin-vs-xor).
 
-People all around the world have voice in SORA's digital government. They share ideas and make choices together, which helps everyone feel part of something big. The goal is clear: build an economic system that can adapt without stepping on personal freedom.
+## Understanding the Polkadot Phase
 
-### Decentralizing the concept of a central bank
+During its initial deployment, SORA leveraged Polkadot’s structure for democratic decision-making.  
+Token holders could participate in referenda, vote on treasury spending, and influence the minting of new XOR to fund ecosystem projects.
 
-Central banks usually control money in most places. They make new money and decide where it goes. SORA does this differently—everyone can have a say, not just one powerful group.
+This mirrored Polkadot’s **multi-body system** — combining referenda, councils, and committees to keep the network adaptable while preventing centralization.
 
-This way of doing things is called [decentralized governance](https://www.imf.org/external/pubs/ft/fandd/1999/12/dillinge.htm). It's like having many voices join to guide how new XOR tokens are made and used for good projects.
+SORA implemented similar ideals through **the SORA Parliament**, an experimental governance body that reviewed proposals, directed funding, and represented the collective voice of XOR holders.
 
-This change means that instead of one big bank making all the decisions, people who hold XOR tokens get to vote on important choices through SORA Parliament. They help decide which projects get funding with freshly minted XOR coins.
+These efforts made SORA one of the first monetary systems to blend blockchain-based governance with macroeconomic management.
 
-This makes sure the power to shape the economy doesn't just sit with a few people—it spreads out across the whole community.
+---
 
-### SORA as a network in the Polkadot ecosystem
+## Transitioning Toward SORA v3 Governance
 
-Breaking away from traditional banking models, SORA steps into the Polkadot ecosystem with a fresh approach. It's part of this larger network that supports many blockchains. In Polkadot, these blockchains can share information and work together smoothly.
+With the move to **Hyperledger Iroha**, SORA v3 becomes a self-contained hub chain rather than a parachain.  
+This means future governance will run **natively on Iroha 2 modules**, giving SORA finer control over:
 
-This connection is key for SORA because it uses Polkadot to help make decisions and manage its digital money.
+- **Proposal creation and voting**
+- **Validator selection**
+- **Treasury and liquidity allocation**
+- **Cross-chain economic coordination**
 
-SORA taps into the power of [on-chain governance](https://www.investopedia.com/terms/o/onchain-governance.asp) in the Polkadot world. This means all its users can have their say in how things are run, kind of like voting on big decisions in a club or community.
+While the exact tokenomics and governance contracts are still under development, the architecture will support **transparent, on-chain decision flows** that remain consistent with SORA’s principles of fairness and participation.
 
-And just like people need good roads to connect places, SORA uses something called Substrate to link up with other parts of the ecosystem easily. That way, it gets stronger and more flexible as part of a team instead of going solo.
+Governance will likely evolve into a **hybrid structure** — part algorithmic (driven by economic models and bonding curves) and part participatory (driven by community and validator consensus).
 
-## How Polkadot's Architecture Enables SORA's Governance Model
+---
 
-In the dynamic dance of governance, [Polkadot’s architecture](https://soranauts.com/polkadot-architecture-guide) forms the stage upon which SORA's innovative model performs—flexible, adaptive, and underpinned by stakeholder consensus.
+## Polkadot vs. SORA v3 (Iroha)
 
-It's this intricate design that empowers token holders within SORA to guide its evolution with a forward-thinking approach, truly bringing a democratic pulse to every network change.
+| Aspect | Polkadot Model | SORA v3 (Iroha) |
+|--------|----------------|-----------------|
+| Consensus | Nominated Proof-of-Stake | Iroha BFT validator consensus |
+| Proposal source | DOT holders via referenda | XOR holders plus validator councils |
+| Execution logic | FRAME governance pallets | Iroha 2 smart modules (Rust) |
+| Treasury funding | Fees plus inflation | Algorithmic XOR creation (bonding curve) |
+| Interoperability | Parachain messaging | Iroha bridges and Polkaswap hub |
+| Primary focus | Protocol upgrades | Economic coordination and sovereignty |
 
-### Living is motion, and motion is change and alteration
+---
 
-Things always move and change. This is true for living things and for systems like [SORA's governance](https://wiki.sora.org/sora-governance.html) on the Polkadot platform. Just like animals or trees grow and adapt, SORA does too.
+## Lessons from the Polkadot Era
 
-It changes rules and plans to make sure it works well. In a world that never stands still, SORA stays flexible by using Polkadot's tech.
+Polkadot gave SORA a crucial sandbox for governance experimentation:
 
-Polkadot lets SORA change as needed. With Polkadot, people who own DOT tokens can vote on new ideas or ways to do things better. They use voting periods, referenda, and councils to make decisions together.
+- **Sortition and random selection** showed how to distribute decision power fairly.  
+- **Referenda and weighted voting** demonstrated scalable community participation.  
+- **Shared security and interoperability** highlighted the value of collaboration between sovereign networks.
 
-This helps everyone have a say in what happens next—making sure the system can handle whatever comes its way.
+These lessons now inform how SORA v3 is being built: not as a Polkadot parachain, but as an **interoperable hub** that connects to ecosystems like Polkaswap, TONSWAP, and other DeFi networks through cross-chain bridges.  
+See also [SORA’s Parachain Legacy: From Polkadot to Iroha Hub Chain](/sora-polkadot-parachain-winners) for a deeper look at this transition.
 
-### The role of Polkadot in SORA's governance system
+---
 
-Change and growth in a system often call for new ways of making decisions. Polkadot steps in to help SORA with just that. It gives SORA the tools it needs to run its governance model well.
+## The Future: Decentralized Economic Governance
 
-With Polkadot, everyone who holds the network's coins has a say in how things work. They can vote on changes or offer their own ideas.
+SORA’s next governance system will merge **economic logic with democratic coordination**.  
+Rather than just managing protocol upgrades, it will govern **how new value is created and distributed** across the ecosystem.
 
-Polkadot is like the strong foundation for SORA's house of rules and decision-making. It supports sortition, which means some decisions come from random choice, not just voting. This keeps power spread out fairly across all coin holders.
+Future governance flow (illustrative):
 
-In this way, Polkadot makes sure SORA stays true to its goal of being open and fair to all, helping countries use XOR money in smart ways for their people.
+1. **Proposal initiation** — community members or validators propose improvements or funding.  
+2. **Validator review** — automated and human checks assess technical and economic soundness.  
+3. **Community vote** — XOR holders vote, with outcomes recorded on-chain.  
+4. **Execution** — Iroha modules enact changes or treasury allocations.  
+5. **Monitoring** — outcomes tracked in explorers and reported back to the community.  
 
-## Exploring SORA's Economic Model and Polkaswap Integration
+Future governance modules may oversee:
 
-At the heart of SORA lies an economic model designed to champion a new world financial system, integrating seamlessly with Polkaswap – where liquidity meets innovation for cross-chain value exchange.
+- Kensetsu vault parameters and stablecoin collateralization.  
+- Token bonding curve calibration for XOR and TBCD.  
+- Treasury proposals for cross-chain integrations or national pilot programs.  
+- Council elections and proposal validation for new projects.
 
-This symbiosis paves the way for a resilient economy built on transparency and participation, setting the stage for decentralized prosperity like never before.
+In short, governance won’t just steer the blockchain — it will steer an **economy**.
 
-### Supranational economic system
-
-SORA's [supranational economic system](https://wiki.sora.org/sora-economy.html) steps beyond borders and governments, setting up a new way to handle money across the world. Think of it as a big digital central bank for everyone, everywhere.
-
-This system uses XOR, which is like digital cash that can be used in this wide network. With SORA, they make sure every XOR has clear math behind it so people know its value is stable.
-
-This big idea helps projects get the money they need to grow without creating debt. The SORA Parliament chooses where new XOR goes to help good ideas take off and make the economy stronger.
-
-It's about giving power back to people over their money and making sure that power isn't locked down by just one country or group.
-
-### Token bonding curve
-
-Moving from the idea of a supranational economic system, we see that SORA uses a token bonding curve. This curve is like a tool to keep money value stable and help with smart spending.
-
-When more people want XOR tokens, the price goes up slowly. If few people want them, the price goes down just as slowly. This way, prices don't jump around too much.
-
-The token bonding curve helps make sure that new money is made for good reasons, like supporting projects that help everyone. It makes sure there's enough money for what people need but not so much that it loses value.
-
-People can suggest ideas on how to use this money, and everyone in SORA gets to vote on these ideas. This makes it fair because all voices count when deciding what's best for SORA’s future growth.
-
-### On-chain governance
-
-On-chain governance is like a digital rule book for the SORA network. It lets everyone who holds the cryptocurrency, called XOR, help make big decisions about how the network runs.
-
-People vote on changes and new ideas. Their votes are powerful because they can really shape what SORA becomes in the future.
-
-With on-chain governance, you get to see all the voting happen directly on the blockchain. This means it's clear and no one can mess with it. The rules make sure that every person’s voice matters just as much as anyone else's, whether they are rich or have only a little bit of XOR.
-
-Everyone works together to pick good projects for SORA to support with fresh XOR coins, aiming at making positive changes around us without stepping on anybody's freedom.
-
-### Financial inclusion
-
-Financial inclusion means everyone gets a chance to join in on the money game. SORA is doing this by trying to add stability where money often goes up and down too much, which can hurt folks who don't have much.
-
-It uses something like a smart system that decides how new money comes into play. This helps people start businesses or grow their farms without worrying about big banks saying no.
-
-SORA's plan also makes its own coin, XOR, act like cash within its world. Countries can jump on board and use XOR for their projects, helping them get bigger and stronger economically.
-
-With SORA's help, even [small countries](https://soranauts.com/soramitsu-pilots-central-bank-of-solomon-islands-cbdc) can play big in the global economy without being pushed around by others' rules.
-
-### Credit creation
-
-Opening the doors to more people also means making new money for good ideas. SORA lets new XOR tokens come into being. It gives these tokens to help projects that will do well for everyone using SORA.
-
-Think of it as planting seeds in a garden; the seeds grow into plants that feed the whole community.
-
-SORA does this because they think about credit differently. They don’t want just a few big banks making all the decisions about who gets money and who doesn’t. Instead, they use something called "on-chain governance." This way, anyone with XOR can have a say in which projects get funding.
-
-This makes sure that good ideas get the support they need to start and grow, no matter where they come from.
-
-### XOR as legal tender
-
-SORA is making a big change with XOR. It's not just any digital money; nations can use it like regular cash. This means people could buy things and pay for services with XOR, just as they do with dollars or euros.
-
-The SORA community works together to make this happen. They plan how to share new XOR so it helps everyone grow.
-
-Using XOR as money makes sense in the digital world. It's quick, safe, and doesn't need banks in the middle of every deal. Countries team up with SORA experts to get the most out of using XOR.
-
-This brings more power to what people and businesses can do with their money online.
-
-### Seamless asset bridging with HASHI technology
-
-HASHI technology is like a magic bridge connecting different worlds of money. It lets you easily switch your assets from one form to another within the SORA network. Imagine having dollars and wanting to invest in gold without the hassle; HASHI makes it possible right on the platform! You can take things you own, like stocks or property, and turn them into digital versions.
-
-This is great for people who want to try new ways of investing without leaving the digital space. With HASHI, someone can reach across borders and tap into markets that mimic real-world items without stress or delay.
-
-### Polkaswap integration for educational purposes
-
-[Polkaswap](https://polkaswap.io/) is a big deal for learning about crypto. It lets people trade different kinds of digital money without needing a middleman. This is great for teaching how trades can happen in safe and smart ways across many blockchains.
-
-Think of Polkaswap as a classroom where everyone gets to practice swapping tokens and adding liquidity.
-
-By using Polkaswap, folks get hands-on lessons on the cool parts of decentralized finance and how different chains work together. The materials help users see why DEXs matter in networks like SORA and the larger blockchain world.
-
-It's all about making complex ideas easier to understand, so both newbies and pros can grasp them better.
-
-## The Future of Interoperability with SORA and Polkadot
-
-The horizon looks bright for SORA within the Polkadot ecosystem—promising a future where interoperability isn't just a buzzword but a tangible reality shaping inclusive and flexible economic models.
-
-As SORA evolves, so does its potential to redefine cross-chain interaction, paving the way for seamless connectivity among diverse financial landscapes.
-
-### The benefits of SORA's governance model on Polkadot for economic stability and financial inclusion
-
-SORA's governance model brings fresh air to economic stability and opens doors for more people to join the financial world. Picture a system where every person has a fair chance to help decide how money flows and grows.
-
-That's what SORA does on Polkadot. It lets people put their heads together and choose projects that deserve new XOR tokens. This way, good ideas get the fuel they need, and everyone benefits from a stable economy.
-
-Financial inclusion takes a huge leap forward with SORA too. By helping out with funding proposals through TBCD minting, SORA makes sure even small players have skin in the game. And guess what? Staking, transaction fees, and rewards are all part of the deal when you hold XOR tokens.
-
-This means everyone's invited to build and grow together – no one is left behind as we march toward an economy that works for all.
-
-### SORA's progress and updates
-
-SORA keeps growing and getting better. It's always adding new things to make its digital government stronger. This helps everyone in the SORA community have more freedom without hurting their rights.
-
-The people running SORA use a smart system to pick which projects should get new XOR tokens. They look for ideas that will help the most.
-
-Big changes came to how SORA works with money, too. Its economic setup uses a special tool called a token bonding curve. This makes sure there's enough money around and it doesn't lose value suddenly.
-
-All of these updates aim to make sure SORA can handle any new challenges and keep making good decisions for its future.
-
-### Joining the SORA community
-
-Keeping up with SORA's progress leads many to the next step: becoming part of its community. Here's how you can join the vibrant group of supporters and contributors in the SORA world.
-
-- Look for official SORA channels. Find their [website](https://sora.org/), social media pages, or forums where you can sign up or follow them.
-- Read their updates and news. This helps you stay informed about what's happening in the community.
-- Engage in discussions. Share your thoughts on platforms like Telegram or Reddit to connect with other SORA members.
-- Participate in governance votes. Use your tokens to vote on proposals and be part of decision - making.
-- Attend online meetups or webinars. This is a great way to learn more and meet others who are interested in SORA.
-- Provide feedback or suggestions. Your ideas can help shape future developments within SORA.
-- Get involved with projects. Contribute to tasks that match your skills, from coding to writing.
-- Educate others about SORA. Spread awareness by talking to friends or writing blog posts.
+---
 
 ## Conclusion
 
-Polkadot gives SORA super powers for making decisions. Everyone can have a say in how things work, which is really cool. This way, SORA stays fair and open to all people. It's like having everyone steer the ship together towards better money stuff for everyone.
+SORA’s journey from Polkadot-style governance to Iroha sovereignty marks a broader shift in Web3 — from *network-based coordination* to *economic governance*.  
+By evolving its own decision-making architecture, SORA is building not only a blockchain but a **new kind of monetary polity**, where code and community collaborate to shape a fair, debt-free world economy.
 
-That's why they shake hands – it’s all about working as one big team!
+---
+
+## References
+
+Below are key technical and ecosystem resources that informed this comparison and outline SORA’s governance evolution.
+
+### Primary sources
+- [Polkadot OpenGov documentation](https://wiki.polkadot.network/docs/learn-polkadot-opengov)
+- [Substrate FRAME governance pallets](https://docs.substrate.io/reference/frame-pallets/#governance)
+- [Polkadot referenda](https://wiki.polkadot.com/learn/learn-polkadot-opengov/#referenda)
+- [Hyperledger Iroha 2 documentation](https://docs.iroha.tech/)
+- [Iroha permissions model](https://docs.iroha.tech/blockchain/permissions.html)
+- [SORA official site](https://sora.org/)
+- [Soramitsu Medium – SORA updates](https://medium.com/sora-xor)
+
+### Secondary and adjacent
+- [Polkaswap documentation](https://wiki.sora.org/polkaswap/polkaswap-faq.html)
+- [Kensetsu documentation](https://wiki.sora.org/ken.html)
+- [TBCD overview](https://wiki.sora.org/tbcd.html)
+- [Subscan SORA governance (historical)](https://sora.subscan.io/)
+
+---
 
 ## FAQs
 
-### What is Polkadot's governance system like?
+<details>
+<summary>Was SORA originally a Polkadot parachain?</summary>
 
-Polkadot uses a complex, yet smart way to make decisions. It has several ways for voting, such as referendums and councils, so that DOT holders can have a say in the network.
+Yes. Earlier versions of SORA were built with Substrate and participated in the Polkadot ecosystem. However, SORA v3 has moved to a **stand-alone Iroha-based chain**, independent of Polkadot’s governance.
 
-### Can anyone participate in Polkadot's governance?
+</details>
 
-Yes! If you hold some DOTs, you can join in—either by voting on proposals or even putting forward your ideas for everyone to consider.
+<details>
+<summary>Will SORA v3 still have on-chain governance?</summary>
 
-### Why does SORA find Polkadot's governance appealing?
+Yes, but redesigned. SORA v3’s governance will be native to Iroha, with new modules for proposal voting, validator management, and treasury coordination.
 
-SORA likes how Polkadot lets its community lead the way through votes and decisions. This means the network grows and changes the way users want it to.
+</details>
 
-### How do votes get counted in Polkadot?
+<details>
+<summary>What happens to the old SORA Parliament?</summary>
 
-Votes are weighted based on how many DOTs someone holds and how long they're willing to lock them up for when they vote—it's all about making sure those really invested in Polkadot have a bigger voice.
+The Parliament concept may return in a new form — adapted to Iroha and integrated with validator-based consensus rather than Polkadot’s council model.
 
-### What happens after a proposal wins in a referendum?
+</details>
 
-Once an idea gets enough "aye" votes from DOT holders, there’s an enactment period of 28 days before things start happening—that's just giving time to prep everything well.
+<details>
+<summary>How does this affect Polkaswap?</summary>
 
-### Does having more DOTs mean more control over changes to Polkadot?
+Polkaswap will continue functioning as a multi-chain DEX aggregator, integrating SORA v3 liquidity through bridges, regardless of SORA’s shift away from Polkadot.
 
-People with more stake can influence more—but it’s not all about numbers! The whole point is everyone works together, bringing their own suggestions and choosing what's best for Polkdot collectively.
+</details>
 
-## Disclaimer
+<details>
+<summary>Why is SORA moving away from Polkadot?</summary>
 
-The information in this post is provided solely for general educational and informational purposes. This content does not constitute investment, financial, legal, or tax advice. The author is not a licensed financial advisor and does not recommend any investment opportunity or provide financial advice. Readers should consult their own financial advisor, lawyer, or tax professional and conduct their own research and due diligence before acting on any information provided here, while also ensuring compliance with local statutes governing financial transactions and investments.
+The shift to Iroha gives SORA full sovereignty, faster consensus, and native interoperability — aligning better with its mission to act as a **global, non-debt-based economic network**.
 
-A reader's decision to invest in any platform, protocol, asset, or strategy referenced in this blog is entirely at their own risk. Investing in and utilizing DeFi mechanisms can involve substantial risk, so readers should consider their own investment objectives and risk tolerance before participating. Any reference to historical price trends or returns is not indicative of future results. No representations or warranties are made by the author, expressed or implied, as to the accuracy or completeness of information contained in this post. Past performance of any referenced asset or strategy does not guarantee future success or returns. Readers are responsible for ensuring that their activities conform with laws and regulations applicable in their local jurisdictions governing finance and investments.
+</details>
