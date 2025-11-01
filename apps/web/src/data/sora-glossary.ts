@@ -55,10 +55,20 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
     term: 'Hyperledger Iroha',
     definition: 'An open-source, permissioned blockchain framework developed by SORAMITSU and part of the Hyperledger Foundation. Designed for simplicity and fast deployment with granular permissions, built-in asset management, and Byzantine fault tolerant consensus. Iroha 2 (written in Rust) adds WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure.',
     category: 'technology',
-    relatedTerms: ['SORAMITSU', 'Hyperledger Foundation', 'Permissioned Blockchain', 'CBDC', 'Enterprise', 'WASM'],
+    relatedTerms: ['SORAMITSU', 'Hyperledger Foundation', 'Permissioned Blockchain', 'CBDC', 'Enterprise', 'WASM', 'Iroha 2', 'Iroha 3'],
     examples: ['SORA network', 'Bakong CBDC', 'Enterprise systems', 'National financial infrastructure'],
     links: [
       { label: 'Hyperledger Iroha', url: 'https://iroha.readthedocs.io' }
+    ]
+  },
+  'Iroha 2': {
+    term: 'Iroha 2',
+    definition: 'Hyperledger Iroha 2 is the blockchain framework on which SORA v2 is built. The SORA network is currently preparing to migrate to Iroha 3 as part of its SORA v3 (Nexus) upgrade. Iroha 2 (written in Rust) provides WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure.',
+    category: 'technology',
+    relatedTerms: ['Hyperledger Iroha', 'SORA v2', 'SORA v3', 'Iroha 3', 'SORAMITSU', 'WASM', 'CBDC'],
+    examples: ['SORA v2 network', 'Enterprise blockchain systems', 'CBDC infrastructure'],
+    links: [
+      { label: 'Hyperledger Iroha Documentation', url: 'https://iroha.readthedocs.io' }
     ]
   },
   'Substrate': {
@@ -211,9 +221,9 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   // SORA v3 Terms
   'SORA v3': {
     term: 'SORA v3',
-    definition: 'The latest version of SORA built on Hyperledger Iroha 2, featuring the SORA v3 Hub Chain that enables seamless collaboration between permissioned and decentralized systems. Designed for CBDCs, government integration, and economic sovereignty while maintaining borderless financial activities.',
+    definition: 'SORA v3, also known as SORA Nexus, is the next generation of the SORA network. It transitions from Hyperledger Iroha 2 to Iroha 3, introducing a modular, high-performance design to support scalability and cross-chain interoperability. The SORA v3 Hub Chain enables seamless collaboration between permissioned and decentralized systems, designed for CBDCs, government integration, and economic sovereignty while maintaining borderless financial activities.',
     category: 'technology',
-    relatedTerms: ['Hyperledger Iroha', 'CBDC', 'Hub Chain', 'Economic Sovereignty', 'KUSD', 'Fujiwara Testnet'],
+    relatedTerms: ['Hyperledger Iroha', 'Iroha 2', 'Iroha 3', 'CBDC', 'Hub Chain', 'Economic Sovereignty', 'KUSD', 'Fujiwara Testnet'],
     examples: ['Central bank digital currencies', 'Government asset creation', 'Permissioned subnets', 'Supranational platform'],
     links: [
       { label: 'SORA v3 Guide', url: 'https://wiki.sora.org/sora-v3.html' }

@@ -225,7 +225,9 @@
         "Permissioned Blockchain",
         "CBDC",
         "Enterprise",
-        "WASM"
+        "WASM",
+        "Iroha 2",
+        "Iroha 3"
       ],
       "aliases": [
         "Hyperledger Iroha"
@@ -754,6 +756,43 @@
       "priority": 5
     },
     {
+      "term": "Iroha 2",
+      "slug": "iroha-2",
+      "definition": "Hyperledger Iroha 2 is the blockchain framework on which SORA v2 is built. The SORA network is currently preparing to migrate to Iroha 3 as part of its SORA v3 (Nexus) upgrade. Iroha 2 (written in Rust) provides WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure.",
+      "category": "technology",
+      "relatedTerms": [
+        "Hyperledger Iroha",
+        "SORA v2",
+        "SORA v3",
+        "Iroha 3",
+        "SORAMITSU",
+        "WASM",
+        "CBDC"
+      ],
+      "aliases": [
+        "Iroha 2"
+      ],
+      "tags": [
+        "technology",
+        "soramitsu",
+        "wasm",
+        "cbdc",
+        "iroha"
+      ],
+      "examples": [
+        "SORA v2 network",
+        "Enterprise blockchain systems",
+        "CBDC infrastructure"
+      ],
+      "links": [
+        {
+          "label": "Hyperledger Iroha Documentation",
+          "url": "https://iroha.readthedocs.io"
+        }
+      ],
+      "priority": 1
+    },
+    {
       "term": "TONSWAP",
       "slug": "tonswap",
       "definition": "A next-generation decentralized exchange (DEX) and launchpad built on The Open Network (TON) blockchain. TONSWAP combines cutting-edge concentrated liquidity technology with a user-friendly design, offering ultra-fast trades, near-zero fees, and seamless Telegram integration. It serves as a TON-native gateway for mobile-first DeFi access.",
@@ -916,10 +955,12 @@
     {
       "term": "SORA v3",
       "slug": "sora-v3",
-      "definition": "The latest version of SORA built on Hyperledger Iroha 2, featuring the SORA v3 Hub Chain that enables seamless collaboration between permissioned and decentralized systems. Designed for CBDCs, government integration, and economic sovereignty while maintaining borderless financial activities.",
+      "definition": "SORA v3, also known as SORA Nexus, is the next generation of the SORA network. It transitions from Hyperledger Iroha 2 to Iroha 3, introducing a modular, high-performance design to support scalability and cross-chain interoperability. The SORA v3 Hub Chain enables seamless collaboration between permissioned and decentralized systems, designed for CBDCs, government integration, and economic sovereignty while maintaining borderless financial activities.",
       "category": "technology",
       "relatedTerms": [
         "Hyperledger Iroha",
+        "Iroha 2",
+        "Iroha 3",
         "CBDC",
         "Hub Chain",
         "Economic Sovereignty",
@@ -2316,7 +2357,7 @@
     },
     "technology": {
       "name": "technology",
-      "count": 12,
+      "count": 13,
       "description": "Blockchain technology, protocols, and technical concepts"
     },
     "network": {
@@ -2340,6 +2381,6 @@
       "description": "Decision-making systems and governance mechanisms"
     }
   },
-  "totalCount": 63,
-  "lastUpdated": "2025-10-15T15:26:15.990Z"
+  "totalCount": 64,
+  "lastUpdated": "2025-10-31T13:52:00.062Z"
 }
