@@ -28,7 +28,7 @@
     {
       "slug": "hyperledger-iroha",
       "priority": 70,
-      "blob": "hyperledger iroha hyperledger-iroha technology an open-source, permissioned blockchain framework developed by soramitsu and part of the hyperledger foundation. designed for simplicity and fast deployment with granular permissions, built-in asset management, and byzantine fault tolerant consensus. iroha 2 (written in rust) adds wasm smart contracts and improved performance, making it suitable for enterprise systems, cbdcs, and national-level financial infrastructure. hyperledger iroha technology soramitsu cbdc enterprise wasm hyperledger iroha soramitsu hyperledger foundation permissioned blockchain cbdc enterprise wasm"
+      "blob": "hyperledger iroha hyperledger-iroha technology an open-source, permissioned blockchain framework developed by soramitsu and part of the hyperledger foundation. designed for simplicity and fast deployment with granular permissions, built-in asset management, and byzantine fault tolerant consensus. iroha 2 (written in rust) adds wasm smart contracts and improved performance, making it suitable for enterprise systems, cbdcs, and national-level financial infrastructure. hyperledger iroha technology soramitsu cbdc enterprise wasm hyperledger iroha soramitsu hyperledger foundation permissioned blockchain cbdc enterprise wasm iroha 2 iroha 3"
     },
     {
       "slug": "substrate",
@@ -101,6 +101,11 @@
       "blob": "blockchain blockchain technology a distributed ledger technology that maintains a continuously growing list of records secured using cryptography. sora operates on blockchain technology, currently using substrate framework and transitioning to hyperledger iroha for enhanced enterprise capabilities. blockchain technology cryptography substrate distributed ledger cryptography substrate hyperledger iroha decentralization"
     },
     {
+      "slug": "iroha-2",
+      "priority": 1,
+      "blob": "iroha 2 iroha-2 technology hyperledger iroha 2 is the blockchain framework on which sora v2 is built. the sora network is currently preparing to migrate to iroha 3 as part of its sora v3 (nexus) upgrade. iroha 2 (written in rust) provides wasm smart contracts and improved performance, making it suitable for enterprise systems, cbdcs, and national-level financial infrastructure. iroha 2 technology soramitsu wasm cbdc iroha hyperledger iroha sora v2 sora v3 iroha 3 soramitsu wasm cbdc"
+    },
+    {
       "slug": "tonswap",
       "priority": 1,
       "blob": "tonswap tonswap defi a next-generation decentralized exchange (dex) and launchpad built on the open network (ton) blockchain. tonswap combines cutting-edge concentrated liquidity technology with a user-friendly design, offering ultra-fast trades, near-zero fees, and seamless telegram integration. it serves as a ton-native gateway for mobile-first defi access. tonswap defi dex ton sora cross-chain polkaswap telegram mobile liquidity bridge launchpad clmm dex ton sora cross-chain polkaswap telegram mobile liquidity bridge launchpad clmm"
@@ -123,7 +128,7 @@
     {
       "slug": "sora-v3",
       "priority": 1,
-      "blob": "sora v3 sora-v3 technology the latest version of sora built on hyperledger iroha 2, featuring the sora v3 hub chain that enables seamless collaboration between permissioned and decentralized systems. designed for cbdcs, government integration, and economic sovereignty while maintaining borderless financial activities. sora v3 technology cbdc kusd sora hyperledger iroha cbdc hub chain economic sovereignty kusd fujiwara testnet"
+      "blob": "sora v3 sora-v3 technology sora v3, also known as sora nexus, is the next generation of the sora network. it transitions from hyperledger iroha 2 to iroha 3, introducing a modular, high-performance design to support scalability and cross-chain interoperability. the sora v3 hub chain enables seamless collaboration between permissioned and decentralized systems, designed for cbdcs, government integration, and economic sovereignty while maintaining borderless financial activities. sora v3 technology cbdc kusd sora hyperledger iroha iroha 2 iroha 3 cbdc hub chain economic sovereignty kusd fujiwara testnet"
     },
     {
       "slug": "fujiwara-testnet",
@@ -316,6 +321,6 @@
       "blob": "sora card sora-card defi a decentralized debit card that allows users to spend their cryptocurrency in the real world. the sora card bridges the gap between digital assets and traditional commerce, enabling users to make purchases at any merchant that accepts card payments while maintaining the benefits of decentralized finance. sora card defi xor polkaswap cryptocurrency sora card xor polkaswap decentralized finance real-world payments cryptocurrency"
     }
   ],
-  "count": 63,
-  "lastUpdated": "2025-10-15T15:26:15.990Z"
+  "count": 64,
+  "lastUpdated": "2025-11-01T13:14:40.301Z"
 }
