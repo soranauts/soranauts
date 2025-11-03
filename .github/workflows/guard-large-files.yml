@@ -1,0 +1,22 @@
+name: Guard large files
+
+on: [pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Block >50MB files
+        run: |
+          LIMIT=$((50*1024*1024))
+          git diff --name-only origin/${{ github.base_ref }}... | while read f; do
+            [ -f "$f" ] || continue
+            sz=$(wc -c <"$f")
+            if [ "$sz" -gt "$LIMIT" ]; then
+              echo "::error file=$f::file is >50MB ($sz bytes)"
+              exit 1
+            fi
+          done
+
