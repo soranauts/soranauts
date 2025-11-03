@@ -35,3 +35,6 @@ knowledge_base/wiki/
 knowledge_base/iroha_docs/
 # Metadata files
 knowledge_base/scripts/.meta/
+# Scraped images (large, can be re-generated)
+knowledge_base/soramitsu_site/images/
+knowledge_base/ecosystem_updates/images/
