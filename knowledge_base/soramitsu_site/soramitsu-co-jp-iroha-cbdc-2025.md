@@ -4,14 +4,14 @@ source: soramitsu
 source_url: 'https://soramitsu.co.jp/iroha-cbdc-2025'
 doc_id: 4aecb64c17854931
 snapshot_id: '2025-11-03'
-fetched_at: '2025-11-03T03:17:18.661Z'
-etag: '"1f8da-63ee53c57cd93-gzip"'
+fetched_at: '2025-11-03T06:20:45.442Z'
+etag: '"1f8da-63ee53c57bb2d-gzip"'
 last_modified: 'Tue, 16 Sep 2025 06:29:01 GMT'
 lang: en
 license: Soramitsu
 checksum_sha256: 55e782e66c646ce3c922f3b794452087c52173f48b64cebb0a26529bb670cdf5
 content_hash: 55e782e66c646ce3c922f3b794452087c52173f48b64cebb0a26529bb670cdf5
-publishDate: '2025-11-03T03:17:18.661Z'
+publishDate: '2025-11-03T06:20:45.442Z'
 image_rights: Soramitsu
 ---
 LFDT’s CBDC eBook: Hyperledger Iroha’s Real-World Impact

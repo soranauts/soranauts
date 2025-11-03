@@ -10,8 +10,12 @@ import { env } from './env';
 const program = new Command();
 program
   .option('--build', 'Build BM25 index')
-  .option('--json', 'Output JSON')
-  .parse();
+  .option('--json', 'Output JSON');
+
+// Only parse args if this is the main module
+if (import.meta.url === `file://${process.argv[1]}`) {
+  program.parse();
+}
 
 export interface Bm25Document {
   id: string;

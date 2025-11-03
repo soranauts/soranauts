@@ -16,7 +16,7 @@ const program = new Command();
 program
   .option('--archive', 'Scrape publication archive for all historical posts')
   .option('--urls <file>', 'Import from file with one URL per line')
-  .option('--publication <name>', 'Publication name (sora, polkaswap, fearless)', 'sora')
+  .option('--publication <name>', 'Publication name (sora, polkaswap, fearless, tonswap)', 'sora')
   .option('--json', 'Output JSON summary')
   .parse();
 
@@ -41,6 +41,12 @@ const publicationConfig: Record<string, { dir: string; source: string; stateFile
     source: 'fearless_update',
     stateFile: '.fearless_state.json',
     rssFeed: env.FEARLESS_FEED_URL,
+  },
+  tonswap: {
+    dir: 'tonswap_updates',
+    source: 'tonswap_update',
+    stateFile: '.tonswap_state.json',
+    rssFeed: env.TONSWAP_FEED_URL,
   },
 };
 
@@ -78,6 +84,7 @@ async function scrapeArchiveUrls(publicationUrl: string, publicationName: string
     sora: ['/sora-xor.medium.com/', 'medium.com/sora-xor'],
     polkaswap: ['/polkaswap.medium.com/', 'medium.com/polkaswap'],
     fearless: ['/fearlesswallet.medium.com/', 'medium.com/fearlesswallet'],
+    tonswap: ['/tonswap-org.medium.com/', 'medium.com/tonswap-org'],
   };
   const patterns = publicationPatterns[publicationName] || publicationPatterns.sora;
   

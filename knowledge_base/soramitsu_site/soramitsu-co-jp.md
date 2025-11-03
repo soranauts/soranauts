@@ -4,14 +4,14 @@ source: soramitsu
 source_url: 'https://soramitsu.co.jp/'
 doc_id: 21cc033d19618353
 snapshot_id: '2025-11-03'
-fetched_at: '2025-11-03T03:17:15.421Z'
-etag: '"512b5-63de21448988a-gzip"'
+fetched_at: '2025-11-03T06:20:43.720Z'
+etag: '"512b5-63de21447d822-gzip"'
 last_modified: 'Wed, 03 Sep 2025 09:17:52 GMT'
 lang: en
 license: Soramitsu
 checksum_sha256: d04645d3ea7af6af91a2d76245b7560bda02fc6f933dd229b3eb5e3a7a57f66a
 content_hash: d04645d3ea7af6af91a2d76245b7560bda02fc6f933dd229b3eb5e3a7a57f66a
-publishDate: '2025-11-03T03:17:15.422Z'
+publishDate: '2025-11-03T06:20:43.720Z'
 image_rights: Soramitsu
 ---
 Soramitsu is an award-winning blockchain technology leader revolutionizing global payments, empowering governments, advancing Web3 infrastructure and transforming telecoms.

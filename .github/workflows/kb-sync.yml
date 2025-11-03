@@ -2,7 +2,7 @@ name: KB Nightly Sync
 
 on:
   schedule:
-    - cron: "0 3 */3 * *" # Every 3 days at 03:00 UTC (reduced frequency for cost optimization)
+    - cron: "0 3 * * *" # Daily at 03:00 UTC (incremental sync is cheap ~$0.12/month)
   workflow_dispatch:
 
 concurrency:
@@ -135,6 +135,31 @@ jobs:
             sleep "$RETRY_DELAY"
           done
 
+  sync_fearless_github:
+    runs-on: ubuntu-latest
+    env:
+      RETRY_COUNT: 3
+      RETRY_DELAY: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Sync Fearless Wallet GitHub repos (with retry)
+        run: |
+          n=0
+          until [ "$n" -ge "$RETRY_COUNT" ]; do
+            pnpm --filter @soranauts/web kb:sync:fearless:github && break
+            n=$((n+1))
+            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+            sleep "$RETRY_DELAY"
+          done
+
   sync_wiki:
     runs-on: ubuntu-latest
     env:
@@ -160,8 +185,58 @@ jobs:
             sleep "$RETRY_DELAY"
           done
 
+  sync_tonswap:
+    runs-on: ubuntu-latest
+    env:
+      RETRY_COUNT: 3
+      RETRY_DELAY: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Scrape TONSWAP site (with retry)
+        run: |
+          n=0
+          until [ "$n" -ge "$RETRY_COUNT" ]; do
+            pnpm --filter @soranauts/web kb:sync:tonswap && break
+            n=$((n+1))
+            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+            sleep "$RETRY_DELAY"
+          done
+
+  import_tonswap_medium:
+    runs-on: ubuntu-latest
+    env:
+      RETRY_COUNT: 3
+      RETRY_DELAY: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Import TONSWAP Medium posts (with retry)
+        run: |
+          n=0
+          until [ "$n" -ge "$RETRY_COUNT" ]; do
+            pnpm --filter @soranauts/web kb:sync:tonswap:medium && break
+            n=$((n+1))
+            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+            sleep "$RETRY_DELAY"
+          done
+
   index:
-    needs: [sync_iroha, sync_soramitsu, import_medium, import_polkaswap, import_fearless, sync_wiki]
+    needs: [sync_iroha, sync_soramitsu, import_medium, import_polkaswap, import_fearless, sync_fearless_github, sync_wiki, sync_tonswap, import_tonswap_medium]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

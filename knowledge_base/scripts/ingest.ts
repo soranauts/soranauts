@@ -58,10 +58,18 @@ async function findMarkdownFiles(rootDir: string): Promise<string[]> {
   const patterns = ['**/*.md', '**/*.mdx'];
   
   for (const pattern of patterns) {
+    const ignore = [
+      '**/node_modules/**', 
+      '**/.git/**', 
+      '**/index/**', 
+      '**/snapshots/**',
+      '**/fearless_github/android/**',
+      '**/fearless_github/ios/**',
+    ];
     const matches = await globAsync(pattern, {
       cwd: rootDir,
       absolute: true,
-      ignore: ['**/node_modules/**', '**/.git/**', '**/index/**', '**/snapshots/**'],
+      ignore,
     });
     files.push(...matches);
   }
@@ -149,8 +157,10 @@ function processFile(
         const normalizedChunkText = normalizeForHash(cleanText);
         const chunkTextHash = hashContent(normalizedChunkText);
         const tokenLen = tokenChunk.end - tokenChunk.start;
-        // New ID format: sha256(normalized_text)::startToken::len::chunker_version
-        const chunkId = `${chunkTextHash}::${tokenChunk.start}::${tokenLen}::${CHUNKER_VERSION}`;
+        // Include slug hash in ID to ensure uniqueness across files with same content
+        // Format: sha256(normalized_text)::slugHash::startToken::len::chunker_version
+        const slugHash = hashContent(slug).substring(0, 8);
+        const chunkId = `${chunkTextHash}::${slugHash}::${tokenChunk.start}::${tokenLen}::${CHUNKER_VERSION}`;
 
         const metadata: ChunkMetadata = {
           source: source,
@@ -417,6 +427,9 @@ async function main() {
     { path: join(env.KB_DIR, 'ecosystem_updates'), source: 'update' },
     { path: join(env.KB_DIR, 'polkaswap_updates'), source: 'polkaswap_update' },
     { path: join(env.KB_DIR, 'fearless_updates'), source: 'fearless_update' },
+    { path: join(env.KB_DIR, 'fearless_github'), source: 'fearless_github', excludeDirs: ['android', 'ios'] },
+    { path: join(env.KB_DIR, 'tonswap_site'), source: 'tonswap_site' },
+    { path: join(env.KB_DIR, 'tonswap_updates'), source: 'tonswap_update' },
     { path: join(env.KB_DIR, 'pdfs_md'), source: 'pdf' },
     { path: join(env.KB_DIR, 'imported'), source: 'imported' },
   ];
