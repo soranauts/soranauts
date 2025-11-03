@@ -1,0 +1,62 @@
+name: KB Backtest on PR
+
+on:
+  pull_request:
+    paths:
+      - 'apps/web/src/content/post/**'
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          
+      - run: pnpm install --frozen-lockfile
+      
+      - name: Restore index cache
+        uses: actions/cache@v4
+        with:
+          path: knowledge_base/index
+          key: kb-index-${{ runner.os }}-${{ hashFiles('knowledge_base/index/manifest.json') }}
+          
+      - name: Run backtest
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: pnpm --filter @soranauts/web kb:backtest --sarif --pr-diff
+        
+      - name: Check backtest errors
+        id: check_errors
+        if: always()
+        run: |
+          ERROR_COUNT=$(jq '.runs[0].results | map(select(.level=="error")) | length' reports/backtest/*.sarif 2>/dev/null || echo "0")
+          echo "error_count=$ERROR_COUNT" >> $GITHUB_OUTPUT
+          if [ "$ERROR_COUNT" -gt 3 ]; then
+            echo "::error::Too many KB backtest errors ($ERROR_COUNT)"
+            exit 1
+          fi
+          
+      - name: Upload SARIF
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: reports/backtest/*.sarif
+          continue-on-error: true
+          
+      - name: Upload backtest report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backtest-report
+          path: reports/backtest/*.json
+

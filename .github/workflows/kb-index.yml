@@ -1,0 +1,73 @@
+name: Reindex on KB or Article changes
+
+on:
+  push:
+    paths:
+      - 'knowledge_base/**'
+      - 'apps/web/src/content/post/**'
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Determine changed files
+        id: changed-files
+        run: |
+          if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            # Initial commit - index everything
+            echo "changed=all" >> $GITHUB_OUTPUT
+          else
+            # Use git diff to find changed files, handling merge commits
+            CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^knowledge_base/|^apps/web/src/content/post/' || echo "")
+            if [ -z "$CHANGED" ]; then
+              echo "changed=none" >> $GITHUB_OUTPUT
+            else
+              echo "changed=some" >> $GITHUB_OUTPUT
+            fi
+          fi
+          
+      - name: Reindex KB
+        if: steps.changed-files.outputs.changed != 'none'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          EMBED_MODEL: ${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}
+          TOKENIZER: ${{ vars.TOKENIZER || 'tiktoken-cl100k' }}
+        run: |
+          # Delta reindex: only re-embed changed files
+          # For now, we'll do a full reindex (can be optimized later with file registry)
+          pnpm --filter @soranauts/web kb:ingest
+          
+      - name: Upload index manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kb-index-manifest
+          path: knowledge_base/index/manifest.json
+          retention-days: 7
+          
+      - name: Cache index
+        if: success()
+        uses: actions/cache@v4
+        with:
+          path: knowledge_base/index
+          key: kb-index-${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}-${{ vars.TOKENIZER || 'tiktoken-cl100k' }}-${{ hashFiles('knowledge_base/**') }}
+          restore-keys: |
+            kb-index-${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}-${{ vars.TOKENIZER || 'tiktoken-cl100k' }}-
+

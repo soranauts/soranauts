@@ -1,0 +1,60 @@
+# SORAMITSU Blog Post URLs to Import
+# Add one URL per line
+# Example:
+# https://soramitsu.co.jp/news/article-title
+
+# Add SORAMITSU blog/news article URLs below:
+# (Manually collect these from the blog archive page if JS-rendered)
+
+https://au.finance.yahoo.com/news/fintech-startups-disrupting-payments-industry-143000772.html
+https://github.com/hyperledger-iroha/iroha/releases/tag/1.1.2
+https://soramitsu.co.jp/kagome-press-release
+https://soramitsu.co.jp/bakong-press-release
+https://soramitsu.co.jp/fearless-wallet-release
+https://polkaswap.medium.com/fearless-wallet-integrates-ramp-for-easy-fiat-to-crypto-on-ramps-1e36ba014217
+https://medium.com/sora-xor/your-2020-year-in-review-soramitsu-sora-polkaswap-and-fearless-wallet-6924ff3dd2af
+https://blog.soramitsu.co.jp/soramitsu-at-5/
+https://soramitsu.co.jp/fintech-regtech-award-press-release
+https://soramitsu.co.jp/idei-nobuyuki-press-release
+https://soramitsu.co.jp/pegasusworldkit/
+https://soramitsu.co.jp/cambodia-bakong/
+https://soramitsu.co.jp/global-central-bank-digital-currency-challenge/
+https://soramitsu.co.jp/digital-currency-research/
+https://soramitsu.co.jp/digital-currency-oceania/
+https://soramitsu.co.jp/blockchain-based-cross-border-securities-settlement-system
+https://soramitsu.co.jp/2021-soramitsu-review
+https://soramitsu.co.jp/soramitsu-klaytn
+https://soramitsu.co.jp/datachain-and-soramitsu
+https://soramitsu.co.jp/meti-soramitsu-cbdc
+https://soramitsu.co.jp/soramitsu-and-rag
+https://soramitsu.co.jp/klaytn-dex
+https://soramitsu.co.jp/klaytn-dex-testnet-completed
+https://soramitsu.co.jp/dlak-cbdc
+https://soramitsu.co.jp/asia-fintech
+https://soramitsu.co.jp/stablecoin-alliance
+https://soramitsu.co.jp/klaytn-partnership-success-story
+https://soramitsu.co.jp/fil-blockchain-launch
+https://soramitsu.co.jp/klaytn-dev-diaries-1
+https://soramitsu.co.jp/klaytn-dev-diaries-2
+https://soramitsu.co.jp/klaytn-dev-diaries-3
+https://soramitsu.co.jp/asian-digital-payment-network
+https://soramitsu.co.jp/fil-insights
+https://soramitsu.co.jp/ignite-on-klaytn
+https://soramitsu.co.jp/bokolo-cash
+https://www.japan.go.jp/kizuna/2023/12/pioneering_connectivity_across_asia.html
+https://soramitsu.co.jp/fil-2023-in-review
+https://soramitsu.co.jp/creating-ecosystems
+https://soramitsu.co.jp/2023-review
+https://soramitsu.co.jp/eight-years
+https://soramitsu.co.jp/iwafune-iroha-engineering
+https://soramitsu.co.jp/fil-release-1-3
+https://soramitsu.co.jp/polkadot-training-immunefi
+https://soramitsu.co.jp/palau-digital-bonds
+https://soramitsu.co.jp/niser-partnership
+https://soramitsu.co.jp/palauinvest
+https://fraudintelligencelimited.com/news/expanded-capabilities
+https://soramitsu.co.jp/2024-in-review
+https://soramitsu.co.jp/bpng-poc
+https://soramitsu.co.jp/2025
+https://soramitsu.co.jp/hyperledger-iroha2
+https://soramitsu.co.jp/iroha-cbdc-2025
