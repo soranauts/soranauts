@@ -2,6 +2,7 @@
 set -e
 
 echo "=== Determinism Test ==="
+echo "Testing with cache enabled (default behavior)..."
 echo "Running ingest twice and comparing manifests..."
 
 # First run
@@ -13,22 +14,29 @@ echo "Backing up index..."
 rm -rf knowledge_base/index.baseline
 cp -r knowledge_base/index knowledge_base/index.baseline
 
-# Second run
-echo "Run 2: Re-ingestion..."
+# Second run (should use cache)
+echo "Run 2: Re-ingestion (with cache)..."
 pnpm --filter @soranauts/web kb:ingest > /tmp/kb-ingest-2.log 2>&1
 
-# Compare manifests
+# Normalize manifests (strip timestamps, durations, IDs, sort keys/arrays)
 sanitize_manifest() {
   local src="$1"
   local dest="$2"
   if command -v jq >/dev/null 2>&1; then
-    jq 'del(.created_at)' "$src" > "$dest"
+    # Remove dynamic fields, sort keys, sort arrays
+    jq '
+      del(.created_at) |
+      del(.cache_hit_rate) |  # May vary slightly
+      with_entries(.value |= if type == "object" then to_entries | sort_by(.key) | from_entries else . end) |
+      to_entries | sort_by(.key) | from_entries
+    ' "$src" > "$dest"
   else
-    grep -v '"created_at"' "$src" > "$dest"
+    # Fallback: just remove created_at
+    grep -v '"created_at"' "$src" | grep -v '"cache_hit_rate"' > "$dest" || true
   fi
 }
 
-echo "Comparing manifests..."
+echo "Comparing manifests (normalized)..."
 sanitize_manifest knowledge_base/index.baseline/manifest.json /tmp/manifest-baseline.json
 sanitize_manifest knowledge_base/index/manifest.json /tmp/manifest-current.json
 if diff -q /tmp/manifest-baseline.json /tmp/manifest-current.json > /dev/null 2>&1; then

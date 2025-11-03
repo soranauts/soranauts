@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "The SORA Network Hosts the First Substrate/Polkadot-Based CBDC in Collaboration with the Central Bank of Solomon Islands",
+  "chunk_char_start": 6120,
+  "chunk_char_end": 7920
+}

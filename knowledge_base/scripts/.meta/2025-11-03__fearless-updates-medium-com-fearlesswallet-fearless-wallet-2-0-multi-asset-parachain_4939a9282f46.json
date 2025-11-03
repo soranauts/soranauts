@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "Fearless Wallet 2.0 — Multi-Asset Parachain Support Release",
+  "chunk_char_start": 3060,
+  "chunk_char_end": 4860
+}

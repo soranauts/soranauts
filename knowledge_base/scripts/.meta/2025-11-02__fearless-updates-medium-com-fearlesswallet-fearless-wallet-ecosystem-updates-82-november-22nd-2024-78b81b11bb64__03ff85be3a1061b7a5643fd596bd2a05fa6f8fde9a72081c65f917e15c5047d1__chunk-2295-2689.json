@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "Fearless Wallet Ecosystem Updates #82, November 22nd, 2024",
+  "chunk_char_start": 9180,
+  "chunk_char_end": 10756
+}

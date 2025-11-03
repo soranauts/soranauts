@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "2023 Polkaswap Year in Review",
+  "chunk_char_start": 18360,
+  "chunk_char_end": 19880
+}

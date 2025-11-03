@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "Fearless Wallet Embarks on a New Round of Development With an Approved Kusama Treasury Proposal",
+  "chunk_char_start": 6120,
+  "chunk_char_end": 7920
+}

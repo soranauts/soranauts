@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "SORA Ecosystem Updates #79, July 10, 2024",
+  "chunk_char_start": 19890,
+  "chunk_char_end": 21690
+}

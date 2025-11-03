@@ -39,6 +39,36 @@ pnpm kb:retrieve "SORA v3 governance changes"
 pnpm kb:backtest apps/web/src/content/post/article.mdx
 ```
 
+## Incremental Ingestion & Embedding Cache
+
+The KB supports incremental ingestion and disk-based embedding caching to reduce costs and speed up re-indexing:
+
+- **Deterministic chunk IDs**: `sha256(normalized_text)::startToken::len::chunker_version`
+- **Cache directory**: `knowledge_base/index/.embedding_cache/` (gitignored)
+- **File registry**: `knowledge_base/index/.file_registry.json` (tracks file changes via `bytesSha256`)
+- **CLI flags**: `--nocache` (bypass cache for determinism testing)
+- **Environment variables**:
+  - `KB_INCREMENTAL=true` (default: enable incremental mode)
+  - `KB_EMBED_CACHE_DIR=./knowledge_base/index/.embedding_cache`
+  - `KB_DETERMINISM_NOCACHE=false` (bypass cache for testing)
+  - `KB_SUBSET=""` (optional: limit ingestion to specific source)
+
+### Usage
+
+```bash
+# First run (populates cache)
+EMBED_MODEL=text-embedding-3-small KB_SUBSET=wiki pnpm kb:ingest
+
+# Second run (expect ≥95% cache hit, 0 new chunks)
+pnpm kb:ingest  # Uses cache for unchanged files
+
+# Determinism test (with cache)
+./knowledge_base/scripts/tests/determinism.sh
+
+# Determinism test (without cache)
+KB_DETERMINISM_NOCACHE=true pnpm kb:ingest --nocache
+```
+
 ## Environment Variables
 
 See `apps/web/src/server/env.ts` for all configuration options. Key variables:
