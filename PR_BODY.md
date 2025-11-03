@@ -12,6 +12,7 @@ Implements incremental ingestion and a disk-based embedding cache for the Sorana
 - **Manifest extensions**: `chunker_version`, `subset`, `seed`, `cache_hit_rate`
 - **Smoke tests** + determinism normalization updates
 - **Cost summary** + cache hit rate logging at end of run
+- **CI guard** workflow to block >50MB files in PRs
 
 ## Files Touched (high level)
 
@@ -20,8 +21,8 @@ Implements incremental ingestion and a disk-based embedding cache for the Sorana
 - `knowledge_base/scripts/ingest.ts`: chunk IDs, cache, incremental, flags, metrics
 - `knowledge_base/.gitignore`: cache + state dirs
 - `knowledge_base/scripts/tests/determinism.sh`: normalization updates
-- `knowledge_base/scripts/tests/SMOKE_TEST_PLAN.md`
-- `knowledge_base/scripts/tests/IMPLEMENTATION_SUMMARY.md`
+- `knowledge_base/README.md`: incremental & cache documentation
+- `.github/workflows/guard-large-files.yml`: CI guard for file size
 
 ## Env (defaults)
 
@@ -65,6 +66,7 @@ KB_DETERMINISM_NOCACHE=true pnpm --filter @soranauts/web kb:ingest --nocache
 - Cache directory is .gitignored (`knowledge_base/index/.embedding_cache/`)
 - `chunker_version` bump will safely re-key IDs when the chunker changes
 - File registry updates only on processed files; unchanged files are skipped
+- CI workflow blocks PRs with files >50MB
 
 ## Follow-ups (optional)
 
@@ -86,6 +88,7 @@ KB_DETERMINISM_NOCACHE=true pnpm --filter @soranauts/web kb:ingest --nocache
 - [ ] **Metrics** report `chunks_created/updated/skipped`, `cache_hits/misses/hit_rate`
 - [ ] **Costs**: summary prints `$`, saved tokens, and skip counts
 - [ ] **Subset** respects `--subset` and `KB_SUBSET`
+- [ ] **No large files**: PR diff excludes `index/`, `*.sqlite3`, `*.bin`
 
 ---
 
@@ -134,4 +137,3 @@ EMBED_MODEL=text-embedding-3-small KB_SUBSET=wiki pnpm --filter @soranauts/web k
 unset KB_SUBSET
 EMBED_MODEL=text-embedding-3-large pnpm --filter @soranauts/web kb:ingest
 ```
-
