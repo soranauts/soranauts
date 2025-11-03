@@ -1,0 +1,6 @@
+# Git LFS for knowledge base images
+knowledge_base/assets/** filter=lfs diff=lfs merge=lfs -text
+
+# Mark knowledge base as documentation
+knowledge_base/** linguist-documentation
+

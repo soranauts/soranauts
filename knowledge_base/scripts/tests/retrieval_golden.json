@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "query": "BFT consensus",
+      "expected_chunk_ids": [],
+      "min_score": 0.3,
+      "description": "Should find consensus-related content"
+    },
+    {
+      "query": "Kura",
+      "expected_chunk_ids": [],
+      "min_score": 0.3,
+      "description": "Should find exact term 'Kura'"
+    },
+    {
+      "query": "Sumeragi",
+      "expected_chunk_ids": [],
+      "min_score": 0.3,
+      "description": "Should find exact term 'Sumeragi'"
+    },
+    {
+      "query": "view change",
+      "expected_chunk_ids": [],
+      "min_score": 0.3,
+      "description": "Should find exact phrase 'view change'"
+    },
+    {
+      "query": "HotStuff",
+      "expected_chunk_ids": [],
+      "min_score": 0.3,
+      "description": "Should find exact term 'HotStuff'"
+    }
+  ]
+}
+

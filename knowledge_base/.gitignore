@@ -1,0 +1,37 @@
+# State files
+scripts/.state/
+.state/
+*.state.json
+
+# Vector DB index
+index/
+!index/manifest.json
+!index/.gitkeep
+
+# Embedding cache
+index/.embedding_cache/
+
+# BM25 index
+index/bm25/
+
+# Snapshots (metadata files)
+snapshots/
+!snapshots/.gitkeep
+
+# Logs
+kb-logs/
+*.ndjson
+*.sarif
+
+# Temporary files
+*.tmp
+*.temp
+
+# Large PDF files (extracted markdown will be committed)
+pdfs/*.pdf
+!pdfs/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+

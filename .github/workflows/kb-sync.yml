@@ -1,0 +1,207 @@
+name: KB Nightly Sync
+
+on:
+  schedule:
+    - cron: "0 3 */3 * *" # Every 3 days at 03:00 UTC (reduced frequency for cost optimization)
+  workflow_dispatch:
+
+concurrency:
+  group: kb-nightly
+  cancel-in-progress: false
+
+jobs:
+  sync_iroha:
+    runs-on: ubuntu-latest
+    env:
+      RETRY_COUNT: 3
+      RETRY_DELAY: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Sync Iroha docs (with retry)
+        run: |
+          n=0
+          until [ "$n" -ge "$RETRY_COUNT" ]; do
+            pnpm --filter @soranauts/web kb:sync:iroha && break
+            n=$((n+1))
+            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+            sleep "$RETRY_DELAY"
+          done
+      
+  sync_soramitsu:
+    runs-on: ubuntu-latest
+    env:
+      RETRY_COUNT: 3
+      RETRY_DELAY: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Scrape SORAMITSU site (with retry)
+        run: |
+          n=0
+          until [ "$n" -ge "$RETRY_COUNT" ]; do
+            pnpm --filter @soranauts/web kb:sync:soramitsu && break
+            n=$((n+1))
+            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+            sleep "$RETRY_DELAY"
+          done
+      
+  import_medium:
+    runs-on: ubuntu-latest
+    env:
+      RETRY_COUNT: 3
+      RETRY_DELAY: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Import SORA Medium posts (with retry)
+        run: |
+          n=0
+          until [ "$n" -ge "$RETRY_COUNT" ]; do
+            pnpm --filter @soranauts/web kb:sync:medium && break
+            n=$((n+1))
+            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+            sleep "$RETRY_DELAY"
+          done
+
+  import_polkaswap:
+    runs-on: ubuntu-latest
+    env:
+      RETRY_COUNT: 3
+      RETRY_DELAY: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Import Polkaswap Medium posts (with retry)
+        run: |
+          n=0
+          until [ "$n" -ge "$RETRY_COUNT" ]; do
+            pnpm --filter @soranauts/web kb:sync:polkaswap && break
+            n=$((n+1))
+            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+            sleep "$RETRY_DELAY"
+          done
+
+  import_fearless:
+    runs-on: ubuntu-latest
+    env:
+      RETRY_COUNT: 3
+      RETRY_DELAY: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Import Fearless Wallet Medium posts (with retry)
+        run: |
+          n=0
+          until [ "$n" -ge "$RETRY_COUNT" ]; do
+            pnpm --filter @soranauts/web kb:sync:fearless && break
+            n=$((n+1))
+            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+            sleep "$RETRY_DELAY"
+          done
+
+  sync_wiki:
+    runs-on: ubuntu-latest
+    env:
+      RETRY_COUNT: 3
+      RETRY_DELAY: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Scrape SORA Wiki (with retry)
+        run: |
+          n=0
+          until [ "$n" -ge "$RETRY_COUNT" ]; do
+            pnpm --filter @soranauts/web kb:sync:wiki && break
+            n=$((n+1))
+            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+            sleep "$RETRY_DELAY"
+          done
+
+  index:
+    needs: [sync_iroha, sync_soramitsu, import_medium, import_polkaswap, import_fearless, sync_wiki]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      
+      - name: Restore index cache
+        uses: actions/cache@v4
+        with:
+          path: knowledge_base/index
+          key: kb-index-${{ runner.os }}-${{ hashFiles('knowledge_base/index/manifest.json') }}
+          restore-keys: |
+            kb-index-${{ runner.os }}-
+            
+      - name: Build BM25 index
+        run: pnpm --filter @soranauts/web kb:bm25:build
+        
+      - name: Ingest and index
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: pnpm --filter @soranauts/web kb:ingest
+        
+      - name: Upload index manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: kb-index-manifest
+          path: knowledge_base/index/manifest.json
+          retention-days: 30
+          
+      - name: Commit changes
+        run: |
+          git config user.name "kb-bot"
+          git config user.email "kb-bot@users.noreply.github.com"
+          git add knowledge_base/ || true
+          git diff --staged --quiet && echo "No changes." || git commit -m "KB sync: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          git push || echo "Push failed"
+

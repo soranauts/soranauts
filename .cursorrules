@@ -1,19 +1,2 @@
-# Project context
-- Monorepo: apps/web (Astro), optional apps/tools, packages/{chain,ui,config}
-- Use pnpm, TS strict, Tailwind, TanStack Query, Zod, Recharts, Sentry
-- All chain/index calls via server /api; no secrets in the browser
-
-# Code style
-- Functional React components
-- ESLint + Prettier; small diffs (~300 lines) unless a migration is requested
-- Strong typing; zod at boundaries
-
-# Architecture rules
-- UI never imports blockchain SDKs directly; use packages/chain facade
-- /api/* endpoints own remote calls; short cache + optional KV
-- Glossary is accessible: <button> triggers, aria-describedby, ESC closes, deep links
-
-# Testing & DX
-- Unit tests for adapters; Playwright for /tools flows
-- zod-based env validation; fail fast if missing
-- Conventional Commits in PRs
+# Soranauts Cursor Rules
+disable_rules = ["SPLIT_SHORT_LINES", "AUTO_IMPORT", "PREFER_CONST"]
