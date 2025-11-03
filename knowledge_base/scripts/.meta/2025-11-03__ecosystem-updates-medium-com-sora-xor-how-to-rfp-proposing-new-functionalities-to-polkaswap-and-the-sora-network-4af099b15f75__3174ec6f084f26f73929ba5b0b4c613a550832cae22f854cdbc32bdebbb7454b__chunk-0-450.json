@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "How To RFP, Proposing New Functionalities to Polkaswap and the SORA Network",
+  "chunk_char_start": 0,
+  "chunk_char_end": 1800
+}

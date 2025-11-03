@@ -57,6 +57,7 @@ export interface ExtendedChunkMetadata {
   source_title?: string;
   chunk_char_start?: number;
   chunk_char_end?: number;
+  chunker_version?: string;
 }
 
 // Index manifest schema
@@ -67,12 +68,16 @@ export interface IndexManifest {
   embed_dim: number;
   distance: 'cosine' | 'euclidean' | 'dot';
   tokenizer: string;
+  chunker_version: string;
   chunk_tokens: {
     target: number;
     overlap: number;
     min: number;
     max: number;
   };
+  subset?: string;
+  seed?: string;
+  cache_hit_rate?: number;
   created_at: string;
   provider: string;
   provider_version: string;
@@ -160,12 +165,18 @@ export interface Metrics {
   files_processed: number;
   files_skipped: number;
   chunks_written: number;
+  chunks_created: number;
+  chunks_updated: number;
+  chunks_skipped: number;
   chunks_deleted: number;
   tokens_embedded: number;
   api_cost_estimate_usd: number;
   rate_limit_429_count: number;
   avg_rps: number;
   failure_count: number;
+  cache_hits: number;
+  cache_misses: number;
+  cache_hit_rate: number;
   duration_ms: number;
   timestamp: string;
 }

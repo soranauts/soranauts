@@ -23,7 +23,7 @@ package-lock.json
 
 .astro
 
-# --- Soranauts KB local artifacts ---
+# --- Soranauts KB (local artifacts, do not commit) ---
 knowledge_base/index/
 knowledge_base/index.baseline/
 knowledge_base/index/.embedding_cache/

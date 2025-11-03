@@ -47,6 +47,11 @@ const envSchema = z.object({
   DEDUPE_SIMHASH_THRESHOLD: z.string().transform((val) => parseInt(val, 10)).pipe(z.number()).default('8'),
   LOG_LEVEL: z.enum(['error','warn','info','debug']).default('info'),
   CI_WRITE_SARIF: z.string().transform((val) => val === 'true' || val === '').pipe(z.boolean()).default('true'),
+  // Incremental ingestion & embedding cache
+  KB_INCREMENTAL: z.string().transform((val) => val !== 'false').pipe(z.boolean()).default('true'),
+  KB_EMBED_CACHE_DIR: z.string().default('./knowledge_base/index/.embedding_cache'),
+  KB_DETERMINISM_NOCACHE: z.string().transform((val) => val === 'true').pipe(z.boolean()).default('false'),
+  KB_SUBSET: z.string().default(''),
 });
 
 export const env = envSchema.parse(process.env);

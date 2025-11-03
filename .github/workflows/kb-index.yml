@@ -5,10 +5,18 @@ on:
     paths:
       - 'knowledge_base/**'
       - 'apps/web/src/content/post/**'
+    branches: [main]  # Only run on main branch pushes
+  workflow_dispatch:  # Allow manual trigger
+  pull_request:
+    paths:
+      - 'knowledge_base/**'
+      - 'apps/web/src/content/post/**'
 
 jobs:
   index:
     runs-on: ubuntu-latest
+    # Don't block PR merges if indexing fails (useful if secrets aren't configured)
+    continue-on-error: ${{ github.event_name == 'pull_request' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

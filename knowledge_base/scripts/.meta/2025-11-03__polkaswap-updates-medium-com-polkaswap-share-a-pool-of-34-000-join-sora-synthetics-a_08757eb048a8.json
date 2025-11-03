@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "Share a Prize Pool of $34,000 — Join the SORA Synthetics Airdrop | Phase 1",
+  "chunk_char_start": 15300,
+  "chunk_char_end": 17100
+}
