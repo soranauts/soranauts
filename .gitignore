@@ -33,8 +33,15 @@ knowledge_base/**/*.log
 # Embedded git repos (handled by sync scripts)
 knowledge_base/wiki/
 knowledge_base/iroha_docs/
+# Fearless GitHub cloned repos (handled by sync scripts)
+knowledge_base/fearless_github/android/
+knowledge_base/fearless_github/ios/
 # Metadata files
 knowledge_base/scripts/.meta/
 # Scraped images (large, can be re-generated)
 knowledge_base/soramitsu_site/images/
 knowledge_base/ecosystem_updates/images/
+knowledge_base/polkaswap_updates/images/
+knowledge_base/fearless_updates/images/
+knowledge_base/tonswap_site/images/
+knowledge_base/tonswap_updates/images/
