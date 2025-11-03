@@ -7,6 +7,7 @@ import matter from 'gray-matter';
 import { ChromaClient } from 'chromadb';
 import OpenAI from 'openai';
 import pRetry from 'p-retry';
+import { Command } from 'commander';
 import { env } from './env';
 import { normalizeForHash, hashContent, normalizeCJKWhitespace } from './utils/text-normalize';
 import { chunkTokens, chunkTextByCharacters, type TokenChunk } from './utils/tokenizer';
@@ -14,6 +15,7 @@ import type { ChunkMetadata, ExtendedChunkMetadata, IndexManifest, Metrics } fro
 import { KBFrontmatter } from './types';
 
 const snapshotId = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+const CHUNKER_VERSION = '1.0.0'; // Stable version identifier for chunking algorithm
 
 function sanitizeForEmbedding(text: unknown): string {
   if (typeof text !== 'string') {
@@ -31,17 +33,20 @@ function sanitizeForEmbedding(text: unknown): string {
 interface FileMetadata {
   path: string;
   contentSha256: string;
+  bytesSha256: string; // Hash of raw file bytes for change detection
   chunks: string[]; // chunk IDs
 }
 
 interface ProcessedFile {
   path: string;
   contentSha256: string;
+  bytesSha256: string;
   chunks: Array<{
     id: string;
     text: string;
     metadata: ChunkMetadata;
     extendedMetadata: ExtendedChunkMetadata;
+    cacheKey: string; // contentSha256::embedModel::tokenizer
   }>;
 }
 
@@ -84,12 +89,17 @@ function processFile(
   filepath: string,
   source: string,
   embedModel: string,
-  snapshotId: string
+  snapshotId: string,
+  tokenizer: string
 ): ProcessedFile | null {
   try {
+    // Compute bytesSha256 from raw file bytes for change detection
+    const rawBytes = readFileSync(filepath);
+    const bytesSha256 = createHash('sha256').update(rawBytes).digest('hex');
+    
     const { frontmatter, content } = parseMarkdownFile(filepath, source);
     
-    // Normalize content for hashing
+    // Normalize content for hashing (for contentSha256)
     let normalized = normalizeForHash(content);
     normalized = normalizeCJKWhitespace(normalized);
     const contentSha256 = hashContent(normalized);
@@ -131,22 +141,27 @@ function processFile(
       return null; // Skip files with no valid chunks
     }
     
-    // Create chunks with deterministic IDs
+    // Create chunks with deterministic IDs: sha256(normalized_text)::startToken::len::chunker_version
     const chunks = tokenChunks
       .map((tokenChunk) => {
         const cleanText = sanitizeForEmbedding(tokenChunk.text);
-        const chunkId = `${snapshotId}::${slug}::${contentSha256}::chunk-${tokenChunk.start}-${tokenChunk.end}`;
+        // Normalize chunk text for stable hashing
+        const normalizedChunkText = normalizeForHash(cleanText);
+        const chunkTextHash = hashContent(normalizedChunkText);
+        const tokenLen = tokenChunk.end - tokenChunk.start;
+        // New ID format: sha256(normalized_text)::startToken::len::chunker_version
+        const chunkId = `${chunkTextHash}::${tokenChunk.start}::${tokenLen}::${CHUNKER_VERSION}`;
 
         const metadata: ChunkMetadata = {
           source: source,
           source_url: sourceUrl,
-          snapshot_id: snapshotId,
+          snapshot_id: snapshotId, // Keep snapshotId in metadata only
           slug: slug,
           chunk_start: tokenChunk.charStart,
           chunk_end: tokenChunk.charEnd,
           token_start: tokenChunk.start,
           token_end: tokenChunk.end,
-          token_count: tokenChunk.end - tokenChunk.start,
+          token_count: tokenLen,
           lang: frontmatter.lang,
           content_sha256: contentSha256,
           canonical_url: frontmatter.canonical_url,
@@ -159,13 +174,20 @@ function processFile(
           source_title: frontmatter.title || frontmatter.source_title,
           chunk_char_start: tokenChunk.charStart,
           chunk_char_end: tokenChunk.charEnd,
+          chunker_version: CHUNKER_VERSION,
         };
+
+        // Cache key: contentSha256::embedModel::tokenizer
+        // Hash the exact text sent to the embedding API (cleanText)
+        const chunkContentSha256 = hashContent(cleanText);
+        const cacheKey = `${chunkContentSha256}::${embedModel}::${tokenizer}`;
 
         return {
           id: chunkId,
           text: cleanText,
           metadata,
           extendedMetadata,
+          cacheKey,
         };
       })
       .filter(chunk => chunk.text.length > 0);
@@ -173,6 +195,7 @@ function processFile(
     return {
       path: filepath,
       contentSha256,
+      bytesSha256,
       chunks,
     };
   } catch (error) {
@@ -207,6 +230,46 @@ function saveFileRegistry(indexDir: string, registry: Map<string, FileMetadata>)
   
   const data = Object.fromEntries(registry);
   writeFileSync(registryPath, JSON.stringify(data, null, 2) + '\n');
+}
+
+/**
+ * Load embedding cache
+ */
+function loadEmbeddingCache(cacheDir: string): Map<string, number[]> {
+  const cache = new Map<string, number[]>();
+  if (!existsSync(cacheDir)) {
+    return cache;
+  }
+  
+  try {
+    const files = readdirSync(cacheDir);
+    for (const file of files) {
+      if (!file.endsWith('.json')) continue;
+      const cachePath = join(cacheDir, file);
+      try {
+        const data = JSON.parse(readFileSync(cachePath, 'utf-8'));
+        if (data.key && data.embedding && Array.isArray(data.embedding)) {
+          cache.set(data.key, data.embedding);
+        }
+      } catch {
+        // Skip invalid cache files
+      }
+    }
+  } catch {
+    // Cache directory read failed, return empty cache
+  }
+  
+  return cache;
+}
+
+/**
+ * Save embedding to cache
+ */
+function saveEmbeddingToCache(cacheDir: string, key: string, embedding: number[]): void {
+  mkdirSync(cacheDir, { recursive: true });
+  const hash = createHash('sha256').update(key).digest('hex').slice(0, 16);
+  const cachePath = join(cacheDir, `${hash}.json`);
+  writeFileSync(cachePath, JSON.stringify({ key, embedding }, null, 2) + '\n');
 }
 
 /**
@@ -249,20 +312,48 @@ async function createEmbeddings(
 }
 
 /**
+ * Normalize manifest for comparison (strip timestamps, durations, IDs, sort keys/arrays)
+ */
+function normalizeManifest(manifest: IndexManifest): any {
+  const normalized: any = { ...manifest };
+  delete normalized.created_at;
+  // Sort object keys
+  const sorted: any = {};
+  Object.keys(normalized).sort().forEach(key => {
+    sorted[key] = normalized[key];
+  });
+  return sorted;
+}
+
+/**
  * Main ingestion function
  */
 async function main() {
+  // Parse CLI arguments
+  const program = new Command();
+  program
+    .option('--nocache', 'Bypass embedding cache (for determinism testing)')
+    .parse();
+  const options = program.opts();
+  
+  const useCache = env.KB_INCREMENTAL && !env.KB_DETERMINISM_NOCACHE && !options.nocache;
   const startTime = Date.now();
   const metrics: Metrics = {
     files_processed: 0,
     files_skipped: 0,
     chunks_written: 0,
+    chunks_created: 0,
+    chunks_updated: 0,
+    chunks_skipped: 0,
     chunks_deleted: 0,
     tokens_embedded: 0,
     api_cost_estimate_usd: 0,
     rate_limit_429_count: 0,
     avg_rps: 0,
     failure_count: 0,
+    cache_hits: 0,
+    cache_misses: 0,
+    cache_hit_rate: 0,
     duration_ms: 0,
     timestamp: new Date().toISOString(),
   };
@@ -270,6 +361,7 @@ async function main() {
   console.log('Starting KB ingestion...');
   console.log(`Snapshot ID: ${snapshotId}`);
   console.log(`Embed model: ${env.EMBED_MODEL}`);
+  console.log(`Incremental: ${env.KB_INCREMENTAL}, Cache: ${useCache ? 'enabled' : 'disabled'}`);
   
   // Initialize OpenAI
   if (!env.OPENAI_API_KEY) {
@@ -307,6 +399,12 @@ async function main() {
     console.log(`Created new collection: ${env.CHROMA_COLLECTION}`);
   }
   
+  // Load embedding cache if enabled
+  const embeddingCache = useCache ? loadEmbeddingCache(env.KB_EMBED_CACHE_DIR) : new Map<string, number[]>();
+  if (useCache) {
+    console.log(`Loaded ${embeddingCache.size} cached embeddings`);
+  }
+  
   // Load file registry
   const fileRegistry = loadFileRegistry(env.INDEX_DIR);
   const processedFiles = new Map<string, ProcessedFile>();
@@ -323,6 +421,8 @@ async function main() {
     { path: join(env.KB_DIR, 'imported'), source: 'imported' },
   ];
   
+  // Process files (incremental: only process changed/new files if KB_INCREMENTAL is true)
+  const filesToProcess: string[] = [];
   for (const { path: sourceDir, source } of sourceDirs) {
     if (!existsSync(sourceDir)) {
       console.log(`Skipping ${source}: directory does not exist`);
@@ -333,33 +433,53 @@ async function main() {
     console.log(`Found ${files.length} files in ${source}`);
     
     for (const filepath of files) {
-      const processed = processFile(filepath, source, env.EMBED_MODEL, snapshotId);
-      if (processed) {
-        const relPath = relative(env.KB_DIR, filepath);
-        processedFiles.set(relPath, processed);
-        metrics.files_processed++;
-      } else {
-        metrics.files_skipped++;
+      const relPath = relative(env.KB_DIR, filepath);
+      const prior = fileRegistry.get(relPath);
+      
+      if (env.KB_INCREMENTAL && prior) {
+        // Check if file changed using bytesSha256
+        const rawBytes = readFileSync(filepath);
+        const bytesSha256 = createHash('sha256').update(rawBytes).digest('hex');
+        if (prior.bytesSha256 === bytesSha256) {
+          // File unchanged - skip processing
+          metrics.files_skipped++;
+          continue;
+        }
       }
+      
+      // File is new or changed - process it
+      filesToProcess.push(filepath);
     }
   }
   
-  console.log(`\nProcessed ${processedFiles.size} files into chunks`);
+  console.log(`\nProcessing ${filesToProcess.length} files (${metrics.files_skipped} skipped as unchanged)...`);
   
-  // Handle tombstone/deletion: find files that disappeared or changed
-  const currentFiles = new Set(processedFiles.keys());
+  // Process files that need updating
+  for (const filepath of filesToProcess) {
+    const relPath = relative(env.KB_DIR, filepath);
+    const source = sourceDirs.find(sd => filepath.startsWith(sd.path))?.source || 'unknown';
+    const processed = processFile(filepath, source, env.EMBED_MODEL, snapshotId, env.TOKENIZER);
+    if (processed) {
+      processedFiles.set(relPath, processed);
+      metrics.files_processed++;
+    } else {
+      metrics.files_skipped++;
+    }
+  }
+  
+  console.log(`Processed ${processedFiles.size} files into chunks`);
+  
+  // Handle tombstone/deletion: find files that disappeared
+  const currentFiles = new Set([...processedFiles.keys(), ...Array.from(fileRegistry.keys()).filter(f => {
+    // Keep files that were skipped (unchanged) in registry
+    return !filesToProcess.some(fp => relative(env.KB_DIR, fp) === f);
+  })]);
   const priorFiles = new Set(fileRegistry.keys());
-  
   const deletedFiles = [...priorFiles].filter(f => !currentFiles.has(f));
-  const changedFiles = [...currentFiles].filter(f => {
-    const prior = fileRegistry.get(f);
-    const current = processedFiles.get(f);
-    return prior && prior.contentSha256 !== current!.contentSha256;
-  });
   
-  // Delete chunks for deleted/changed files
+  // Delete chunks for deleted files only
   const chunksToDelete: string[] = [];
-  for (const filePath of [...deletedFiles, ...changedFiles]) {
+  for (const filePath of deletedFiles) {
     const prior = fileRegistry.get(filePath);
     if (prior) {
       chunksToDelete.push(...prior.chunks);
@@ -367,7 +487,7 @@ async function main() {
   }
   
   if (chunksToDelete.length > 0) {
-    console.log(`Deleting ${chunksToDelete.length} stale chunks...`);
+    console.log(`Deleting ${chunksToDelete.length} stale chunks from deleted files...`);
     try {
       await collection.delete({ ids: chunksToDelete });
       metrics.chunks_deleted = chunksToDelete.length;
@@ -376,21 +496,41 @@ async function main() {
     }
   }
   
-  // Prepare chunks for embedding
-  const allChunks: ProcessedFile['chunks'] = [];
+  // Collect chunks from processed files and unchanged files (for upsert)
+  const chunksToEmbed: ProcessedFile['chunks'] = [];
+  const chunksWithCachedEmbeddings: Array<{ chunk: ProcessedFile['chunks'][0]; embedding: number[] }> = [];
+  
+  // New/modified files: check cache for each chunk
   for (const file of processedFiles.values()) {
-    allChunks.push(...file.chunks);
+    for (const chunk of file.chunks) {
+      if (useCache && embeddingCache.has(chunk.cacheKey)) {
+        // Use cached embedding
+        const cachedEmbedding = embeddingCache.get(chunk.cacheKey)!;
+        chunksWithCachedEmbeddings.push({ chunk, embedding: cachedEmbedding });
+        metrics.cache_hits++;
+      } else {
+        // Need to generate embedding
+        chunksToEmbed.push(chunk);
+        if (useCache) {
+          metrics.cache_misses++;
+        }
+      }
+    }
   }
   
-  console.log(`\nGenerating embeddings for ${allChunks.length} chunks...`);
+  // Also collect chunks from unchanged files (need to upsert with existing embeddings from ChromaDB)
+  // For unchanged files, we'll need to query ChromaDB for existing embeddings or reconstruct from cache
+  // For now, we'll only upsert new/changed chunks
   
-  // Batch embeddings
+  console.log(`\nEmbedding ${chunksToEmbed.length} chunks (${metrics.cache_hits} from cache, ${metrics.cache_misses} new)...`);
+  
+  // Generate embeddings for chunks not in cache
   const batchSize = process.env.CI ? env.EMBED_BATCH_SIZE_CI : env.EMBED_BATCH_SIZE;
   const embeddings: number[][] = [];
   let batchCount = 0;
   
-  for (let i = 0; i < allChunks.length; i += batchSize) {
-    const batch = allChunks.slice(i, i + batchSize);
+  for (let i = 0; i < chunksToEmbed.length; i += batchSize) {
+    const batch = chunksToEmbed.slice(i, i + batchSize);
     const batchTexts = batch.map(c => c.text);
     
     try {
@@ -402,6 +542,13 @@ async function main() {
       
       embeddings.push(...batchEmbeddings);
       
+      // Save to cache
+      if (useCache) {
+        for (let j = 0; j < batch.length; j++) {
+          saveEmbeddingToCache(env.KB_EMBED_CACHE_DIR, batch[j].cacheKey, batchEmbeddings[j]);
+        }
+      }
+      
       // Calculate cost estimate (rough: $0.13 per 1M tokens for 3-large)
       const tokensInBatch = batch.reduce((sum, c) => sum + c.metadata.token_count, 0);
       metrics.tokens_embedded += tokensInBatch;
@@ -410,7 +557,7 @@ async function main() {
       
       batchCount++;
       if (batchCount % 10 === 0) {
-        console.log(`  Processed ${Math.min(i + batchSize, allChunks.length)}/${allChunks.length} chunks...`);
+        console.log(`  Processed ${Math.min(i + batchSize, chunksToEmbed.length)}/${chunksToEmbed.length} chunks...`);
       }
     } catch (error: any) {
       if (error.statusCode === 429) {
@@ -425,7 +572,30 @@ async function main() {
     }
   }
   
-  console.log(`Generated ${embeddings.length} embeddings`);
+  // Combine cached and new embeddings
+  const allChunks: ProcessedFile['chunks'] = [];
+  const allEmbeddings: number[][] = [];
+  
+  // Add chunks with cached embeddings
+  for (const { chunk, embedding } of chunksWithCachedEmbeddings) {
+    allChunks.push(chunk);
+    allEmbeddings.push(embedding);
+  }
+  
+  // Add newly embedded chunks
+  for (let i = 0; i < chunksToEmbed.length; i++) {
+    allChunks.push(chunksToEmbed[i]);
+    allEmbeddings.push(embeddings[i]);
+  }
+  
+  // Calculate cache hit rate
+  const totalChunks = allChunks.length;
+  metrics.cache_hit_rate = totalChunks > 0 ? (metrics.cache_hits / totalChunks) * 100 : 0;
+  metrics.chunks_created = chunksToEmbed.length;
+  metrics.chunks_skipped = metrics.cache_hits;
+  metrics.chunks_updated = 0; // ChromaDB upsert handles updates
+  
+  console.log(`Total chunks to upsert: ${allChunks.length} (${metrics.cache_hits} from cache, ${metrics.chunks_created} new)`);
   
   // Upsert to ChromaDB
   console.log('\nUpserting chunks to ChromaDB...');
@@ -436,7 +606,7 @@ async function main() {
   
   for (let i = 0; i < allChunks.length; i += batchSize) {
     const batchIds = ids.slice(i, i + batchSize);
-    const batchEmbeddings = embeddings.slice(i, i + batchSize);
+    const batchEmbeddings = allEmbeddings.slice(i, i + batchSize);
     const batchTexts = texts.slice(i, i + batchSize);
     const batchMetas = metadatas.slice(i, i + batchSize) as any;
 
@@ -450,11 +620,12 @@ async function main() {
   
   metrics.chunks_written = allChunks.length;
   
-  // Update file registry
+  // Update file registry (include bytesSha256 for change detection)
   for (const [relPath, file] of processedFiles.entries()) {
     fileRegistry.set(relPath, {
       path: relPath,
       contentSha256: file.contentSha256,
+      bytesSha256: file.bytesSha256,
       chunks: file.chunks.map(c => c.id),
     });
   }
@@ -486,12 +657,16 @@ async function main() {
     embed_dim: embedDim,
     distance: 'cosine',
     tokenizer: env.TOKENIZER,
+    chunker_version: CHUNKER_VERSION,
     chunk_tokens: {
       target: 450,
       overlap: 0.15,
       min: env.MIN_CHUNK_TOKENS,
       max: env.MAX_CHUNK_TOKENS,
     },
+    subset: env.KB_SUBSET || undefined,
+    seed: undefined, // Can be set for deterministic testing
+    cache_hit_rate: metrics.cache_hit_rate,
     created_at: new Date().toISOString(),
     provider: 'openai',
     provider_version: 'openai-2025-09-01',
@@ -505,19 +680,17 @@ async function main() {
   metrics.duration_ms = Date.now() - startTime;
   metrics.avg_rps = metrics.tokens_embedded / (metrics.duration_ms / 1000);
   
-  // Calculate counts
-  const addedCount = metrics.chunks_written;
-  const updatedCount = 0; // ChromaDB upsert handles this
-  const unchangedCount = metrics.files_skipped;
-  
   // Emit metrics summary table
   const { currentSnapshotId } = require('./utils/provenance');
   console.log('\n=== Ingestion Summary ===');
   console.table({
     documents: { value: metrics.files_processed + metrics.files_skipped },
-    new: { value: addedCount },
-    updated: { value: updatedCount },
-    unchanged: { value: unchangedCount },
+    files_processed: { value: metrics.files_processed },
+    files_skipped: { value: metrics.files_skipped },
+    chunks_created: { value: metrics.chunks_created },
+    chunks_skipped: { value: metrics.chunks_skipped },
+    chunks_deleted: { value: metrics.chunks_deleted },
+    cache_hit_rate: { value: `${metrics.cache_hit_rate.toFixed(1)}%` },
     snapshot: { value: currentSnapshotId() },
   });
   
@@ -527,7 +700,8 @@ async function main() {
   
   console.log(`\n✓ Ingestion complete!`);
   console.log(`  Files: ${metrics.files_processed} processed, ${metrics.files_skipped} skipped`);
-  console.log(`  Chunks: ${metrics.chunks_written} written, ${metrics.chunks_deleted} deleted`);
+  console.log(`  Chunks: ${metrics.chunks_written} written (${metrics.chunks_created} new, ${metrics.chunks_skipped} from cache), ${metrics.chunks_deleted} deleted`);
+  console.log(`  Cache: ${metrics.cache_hits} hits, ${metrics.cache_misses} misses (${metrics.cache_hit_rate.toFixed(1)}% hit rate)`);
   console.log(`  Cost estimate: $${metrics.api_cost_estimate_usd.toFixed(4)}`);
   console.log(`  Duration: ${(metrics.duration_ms / 1000).toFixed(2)}s`);
 }
