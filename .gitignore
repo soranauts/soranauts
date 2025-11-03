@@ -30,3 +30,8 @@ knowledge_base/index/.embedding_cache/
 knowledge_base/**/*.sqlite3
 knowledge_base/**/*.bin
 knowledge_base/**/*.log
+# Embedded git repos (handled by sync scripts)
+knowledge_base/wiki/
+knowledge_base/iroha_docs/
+# Metadata files
+knowledge_base/scripts/.meta/
