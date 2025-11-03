@@ -1,42 +1,190 @@
-#!/usr/bin/env tsx
 import { ChromaClient } from 'chromadb';
-import { Command } from 'commander';
 import Table from 'cli-table3';
 import { env } from './env';
 import { loadIndex, type Bm25Document } from './bm25';
 import type { ChunkMetadata } from './types';
 
-const program = new Command();
+interface HybridResult {
+  id: string;
+  score: number;
+  text: string;
+  metadata: ChunkMetadata;
+  vectorScore?: number;
+  bm25Score?: number;
+}
 
-program
-  .name('retrieve')
-  .description('Retrieve and rank chunks from the knowledge base')
-  .argument('<query>', 'Search query')
-  .option('--asof <date>', 'ISO date to cap results by snapshot_id (YYYY-MM-DD)')
-  .option('--snapshot-id <id>', 'Exact snapshot id (YYYY-MM-DD)')
-  .option('--lang <lang>', 'Filter by language (en, ja, zh)', 'en')
-  .option('--source <sources>', 'Filter by sources (comma-separated)', 'wiki,iroha_docs')
-  .option('--include <fields>', 'Include metadata fields (comma-separated)')
-  .option('--min-score <score>', 'Minimum similarity score', '0.2')
-  .option('--limit <n>', 'Number of results', '8')
-  .option('--span', 'Print chunk span (start..end)')
-  .option('--hybrid', 'Use hybrid retrieval (vector + BM25)')
-  .option('--alpha <alpha>', 'Hybrid blend weight (0=BM25 only, 1=vector only)', '0.65')
-  .option('--fusion <method>', 'Fusion method: alpha (default) or rrf', 'alpha')
-  .option('--json', 'Output as JSON')
-  .option('--table', 'Output as formatted table (default)', true)
-  .parse();
+function normalizeScore(score: number, min: number, max: number): number {
+  if (max === min) return 0;
+  return (score - min) / (max - min);
+}
 
-const options = program.opts();
-const query = program.args[0];
-
-async function main() {
-  if (!query) {
-    console.error('Error: query is required');
-    program.help();
-    process.exit(1);
+function reciprocalRankFusion(
+  results1: { id: string; score: number }[],
+  results2: { id: string; score: number }[],
+  k: number = 60
+): { id: string; score: number }[] {
+  const scores = new Map<string, number>();
+  
+  for (let i = 0; i < results1.length; i++) {
+    const id = results1[i].id;
+    scores.set(id, (scores.get(id) || 0) + 1 / (k + i + 1));
   }
   
+  for (let i = 0; i < results2.length; i++) {
+    const id = results2[i].id;
+    scores.set(id, (scores.get(id) || 0) + 1 / (k + i + 1));
+  }
+  
+  return Array.from(scores.entries())
+    .map(([id, score]) => ({ id, score }))
+    .sort((a, b) => b.score - a.score);
+}
+
+interface CliOptions {
+  query: string;
+  asof?: string;
+  snapshotId?: string;
+  lang: string;
+  source: string;
+  include?: string;
+  minScore: number;
+  limit: number;
+  span: boolean;
+  hybrid: boolean;
+  alpha: number;
+  fusion: 'alpha' | 'rrf';
+  json: boolean;
+  table: boolean;
+}
+
+function parseArgs(argv: string[]): CliOptions {
+  const options: CliOptions = {
+    query: '',
+    lang: 'en',
+    source: 'wiki,iroha_docs',
+    minScore: 0.2,
+    limit: 8,
+    span: false,
+    hybrid: false,
+    alpha: 0.65,
+    fusion: 'alpha',
+    json: false,
+    table: true,
+  };
+
+  let i = 0;
+  while (i < argv.length) {
+    const token = argv[i];
+    if (token === '--') {
+      i += 1;
+      continue;
+    }
+
+    if (token.startsWith('--')) {
+      switch (token) {
+        case '--asof':
+          options.asof = argv[++i];
+          break;
+        case '--snapshot-id':
+          options.snapshotId = argv[++i];
+          break;
+        case '--lang':
+          options.lang = argv[++i];
+          break;
+        case '--source':
+          options.source = argv[++i];
+          break;
+        case '--include':
+          options.include = argv[++i];
+          break;
+        case '--min-score':
+          options.minScore = parseFloat(argv[++i]);
+          break;
+        case '--limit':
+          options.limit = parseInt(argv[++i], 10);
+          break;
+        case '--span':
+          options.span = true;
+          break;
+        case '--hybrid':
+          options.hybrid = true;
+          break;
+        case '--alpha':
+          options.alpha = parseFloat(argv[++i]);
+          break;
+        case '--fusion':
+          options.fusion = (argv[++i] as CliOptions['fusion']) || 'alpha';
+          break;
+        case '--json':
+          options.json = true;
+          options.table = false;
+          break;
+        case '--table':
+          options.table = true;
+          break;
+        default:
+          throw new Error(`Unknown option: ${token}`);
+      }
+    } else {
+      if (options.query) {
+        options.query += ' ' + token;
+      } else {
+        options.query = token;
+      }
+    }
+    i += 1;
+  }
+
+  if (!options.query) {
+    throw new Error('Query is required. Usage: kb:retrieve "<query>" [options]');
+  }
+
+  if (!Number.isFinite(options.limit) || options.limit <= 0) {
+    options.limit = 8;
+  }
+
+  if (!Number.isFinite(options.minScore)) {
+    options.minScore = 0.2;
+  }
+
+  if (!Number.isFinite(options.alpha) || options.alpha < 0 || options.alpha > 1) {
+    options.alpha = 0.65;
+  }
+
+  if (options.fusion !== 'alpha' && options.fusion !== 'rrf') {
+    options.fusion = 'alpha';
+  }
+
+  return options;
+}
+
+async function main() {
+  let options: CliOptions;
+  try {
+    options = parseArgs(process.argv.slice(2));
+  } catch (error: any) {
+    console.error(error.message);
+    process.exit(1);
+    return;
+  }
+
+  const {
+    query,
+    asof,
+    snapshotId,
+    lang,
+    source,
+    include,
+    minScore,
+    limit,
+    span,
+    hybrid,
+    alpha,
+    fusion,
+    json,
+    table,
+  } = options;
+
   console.log(`Query: "${query}"`);
   
   // Initialize ChromaDB (HTTP client)
@@ -54,17 +202,19 @@ async function main() {
     process.exit(1);
   }
   
-  // Query the collection
-  const limit = parseInt(options.limit, 10);
-  const minScore = parseFloat(options.minScore);
-  const alpha = parseFloat(options.alpha);
-  const fusionMethod = options.fusion || 'alpha';
-  const useHybrid = options.hybrid && env.BM25_ENABLED;
+  // Query the collection - parse options with defaults
+  const limitValue = limit;
+  const minScoreValue = minScore;
+  const alphaValue = alpha;
+  const fusionMethod = fusion;
+  const sourcesValue = source;
+  const langValue = lang;
+  const useHybrid = hybrid && env.BM25_ENABLED;
   
   // Vector search
   const vectorResults = await collection.query({
     queryTexts: [query],
-    nResults: useHybrid ? limit * 3 : limit * 2, // Get more for hybrid fusion
+    nResults: useHybrid ? limitValue * 3 : limitValue * 2, // Get more for hybrid fusion
   });
   
   let results: HybridResult[] = [];
@@ -96,7 +246,7 @@ async function main() {
         
         // Create map of file path -> best BM25 score
         const bm25Scores = new Map<string, number>();
-        for (const result of bm25Results.slice(0, limit * 3)) {
+        for (const result of bm25Results.slice(0, limitValue * 3)) {
           const filepath = result.id;
           const currentScore = bm25Scores.get(filepath) || 0;
           bm25Scores.set(filepath, Math.max(currentScore, result.score));
@@ -105,7 +255,7 @@ async function main() {
         if (fusionMethod === 'rrf') {
           // Reciprocal Rank Fusion
           const rrfResults = reciprocalRankFusion(
-            bm25Results.slice(0, limit * 2).map(r => ({ id: r.id, score: r.score })),
+            bm25Results.slice(0, limitValue * 2).map(r => ({ id: r.id, score: r.score })),
             vectorChunks.map(c => ({ id: c.id, score: c.vectorScore! }))
           );
           
@@ -114,7 +264,7 @@ async function main() {
           const bm25Map = new Map(bm25Results.map(r => [r.id, r]));
           
           results = rrfResults
-            .slice(0, limit * 2)
+            .slice(0, limitValue * 2)
             .map(rrf => {
               const vectorChunk = vectorMap.get(rrf.id);
               if (vectorChunk) {
@@ -171,7 +321,7 @@ async function main() {
             }
             
             const normalizedBm25 = normalizeScore(bm25Score, bm25Min, bm25Max);
-            const finalScore = alpha * chunk.vectorScore! + (1 - alpha) * normalizedBm25;
+            const finalScore = alphaValue * chunk.vectorScore! + (1 - alphaValue) * normalizedBm25;
             
             fused.set(chunk.id, {
               ...chunk,
@@ -181,7 +331,7 @@ async function main() {
           }
           
           // Add top BM25-only results that weren't in vector results
-          for (const result of bm25Results.slice(0, limit)) {
+          for (const result of bm25Results.slice(0, limitValue)) {
             const filepath = result.id;
             const hasVectorMatch = Array.from(fused.values()).some(r => {
               const rPath = r.metadata.file_path || '';
@@ -192,7 +342,7 @@ async function main() {
               const normalizedBm25 = normalizeScore(result.score, bm25Min, bm25Max);
               fused.set(`bm25:${filepath}`, {
                 id: `bm25:${filepath}`,
-                score: (1 - alpha) * normalizedBm25,
+                score: (1 - alphaValue) * normalizedBm25,
                 text: result.body?.substring(0, 500) || '',
                 metadata: {
                   source: result.source || 'unknown',
@@ -235,33 +385,33 @@ async function main() {
   }
   
   // Apply filters
-  let filtered = results.filter(chunk => chunk.score >= minScore);
+  let filtered = results.filter(chunk => chunk.score >= minScoreValue);
   
   // Filter by snapshot
-  if (options.snapshotId) {
-    filtered = filtered.filter(chunk => chunk.metadata.snapshot_id === options.snapshotId);
-  } else if (options.asof) {
-    const asofDate = options.asof;
+  if (snapshotId) {
+    filtered = filtered.filter(chunk => chunk.metadata.snapshot_id === snapshotId);
+  } else if (asof) {
+    const asofDate = asof;
     filtered = filtered.filter(chunk => chunk.metadata.snapshot_id <= asofDate);
   }
   
   // Filter by language
-  if (options.lang) {
+  if (langValue) {
     filtered = filtered.filter(chunk => 
-      !chunk.metadata.lang || chunk.metadata.lang === options.lang
+      !chunk.metadata.lang || chunk.metadata.lang === langValue
     );
   }
   
   // Filter by source
-  if (options.source) {
-    const sources = options.source.split(',').map(s => s.trim());
-    filtered = filtered.filter(chunk => sources.includes(chunk.metadata.source));
+  if (sourcesValue) {
+    const sourceList = sourcesValue.split(',').map(s => s.trim());
+    filtered = filtered.filter(chunk => sourceList.includes(chunk.metadata.source));
   }
   
   // Sort by score and limit
   filtered = filtered
     .sort((a, b) => b.score - a.score)
-    .slice(0, limit);
+    .slice(0, limitValue);
   
   if (filtered.length === 0) {
     console.log('No results after filtering.');
@@ -269,27 +419,31 @@ async function main() {
   }
   
   // Output results
-  if (options.json) {
+  if (json) {
     console.log(JSON.stringify(filtered, null, 2));
     return;
   }
   
   // Table output
-  const includeFields = options.include?.split(',').map(f => f.trim()) || ['url', 'title'];
+  const includeFields = include?.split(',').map(f => f.trim()) || ['url', 'title'];
   const hasUrl = includeFields.includes('url') || includeFields.includes('source_url');
   const hasTitle = includeFields.includes('title') || includeFields.includes('source_title');
   
-  const table = new Table({
+  if (!table) {
+    return;
+  }
+
+  const tableOutput = new Table({
     head: [
       'Score',
       ...(useHybrid ? ['V/B'] : []),
       'Source',
       ...(hasTitle ? ['Title'] : []),
       ...(hasUrl ? ['URL'] : []),
-      ...(options.span ? ['Span'] : []),
+      ...(span ? ['Span'] : []),
       'Excerpt',
     ].filter(Boolean),
-    colWidths: [8, ...(useHybrid ? [6] : []), 12, ...(hasTitle ? [20] : []), ...(hasUrl ? [30] : []), ...(options.span ? [15] : []), 50].filter(Boolean),
+    colWidths: [8, ...(useHybrid ? [6] : []), 12, ...(hasTitle ? [20] : []), ...(hasUrl ? [30] : []), ...(span ? [15] : []), 50].filter(Boolean),
     wordWrap: true,
   });
   
@@ -305,29 +459,29 @@ async function main() {
     const url = (hasUrl && chunk.metadata.source_url)
       ? chunk.metadata.source_url.substring(0, 80)
       : '';
-    const span = options.span
+    const spanValue = span
       ? `${chunk.metadata.token_start}-${chunk.metadata.token_end}`
       : '';
     const excerpt = chunk.text.substring(0, 200).replace(/\n/g, ' ');
     
-    table.push([
+    tableOutput.push([
       score,
       ...(useHybrid ? [scoreBreakdown] : []),
       source,
       ...(hasTitle ? [title] : []),
       ...(hasUrl ? [url] : []),
-      ...(options.span ? [span] : []),
+      ...(span ? [spanValue] : []),
       excerpt,
     ]);
   }
   
-  console.log(table.toString());
+  console.log(tableOutput.toString());
   console.log(`\nFound ${filtered.length} result(s)`);
   if (useHybrid) {
     if (fusionMethod === 'rrf') {
       console.log(`Hybrid fusion: RRF (Reciprocal Rank Fusion)`);
     } else {
-      console.log(`Hybrid fusion: ${(alpha * 100).toFixed(0)}% vector + ${((1 - alpha) * 100).toFixed(0)}% BM25`);
+      console.log(`Hybrid fusion: ${(alphaValue * 100).toFixed(0)}% vector + ${((1 - alphaValue) * 100).toFixed(0)}% BM25`);
     }
   }
 }
@@ -340,4 +494,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 }
 
 export { main };
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((error) => {
+    console.error('Error:', error);
+    process.exit(1);
+  });
+}
 

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 // KB Source types
-export const kbSourceSchema = z.enum(['wiki', 'update', 'article', 'glossary', 'iroha_docs', 'soramitsu', 'polkaswap_update', 'fearless_update', 'pdf', 'imported']);
+export const kbSourceSchema = z.enum(['wiki', 'update', 'article', 'glossary', 'iroha_docs', 'soramitsu', 'polkaswap_update', 'fearless_update', 'fearless_github', 'tonswap_site', 'tonswap_update', 'pdf', 'imported']);
 
 // Enhanced front-matter schema with provenance tracking
 export const kbFrontmatterSchema = z.object({
