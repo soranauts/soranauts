@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "SORA and RMRK Collaboration",
+  "chunk_char_start": 12240,
+  "chunk_char_end": 14040
+}

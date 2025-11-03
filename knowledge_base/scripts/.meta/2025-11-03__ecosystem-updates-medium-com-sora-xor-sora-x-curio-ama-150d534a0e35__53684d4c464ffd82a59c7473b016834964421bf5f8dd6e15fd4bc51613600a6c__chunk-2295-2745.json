@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "SORA x Curio AMA",
+  "chunk_char_start": 9180,
+  "chunk_char_end": 10980
+}

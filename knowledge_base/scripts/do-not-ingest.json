@@ -1,0 +1,23 @@
+{
+  "patterns": [
+    "*/privacy*",
+    "*/cookies*",
+    "*/tag/*",
+    "*?utm_*",
+    "*/wp-json/*"
+  ],
+  "exact": [
+    "https://soramitsu.co/legal/terms"
+  ],
+  "by_domain": {
+    "soramitsu.co": {
+      "patterns": ["*/login*", "*/admin*"],
+      "exact": []
+    },
+    "soramitsu.co.jp": {
+      "patterns": ["*/login*", "*/admin*"],
+      "exact": []
+    }
+  }
+}
+
