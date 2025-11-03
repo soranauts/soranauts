@@ -22,3 +22,11 @@ pnpm-debug.log*
 package-lock.json
 
 .astro
+
+# --- Soranauts KB local artifacts ---
+knowledge_base/index/
+knowledge_base/index.baseline/
+knowledge_base/index/.embedding_cache/
+knowledge_base/**/*.sqlite3
+knowledge_base/**/*.bin
+knowledge_base/**/*.log
