@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "Tutorial de Inicio de Sesión de Google en Polkaswap | Conecta Tu Cuenta de Forma Segura",
+  "chunk_char_start": 0,
+  "chunk_char_end": 1800
+}

@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "SORA Ecosystem Updates #68, August 31, 2023",
+  "chunk_char_start": 13770,
+  "chunk_char_end": 15570
+}

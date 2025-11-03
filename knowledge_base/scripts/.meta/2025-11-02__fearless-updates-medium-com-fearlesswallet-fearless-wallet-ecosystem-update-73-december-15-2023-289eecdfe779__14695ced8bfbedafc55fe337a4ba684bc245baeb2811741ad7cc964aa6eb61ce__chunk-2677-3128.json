@@ -1,0 +1,7 @@
+{
+  "embed_model": "text-embedding-3-large",
+  "embed_dim": 3072,
+  "source_title": "Fearless Wallet Ecosystem Updates #73, December 15, 2023",
+  "chunk_char_start": 10710,
+  "chunk_char_end": 12510
+}
