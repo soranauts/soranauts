@@ -267,3 +267,5 @@ sha256(normalized_text)::startToken::len::chunker_version
 4. Verify manifest includes new fields
 5. Run full ingestion on approval
 
+
+

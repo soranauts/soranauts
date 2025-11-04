@@ -580,3 +580,5 @@ Create `knowledge_base/docs/kb.md` covering:
 - [ ] Token-accurate offsets stored and retrievable
 - [ ] HTTP caching reduces redundant fetches (ETag/Last-Modified honored)
 - [ ] Image deduplication prevents re-downloading same assets across sources
+
+

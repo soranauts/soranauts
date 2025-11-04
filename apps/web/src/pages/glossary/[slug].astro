@@ -5,6 +5,9 @@ import Footer from '../../components/widgets/Footer.astro';
 import { AstroSeo } from '@astrolib/seo';
 import glossary from '../../../public/glossary.json';
 import { headerData, footerData } from '../../navigation';
+import fs from 'node:fs';
+import path from 'node:path';
+import { SITE } from '~/utils/config';
 
 export async function getStaticPaths() {
   return glossary.terms.map(term => ({
@@ -22,7 +25,21 @@ if (!term) {
 const title = `${term.term} — SORA Glossary`;
 const description = term.definition?.length > 160 ? term.definition.slice(0, 157) + '…' : term.definition;
 const canonical = `https://soranauts.com/glossary/${term.slug}`;
-const ogImage = `https://soranauts.com/og/glossary/${term.slug}.png`;
+
+// Resolve OG image using manifest system (like blog posts)
+function getOgManifest(): Record<string, string> {
+  const manifestPath = path.join(process.cwd(), 'public', 'og', 'manifest.json');
+  if (!fs.existsSync(manifestPath)) {
+    return { default: '/og/default.jpg' };
+  }
+  const raw = fs.readFileSync(manifestPath, 'utf-8');
+  return JSON.parse(raw) as Record<string, string>;
+}
+
+const ogManifest = getOgManifest();
+const termPath = `/glossary/${term.slug}`;
+const ogPath = ogManifest[termPath] || ogManifest['/glossary'] || ogManifest.default || '/og/default.jpg';
+const ogImage = `${SITE.site}${ogPath}`;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -34,6 +51,32 @@ const jsonLd = {
   "url": canonical,
   "alternateName": term.aliases ?? [],
   "subjectOf": term.links?.map(l => ({ "@type": "WebPage", "url": l.url })) ?? [],
+};
+
+// Breadcrumb schema for term page
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://soranauts.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "SORA Glossary",
+      "item": "https://soranauts.com/glossary"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": term.term,
+      "item": canonical
+    }
+  ]
 };
 
 // Generate related terms with proper links
@@ -213,4 +256,6 @@ const relatedTermsWithLinks = (term.relatedTerms?.map(r => {
   <Footer {...footerData} />
 </Layout>
 
+<!-- Structured Data for SEO -->
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

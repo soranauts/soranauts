@@ -130,3 +130,5 @@ Your `OPENAI_API_KEY` is only used by:
 1. `knowledge_base/scripts/ingest.ts` (when you run it)
 2. CI workflows (when `OPENAI_API_KEY` secret is set in GitHub)
 
+
+

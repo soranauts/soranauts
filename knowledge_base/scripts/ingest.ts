@@ -141,7 +141,7 @@ function processFile(
       return null; // Skip files with no valid chunks
     }
     
-    // Create chunks with deterministic IDs: sha256(normalized_text)::startToken::len::chunker_version
+    // Create chunks with deterministic IDs: file_content_sha256::sha256(normalized_text)::startToken::len::chunker_version
     const chunks = tokenChunks
       .map((tokenChunk) => {
         const cleanText = sanitizeForEmbedding(tokenChunk.text);
@@ -149,8 +149,9 @@ function processFile(
         const normalizedChunkText = normalizeForHash(cleanText);
         const chunkTextHash = hashContent(normalizedChunkText);
         const tokenLen = tokenChunk.end - tokenChunk.start;
-        // New ID format: sha256(normalized_text)::startToken::len::chunker_version
-        const chunkId = `${chunkTextHash}::${tokenChunk.start}::${tokenLen}::${CHUNKER_VERSION}`;
+        // New ID format: file_content_sha256::sha256(normalized_text)::startToken::len::chunker_version
+        // Include contentSha256 to ensure uniqueness across different files
+        const chunkId = `${contentSha256}::${chunkTextHash}::${tokenChunk.start}::${tokenLen}::${CHUNKER_VERSION}`;
 
         const metadata: ChunkMetadata = {
           source: source,
@@ -597,16 +598,36 @@ async function main() {
   
   console.log(`Total chunks to upsert: ${allChunks.length} (${metrics.cache_hits} from cache, ${metrics.chunks_created} new)`);
   
+  // Deduplicate chunks by ID (keep first occurrence)
+  const seenIds = new Set<string>();
+  const deduplicatedChunks: typeof allChunks = [];
+  const deduplicatedEmbeddings: number[][] = [];
+  
+  for (let i = 0; i < allChunks.length; i++) {
+    const chunk = allChunks[i];
+    if (!seenIds.has(chunk.id)) {
+      seenIds.add(chunk.id);
+      deduplicatedChunks.push(chunk);
+      deduplicatedEmbeddings.push(allEmbeddings[i]);
+    } else {
+      console.warn(`Duplicate chunk ID detected and skipped: ${chunk.id} (file: ${chunk.metadata.file_path})`);
+    }
+  }
+  
+  if (deduplicatedChunks.length < allChunks.length) {
+    console.log(`Deduplicated ${allChunks.length - deduplicatedChunks.length} duplicate chunks`);
+  }
+  
   // Upsert to ChromaDB
   console.log('\nUpserting chunks to ChromaDB...');
   
-  const ids = allChunks.map(c => c.id);
-  const texts = allChunks.map(c => c.text);
-  const metadatas = allChunks.map(c => c.metadata);
+  const ids = deduplicatedChunks.map(c => c.id);
+  const texts = deduplicatedChunks.map(c => c.text);
+  const metadatas = deduplicatedChunks.map(c => c.metadata);
   
-  for (let i = 0; i < allChunks.length; i += batchSize) {
+  for (let i = 0; i < deduplicatedChunks.length; i += batchSize) {
     const batchIds = ids.slice(i, i + batchSize);
-    const batchEmbeddings = allEmbeddings.slice(i, i + batchSize);
+    const batchEmbeddings = deduplicatedEmbeddings.slice(i, i + batchSize);
     const batchTexts = texts.slice(i, i + batchSize);
     const batchMetas = metadatas.slice(i, i + batchSize) as any;
 
@@ -618,7 +639,7 @@ async function main() {
     });
   }
   
-  metrics.chunks_written = allChunks.length;
+  metrics.chunks_written = deduplicatedChunks.length;
   
   // Update file registry (include bytesSha256 for change detection)
   for (const [relPath, file] of processedFiles.entries()) {
@@ -640,7 +661,7 @@ async function main() {
   // Save extended metadata to sidecar files
   const metaDir = join(env.KB_DIR, 'scripts', '.meta');
   mkdirSync(metaDir, { recursive: true });
-  for (const chunk of allChunks) {
+  for (const chunk of deduplicatedChunks) {
     const safeBase = chunk.id.replace(/[^a-zA-Z0-9-]/g, '_').slice(0, 96);
     const hashSuffix = createHash('sha1').update(chunk.id).digest('hex').slice(0, 12);
     const fileName = `${safeBase}_${hashSuffix}.json`;

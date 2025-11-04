@@ -6,6 +6,7 @@ export interface GlossaryTerm {
   definition: string;
   category: 'token' | 'technology' | 'governance' | 'defi' | 'network' | 'economics';
   relatedTerms: string[];
+  aliases?: string[];
   examples?: string[];
   links?: {
     label: string;
@@ -58,24 +59,34 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
     relatedTerms: ['SORAMITSU', 'Hyperledger Foundation', 'Permissioned Blockchain', 'CBDC', 'Enterprise', 'WASM', 'Iroha 2', 'Iroha 3'],
     examples: ['SORA network', 'Bakong CBDC', 'Enterprise systems', 'National financial infrastructure'],
     links: [
-      { label: 'Hyperledger Iroha', url: 'https://iroha.readthedocs.io' }
+      { label: 'Hyperledger Iroha', url: 'https://docs.iroha.tech/' }
     ]
   },
   'Iroha 2': {
     term: 'Iroha 2',
-    definition: 'Hyperledger Iroha 2 is the blockchain framework on which SORA v2 is built. The SORA network is currently preparing to migrate to Iroha 3 as part of its SORA v3 (Nexus) upgrade. Iroha 2 (written in Rust) provides WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure.',
+    definition: 'Hyperledger Iroha 2 is the blockchain framework that provided the foundation for SORA v2 Hubchain Phase 1-2 prototypes. Iroha 2 (written in Rust) provides WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure. The framework enabled early cross-chain transfer proofs and verifier mechanisms. SORA v3 is transitioning from Iroha 2 to Iroha 3 for improved modularity and scalability.',
     category: 'technology',
-    relatedTerms: ['Hyperledger Iroha', 'SORA v2', 'SORA v3', 'Iroha 3', 'SORAMITSU', 'WASM', 'CBDC'],
-    examples: ['SORA v2 network', 'Enterprise blockchain systems', 'CBDC infrastructure'],
+    relatedTerms: ['Hyperledger Iroha', 'SORA v2', 'SORA v3', 'Iroha 3', 'SORAMITSU', 'WASM', 'CBDC', 'Hubchain'],
+    examples: ['SORA v2 network', 'Hubchain Phase 1-2', 'Enterprise blockchain systems', 'CBDC infrastructure'],
     links: [
-      { label: 'Hyperledger Iroha Documentation', url: 'https://iroha.readthedocs.io' }
+      { label: 'Hyperledger Iroha Documentation', url: 'https://docs.iroha.tech/' }
+    ]
+  },
+  'Iroha 3': {
+    term: 'Iroha 3',
+    definition: 'Hyperledger Iroha 3 is the next-generation blockchain framework being developed for SORA v3 (Nexus). Iroha 3 introduces a re-engineered architecture with greater modularity, new consensus mechanisms, and enhanced security primitives. It features layered runtime for domain-specific modules, upgraded command model, query isolation for deterministic operations, and simplified validator orchestration. Iroha 3 will support Iroha Special Instructions (ISIs) for deterministic smart-contract logic and provide the foundation for SORA v3\'s high-performance, cross-chain infrastructure.',
+    category: 'technology',
+    relatedTerms: ['Hyperledger Iroha', 'Iroha 2', 'SORA v3', 'Iroha Special Instructions', 'ISI', 'BFT Consensus', 'Modular Architecture'],
+    examples: ['SORA v3 network', 'Next-generation framework', 'Enterprise blockchain upgrade', 'Modular runtime'],
+    links: [
+      { label: 'Hyperledger Iroha Documentation', url: 'https://docs.iroha.tech/' }
     ]
   },
   'Substrate': {
     term: 'Substrate',
-    definition: 'A modular blockchain framework developed by Parity Technologies. SORA v2 uses Substrate to integrate with the Polkadot ecosystem and enable cross-chain functionality, while SORA v3 is migrating away from Substrate to Hyperledger Iroha for improved efficiency and enterprise integration.',
+    definition: 'A modular blockchain framework developed by Parity Technologies. SORA v2 uses Substrate as its foundation to integrate with the Polkadot ecosystem and enable cross-chain functionality through parachain connectivity. SORA v3 (Nexus) is migrating away from Substrate to Hyperledger Iroha 3 for improved efficiency, enterprise integration, and enhanced capabilities for CBDC and government use cases.',
     category: 'technology',
-    relatedTerms: ['Polkadot', 'Parachain', 'Cross-chain', 'SORA v2', 'SORA v3', 'Hyperledger Iroha'],
+    relatedTerms: ['Polkadot', 'Parachain', 'Cross-chain', 'SORA v2', 'SORA v3', 'Hyperledger Iroha', 'Iroha 3'],
     examples: ['Polkadot parachain', 'Cross-chain bridges', 'Modular development', 'SORA v2 implementation'],
     links: [
       { label: 'Substrate', url: 'https://substrate.io' }
@@ -118,10 +129,10 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   },
   'TONSWAP': {
     term: 'TONSWAP',
-    definition: 'A next-generation decentralized exchange (DEX) and launchpad built on The Open Network (TON) blockchain. TONSWAP combines cutting-edge concentrated liquidity technology with a user-friendly design, offering ultra-fast trades, near-zero fees, and seamless Telegram integration. It serves as a TON-native gateway for mobile-first DeFi access.',
+    definition: 'A next-generation decentralized exchange (DEX) and launchpad built on The Open Network (TON) blockchain. TONSWAP combines cutting-edge concentrated liquidity technology with a user-friendly design, offering ultra-fast trades, near-zero fees, and seamless Telegram integration. It serves as a TON-native gateway for mobile-first DeFi access. TONSWAP creates sustained on-chain demand for XOR tokens by automatically allocating 10% of all trading fees to buy back and burn XOR, connecting TON ecosystem activity to the SORA economy.',
     category: 'defi',
-    relatedTerms: ['DEX', 'TON', 'SORA', 'Cross-chain', 'Polkaswap', 'Telegram', 'Mobile', 'Liquidity', 'Bridge', 'Launchpad', 'CLMM'],
-    examples: ['Mobile trading via Telegram', 'Concentrated liquidity provision', 'Token launchpad', 'Ultra-low fee swaps', 'Cross-chain liquidity access'],
+    relatedTerms: ['DEX', 'TON', 'SORA', 'Cross-chain', 'Polkaswap', 'Telegram', 'Mobile', 'Liquidity', 'Bridge', 'Launchpad', 'CLMM', 'XOR', 'Buyback-and-burn'],
+    examples: ['Mobile trading via Telegram', 'Concentrated liquidity provision', 'Token launchpad', 'Ultra-low fee swaps', 'Cross-chain liquidity access', 'XOR buyback mechanism'],
     links: [
       { label: 'TONSWAP Website', url: 'https://tonswap.org/' },
       { label: 'TONSWAP Roadmap', url: 'https://tonswap.org/roadmap' },
@@ -152,10 +163,10 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   // Governance Terms
   'SORA Parliament': {
     term: 'SORA Parliament',
-    definition: 'The democratic governance system of SORA using multi-body sortition with clear separation of powers. Citizens are randomly selected (not token voting) and must post XOR bonds for citizenship. Features multiple bodies: Rules Committee, Agenda Council, Interest Panels, Review Panel, and Policy Jury. Main task is allocating newly minted XOR to productive projects.',
+    definition: 'The future democratic governance system of SORA using multi-body sortition with clear separation of powers. The SORA Parliament will replace the current Governance V1 system, implementing sortition-based democracy where citizens are randomly selected (not token voting) and must post XOR bonds for citizenship. Features multiple bodies: Rules Committee, Agenda Council, Interest Panels, Review Panel, and Policy Jury. Main task is allocating newly minted XOR to productive projects. In SORA v3, the Parliament will integrate with a hybrid DAO framework using Iroha Special Instructions (ISIs) for modular governance logic.',
     category: 'governance',
-    relatedTerms: ['XOR', 'VAL', 'Sortition', 'Citizenship', 'Multi-body Governance', 'Supranational'],
-    examples: ['Random citizen selection', 'XOR bond posting', 'Project funding allocation', 'Rules committee proposals'],
+    relatedTerms: ['XOR', 'VAL', 'Sortition', 'Citizenship', 'Multi-body Governance', 'Supranational', 'Governance V1', 'Iroha Special Instructions', 'ISI', 'SORA v3'],
+    examples: ['Random citizen selection', 'XOR bond posting', 'Project funding allocation', 'Rules committee proposals', 'Modular governance'],
     links: [
       { label: 'SORA Governance', url: 'https://wiki.sora.org/sora-governance.html' },
       { label: 'SORA Parliament Article', url: 'https://medium.com/sora-xor/the-sora-parliament-af8184dae384' }
@@ -163,10 +174,10 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   },
   'Referendum': {
     term: 'Referendum',
-    definition: 'A Democracy Referenda in SORA\'s current governance system (Polkadot v1 Governance). After a Council Motion is approved by the SORA Council, it becomes a Democracy Referenda where the entire community can vote on specific proposals, parameter changes, or network upgrades.',
+    definition: 'A Democracy Referendum in SORA\'s current governance system (Polkadot v1 Governance, also called Governance V1). After a Council Motion is approved by the SORA Council, it becomes a Democracy Referendum where the entire community can vote on specific proposals, parameter changes, or network upgrades. This differs from Polkadot OpenGov, which SORA v2 does not use.',
     category: 'governance',
-    relatedTerms: ['SORA Council', 'Council Motion', 'Polkadot Governance', 'Democracy'],
-    examples: ['Network fee changes', 'Token minting proposals', 'Parameter updates'],
+    relatedTerms: ['SORA Council', 'Council Motion', 'Polkadot Governance', 'Governance V1', 'Democracy'],
+    examples: ['Network fee changes', 'Token minting proposals', 'Parameter updates', 'On-chain community voting'],
     links: [
       { label: 'SORA Governance', url: 'https://wiki.sora.org/sora-governance.html' }
     ]
@@ -221,10 +232,10 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   // SORA v3 Terms
   'SORA v3': {
     term: 'SORA v3',
-    definition: 'SORA v3, also known as SORA Nexus, is the next generation of the SORA network. It transitions from Hyperledger Iroha 2 to Iroha 3, introducing a modular, high-performance design to support scalability and cross-chain interoperability. The SORA v3 Hub Chain enables seamless collaboration between permissioned and decentralized systems, designed for CBDCs, government integration, and economic sovereignty while maintaining borderless financial activities.',
+    definition: 'SORA v3, also known as SORA Nexus, is the next generation of the SORA network. It transitions from Substrate-based SORA v2 to Hyperledger Iroha 3, introducing a modular, high-performance design to support scalability and cross-chain interoperability. The SORA v3 Hub Chain (or Hubchain) enables seamless collaboration between permissioned and decentralized systems, designed for CBDCs, government integration, and economic sovereignty while maintaining borderless financial activities. It serves as a supranational platform that de-correlates CBDCs and government-issued digital assets from political and economic instability, providing a stable foundation for global transactions.',
     category: 'technology',
-    relatedTerms: ['Hyperledger Iroha', 'Iroha 2', 'Iroha 3', 'CBDC', 'Hub Chain', 'Economic Sovereignty', 'KUSD', 'Fujiwara Testnet'],
-    examples: ['Central bank digital currencies', 'Government asset creation', 'Permissioned subnets', 'Supranational platform'],
+    relatedTerms: ['Hyperledger Iroha', 'Iroha 2', 'Iroha 3', 'CBDC', 'Hub Chain', 'Hubchain', 'Nexus', 'Economic Sovereignty', 'KUSD', 'Fujiwara Testnet', 'Supranational Platform', 'SORA v2'],
+    examples: ['Central bank digital currencies', 'Government asset creation', 'Permissioned subnets', 'Supranational platform', 'Cross-chain interoperability'],
     links: [
       { label: 'SORA v3 Guide', url: 'https://wiki.sora.org/sora-v3.html' }
     ]
@@ -237,6 +248,100 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
     examples: ['DeFi experimentation', 'Governance participation', 'Network stability testing', 'Cross-border transactions'],
     links: [
       { label: 'Fujiwara Testnet Guide', url: 'https://wiki.sora.org/sora-v3.html#why-the-fujiwara-testnet-matters' }
+    ]
+  },
+  'Hub Chain': {
+    term: 'Hub Chain',
+    definition: 'The core infrastructure of SORA v3 (also called Hubchain) that enables seamless collaboration between permissioned and decentralized systems. The SORA v3 Hub Chain bridges different blockchain networks (TON, Polkadot, Ethereum) and serves as a unified hub connecting external networks. It enables central banks and institutions to create their own assets on the global SORA v3 platform while maintaining security and interoperability through the supranational, decentralized blockchain.',
+    category: 'technology',
+    relatedTerms: ['SORA v3', 'Hubchain', 'Nexus', 'Cross-chain', 'Interoperability', 'Permissioned Subnets', 'Supranational Platform'],
+    examples: ['Cross-chain asset transfers', 'CBDC infrastructure', 'Permissioned subnet connections', 'Multi-chain coordination'],
+    links: [
+      { label: 'SORA v3 Hub Chain', url: 'https://wiki.sora.org/sora-v3.html#the-sora-v3-hubchain' }
+    ]
+  },
+  'Hubchain': {
+    term: 'Hubchain',
+    aliases: ['Hub Chain'],
+    definition: 'Alternative name for the SORA v3 Hub Chain. See Hub Chain for full definition.',
+    category: 'technology',
+    relatedTerms: ['Hub Chain', 'SORA v3', 'Nexus'],
+    examples: [],
+    links: [
+      { label: 'SORA v3 Hub Chain', url: 'https://wiki.sora.org/sora-v3.html#the-sora-v3-hubchain' }
+    ]
+  },
+  'Nexus': {
+    term: 'Nexus',
+    definition: 'The code name for SORA v3, also referred to as SORA Nexus. Nexus represents the next-generation SORA Hub Chain designed to succeed the Substrate-based SORA v2 network, built on Hyperledger Iroha 3 for improved modularity, performance, and cross-chain interoperability.',
+    category: 'technology',
+    relatedTerms: ['SORA v3', 'Hub Chain', 'Iroha 3', 'SORA v2'],
+    examples: ['SORA v3 (Nexus) upgrade', 'Next-generation network', 'Iroha 3 migration'],
+    links: [
+      { label: 'SORA v3 Guide', url: 'https://wiki.sora.org/sora-v3.html' }
+    ]
+  },
+  'Kensetsu': {
+    term: 'Kensetsu',
+    definition: 'The Kensetsu Platform is SORA\'s version of MakerDAO, a decentralized finance (DeFi) solution on the SORA network that enables over-collateralized stablecoin creation and borrowing. The platform facilitates the creation and management of KUSD (Kensetsu USD), allowing users to create vaults, deposit collateral, and borrow stablecoins while maintaining value through algorithmic governance and stability mechanisms.',
+    category: 'defi',
+    relatedTerms: ['KUSD', 'MakerDAO', 'Vault', 'Over-collateralized', 'Stablecoin', 'DeFi'],
+    examples: ['Vault creation', 'Over-collateralized borrowing', 'Stablecoin generation', 'Collateral management'],
+    links: [
+      { label: 'SORA Wiki - KUSD', url: 'https://wiki.sora.org/kusd.html' },
+      { label: 'Kensetsu Vaults', url: 'https://wiki.sora.org/kensetsu-vaults.html' }
+    ]
+  },
+  'BFT Consensus': {
+    term: 'BFT Consensus',
+    definition: 'Byzantine Fault Tolerance (BFT) consensus is a consensus mechanism that allows a distributed system to reach agreement even when some nodes fail or act maliciously. SORA v3 uses BFT consensus derived from Hyperledger Iroha 3\'s architecture, providing high-throughput transaction processing with deterministic finality. This differs from SORA v2\'s Substrate-based consensus, offering improved security and performance for enterprise-grade applications including CBDCs.',
+    category: 'technology',
+    relatedTerms: ['Consensus', 'Byzantine Fault Tolerance', 'Iroha 3', 'SORA v3', 'Finality', 'Security'],
+    examples: ['Transaction validation', 'Network security', 'CBDC infrastructure', 'Enterprise blockchain'],
+    links: [
+      { label: 'SORA v3', url: 'https://wiki.sora.org/sora-v3.html' },
+      { label: 'Hyperledger Iroha', url: 'https://docs.iroha.tech/' }
+    ]
+  },
+  'Supranational Platform': {
+    term: 'Supranational Platform',
+    definition: 'A blockchain platform that operates above the level of individual nation states, enabling global coordination and collaboration without being subject to any single country\'s jurisdiction. SORA v3 serves as a supranational platform that de-correlates CBDCs and government-issued digital assets from political and economic instability, providing a stable foundation for global transactions. This design enables nations, institutions, and individuals to create assets and conduct transactions on a borderless, decentralized infrastructure.',
+    category: 'network',
+    relatedTerms: ['SORA v3', 'CBDC', 'Economic Sovereignty', 'Global Transactions', 'Borderless Finance'],
+    examples: ['CBDC deployment', 'International remittances', 'Cross-border asset creation', 'Global economic coordination'],
+    links: [
+      { label: 'SORA v3 Hub Chain', url: 'https://wiki.sora.org/sora-v3.html#the-sora-v3-hubchain' }
+    ]
+  },
+  'Economic Sovereignty': {
+    term: 'Economic Sovereignty',
+    definition: 'The ability of nations, institutions, or individuals to maintain control over their economic policies and financial systems while participating in a global economic network. SORA v3\'s Hub Chain supports economic sovereignty by balancing the role of nation states in managing their domains with the freedom of borderless financial activities. This enables countries to create their own digital assets (like CBDCs) on the SORA platform while maintaining independence and control.',
+    category: 'economics',
+    relatedTerms: ['SORA v3', 'CBDC', 'Supranational Platform', 'Sovereignty', 'Borderless Finance'],
+    examples: ['CBDC creation', 'National digital currency', 'Independent monetary policy', 'Sovereign asset management'],
+    links: [
+      { label: 'SORA v3 Hub Chain', url: 'https://wiki.sora.org/sora-v3.html#the-sora-v3-hubchain' }
+    ]
+  },
+  'Iroha Special Instructions': {
+    term: 'Iroha Special Instructions',
+    aliases: ['ISIs'],
+    definition: 'Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic and domain-specific operations, providing a flexible framework for building complex decentralized applications on SORA v3. This represents a key advancement over Iroha 2, offering enhanced programmability and interoperability.',
+    category: 'technology',
+    relatedTerms: ['Iroha 3', 'Smart Contract', 'SORA v3', 'Hyperledger Iroha', 'Governance', 'Deterministic'],
+    examples: ['Governance modules', 'Domain-specific commands', 'Smart contract execution', 'Modular DApp development'],
+    links: [
+      { label: 'Hyperledger Iroha', url: 'https://docs.iroha.tech/' }
+    ]
+  },
+  'Governance V1': {
+    term: 'Governance V1',
+    definition: 'The current governance system used by SORA v2, also known as Polkadot v1 Governance. Governance V1 consists of a Council, Technical Committee, and Parliament with on-chain proposals, referenda, and staking-based voting. Unlike Polkadot OpenGov, Governance V1 provides predictable proposal cycles and explicit decision-making processes. SORA v3 will evolve toward a hybrid DAO framework while maintaining the parliamentary structure for strategic oversight.',
+    category: 'governance',
+    relatedTerms: ['Governance', 'Polkadot Governance', 'Council', 'Referendum', 'SORA Parliament', 'OpenGov'],
+    examples: ['Council proposals', 'Referendum voting', 'On-chain decision making', 'Network upgrades'],
+    links: [
+      { label: 'SORA Governance', url: 'https://wiki.sora.org/sora-governance.html' }
     ]
   },
 
@@ -515,20 +620,32 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   },
   'KUSD': {
     term: 'KUSD',
-    definition: 'A stable asset in the SORA Economy designed for funding and rewarding builders. KUSD provides price stability for ecosystem participants and is part of SORA\'s comprehensive tokenomics system alongside XOR, VAL, and PSWAP.',
+    definition: 'Kensetsu USD (KUSD) is an over-collateralized, algorithmically governed stablecoin built on the SORA network, pegged to the US Dollar. Built on the Kensetsu Platform (SORA\'s version of MakerDAO), KUSD facilitates secure borrowing operations while maintaining its value through robust stability mechanisms. In SORA v3 tokenomics, KUSD is used to pay builders instead of XOR. To maintain the KUSD peg, 19.5% of all SORA network transaction fees are allocated for buyback and burning of KUSD. Users can create vaults, deposit collateral (XOR, VAL, PSWAP, TBCD, ETH, or DAI), and borrow KUSD against their collateral.',
     category: 'token',
-    relatedTerms: ['SORA Economy', 'Stable Asset', 'Builders', 'Funding', 'Rewards'],
-    examples: ['Builder funding', 'Stable value storage', 'Ecosystem rewards'],
+    relatedTerms: ['SORA Economy', 'Stable Asset', 'Kensetsu', 'MakerDAO', 'Builders', 'Funding', 'Over-collateralized', 'Vault', 'TBCD', 'SORA v3'],
+    examples: ['Builder funding in SORA v3', 'Stable value borrowing', 'Over-collateralized lending', 'Vault creation and management'],
     links: [
-      { label: 'SORA Tokenomics', url: 'https://wiki.sora.org/tokenomics.html' }
+      { label: 'SORA Wiki - KUSD', url: 'https://wiki.sora.org/kusd.html' },
+      { label: 'Kensetsu Vaults', url: 'https://wiki.sora.org/kensetsu-vaults.html' }
+    ]
+  },
+  'TBCD': {
+    term: 'TBCD',
+    definition: 'Token Bonding Curve Dollar (TBCD) is an algorithmic, non-synthetic stablecoin whose value is maintained by the SORA token bonding curve at approximately $1 USD. TBCD is convertible to XOR as a reserve asset of the token bonding curve and helps build up reserves while also being used to fund the creation of new goods and services via on-chain governance. In SORA v3 tokenomics, 0.5% of all network transaction fees are allocated for buyback and burning of TBCD. TBCD can only be created and allocated by on-chain governance, meaning XOR token holders decide the supply.',
+    category: 'token',
+    relatedTerms: ['Token Bonding Curve', 'Stable Asset', 'XOR', 'Reserve Asset', 'On-chain Governance', 'SORA v3', 'KUSD'],
+    examples: ['Builder funding via governance', 'Token bonding curve reserves', 'Stable value asset', 'On-chain referendum allocation'],
+    links: [
+      { label: 'SORA Wiki - TBCD', url: 'https://wiki.sora.org/tbcd.html' },
+      { label: 'Token Bonding Curve', url: 'https://wiki.sora.org/tbc.html' }
     ]
   },
   'TS': {
     term: 'TS',
-    definition: 'The native token of TONSWAP, a decentralized exchange and launchpad built on The Open Network (TON) blockchain. TS powers platform governance, liquidity incentives, and transaction fee models, with 10% of all trading fees used to buy back and burn XOR tokens, creating a deflationary mechanism that benefits both TON and SORA ecosystems.',
+    definition: 'The native token of TONSWAP, a decentralized exchange and launchpad built on The Open Network (TON) blockchain. TS powers platform governance, liquidity incentives, and transaction fee models. A key feature is that 10% of all TONSWAP trading fees are automatically allocated through integrated smart-contract logic to buy back and burn XOR tokens, creating sustained on-chain demand and reducing XOR circulating supply. This mechanism aligns TON ecosystem activity with the SORA economy by turning trading volume into a recurring XOR sink, benefiting both TON and SORA ecosystems.',
     category: 'token',
-    relatedTerms: ['TONSWAP', 'TON', 'XOR', 'DEX', 'Governance', 'Liquidity', 'Deflationary', 'Cross-chain'],
-    examples: ['Platform governance', 'Liquidity incentives', 'XOR buyback mechanism', 'Transaction fee distribution'],
+    relatedTerms: ['TONSWAP', 'TON', 'XOR', 'DEX', 'Governance', 'Liquidity', 'Deflationary', 'Cross-chain', 'Buyback-and-burn', 'Smart Contract'],
+    examples: ['Platform governance', 'Liquidity incentives', 'Automatic XOR buyback mechanism', 'Transaction fee distribution', 'On-chain XOR demand creation'],
     links: [
       { label: 'TONSWAP Website', url: 'https://tonswap.org/' },
       { label: 'TONSWAP Roadmap', url: 'https://tonswap.org/roadmap' },
@@ -567,10 +684,10 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   },
   'Governance': {
     term: 'Governance',
-    definition: 'The system of decision-making and rule enforcement in blockchain networks. SORA implements multiple governance mechanisms including the current Polkadot v1 governance system and the future SORA Parliament with sortition-based democracy.',
+    definition: 'The system of decision-making and rule enforcement in blockchain networks. SORA v2 currently uses Polkadot v1 Governance (also called Governance V1), which consists of a Council, Technical Committee, and Parliament with on-chain proposals and referenda. The future SORA Parliament will implement sortition-based democracy with random citizen selection, moving toward a hybrid DAO framework in SORA v3.',
     category: 'governance',
-    relatedTerms: ['SORA Parliament', 'Polkadot Governance', 'Democracy', 'Referendum', 'Council'],
-    examples: ['Network upgrades', 'Parameter changes', 'Project funding', 'Policy decisions'],
+    relatedTerms: ['SORA Parliament', 'Polkadot Governance', 'Governance V1', 'Democracy', 'Referendum', 'Council', 'Sortition'],
+    examples: ['Network upgrades', 'Parameter changes', 'Project funding', 'Policy decisions', 'On-chain proposals'],
     links: [
       { label: 'SORA Governance', url: 'https://wiki.sora.org/sora-governance.html' }
     ]
@@ -607,10 +724,10 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   },
   'Polkadot Governance': {
     term: 'Polkadot Governance',
-    definition: 'The governance system used by Polkadot and its parachains, including SORA\'s current governance model. It features council-based proposals, referendum voting, and technical committee oversight, providing a robust framework for network decision-making.',
+    definition: 'The governance system used by Polkadot and its parachains. SORA v2 uses Polkadot v1 Governance (also called Governance V1), which features council-based proposals, referendum voting, and technical committee oversight. This differs from Polkadot OpenGov, which SORA does not currently use. Governance V1 provides a robust framework for network decision-making with predictable proposal cycles.',
     category: 'governance',
-    relatedTerms: ['SORA Council', 'Referendum', 'Democracy', 'Governance', 'Polkadot'],
-    examples: ['Council elections', 'Referendum voting', 'Technical upgrades'],
+    relatedTerms: ['SORA Council', 'Referendum', 'Democracy', 'Governance', 'Governance V1', 'Polkadot', 'OpenGov'],
+    examples: ['Council elections', 'Referendum voting', 'Technical upgrades', 'On-chain proposals'],
     links: [
       { label: 'Polkadot Governance', url: 'https://wiki.polkadot.network/docs/learn-governance' }
     ]
@@ -637,12 +754,12 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   },
   'Consensus': {
     term: 'Consensus',
-    definition: 'The mechanism by which blockchain networks agree on the validity of transactions and maintain a consistent state. SORA uses various consensus mechanisms depending on the version - Substrate consensus in v2 and Byzantine Fault Tolerance (BFT) consensus in Hyperledger Iroha for v3.',
+    definition: 'The mechanism by which blockchain networks agree on the validity of transactions and maintain a consistent state. SORA v2 uses Substrate-based consensus mechanisms (NPoS - Nominated Proof of Stake). SORA v3 will use Byzantine Fault Tolerance (BFT) consensus derived from Hyperledger Iroha 3\'s architecture, providing high-throughput transaction processing with deterministic finality, making it suitable for enterprise applications and CBDCs.',
     category: 'network',
-    relatedTerms: ['Validator', 'Security', 'BFT', 'Substrate', 'Hyperledger Iroha'],
-    examples: ['Transaction validation', 'State agreement', 'Network security'],
+    relatedTerms: ['Validator', 'Security', 'BFT Consensus', 'Byzantine Fault Tolerance', 'Substrate', 'Hyperledger Iroha', 'NPoS', 'SORA v2', 'SORA v3'],
+    examples: ['Transaction validation', 'State agreement', 'Network security', 'Deterministic finality'],
     links: [
-      { label: 'SORA Consensus', url: 'https://wiki.sora.org/' }
+      { label: 'SORA Consensus', url: 'https://wiki.sora.org/consensus.html' }
     ]
   },
   'Security': {

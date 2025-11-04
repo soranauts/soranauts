@@ -151,3 +151,5 @@
 - Check `.file_registry.json` for `bytesSha256` tracking
 - Verify cache files in `knowledge_base/index/.embedding_cache/`
 
+
+

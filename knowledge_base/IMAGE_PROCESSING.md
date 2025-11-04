@@ -78,3 +78,5 @@ For better image context, ensure posts have:
 
 This way, even though the AI can't "see" images, the alt text and surrounding context provide sufficient information for most queries.
 
+
+
