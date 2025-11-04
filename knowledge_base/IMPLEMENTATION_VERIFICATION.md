@@ -135,3 +135,5 @@
 **Total Content:** ~500+ markdown files across 8+ sources
 **Index Size:** 372MB ChromaDB + BM25 index
 
+
+

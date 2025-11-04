@@ -1,7 +1,7 @@
 ---
 title: 'Changelog'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-11-01'
+lastUpdated: '2025-11-04'
 metadata:
   title: 'Changelog | Soranauts'
   description: 'Track the latest SORA ecosystem updates, new features, and website improvements on Soranauts.'
@@ -12,46 +12,69 @@ metadata:
 
 This page tracks the latest improvements and new features added to the Soranauts website.
 
-## 🎉 Latest Updates (October 2025)
+## About This Website
 
-### ✅ Recent Major Updates
-- **Polkadot vs Ethereum: A Comparative Analysis**: Comprehensive modernization with TL;DR section, updated introduction with SORA as third model, new comparison tables (Polkadot vs Ethereum, SORA vs Polkadot vs Ethereum), expanded SORA section with Hyperledger Iroha architecture, collapsible FAQs (8 total including 3 SORA-specific), Related Articles section, enhanced tags (11 total), and strategic internal/external linking (2025-11-01)
-- **What Are Polkadot Parachains? Scalability, Shared Security, and XCM**: Modernized structure with TL;DR + Key Takeaways, new Parachains vs Modular L2s comparison table, curated authoritative links (architecture, XCM, auctions), collapsible FAQs, improved internal linking, and expanded tags (12 total) (2025-10-30)
-- **Polkadot to Iroha: How SORA’s Governance Is Evolving**: Comprehensive modernization with TL;DR callout, timeline table, Polkadot vs SORA v3 comparison table, 5-step governance flow, foldable FAQs, high-value external references (Polkadot OpenGov, Iroha docs), strategic internal links, and expanded tags (12 total) (2025-10-30)
-- **Bitcoin vs XOR: Competing Visions for a New World Economic Order**: Comprehensive enhancement with TL;DR section, expanded tags (12 total), high-value external links (Bitcoin whitepaper, SORA official resources), strategic internal linking, collapsible FAQs, and structured resources section (2025-10-29)
-- **Collapsible FAQs**: Implemented native HTML collapsible FAQs across articles with smooth animations and site-consistent red theming
-- **IPFS Glossary Term**: Added comprehensive IPFS definition to the SORA glossary with proper search indexing and auto-linking
-- **Understanding the Difference Between Blockchain and DeFi**: Comprehensive rewrite with enhanced structure, SORA-specific content, and collapsible FAQs
-- **Understanding NFTs with SORA and Polkaswap**: Major content enhancement with improved structure, expanded technical details, and better glossary integration
-- **Enhanced Link Management**: Fixed internal links to use proper relative paths instead of absolute URLs for better maintainability
+Soranauts is a comprehensive educational resource dedicated to the SORA ecosystem, providing in-depth articles, guides, and documentation about SORA blockchain, Polkaswap, TONSWAP, and related DeFi technologies. The website serves as a central hub for understanding SORA's unique approach to decentralized finance, governance, and economic innovation.
 
-### ✅ Technical Improvements
-- **FAQ Styling System**: Added global CSS for collapsible FAQs with red accent colors matching site theme
-- **Glossary Auto-Linking**: Enhanced system with strategic term placement for better user experience
-- **Content Structure**: Improved article organization with TL;DR sections, comparison tables, and comprehensive FAQs
-- **SEO Optimization**: Updated excerpts and metadata for better search engine visibility
-- **SORA Version Clarity**: Updated 13+ articles to accurately distinguish between SORA v2 (Iroha 2) and SORA v3/Nexus (Iroha 3), ensuring technical accuracy and historical continuity
-- **Glossary Enhancement**: Added "Iroha 2" glossary entry and updated "SORA v3" definition to reflect the migration from Iroha 2 to Iroha 3
+The platform features a modern, user-friendly design that makes complex blockchain concepts accessible to readers of all technical levels. Content is continuously updated and improved to reflect the latest developments in the SORA ecosystem.
 
-## 🚀 Roadmap & Future Features
+## Key Features
 
-### 🔄 In Development
-- **Content Optimization**: Systematic updates to 2023-2024 articles using enhanced templates (26/47 articles completed - 55%, including 17/17 Priority 1 articles completed ✅)
-- **Glossary Expansion**: Adding more SORA ecosystem terms and cross-references
-- **Performance Monitoring**: Real-time analytics and user engagement tracking
-- **Technical Improvements**: Ongoing bug fixes and system optimizations
+### Interactive Glossary
+A comprehensive, searchable glossary of SORA ecosystem terms with automatic linking throughout articles. Terms are intelligently highlighted in content, making it easy for readers to quickly access definitions and related information.
 
-### 💡 Planned Features
-- **Real-time SORA Token Widgets**: Live price tracking and market data (similar to former Ceres Tools)
-- **Portfolio Management**: Track SORA holdings, DeFi positions, and yield farming
-- **Interactive Calculators**: DeFi yield, token bonding curves, and staking rewards
-- **Mobile Applications**: Native iOS and Android apps for enhanced mobile experience
-- **Community Features**: User accounts, personalized dashboards, and social integration
+### Collapsible FAQs
+Native HTML collapsible FAQ sections integrated across articles, providing answers to common questions while keeping content organized and scannable. FAQs feature smooth animations and site-consistent styling.
 
-### 🎯 Long-term Vision
-- **Comprehensive SORA Tools Suite**: All-in-one platform for SORA ecosystem interaction
-- **Educational Platform**: Interactive tutorials and guided DeFi experiences
-- **Community Integration**: Enhanced connection with [Soranauts Telegram](https://t.me/Soranauts) and collaborative content creation
+### Enhanced Content Structure
+Articles are structured with TL;DR sections, comparison tables, key takeaways, and strategic internal linking to help readers navigate related topics efficiently.
+
+### SEO Optimization
+All content is optimized for search engines with proper metadata, descriptions, and semantic HTML to ensure maximum discoverability.
+
+### Responsive Design
+The website is fully responsive and optimized for all devices, providing an excellent reading experience on desktop, tablet, and mobile.
+
+## Recent Improvements
+
+### Content Quality Enhancements
+Systematic modernization of articles with improved structure, enhanced readability, and updated information. Articles now feature better organization with clear sections, comparison tables, and comprehensive FAQs.
+
+### Technical Accuracy
+Ongoing efforts to ensure technical accuracy across all content, including proper distinction between SORA v2 (Iroha 2) and SORA v3/Nexus (Iroha 3) throughout the site.
+
+### Link Management
+Improved internal linking system using proper relative paths for better maintainability and site performance. Strategic external links to authoritative sources enhance credibility and provide additional resources.
+
+### User Experience
+Enhanced navigation and content discovery through improved categorization, tagging, and cross-referencing between related articles.
+
+## Internal Knowledge Base
+
+To support high-quality content development, we've created a comprehensive SORA-specific internal knowledge base. This resource aggregates information from official SORA documentation, ecosystem updates, technical specifications, and community resources into a centralized system.
+
+The knowledge base serves as the foundation for content research and fact-checking, ensuring that all articles are accurate, up-to-date, and aligned with the latest SORA ecosystem developments. It includes structured information about:
+
+- SORA blockchain architecture and technical specifications
+- Governance models and updates
+- DeFi protocols and integrations
+- Tokenomics and economic models
+- Ecosystem partnerships and developments
+- Historical context and evolution of the SORA network
+
+This internal resource enables more efficient content creation and helps maintain consistency and accuracy across all articles on the site.
+
+## Glossary Enhancements
+
+The glossary has been significantly expanded and improved using insights from the internal knowledge base. New terms are added regularly, and existing definitions are refined to ensure clarity and accuracy. The glossary now includes:
+
+- Core SORA ecosystem terminology
+- Technical blockchain concepts
+- DeFi-specific terms
+- Governance and tokenomics definitions
+- Cross-references between related concepts
+
+The auto-linking system intelligently identifies glossary terms in articles and provides seamless access to definitions, enhancing reader understanding without interrupting the reading flow.
 
 ## 📝 Article Update Checklist (26/47 completed - 55%)
 
@@ -108,20 +131,6 @@ This page tracks the latest improvements and new features added to the Soranauts
 - [ ] **Richard Werner Exposes Central Banks & the SORA Alternative** (2025-07-29)
 - [ ] **How Polkaswap and TONSWAP Work Together on SORA** (2025-08-10)
 
-### Update Criteria Checklist
-For each article, verify and update:
-- [ ] **Content Accuracy**: Check for outdated information, broken links, or changed facts
-- [ ] **SORA Updates**: Ensure SORA v3 information is current and accurate
-- [ ] **Link Validation**: Test all external links and update broken ones
-- [ ] **SEO Optimization**: Review meta descriptions, titles, and keywords
-- [ ] **Image Optimization**: Ensure images are optimized and properly sized
-- [ ] **Readability**: Check for grammar, clarity, and flow improvements
-- [ ] **Internal Linking**: Add relevant internal links to newer content
-- [ ] **Call-to-Actions**: Update CTAs to current SORA ecosystem tools
-- [ ] **Date Stamps**: Update "last updated" dates where applicable
-- [ ] **External Links**: Add high-quality external links to enhance credibility
-- [ ] **Structure Optimization**: Remove redundant sections and improve content flow
-
 ---
 
-*Last updated: November 1, 2025*
+*Last updated: November 4, 2025*
