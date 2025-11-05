@@ -34,8 +34,8 @@ echo "✅ OPENAI_API_KEY found"
 echo "🚀 Starting knowledge base ingestion..."
 echo ""
 
-# Run the ingestion
-pnpm --filter @soranauts/web kb:ingest
+# Run the ingestion (pass through any additional arguments)
+pnpm --filter @soranauts/web kb:ingest "$@"
 
 echo ""
 echo "✅ Knowledge base update complete!"
