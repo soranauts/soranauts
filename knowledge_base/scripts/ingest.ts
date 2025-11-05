@@ -334,6 +334,7 @@ async function main() {
   const program = new Command();
   program
     .option('--nocache', 'Bypass embedding cache (for determinism testing)')
+    .option('--file <path>', 'Ingest a specific file (relative to KB_DIR or absolute path)')
     .parse();
   const options = program.opts();
   
@@ -410,55 +411,115 @@ async function main() {
   const fileRegistry = loadFileRegistry(env.INDEX_DIR);
   const processedFiles = new Map<string, ProcessedFile>();
   
-  // Find all markdown files
-  const sourceDirs = [
-    { path: join(env.KB_DIR, 'iroha_docs'), source: 'iroha_docs' },
-    { path: join(env.KB_DIR, 'wiki'), source: 'wiki' },
-    { path: join(env.KB_DIR, 'soramitsu_site'), source: 'soramitsu' },
-    { path: join(env.KB_DIR, 'ecosystem_updates'), source: 'update' },
-    { path: join(env.KB_DIR, 'polkaswap_updates'), source: 'polkaswap_update' },
-    { path: join(env.KB_DIR, 'fearless_updates'), source: 'fearless_update' },
-    { path: join(env.KB_DIR, 'pdfs_md'), source: 'pdf' },
-    { path: join(env.KB_DIR, 'imported'), source: 'imported' },
-  ];
-  
   // Process files (incremental: only process changed/new files if KB_INCREMENTAL is true)
   const filesToProcess: string[] = [];
-  for (const { path: sourceDir, source } of sourceDirs) {
-    if (!existsSync(sourceDir)) {
-      console.log(`Skipping ${source}: directory does not exist`);
-      continue;
+  
+  // If --file option is provided, only process that specific file
+  if (options.file) {
+    let filepath: string;
+    if (options.file.startsWith('/') || options.file.match(/^[A-Z]:/)) {
+      // Absolute path
+      filepath = options.file;
+    } else {
+      // Relative to KB_DIR
+      filepath = join(env.KB_DIR, options.file);
     }
     
-    const files = await findMarkdownFiles(sourceDir);
-    console.log(`Found ${files.length} files in ${source}`);
+    if (!existsSync(filepath)) {
+      throw new Error(`File not found: ${filepath}`);
+    }
     
-    for (const filepath of files) {
-      const relPath = relative(env.KB_DIR, filepath);
-      const prior = fileRegistry.get(relPath);
-      
-      if (env.KB_INCREMENTAL && prior) {
-        // Check if file changed using bytesSha256
-        const rawBytes = readFileSync(filepath);
-        const bytesSha256 = createHash('sha256').update(rawBytes).digest('hex');
-        if (prior.bytesSha256 === bytesSha256) {
-          // File unchanged - skip processing
-          metrics.files_skipped++;
-          continue;
-        }
+    if (!filepath.endsWith('.md') && !filepath.endsWith('.mdx')) {
+      throw new Error(`File must be a .md or .mdx file: ${filepath}`);
+    }
+    
+    // Determine source based on file path (will be determined in processing loop)
+    const relPath = relative(env.KB_DIR, filepath);
+    const prior = fileRegistry.get(relPath);
+    if (env.KB_INCREMENTAL && prior) {
+      // Check if file changed using bytesSha256
+      const rawBytes = readFileSync(filepath);
+      const bytesSha256 = createHash('sha256').update(rawBytes).digest('hex');
+      if (prior.bytesSha256 === bytesSha256) {
+        console.log(`File unchanged (skipping): ${relPath}`);
+        metrics.files_skipped++;
+      } else {
+        filesToProcess.push(filepath);
+      }
+    } else {
+      filesToProcess.push(filepath);
+    }
+  } else {
+    // Find all markdown files
+    const sourceDirs = [
+      { path: join(env.KB_DIR, 'iroha_docs'), source: 'iroha_docs' },
+      { path: join(env.KB_DIR, 'wiki'), source: 'wiki' },
+      { path: join(env.KB_DIR, 'soramitsu_site'), source: 'soramitsu' },
+      { path: join(env.KB_DIR, 'ecosystem_updates'), source: 'update' },
+      { path: join(env.KB_DIR, 'polkaswap_updates'), source: 'polkaswap_update' },
+      { path: join(env.KB_DIR, 'fearless_updates'), source: 'fearless_update' },
+      { path: join(env.KB_DIR, 'fearless_github'), source: 'fearless_github' },
+      { path: join(env.KB_DIR, 'pdfs_md'), source: 'pdf' },
+      { path: join(env.KB_DIR, 'imported'), source: 'imported' },
+      { path: join(env.KB_DIR, 'articles'), source: 'article' },
+      { path: join(env.KB_DIR, 'tonswap_site'), source: 'tonswap_site' },
+      { path: join(env.KB_DIR, 'tonswap_updates'), source: 'tonswap_update' },
+      { path: join(env.KB_DIR, 'meta'), source: 'meta' },
+    ];
+    
+    for (const { path: sourceDir, source } of sourceDirs) {
+      if (!existsSync(sourceDir)) {
+        console.log(`Skipping ${source}: directory does not exist`);
+        continue;
       }
       
-      // File is new or changed - process it
-      filesToProcess.push(filepath);
+      const files = await findMarkdownFiles(sourceDir);
+      console.log(`Found ${files.length} files in ${source}`);
+      
+      for (const filepath of files) {
+        const relPath = relative(env.KB_DIR, filepath);
+        const prior = fileRegistry.get(relPath);
+        
+        if (env.KB_INCREMENTAL && prior) {
+          // Check if file changed using bytesSha256
+          const rawBytes = readFileSync(filepath);
+          const bytesSha256 = createHash('sha256').update(rawBytes).digest('hex');
+          if (prior.bytesSha256 === bytesSha256) {
+            // File unchanged - skip processing
+            metrics.files_skipped++;
+            continue;
+          }
+        }
+        
+        // File is new or changed - process it
+        filesToProcess.push(filepath);
+      }
     }
   }
   
   console.log(`\nProcessing ${filesToProcess.length} files (${metrics.files_skipped} skipped as unchanged)...`);
   
   // Process files that need updating
+  // Define sourceDirs for use in processing loop
+  const allSourceDirs = [
+    { path: join(env.KB_DIR, 'iroha_docs'), source: 'iroha_docs' },
+    { path: join(env.KB_DIR, 'wiki'), source: 'wiki' },
+    { path: join(env.KB_DIR, 'soramitsu_site'), source: 'soramitsu' },
+    { path: join(env.KB_DIR, 'ecosystem_updates'), source: 'update' },
+    { path: join(env.KB_DIR, 'polkaswap_updates'), source: 'polkaswap_update' },
+    { path: join(env.KB_DIR, 'fearless_updates'), source: 'fearless_update' },
+    { path: join(env.KB_DIR, 'fearless_github'), source: 'fearless_github' },
+    { path: join(env.KB_DIR, 'pdfs_md'), source: 'pdf' },
+    { path: join(env.KB_DIR, 'imported'), source: 'imported' },
+    { path: join(env.KB_DIR, 'articles'), source: 'article' },
+    { path: join(env.KB_DIR, 'tonswap_site'), source: 'tonswap_site' },
+    { path: join(env.KB_DIR, 'tonswap_updates'), source: 'tonswap_update' },
+    { path: join(env.KB_DIR, 'meta'), source: 'meta' },
+  ];
+  
   for (const filepath of filesToProcess) {
     const relPath = relative(env.KB_DIR, filepath);
-    const source = sourceDirs.find(sd => filepath.startsWith(sd.path))?.source || 'unknown';
+    const source = allSourceDirs.find(sd => filepath.startsWith(sd.path))?.source || 'unknown';
     const processed = processFile(filepath, source, env.EMBED_MODEL, snapshotId, env.TOKENIZER);
     if (processed) {
       processedFiles.set(relPath, processed);
