@@ -17,13 +17,13 @@ jobs:
       RETRY_DELAY: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - run: pnpm install --frozen-lockfile
       - name: Sync Iroha docs (with retry)
         run: |
@@ -42,13 +42,13 @@ jobs:
       RETRY_DELAY: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - run: pnpm install --frozen-lockfile
       - name: Scrape SORAMITSU site (with retry)
         run: |
@@ -67,13 +67,13 @@ jobs:
       RETRY_DELAY: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - run: pnpm install --frozen-lockfile
       - name: Import SORA Medium posts (with retry)
         run: |
@@ -92,13 +92,13 @@ jobs:
       RETRY_DELAY: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - run: pnpm install --frozen-lockfile
       - name: Import Polkaswap Medium posts (with retry)
         run: |
@@ -117,13 +117,13 @@ jobs:
       RETRY_DELAY: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - run: pnpm install --frozen-lockfile
       - name: Import Fearless Wallet Medium posts (with retry)
         run: |
@@ -142,13 +142,13 @@ jobs:
       RETRY_DELAY: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - run: pnpm install --frozen-lockfile
       - name: Sync Fearless Wallet GitHub repos (with retry)
         run: |
@@ -167,13 +167,13 @@ jobs:
       RETRY_DELAY: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - run: pnpm install --frozen-lockfile
       - name: Scrape SORA Wiki (with retry)
         run: |
@@ -192,13 +192,13 @@ jobs:
       RETRY_DELAY: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - run: pnpm install --frozen-lockfile
       - name: Scrape TONSWAP site (with retry)
         run: |
@@ -217,13 +217,13 @@ jobs:
       RETRY_DELAY: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - run: pnpm install --frozen-lockfile
       - name: Import TONSWAP Medium posts (with retry)
         run: |
@@ -240,13 +240,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - run: pnpm install --frozen-lockfile
       
       - name: Restore index cache
@@ -272,11 +272,7 @@ jobs:
           path: knowledge_base/index/manifest.json
           retention-days: 30
           
-      - name: Commit changes
-        run: |
-          git config user.name "kb-bot"
-          git config user.email "kb-bot@users.noreply.github.com"
-          git add knowledge_base/ || true
-          git diff --staged --quiet && echo "No changes." || git commit -m "KB sync: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          git push || echo "Push failed"
+      # Note: knowledge_base/ files are auto-generated daily and should NOT be committed
+      # They are excluded from git via .gitignore. The sync workflow runs locally
+      # and the files are available for the build process without needing to be in git.
 
