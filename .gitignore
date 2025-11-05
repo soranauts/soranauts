@@ -47,12 +47,14 @@ knowledge_base/fearless_updates/images/
 knowledge_base/tonswap_site/images/
 knowledge_base/tonswap_updates/images/
 # Daily synced content (auto-generated, do not commit)
-knowledge_base/ecosystem_updates/**/*.md
-knowledge_base/polkaswap_updates/**/*.md
-knowledge_base/fearless_updates/**/*.md
-knowledge_base/tonswap_updates/**/*.md
-knowledge_base/soramitsu_site/**/*.md
-knowledge_base/tonswap_site/**/*.md
+# These directories are populated by nightly sync workflow
+knowledge_base/ecosystem_updates/
+knowledge_base/polkaswap_updates/
+knowledge_base/fearless_updates/
+knowledge_base/tonswap_updates/
+knowledge_base/soramitsu_site/
+knowledge_base/tonswap_site/
+knowledge_base/articles/
 # Keep only specific KB files (docs, configs, scripts)
 !knowledge_base/README.md
 !knowledge_base/**/*.txt
@@ -61,3 +63,5 @@ knowledge_base/tonswap_site/**/*.md
 !knowledge_base/**/*.json
 !knowledge_base/docs/**/*.md
 !knowledge_base/scripts/**/*.md
+# Keep root-level documentation files
+!knowledge_base/*.md
