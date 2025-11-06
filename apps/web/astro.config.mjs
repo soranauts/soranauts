@@ -20,6 +20,7 @@ const glossaryAutoLinkPlugin = await loadGlossaryAutoLinkPlugin();
 console.log('🔗 Plugin loaded successfully in config');
 
 import { ANALYTICS, SITE } from './src/utils/config.ts';
+import redirectsData from './src/data/redirects.glossary.json' assert { type: 'json' };
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -30,10 +31,16 @@ const whenExternalScripts = (items = []) =>
       : [items()]
     : [];
 
+const generatedRedirects = Object.fromEntries(
+  (redirectsData?.redirects ?? []).map((entry) => [entry.from, entry.to])
+);
+
 export default defineConfig({
   site: SITE.site,
   base: SITE.base,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
+
+  redirects: generatedRedirects,
 
   output: 'static',
 

@@ -3,12 +3,15 @@ import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 import GlossarySearchFallback from '~/components/glossary/GlossarySearchFallback';
+import GlossarySearchV2 from '~/components/glossary/GlossarySearchV2';
 import { SITE } from '~/utils/config';
 import { headerData, footerData } from '~/navigation';
 import glossary from '../../public/glossary.json';
 
 // Get initial term from URL hash for deep linking
 const initialTerm = Astro.url.hash.replace('#', '');
+const initialQuery = Astro.url.searchParams.get('q') ?? initialTerm;
+const enableSearchV2 = import.meta.env.GLOSSARY_SEARCH_V2 === 'true';
 
 // Generate DefinedTermSet schema for main glossary page
 const definedTermSetSchema = {
@@ -84,7 +87,11 @@ const breadcrumbSchema = {
       </div>
 
           <!-- Main Glossary Search Component -->
-          <GlossarySearchFallback client:load />
+          {enableSearchV2 ? (
+            <GlossarySearchV2 client:load initialQuery={initialQuery ?? ''} />
+          ) : (
+            <GlossarySearchFallback client:load />
+          )}
     </div>
   </main>
 

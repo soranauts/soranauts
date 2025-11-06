@@ -1,0 +1,100 @@
+{
+  "redirects": [
+    {
+      "from": "/glossary/hub-chain",
+      "to": "/glossary/hubchain"
+    },
+    {
+      "from": "/glossary/hyperled",
+      "to": "/glossary/hyperledger-iroha"
+    },
+    {
+      "from": "/glossary/hyperledger-iroha-3",
+      "to": "/glossary/sora-v3"
+    },
+    {
+      "from": "/glossary/interplanetary-file-system",
+      "to": "/glossary/ipfs"
+    },
+    {
+      "from": "/glossary/iroha",
+      "to": "/glossary/hyperledger-iroha"
+    },
+    {
+      "from": "/glossary/iroha-2",
+      "to": "/glossary/hyperledger-iroha-2"
+    },
+    {
+      "from": "/glossary/iroha-3",
+      "to": "/glossary/hyperledger-iroha-3"
+    },
+    {
+      "from": "/glossary/iroha-blockchain",
+      "to": "/glossary/hyperledger-iroha"
+    },
+    {
+      "from": "/glossary/iroha-v2",
+      "to": "/glossary/hyperledger-iroha-2"
+    },
+    {
+      "from": "/glossary/iroha-v3",
+      "to": "/glossary/hyperledger-iroha-3"
+    },
+    {
+      "from": "/glossary/iroha2",
+      "to": "/glossary/hyperledger-iroha-2"
+    },
+    {
+      "from": "/glossary/iroha3",
+      "to": "/glossary/hyperledger-iroha-3"
+    },
+    {
+      "from": "/glossary/isis",
+      "to": "/glossary/iroha-special-instructions"
+    },
+    {
+      "from": "/glossary/nexus",
+      "to": "/glossary/hyperledger-iroha-3"
+    },
+    {
+      "from": "/glossary/nfts",
+      "to": "/glossary/nft"
+    },
+    {
+      "from": "/glossary/non-fungible-token",
+      "to": "/glossary/nft"
+    },
+    {
+      "from": "/glossary/non-fungible-tokens",
+      "to": "/glossary/nft"
+    },
+    {
+      "from": "/glossary/pswap-dex",
+      "to": "/glossary/polkaswap"
+    },
+    {
+      "from": "/glossary/sora-dex",
+      "to": "/glossary/polkaswap"
+    },
+    {
+      "from": "/glossary/sora-nexus",
+      "to": "/glossary/sora-v3"
+    },
+    {
+      "from": "/glossary/sora-v3",
+      "to": "/glossary/hyperledger-iroha-3"
+    },
+    {
+      "from": "/glossary/telegram-dex",
+      "to": "/glossary/tonswap"
+    },
+    {
+      "from": "/glossary/ton-swap",
+      "to": "/glossary/tonswap"
+    },
+    {
+      "from": "/glossary/ts-dex",
+      "to": "/glossary/tonswap"
+    }
+  ]
+}
