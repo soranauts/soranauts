@@ -26,12 +26,20 @@ interface RedirectEntry {
 const redirects: RedirectEntry[] = [];
 const seen = new Set<string>();
 
+const canonicalSlugs = new Set(
+  Object.values(taxonomy)
+    .filter((node) => node.type !== 'tag')
+    .map((node) => node.slug)
+);
+
 for (const node of Object.values(taxonomy)) {
   if (node.type === 'tag') continue;
   const aliases = node.aliases ?? [];
   for (const alias of aliases) {
     const aliasSlug = normalize(alias);
     if (!aliasSlug || aliasSlug === node.slug) continue;
+
+    if (canonicalSlugs.has(aliasSlug)) continue;
 
     const from = `/glossary/${aliasSlug}`;
     const to = node.glossaryRef ?? `/glossary/${node.slug}`;
