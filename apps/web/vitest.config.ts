@@ -6,7 +6,6 @@ export default defineConfig({
     exclude: [
       '**/node_modules/**',
       '**/dist/**',
-      '**/tests/**', // Exclude Playwright tests
       '**/test-results/**',
       '**/playwright-report/**',
       '**/src/utils/__tests__/glossary-auto-link.test.ts', // Temporarily disable failing tests
