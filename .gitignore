@@ -64,4 +64,4 @@ knowledge_base/articles/
 !knowledge_base/docs/**/*.md
 !knowledge_base/scripts/**/*.md
 # Keep root-level documentation files
-!knowledge_base/*.md
+!knowledge_base/*.mdBACKUP_INFO_*.txt

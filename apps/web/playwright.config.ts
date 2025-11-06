@@ -29,6 +29,10 @@ export default defineConfig({
     command: 'pnpm dev',
     url: 'http://localhost:4321',
     reuseExistingServer: !process.env.CI,
+    env: {
+      ...process.env,
+      GLOSSARY_SEARCH_V2: 'true',
+    },
   },
 });
 

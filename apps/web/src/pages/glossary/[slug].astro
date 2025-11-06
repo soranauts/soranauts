@@ -7,7 +7,10 @@ import glossary from '../../../public/glossary.json';
 import { headerData, footerData } from '../../navigation';
 import fs from 'node:fs';
 import path from 'node:path';
-import { SITE } from '~/utils/config';
+import { getCollection } from 'astro:content';
+import { getRelatedTags, getTaxonomyNode } from '~/lib/taxonomy';
+import { SITE, I18N } from '~/utils/config';
+import { getPermalink } from '~/utils/permalinks';
 
 export async function getStaticPaths() {
   return glossary.terms.map(term => ({
@@ -40,18 +43,6 @@ const ogManifest = getOgManifest();
 const termPath = `/glossary/${term.slug}`;
 const ogPath = ogManifest[termPath] || ogManifest['/glossary'] || ogManifest.default || '/og/default.jpg';
 const ogImage = `${SITE.site}${ogPath}`;
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "DefinedTerm",
-  "name": term.term,
-  "termCode": term.slug,
-  "description": term.definition,
-  "inDefinedTermSet": "https://soranauts.com/glossary",
-  "url": canonical,
-  "alternateName": term.aliases ?? [],
-  "subjectOf": term.links?.map(l => ({ "@type": "WebPage", "url": l.url })) ?? [],
-};
 
 // Breadcrumb schema for term page
 const breadcrumbSchema = {
@@ -91,6 +82,55 @@ const relatedTermsWithLinks = (term.relatedTerms?.map(r => {
 }).filter((related): related is { term: string; slug: string } => 
   related !== null
 )) || [];
+
+const taxonomyNode = getTaxonomyNode(term.slug);
+const relatedTagNodes = taxonomyNode ? getRelatedTags(taxonomyNode.slug) : [];
+
+const posts = await getCollection('post');
+
+const relatedTagArticles = relatedTagNodes.map((tagNode) => {
+  const tagName = tagNode.aliases?.[0] ?? tagNode.title;
+  const normalizedTag = tagName.toLowerCase();
+  const tagPermalink = getPermalink(normalizedTag, 'tag');
+  const matchedPosts = posts
+    .filter((post) => Array.isArray(post.data.tags) && post.data.tags.some((tag) => String(tag).toLowerCase() === normalizedTag))
+    .slice(0, 4);
+  return {
+    tag: tagNode,
+    tagName,
+    tagPermalink,
+    posts: matchedPosts,
+  };
+}).filter((entry) => entry.posts.length > 0);
+
+const versionEntries = Array.isArray(term.versions)
+  ? term.versions
+      .map((slug: string) => glossary.terms.find((entry) => entry.slug === slug))
+      .filter(Boolean)
+  : [];
+
+const parentEntity = term.entity ? glossary.terms.find((entry) => entry.slug === term.entity) : null;
+
+const tagSubjectEntries = relatedTagArticles.map(({ tag, tagPermalink }) => ({
+  "@type": "CollectionPage",
+  "name": `${tag.title} Articles`,
+  "url": `${SITE.site}${tagPermalink}`,
+}));
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": term.term,
+  "termCode": term.slug,
+  "description": term.definition,
+  "inDefinedTermSet": `${SITE.site}/glossary`,
+  "url": canonical,
+  "alternateName": term.aliases ?? [],
+  "subjectOf": [
+    ...(term.links?.map((l) => ({ "@type": "WebPage", "url": l.url })) ?? []),
+    ...tagSubjectEntries,
+  ],
+};
 ---
 
 <Layout 
@@ -165,6 +205,34 @@ const relatedTermsWithLinks = (term.relatedTerms?.map(r => {
         </p>
       </article>
 
+      {parentEntity && (
+        <div class="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
+          Part of the {parentEntity.term} entity. Learn more on
+          {' '}
+          <a href={`/glossary/${parentEntity.slug}`} class="font-semibold text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300">
+            {parentEntity.term}
+          </a>
+          .
+        </div>
+      )}
+
+      {versionEntries.length > 0 && (
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Versions</h2>
+          <div class="grid gap-4 md:grid-cols-2">
+            {versionEntries.map((version) => (
+              <a
+                href={`/glossary/${version.slug}`}
+                class="block rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:border-red-300 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-red-500/60"
+              >
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{version.term}</h3>
+                <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">{version.summary ?? version.definition}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
       <!-- Aliases -->
       {term.aliases && term.aliases.length > 1 && (
         <div class="mb-8">
@@ -201,6 +269,22 @@ const relatedTermsWithLinks = (term.relatedTerms?.map(r => {
         </div>
       )}
 
+      {relatedTagArticles.length > 0 && (
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Related Tags</h2>
+          <div class="flex flex-wrap gap-2">
+            {relatedTagArticles.map(({ tag, tagName, tagPermalink }) => (
+              <a
+                href={tagPermalink}
+                class="px-3 py-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-md text-sm transition-colors inline-flex items-center gap-1"
+              >
+                #{tag.title}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
       <!-- Related Terms -->
       {relatedTermsWithLinks.length > 0 && (
         <div class="mb-8">
@@ -213,6 +297,47 @@ const relatedTermsWithLinks = (term.relatedTerms?.map(r => {
               >
                 {related.term}
               </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {relatedTagArticles.length > 0 && (
+        <div class="mb-12">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Articles using these tags</h2>
+          <div class="space-y-6">
+            {relatedTagArticles.map(({ tag, tagName, tagPermalink, posts }) => (
+              <div class="rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900" key={tag.slug}>
+                <div class="flex items-center justify-between">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">#{tag.title}</h3>
+                  <a
+                    href={tagPermalink}
+                    class="text-sm font-medium text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+                  >
+                    View all
+                  </a>
+                </div>
+                <ul class="mt-3 space-y-2">
+                  {posts.map((post) => {
+                    const postPermalink = getPermalink(post.slug, 'post');
+                    return (
+                      <li key={post.slug} class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                        <a
+                          href={postPermalink}
+                          class="text-sm font-medium text-gray-800 hover:text-red-600 dark:text-gray-200 dark:hover:text-red-400"
+                        >
+                          {post.data.title}
+                        </a>
+                        {post.data.publishDate && (
+                          <span class="text-xs text-gray-500 dark:text-gray-400">
+                            {I18N.dateFormatter.format(post.data.publishDate)}
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             ))}
           </div>
         </div>

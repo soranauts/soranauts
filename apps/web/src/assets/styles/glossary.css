@@ -96,6 +96,17 @@ a[href].glossary-term-economics,
   color: #db2777 !important; /* Pink-700 */
 }
 
+.prose a[href].glossary-term-tag,
+.prose .glossary-term-tag,
+a[href].glossary-term-tag,
+.glossary-term-tag {
+  color: #4b5563 !important; /* Gray-600 */
+}
+
+.glossary-term-tag:hover {
+  color: #1f2937 !important; /* Gray-800 */
+}
+
 /* Dark mode category-specific colors */
 .prose .dark a[href].glossary-term-token,
 .prose .dark .glossary-term-token,
@@ -161,6 +172,17 @@ a[href].glossary-term-economics,
 
 .dark .glossary-term-economics:hover {
   color: #ec4899 !important; /* Pink-500 */
+}
+
+.prose .dark a[href].glossary-term-tag,
+.prose .dark .glossary-term-tag,
+.dark a[href].glossary-term-tag,
+.dark .glossary-term-tag {
+  color: #d1d5db !important; /* Gray-300 */
+}
+
+.dark .glossary-term-tag:hover {
+  color: #f9fafb !important; /* Gray-50 */
 }
 
 /* Tooltip positioning */
