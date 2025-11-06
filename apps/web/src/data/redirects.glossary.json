@@ -1,16 +1,8 @@
 {
   "redirects": [
     {
-      "from": "/glossary/hub-chain",
-      "to": "/glossary/hubchain"
-    },
-    {
       "from": "/glossary/hyperled",
       "to": "/glossary/hyperledger-iroha"
-    },
-    {
-      "from": "/glossary/hyperledger-iroha-3",
-      "to": "/glossary/sora-v3"
     },
     {
       "from": "/glossary/interplanetary-file-system",
@@ -53,10 +45,6 @@
       "to": "/glossary/iroha-special-instructions"
     },
     {
-      "from": "/glossary/nexus",
-      "to": "/glossary/hyperledger-iroha-3"
-    },
-    {
       "from": "/glossary/nfts",
       "to": "/glossary/nft"
     },
@@ -79,10 +67,6 @@
     {
       "from": "/glossary/sora-nexus",
       "to": "/glossary/sora-v3"
-    },
-    {
-      "from": "/glossary/sora-v3",
-      "to": "/glossary/hyperledger-iroha-3"
     },
     {
       "from": "/glossary/telegram-dex",
