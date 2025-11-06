@@ -54,29 +54,31 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   // Technology Terms
   'Hyperledger Iroha': {
     term: 'Hyperledger Iroha',
-    definition: 'An open-source, permissioned blockchain framework developed by SORAMITSU and part of the Hyperledger Foundation. Designed for simplicity and fast deployment with granular permissions, built-in asset management, and Byzantine fault tolerant consensus. Iroha 2 (written in Rust) adds WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure.',
+    definition: 'An open-source, permissioned blockchain framework developed by SORAMITSU and part of the Hyperledger Foundation. Designed for simplicity and fast deployment with granular permissions, built-in asset management, and Byzantine fault tolerant consensus. Hyperledger Iroha 2 (written in Rust) adds WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure.',
     category: 'technology',
-    relatedTerms: ['SORAMITSU', 'Hyperledger Foundation', 'Permissioned Blockchain', 'CBDC', 'Enterprise', 'WASM', 'Iroha 2', 'Iroha 3'],
+    relatedTerms: ['SORAMITSU', 'Hyperledger Foundation', 'Permissioned Blockchain', 'CBDC', 'Enterprise', 'WASM', 'Hyperledger Iroha 2', 'Hyperledger Iroha 3'],
     examples: ['SORA network', 'Bakong CBDC', 'Enterprise systems', 'National financial infrastructure'],
     links: [
       { label: 'Hyperledger Iroha', url: 'https://docs.iroha.tech/' }
     ]
   },
-  'Iroha 2': {
-    term: 'Iroha 2',
-    definition: 'Hyperledger Iroha 2 is the blockchain framework that provided the foundation for SORA v2 Hubchain Phase 1-2 prototypes. Iroha 2 (written in Rust) provides WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure. The framework enabled early cross-chain transfer proofs and verifier mechanisms. SORA v3 is transitioning from Iroha 2 to Iroha 3 for improved modularity and scalability.',
+  'Hyperledger Iroha 2': {
+    term: 'Hyperledger Iroha 2',
+    aliases: ['Iroha 2'],
+    definition: 'Hyperledger Iroha 2 is the blockchain framework that provided the foundation for SORA v2 Hubchain Phase 1-2 prototypes. Hyperledger Iroha 2 (written in Rust) provides WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure. The framework enabled early cross-chain transfer proofs and verifier mechanisms. SORA v3 is transitioning from Hyperledger Iroha 2 to Hyperledger Iroha 3 for improved modularity and scalability.',
     category: 'technology',
-    relatedTerms: ['Hyperledger Iroha', 'SORA v2', 'SORA v3', 'Iroha 3', 'SORAMITSU', 'WASM', 'CBDC', 'Hubchain'],
+    relatedTerms: ['Hyperledger Iroha', 'SORA v2', 'SORA v3', 'Hyperledger Iroha 3', 'SORAMITSU', 'WASM', 'CBDC', 'Hubchain'],
     examples: ['SORA v2 network', 'Hubchain Phase 1-2', 'Enterprise blockchain systems', 'CBDC infrastructure'],
     links: [
       { label: 'Hyperledger Iroha Documentation', url: 'https://docs.iroha.tech/' }
     ]
   },
-  'Iroha 3': {
-    term: 'Iroha 3',
-    definition: 'Hyperledger Iroha 3 is the next-generation blockchain framework being developed for SORA v3 (Nexus). Iroha 3 introduces a re-engineered architecture with greater modularity, new consensus mechanisms, and enhanced security primitives. It features layered runtime for domain-specific modules, upgraded command model, query isolation for deterministic operations, and simplified validator orchestration. Iroha 3 will support Iroha Special Instructions (ISIs) for deterministic smart-contract logic and provide the foundation for SORA v3\'s high-performance, cross-chain infrastructure.',
+  'Hyperledger Iroha 3': {
+    term: 'Hyperledger Iroha 3',
+    aliases: ['Iroha 3'],
+    definition: 'Hyperledger Iroha 3 is the next-generation blockchain framework being developed for SORA v3 (Nexus). Hyperledger Iroha 3 introduces a re-engineered architecture with greater modularity, new consensus mechanisms, and enhanced security primitives. It features layered runtime for domain-specific modules, upgraded command model, query isolation for deterministic operations, and simplified validator orchestration. Hyperledger Iroha 3 will support Iroha Special Instructions (ISIs) for deterministic smart-contract logic and provide the foundation for SORA v3\'s high-performance, cross-chain infrastructure.',
     category: 'technology',
-    relatedTerms: ['Hyperledger Iroha', 'Iroha 2', 'SORA v3', 'Iroha Special Instructions', 'ISI', 'BFT Consensus', 'Modular Architecture'],
+    relatedTerms: ['Hyperledger Iroha', 'Hyperledger Iroha 2', 'SORA v3', 'Iroha Special Instructions', 'ISI', 'BFT Consensus', 'Modular Architecture'],
     examples: ['SORA v3 network', 'Next-generation framework', 'Enterprise blockchain upgrade', 'Modular runtime'],
     links: [
       { label: 'Hyperledger Iroha Documentation', url: 'https://docs.iroha.tech/' }
@@ -86,7 +88,7 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
     term: 'Substrate',
     definition: 'A modular blockchain framework developed by Parity Technologies. SORA v2 uses Substrate as its foundation to integrate with the Polkadot ecosystem and enable cross-chain functionality through parachain connectivity. SORA v3 (Nexus) is migrating away from Substrate to Hyperledger Iroha 3 for improved efficiency, enterprise integration, and enhanced capabilities for CBDC and government use cases.',
     category: 'technology',
-    relatedTerms: ['Polkadot', 'Parachain', 'Cross-chain', 'SORA v2', 'SORA v3', 'Hyperledger Iroha', 'Iroha 3'],
+    relatedTerms: ['Polkadot', 'Parachain', 'Cross-chain', 'SORA v2', 'SORA v3', 'Hyperledger Iroha', 'Hyperledger Iroha 3'],
     examples: ['Polkadot parachain', 'Cross-chain bridges', 'Modular development', 'SORA v2 implementation'],
     links: [
       { label: 'Substrate', url: 'https://substrate.io' }
@@ -234,7 +236,7 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
     term: 'SORA v3',
     definition: 'SORA v3, also known as SORA Nexus, is the next generation of the SORA network. It transitions from Substrate-based SORA v2 to Hyperledger Iroha 3, introducing a modular, high-performance design to support scalability and cross-chain interoperability. The SORA v3 Hub Chain (or Hubchain) enables seamless collaboration between permissioned and decentralized systems, designed for CBDCs, government integration, and economic sovereignty while maintaining borderless financial activities. It serves as a supranational platform that de-correlates CBDCs and government-issued digital assets from political and economic instability, providing a stable foundation for global transactions.',
     category: 'technology',
-    relatedTerms: ['Hyperledger Iroha', 'Iroha 2', 'Iroha 3', 'CBDC', 'Hub Chain', 'Hubchain', 'Nexus', 'Economic Sovereignty', 'KUSD', 'Fujiwara Testnet', 'Supranational Platform', 'SORA v2'],
+    relatedTerms: ['Hyperledger Iroha', 'Hyperledger Iroha 2', 'Hyperledger Iroha 3', 'CBDC', 'Hub Chain', 'Hubchain', 'Nexus', 'Economic Sovereignty', 'KUSD', 'Fujiwara Testnet', 'Supranational Platform', 'SORA v2'],
     examples: ['Central bank digital currencies', 'Government asset creation', 'Permissioned subnets', 'Supranational platform', 'Cross-chain interoperability'],
     links: [
       { label: 'SORA v3 Guide', url: 'https://wiki.sora.org/sora-v3.html' }
@@ -275,8 +277,8 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
     term: 'Nexus',
     definition: 'The code name for SORA v3, also referred to as SORA Nexus. Nexus represents the next-generation SORA Hub Chain designed to succeed the Substrate-based SORA v2 network, built on Hyperledger Iroha 3 for improved modularity, performance, and cross-chain interoperability.',
     category: 'technology',
-    relatedTerms: ['SORA v3', 'Hub Chain', 'Iroha 3', 'SORA v2'],
-    examples: ['SORA v3 (Nexus) upgrade', 'Next-generation network', 'Iroha 3 migration'],
+    relatedTerms: ['SORA v3', 'Hub Chain', 'Hyperledger Iroha 3', 'SORA v2'],
+    examples: ['SORA v3 (Nexus) upgrade', 'Next-generation network', 'Hyperledger Iroha 3 migration'],
     links: [
       { label: 'SORA v3 Guide', url: 'https://wiki.sora.org/sora-v3.html' }
     ]
@@ -296,7 +298,7 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
     term: 'BFT Consensus',
     definition: 'Byzantine Fault Tolerance (BFT) consensus is a consensus mechanism that allows a distributed system to reach agreement even when some nodes fail or act maliciously. SORA v3 uses BFT consensus derived from Hyperledger Iroha 3\'s architecture, providing high-throughput transaction processing with deterministic finality. This differs from SORA v2\'s Substrate-based consensus, offering improved security and performance for enterprise-grade applications including CBDCs.',
     category: 'technology',
-    relatedTerms: ['Consensus', 'Byzantine Fault Tolerance', 'Iroha 3', 'SORA v3', 'Finality', 'Security'],
+    relatedTerms: ['Consensus', 'Byzantine Fault Tolerance', 'Hyperledger Iroha 3', 'SORA v3', 'Finality', 'Security'],
     examples: ['Transaction validation', 'Network security', 'CBDC infrastructure', 'Enterprise blockchain'],
     links: [
       { label: 'SORA v3', url: 'https://wiki.sora.org/sora-v3.html' },
@@ -326,9 +328,9 @@ export const soraGlossary: Record<string, GlossaryTerm> = {
   'Iroha Special Instructions': {
     term: 'Iroha Special Instructions',
     aliases: ['ISIs'],
-    definition: 'Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic and domain-specific operations, providing a flexible framework for building complex decentralized applications on SORA v3. This represents a key advancement over Iroha 2, offering enhanced programmability and interoperability.',
+    definition: 'Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic and domain-specific operations, providing a flexible framework for building complex decentralized applications on SORA v3. This represents a key advancement over Hyperledger Iroha 2, offering enhanced programmability and interoperability.',
     category: 'technology',
-    relatedTerms: ['Iroha 3', 'Smart Contract', 'SORA v3', 'Hyperledger Iroha', 'Governance', 'Deterministic'],
+    relatedTerms: ['Hyperledger Iroha 3', 'Smart Contract', 'SORA v3', 'Hyperledger Iroha', 'Governance', 'Deterministic'],
     examples: ['Governance modules', 'Domain-specific commands', 'Smart contract execution', 'Modular DApp development'],
     links: [
       { label: 'Hyperledger Iroha', url: 'https://docs.iroha.tech/' }

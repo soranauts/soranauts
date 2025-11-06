@@ -10,6 +10,8 @@ const TERM_PRIORITIES: Record<string, number> = {
   'Polkaswap': 80,
   'SORA Parliament': 75,
   'Hyperledger Iroha': 70,
+  'Hyperledger Iroha 2': 68,
+  'Hyperledger Iroha 3': 69,
   'Substrate': 65,
   'Parachain': 60,
   'DeFi': 55,
@@ -97,7 +99,11 @@ function generateTags(term: string, category: string, relatedTerms: string[]): s
 // Process a single glossary term
 function processGlossaryTerm(term: string, data: any): GlossaryTerm {
   const slug = generateSlug(term);
-  const aliases = generateAliases(term, data.relatedTerms || []);
+  // Use manual aliases if provided, otherwise generate them
+  const manualAliases = data.aliases || [];
+  const generatedAliases = generateAliases(term, data.relatedTerms || []);
+  // Merge manual aliases with generated ones, removing duplicates
+  const aliases = Array.from(new Set([...manualAliases, ...generatedAliases]));
   const tags = generateTags(term, data.category, data.relatedTerms || []);
   const priority = TERM_PRIORITIES[term] || 1;
   

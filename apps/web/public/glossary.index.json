@@ -23,17 +23,27 @@
     {
       "slug": "sora-parliament",
       "priority": 75,
-      "blob": "sora parliament sora-parliament governance the democratic governance system of sora using multi-body sortition with clear separation of powers. citizens are randomly selected (not token voting) and must post xor bonds for citizenship. features multiple bodies: rules committee, agenda council, interest panels, review panel, and policy jury. main task is allocating newly minted xor to productive projects. sora parliament governance xor val sortition citizenship supranational sora parliament xor val sortition citizenship multi-body governance supranational"
+      "blob": "sora parliament sora-parliament governance the future democratic governance system of sora using multi-body sortition with clear separation of powers. the sora parliament will replace the current governance v1 system, implementing sortition-based democracy where citizens are randomly selected (not token voting) and must post xor bonds for citizenship. features multiple bodies: rules committee, agenda council, interest panels, review panel, and policy jury. main task is allocating newly minted xor to productive projects. in sora v3, the parliament will integrate with a hybrid dao framework using iroha special instructions (isis) for modular governance logic. sora parliament governance xor val sortition citizenship supranational isi sora parliament xor val sortition citizenship multi-body governance supranational governance v1 iroha special instructions isi sora v3"
     },
     {
       "slug": "hyperledger-iroha",
       "priority": 70,
-      "blob": "hyperledger iroha hyperledger-iroha technology an open-source, permissioned blockchain framework developed by soramitsu and part of the hyperledger foundation. designed for simplicity and fast deployment with granular permissions, built-in asset management, and byzantine fault tolerant consensus. iroha 2 (written in rust) adds wasm smart contracts and improved performance, making it suitable for enterprise systems, cbdcs, and national-level financial infrastructure. hyperledger iroha technology soramitsu cbdc enterprise wasm hyperledger iroha soramitsu hyperledger foundation permissioned blockchain cbdc enterprise wasm iroha 2 iroha 3"
+      "blob": "hyperledger iroha hyperledger-iroha technology an open-source, permissioned blockchain framework developed by soramitsu and part of the hyperledger foundation. designed for simplicity and fast deployment with granular permissions, built-in asset management, and byzantine fault tolerant consensus. hyperledger iroha 2 (written in rust) adds wasm smart contracts and improved performance, making it suitable for enterprise systems, cbdcs, and national-level financial infrastructure. hyperledger iroha technology soramitsu cbdc enterprise wasm hyperledger iroha soramitsu hyperledger foundation permissioned blockchain cbdc enterprise wasm hyperledger iroha 2 hyperledger iroha 3"
+    },
+    {
+      "slug": "hyperledger-iroha-3",
+      "priority": 69,
+      "blob": "hyperledger iroha 3 hyperledger-iroha-3 technology hyperledger iroha 3 is the next-generation blockchain framework being developed for sora v3 (nexus). hyperledger iroha 3 introduces a re-engineered architecture with greater modularity, new consensus mechanisms, and enhanced security primitives. it features layered runtime for domain-specific modules, upgraded command model, query isolation for deterministic operations, and simplified validator orchestration. hyperledger iroha 3 will support iroha special instructions (isis) for deterministic smart-contract logic and provide the foundation for sora v3's high-performance, cross-chain infrastructure. iroha 3 hyperledger iroha 3 technology isi hyperledger iroha hyperledger iroha hyperledger iroha 2 sora v3 iroha special instructions isi bft consensus modular architecture"
+    },
+    {
+      "slug": "hyperledger-iroha-2",
+      "priority": 68,
+      "blob": "hyperledger iroha 2 hyperledger-iroha-2 technology hyperledger iroha 2 is the blockchain framework that provided the foundation for sora v2 hubchain phase 1-2 prototypes. hyperledger iroha 2 (written in rust) provides wasm smart contracts and improved performance, making it suitable for enterprise systems, cbdcs, and national-level financial infrastructure. the framework enabled early cross-chain transfer proofs and verifier mechanisms. sora v3 is transitioning from hyperledger iroha 2 to hyperledger iroha 3 for improved modularity and scalability. iroha 2 hyperledger iroha 2 technology soramitsu wasm cbdc hubchain hyperledger iroha hyperledger iroha sora v2 sora v3 hyperledger iroha 3 soramitsu wasm cbdc hubchain"
     },
     {
       "slug": "substrate",
       "priority": 65,
-      "blob": "substrate substrate technology a modular blockchain framework developed by parity technologies. sora v2 uses substrate to integrate with the polkadot ecosystem and enable cross-chain functionality, while sora v3 is migrating away from substrate to hyperledger iroha for improved efficiency and enterprise integration. substrate technology polkadot parachain cross-chain polkadot parachain cross-chain sora v2 sora v3 hyperledger iroha"
+      "blob": "substrate substrate technology a modular blockchain framework developed by parity technologies. sora v2 uses substrate as its foundation to integrate with the polkadot ecosystem and enable cross-chain functionality through parachain connectivity. sora v3 (nexus) is migrating away from substrate to hyperledger iroha 3 for improved efficiency, enterprise integration, and enhanced capabilities for cbdc and government use cases. substrate technology polkadot parachain cross-chain polkadot parachain cross-chain sora v2 sora v3 hyperledger iroha hyperledger iroha 3"
     },
     {
       "slug": "parachain",
@@ -73,7 +83,7 @@
     {
       "slug": "ipfs",
       "priority": 25,
-      "blob": "ipfs ipfs technology interplanetary file system - a peer-to-peer distributed file system that provides decentralized, content-addressed storage for digital assets. ipfs uses cryptographic hashing to create unique identifiers for files, ensuring data integrity and permanent accessibility. in the sora ecosystem, ipfs is crucial for storing nft metadata, images, and other digital assets in a censorship-resistant manner. ipfs technology nft metadata blockchain nft decentralized storage metadata content addressing blockchain digital assets"
+      "blob": "ipfs ipfs technology interplanetary file system - a peer-to-peer distributed file system that provides decentralized, content-addressed storage for digital assets. ipfs uses cryptographic hashing to create unique identifiers for files, ensuring data integrity and permanent accessibility. in the sora ecosystem, ipfs is crucial for storing nft metadata, images, and other digital assets in a censorship-resistant manner. ipfs interplanetary file system technology nft metadata blockchain nft decentralized storage metadata content addressing blockchain digital assets"
     },
     {
       "slug": "cbdc",
@@ -101,14 +111,9 @@
       "blob": "blockchain blockchain technology a distributed ledger technology that maintains a continuously growing list of records secured using cryptography. sora operates on blockchain technology, currently using substrate framework and transitioning to hyperledger iroha for enhanced enterprise capabilities. blockchain technology cryptography substrate distributed ledger cryptography substrate hyperledger iroha decentralization"
     },
     {
-      "slug": "iroha-2",
-      "priority": 1,
-      "blob": "iroha 2 iroha-2 technology hyperledger iroha 2 is the blockchain framework on which sora v2 is built. the sora network is currently preparing to migrate to iroha 3 as part of its sora v3 (nexus) upgrade. iroha 2 (written in rust) provides wasm smart contracts and improved performance, making it suitable for enterprise systems, cbdcs, and national-level financial infrastructure. iroha 2 technology soramitsu wasm cbdc iroha hyperledger iroha sora v2 sora v3 iroha 3 soramitsu wasm cbdc"
-    },
-    {
       "slug": "tonswap",
       "priority": 1,
-      "blob": "tonswap tonswap defi a next-generation decentralized exchange (dex) and launchpad built on the open network (ton) blockchain. tonswap combines cutting-edge concentrated liquidity technology with a user-friendly design, offering ultra-fast trades, near-zero fees, and seamless telegram integration. it serves as a ton-native gateway for mobile-first defi access. tonswap defi dex ton sora cross-chain polkaswap telegram mobile liquidity bridge launchpad clmm dex ton sora cross-chain polkaswap telegram mobile liquidity bridge launchpad clmm"
+      "blob": "tonswap tonswap defi a next-generation decentralized exchange (dex) and launchpad built on the open network (ton) blockchain. tonswap combines cutting-edge concentrated liquidity technology with a user-friendly design, offering ultra-fast trades, near-zero fees, and seamless telegram integration. it serves as a ton-native gateway for mobile-first defi access. tonswap creates sustained on-chain demand for xor tokens by automatically allocating 10% of all trading fees to buy back and burn xor, connecting ton ecosystem activity to the sora economy. tonswap defi dex ton sora cross-chain polkaswap telegram mobile liquidity bridge launchpad clmm xor dex ton sora cross-chain polkaswap telegram mobile liquidity bridge launchpad clmm xor buyback-and-burn"
     },
     {
       "slug": "token-bonding-curve",
@@ -118,7 +123,7 @@
     {
       "slug": "referendum",
       "priority": 1,
-      "blob": "referendum referendum governance a democracy referenda in sora's current governance system (polkadot v1 governance). after a council motion is approved by the sora council, it becomes a democracy referenda where the entire community can vote on specific proposals, parameter changes, or network upgrades. referendum governance democracy sora council council motion polkadot governance democracy"
+      "blob": "referendum referendum governance a democracy referendum in sora's current governance system (polkadot v1 governance, also called governance v1). after a council motion is approved by the sora council, it becomes a democracy referendum where the entire community can vote on specific proposals, parameter changes, or network upgrades. this differs from polkadot opengov, which sora v2 does not use. referendum governance democracy sora council council motion polkadot governance governance v1 democracy"
     },
     {
       "slug": "elastic-supply",
@@ -128,12 +133,57 @@
     {
       "slug": "sora-v3",
       "priority": 1,
-      "blob": "sora v3 sora-v3 technology sora v3, also known as sora nexus, is the next generation of the sora network. it transitions from hyperledger iroha 2 to iroha 3, introducing a modular, high-performance design to support scalability and cross-chain interoperability. the sora v3 hub chain enables seamless collaboration between permissioned and decentralized systems, designed for cbdcs, government integration, and economic sovereignty while maintaining borderless financial activities. sora v3 technology cbdc kusd sora hyperledger iroha iroha 2 iroha 3 cbdc hub chain economic sovereignty kusd fujiwara testnet"
+      "blob": "sora v3 sora-v3 technology sora v3, also known as sora nexus, is the next generation of the sora network. it transitions from substrate-based sora v2 to hyperledger iroha 3, introducing a modular, high-performance design to support scalability and cross-chain interoperability. the sora v3 hub chain (or hubchain) enables seamless collaboration between permissioned and decentralized systems, designed for cbdcs, government integration, and economic sovereignty while maintaining borderless financial activities. it serves as a supranational platform that de-correlates cbdcs and government-issued digital assets from political and economic instability, providing a stable foundation for global transactions. sora v3 technology cbdc hubchain nexus kusd sora hyperledger iroha hyperledger iroha 2 hyperledger iroha 3 cbdc hub chain hubchain nexus economic sovereignty kusd fujiwara testnet supranational platform sora v2"
     },
     {
       "slug": "fujiwara-testnet",
       "priority": 1,
       "blob": "fujiwara testnet fujiwara-testnet technology the first testnet for sora v3, named after the influential fujiwara family that shaped japan's heian period. this crucial milestone enables experimentation with key sora v3 features including defi capabilities, sora parliament governance, and network stability testing. as the first public blockchain implementation of iroha-based infrastructure, it provides valuable insights for the transition from private to public blockchain features. fujiwara testnet technology defi governance fujiwara testnet sora v3 hyperledger iroha sora parliament defi governance public blockchain"
+    },
+    {
+      "slug": "hub-chain",
+      "priority": 1,
+      "blob": "hub chain hub-chain technology the core infrastructure of sora v3 (also called hubchain) that enables seamless collaboration between permissioned and decentralized systems. the sora v3 hub chain bridges different blockchain networks (ton, polkadot, ethereum) and serves as a unified hub connecting external networks. it enables central banks and institutions to create their own assets on the global sora v3 platform while maintaining security and interoperability through the supranational, decentralized blockchain. hub chain technology hubchain nexus cross-chain hub chain sora v3 hubchain nexus cross-chain interoperability permissioned subnets supranational platform"
+    },
+    {
+      "slug": "hubchain",
+      "priority": 1,
+      "blob": "hubchain hubchain technology alternative name for the sora v3 hub chain. see hub chain for full definition. hub chain hubchain technology nexus hub chain sora v3 nexus"
+    },
+    {
+      "slug": "nexus",
+      "priority": 1,
+      "blob": "nexus nexus technology the code name for sora v3, also referred to as sora nexus. nexus represents the next-generation sora hub chain designed to succeed the substrate-based sora v2 network, built on hyperledger iroha 3 for improved modularity, performance, and cross-chain interoperability. nexus technology sora v3 hub chain hyperledger iroha 3 sora v2"
+    },
+    {
+      "slug": "kensetsu",
+      "priority": 1,
+      "blob": "kensetsu kensetsu defi the kensetsu platform is sora's version of makerdao, a decentralized finance (defi) solution on the sora network that enables over-collateralized stablecoin creation and borrowing. the platform facilitates the creation and management of kusd (kensetsu usd), allowing users to create vaults, deposit collateral, and borrow stablecoins while maintaining value through algorithmic governance and stability mechanisms. kensetsu defi kusd makerdao vault stablecoin kusd makerdao vault over-collateralized stablecoin defi"
+    },
+    {
+      "slug": "bft-consensus",
+      "priority": 1,
+      "blob": "bft consensus bft-consensus technology byzantine fault tolerance (bft) consensus is a consensus mechanism that allows a distributed system to reach agreement even when some nodes fail or act maliciously. sora v3 uses bft consensus derived from hyperledger iroha 3's architecture, providing high-throughput transaction processing with deterministic finality. this differs from sora v2's substrate-based consensus, offering improved security and performance for enterprise-grade applications including cbdcs. bft consensus technology consensus finality security bft consensus byzantine fault tolerance hyperledger iroha 3 sora v3 finality security"
+    },
+    {
+      "slug": "supranational-platform",
+      "priority": 1,
+      "blob": "supranational platform supranational-platform network a blockchain platform that operates above the level of individual nation states, enabling global coordination and collaboration without being subject to any single country's jurisdiction. sora v3 serves as a supranational platform that de-correlates cbdcs and government-issued digital assets from political and economic instability, providing a stable foundation for global transactions. this design enables nations, institutions, and individuals to create assets and conduct transactions on a borderless, decentralized infrastructure. supranational platform network cbdc supranational platform sora v3 cbdc economic sovereignty global transactions borderless finance"
+    },
+    {
+      "slug": "economic-sovereignty",
+      "priority": 1,
+      "blob": "economic sovereignty economic-sovereignty economics the ability of nations, institutions, or individuals to maintain control over their economic policies and financial systems while participating in a global economic network. sora v3's hub chain supports economic sovereignty by balancing the role of nation states in managing their domains with the freedom of borderless financial activities. this enables countries to create their own digital assets (like cbdcs) on the sora platform while maintaining independence and control. economic sovereignty economics cbdc sovereignty economic sora v3 cbdc supranational platform sovereignty borderless finance"
+    },
+    {
+      "slug": "iroha-special-instructions",
+      "priority": 1,
+      "blob": "iroha special instructions iroha-special-instructions technology iroha special instructions (isis) are domain-oriented command sets in hyperledger iroha 3 that enable deterministic smart-contract logic. isis allow for modular governance logic and domain-specific operations, providing a flexible framework for building complex decentralized applications on sora v3. this represents a key advancement over hyperledger iroha 2, offering enhanced programmability and interoperability. isis iroha special instructions technology governance deterministic iroha special instructions hyperledger iroha 3 smart contract sora v3 hyperledger iroha governance deterministic"
+    },
+    {
+      "slug": "governance-v1",
+      "priority": 1,
+      "blob": "governance v1 governance-v1 governance the current governance system used by sora v2, also known as polkadot v1 governance. governance v1 consists of a council, technical committee, and parliament with on-chain proposals, referenda, and staking-based voting. unlike polkadot opengov, governance v1 provides predictable proposal cycles and explicit decision-making processes. sora v3 will evolve toward a hybrid dao framework while maintaining the parliamentary structure for strategic oversight. governance v1 governance council referendum opengov governance polkadot governance council referendum sora parliament opengov"
     },
     {
       "slug": "yield-farming",
@@ -158,7 +208,7 @@
     {
       "slug": "nft",
       "priority": 1,
-      "blob": "nft nft technology non-fungible token - a unique digital asset that represents ownership of a specific item or piece of content on the blockchain. in the sora ecosystem, nfts can be minted, traded, and pooled on polkaswap, with support for both divisible and extensible supply models. nfts can be created using ipfs links or local file uploads. nft technology polkaswap ipfs blockchain divisible polkaswap ipfs digital asset blockchain divisible extensible supply"
+      "blob": "nft nft technology non-fungible token - a unique digital asset that represents ownership of a specific item or piece of content on the blockchain. in the sora ecosystem, nfts can be minted, traded, and pooled on polkaswap, with support for both divisible and extensible supply models. nfts can be created using ipfs links or local file uploads. nfts non-fungible token non-fungible tokens nft technology polkaswap ipfs blockchain divisible polkaswap ipfs digital asset blockchain divisible extensible supply"
     },
     {
       "slug": "deflationary",
@@ -243,12 +293,17 @@
     {
       "slug": "kusd",
       "priority": 1,
-      "blob": "kusd kusd token a stable asset in the sora economy designed for funding and rewarding builders. kusd provides price stability for ecosystem participants and is part of sora's comprehensive tokenomics system alongside xor, val, and pswap. kusd token builders funding rewards sora economy stable asset builders funding rewards"
+      "blob": "kusd kusd token kensetsu usd (kusd) is an over-collateralized, algorithmically governed stablecoin built on the sora network, pegged to the us dollar. built on the kensetsu platform (sora's version of makerdao), kusd facilitates secure borrowing operations while maintaining its value through robust stability mechanisms. in sora v3 tokenomics, kusd is used to pay builders instead of xor. to maintain the kusd peg, 19.5% of all sora network transaction fees are allocated for buyback and burning of kusd. users can create vaults, deposit collateral (xor, val, pswap, tbcd, eth, or dai), and borrow kusd against their collateral. kusd token kensetsu makerdao builders funding vault tbcd sora economy stable asset kensetsu makerdao builders funding over-collateralized vault tbcd sora v3"
+    },
+    {
+      "slug": "tbcd",
+      "priority": 1,
+      "blob": "tbcd tbcd token token bonding curve dollar (tbcd) is an algorithmic, non-synthetic stablecoin whose value is maintained by the sora token bonding curve at approximately $1 usd. tbcd is convertible to xor as a reserve asset of the token bonding curve and helps build up reserves while also being used to fund the creation of new goods and services via on-chain governance. in sora v3 tokenomics, 0.5% of all network transaction fees are allocated for buyback and burning of tbcd. tbcd can only be created and allocated by on-chain governance, meaning xor token holders decide the supply. tbcd token xor kusd token bonding curve stable asset xor reserve asset on-chain governance sora v3 kusd"
     },
     {
       "slug": "ts",
       "priority": 1,
-      "blob": "ts ts token the native token of tonswap, a decentralized exchange and launchpad built on the open network (ton) blockchain. ts powers platform governance, liquidity incentives, and transaction fee models, with 10% of all trading fees used to buy back and burn xor tokens, creating a deflationary mechanism that benefits both ton and sora ecosystems. ts token tonswap ton xor dex governance liquidity deflationary cross-chain tonswap ton xor dex governance liquidity deflationary cross-chain"
+      "blob": "ts ts token the native token of tonswap, a decentralized exchange and launchpad built on the open network (ton) blockchain. ts powers platform governance, liquidity incentives, and transaction fee models. a key feature is that 10% of all tonswap trading fees are automatically allocated through integrated smart-contract logic to buy back and burn xor tokens, creating sustained on-chain demand and reducing xor circulating supply. this mechanism aligns ton ecosystem activity with the sora economy by turning trading volume into a recurring xor sink, benefiting both ton and sora ecosystems. ts token tonswap ton xor dex governance liquidity deflationary cross-chain tonswap ton xor dex governance liquidity deflationary cross-chain buyback-and-burn smart contract"
     },
     {
       "slug": "relay-chain",
@@ -268,7 +323,7 @@
     {
       "slug": "governance",
       "priority": 1,
-      "blob": "governance governance governance the system of decision-making and rule enforcement in blockchain networks. sora implements multiple governance mechanisms including the current polkadot v1 governance system and the future sora parliament with sortition-based democracy. governance governance democracy referendum council sora parliament polkadot governance democracy referendum council"
+      "blob": "governance governance governance the system of decision-making and rule enforcement in blockchain networks. sora v2 currently uses polkadot v1 governance (also called governance v1), which consists of a council, technical committee, and parliament with on-chain proposals and referenda. the future sora parliament will implement sortition-based democracy with random citizen selection, moving toward a hybrid dao framework in sora v3. governance governance democracy referendum council sortition sora parliament polkadot governance governance v1 democracy referendum council sortition"
     },
     {
       "slug": "democracy",
@@ -288,7 +343,7 @@
     {
       "slug": "polkadot-governance",
       "priority": 1,
-      "blob": "polkadot governance polkadot-governance governance the governance system used by polkadot and its parachains, including sora's current governance model. it features council-based proposals, referendum voting, and technical committee oversight, providing a robust framework for network decision-making. polkadot governance governance referendum democracy polkadot sora council referendum democracy governance polkadot"
+      "blob": "polkadot governance polkadot-governance governance the governance system used by polkadot and its parachains. sora v2 uses polkadot v1 governance (also called governance v1), which features council-based proposals, referendum voting, and technical committee oversight. this differs from polkadot opengov, which sora does not currently use. governance v1 provides a robust framework for network decision-making with predictable proposal cycles. polkadot governance governance referendum democracy polkadot opengov sora council referendum democracy governance governance v1 polkadot opengov"
     },
     {
       "slug": "liquidity",
@@ -303,7 +358,7 @@
     {
       "slug": "consensus",
       "priority": 1,
-      "blob": "consensus consensus network the mechanism by which blockchain networks agree on the validity of transactions and maintain a consistent state. sora uses various consensus mechanisms depending on the version - substrate consensus in v2 and byzantine fault tolerance (bft) consensus in hyperledger iroha for v3. consensus network validator security bft substrate validator security bft substrate hyperledger iroha"
+      "blob": "consensus consensus network the mechanism by which blockchain networks agree on the validity of transactions and maintain a consistent state. sora v2 uses substrate-based consensus mechanisms (npos - nominated proof of stake). sora v3 will use byzantine fault tolerance (bft) consensus derived from hyperledger iroha 3's architecture, providing high-throughput transaction processing with deterministic finality, making it suitable for enterprise applications and cbdcs. consensus network validator security substrate npos validator security bft consensus byzantine fault tolerance substrate hyperledger iroha npos sora v2 sora v3"
     },
     {
       "slug": "security",
@@ -321,6 +376,6 @@
       "blob": "sora card sora-card defi a decentralized debit card that allows users to spend their cryptocurrency in the real world. the sora card bridges the gap between digital assets and traditional commerce, enabling users to make purchases at any merchant that accepts card payments while maintaining the benefits of decentralized finance. sora card defi xor polkaswap cryptocurrency sora card xor polkaswap decentralized finance real-world payments cryptocurrency"
     }
   ],
-  "count": 64,
-  "lastUpdated": "2025-11-01T13:14:40.301Z"
+  "count": 75,
+  "lastUpdated": "2025-11-06T04:23:08.083Z"
 }

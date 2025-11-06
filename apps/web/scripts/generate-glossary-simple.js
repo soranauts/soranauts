@@ -21,6 +21,8 @@ const TERM_PRIORITIES = {
   'Polkaswap': 80,
   'SORA Parliament': 75,
   'Hyperledger Iroha': 70,
+  'Hyperledger Iroha 2': 68,
+  'Hyperledger Iroha 3': 69,
   'Substrate': 65,
   'Parachain': 60,
   'DeFi': 55,
