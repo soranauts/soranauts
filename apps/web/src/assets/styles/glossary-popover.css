@@ -1,0 +1,114 @@
+body.glossary-v2 .g-pop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+}
+
+body.glossary-v2 .g-pop[aria-hidden="false"] {
+  pointer-events: auto;
+}
+
+body.glossary-v2 .g-pop__backdrop {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+}
+
+body.glossary-v2 .g-pop__card {
+  position: absolute;
+  max-width: min(28rem, 92vw);
+  background: var(--color-bg-surface);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
+  padding: 0.9rem 1rem 0.8rem;
+  transform: translate(-50%, -100%);
+}
+
+.dark body.glossary-v2 .g-pop__card {
+  background: var(--color-bg-soft);
+  color: var(--color-text-main);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+body.glossary-v2 .g-pop__title {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+body.glossary-v2 .g-pop__body {
+  font-size: 0.95rem;
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+}
+
+body.glossary-v2 .g-pop__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-link);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-link) 70%, var(--overlay-subtle) 30%);
+  text-underline-offset: 0.16em;
+  border-radius: var(--radius-md, 0.5rem);
+  padding-inline: 0.2rem;
+  padding-block: 0.1rem;
+  transition:
+    color 150ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    background-color 150ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    text-decoration-color 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+body.glossary-v2 .g-pop__cta:hover {
+  color: var(--color-link-hover);
+  background-color: var(--overlay-subtle);
+  text-decoration-color: var(--overlay-strong);
+}
+
+body.glossary-v2 .g-pop__cta:focus-visible {
+  outline: 2px solid var(--overlay-focus);
+  outline-offset: 2px;
+  background-color: var(--overlay-strong);
+  text-decoration-color: var(--overlay-focus);
+}
+
+body.glossary-v2 .g-pop__close {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.45rem;
+  background: transparent;
+  border: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-text-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.glossary-v2 .g-pop__card {
+    transition: none;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 640px) {
+  body.glossary-v2 .g-pop--sheet .g-pop__card {
+    left: 50% !important;
+    top: auto !important;
+    bottom: 0.75rem;
+    transform: translateX(-50%);
+    width: 92vw;
+    max-width: 36rem;
+  }
+
+  body.glossary-v2 .g-pop--sheet .g-pop__backdrop {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
+
+
+
+

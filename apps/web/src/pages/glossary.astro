@@ -12,6 +12,7 @@ import glossary from '../../public/glossary.json';
 const initialTerm = Astro.url.hash.replace('#', '');
 const initialQuery = Astro.url.searchParams.get('q') ?? initialTerm;
 const enableSearchV2 = import.meta.env.GLOSSARY_SEARCH_V2 === 'true';
+const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
 
 // Generate DefinedTermSet schema for main glossary page
 const definedTermSetSchema = {
@@ -74,15 +75,15 @@ const breadcrumbSchema = {
     <Header {...headerData} isSticky showRssFeed showToggleTheme />
   
   <main class="py-8 sm:py-16 lg:py-20">
-    <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
+    <div class:list={['container mx-auto px-4 sm:px-6 max-w-6xl', { 'glossary-index': GLOSSARY_V2 }]}>
       <!-- Header Section -->
       <div class="text-center mb-12">
         <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading mb-6">
           SORA Glossary
         </h1>
         <p class="text-xl md:text-2xl text-muted dark:text-slate-400 max-w-3xl mx-auto">
-          Your comprehensive guide to SORA ecosystem terms, concepts, and definitions. 
-          Search, filter, and explore with our interactive glossary.
+          Your comprehensive guide to SORA ecosystem language and the core crypto and blockchain concepts behind it. 
+          Search, filter, and explore to understand SORA alongside the broader decentralized finance landscape.
         </p>
       </div>
 

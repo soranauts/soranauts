@@ -59,10 +59,11 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
     try {
       setIsLoading(true);
       const payload = await fetchGlossaryData();
-      engineRef.current = createGlossarySearchEngine({
+      const engine = createGlossarySearchEngine({
         terms: payload.terms,
         aliasIndex: payload.aliasIndex,
       });
+      engineRef.current = engine;
 
       const categoryList: CategoryStats[] = Object.entries(payload.categories)
         .map(([key, value]) => ({ key, name: value.name, count: value.count }))
@@ -70,13 +71,16 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
 
       setCategories(categoryList);
       setIsReady(true);
+      const initial = engine.search(initialQuery ? initialQuery : '', categoryFilter ? { category: categoryFilter } : undefined);
+      setResponse(initial);
+      setFocusedIndex(initial.results.length ? 0 : -1);
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error loading glossary');
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading]);
+  }, [isLoading, initialQuery, categoryFilter]);
 
   const runSearch = useCallback(
     (query: string, category?: string) => {
@@ -114,6 +118,10 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
     if (!engineRef.current) {
       ensureEngine();
     }
+  }, [ensureEngine]);
+
+  useEffect(() => {
+    ensureEngine();
   }, [ensureEngine]);
 
   useEffect(() => {
@@ -332,7 +340,7 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
                 onChange={(event) => setSearchInput(event.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Search entities, versions, aliases, or tags"
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base shadow-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base shadow-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 bg-white text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
               />
               <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-gray-400 dark:text-gray-500">
                 /

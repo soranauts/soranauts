@@ -1,22 +1,5 @@
 ---
 import '@fontsource-variable/inter';
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
 ---
 
 <style is:inline is:global>
@@ -25,63 +8,87 @@ import '@fontsource-variable/inter';
     --aw-font-serif: var(--aw-font-sans);
     --aw-font-heading: var(--aw-font-sans);
 
-    --aw-color-primary: rgb(227, 36, 45);
-    --aw-color-primary-hover: rgb(163, 24, 31);
-    --aw-color-secondary: rgb(180, 29, 34);
-    --aw-color-accent: rgb(239, 68, 68);
+    /* Brand */
+    --color-brand-500: #E3242D;
+    --color-brand-400: #F13D46;
+    --color-brand-600: #BF1F26;
+    --color-brand-soft: rgba(227, 36, 45, 0.12);
 
-    --aw-color-text-heading: rgb(0 0 0); 
-    --aw-color-text-default: rgb(16 16 16);
-    --aw-color-text-muted: rgb(16 16 16 / 66%);
-    --aw-color-bg-page: rgb(255, 255, 255);
+    /* Interaction overlays */
+    --overlay-subtle: color-mix(in srgb, var(--color-brand-500) 8%, transparent);
+    --overlay-strong: color-mix(in srgb, var(--color-brand-500) 16%, transparent);
+    --overlay-focus: color-mix(in srgb, var(--color-brand-500) 24%, transparent);
 
-    --aw-color-bg-page-dark: rgb(15, 15, 20);
+    /* Light mode (default) */
+    --color-bg-page: #F4F5F7;
+    --color-bg-surface: #FFFFFF;
+    --color-bg-soft: #E5E7EB;
+    --color-border-subtle: #D1D5DB;
+    --color-text-main: #111827;
+    --color-text-muted: #4B5563;
+    --color-text-soft: #6B7280;
 
-    --ph-color-link: rgb(59 130 246);
+    /* Link colors (light) */
+    --color-link: var(--color-brand-500);
+    --color-link-hover: var(--color-brand-400);
+    --color-link-muted: #9CA3AF;
 
-    ::selection {background-color: lavender;}
+    /* Status */
+    --color-success: #22C55E;
+    --color-warning: #FBBF24;
+    --color-error: #F97316;
+    --color-info: #38BDF8;
 
+    color-scheme: light;
+
+    /* Legacy aliases */
+    --aw-color-primary: var(--color-brand-500);
+    --aw-color-primary-hover: var(--color-brand-400);
+    --aw-color-secondary: var(--color-brand-600);
+    --aw-color-accent: var(--color-brand-400);
+    --aw-color-text-heading: var(--color-text-main);
+    --aw-color-text-default: var(--color-text-main);
+    --aw-color-text-muted: var(--color-text-muted);
+    --aw-color-bg-page: var(--color-bg-page);
+    --aw-color-bg-page-dark: #050609;
+    --ph-color-link: var(--color-link);
+
+    ::selection {
+      background-color: var(--color-brand-soft);
+      color: var(--color-brand-600);
+    }
   }
 
-  .dark {
-    --aw-font-sans: 'Inter Variable';
-    --aw-font-serif: var(--aw-font-sans);
-    --aw-font-heading: var(--aw-font-sans);
+  :root.dark {
+    --color-bg-page: #050609;
+    --color-bg-surface: #0C0F14;
+    --color-bg-soft: #141821;
+    --color-border-subtle: #232733;
+    --color-text-main: #E5E7EB;
+    --color-text-muted: #9CA3AF;
+    --color-text-soft: #6B7280;
 
-    --aw-color-primary: rgb(227, 36, 45);
-    --aw-color-primary-hover: rgb(163, 24, 31);
-    --aw-color-secondary: rgb(180, 29, 34);
-    --aw-color-accent: rgb(239, 68, 68);
+    --color-link: var(--color-brand-400);
+    --color-link-hover: #FF5C6A;
+    --color-link-muted: #6B7280;
 
-    --aw-color-text-heading: rgb(0 0 0); 
-    --aw-color-text-default: rgb(229 236 246);
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
-    --aw-color-bg-page: var(--aw-color-bg-page-dark);
+    --overlay-subtle: color-mix(in srgb, var(--color-brand-400) 12%, transparent);
+    --overlay-strong: color-mix(in srgb, var(--color-brand-400) 24%, transparent);
+    --overlay-focus: color-mix(in srgb, var(--color-brand-400) 32%, transparent);
 
-    --ph-color-link: rgb(59 130 246);
+    color-scheme: dark;
 
-    ::selection {background-color: black; color: snow}
+    --aw-color-text-default: var(--color-text-main);
+    --aw-color-text-muted: var(--color-text-muted);
 
+    ::selection {
+      background-color: var(--color-brand-600);
+      color: var(--color-bg-surface);
+  }
   }
 
-  /* Force content links to be red - Updated 2024 */
-  .prose a[href], .prose a[href].text-link,
-  a[href].text-link, a[href].font-medium.text-link {
-    color: rgb(239 68 68) !important;
-  }
-  
-  .dark .prose a[href], .dark .prose a[href].text-link,
-  .dark a[href].text-link, .dark a[href].font-medium.text-link {
-    color: rgb(239 68 68) !important;
-  }
-
-  /* Exclude header navigation and blog titles from red styling */
-  header nav a[href]:not(:hover), header nav a[href].hover\:text-link:not(:hover),
-  .dark header nav a[href]:not(:hover), .dark header nav a[href].hover\:text-link:not(:hover),
-  article h2 a[href]:not(:hover), article h2 a[href].hover\:text-link:not(:hover),
-  article h3 a[href]:not(:hover), article h3 a[href].hover\:text-link:not(:hover),
-  .dark article h2 a[href]:not(:hover), .dark article h2 a[href].hover\:text-link:not(:hover),
-  .dark article h3 a[href]:not(:hover), .dark article h3 a[href].hover\:text-link:not(:hover) {
-    color: inherit !important;
+  body {
+    background-color: var(--color-bg-page);
+    color: var(--color-text-main);
   }
 </style>

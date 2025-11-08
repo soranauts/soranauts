@@ -29,14 +29,14 @@ const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.l
     <header class={post.image ? '' : ''}>
       <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
         <p>
-          <a href="/" class="hover:underline inline-block">Home</a>
+          <a href="/" class="inline-block">Home</a>
           {' '}·{' '}
-          <a href="/blog" class="hover:underline inline-block">Blog</a>
+          <a href="/blog" class="inline-block">Blog</a>
           {
             post.category && (
               <>
                 {' '}·{' '}
-                <a class="hover:underline inline-block" href={getPermalink(post.category, 'category')}>
+                <a class="inline-block" href={getPermalink(post.category, 'category')}>
                   {post.category.replaceAll('-', ' ').replace(/\band\b/g, '&').replace(/sora ecosystem/gi, 'SORA Ecosystem').replace(/defi/gi, 'DeFi').replace(/\b\w/g, l => l.toUpperCase())}
                 </a>
               </>
@@ -66,7 +66,7 @@ const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.l
         {post.title}
       </h1>
       <p
-        class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-muted dark:text-slate-400"
+        class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-text-muted dark:text-text-soft"
       >
         {post.excerpt}
       </p>
@@ -111,22 +111,20 @@ const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.l
 
     <!-- Financial Disclaimer -->
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 mb-6">
-      <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 p-4 rounded-r-md">
-        <div class="flex">
-          <div class="flex-shrink-0">
-            <svg class="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+      <div class="financial-disclaimer">
+        <div class="financial-disclaimer__icon">
+          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
             </svg>
           </div>
-          <div class="ml-3">
-            <h3 class="text-sm font-medium text-amber-800 dark:text-amber-200">
+        <div>
+          <h3 class="financial-disclaimer__title">
               Financial Disclaimer
             </h3>
-            <div class="mt-2 text-sm text-amber-700 dark:text-amber-300">
+          <div class="financial-disclaimer__body">
               <p>
                 <strong>Financial Disclaimer:</strong> The information provided on Soranauts is for educational and informational purposes only and should not be taken as financial, investment, or trading advice. Content related to SORA, Polkaswap, TONSWAP, or other cryptocurrencies does not constitute investment recommendations. Cryptocurrency and DeFi investments are highly volatile and involve significant risk, including potential loss of capital, smart contract vulnerabilities, impermanent loss, and regulatory changes. Always conduct your own research (DYOR) and consult a qualified financial advisor before making any decisions. Past performance does not guarantee future results. Soranauts and its authors assume no responsibility for financial losses resulting from actions taken based on this information.
               </p>
-            </div>
           </div>
         </div>
       </div>

@@ -660,7 +660,7 @@ export default function GlossarySearchFallback() {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search glossary terms, definitions, or tags..."
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-lg"
+            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900 dark:bg-gray-700 dark:text-white text-lg"
           />
         </div>
         

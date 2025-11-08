@@ -52,25 +52,131 @@ if (relatedArticles.length === 0) {
 ---
 
 {relatedArticles.length > 0 && (
-  <div class="related-articles mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Related Articles</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <section class="related-articles not-prose">
+    <h3 class="related-articles__title">
+      Related Articles
+    </h3>
+
+    <div class="related-articles__list">
       {relatedArticles.map(article => (
-        <a 
-          href={`/${article.slug}`}
-          class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-300 hover:shadow-md transition-all duration-200 bg-white dark:bg-gray-800"
-        >
-          <h4 class="font-medium text-gray-900 dark:text-white mb-2 line-clamp-2">{article.title}</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-3">{article.excerpt}</p>
-          <div class="flex flex-wrap gap-1">
-            {article.tags.slice(0, 3).map(tag => (
-              <span class="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
-                {tag}
-              </span>
-            ))}
-          </div>
+        <a href={`/${article.slug}`} class="card-link card-link--block related-link">
+          <h4 class="card-link__title">
+            {article.title}
+          </h4>
+          {article.excerpt && (
+            <p class="card-link__meta">
+              {article.excerpt}
+            </p>
+          )}
         </a>
       ))}
     </div>
-  </div>
+  </section>
 )}
+
+<style>
+  .related-articles {
+    margin-top: var(--space-7);
+  }
+
+  .related-articles__title {
+    margin: 0 0 var(--space-3);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .related-articles__list {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .related-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    background-color: color-mix(in srgb, var(--color-surface) 92%, var(--overlay-subtle) 8%);
+    border: 1px solid color-mix(in srgb, var(--color-border-subtle) 70%, transparent);
+    color: var(--color-text-main);
+    text-decoration: none;
+    transition:
+      background-color var(--motion-duration-fast, 150ms) cubic-bezier(0.25, 0.1, 0.25, 1),
+      border-color var(--motion-duration-fast, 150ms) cubic-bezier(0.25, 0.1, 0.25, 1),
+      transform var(--motion-duration-fast, 150ms) cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .related-link:focus-visible {
+    outline: 2px solid var(--overlay-focus);
+    outline-offset: 3px;
+    border-color: color-mix(in srgb, var(--color-border-subtle) 60%, var(--overlay-focus) 40%);
+  }
+
+  .related-link:hover,
+  .related-link:focus-visible {
+    background-color: var(--overlay-subtle);
+    border-color: color-mix(in srgb, var(--color-border-subtle) 65%, var(--overlay-subtle) 35%);
+    transform: translateY(-1px);
+  }
+
+  .related-link:active {
+    background-color: var(--overlay-strong);
+    border-color: color-mix(in srgb, var(--color-border-subtle) 55%, var(--overlay-strong) 45%);
+  }
+
+  .related-link:hover .card-link__title,
+  .related-link:focus-visible .card-link__title {
+    color: var(--color-link-hover);
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+  }
+
+  .card-link__title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-text-main);
+    transition:
+      color var(--motion-duration-fast, 150ms) cubic-bezier(0.25, 0.1, 0.25, 1),
+      text-decoration-color var(--motion-duration-fast, 150ms) cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .card-link__meta {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: var(--bp-md)) {
+    .related-articles__list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .related-link {
+      padding: var(--space-4);
+    }
+
+    .card-link__title {
+      font-size: 1rem;
+    }
+
+    .card-link__meta {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .related-link,
+    .related-link:hover,
+    .related-link:focus-visible {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>

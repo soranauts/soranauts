@@ -1,0 +1,126 @@
+const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
+---
+
+{GLOSSARY_V2 && (
+  <div id="g-pop" class="g-pop" role="dialog" aria-modal="false" aria-hidden="true" aria-labelledby="g-pop-title">
+    <div class="g-pop__card" role="document">
+      <button class="g-pop__close" aria-label="Close">×</button>
+      <div class="g-pop__title" id="g-pop-title"></div>
+      <div class="g-pop__body"></div>
+      <a class="g-pop__cta" href="#" rel="nofollow">Open full entry ↗</a>
+    </div>
+    <div class="g-pop__backdrop"></div>
+  </div>
+)}
+
+{GLOSSARY_V2 && (
+  <script is:inline>
+    (function() {
+      if (typeof window === 'undefined') return;
+      
+      const pop = document.getElementById('g-pop');
+      if (!pop) return;
+
+      const globalWindow = window;
+      if (globalWindow.__GLOSSARY_POP_MOUNTED__) {
+        return;
+      }
+
+      globalWindow.__GLOSSARY_POP_MOUNTED__ = true;
+
+      const card = pop.querySelector('.g-pop__card');
+      const title = pop.querySelector('.g-pop__title');
+      const body = pop.querySelector('.g-pop__body');
+      const cta = pop.querySelector('.g-pop__cta');
+      const closeBtn = pop.querySelector('.g-pop__close');
+      const backdrop = pop.querySelector('.g-pop__backdrop');
+
+      if (!card || !title || !body || !cta || !closeBtn || !backdrop) {
+        return;
+      }
+
+      let currentAnchor = null;
+
+      document.addEventListener('click', function(event) {
+        const target = event.target;
+        const anchor = target?.closest?.('a.glossary');
+
+        if (!anchor) {
+          if (pop.getAttribute('aria-hidden') === 'false' && !card.contains(event.target)) {
+            hide();
+          }
+          return;
+        }
+
+        event.preventDefault();
+        show(anchor);
+      });
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && pop.getAttribute('aria-hidden') === 'false') {
+          hide();
+        }
+      });
+
+      function show(anchor) {
+        currentAnchor = anchor;
+
+        const titleText = (anchor.dataset.title || anchor.textContent || '').trim();
+        const def = ((anchor.dataset.def || '').trim()).slice(0, 240);
+
+        title.textContent = titleText;
+        body.textContent = def || 'Tap "Open full entry" to learn more.';
+
+        const href = anchor.getAttribute('href') || '#';
+        cta.href = href;
+        cta.setAttribute('aria-label', 'Open full glossary entry for ' + (titleText || 'this term'));
+
+        const rect = anchor.getBoundingClientRect();
+        const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const top = rect.top - 8;
+
+        card.style.left = (rect.left + rect.width / 2) + 'px';
+        card.style.top = top + 'px';
+
+        pop.classList.toggle('g-pop--sheet', top < 160 || viewportWidth < 640);
+        pop.setAttribute('aria-hidden', 'false');
+
+        closeBtn.focus({ preventScroll: true });
+      }
+
+      function hide() {
+        pop.setAttribute('aria-hidden', 'true');
+
+        if (currentAnchor) {
+          currentAnchor.focus({ preventScroll: true });
+        }
+
+        currentAnchor = null;
+      }
+
+      closeBtn.addEventListener('click', hide);
+      backdrop.addEventListener('click', hide);
+    })();
+  </script>
+)}
+
+{!GLOSSARY_V2 && (
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      document
+        .querySelectorAll('details > summary a.glossary-term, details p summary a.glossary-term')
+        .forEach((link) => {
+          const textNode = document.createTextNode(link.textContent || '');
+          link.parentNode?.replaceChild(textNode, link);
+        });
+
+      document.querySelectorAll('details > summary, details p summary').forEach((summary) => {
+        summary.style.display = 'flex';
+        summary.style.alignItems = 'center';
+        summary.style.justifyContent = 'space-between';
+        summary.style.width = '100%';
+      });
+    });
+  </script>
+)}
+

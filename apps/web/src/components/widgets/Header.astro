@@ -60,7 +60,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
   <div class="absolute inset-0"></div>
   <div
     class:list={[
-      "relative text-default py-3 px-3 md:px-6 mx-auto w-full md:flex md:justify-between",
+      "relative text-text-main py-3 px-3 md:px-6 mx-auto w-full md:flex md:justify-between",
       {
         "max-w-7xl": !isFullWidth,
       },
@@ -75,7 +75,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
       </div>
     </div>
     <nav
-      class="items-center w-full md:w-auto hidden md:flex text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:mx-5"
+      class="items-center w-full md:w-auto hidden md:flex text-text-main overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:mx-5"
       aria-label="Main navigation"
     >
       <ul
@@ -86,7 +86,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
             <li class={links?.length ? "dropdown" : ""}>
               {links?.length ? (
                 <>
-                  <button class="hover:text-red-600 dark:hover:text-white px-4 py-3 flex items-center">
+                  <button class="nav-link flex items-center gap-1 px-4 py-3">
                     {text} <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
                   </button>
                   <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
@@ -94,7 +94,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
                       <li>
                         <a
                           class:list={[
-                            "first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-red-600 dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap",
+                            "nav-link first:rounded-t last:rounded-b py-2 px-5 block whitespace-no-wrap hover:bg-soft",
                             { "aw-link-active" : href2 === currentPath}
                           ]}
                           href={href2}
@@ -108,7 +108,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
               ) : (
                 <a
                   class:list={[
-                    "hover:text-red-600 dark:hover:text-white px-4 py-3 flex items-centers",
+                    "nav-link px-4 py-3 flex items-center",
                     { "aw-link-active": href === currentPath }
                   ]}
                   href={href}
@@ -133,7 +133,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
           <!-- Search Button -->
           <button
             id="search-trigger"
-            class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+            class="text-text-muted hover:bg-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface rounded-lg text-sm p-2.5 inline-flex items-center transition"
             aria-label="Search"
             title="Search (⌘K)"
           >
@@ -142,7 +142,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
           {
             showRssFeed && (
               <a
-                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                class="text-text-muted hover:bg-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface rounded-lg text-sm p-2.5 inline-flex items-center transition"
                 aria-label="RSS Feed"
                 href={getAsset('/rss.xml')}
               >

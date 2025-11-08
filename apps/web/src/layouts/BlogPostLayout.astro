@@ -21,6 +21,7 @@ export interface Props {
 }
 
 const { post, url, metadata = {} } = Astro.props;
+const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
 
 // Fetch all posts for related articles
 const allPosts = await fetchPosts();
@@ -122,6 +123,7 @@ const enhancedMetadata = {
   </slot>
   <main>
     <article 
+      class:list={{ 'article-content': GLOSSARY_V2 }}
       data-pagefind-body
       data-pagefind-filter={`type:article,category:${post.category || 'uncategorized'}`}
       data-pagefind-meta={`{"title":"${post.title}","date":"${post.publishDate.toISOString()}","category":"${post.category || ''}","tags":"${post.tags?.join(',') || ''}"}`}
@@ -153,55 +155,53 @@ const enhancedMetadata = {
     <Footer {...footerData} />
   </slot>
 
-  <!-- Progressive Enhancement Glossary Script -->
-  <script>
-    (() => {
-      const SHOW_MS = 8000;
-      let lastOpen = null;
+  {!GLOSSARY_V2 && (
+    <script>
+      (() => {
+        const SHOW_MS = 8000;
+        let lastOpen = null;
 
-      function showTip(termEl) {
-        const tip = document.getElementById(termEl.getAttribute('aria-describedby') || '');
-        if (!tip) return;
-        const rect = termEl.getBoundingClientRect();
-        tip.hidden = false;
-        tip.style.left = `${rect.left + window.scrollX}px`;
-        tip.style.top  = `${rect.bottom + window.scrollY + 6}px`;
-        if (lastOpen && lastOpen !== tip) lastOpen.hidden = true;
-        lastOpen = tip;
-        clearTimeout(tip._t);
-        tip._t = setTimeout(() => tip.hidden = true, SHOW_MS);
-      }
-
-      document.addEventListener('click', (e) => {
-        const a = e.target.closest('a.glossary-term');
-        if (!a) { 
-          if (lastOpen) lastOpen.hidden = true; 
-          return; 
+        function showTip(termEl) {
+          const tip = document.getElementById(termEl.getAttribute('aria-describedby') || '');
+          if (!tip) return;
+          const rect = termEl.getBoundingClientRect();
+          tip.hidden = false;
+          tip.style.left = `${rect.left + window.scrollX}px`;
+          tip.style.top = `${rect.bottom + window.scrollY + 6}px`;
+          if (lastOpen && lastOpen !== tip) lastOpen.hidden = true;
+          lastOpen = tip;
+          clearTimeout(tip._t);
+          tip._t = setTimeout(() => (tip.hidden = true), SHOW_MS);
         }
-        const tip = document.getElementById(a.getAttribute('aria-describedby') || '');
-        if (tip && tip.hidden) { 
-          e.preventDefault(); 
-          showTip(a); 
-        }
-        // if already open, allow navigation normally
-      });
 
-      // Keyboard: first Enter opens tip, second Enter follows link
-      document.addEventListener('keydown', (e) => {
-        if (e.key !== 'Enter') return;
-        const a = e.target.closest && e.target.closest('a.glossary-term');
-        if (!a) return;
-        const tip = document.getElementById(a.getAttribute('aria-describedby') || '');
-        if (tip && tip.hidden) { 
-          e.preventDefault(); 
-          showTip(a); 
-        }
-      });
+        document.addEventListener('click', (event) => {
+          const anchor = event.target.closest('a.glossary-term');
+          if (!anchor) {
+            if (lastOpen) lastOpen.hidden = true;
+            return;
+          }
+          const tip = document.getElementById(anchor.getAttribute('aria-describedby') || '');
+          if (tip && tip.hidden) {
+            event.preventDefault();
+            showTip(anchor);
+          }
+        });
 
-      // Close on Esc
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lastOpen) lastOpen.hidden = true;
-      });
-    })();
-  </script>
+        document.addEventListener('keydown', (event) => {
+          if (event.key !== 'Enter') return;
+          const anchor = event.target.closest && event.target.closest('a.glossary-term');
+          if (!anchor) return;
+          const tip = document.getElementById(anchor.getAttribute('aria-describedby') || '');
+          if (tip && tip.hidden) {
+            event.preventDefault();
+            showTip(anchor);
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && lastOpen) lastOpen.hidden = true;
+        });
+      })();
+    </script>
+  )}
 </Layout>

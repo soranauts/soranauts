@@ -1,0 +1,94 @@
+@layer components {
+  .field {
+    display: grid;
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+  }
+
+  .field-label {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+  }
+
+  .field-label > span {
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .field-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .field-input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    padding-block: var(--space-3);
+    padding-inline: var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background-color: color-mix(in srgb, var(--color-surface) 90%, var(--color-surface-soft) 10%);
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  .field-input::placeholder,
+  .field textarea::placeholder {
+    color: var(--color-soft);
+  }
+
+  .field-input:focus-visible,
+  .field textarea:focus-visible,
+  .field select:focus-visible {
+    outline: none;
+    border-color: var(--color-brand-500);
+    background-color: var(--color-surface);
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--color-brand-500) 40%, transparent),
+      0 0 0 4px color-mix(in srgb, var(--color-surface) 80%, transparent);
+  }
+
+  .field:has(.field-error) .field-input,
+  .field:has(.field-error) textarea,
+  .field:has(.field-error) select {
+    border-color: var(--color-error);
+  }
+
+  .field-help {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+
+  .field-error {
+    font-size: 0.875rem;
+    color: var(--color-error);
+    min-height: 1.25rem;
+  }
+
+  .field--inline {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: var(--bp-md)) {
+    .field--inline {
+      grid-template-columns: minmax(0, 1fr) 2fr;
+      align-items: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .field-input,
+    .field textarea,
+    .field select {
+      transition: none;
+    }
+  }
+}
+
+

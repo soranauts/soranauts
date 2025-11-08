@@ -74,20 +74,24 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
           }
         </span>
       </div>
-      <h2 class="text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading dark:text-slate-300">
-        {
-          link ? (
-            <a class="hover:text-red-600 dark:hover:text-red-400 transition ease-in duration-200" href={link}>
+      {
+        link ? (
+          <a class="card-link card-link--block" href={link}>
+            <h2 class="card-link__title text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading">
               {post.title}
-            </a>
-          ) : (
-            post.title
-          )
-        }
-      </h2>
+            </h2>
+            {post.excerpt && <p class="flex-grow text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>}
+          </a>
+        ) : (
+          <>
+            <h2 class="card-link__title text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading">
+              {post.title}
+            </h2>
+            {post.excerpt && <p class="flex-grow text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>}
+          </>
+        )
+      }
     </header>
-
-    {post.excerpt && <p class="flex-grow text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>}
     <footer class="mt-5">
       <PostTags tags={post.tags} />
     </footer>

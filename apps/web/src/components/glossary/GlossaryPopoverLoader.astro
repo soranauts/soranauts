@@ -1,0 +1,16 @@
+---
+const GLOSSARY_V2 = (import.meta.env.GLOSSARY_V2 ?? 'false') === 'true';
+---
+
+{GLOSSARY_V2 && (
+  <div id="g-pop" class="g-pop" role="dialog" aria-modal="false" aria-hidden="true" aria-labelledby="g-pop-title">
+    <div class="g-pop__card" role="document">
+      <button class="g-pop__close" aria-label="Close">×</button>
+      <div class="g-pop__title" id="g-pop-title"></div>
+      <div class="g-pop__body"></div>
+      <a class="g-pop__cta" href="#" rel="nofollow">Open full entry ↗</a>
+    </div>
+    <div class="g-pop__backdrop"></div>
+  </div>
+)}
+

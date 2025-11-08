@@ -161,4 +161,98 @@ When using AI to edit this repo, always include:
 
 Any change that breaks these rules should be reverted.
 
+---
+
+## 9. Card & Link Pattern v1.0
+
+**Purpose:** Unify clickable cards and related links using token-driven colors and consistent affordances. Do not reintroduce ad-hoc reds or hover hacks.
+
+### 1. Core Classes
+
+#### `.card`
+
+- Use only for true cards (blog tiles, feature blocks, tools).
+- Provides padded container, rounded corners, border, elevated background, and hover lift.
+- Do not apply `.card` to lightweight inline links (e.g. Related Articles list).
+
+#### `.card-link`
+
+- Apply to clickable wrappers.
+- Rules:
+  - Neutral by default (`color: inherit`).
+  - Inline-flex column layout.
+  - No hard-coded red or brand hex.
+  - Handles underline and transitions.
+- Use on blog cards, related items, and any “clickable block” using card/link semantics.
+
+#### `.card-link--block`
+
+- Makes the entire area clickable.
+- Vertical flex layout, full height.
+- Use when the whole tile or row is the tap target.
+
+#### `.card-link__title`
+
+- Apply to titles inside `.card-link`.
+- Use `--color-text-strong` by default.
+- Inherit hover/focus accent from `.card-link` via `--color-link-hover` or brand red tokens.
+- Never stack `text-red-*` or inline colors on these elements.
+
+### 2. Color & Tokens (Non-Negotiable)
+
+1. No raw red utilities for card titles or link wrappers:
+   - `text-red-*`
+   - `hover:text-red-*`
+   - Hard-coded `#E3242D`
+2. All link and hover behavior must use:
+   - `--color-text`, `--color-text-strong`
+   - `--color-link`, `--color-link-hover`
+   - `--link-subtle-hover-color`
+   - `--color-surface`, `--color-surface-subtle`
+3. Red is an accent on interaction, never the default body or title color.
+
+### 3. Blog Cards (List & Grid)
+
+Applies to `ListItem.astro`, `GridItem.astro`, and similar components.
+
+- Wrapper: `class="card-link card-link--block card ..."` (include `.card` only when the component is visually a full card).
+- Title: `class="card-link__title ..."`
+- Metadata or excerpt: use text tokens; no red on body copy.
+- Prohibited: `group-hover:text-red-*` on titles or custom inline colors that override tokens.
+
+### 4. Related Articles
+
+Component: `RelatedArticles.astro`
+
+- Spacer wrapper: `.related-articles`
+- List: `.related-articles__list`
+- Item link: `class="card-link card-link--block related-link"`
+- Title: `class="card-link__title text-sm font-semibold"`
+- Optional excerpt: `text-xs text-text-muted`
+
+Rules:
+
+- Mobile: stacked, full-width tap targets.
+- Desktop: subtle grid (up to three columns), lightweight.
+- Hover/focus: soft token-based background tint; title uses link tokens for accent.
+- Do not use `.card` on related items.
+- Do not add tag chips in Related Articles.
+
+### 5. Do / Don’t Summary
+
+**Do:**
+
+- Use `.card-link` and `.card-link__title` for any clickable title block.
+- Let tokens control all colors and interaction states.
+- Keep Related Articles minimal, scannable, and consistent.
+
+**Don’t:**
+
+- Do not reintroduce `text-red-*` or manual hex for titles.
+- Do not use `.card` for inline or auxiliary link lists.
+- Do not bolt on custom hover styles that bypass shared patterns.
+
+**Implementation note:** Any new Blog, Tools, or Glossary UI that uses clickable cards must follow this pattern unless an explicit exception is documented.
+
+
 

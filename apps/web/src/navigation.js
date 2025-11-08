@@ -86,6 +86,6 @@ export const footerData = {
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/soranauts' },
   ],
   footNote: `
-    This website is maintained by the <a class="text-blue-600 hover:underline dark:text-gray-200" href="https://t.me/sora_xor"> SORA Community</a> &copy;
+    This website is maintained by the <a class="text-link hover:text-link-hover hover:underline transition-colors" href="https://t.me/sora_xor">SORA Community</a> &copy;
   `,
 };

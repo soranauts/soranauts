@@ -16,6 +16,14 @@ All theme values must be driven from these tokens.
 - `brand-600` — `#BF1F26` (active, outlines, stronger emphasis)
 - `brand-soft` — `rgba(227, 36, 45, 0.12)` (soft backgrounds, highlights)
 
+**Overlay System**
+
+- `overlay-subtle` — tint derived from `brand-500` (light) / `brand-400` (dark) at ~8–12% opacity. Use for hover backgrounds on cards, soft buttons, glossary/search results, and CTA underlines.
+- `overlay-strong` — stronger mix (~16–24%) for active states, featured cards, or press feedback.
+- `overlay-focus` — highest intensity (~24–32%) for focus-visible outlines, pressed buttons, and spotlight borders.
+
+These overlays are defined via `color-mix()` so they automatically reference the live brand token. Do not hard-code new reds; consume these variables directly.
+
 **Status**
 
 - `success` — `#22C55E`
@@ -89,6 +97,16 @@ body {
 ```
 
 All components and pages must rely on these variables (directly or via Tailwind).
+
+### 2.2 Interaction Overlays
+
+Overlay tokens live next to the core palette in `tokens.css` (and the legacy mirror in `CustomStyles.astro`). When working in Tailwind, map to them via the `overlay` namespace (`bg-overlay-subtle`, etc.) or reference the CSS variables inside component styles.
+
+Usage guidance:
+
+- **Cards / Related content** — hover background: `var(--overlay-subtle)`; active/featured: `var(--overlay-strong)`; focus outline: `var(--overlay-focus)`.
+- **Primary buttons / CTAs** — hover tint: blend with `overlay-strong`; active: blend with `overlay-focus`; focus-visible outline: `overlay-focus`.
+- **CTA-style links** — underline/focus glow: `overlay-strong` and `overlay-focus`. Normal body links stay on the existing link tokens.
 
 3. Tailwind Mapping
 

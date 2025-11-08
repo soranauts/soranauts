@@ -1,0 +1,154 @@
+/* Token Set v1 — Last updated 2025-11-07
+   Source of truth shared with tailwind.config.cjs.
+   Changes here must be mirrored in Tailwind theme config (and vice versa). */
+@layer theme {
+  :root {
+    /* Fonts */
+    --font-sans: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-serif: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-heading: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+    /* Brand */
+    --color-brand-400: #f13d46;
+    --color-brand-500: #e3242d;
+    --color-brand-600: #bf1f26;
+    --color-brand-soft: rgba(227, 36, 45, 0.12);
+
+    /* Interaction overlays */
+    --overlay-subtle: color-mix(in srgb, var(--color-brand-500) 8%, transparent);
+    --overlay-strong: color-mix(in srgb, var(--color-brand-500) 16%, transparent);
+    --overlay-focus: color-mix(in srgb, var(--color-brand-500) 24%, transparent);
+
+    /* Base colors */
+    --color-bg: #f4f5f7;
+    --color-surface: #ffffff;
+    --color-surface-soft: #e5e7eb;
+    --color-border: #d1d5db;
+    --color-border-strong: rgba(17, 24, 39, 0.12);
+    --color-text: #111827;
+    --color-muted: #4b5563;
+    --color-soft: #6b7280;
+    --color-accent: var(--color-brand-500);
+    --color-link: var(--color-brand-500);
+    --color-link-hover: var(--color-brand-400);
+    --color-link-muted: #9ca3af;
+    --color-success: #22c55e;
+    --color-warning: #fbbf24;
+    --color-error: #f97316;
+    --color-info: #38bdf8;
+
+    /* Legacy aliases (to be removed once migration completes) */
+    --color-bg-page: var(--color-bg);
+    --color-bg-surface: var(--color-surface);
+    --color-bg-soft: var(--color-surface-soft);
+    --color-border-subtle: var(--color-border);
+    --color-text-main: var(--color-text);
+    --color-text-muted: var(--color-muted);
+    --color-text-soft: var(--color-soft);
+    --color-link-hovered: var(--color-link-hover);
+
+    /* Spacing scale (Tailwind 0–96) */
+    --space-0: 0rem;
+    --space-px: 1px;
+    --space-0-5: 0.125rem;
+    --space-1: 0.25rem;
+    --space-1-5: 0.375rem;
+    --space-2: 0.5rem;
+    --space-2-5: 0.625rem;
+    --space-3: 0.75rem;
+    --space-3-5: 0.875rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-7: 1.75rem;
+    --space-8: 2rem;
+    --space-9: 2.25rem;
+    --space-10: 2.5rem;
+    --space-11: 2.75rem;
+    --space-12: 3rem;
+    --space-14: 3.5rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-28: 7rem;
+    --space-32: 8rem;
+    --space-36: 9rem;
+    --space-40: 10rem;
+    --space-44: 11rem;
+    --space-48: 12rem;
+    --space-52: 13rem;
+    --space-56: 14rem;
+    --space-60: 15rem;
+    --space-64: 16rem;
+    --space-72: 18rem;
+    --space-80: 20rem;
+    --space-96: 24rem;
+
+    /* Border radii (Tailwind) */
+    --radius-none: 0;
+    --radius-sm: 0.125rem;
+    --radius: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-none: 0 0 #0000;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    --shadow-elevated: 0 18px 45px rgba(15, 23, 42, 0.12);
+
+    /* Breakpoints */
+    --bp-sm: 640px;
+    --bp-md: 768px;
+    --bp-lg: 1024px;
+    --bp-xl: 1280px;
+    --bp-2xl: 1536px;
+
+    /* Motion */
+    --motion-duration-fast: 120ms;
+    --motion-duration-normal: 200ms;
+    --motion-duration-slow: 320ms;
+
+    --motion-ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --motion-ease-emphasized: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  :root.dark {
+    --color-bg: #050609;
+    --color-surface: #0c0f14;
+    --color-surface-soft: #141821;
+    --color-border: #232733;
+    --color-border-strong: rgba(229, 231, 235, 0.08);
+    --color-text: #e5e7eb;
+    --color-muted: #9ca3af;
+    --color-soft: #6b7280;
+    --color-accent: var(--color-brand-400);
+    --color-link: var(--color-brand-400);
+    --color-link-hover: #ff5c6a;
+    --color-link-muted: #6b7280;
+
+    --overlay-subtle: color-mix(in srgb, var(--color-brand-400) 12%, transparent);
+    --overlay-strong: color-mix(in srgb, var(--color-brand-400) 24%, transparent);
+    --overlay-focus: color-mix(in srgb, var(--color-brand-400) 32%, transparent);
+
+    --color-bg-page: var(--color-bg);
+    --color-bg-surface: var(--color-surface);
+    --color-bg-soft: var(--color-surface-soft);
+    --color-border-subtle: var(--color-border);
+    --color-text-main: var(--color-text);
+    --color-text-muted: var(--color-muted);
+    --color-text-soft: var(--color-soft);
+    --color-link-hovered: var(--color-link-hover);
+  }
+}
+

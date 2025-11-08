@@ -9,12 +9,36 @@ function escapeRegExp(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+function hasNoGlossaryAttribute(node) {
+  if (!node || typeof node !== 'object') return false;
+  const attributes = node.attributes;
+  if (!Array.isArray(attributes)) return false;
+  return attributes.some((attr) => attr?.name === 'data-no-glossary');
+}
+
+function toPlainText(value = '') {
+  return String(value)
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function isSkippable(ancestors) {
   if (!Array.isArray(ancestors)) return false;
   
   for (const a of ancestors) {
-    // Skip inside <details> or <summary>
-    if (a.type === 'mdxJsxFlowElement' && (a.name === 'details' || a.name === 'summary')) {
+    if (a.type === 'mdxJsxFlowElement') {
+      if (a.name === 'details' || a.name === 'summary' || a.name === 'pre' || a.name === 'code') {
+        return true;
+      }
+      if (hasNoGlossaryAttribute(a)) {
+        return true;
+      }
+    }
+    if (a.type === 'heading') {
+      return true;
+    }
+    if (a.type === 'mdxJsxTextElement' && hasNoGlossaryAttribute(a)) {
       return true;
     }
     // Skip inside tables
@@ -68,6 +92,7 @@ const HIGH_PRIORITY_THRESHOLD = 90;
  * @returns {Function} - A remark plugin function
  */
 export function createGlossaryAutoLinkPlugin(glossaryData) {
+  const useGlossaryV2 = process.env.GLOSSARY_V2 === 'true';
   if (!glossaryData || !glossaryData.terms) {
     console.warn('No glossary data provided to auto-link plugin');
     return () => {}; // Return no-op plugin
@@ -78,10 +103,16 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
   const termPriorities = new Map();
   const termCategories = new Map();
   const termFoundational = new Set();
+  const termMetadata = new Map();
 
   glossaryData.terms.forEach(term => {
     // Ensure we use the unified slugify function for consistency
     const unifiedSlug = generateGlossarySlug(term.term);
+    termMetadata.set(unifiedSlug, {
+      title: term.term,
+      definition: toPlainText(term.shortDef || term.summary || term.definition || ''),
+      category: term.category || '',
+    });
     
     // Add the main term
     termMap.set(term.term.toLowerCase(), unifiedSlug);
@@ -279,10 +310,21 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
 
       // Fourth pass: apply the links directly to text nodes
       for (const [slug, occurrence] of selectedOccurrences.entries()) {
-        const { textNode, startIndex, endIndex, matchText, category, priority, isFoundational } = occurrence;
+        const { textNode, startIndex, endIndex, matchText, category, priority, isFoundational, ancestors } = occurrence;
         
         // Skip if manually linked
         if (manuallyLinkedTerms.has(slug)) continue;
+
+        const parentNode = Array.isArray(ancestors) && ancestors.length > 0 ? ancestors[ancestors.length - 1] : null;
+        if (parentNode?.type === 'link') {
+          const existingClass = parentNode.data?.hProperties?.class || '';
+          if (typeof existingClass === 'string') {
+            const classList = existingClass.split(' ');
+            if (classList.includes('glossary') || classList.includes('glossary-term')) {
+              continue;
+            }
+          }
+        }
 
         const original = textNode.value;
         const newChildren = [];
@@ -294,19 +336,34 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
 
         // Add the link
         const url = getLinkDestination(slug, category, priority, isFoundational);
-        newChildren.push({
+        const meta = termMetadata.get(slug) || { title: matchText, definition: '', category: category || '' };
+
+        const linkNode = {
           type: 'link',
           url,
           data: {
-            hProperties: {
-              class: `glossary-term glossary-term-${category}`,
-              'data-term': slug,
-              'data-category': category,
-              'aria-describedby': `tip-${slug}`
-            }
+            hProperties: {},
           },
-          children: [{ type: 'text', value: matchText }]
-        });
+          children: [{ type: 'text', value: matchText }],
+        };
+
+        if (useGlossaryV2) {
+          linkNode.data.hProperties = {
+            class: 'glossary',
+            'data-cat': meta.category || '',
+            'data-title': meta.title || matchText,
+            'data-def': toPlainText(meta.definition).slice(0, 240),
+          };
+        } else {
+          linkNode.data.hProperties = {
+            class: `glossary-term glossary-term-${category}`,
+            'data-term': slug,
+            'data-category': category,
+            'aria-describedby': `tip-${slug}`,
+          };
+        }
+
+        newChildren.push(linkNode);
 
         // Add text after the match
         if (endIndex < original.length) {

@@ -1,0 +1,39 @@
+Token Set: **v1**
+Last updated: **2025-11-07**
+Source of truth:  and  (kept in sync)
+
+# Design Tokens
+
+The design token registry lives in `apps/web/src/assets/styles/tokens.css` under `@layer theme`. Tokens are defined for both light (`:root`) and dark (`:root.dark`) modes so components can inherit consistent values without hard-coding colors.
+
+## Color Tokens
+- **Brand:** `--color-brand-400`, `--color-brand-500`, `--color-brand-600`, `--color-brand-soft` power primary actions, links, and emphasis states.
+- **Backgrounds & Surfaces:** `--color-bg`, `--color-surface`, `--color-surface-soft` define page, card, and subtle background layers; dark mode overrides pivot to deeper neutrals.
+- **Borders:** `--color-border`, `--color-border-strong` (and `--color-border-subtle` via alias) keep outline treatments aligned across components.
+- **Text:** `--color-text`, `--color-muted`, `--color-soft` cover headline, body, and supporting copy; aliases (`--color-text-main`, etc.) preserve backward compatibility.
+- **Links:** `--color-link`, `--color-link-hover`, `--color-link-muted` standardize inline link behavior for anchors, prose, and button variants.
+- **Status:** `--color-success`, `--color-warning`, `--color-error`, `--color-info` are available for feedback components and alerts.
+
+## Spacing Scale (`--space-*`)
+- Mirrors Tailwind’s spacing scale from `0` through `96`, including fractional keys (`--space-0-5`, `--space-1-5`, `--space-3-5`) and pixel (`--space-px`).
+- Utilities (`.gap-*`, `.p-*`, `.mt-*`, `.mb-*`) and component padding/margins reference these tokens directly to avoid mixing raw `rem` values.
+
+## Radii (`--radius-*`)
+- Based on Tailwind’s radius levels from `none` to `3xl`, plus `--radius-full` for pill shapes.
+- Buttons, tags, cards, and form controls use the appropriate radius token for consistent curvature.
+
+## Shadows (`--shadow-*`)
+- Provides Tailwind-equivalent elevation tokens (`--shadow-sm`, `--shadow`, `--shadow-md`, `--shadow-lg`, `--shadow-xl`, `--shadow-2xl`, `--shadow-inner`) plus `--shadow-elevated` used on cards.
+- Components apply these shadows via tokens so light/dark adjustments can be centralized later.
+
+## Typography Tokens
+- `--font-sans`, `--font-serif`, `--font-heading`, and `--font-mono` are declared for base typography and monospace needs. They align with the font stacks configured in `tailwind.config.cjs`.
+
+## Breakpoints (`--bp-*`)
+- Named after Tailwind breakpoints (`--bp-sm`, `--bp-md`, `--bp-lg`, `--bp-xl`, `--bp-2xl`).
+- Container queries in `card.css` and `layout.css` rely on these variables so breakpoint changes can propagate without editing CSS.
+
+## Usage Principles
+- **Components** consume tokens for structural values (padding, radius, shadow, color). No component hard-codes raw `px` or hex values.
+- **Utilities** expose frequent layout helpers using the same tokens, ensuring parity with component spacing.
+- **Legacy Aliases** (e.g., `--aw-color-primary`) remain in place for existing Tailwind or legacy CSS while the migration proceeds, but new work should reference the canonical token names above.
