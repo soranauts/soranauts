@@ -17,6 +17,12 @@ pnpm dev
 
 Visit `http://localhost:4321/glossary` to see the glossary with local search functionality.
 
+### Feature Flags
+
+- Create an `.env.local` alongside `apps/web` with `GLOSSARY_V2=true` to enable the article popover preview experience.
+- When the flag is omitted (default), the site renders the legacy tooltip implementation.
+- With JavaScript disabled, glossary links continue to navigate directly to `/glossary/...` and retain their dotted underline treatment for discoverability.
+
 ### Option 2: Typesense InstantSearch (Production Ready)
 
 For the best search experience with highlighting, typo tolerance, and advanced features:

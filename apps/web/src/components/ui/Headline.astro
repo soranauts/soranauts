@@ -23,7 +23,7 @@ const {
     >
       {tagline && (
         <p
-          class="text-base text-red-600 dark:text-red-400 font-bold tracking-wide uppercase"
+          class="text-base text-brand-500 dark:text-brand-400 font-bold tracking-wide uppercase"
           set:html={tagline}
         />
       )}
@@ -39,7 +39,7 @@ const {
 
       {subtitle && (
         <p
-          class={twMerge("mt-4 text-muted", subtitleClass)}
+        class={twMerge("mt-4 text-text-muted", subtitleClass)}
           set:html={subtitle}
         />
       )}

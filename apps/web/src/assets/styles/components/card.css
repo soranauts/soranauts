@@ -1,0 +1,236 @@
+@layer components {
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    border: 1px solid color-mix(in srgb, var(--color-border) 85%, transparent);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-elevated);
+    transition:
+      box-shadow 150ms cubic-bezier(0.25, 0.1, 0.25, 1),
+      border-color 150ms cubic-bezier(0.25, 0.1, 0.25, 1),
+      transform 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .card:hover {
+    border-color: color-mix(in srgb, var(--color-border) 65%, var(--overlay-strong) 35%);
+    background-color: color-mix(in srgb, var(--color-surface) 90%, var(--overlay-subtle) 10%);
+    box-shadow: 0 20px 45px color-mix(in srgb, var(--overlay-strong) 55%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .card__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-block-end: var(--space-2);
+  }
+
+  .card__media {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .card__actions {
+    margin-block-start: var(--space-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .card-grid {
+    display: grid;
+    gap: var(--space-6);
+    container-type: inline-size;
+  }
+
+  .card-grid--balanced {
+    align-items: stretch;
+  }
+
+  @container (min-width: var(--bp-md)) {
+    .card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @container (min-width: var(--bp-xl)) {
+    .card-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card,
+    .card:hover {
+      transition: none;
+      transform: none;
+      box-shadow: var(--shadow-elevated);
+    }
+  }
+
+  /* Card link patterns
+     - Uses global link tokens so behavior stays consistent
+     - Block variant makes the whole card interactive
+  */
+
+  .card-link {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+    min-height: 100%;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      background-color 150ms cubic-bezier(0.25, 0.1, 0.25, 1),
+      color 150ms cubic-bezier(0.25, 0.1, 0.25, 1),
+      text-decoration-color 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .card-link.card-link--block {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .card-link__title {
+    margin: 0;
+    font: inherit;
+    color: var(--color-text-strong);
+    font-weight: 600;
+    line-height: 1.35;
+    text-decoration: none;
+    transition:
+      color 150ms cubic-bezier(0.25, 0.1, 0.25, 1),
+      text-decoration-color 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .card-link:hover .card-link__title,
+  .card-link:focus-visible .card-link__title {
+    color: var(--color-link-hover);
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+  }
+
+  .card-link:focus-visible {
+    outline: 2px solid var(--overlay-focus);
+    outline-offset: 3px;
+    border-radius: var(--radius-md, 0.5rem);
+  }
+
+  .card-link__meta,
+  .card-link__excerpt {
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  /* Related article layout */
+  .related-articles {
+    margin-top: 1.75rem;
+  }
+
+  .related-articles__title {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .related-articles__list {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .related-link {
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-subtle);
+    border: 1px solid transparent;
+    transition:
+      background-color 150ms cubic-bezier(0.25, 0.1, 0.25, 1),
+      border-color 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  @media (min-width: 768px) {
+    .related-articles__list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .related-link:hover,
+  .related-link:focus-visible {
+    background-color: var(--overlay-subtle);
+    border-color: color-mix(in srgb, var(--color-border-subtle) 70%, var(--overlay-subtle) 30%);
+  }
+
+  .related-link:focus-visible {
+    outline: 2px solid var(--overlay-focus);
+    outline-offset: 3px;
+  }
+
+  .related-link:active {
+    background-color: var(--overlay-strong);
+    border-color: color-mix(in srgb, var(--color-border-subtle) 55%, var(--overlay-strong) 45%);
+  }
+
+  .related-link .card-link__title {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .related-link .card-link__meta {
+    margin-top: 0.15rem;
+    font-size: 0.72rem;
+  }
+
+  /* Scoped reset: card-style links in prose & related-articles should NOT be solid red */
+  .prose a.card-link,
+  .related-articles a.card-link {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .prose a.card-link:hover,
+  .prose a.card-link:focus-visible,
+  .related-articles a.card-link:hover,
+  .related-articles a.card-link:focus-visible {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .prose a.card-link .card-link__title,
+  .related-articles a.card-link .card-link__title {
+    color: var(--color-text-strong);
+  }
+
+  .prose a.card-link .card-link__meta,
+  .prose a.card-link .card-link__excerpt,
+  .related-articles a.card-link .card-link__meta,
+  .related-articles a.card-link .card-link__excerpt {
+    color: var(--color-text-muted);
+  }
+
+  /* Hover/focus: keep using the shared accent only on title */
+  .prose a.card-link:hover .card-link__title,
+  .prose a.card-link:focus-visible .card-link__title,
+  .related-articles a.card-link:hover .card-link__title,
+  .related-articles a.card-link:focus-visible .card-link__title {
+    color: var(--color-link-hover);
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .related-link,
+    .related-link:hover {
+      transition: none;
+    }
+  }
+}
+

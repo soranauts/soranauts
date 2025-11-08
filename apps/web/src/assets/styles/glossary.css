@@ -1,237 +1,195 @@
-/* Progressive Enhancement Glossary Tooltip Styles */
+/* Glossary index scoped styles */
 
-/* Basic glossary term styling */
 .glossary-term {
-  text-decoration: underline dotted !important;
-  cursor: pointer;
-  position: relative;
-  color: #1f2937;
-  transition: all 0.2s ease;
-  display: inline-block;
+  text-decoration: underline dotted;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 0.06em;
+  color: var(--color-text-main);
+  transition: color 150ms ease, text-decoration-color 150ms ease;
 }
 
-.glossary-term:focus {
-  outline: 2px solid currentColor;
+.glossary-index .glossary-term {
+  position: relative;
+  display: inline-block;
+  text-decoration-color: rgba(148, 163, 184, 0.5);
+  cursor: pointer;
+}
+
+.glossary-index .glossary-term:focus {
+  outline: 2px solid var(--color-link);
   outline-offset: 2px;
 }
 
-.glossary-term:hover {
-  color: #3b82f6 !important;
+.glossary-index .glossary-term:not([data-cat]):hover {
+  color: var(--color-link);
+  text-decoration-color: var(--color-link);
 }
 
-/* Dark mode support */
-.dark .glossary-term {
-  color: #f9fafb;
+.dark .glossary-index .glossary-term {
+  color: var(--color-text-muted);
 }
 
-.dark .glossary-term:hover {
-  color: #60a5fa !important;
+.dark .glossary-index .glossary-term:not([data-cat]):hover {
+  color: var(--color-link);
 }
 
-/* Category-specific color coding for glossary terms */
-/* Override prose link colors for glossary terms */
-.prose a[href].glossary-term-token,
-.prose .glossary-term-token,
-a[href].glossary-term-token,
-.glossary-term-token {
-  color: #92400e !important; /* Yellow-800 */
+/* Category colors (light) */
+.glossary-index .glossary-term[data-cat="token"],
+.glossary-index .glossary-term-token {
+  color: #F97316;
 }
 
-.glossary-term-token:hover {
-  color: #b45309 !important; /* Yellow-700 */
+.glossary-index .glossary-term[data-cat="technology"],
+.glossary-index .glossary-term-technology {
+  color: #E3242D;
 }
 
-.prose a[href].glossary-term-technology,
-.prose .glossary-term-technology,
-a[href].glossary-term-technology,
-.glossary-term-technology {
-  color: #1e40af !important; /* Blue-800 */
+.glossary-index .glossary-term[data-cat="governance"],
+.glossary-index .glossary-term-governance {
+  color: #7C3AED;
 }
 
-.glossary-term-technology:hover {
-  color: #1d4ed8 !important; /* Blue-700 */
+.glossary-index .glossary-term[data-cat="defi"],
+.glossary-index .glossary-term-defi {
+  color: #15803D;
 }
 
-.prose a[href].glossary-term-governance,
-.prose .glossary-term-governance,
-a[href].glossary-term-governance,
-.glossary-term-governance {
-  color: #6b21a8 !important; /* Purple-800 */
+.glossary-index .glossary-term[data-cat="network"],
+.glossary-index .glossary-term-network {
+  color: #2563EB;
 }
 
-.glossary-term-governance:hover {
-  color: #7c3aed !important; /* Purple-700 */
+.glossary-index .glossary-term[data-cat="economics"],
+.glossary-index .glossary-term-economics {
+  color: #BE185D;
 }
 
-.prose a[href].glossary-term-defi,
-.prose .glossary-term-defi,
-a[href].glossary-term-defi,
-.glossary-term-defi {
-  color: #166534 !important; /* Green-800 */
+.glossary-index .glossary-term[data-cat="tag"],
+.glossary-index .glossary-term-tag {
+  color: var(--color-text-soft);
 }
 
-.glossary-term-defi:hover {
-  color: #15803d !important; /* Green-700 */
+/* Category hovers (light) */
+.glossary-index .glossary-term[data-cat="token"]:hover,
+.glossary-index .glossary-term-token:hover {
+  color: #EA580C;
 }
 
-.prose a[href].glossary-term-network,
-.prose .glossary-term-network,
-a[href].glossary-term-network,
-.glossary-term-network {
-  color: #3730a3 !important; /* Indigo-800 */
+.glossary-index .glossary-term[data-cat="technology"]:hover,
+.glossary-index .glossary-term-technology:hover {
+  color: var(--color-brand-400);
 }
 
-.glossary-term-network:hover {
-  color: #4338ca !important; /* Indigo-700 */
+.glossary-index .glossary-term[data-cat="governance"]:hover,
+.glossary-index .glossary-term-governance:hover {
+  color: #8B5CF6;
 }
 
-.prose a[href].glossary-term-economics,
-.prose .glossary-term-economics,
-a[href].glossary-term-economics,
-.glossary-term-economics {
-  color: #be185d !important; /* Pink-800 */
+.glossary-index .glossary-term[data-cat="defi"]:hover,
+.glossary-index .glossary-term-defi:hover {
+  color: #16A34A;
 }
 
-.glossary-term-economics:hover {
-  color: #db2777 !important; /* Pink-700 */
+.glossary-index .glossary-term[data-cat="network"]:hover,
+.glossary-index .glossary-term-network:hover {
+  color: #3B82F6;
 }
 
-.prose a[href].glossary-term-tag,
-.prose .glossary-term-tag,
-a[href].glossary-term-tag,
-.glossary-term-tag {
-  color: #4b5563 !important; /* Gray-600 */
+.glossary-index .glossary-term[data-cat="economics"]:hover,
+.glossary-index .glossary-term-economics:hover {
+  color: #DB2777;
 }
 
-.glossary-term-tag:hover {
-  color: #1f2937 !important; /* Gray-800 */
+.glossary-index .glossary-term[data-cat="tag"]:hover,
+.glossary-index .glossary-term-tag:hover {
+  color: var(--color-text-main);
 }
 
-/* Dark mode category-specific colors */
-.prose .dark a[href].glossary-term-token,
-.prose .dark .glossary-term-token,
-.dark a[href].glossary-term-token,
-.dark .glossary-term-token {
-  color: #fbbf24 !important; /* Yellow-400 */
+/* Dark mode categories */
+.dark .glossary-index .glossary-term[data-cat="token"],
+.dark .glossary-index .glossary-term-token {
+  color: #FDBA74;
 }
 
-.dark .glossary-term-token:hover {
-  color: #f59e0b !important; /* Yellow-500 */
+.dark .glossary-index .glossary-term[data-cat="technology"],
+.dark .glossary-index .glossary-term-technology {
+  color: #F472B6;
 }
 
-.prose .dark a[href].glossary-term-technology,
-.prose .dark .glossary-term-technology,
-.dark a[href].glossary-term-technology,
-.dark .glossary-term-technology {
-  color: #60a5fa !important; /* Blue-400 */
+.dark .glossary-index .glossary-term[data-cat="governance"],
+.dark .glossary-index .glossary-term-governance {
+  color: #C4B5FD;
 }
 
-.dark .glossary-term-technology:hover {
-  color: #3b82f6 !important; /* Blue-500 */
+.dark .glossary-index .glossary-term[data-cat="defi"],
+.dark .glossary-index .glossary-term-defi {
+  color: #4ADE80;
 }
 
-.prose .dark a[href].glossary-term-governance,
-.prose .dark .glossary-term-governance,
-.dark a[href].glossary-term-governance,
-.dark .glossary-term-governance {
-  color: #a78bfa !important; /* Purple-400 */
+.dark .glossary-index .glossary-term[data-cat="network"],
+.dark .glossary-index .glossary-term-network {
+  color: #93C5FD;
 }
 
-.dark .glossary-term-governance:hover {
-  color: #8b5cf6 !important; /* Purple-500 */
+.dark .glossary-index .glossary-term[data-cat="economics"],
+.dark .glossary-index .glossary-term-economics {
+  color: #F9A8D4;
 }
 
-.prose .dark a[href].glossary-term-defi,
-.prose .dark .glossary-term-defi,
-.dark a[href].glossary-term-defi,
-.dark .glossary-term-defi {
-  color: #4ade80 !important; /* Green-400 */
+.dark .glossary-index .glossary-term[data-cat="tag"],
+.dark .glossary-index .glossary-term-tag {
+  color: #E5E7EB;
 }
 
-.dark .glossary-term-defi:hover {
-  color: #22c55e !important; /* Green-500 */
-}
-
-.prose .dark a[href].glossary-term-network,
-.prose .dark .glossary-term-network,
-.dark a[href].glossary-term-network,
-.dark .glossary-term-network {
-  color: #818cf8 !important; /* Indigo-400 */
-}
-
-.dark .glossary-term-network:hover {
-  color: #6366f1 !important; /* Indigo-500 */
-}
-
-.prose .dark a[href].glossary-term-economics,
-.prose .dark .glossary-term-economics,
-.dark a[href].glossary-term-economics,
-.dark .glossary-term-economics {
-  color: #f472b6 !important; /* Pink-400 */
-}
-
-.dark .glossary-term-economics:hover {
-  color: #ec4899 !important; /* Pink-500 */
-}
-
-.prose .dark a[href].glossary-term-tag,
-.prose .dark .glossary-term-tag,
-.dark a[href].glossary-term-tag,
-.dark .glossary-term-tag {
-  color: #d1d5db !important; /* Gray-300 */
-}
-
-.dark .glossary-term-tag:hover {
-  color: #f9fafb !important; /* Gray-50 */
+.dark .glossary-index .glossary-term[data-cat="tag"]:hover,
+.dark .glossary-index .glossary-term-tag:hover {
+  color: #F9FAFB;
 }
 
 /* Tooltip positioning */
-.glossary-tip {
+.glossary-index .glossary-tip {
   position: absolute;
   z-index: 20;
   max-width: 28rem;
-  padding: .6rem .8rem;
-  border-radius: .5rem;
-  background: #111;
-  color: #fff;
-  box-shadow: 0 6px 24px rgba(0,0,0,.24);
-  font-size: 14px;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.24);
+  font-size: 0.875rem;
   line-height: 1.4;
   white-space: normal;
-  word-wrap: break-word;
+  word-break: break-word;
 }
 
-/* Fix spacing between glossary links in tooltips */
-.glossary-tip a {
+.dark .glossary-index .glossary-tip {
+  background-color: var(--color-bg-soft);
+  color: var(--color-text-main);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.glossary-index .glossary-tip a {
   margin-right: 0.25em;
   display: inline;
+  color: var(--color-link);
 }
 
-.glossary-tip a:last-child {
+.glossary-index .glossary-tip a:last-child {
   margin-right: 0;
 }
 
-/* Dark mode tooltip */
-.dark .glossary-tip {
-  background: #1f2937;
-  border: 1px solid #374151;
-  color: #f9fafb;
-}
-
-/* Pure CSS fallback: show on hover/focus-within */
-.glossary-term:hover + .glossary-tip,
-.glossary-term:focus + .glossary-tip { 
+.glossary-index .glossary-term:hover + .glossary-tip,
+.glossary-index .glossary-term:focus + .glossary-tip {
   display: block; 
 }
 
-/* Hide by default */
-.glossary-tip[hidden] {
+.glossary-index .glossary-tip[hidden] {
   display: none !important;
 }
 
-/* Mobile-specific positioning */
 @media (max-width: 768px) {
-  .glossary-tip {
+  .glossary-index .glossary-tip {
     position: fixed !important;
     bottom: 20px !important;
     left: 20px !important;
@@ -240,33 +198,26 @@ a[href].glossary-term-tag,
     max-height: 200px !important;
     overflow-y: auto !important;
     z-index: 99999 !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.3) !important;
   }
 }
 
-/* Disable glossary functionality in tables to avoid positioning issues */
-table .glossary-term {
+.glossary-index table .glossary-term {
   text-decoration: none !important;
   cursor: default !important;
   color: inherit !important;
 }
 
-table .glossary-term:hover {
-  color: inherit !important;
-  text-decoration: none !important;
-}
-
-table .glossary-tip {
+.glossary-index table .glossary-tip {
   display: none !important;
 }
 
-/* Disable tooltips in headings to avoid visual interference */
-h1 .glossary-term,
-h2 .glossary-term,
-h3 .glossary-term,
-h4 .glossary-term,
-h5 .glossary-term,
-h6 .glossary-term {
+.glossary-index h1 .glossary-term,
+.glossary-index h2 .glossary-term,
+.glossary-index h3 .glossary-term,
+.glossary-index h4 .glossary-term,
+.glossary-index h5 .glossary-term,
+.glossary-index h6 .glossary-term {
   text-decoration: none !important;
   cursor: default !important;
   color: inherit !important;
@@ -338,4 +289,26 @@ details > summary .glossary-term,
 details p summary .glossary-term {
   display: inline;
   margin: 0;
+}
+
+/* Neutralize category hues outside glossary pages */
+:where(body) :not(.glossary-index *) :is(
+  .tag--token, .tag--technology, .tag--governance, .tag--defi,
+  .tag--network, .tag--economics, .tag--tag,
+  .glossary-token, .glossary-technology, .glossary-governance,
+  .glossary-defi, .glossary-network, .glossary-economics
+) {
+  color: var(--muted) !important;
+  background: color-mix(in oklab, var(--muted) 10%, transparent) !important;
+  border-color: color-mix(in oklab, var(--muted) 35%, transparent) !important;
+}
+
+/* Don't re-introduce underlines inside these components */
+:where(body) :not(.glossary-index *) :is(
+  .tag--token, .tag--technology, .tag--governance, .tag--defi,
+  .tag--network, .tag--economics, .tag--tag,
+  .glossary-token, .glossary-technology, .glossary-governance,
+  .glossary-defi, .glossary-network, .glossary-economics
+) a {
+  text-decoration: none !important;
 }

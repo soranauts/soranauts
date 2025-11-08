@@ -71,7 +71,7 @@
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "algoliasearch": "^4.24.0",
-    "astro": "^5.0.0",
+    "astro": "^5.15.3",
     "astro-icon": "^0.8.2",
     "cheerio": "^1.0.0",
     "chromadb": "^1.8.1",

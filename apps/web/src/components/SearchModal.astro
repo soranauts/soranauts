@@ -2,22 +2,22 @@
 // SearchModal.astro - Beautiful search modal component
 ---
 
-<div id="search-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+<div id="search-modal" class="search-modal">
   <!-- Backdrop -->
-  <div class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" id="search-backdrop"></div>
+  <div class="search-modal__backdrop" id="search-backdrop"></div>
   
   <!-- Modal -->
-  <div class="relative flex min-h-full items-center justify-center p-4">
-    <div class="relative w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white shadow-2xl transition-all dark:bg-gray-900">
+  <div class="search-modal__dialog">
+    <div class="search-modal__panel">
       <!-- Header -->
-      <div class="border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+      <div class="search-modal__header">
         <div class="flex items-center justify-between">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3>
             Search Soranauts
           </h3>
           <button
             id="search-close"
-            class="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+            class="search-modal__close"
             aria-label="Close search"
           >
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,17 +28,17 @@
       </div>
       
       <!-- Search Input -->
-      <div class="px-6 py-4">
+      <div class="search-modal__input">
         <div class="relative">
           <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="h-5 w-5 text-text-soft" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
           <input
             type="text"
             id="search-input"
-            class="block w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-900 placeholder-gray-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-red-400 dark:focus:ring-red-400/20"
+            class="search-modal__input-field"
             placeholder="Search articles, guides, and more..."
             autocomplete="off"
             spellcheck="false"
@@ -47,29 +47,29 @@
       </div>
       
       <!-- Search Results -->
-      <div id="search-results" class="max-h-96 overflow-y-auto px-6 pb-6">
+      <div id="search-results" class="search-modal__results">
         <!-- Loading state -->
-        <div id="search-loading" class="hidden text-center py-8">
-          <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-red-600 border-r-transparent"></div>
-          <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Searching...</p>
+        <div id="search-loading" class="hidden py-8 text-center">
+          <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-brand-500 border-r-transparent"></div>
+          <p class="mt-2 text-sm text-text-soft">Searching...</p>
         </div>
         
         <!-- No results -->
-        <div id="search-no-results" class="hidden text-center py-8">
-          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div id="search-no-results" class="hidden py-8 text-center">
+          <svg class="mx-auto h-12 w-12 text-text-soft" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.709M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
-          <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No results found</h3>
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Try different keywords or check your spelling.</p>
+          <h3 class="mt-2 text-sm font-medium text-text-main">No results found</h3>
+          <p class="mt-1 text-sm text-text-soft">Try different keywords or check your spelling.</p>
         </div>
         
         <!-- Initial state -->
-        <div id="search-initial" class="text-center py-8">
-          <svg class="mx-auto h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div id="search-initial" class="py-8 text-center">
+          <svg class="mx-auto h-12 w-12 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Search Soranauts</h3>
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Type to search through our content</p>
+          <h3 class="mt-2 text-sm font-medium text-text-main">Search Soranauts</h3>
+          <p class="mt-1 text-sm text-text-soft">Type to search through our content</p>
         </div>
         
         <!-- Results container -->
@@ -77,20 +77,20 @@
       </div>
       
       <!-- Footer -->
-      <div class="border-t border-gray-200 px-6 py-3 dark:border-gray-700">
-        <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+      <div class="border-t border-border-subtle px-6 py-3">
+        <div class="search-modal__badges">
           <div class="flex items-center space-x-4">
             <span class="flex items-center">
-              <kbd class="rounded bg-gray-100 px-2 py-1 font-mono dark:bg-gray-800">⌘K</kbd>
+              <kbd class="rounded bg-soft px-2 py-1 font-mono">⌘K</kbd>
               <span class="ml-1">to search</span>
             </span>
             <span class="flex items-center">
-              <kbd class="rounded bg-gray-100 px-2 py-1 font-mono dark:bg-gray-800">Esc</kbd>
+              <kbd class="rounded bg-soft px-2 py-1 font-mono">Esc</kbd>
               <span class="ml-1">to close</span>
             </span>
           </div>
           <div class="text-right">
-            <span id="search-count" class="font-medium">0 results</span>
+            <span id="search-count" class="font-medium text-text-soft">0 results</span>
           </div>
         </div>
       </div>
@@ -526,17 +526,17 @@
         if (glossary.length > 0) {
           html += `
             <div class="mb-6">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">Glossary</h3>
-                <a href="/glossary?q=${encodeURIComponent(query)}" class="text-xs text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
+              <div class="mb-3 flex items-center justify-between">
+                <h3 class="text-xs font-semibold uppercase tracking-wide text-text-soft">Glossary</h3>
+                <a href="/glossary?q=${encodeURIComponent(query)}" class="text-xs font-medium text-link hover:text-link-hover">
                   View all glossary →
                 </a>
               </div>
               <div class="space-y-2">
                 ${glossary.map(item => `
-                  <a href="/glossary/${item.slug}" class="block rounded-lg border border-red-200 bg-red-50 p-3 transition-colors hover:bg-red-100 dark:border-red-700 dark:bg-red-900/20 dark:hover:bg-red-900/40">
-                    <h4 class="font-medium text-gray-900 dark:text-white">${this.highlightText(item.term, query)}</h4>
-                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">${this.highlightText(item.snippet || item.definition, query)}</p>
+                  <a href="/glossary/${item.slug}" class="search-modal__result search-modal__result--glossary">
+                    <h4 class="search-modal__result-title">${this.highlightText(item.term, query)}</h4>
+                    <p class="search-modal__result-body">${this.highlightText(item.snippet || item.definition, query)}</p>
                   </a>
                 `).join('')}
               </div>
@@ -548,12 +548,12 @@
         if (articles.length > 0) {
           html += `
             <div class="${glossary.length > 0 ? 'mt-6' : ''}">
-              <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide mb-3">Articles</h3>
+              <h3 class="mb-3 text-xs font-semibold uppercase tracking-wide text-text-soft">Articles</h3>
               <div class="space-y-2">
                 ${articles.map(result => `
-                  <a href="${result.url}" class="block rounded-lg border border-gray-200 p-3 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800">
-                    <h4 class="font-medium text-gray-900 dark:text-white">${this.highlightText(result.title, query)}</h4>
-                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">${this.highlightText(result.excerpt, query)}</p>
+                  <a href="${result.url}" class="search-modal__result search-modal__result--article">
+                    <h4 class="search-modal__result-title">${this.highlightText(result.title, query)}</h4>
+                    <p class="search-modal__result-body">${this.highlightText(result.excerpt, query)}</p>
                   </a>
                 `).join('')}
               </div>
@@ -568,7 +568,7 @@
     highlightText(text: string, query: string) {
       if (!query) return text;
       const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-      return text.replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-800 px-1 rounded">$1</mark>');
+      return text.replace(regex, '<mark class="rounded bg-brand-soft px-1 text-text-main">$1</mark>');
     }
     
     shouldPrioritizeGlossary(query: string, glossaryResults: any[]) {
@@ -596,11 +596,11 @@
       this.noResults?.classList.remove('hidden');
       if (this.noResults) {
         this.noResults.innerHTML = `
-          <svg class="mx-auto h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="mx-auto h-12 w-12 text-status-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
           </svg>
-          <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Search Error</h3>
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Unable to search. Please try again later.</p>
+          <h3 class="mt-2 text-sm font-medium text-text-main">Search Error</h3>
+          <p class="mt-1 text-sm text-text-soft">Unable to search. Please try again later.</p>
         `;
       }
     }
@@ -610,12 +610,12 @@
       this.noResults?.classList.remove('hidden');
       if (this.noResults) {
         this.noResults.innerHTML = `
-          <svg class="mx-auto h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="mx-auto h-12 w-12 text-status-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
-          <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Search in Development</h3>
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Search is only available in production builds. Run <code class="bg-gray-100 dark:bg-gray-800 px-1 rounded">npm run build</code> to test search functionality.</p>
+          <h3 class="mt-2 text-sm font-medium text-text-main">Search in Development</h3>
+          <p class="mt-1 text-sm text-text-soft">Search is only available in production builds. Run <code class="rounded bg-soft px-1">npm run build</code> to test search functionality.</p>
         `;
       }
       if (this.count) this.count.textContent = 'Development mode';

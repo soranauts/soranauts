@@ -1,0 +1,93 @@
+/* Embedded glossary term styling outside of glossary index pages */
+
+:where(body):not(.glossary-index) .prose a.glossary,
+:where(body):not(.glossary-index) .prose a[data-glossary],
+:where(body):not(.glossary-index) .prose .glossary-term {
+  color: var(--color-text-muted);
+  text-decoration: underline dotted;
+  text-decoration-color: rgba(148, 163, 184, 0.45);
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.16em;
+  cursor: help;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+}
+
+.dark :where(body):not(.glossary-index) .prose a.glossary,
+.dark :where(body):not(.glossary-index) .prose a[data-glossary],
+.dark :where(body):not(.glossary-index) .prose .glossary-term {
+  color: var(--color-text-soft);
+  text-decoration-color: rgba(148, 163, 184, 0.35);
+}
+
+/* Hover and focus behaviours */
+:where(body):not(.glossary-index) .prose a.glossary:hover,
+:where(body):not(.glossary-index) .prose a[data-glossary]:hover,
+:where(body):not(.glossary-index) .prose .glossary-term:hover,
+:where(body):not(.glossary-index) .prose a.glossary:focus-visible,
+:where(body):not(.glossary-index) .prose a[data-glossary]:focus-visible,
+:where(body):not(.glossary-index) .prose .glossary-term:focus-visible {
+  color: var(--color-link);
+  text-decoration-style: solid;
+  text-decoration-color: var(--color-link);
+}
+
+/* Category hover accents */
+:where(body):not(.glossary-index) .prose a.glossary[data-cat="token"]:hover,
+:where(body):not(.glossary-index) .prose .glossary-term-token:hover {
+  color: #EA580C;
+  text-decoration-color: #EA580C;
+}
+
+:where(body):not(.glossary-index) .prose a.glossary[data-cat="defi"]:hover,
+:where(body):not(.glossary-index) .prose .glossary-term-defi:hover {
+  color: #16A34A;
+  text-decoration-color: #16A34A;
+}
+
+:where(body):not(.glossary-index) .prose a.glossary[data-cat="governance"]:hover,
+:where(body):not(.glossary-index) .prose .glossary-term-governance:hover {
+  color: #8B5CF6;
+  text-decoration-color: #8B5CF6;
+}
+
+:where(body):not(.glossary-index) .prose a.glossary[data-cat="technology"]:hover,
+:where(body):not(.glossary-index) .prose .glossary-term-technology:hover {
+  color: var(--color-brand-400);
+  text-decoration-color: var(--color-brand-400);
+}
+
+:where(body):not(.glossary-index) .prose a.glossary[data-cat="network"]:hover,
+:where(body):not(.glossary-index) .prose .glossary-term-network:hover {
+  color: #3B82F6;
+  text-decoration-color: #3B82F6;
+}
+
+:where(body):not(.glossary-index) .prose a.glossary[data-cat="economics"]:hover,
+:where(body):not(.glossary-index) .prose .glossary-term-economics:hover {
+  color: #DB2777;
+  text-decoration-color: #DB2777;
+}
+
+:where(body):not(.glossary-index) .prose a.glossary[data-cat="tag"]:hover,
+:where(body):not(.glossary-index) .prose .glossary-term-tag:hover {
+  color: var(--color-text-main);
+  text-decoration-color: var(--color-text-main);
+}
+
+.dark :where(body):not(.glossary-index) .prose a.glossary[data-cat="tag"],
+.dark :where(body):not(.glossary-index) .prose .glossary-term-tag {
+  color: #E5E7EB;
+}
+
+.dark :where(body):not(.glossary-index) .prose a.glossary[data-cat="tag"]:hover,
+.dark :where(body):not(.glossary-index) .prose .glossary-term-tag:hover {
+  color: #F9FAFB;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(body):not(.glossary-index) .prose a.glossary,
+  :where(body):not(.glossary-index) .prose a[data-glossary],
+  :where(body):not(.glossary-index) .prose .glossary-term {
+    transition: none;
+  }
+}

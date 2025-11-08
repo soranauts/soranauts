@@ -1,0 +1,31 @@
+# Production Backup Information
+Created: Wed Nov  5 22:34:34 CST 2025
+Backup Date: 2025-11-05 223434
+Description: Production backup before glossary overhaul
+
+## Backup References
+- Branch: backup/production-2025-11-05-223434
+- Tag: backup-production-2025-11-05-223434
+- Commit: 2da52dfe4decc890da3a0cdfd32df37583ea7cf0
+- Commit Message: chore: sync glossary content
+- Commit Date: 2025-11-05 22:34:16 -0600
+
+## Revert Commands
+To revert to this backup:
+
+```bash
+# Method 1: Use backup branch
+git reset --hard backup/production-2025-11-05-223434
+
+# Method 2: Use backup tag
+git reset --hard backup-production-2025-11-05-223434
+
+# Method 3: Use commit hash
+git reset --hard 2da52dfe4decc890da3a0cdfd32df37583ea7cf0
+```
+
+## View This Backup
+```bash
+git show backup/production-2025-11-05-223434
+git log backup/production-2025-11-05-223434 -1
+```

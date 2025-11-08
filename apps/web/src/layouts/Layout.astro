@@ -1,12 +1,13 @@
 ---
 import '~/assets/styles/tailwind.css';
 import '~/assets/styles/glossary.css';
-
+import '~/assets/styles/glossary-article.css';
+import '~/assets/styles/glossary-index.css';
+import '~/assets/styles/glossary-popover.css';
 import { I18N, SITE } from '~/utils/config';
 
 import CommonMeta from '~/components/common/CommonMeta.astro';
 import Favicons from '~/components/Favicons.astro';
-import CustomStyles from '~/components/CustomStyles.astro';
 import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
@@ -15,11 +16,11 @@ import BasicScripts from '~/components/common/BasicScripts.astro';
 import SimpleCookieConsent from '~/components/SimpleCookieConsent.astro';
 import SearchModal from '~/components/SearchModal.astro';
 import SchemaMarkup from '~/components/SEO/SchemaMarkup.astro';
+import CustomStyles from '~/components/CustomStyles.astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
-import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
+// import { Analytics as VercelAnalytics } from '@vercel/analytics/astro';
 
-// Uncomment line below to activate View Transitions
-// import { ViewTransitions } from 'astro:transitions';
+const GLOSSARY_V2 = (import.meta.env.GLOSSARY_V2 ?? 'false') === 'true';
 
 import type { MetaData as MetaDataType } from '~/types';
 
@@ -37,7 +38,6 @@ const { language, textDirection } = I18N;
   <head>
     <CommonMeta />
     <Favicons />
-    <CustomStyles />
     <ApplyColorMode />
     <Metadata {...metadata} />
     
@@ -55,44 +55,14 @@ const { language, textDirection } = I18N;
 
     <!-- ✅ Canonical Tag -->
     <link rel="canonical" href={new URL(Astro.url.pathname, SITE.site).toString()} />
-
-    <!-- Uncomment line below to activate View Transitions -->
-    <!-- <ViewTransitions fallback="swap" /> -->
   </head>
-
-  <body class="antialiased text-default bg-page tracking-tight">
+  <body>
     <slot />
-
+    <CustomStyles />
     <BasicScripts />
     <SimpleCookieConsent />
     <SearchModal />
     <SpeedInsights />
-    <VercelAnalytics />
-
-    <style is:global>
-      img {
-        content-visibility: auto;
-      }
-    </style>
-
-    <!-- Remove glossary links from FAQ summaries to fix spacing issues -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // Find all FAQ summaries and remove glossary links from them
-        document.querySelectorAll('details > summary a.glossary-term, details p summary a.glossary-term').forEach(link => {
-          // Replace the link with just the text content, preserving any surrounding whitespace
-          const textNode = document.createTextNode(link.textContent);
-          link.parentNode.replaceChild(textNode, link);
-        });
-        
-        // Ensure proper flex layout for FAQ summaries after link removal
-        document.querySelectorAll('details > summary, details p summary').forEach(summary => {
-          summary.style.display = 'flex';
-          summary.style.alignItems = 'center';
-          summary.style.justifyContent = 'space-between';
-          summary.style.width = '100%';
-        });
-      });
-    </script>
+    {/* <VercelAnalytics /> */}
   </body>
 </html>

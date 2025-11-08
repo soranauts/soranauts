@@ -10,7 +10,7 @@ import path from 'node:path';
 import { getCollection } from 'astro:content';
 import { getRelatedTags, getTaxonomyNode } from '~/lib/taxonomy';
 import { SITE, I18N } from '~/utils/config';
-import { getPermalink } from '~/utils/permalinks';
+import { cleanSlug, getPermalink } from '~/utils/permalinks';
 
 export async function getStaticPaths() {
   return glossary.terms.map(term => ({
@@ -20,6 +20,7 @@ export async function getStaticPaths() {
 }
 
 const { term } = Astro.props;
+const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
 
 if (!term) {
   return Astro.redirect('/glossary');
@@ -91,9 +92,17 @@ const posts = await getCollection('post');
 const relatedTagArticles = relatedTagNodes.map((tagNode) => {
   const tagName = tagNode.aliases?.[0] ?? tagNode.title;
   const normalizedTag = tagName.toLowerCase();
-  const tagPermalink = getPermalink(normalizedTag, 'tag');
+  const tagSlug = cleanSlug(tagName);
+  const tagPermalink = getPermalink(tagSlug, 'tag');
   const matchedPosts = posts
-    .filter((post) => Array.isArray(post.data.tags) && post.data.tags.some((tag) => String(tag).toLowerCase() === normalizedTag))
+    .filter(
+      (post) =>
+        Array.isArray(post.data.tags) &&
+        post.data.tags.some((tag) => {
+          const tagValue = String(tag);
+          return tagValue.toLowerCase() === normalizedTag || cleanSlug(tagValue) === tagSlug;
+        })
+    )
     .slice(0, 4);
   return {
     tag: tagNode,
@@ -148,7 +157,7 @@ const jsonLd = {
   <Header {...headerData} isSticky showRssFeed showToggleTheme />
   
   <main class="py-8 sm:py-16 lg:py-20">
-    <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+    <div class:list={['container mx-auto px-4 sm:px-6 max-w-4xl', { 'glossary-index': GLOSSARY_V2 }]}>
       <!-- Back Navigation -->
       <div class="mb-8">
         <a 
@@ -209,7 +218,7 @@ const jsonLd = {
         <div class="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
           Part of the {parentEntity.term} entity. Learn more on
           {' '}
-          <a href={`/glossary/${parentEntity.slug}`} class="font-semibold text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300">
+          <a href={`/glossary/${parentEntity.slug}`} class="font-semibold text-red-600 hover:text-red-500 dark:text-red-400 dark:hover:text-red-300">
             {parentEntity.term}
           </a>
           .
@@ -362,11 +371,11 @@ const jsonLd = {
           <ul class="space-y-2">
             {term.links.map((link) => (
               <li>
-                <a 
-                  href={link.url} 
-                  target="_blank" 
+                <a
+                  href={link.url}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                  class="text-link hover:text-link-hover hover:underline transition-colors"
                 >
                   {link.label}
                 </a>
