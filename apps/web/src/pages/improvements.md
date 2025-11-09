@@ -17,7 +17,7 @@ Soranauts is a living platform. Every deploy blends design, documentation, and a
 - **Design system refresh** — Gradient tokens, typography guardrails, and component polish now drive the About, Changelog, Donate, and future landing pages (`accd248`, `d059834`).
 - **Story-first landing pages** — `/about` and `/changelog` were rebuilt with PageLayout, Stats, ItemGrid, and Timeline widgets to surface impact, roadmaps, and support paths in one glance (`accd248`, `f496615`).
 - **Knowledge base hardening** — Nightly ingestion, provenance checkpoints, and SARIF-backed QA keep 1,000+ documents verifiable (`dbbe542`, `4fa31f8`, `accd248`).
-- **Glossary 2.0** — 75+ definitions, taxonomy-driven relations, hover cards, and Telegram-friendly previews make SORA terminology approachable (`f7ed77e`, `155efaa`, `b26e3c6`).
+- **Glossary 2.0** — 130+ definitions, taxonomy-driven relations, hover cards, and Telegram-friendly previews make SORA terminology approachable (`f7ed77e`, `155efaa`, `b26e3c6`, `0336296`, `432e2c8`, `bb0b5be`).
 - **Unified search** — Pagefind-only search, clickable glossary cards, and glossary auto-linking deliver instant answers without external services (`a86edc1`, `a41dc2c`, `cc7bfd9`).
 
 ## Knowledge Base & Content Automation
@@ -37,6 +37,7 @@ Soranauts is a living platform. Every deploy blends design, documentation, and a
 - Unified Pagefind search replaced Typesense, cutting infrastructure costs while keeping instant results (`a86edc1`, `a2e51f4`).
 - Sitemaps, canonical enforcement, and direct-path redirects ensure every article is reachable by users and bots (`9c2b579`, `c8a0aa8`, `914ea99`, `6f30dd3`).
 - Related Articles and improvements to nav hierarchy boost serendipitous discovery (`011aae7`, `3e7e20b`).
+- Glossary search assets now preload safely even during static builds, preventing empty states when Pagefind hasn’t warmed yet (`bb0b5be`, `c941393`).
 
 ## Publishing, SEO & Sharing
 
@@ -49,6 +50,9 @@ Soranauts is a living platform. Every deploy blends design, documentation, and a
 - Monorepo migration consolidated web + knowledge base code with pnpm standardization for reproducible builds (`2fdd5ea`, `607ba31`, `d5bc323`).
 - CI guardrails prevent large file commits, enforce incremental cache rules, and keep Pagefind builds green (`32ed0fe`, `f9b689a`, `100d940`).
 - Vercel + pnpm version parity fixes removed deployment blockers (`bdc07fe`, `d942893`, `4f9b733`).
+- Static build path reinstated after adapter regressions; JSON import warnings fixed and Quote API now skips rate limiting during prerender to keep deploys reliable (`5192c32`, `76f2c9f`, `c941393`, `bb0b5be`).
+- Mobile navigation action bar received contrast updates so search and theme controls remain visible at all breakpoints (`de71629`).
+- Legacy Markdown duplicates were removed so Astro pages render authoritative `/about` and `/changelog` content (`c2f4859`).
 
 ## Looking Ahead
 
