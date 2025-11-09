@@ -12,6 +12,8 @@ import { getRelatedTags, getTaxonomyNode } from '~/lib/taxonomy';
 import { SITE, I18N } from '~/utils/config';
 import { cleanSlug, getPermalink } from '~/utils/permalinks';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   return glossary.terms.map(term => ({
     params: { slug: term.slug },

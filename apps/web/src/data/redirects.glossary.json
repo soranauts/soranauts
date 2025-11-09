@@ -1,6 +1,22 @@
 {
   "redirects": [
     {
+      "from": "/glossary/bitcoin-halving",
+      "to": "/glossary/halving"
+    },
+    {
+      "from": "/glossary/btc",
+      "to": "/glossary/bitcoin"
+    },
+    {
+      "from": "/glossary/consensus-mechanisms",
+      "to": "/glossary/consensus"
+    },
+    {
+      "from": "/glossary/doge",
+      "to": "/glossary/dogecoin"
+    },
+    {
       "from": "/glossary/hyperled",
       "to": "/glossary/hyperledger-iroha"
     },
@@ -45,6 +61,10 @@
       "to": "/glossary/iroha-special-instructions"
     },
     {
+      "from": "/glossary/monetary-system",
+      "to": "/glossary/monetary-systems"
+    },
+    {
       "from": "/glossary/nfts",
       "to": "/glossary/nft"
     },
@@ -57,8 +77,40 @@
       "to": "/glossary/nft"
     },
     {
+      "from": "/glossary/parachain-auctions",
+      "to": "/glossary/auctions"
+    },
+    {
+      "from": "/glossary/parachains",
+      "to": "/glossary/parachain"
+    },
+    {
+      "from": "/glossary/pos",
+      "to": "/glossary/proof-of-stake"
+    },
+    {
+      "from": "/glossary/pow",
+      "to": "/glossary/proof-of-work"
+    },
+    {
       "from": "/glossary/pswap-dex",
       "to": "/glossary/polkaswap"
+    },
+    {
+      "from": "/glossary/qr-payment",
+      "to": "/glossary/qr-payments"
+    },
+    {
+      "from": "/glossary/rust",
+      "to": "/glossary/rust-language"
+    },
+    {
+      "from": "/glossary/rwa",
+      "to": "/glossary/real-world-assets"
+    },
+    {
+      "from": "/glossary/shib",
+      "to": "/glossary/shiba-inu"
     },
     {
       "from": "/glossary/sora-dex",
@@ -79,6 +131,10 @@
     {
       "from": "/glossary/ts-dex",
       "to": "/glossary/tonswap"
+    },
+    {
+      "from": "/glossary/webassembly",
+      "to": "/glossary/wasm"
     }
   ]
 }

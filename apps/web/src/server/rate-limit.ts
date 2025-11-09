@@ -77,7 +77,10 @@ export function createRateLimit(options: RateLimitOptions) {
 
 // Helper function to get client IP address
 function getClientIP(request: Request): string {
-  // Try to get IP from various headers (for different deployment scenarios)
+  if (!request || typeof request.headers?.get !== 'function') {
+    return 'prerender';
+  }
+
   const headers = request.headers;
   
   // Check for forwarded headers first (common in production)
