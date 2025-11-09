@@ -20,7 +20,7 @@ const glossaryAutoLinkPlugin = await loadGlossaryAutoLinkPlugin();
 console.log('🔗 Plugin loaded successfully in config');
 
 import { ANALYTICS, SITE } from './src/utils/config.ts';
-import redirectsData from './src/data/redirects.glossary.json' assert { type: 'json' };
+import redirectsData from './src/data/redirects.glossary.json' with { type: 'json' };
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
