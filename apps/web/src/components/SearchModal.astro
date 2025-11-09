@@ -48,6 +48,22 @@
       
       <!-- Search Results -->
       <div id="search-results" class="search-modal__results">
+        <!-- Filter controls -->
+        <div id="search-filters" class="hidden search-modal__filters">
+          <div
+            id="search-filter-type"
+            class="search-modal__filter-group"
+            role="group"
+            aria-label="Filter by content type"
+          ></div>
+          <div
+            id="search-filter-category"
+            class="search-modal__filter-group hidden"
+            role="group"
+            aria-label="Filter by category"
+          ></div>
+        </div>
+
         <!-- Loading state -->
         <div id="search-loading" class="hidden py-8 text-center">
           <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-brand-500 border-r-transparent"></div>
@@ -107,6 +123,41 @@
     }
   }
 
+  const TYPE_FILTERS = [
+    { id: 'all', label: 'All' },
+    { id: 'glossary', label: 'Glossary' },
+    { id: 'articles', label: 'Articles' },
+  ] as const;
+
+  const MAX_INITIAL_GLOSSARY = 3;
+  const MAX_INITIAL_ARTICLES = 5;
+
+  const SYNONYM_MAP: Record<string, string[]> = {
+    sora: ['soramitsu', 'xor', 'sora-network'],
+    xor: ['sora'],
+    dex: ['exchange', 'decentralized-exchange', 'polkaswap', 'tonswap'],
+    cbdc: ['central-bank-digital-currency', 'central-bank'],
+    polkaswap: ['dex', 'exchange'],
+    polkadot: ['kusama', 'parachain'],
+    governance: ['democracy', 'council'],
+  };
+
+  const RANKING_WEIGHTS = {
+    termSimilarity: 1.25,
+    termFrequency: 1.15,
+    termSaturation: 1.0,
+    pageLength: 0.5,
+  };
+
+  const CATEGORY_LABEL_OVERRIDES: Record<string, string> = {
+    defi: 'DeFi',
+    dex: 'DEX',
+    cbdc: 'CBDC',
+    nft: 'NFT',
+    web3: 'Web3',
+    xor: 'XOR',
+  };
+
   class SearchModal {
     modal: HTMLElement | null;
     backdrop: HTMLElement | null;
@@ -124,6 +175,31 @@
     isOpen: boolean;
     currentQuery: string;
     debounceTimer: number | null;
+    filtersContainer: HTMLElement | null;
+    typeFilterContainer: HTMLElement | null;
+    categoryFilterContainer: HTMLElement | null;
+    activeFilters: {
+      type: 'all' | 'glossary' | 'articles';
+      glossaryCategory: string;
+      articleCategory: string;
+    };
+    availableCategories: {
+      glossary: Array<{ label: string; count: number }>;
+      article: Array<{ label: string; count: number }>;
+    };
+    showAllGlossary: boolean;
+    showAllArticles: boolean;
+    cachedResults: {
+      query: string;
+      expandedQuery: string;
+      articles: any[];
+      glossary: any[];
+    } | null;
+    focusedResultIndex: number;
+    locale: string;
+    dateFormatter: Intl.DateTimeFormat;
+    lastUserQuery: string;
+    resultAnchors: HTMLAnchorElement[];
     
     constructor() {
       this.modal = document.getElementById('search-modal');
@@ -135,6 +211,9 @@
       this.noResults = document.getElementById('search-no-results');
       this.initial = document.getElementById('search-initial');
       this.count = document.getElementById('search-count');
+      this.filtersContainer = document.getElementById('search-filters');
+      this.typeFilterContainer = document.getElementById('search-filter-type');
+      this.categoryFilterContainer = document.getElementById('search-filter-category');
       
       this.pagefind = null;
       this.pagefindPromise = null;
@@ -143,6 +222,27 @@
       this.isOpen = false;
       this.currentQuery = '';
       this.debounceTimer = null;
+      this.showAllArticles = false;
+      this.showAllGlossary = false;
+      this.cachedResults = null;
+      this.focusedResultIndex = -1;
+      this.locale = document.documentElement.lang || 'en';
+      this.dateFormatter = new Intl.DateTimeFormat(this.locale, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      });
+      this.lastUserQuery = '';
+      this.resultAnchors = [];
+      this.activeFilters = {
+        type: 'all',
+        glossaryCategory: 'all',
+        articleCategory: 'all',
+      };
+      this.availableCategories = {
+        glossary: [],
+        article: [],
+      };
       
       this.init();
     }
@@ -199,48 +299,27 @@
         return this.pagefindPromise;
       }
 
-      const loadScript = () =>
-        new Promise<any>((resolve, reject) => {
-          const existingScript = document.querySelector<HTMLScriptElement>('script[data-pagefind="true"]');
+      const pagefindPath = '/pagefind/pagefind.js';
 
-          if (existingScript) {
-            existingScript.addEventListener('load', () => {
-              if (window.pagefind) {
-                resolve(window.pagefind);
-              } else {
-                reject(new Error('Pagefind script loaded but window.pagefind is undefined.'));
-              }
-            }, { once: true });
+      const loadModule = async () => {
+        const module = await import(/* @vite-ignore */ `${pagefindPath}?module=1`);
+        const resolvedModule: any = module?.default ?? module;
 
-            existingScript.addEventListener('error', (event) => {
-              reject(new Error('Failed to load Pagefind script.'));
-            }, { once: true });
-            return;
-          }
+        if (!resolvedModule || typeof resolvedModule.search !== 'function') {
+          throw new Error('Pagefind module loaded but did not expose the expected API.');
+        }
 
-          const script = document.createElement('script');
-          script.src = '/pagefind/pagefind.js';
-          script.async = true;
-          script.defer = true;
-          script.dataset.pagefind = 'true';
+        if (typeof resolvedModule.options === 'function') {
+          await resolvedModule.options({
+            ranking: RANKING_WEIGHTS,
+          });
+        }
 
-          script.onload = () => {
-            if (window.pagefind) {
-              resolve(window.pagefind);
-            } else {
-              reject(new Error('Pagefind script loaded but window.pagefind is undefined.'));
-            }
-          };
+        window.pagefind = resolvedModule;
+        return resolvedModule;
+      };
 
-          script.onerror = () => {
-            script.remove();
-            reject(new Error('Failed to load Pagefind script.'));
-          };
-
-          document.head.appendChild(script);
-        });
-
-      window.__pagefindLoadPromise = loadScript();
+      window.__pagefindLoadPromise = loadModule();
 
       this.pagefindPromise = window.__pagefindLoadPromise
         .then((module) => {
@@ -249,7 +328,7 @@
           return module;
         })
         .catch((error) => {
-          console.error('Failed to load Pagefind:', error);
+          console.error('Failed to load Pagefind module:', error);
           this.pagefindPromise = null;
           window.__pagefindLoadPromise = undefined;
           throw error;
@@ -260,20 +339,25 @@
 
     schedulePreload(query: string) {
       const normalized = query.trim().toLowerCase();
-      if (!normalized || normalized.length < 2 || this.preloadedQueries.has(normalized)) {
+      if (!normalized || normalized.length < 2) {
         return;
       }
 
-      this.preloadedQueries.add(normalized);
+      const expanded = this.expandQueryWithSynonyms(normalized);
+      if (this.preloadedQueries.has(expanded)) {
+        return;
+      }
+
+      this.preloadedQueries.add(expanded);
       this.loadPagefind()
         .then((pagefind) => {
           if (pagefind?.preload) {
-            pagefind.preload(normalized);
+            pagefind.preload(expanded);
           }
         })
         .catch((error) => {
           console.error('Pagefind preload error:', error);
-          this.preloadedQueries.delete(normalized);
+          this.preloadedQueries.delete(expanded);
         });
     }
     
@@ -297,8 +381,17 @@
       this.backdrop?.addEventListener('click', () => this.close());
       
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && this.isOpen) {
+        if (!this.isOpen) {
+          return;
+        }
+
+        if (e.key === 'Escape') {
           this.close();
+          return;
+        }
+
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+          this.handleKeyboardNavigation(e);
         }
       });
       
@@ -319,14 +412,12 @@
     open() {
       this.modal?.classList.remove('hidden');
       this.isOpen = true;
+      this.clearResults(true);
       this.input?.focus();
       document.body.style.overflow = 'hidden';
 
       // Begin loading assets needed for search in the background.
       this.loadPagefind().catch(() => {});
-      
-      // Clear previous results
-      this.clearResults();
     }
     
     close() {
@@ -334,8 +425,9 @@
       this.isOpen = false;
       if (this.input) this.input.value = '';
       this.currentQuery = '';
+      this.lastUserQuery = '';
       document.body.style.overflow = '';
-      this.clearResults();
+      this.clearResults(true);
     }
     
     debounceSearch(query: string) {
@@ -351,8 +443,9 @@
     }
     
     async search(query: string) {
-      if (!query) {
-        this.clearResults();
+      const trimmed = query.trim();
+      if (!trimmed) {
+        this.clearResults(true);
         return;
       }
 
@@ -373,17 +466,22 @@
         return;
       }
       
-      this.currentQuery = query;
+      this.lastUserQuery = trimmed;
+      this.currentQuery = trimmed;
       this.showLoading();
+      this.showAllArticles = false;
+      this.showAllGlossary = false;
+      this.focusedResultIndex = -1;
+
+      const expandedQuery = this.expandQueryWithSynonyms(trimmed);
       
       try {
-        // Search both articles and glossary using Pagefind
         const [articlesResults, glossaryResults] = await Promise.all([
-          this.searchArticles(query),
-          this.searchGlossary(query)
+          this.searchArticles(expandedQuery),
+          this.searchGlossary(expandedQuery),
         ]);
         
-        await this.displayCombinedResults(articlesResults, glossaryResults, query);
+        this.cacheResults(trimmed, expandedQuery, articlesResults, glossaryResults);
       } catch (error) {
         console.error('Search error:', error);
         this.showError();
@@ -397,18 +495,15 @@
       
       try {
         const search = await this.pagefind.search(query, {
-          excerptLength: 24
+          excerptLength: 32
         });
         
         const results = search.results || [];
-        console.log('Total search results for articles:', results.length);
 
-        // Helper to fetch data() for all results (it's async per item)
         const withData = await Promise.all(
-          results.map(async r => ({ r, d: await r.data() }))
+          results.map(async (r) => ({ r, d: await r.data() }))
         );
 
-        // Now split by filters/meta.type - only include non-glossary content
         const articleResults = [];
 
         for (const { r, d } of withData) {
@@ -422,32 +517,11 @@
 
           const t = typeFromFilters || meta.type || null;
 
-          // Include as article if it's explicitly marked as article, or if it's not glossary
-          if (t !== 'glossary') {
-            articleResults.push({ result: r, data: d });
+          if (t === 'glossary') {
+            continue;
           }
-        }
-        
-        console.log('Article results found:', articleResults.length);
-        
-        return await Promise.all(
-          articleResults.slice(0, 8).map(async ({ result, data }) => {
-            // Pagefind should provide the URL directly
-            let url = result.url;
-            
-            // If no URL, try alternative approaches
-            if (!url) {
-              if (data.url) {
-                url = data.url;
-              } else if (data.meta?.url) {
-                url = data.meta.url;
-              } else if (result.id) {
-                url = result.id;
-              }
-            }
-            
-            // Ensure URL is properly formatted
-            if (url) {
+
+          let url = r.url || d.url || meta.url || r.id || '#';
               if (url.endsWith('.html')) {
                 url = url.replace('.html', '');
               }
@@ -460,36 +534,37 @@
               if (!url.startsWith('http') && !url.startsWith('/')) {
                 url = '/' + url;
               }
-              // Fix double slashes
               url = url.replace(/\/+/g, '/');
-            }
-            
-            // Extract title from various possible locations
-            let title = 'Untitled';
-            if (data.meta?.title) {
-              title = data.meta.title;
-            } else if (data.title) {
-              title = data.title;
-            } else if (result.title) {
-              title = result.title;
-            } else if (data.meta?.term) {
-              title = data.meta.term;
-            } else if (data.content) {
-              // Try to extract title from content if it starts with a heading
-              const headingMatch = data.content.match(/^#\s+(.+)$/m);
+
+          let title = meta.title || d.title || r.title || meta.term || 'Untitled';
+          if (!meta.title && !d.title && !r.title && d.content) {
+            const headingMatch = d.content.match(/^#\s+(.+)$/m);
               if (headingMatch) {
                 title = headingMatch[1];
               }
             }
             
-            return {
-              url: url || '#',
-              title: title,
-              excerpt: data.excerpt || '',
-              content: data.content || ''
-            };
-          })
-        );
+          const tags = this.parseTags(meta.tags);
+          const readingTime = this.normalizeReadingTime(meta.readingTime);
+          const publishedAt = meta.date || meta.publishedTime || null;
+          const categoryRaw = meta.category || '';
+
+          articleResults.push({
+            url,
+            title,
+            excerpt: d.excerpt || meta.description || '',
+            content: d.content || '',
+            summary: meta.description || d.excerpt || '',
+            category: this.formatCategoryLabel(categoryRaw),
+            categoryRaw,
+            tags,
+            readingTime,
+            publishedAt,
+            score: r.score ?? 0,
+          });
+        }
+        
+        return articleResults;
       } catch (error) {
         console.error('Pagefind search error:', error);
         return [];
@@ -502,35 +577,21 @@
       }
       
       try {
-        // Search all content
         const search = await this.pagefind.search(query, {
-          excerptLength: 24
+          excerptLength: 32
         });
         
         const results = search.results || [];
-        console.log('Total search results:', results.length);
 
-        // Helper to fetch data() for all results (it's async per item)
         const withData = await Promise.all(
-          results.map(async r => ({ r, d: await r.data() }))
+          results.map(async (r) => ({ r, d: await r.data() }))
         );
 
-        // Now split by filters/meta.type
         const glossaryResults = [];
 
         for (const { r, d } of withData) {
           const filters = d.filters || {};
           const meta = d.meta || {};
-
-          // Debug logging
-          console.log('Checking result:', { 
-            url: r.url, 
-            id: r.id, 
-            score: r.score,
-            title: r.title,
-            filters,
-            meta
-          });
 
           const types = Array.isArray(filters.type) ? filters.type : (filters.type ? [filters.type] : []);
           const typeFromFilters = types.includes('glossary') ? 'glossary'
@@ -539,37 +600,11 @@
 
           const t = typeFromFilters || meta.type || null;
 
-          if (t === 'glossary') {
-            glossaryResults.push({ result: r, data: d });
-            console.log('Found glossary result:', { url: r.url, title: r.title, type: t });
+          if (t !== 'glossary') {
+            continue;
           }
-        }
-        
-        console.log('Glossary results found:', glossaryResults.length);
-        
-        return await Promise.all(
-          glossaryResults.slice(0, 5).map(async ({ result, data }) => {
-            // Use the URL directly from Pagefind data (now properly set with data-pagefind-url)
-            let url = data.url || result.url;
-            
-            // Fallback to constructing URL if not provided
-            if (!url) {
-              // Extract slug from the result URL or ID
-              let slug = '';
-              if (result.url) {
-                slug = result.url.replace('/glossary/', '').replace(/\/$/, '');
-              } else if (result.id) {
-                // Extract slug from ID if it contains glossary info
-                const idMatch = result.id.match(/glossary[\/\\]([^\/\\]+)/);
-                if (idMatch) {
-                  slug = idMatch[1];
-                }
-              }
-              url = slug ? `/glossary/${slug}/` : '#';
-            }
-            
-            // Ensure URL is properly formatted
-            if (url && url !== '#') {
+
+          let url = d.url || r.url || meta.url || '#';
               if (url.endsWith('.html')) {
                 url = url.replace('.html', '');
               }
@@ -582,41 +617,34 @@
               if (!url.startsWith('http') && !url.startsWith('/')) {
                 url = '/' + url;
               }
-              // Fix double slashes
               url = url.replace(/\/+/g, '/');
-            }
-            
-            // Extract title from various possible locations
-            let term = 'Untitled';
-            if (data.meta?.term) {
-              term = data.meta.term;
-            } else if (data.title) {
-              term = data.title;
-            } else if (result.title) {
-              term = result.title;
-            } else if (data.meta?.title) {
-              term = data.meta.title;
-            } else if (data.content) {
-              // Try to extract title from content if it starts with a heading
-              const headingMatch = data.content.match(/^#\s+(.+)$/m);
+
+          let term = meta.term || d.title || r.title || meta.title || 'Untitled';
+          if (!meta.term && !d.title && !r.title && d.content) {
+            const headingMatch = d.content.match(/^#\s+(.+)$/m);
               if (headingMatch) {
                 term = headingMatch[1];
               }
             }
             
-            // Extract slug from URL for the displayCombinedResults method
-            const slug = url?.replace('/glossary/', '').replace(/\/$/, '') || '';
-            
-            return {
-              url: url || '#',
-              term: term,
-              definition: data.excerpt || '',
-              category: data.meta?.category || '',
-              slug: slug,
-              snippet: data.excerpt || ''
-            };
-          })
-        );
+          const categoryRaw = meta.category || '';
+          const aliases = Array.isArray(meta.aliases) ? meta.aliases : [];
+          const summary = meta.summary || d.excerpt || d.content?.slice(0, 200) || '';
+
+          glossaryResults.push({
+            url,
+            term,
+            definition: d.excerpt || meta.definition || '',
+            snippet: d.excerpt || summary,
+            category: this.formatCategoryLabel(categoryRaw),
+            categoryRaw,
+            aliases,
+            summary,
+            score: r.score ?? 0,
+          });
+        }
+        
+        return glossaryResults;
       } catch (error) {
         console.error('Pagefind glossary search error:', error);
         return [];
@@ -626,85 +654,662 @@
     showLoading() {
       this.loading?.classList.remove('hidden');
       this.noResults?.classList.add('hidden');
+      this.initial?.classList.add('hidden');
+      this.filtersContainer?.classList.add('hidden');
       if (this.results) this.results.innerHTML = '';
     }
     
-    clearResults() {
+    clearResults(showInitial = false) {
       this.loading?.classList.add('hidden');
       this.noResults?.classList.add('hidden');
+      if (showInitial) {
       this.initial?.classList.remove('hidden');
+      } else {
+        this.initial?.classList.add('hidden');
+      }
       if (this.results) this.results.innerHTML = '';
       if (this.count) this.count.textContent = '0 results';
+      this.filtersContainer?.classList.add('hidden');
+      if (this.typeFilterContainer) this.typeFilterContainer.innerHTML = '';
+      if (this.categoryFilterContainer) this.categoryFilterContainer.innerHTML = '';
+      this.activeFilters = {
+        type: 'all',
+        glossaryCategory: 'all',
+        articleCategory: 'all',
+      };
+      this.availableCategories = {
+        glossary: [],
+        article: [],
+      };
+      this.showAllGlossary = false;
+      this.showAllArticles = false;
+      this.cachedResults = null;
+      this.resultAnchors = [];
+      this.focusedResultIndex = -1;
     }
     
-    async displayCombinedResults(articles: any[], glossary: any[], query: string) {
+    cacheResults(query: string, expandedQuery: string, articles: any[], glossary: any[]) {
+      this.cachedResults = { query, expandedQuery, articles, glossary };
+      this.availableCategories.glossary = this.collectCategories(glossary);
+      this.availableCategories.article = this.collectCategories(articles);
+      const hasResults = articles.length + glossary.length > 0;
+      this.filtersContainer?.classList.toggle('hidden', !hasResults);
+      this.renderTypeFilters(this.getCurrentCounts());
+      this.renderCategoryFilters();
+      this.renderResults();
+      this.emitAnalyticsEvent('soranauts:search', {
+        query,
+        expandedQuery,
+        counts: this.getCurrentCounts(),
+        filters: {
+          type: this.activeFilters.type,
+          glossaryCategory: this.activeFilters.glossaryCategory,
+          articleCategory: this.activeFilters.articleCategory,
+        },
+      });
+    }
+
+    collectCategories(list: any[]) {
+      const counts = new Map<string, { label: string; count: number }>();
+      for (const item of list) {
+        const raw = (item?.categoryRaw || item?.category || '').trim();
+        if (!raw) continue;
+        const key = raw.toLowerCase();
+        if (counts.has(key)) {
+          counts.get(key)!.count += 1;
+        } else {
+          counts.set(key, {
+            label: this.formatCategoryLabel(raw),
+            count: 1,
+          });
+        }
+      }
+      return Array.from(counts.values()).sort((a, b) => b.count - a.count).slice(0, 8);
+    }
+
+    getCurrentCounts() {
+      if (!this.cachedResults) {
+        return { glossary: 0, articles: 0 };
+      }
+      return {
+        glossary: this.cachedResults.glossary.length,
+        articles: this.cachedResults.articles.length,
+      };
+    }
+
+    renderTypeFilters(counts: { glossary: number; articles: number }) {
+      if (!this.typeFilterContainer) {
+        return;
+      }
+
+      const total = counts.glossary + counts.articles;
+      const buttons = TYPE_FILTERS.map((filter) => {
+        const count = filter.id === 'glossary'
+          ? counts.glossary
+          : filter.id === 'articles'
+          ? counts.articles
+          : total;
+        const isActive = this.activeFilters.type === filter.id;
+        const disabled = count === 0 && filter.id !== 'all';
+        return `
+          <button
+            type="button"
+            class="search-filter-chip${isActive ? ' search-filter-chip--active' : ''}${disabled ? ' search-filter-chip--disabled' : ''}"
+            data-filter-type="${filter.id}"
+            aria-pressed="${isActive}"
+            ${disabled ? 'disabled' : ''}
+          >
+            <span class="search-filter-chip__label">${filter.label}</span>
+            <span class="search-filter-chip__count">${count}</span>
+          </button>
+        `;
+      }).join('');
+
+      this.typeFilterContainer.innerHTML = buttons;
+      this.typeFilterContainer.querySelectorAll<HTMLButtonElement>('button[data-filter-type]').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          const type = (event.currentTarget as HTMLButtonElement).dataset.filterType as 'all' | 'glossary' | 'articles';
+          if (type) {
+            this.handleTypeFilterChange(type);
+          }
+        });
+      });
+    }
+
+    renderCategoryFilters() {
+      if (!this.categoryFilterContainer) {
+        return;
+      }
+
+      if (this.activeFilters.type === 'all') {
+        this.categoryFilterContainer.classList.add('hidden');
+        this.categoryFilterContainer.innerHTML = '';
+        return;
+      }
+
+      const categories = this.activeFilters.type === 'glossary'
+        ? this.availableCategories.glossary
+        : this.availableCategories.article;
+
+      if (!categories.length) {
+        this.categoryFilterContainer.classList.add('hidden');
+        this.categoryFilterContainer.innerHTML = '';
+        return;
+      }
+
+      const activeCategory = this.activeFilters.type === 'glossary'
+        ? this.activeFilters.glossaryCategory
+        : this.activeFilters.articleCategory;
+
+      const total = categories.reduce((sum, item) => sum + item.count, 0);
+      const allLabel = this.activeFilters.type === 'glossary' ? 'All glossary' : 'All articles';
+
+      const chips = [
+        `
+          <button
+            type="button"
+            class="search-filter-chip${activeCategory === 'all' ? ' search-filter-chip--active' : ''}"
+            data-filter-group="category"
+            data-filter-value="all"
+            aria-pressed="${activeCategory === 'all'}"
+          >
+            <span class="search-filter-chip__label">${allLabel}</span>
+            <span class="search-filter-chip__count">${total}</span>
+          </button>
+        `,
+        ...categories.map((category) => {
+          const value = category.label.toLowerCase();
+          const isActive = activeCategory.toLowerCase() === value;
+          return `
+            <button
+              type="button"
+              class="search-filter-chip${isActive ? ' search-filter-chip--active' : ''}"
+              data-filter-group="category"
+              data-filter-value="${value}"
+              aria-pressed="${isActive}"
+            >
+              <span class="search-filter-chip__label">${category.label}</span>
+              <span class="search-filter-chip__count">${category.count}</span>
+            </button>
+          `;
+        }),
+      ].join('');
+
+      this.categoryFilterContainer.innerHTML = chips;
+      this.categoryFilterContainer.classList.remove('hidden');
+      this.categoryFilterContainer.querySelectorAll<HTMLButtonElement>('button[data-filter-group="category"]').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          const value = (event.currentTarget as HTMLButtonElement).dataset.filterValue || 'all';
+          this.handleCategoryFilterChange(value);
+        });
+      });
+    }
+
+    applyCategoryFilter(list: any[], type: 'glossary' | 'articles') {
+      const active = type === 'glossary' ? this.activeFilters.glossaryCategory : this.activeFilters.articleCategory;
+      if (active === 'all') {
+        return list;
+      }
+      return list.filter((item) => {
+        const category = (item?.categoryRaw || item?.category || '').toLowerCase();
+        return category === active.toLowerCase();
+      });
+    }
+
+    renderResults() {
+      if (!this.results || !this.cachedResults) {
+        return;
+      }
+
+      const { query, articles, glossary } = this.cachedResults;
+
+      let filteredGlossary = this.applyCategoryFilter(glossary, 'glossary');
+      let filteredArticles = this.applyCategoryFilter(articles, 'articles');
+
+      if (this.activeFilters.type === 'glossary') {
+        filteredArticles = [];
+      } else if (this.activeFilters.type === 'articles') {
+        filteredGlossary = [];
+      }
+
+      const showGlossaryAll = this.activeFilters.type === 'glossary' || this.showAllGlossary;
+      const showArticlesAll = this.activeFilters.type === 'articles' || this.showAllArticles;
+
+      const visibleGlossary = showGlossaryAll
+        ? filteredGlossary
+        : filteredGlossary.slice(0, MAX_INITIAL_GLOSSARY);
+      const visibleArticles = showArticlesAll
+        ? filteredArticles
+        : filteredArticles.slice(0, MAX_INITIAL_ARTICLES);
+
+      const totalVisible = filteredGlossary.length + filteredArticles.length;
+      const totalAvailable = articles.length + glossary.length;
+
       this.loading?.classList.add('hidden');
       this.initial?.classList.add('hidden');
       
-      const totalResults = articles.length + glossary.length;
-      
-      if (totalResults === 0) {
+      if (totalAvailable === 0) {
+        this.results.innerHTML = '';
         this.noResults?.classList.remove('hidden');
-        if (this.count) this.count.textContent = '0 results';
+        this.updateResultCount(0);
+        return;
+      }
+
+      if (totalVisible === 0) {
+        this.results.innerHTML = '';
+        this.noResults?.classList.remove('hidden');
+        this.updateResultCount(0);
         return;
       }
       
       this.noResults?.classList.add('hidden');
-      if (this.count) this.count.textContent = `${totalResults} result${totalResults !== 1 ? 's' : ''}`;
-      
-      if (this.results) {
-        let html = '';
-        
-        // Simple prioritization logic
-        const showGlossaryFirst = this.shouldPrioritizeGlossary(query, glossary);
-        
-        // Glossary section
-        if (glossary.length > 0) {
-          html += `
-            <div class="mb-6">
-              <div class="mb-3 flex items-center justify-between">
-                <h3 class="text-xs font-semibold uppercase tracking-wide text-text-soft">Glossary</h3>
-                <a href="/glossary?q=${encodeURIComponent(query)}" class="text-xs font-medium text-link hover:text-link-hover">
+
+      const sections: string[] = [];
+      const showGlossaryFirst = this.shouldPrioritizeGlossary(query, filteredGlossary);
+
+      const glossarySection = this.buildGlossarySection(filteredGlossary, visibleGlossary, showGlossaryAll);
+      const articleSection = this.buildArticleSection(filteredArticles, visibleArticles, showArticlesAll);
+
+      if (showGlossaryFirst) {
+        if (glossarySection) sections.push(glossarySection);
+        if (articleSection) sections.push(articleSection);
+      } else {
+        if (articleSection) sections.push(articleSection);
+        if (glossarySection) sections.push(glossarySection);
+      }
+
+      this.results.innerHTML = sections.join('');
+      this.updateResultCount(filteredGlossary.length + filteredArticles.length);
+      this.attachResultHandlers();
+    }
+
+    updateResultCount(total: number) {
+      if (this.count) {
+        this.count.textContent = `${total} result${total === 1 ? '' : 's'}`;
+      }
+    }
+
+    buildGlossarySection(allResults: any[], visibleResults: any[], showAll: boolean) {
+      if (!visibleResults.length) {
+        return '';
+      }
+
+      const remaining = allResults.length - visibleResults.length;
+      const queryLink = encodeURIComponent(this.lastUserQuery || this.currentQuery);
+
+      return `
+        <section class="search-modal__section">
+          <div class="search-modal__section-heading">
+            <div>
+              <h3 class="search-modal__section-title">Glossary</h3>
+              <p class="search-modal__section-subtitle">${allResults.length} definition${allResults.length === 1 ? '' : 's'}</p>
+            </div>
+            <a href="/glossary?q=${queryLink}" class="search-modal__section-link">
                   View all glossary →
                 </a>
               </div>
               <div class="space-y-2">
-                ${glossary.map(item => `
-                  <a href="/glossary/${item.slug}" class="search-modal__result search-modal__result--glossary">
-                    <h4 class="search-modal__result-title">${this.highlightText(item.term, query)}</h4>
-                    <p class="search-modal__result-body">${this.highlightText(item.snippet || item.definition, query)}</p>
-                  </a>
-                `).join('')}
+            ${visibleResults.map((item) => this.buildGlossaryCard(item, allResults.indexOf(item))).join('')}
               </div>
+          ${allResults.length > MAX_INITIAL_GLOSSARY ? `
+            <div class="search-modal__section-footer">
+              <button
+                type="button"
+                class="search-modal__more-button"
+                data-toggle="glossary"
+              >
+                ${showAll ? 'Show fewer glossary definitions' : `Show ${remaining} more glossary definitions`}
+              </button>
             </div>
-          `;
-        }
-        
-        // Articles section
-        if (articles.length > 0) {
-          html += `
-            <div class="${glossary.length > 0 ? 'mt-6' : ''}">
-              <h3 class="mb-3 text-xs font-semibold uppercase tracking-wide text-text-soft">Articles</h3>
-              <div class="space-y-2">
-                ${articles.map(result => `
-                  <a href="${result.url}" class="search-modal__result search-modal__result--article">
-                    <h4 class="search-modal__result-title">${this.highlightText(result.title, query)}</h4>
-                    <p class="search-modal__result-body">${this.highlightText(result.excerpt, query)}</p>
-                  </a>
-                `).join('')}
-              </div>
-            </div>
-          `;
-        }
-        
-        this.results.innerHTML = html;
+          ` : ''}
+        </section>
+      `;
+    }
+
+    buildArticleSection(allResults: any[], visibleResults: any[], showAll: boolean) {
+      if (!visibleResults.length) {
+        return '';
       }
+
+      const remaining = allResults.length - visibleResults.length;
+      const queryLink = encodeURIComponent(this.lastUserQuery || this.currentQuery);
+
+      return `
+        <section class="search-modal__section">
+          <div class="search-modal__section-heading">
+            <div>
+              <h3 class="search-modal__section-title">Articles</h3>
+              <p class="search-modal__section-subtitle">${allResults.length} article${allResults.length === 1 ? '' : 's'}</p>
+            </div>
+            <a href="/blog?q=${queryLink}" class="search-modal__section-link">
+              View all articles →
+            </a>
+              </div>
+          <div class="space-y-2">
+            ${visibleResults.map((item) => this.buildArticleCard(item, allResults.indexOf(item))).join('')}
+            </div>
+          ${allResults.length > MAX_INITIAL_ARTICLES ? `
+            <div class="search-modal__section-footer">
+              <button
+                type="button"
+                class="search-modal__more-button"
+                data-toggle="articles"
+              >
+                ${showAll ? 'Show fewer articles' : `Show ${remaining} more article${remaining === 1 ? '' : 's'}`}
+              </button>
+            </div>
+          ` : ''}
+        </section>
+      `;
+    }
+
+    buildGlossaryCard(item: any, index: number) {
+      const snippetSource = item.snippet || item.summary || item.definition || '';
+      const snippet = this.highlightText(this.trimSnippet(this.cleanSnippet(snippetSource)), this.currentQuery);
+      const aliases = Array.isArray(item.aliases) ? item.aliases.filter(Boolean) : [];
+      const aliasChips = aliases.slice(0, 3).map((alias: string) => `<span class="search-modal__meta-badge">${alias}</span>`).join('');
+
+      return `
+        <a
+          href="${item.url}"
+          class="search-modal__result search-modal__result--glossary"
+          data-result-type="glossary"
+          data-result-rank="${index + 1}"
+          data-result-category="${item.categoryRaw || ''}"
+        >
+          <div class="search-modal__result-kicker">${item.category || 'Glossary'}</div>
+          <h4 class="search-modal__result-title">${this.highlightText(item.term, this.currentQuery)}</h4>
+          <p class="search-modal__result-body">${snippet}</p>
+          ${aliasChips ? `<div class="search-modal__result-meta">${aliasChips}</div>` : ''}
+        </a>
+      `;
+    }
+
+    buildArticleCard(item: any, index: number) {
+      const snippetSource = item.excerpt || item.summary || item.content || '';
+      const snippet = this.highlightText(this.trimSnippet(this.cleanSnippet(snippetSource)), this.currentQuery);
+      const metaParts: string[] = [];
+      const formattedDate = this.formatDate(item.publishedAt || null);
+      if (formattedDate) {
+        metaParts.push(formattedDate);
+      }
+      const readingTimeLabel = this.formatReadingTime(item.readingTime);
+      if (readingTimeLabel) {
+        metaParts.push(readingTimeLabel);
+      }
+
+      const tags = (Array.isArray(item.tags) ? item.tags : []).slice(0, 2);
+
+      return `
+        <a
+          href="${item.url}"
+          class="search-modal__result search-modal__result--article"
+          data-result-type="article"
+          data-result-rank="${index + 1}"
+          data-result-category="${item.categoryRaw || ''}"
+        >
+          <div class="search-modal__result-kicker">${item.category || 'Article'}</div>
+          <h4 class="search-modal__result-title">${this.highlightText(item.title, this.currentQuery)}</h4>
+          ${metaParts.length || tags.length ? `
+            <div class="search-modal__result-meta">
+              ${metaParts.length ? `<span>${metaParts.join(' • ')}</span>` : ''}
+              ${tags.length ? `<span class="search-modal__meta-badge">${tags.join(' • ')}</span>` : ''}
+            </div>
+          ` : ''}
+          <p class="search-modal__result-body">${snippet}</p>
+        </a>
+      `;
+    }
+
+    trimSnippet(text: string, limit = 220) {
+      if (!text) return '';
+      if (text.length <= limit) return text;
+      const truncated = text.slice(0, limit);
+      const lastSpace = truncated.lastIndexOf(' ');
+      const safeSlice = lastSpace > limit * 0.6 ? truncated.slice(0, lastSpace) : truncated;
+      return `${safeSlice.trim()}…`;
+    }
+
+    cleanSnippet(text: string) {
+      if (!text) return '';
+      return text
+        .replace(/\s+/g, ' ')
+        .replace(/\b([A-Za-z0-9]+)\b(?:\s+\1\b){1,}/gi, '$1')
+        .trim();
     }
     
     highlightText(text: string, query: string) {
       if (!query) return text;
-      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      const tokens = this.getHighlightTokens(query);
+      if (!tokens.length) {
+        return text;
+      }
+      const pattern = tokens.map((token) => this.escapeRegExp(token)).join('|');
+      const regex = new RegExp(`(${pattern})`, 'gi');
       return text.replace(regex, '<mark class="rounded bg-brand-soft px-1 text-text-main">$1</mark>');
+    }
+
+    getHighlightTokens(query: string) {
+      return Array.from(new Set(
+        query
+          .split(/\s+/)
+          .map((token) => token.trim())
+          .filter(Boolean)
+      )).slice(0, 6);
+    }
+
+    escapeRegExp(value: string) {
+      return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    attachResultHandlers() {
+      if (!this.results) {
+        return;
+      }
+
+      this.results.querySelectorAll<HTMLButtonElement>('[data-toggle]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const target = button.dataset.toggle === 'glossary' ? 'glossary' : 'articles';
+          this.handleMoreToggle(target);
+        });
+      });
+
+      this.resultAnchors = Array.from(this.results.querySelectorAll<HTMLAnchorElement>('a.search-modal__result'));
+      this.focusedResultIndex = -1;
+
+      this.resultAnchors.forEach((link, index) => {
+        link.addEventListener('click', (event) => this.handleResultClick(event, index));
+        link.addEventListener('mouseenter', () => this.setFocusedResultIndex(index, false));
+        link.addEventListener('focus', () => this.setFocusedResultIndex(index, false));
+      });
+    }
+
+    handleMoreToggle(target: 'glossary' | 'articles') {
+      if (target === 'glossary') {
+        this.showAllGlossary = !this.showAllGlossary;
+      } else {
+        this.showAllArticles = !this.showAllArticles;
+      }
+      this.renderResults();
+      this.emitAnalyticsEvent('soranauts:search-toggle', {
+        target,
+        state: target === 'glossary' ? (this.showAllGlossary ? 'expanded' : 'collapsed') : (this.showAllArticles ? 'expanded' : 'collapsed'),
+        query: this.lastUserQuery,
+      });
+    }
+
+    handleTypeFilterChange(type: 'all' | 'glossary' | 'articles') {
+      if (this.activeFilters.type === type) {
+        return;
+      }
+      this.activeFilters.type = type;
+      if (type !== 'glossary') {
+        this.activeFilters.glossaryCategory = 'all';
+        this.showAllGlossary = false;
+      }
+      if (type !== 'articles') {
+        this.activeFilters.articleCategory = 'all';
+        this.showAllArticles = false;
+      }
+      this.renderTypeFilters(this.getCurrentCounts());
+      this.renderCategoryFilters();
+      this.renderResults();
+      this.emitAnalyticsEvent('soranauts:search-filter', {
+        filter: 'type',
+        value: type,
+        query: this.lastUserQuery,
+      });
+    }
+
+    handleCategoryFilterChange(value: string) {
+      if (this.activeFilters.type === 'glossary') {
+        this.activeFilters.glossaryCategory = value === 'all' ? 'all' : value;
+        this.showAllGlossary = false;
+      } else if (this.activeFilters.type === 'articles') {
+        this.activeFilters.articleCategory = value === 'all' ? 'all' : value;
+        this.showAllArticles = false;
+      }
+      this.renderCategoryFilters();
+      this.renderResults();
+      this.emitAnalyticsEvent('soranauts:search-filter', {
+        filter: 'category',
+        value,
+        type: this.activeFilters.type,
+        query: this.lastUserQuery,
+      });
+    }
+
+    setFocusedResultIndex(index: number, shouldFocus = true) {
+      if (index < 0 || index >= this.resultAnchors.length) {
+        this.focusedResultIndex = -1;
+        this.updateResultFocus(false);
+        return;
+      }
+      this.focusedResultIndex = index;
+      this.updateResultFocus(shouldFocus);
+    }
+
+    updateResultFocus(shouldFocus = true) {
+      this.resultAnchors.forEach((link, idx) => {
+        if (idx === this.focusedResultIndex) {
+          link.classList.add('search-modal__result--active');
+          if (shouldFocus) {
+            link.focus({ preventScroll: true });
+          }
+        } else {
+          link.classList.remove('search-modal__result--active');
+        }
+      });
+    }
+
+    handleResultClick(event: Event, index: number) {
+      const link = event.currentTarget as HTMLAnchorElement;
+      this.setFocusedResultIndex(index, false);
+      this.emitAnalyticsEvent('soranauts:search-result-click', {
+        query: this.lastUserQuery,
+        url: link.getAttribute('href'),
+        rank: Number(link.dataset.resultRank) || index + 1,
+        type: link.dataset.resultType || 'unknown',
+        category: link.dataset.resultCategory || null,
+      });
+    }
+
+    handleKeyboardNavigation(event: KeyboardEvent) {
+      if (!this.resultAnchors.length) {
+        return;
+      }
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        const nextIndex = (this.focusedResultIndex + 1 + this.resultAnchors.length) % this.resultAnchors.length;
+        this.setFocusedResultIndex(nextIndex);
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        const prevIndex = (this.focusedResultIndex - 1 + this.resultAnchors.length) % this.resultAnchors.length;
+        this.setFocusedResultIndex(prevIndex);
+      } else if (event.key === 'Enter' && this.focusedResultIndex >= 0) {
+        event.preventDefault();
+        this.resultAnchors[this.focusedResultIndex].click();
+      }
+    }
+
+    parseTags(raw: any) {
+      if (!raw) return [];
+      if (Array.isArray(raw)) {
+        return raw.map((tag) => String(tag)).filter(Boolean);
+      }
+      if (typeof raw === 'string') {
+        return raw
+          .split(',')
+          .map((tag) => tag.trim())
+          .filter(Boolean);
+      }
+      return [];
+    }
+
+    normalizeReadingTime(value: any) {
+      if (value === null || value === undefined) {
+        return null;
+      }
+      const minutes = Number(value);
+      if (Number.isNaN(minutes) || minutes <= 0) {
+        return null;
+      }
+      return Math.max(1, Math.round(minutes));
+    }
+
+    formatReadingTime(minutes: number | null) {
+      if (!minutes) {
+        return null;
+      }
+      return `${minutes} min read`;
+    }
+
+    formatDate(value: string | null) {
+      if (!value) {
+        return null;
+      }
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) {
+        return null;
+      }
+      try {
+        return this.dateFormatter.format(date);
+      } catch (error) {
+        return date.toISOString().split('T')[0];
+      }
+    }
+
+    formatCategoryLabel(value: string) {
+      if (!value) return 'General';
+      const normalized = value.toLowerCase();
+      if (CATEGORY_LABEL_OVERRIDES[normalized]) {
+        return CATEGORY_LABEL_OVERRIDES[normalized];
+      }
+      return value
+        .replace(/[-_]/g, ' ')
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+    }
+
+    expandQueryWithSynonyms(query: string) {
+      const tokens = query.split(/\s+/).filter(Boolean);
+      const expansions = new Set<string>();
+      tokens.forEach((token) => {
+        expansions.add(token);
+        const synonyms = SYNONYM_MAP[token.toLowerCase()];
+        synonyms?.forEach((syn) => expansions.add(syn));
+      });
+      return Array.from(expansions).join(' ');
+    }
+
+    emitAnalyticsEvent(name: string, detail: Record<string, unknown>) {
+      try {
+        document.dispatchEvent(new CustomEvent(name, { detail }));
+        if (typeof window !== 'undefined' && (window as any).posthog?.capture) {
+          (window as any).posthog.capture(name, detail);
+        }
+      } catch (error) {
+        console.debug('Analytics event skipped', error);
+      }
     }
     
     shouldPrioritizeGlossary(query: string, glossaryResults: any[]) {

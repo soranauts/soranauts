@@ -19,6 +19,7 @@ The Soranauts changelog tracks every deploy touching design, documentation, auto
 - **Knowledge base hardening** — Nightly ingestion, provenance checkpoints, and SARIF-backed QA keep 1,000+ documents verifiable (`dbbe542`, `4fa31f8`, `accd248`).
 - **Glossary 2.0** — 130+ definitions, taxonomy-driven relations, hover cards, and Telegram-friendly previews make SORA terminology approachable (`f7ed77e`, `155efaa`, `b26e3c6`, `0336296`, `432e2c8`, `bb0b5be`).
 - **Unified search** — Pagefind-only search, clickable glossary cards, and glossary auto-linking deliver instant answers without external services (`a86edc1`, `a41dc2c`, `cc7bfd9`).
+- **Search modal UX overhaul** — Added glossary/article chips, metadata-rich cards, synonym expansion, keyboard navigation, and analytics instrumentation to the `/` command palette (`f51ea63`, `1b8e0b4`, `40d3cc2`).
 
 ## Knowledge Base & Content Automation
 
@@ -38,6 +39,7 @@ The Soranauts changelog tracks every deploy touching design, documentation, auto
 - Sitemaps, canonical enforcement, and direct-path redirects ensure every article is reachable by users and bots (`9c2b579`, `c8a0aa8`, `914ea99`, `6f30dd3`).
 - Related Articles and improvements to nav hierarchy boost serendipitous discovery (`011aae7`, `3e7e20b`).
 - Glossary search assets now preload safely even during static builds, preventing empty states when Pagefind hasn’t warmed yet (`bb0b5be`, `c941393`).
+- Search overlay now supports glossary/article filters, metadata rollups, synonym highlighting, and analytics pings so we can prioritize future docs (`f51ea63`, `1b8e0b4`).
 
 ## Publishing, SEO & Sharing
 
