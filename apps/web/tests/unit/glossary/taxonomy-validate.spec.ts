@@ -1,6 +1,14 @@
 import { describe, expect, test } from 'vitest';
 
-import tagsData from '../../../src/data/taxonomy-tags.json' assert { type: 'json' };
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const tagsData = JSON.parse(
+  readFileSync(join(__dirname, '../../../src/data/taxonomy-tags.json'), 'utf-8'),
+);
 import { taxonomy } from '../../../src/data/taxonomy';
 
 const normalize = (value: string): string =>

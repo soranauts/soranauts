@@ -1,6 +1,14 @@
 import { describe, expect, test } from 'vitest';
 
-import glossaryData from '../../../public/glossary.json' assert { type: 'json' };
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const glossaryData = JSON.parse(
+  readFileSync(join(__dirname, '../../../public/glossary.json'), 'utf-8'),
+);
 import { createGlossarySearchEngine } from '../../../src/lib/glossary/search';
 
 const engine = createGlossarySearchEngine({

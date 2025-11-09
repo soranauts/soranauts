@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -8,6 +9,7 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import partytown from '@astrojs/partytown';
+import vercel from '@astrojs/vercel';
 import icon from 'astro-icon';
 import tasks from './src/utils/tasks';
 
@@ -20,7 +22,8 @@ const glossaryAutoLinkPlugin = await loadGlossaryAutoLinkPlugin();
 console.log('🔗 Plugin loaded successfully in config');
 
 import { ANALYTICS, SITE } from './src/utils/config.ts';
-import redirectsData from './src/data/redirects.glossary.json' with { type: 'json' };
+const redirectsJsonPath = path.join(path.dirname(fileURLToPath(import.meta.url)), './src/data/redirects.glossary.json');
+const redirectsData = JSON.parse(fs.readFileSync(redirectsJsonPath, 'utf-8'));
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -42,7 +45,11 @@ export default defineConfig({
 
   redirects: generatedRedirects,
 
-  output: 'static',
+  output: 'server',
+  prerender: {
+    default: true,
+  },
+  adapter: vercel(),
   legacy: {
     collections: true
   },
