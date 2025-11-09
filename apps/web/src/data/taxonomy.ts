@@ -501,12 +501,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkaswap Exchange",
-        "url": "https://polkaswap.io"
-      },
-      {
         "label": "Polkaswap Wiki",
         "url": "https://wiki.sora.org/polkaswap.html"
+      },
+      {
+        "label": "Polkaswap Exchange",
+        "url": "https://polkaswap.io"
       }
     ],
     "priority": 80,
@@ -565,16 +565,16 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "TONSWAP Website",
-        "url": "https://tonswap.org/"
+        "label": "TONSWAP FAQ",
+        "url": "https://tonswap.org/faq"
       },
       {
         "label": "TONSWAP Roadmap",
         "url": "https://tonswap.org/roadmap"
       },
       {
-        "label": "TONSWAP FAQ",
-        "url": "https://tonswap.org/faq"
+        "label": "TONSWAP Website",
+        "url": "https://tonswap.org/"
       }
     ],
     "priority": 78,
@@ -828,16 +828,16 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "CBDC Development in Asia-Pacific",
-        "url": "https://www.japanpolicyforum.jp/economy/pt2024041523151814191.html"
+        "label": "Palau Digital Bonds",
+        "url": "https://soramitsu.co.jp/palau-digital-bonds"
       },
       {
         "label": "Bakong White Paper",
         "url": "https://bakong.nbc.gov.kh/download/NBC_BAKONG_White_Paper.pdf"
       },
       {
-        "label": "Palau Digital Bonds",
-        "url": "https://soramitsu.co.jp/palau-digital-bonds"
+        "label": "CBDC Development in Asia-Pacific",
+        "url": "https://www.japanpolicyforum.jp/economy/pt2024041523151814191.html"
       }
     ],
     "priority": 0,
@@ -2514,8 +2514,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "TS",
     "type": "term",
     "category": "token",
-    "summary": "The native token of TONSWAP, a decentralized exchange and launchpad built on The Open Network (TON) blockchain. TS powers platform governance, liquidity incentives, and transact…",
-    "definition": "The native token of TONSWAP, a decentralized exchange and launchpad built on The Open Network (TON) blockchain. TS powers platform governance, liquidity incentives, and transaction fee models. A key feature is that 10% of all TONSWAP trading fees are automatically allocated through integrated smart-contract logic to buy back and burn XOR tokens, creating sustained on-chain demand and reducing XOR circulating supply. This mechanism aligns TON ecosystem activity with the SORA economy by turning trading volume into a recurring XOR sink, benefiting both TON and SORA ecosystems.",
+    "summary": "The platform token for TONSWAP, a decentralized exchange and launchpad on The Open Network (TON).",
+    "definition": "TS grants governance rights and distributes incentives on TONSWAP, the TON-based DEX that integrates with SORA liquidity programs. Holders can participate in fee distribution and vote on protocol upgrades that affect listings and incentive schedules.",
     "aliases": [
       "TS"
     ],
@@ -2552,16 +2552,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "TONSWAP Website",
+        "label": "TONSWAP",
         "url": "https://tonswap.org/"
       },
       {
-        "label": "TONSWAP Roadmap",
+        "label": "TONSWAP Documentation",
         "url": "https://tonswap.org/roadmap"
-      },
-      {
-        "label": "TONSWAP FAQ",
-        "url": "https://tonswap.org/faq"
       }
     ],
     "priority": 0,
@@ -3115,12 +3111,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Blockchain Technology",
-        "url": "https://en.wikipedia.org/wiki/Blockchain"
-      },
-      {
         "label": "Hyperledger Iroha",
         "url": "https://soramitsu.co.jp/iroha"
+      },
+      {
+        "label": "Blockchain Technology",
+        "url": "https://en.wikipedia.org/wiki/Blockchain"
       }
     ],
     "priority": 0,
@@ -3176,9 +3172,25 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "The rules, infrastructure, and institutions that govern how money is created, distributed, and used. SORA aims to build a supranational monetary system that replaces legacy intermediaries with algorithmic policy enforced by the token bonding curve.",
     "definition": "Monetary systems define how currency is issued, how value flows through an economy, and how stability is maintained. The SORA network applies a supranational monetary design in which XOR supply, lending, and spending are coordinated by on-chain governance and the token bonding curve instead of central banks, enabling borderless value exchange.",
-    "aliases": ["Monetary Systems", "monetary system", "Monetary System"],
-    "relatedTags": ["token bonding curve", "redenomination", "economic governance", "elastic supply", "price stability"],
-    "seeAlso": ["Token Bonding Curve", "Redenomination", "Elastic Supply", "Economic Governance", "Price Stability"],
+    "aliases": [
+      "Monetary Systems",
+      "monetary system",
+      "Monetary System"
+    ],
+    "relatedTags": [
+      "token bonding curve",
+      "redenomination",
+      "economic governance",
+      "elastic supply",
+      "price stability"
+    ],
+    "seeAlso": [
+      "Token Bonding Curve",
+      "Redenomination",
+      "Elastic Supply",
+      "Economic Governance",
+      "Price Stability"
+    ],
     "links": [
       {
         "label": "SORA Economic Vision",
@@ -3195,9 +3207,23 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "An initiative in the SORA roadmap to migrate legacy assets into a simplified portfolio of utility, reward, and stable tokens that align with the SORA v3 economic model.",
     "definition": "Token repackaging consolidates historical SORA and Polkaswap assets into a streamlined set of instruments—XOR for settlement, VAL for validator rewards, PSWAP for liquidity incentives, and new stable instruments such as TBCD. The program retires illiquid or redundant tokens, migrates balances, and funds ecosystem development through governance-approved conversions.",
-    "aliases": ["Token Repackaging"],
-    "relatedTags": ["redenomination", "tokenomics", "XOR", "PSWAP", "VAL"],
-    "seeAlso": ["Redenomination", "Tokenomics", "XOR", "PSWAP", "VAL"],
+    "aliases": [
+      "Token Repackaging"
+    ],
+    "relatedTags": [
+      "redenomination",
+      "tokenomics",
+      "XOR",
+      "PSWAP",
+      "VAL"
+    ],
+    "seeAlso": [
+      "Redenomination",
+      "Tokenomics",
+      "XOR",
+      "PSWAP",
+      "VAL"
+    ],
     "links": [
       {
         "label": "SORA Token Repackaging Brief",
@@ -3214,9 +3240,21 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "The process of adjusting token denominations without changing total value. SORA redenominated XOR in 2020 to improve usability and align token supply with long-term monetary policy.",
     "definition": "Redenomination changes the nominal unit of account by splitting or combining circulating supply while preserving proportional ownership. SORA implemented a 1:100 XOR redenomination coordinated through on-chain governance to simplify pricing, rebalance treasury reserves, and prepare for the token bonding curve monetary system.",
-    "aliases": ["Redenomination"],
-    "relatedTags": ["monetary systems", "token repackaging", "elastic supply", "tokenomics"],
-    "seeAlso": ["Monetary Systems", "Token Repackaging", "Elastic Supply", "Tokenomics"],
+    "aliases": [
+      "Redenomination"
+    ],
+    "relatedTags": [
+      "monetary systems",
+      "token repackaging",
+      "elastic supply",
+      "tokenomics"
+    ],
+    "seeAlso": [
+      "Monetary Systems",
+      "Token Repackaging",
+      "Elastic Supply",
+      "Tokenomics"
+    ],
     "links": [
       {
         "label": "Understanding the XOR Token Supply",
@@ -3233,9 +3271,23 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "The Central Bank of Solomon Islands' digital currency pilot developed by SORAMITSU. Bokolo Cash demonstrates how SORA technology powers retail CBDCs with mobile-first payments.",
     "definition": "Bokolo Cash is a CBDC project launched by the Central Bank of Solomon Islands and SORAMITSU. It uses SORA technology to deliver secure wallets, point-of-sale integrations, and compliance workflows that make digital currency available to citizens and merchants without traditional banking infrastructure.",
-    "aliases": ["Bokolo Cash"],
-    "relatedTags": ["solomon islands", "cbdc", "mobile payments", "qr payments", "soramitsu"],
-    "seeAlso": ["Solomon Islands", "CBDC", "Mobile Payments", "QR Payments", "SORAMITSU"],
+    "aliases": [
+      "Bokolo Cash"
+    ],
+    "relatedTags": [
+      "solomon islands",
+      "cbdc",
+      "mobile payments",
+      "qr payments",
+      "soramitsu"
+    ],
+    "seeAlso": [
+      "Solomon Islands",
+      "CBDC",
+      "Mobile Payments",
+      "QR Payments",
+      "SORAMITSU"
+    ],
     "links": [
       {
         "label": "Soramitsu CBDC Pilot",
@@ -3252,9 +3304,23 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "A Pacific Island nation partnering with SORAMITSU to pilot Bokolo Cash and explore SORA-powered financial infrastructure.",
     "definition": "The Solomon Islands collaborate with SORAMITSU on Bokolo Cash and broader digital financial services. The partnership showcases how SORA technology can deliver CBDCs, merchant tools, and cross-border remittances for emerging markets with limited legacy banking infrastructure.",
-    "aliases": ["Solomon Islands"],
-    "relatedTags": ["bokolo cash", "cbdc", "mobile payments", "financial inclusion", "soramitsu"],
-    "seeAlso": ["Bokolo Cash", "CBDC", "Mobile Payments", "Financial Inclusion", "SORAMITSU"],
+    "aliases": [
+      "Solomon Islands"
+    ],
+    "relatedTags": [
+      "bokolo cash",
+      "cbdc",
+      "mobile payments",
+      "financial inclusion",
+      "soramitsu"
+    ],
+    "seeAlso": [
+      "Bokolo Cash",
+      "CBDC",
+      "Mobile Payments",
+      "Financial Inclusion",
+      "SORAMITSU"
+    ],
     "links": [
       {
         "label": "Solomon Islands CBDC Overview",
@@ -3271,9 +3337,23 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "defi",
     "summary": "Transactions initiated from smartphones or tablets using NFC, QR codes, or in-app wallets. SORA Card and Bokolo Cash rely on mobile-first experiences to extend financial access.",
     "definition": "Mobile payments enable users to initiate and accept transactions directly from mobile devices. In the SORA ecosystem, mobile payments power SORA Card spending, Bokolo Cash CBDC transfers, and retail experiences that do not require traditional point-of-sale terminals.",
-    "aliases": ["Mobile Payments"],
-    "relatedTags": ["sora card", "bokolo cash", "qr payments", "financial inclusion", "digital currency"],
-    "seeAlso": ["SORA Card", "Bokolo Cash", "QR Payments", "Financial Inclusion", "Digital Currency"],
+    "aliases": [
+      "Mobile Payments"
+    ],
+    "relatedTags": [
+      "sora card",
+      "bokolo cash",
+      "qr payments",
+      "financial inclusion",
+      "digital currency"
+    ],
+    "seeAlso": [
+      "SORA Card",
+      "Bokolo Cash",
+      "QR Payments",
+      "Financial Inclusion",
+      "Digital Currency"
+    ],
     "links": [
       {
         "label": "SORA Card Overview",
@@ -3290,9 +3370,22 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "defi",
     "summary": "Payments completed by scanning a Quick Response (QR) code. QR flows are widely used in SORA Card pilots and CBDC deployments to provide low-cost merchant acceptance.",
     "definition": "QR payments encode payment instructions in a scannable code that can be read by mobile devices. They remove the need for specialized hardware, letting SORA Card users and CBDC pilots like Bokolo Cash settle transactions instantly while retaining on-chain auditability.",
-    "aliases": ["QR Payments", "QR payment"],
-    "relatedTags": ["mobile payments", "sora card", "bokolo cash", "financial inclusion"],
-    "seeAlso": ["Mobile Payments", "SORA Card", "Bokolo Cash", "Financial Inclusion"],
+    "aliases": [
+      "QR Payments",
+      "QR payment"
+    ],
+    "relatedTags": [
+      "mobile payments",
+      "sora card",
+      "bokolo cash",
+      "financial inclusion"
+    ],
+    "seeAlso": [
+      "Mobile Payments",
+      "SORA Card",
+      "Bokolo Cash",
+      "Financial Inclusion"
+    ],
     "links": [
       {
         "label": "SORA Card FAQ",
@@ -3309,9 +3402,21 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "The process of issuing blockchain-based tokens that represent ownership of real-world or digital assets. SORA leverages tokenization to bring commodities, currencies, and projects on-chain.",
     "definition": "Asset tokenization converts claims on physical or financial assets into programmable tokens. In SORA, tokenization is used to represent real-world assets, raise capital for new ventures, and create liquidity by listing these tokens on Polkaswap or other DeFi applications.",
-    "aliases": ["Asset Tokenization"],
-    "relatedTags": ["real-world assets", "tokenization", "chainlink", "defi"],
-    "seeAlso": ["Real-World Assets", "Tokenization", "Chainlink", "DeFi"],
+    "aliases": [
+      "Asset Tokenization"
+    ],
+    "relatedTags": [
+      "real-world assets",
+      "tokenization",
+      "chainlink",
+      "defi"
+    ],
+    "seeAlso": [
+      "Real-World Assets",
+      "Tokenization",
+      "Chainlink",
+      "DeFi"
+    ],
     "links": [
       {
         "label": "Guide to Asset Tokenization",
@@ -3328,9 +3433,23 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "Physical or traditional financial assets represented on-chain, such as commodities, invoices, or government bonds. Tokenizing RWAs expands Polkaswap liquidity and supports SORA's economic initiatives.",
     "definition": "Real-world assets (RWAs) are tangible or regulated assets that become programmable once they are tokenized. SORA uses RWAs to collateralize stable instruments, fund infrastructure projects, and provide transparent reporting to stakeholders.",
-    "aliases": ["Real-World Assets", "RWA", "real world assets"],
-    "relatedTags": ["asset tokenization", "tokenization", "chainlink", "defi"],
-    "seeAlso": ["Asset Tokenization", "Tokenization", "Chainlink", "DeFi"],
+    "aliases": [
+      "Real-World Assets",
+      "RWA",
+      "real world assets"
+    ],
+    "relatedTags": [
+      "asset tokenization",
+      "tokenization",
+      "chainlink",
+      "defi"
+    ],
+    "seeAlso": [
+      "Asset Tokenization",
+      "Tokenization",
+      "Chainlink",
+      "DeFi"
+    ],
     "links": [
       {
         "label": "RWA Opportunities on SORA",
@@ -3347,9 +3466,21 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "technology",
     "summary": "A decentralized oracle network that provides tamper-resistant data feeds and automation services to smart contracts. SORA integrates Chainlink oracles to bridge real-world data for DeFi and RWA products.",
     "definition": "Chainlink delivers cryptographic proofs and reliable data to smart contracts. On SORA, Chainlink price feeds and automation support Polkaswap trading pairs, collateral monitoring for tokenized assets, and cross-chain messaging for enterprise integrations.",
-    "aliases": ["Chainlink"],
-    "relatedTags": ["asset tokenization", "real-world assets", "defi", "oracles"],
-    "seeAlso": ["Asset Tokenization", "Real-World Assets", "DeFi", "Oracles"],
+    "aliases": [
+      "Chainlink"
+    ],
+    "relatedTags": [
+      "asset tokenization",
+      "real-world assets",
+      "defi",
+      "oracles"
+    ],
+    "seeAlso": [
+      "Asset Tokenization",
+      "Real-World Assets",
+      "DeFi",
+      "Oracles"
+    ],
     "links": [
       {
         "label": "Chainlink Official Site",
@@ -3366,9 +3497,21 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "The conversion of rights to an asset into a digital token on a blockchain. Tokenization underpins SORA's strategy of turning real-world economic activity into programmable, composable assets.",
     "definition": "Tokenization abstracts ownership or utility into blockchain-based tokens that can be traded, fractionally owned, or used as collateral. It is a foundational capability for SORA's knowledge base, enabling CBDCs, RWAs, and incentive programs to interoperate within the Polkaswap ecosystem.",
-    "aliases": ["Tokenization"],
-    "relatedTags": ["asset tokenization", "real-world assets", "chainlink", "defi"],
-    "seeAlso": ["Asset Tokenization", "Real-World Assets", "Chainlink", "DeFi"],
+    "aliases": [
+      "Tokenization"
+    ],
+    "relatedTags": [
+      "asset tokenization",
+      "real-world assets",
+      "chainlink",
+      "defi"
+    ],
+    "seeAlso": [
+      "Asset Tokenization",
+      "Real-World Assets",
+      "Chainlink",
+      "DeFi"
+    ],
     "links": [
       {
         "label": "Tokenization Explained",
@@ -3385,9 +3528,21 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "Recurring bull and bear phases observed in cryptocurrency markets. Understanding cycles informs staking, liquidity, and treasury decisions in the SORA ecosystem.",
     "definition": "Crypto market cycles describe periods of expansion and contraction driven by macro events, liquidity, and investor sentiment. SORA tracks these cycles to plan token issuance, liquidity incentives, and treasury diversification so that builders can deploy capital efficiently.",
-    "aliases": ["Crypto Market Cycles"],
-    "relatedTags": ["trading strategy", "market timing", "tokenomics", "defi"],
-    "seeAlso": ["Trading Strategy", "Market Timing", "Tokenomics", "DeFi"],
+    "aliases": [
+      "Crypto Market Cycles"
+    ],
+    "relatedTags": [
+      "trading strategy",
+      "market timing",
+      "tokenomics",
+      "defi"
+    ],
+    "seeAlso": [
+      "Trading Strategy",
+      "Market Timing",
+      "Tokenomics",
+      "DeFi"
+    ],
     "links": [
       {
         "label": "Understanding Crypto Bull Markets",
@@ -3404,9 +3559,21 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "A framework for entering and exiting markets to achieve risk-adjusted returns. Polkaswap traders use strategies to balance liquidity mining, arbitrage, and long-term positioning.",
     "definition": "Trading strategies outline rules for portfolio allocation, order placement, and risk management. In SORA, strategies can combine Polkaswap swaps, liquidity provision, and staking to capture yield while supporting ecosystem liquidity.",
-    "aliases": ["Trading Strategy"],
-    "relatedTags": ["market timing", "crypto market cycles", "liquidity", "defi"],
-    "seeAlso": ["Market Timing", "Crypto Market Cycles", "Liquidity", "DeFi"],
+    "aliases": [
+      "Trading Strategy"
+    ],
+    "relatedTags": [
+      "market timing",
+      "crypto market cycles",
+      "liquidity",
+      "defi"
+    ],
+    "seeAlso": [
+      "Market Timing",
+      "Crypto Market Cycles",
+      "Liquidity",
+      "DeFi"
+    ],
     "links": [
       {
         "label": "Polkaswap Trading Tips",
@@ -3423,9 +3590,21 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "category": "economics",
     "summary": "Deciding when to buy or sell assets based on cycle analysis or signals. Market timing impacts SORA treasury operations and individual liquidity decisions.",
     "definition": "Market timing attempts to anticipate price movements to optimize entry and exit points. SORA's governance and community track macro cycles, on-chain metrics, and liquidity flows to decide when to expand or contract incentives, execute buybacks, or deploy capital.",
-    "aliases": ["Market Timing"],
-    "relatedTags": ["crypto market cycles", "trading strategy", "tokenomics", "treasury"],
-    "seeAlso": ["Crypto Market Cycles", "Trading Strategy", "Tokenomics", "Treasury"],
+    "aliases": [
+      "Market Timing"
+    ],
+    "relatedTags": [
+      "crypto market cycles",
+      "trading strategy",
+      "tokenomics",
+      "treasury"
+    ],
+    "seeAlso": [
+      "Crypto Market Cycles",
+      "Trading Strategy",
+      "Tokenomics",
+      "Treasury"
+    ],
     "links": [
       {
         "label": "Timing the Crypto Market",
@@ -3440,8 +3619,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Dogecoin (DOGE)",
     "type": "term",
     "category": "economics",
-    "summary": "A meme-inspired cryptocurrency that helped popularize community-driven token launches. Soranauts track Dogecoin to compare community culture, volatility, and meme coin mechanics with SORA-native projects.",
-    "definition": "Dogecoin is a proof-of-work cryptocurrency that began as a meme and grew into a large community economy. Within Soranauts coverage, DOGE is analyzed to highlight how meme coins influence trading behavior, liquidity cycles, and cultural adoption—context that informs SORA initiatives like SOSHIBA.",
+    "summary": "A proof-of-work cryptocurrency launched in 2013 as a Litecoin fork, known for its meme origins and community tipping culture.",
+    "definition": "Dogecoin (DOGE) uses the Scrypt proof-of-work algorithm and has an uncapped supply that increases at a fixed rate to reward miners. It began as a meme experiment but today secures payments, tipping, and charity campaigns backed by an active open-source community.",
     "aliases": [
       "Dogecoin",
       "DOGE"
@@ -3460,8 +3639,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Meme Coins vs Traditional Crypto",
-        "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        "label": "Dogecoin Official Site",
+        "url": "https://dogecoin.com/"
+      },
+      {
+        "label": "Dogecoin Core Repository",
+        "url": "https://github.com/dogecoin/dogecoin"
       }
     ],
     "priority": 0,
@@ -3472,8 +3655,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Shiba Inu (SHIB)",
     "type": "term",
     "category": "economics",
-    "summary": "An Ethereum-based meme coin ecosystem that showcases community-led token launches, DeFi spin-offs, and extreme volatility. Soranauts reference SHIB when comparing meme coin strategies to SORA's token design.",
-    "definition": "Shiba Inu is a meme coin and DeFi ecosystem built on Ethereum. Its rapid growth, NFT integrations, and DAO experiments provide lessons for SORA on community incentives, liquidity programs, and messaging. The project is often contrasted with SORA-native initiatives in Soranauts research.",
+    "summary": "An ERC-20 meme token ecosystem launched in 2020 that includes SHIB, governance token BONE, and liquidity token LEASH.",
+    "definition": "Shiba Inu (SHIB) is an Ethereum-based token that fuels a DeFi ecosystem of staking, governance, and NFT applications. Its community-run projects such as ShibaSwap and the Shibarium layer-2 network expand use cases beyond meme culture.",
     "aliases": [
       "Shiba Inu",
       "SHIB"
@@ -3492,8 +3675,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Meme Coins vs Traditional Crypto",
-        "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        "label": "Shiba Inu Portal",
+        "url": "https://www.shibatoken.com/"
+      },
+      {
+        "label": "Shiba Inu Documentation",
+        "url": "https://docs.shibatoken.com/"
       }
     ],
     "priority": 0,
@@ -3504,8 +3691,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Pepe (PEPE)",
     "type": "term",
     "category": "economics",
-    "summary": "A viral meme coin that highlights capital flows chasing internet culture narratives. Soranauts track PEPE to understand speculative cycles impacting Polkaswap liquidity.",
-    "definition": "Pepe is an Ethereum meme coin that surged in 2023, demonstrating how quickly capital moves toward recognizable cultural icons. The Soranauts knowledge base documents PEPE to explain liquidity churn, volatility management, and how SORA can harness culture-driven demand responsibly.",
+    "summary": "An Ethereum meme token released in 2023 that demonstrates how rapidly community narratives can attract liquidity.",
+    "definition": "PEPE is an ERC-20 token themed after the Pepe the Frog meme. It has no formal roadmap or presale and relies on community-led liquidity pools, illustrating the speculative dynamics that influence wider crypto markets.",
     "aliases": [
       "Pepe",
       "PEPE"
@@ -3523,8 +3710,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Meme Coins vs Traditional Crypto",
-        "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        "label": "PEPE Token on Etherscan",
+        "url": "https://etherscan.io/token/0x6982508145454ce325ddbe47a25d4ec3d2311933"
       }
     ],
     "priority": 0,
@@ -3535,8 +3722,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Bonk (BONK)",
     "type": "term",
     "category": "economics",
-    "summary": "A Solana-based meme coin used as a case study for ecosystem marketing, community rewards, and airdrop distribution. Soranauts reference BONK when evaluating incentive design for SORA ecosystem tokens.",
-    "definition": "Bonk is a meme coin native to the Solana network that launched with a large community airdrop. Its rapid integration into wallets, NFT projects, and merchant pilots provides lessons for SORA builders on distribution mechanics and the risks of speculative mania.",
+    "summary": "A Solana-based meme token launched in 2022 that distributed a large airdrop to builders and NFT projects to revive Solana activity.",
+    "definition": "BONK runs on the Solana blockchain and uses token airdrops, liquidity incentives, and NFT partnerships to encourage ecosystem engagement. It highlights how meme assets can accelerate network usage outside of SORA.",
     "aliases": [
       "Bonk",
       "BONK"
@@ -3555,8 +3742,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Meme Coins vs Traditional Crypto",
-        "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        "label": "BONK Overview",
+        "url": "https://bonkcoin.com/"
+      },
+      {
+        "label": "BONK Token on Solscan",
+        "url": "https://solscan.io/token/DezXkwLmNwjX1JdacoZ1DAEYBDH1dY9Y7JqeyK8G1g9w"
       }
     ],
     "priority": 0,
@@ -3567,8 +3758,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Volatility",
     "type": "term",
     "category": "economics",
-    "summary": "The rate at which asset prices fluctuate. Volatility impacts SORA's treasury planning, liquidity incentives, and meme coin risk management.",
-    "definition": "Volatility measures the magnitude of price changes over time. Soranauts coverage explains how volatility affects Polkaswap liquidity, staking yields, and treasury operations. Strategies like dollar-cost averaging, hedging, and adaptive liquidity incentives are discussed to navigate volatile markets.",
+    "summary": "A measure of how widely an asset's price fluctuates over a period of time.",
+    "definition": "Volatility quantifies price dispersion using metrics such as standard deviation or implied volatility from derivatives markets. Higher volatility signals greater uncertainty and risk, influencing position sizing and hedging decisions for SORA participants.",
     "aliases": [
       "Volatility"
     ],
@@ -3586,8 +3777,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Timing the Crypto Market",
-        "url": "https://soranauts.com/timing-the-crypto-market-insights-into-bull-cycles"
+        "label": "Market Volatility Explained",
+        "url": "https://www.investopedia.com/terms/v/volatility.asp"
       }
     ],
     "priority": 0,
@@ -3598,8 +3789,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "SOSHIBA",
     "type": "term",
     "category": "economics",
-    "summary": "A SORA-native meme coin experiment that channels community energy into educational content and liquidity bootstrapping on Polkaswap.",
-    "definition": "SOSHIBA is a community-driven meme coin launched within the SORA ecosystem. It is used to experiment with airdrops, liquidity mining, and social campaigns while promoting financial literacy. Soranauts track SOSHIBA to document best practices for responsible meme coin launches in the SORA community.",
+    "summary": "A community-launched meme token within the SORA ecosystem that experiments with gamified engagement and education.",
+    "definition": "SOSHIBA was introduced to test lightweight incentive campaigns for the SORA community, including airdrops, social quests, and liquidity rewards. It provides a low-stakes environment for exploring meme-driven outreach while keeping treasury resources separate from core network assets.",
     "aliases": [
       "SOSHIBA"
     ],
@@ -3617,7 +3808,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Meme Coins vs Traditional Crypto",
+        "label": "Meme Coins vs. Traditional Crypto",
         "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
       }
     ],
@@ -3629,8 +3820,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Blockchain Culture",
     "type": "term",
     "category": "technology",
-    "summary": "The shared values, memes, and narratives that shape how blockchain communities build products and coordinate capital. Soranauts examine culture to explain adoption patterns in the SORA ecosystem.",
-    "definition": "Blockchain culture encompasses the memes, stories, rituals, and social norms that influence how decentralized communities operate. Understanding culture helps Soranauts forecast user behavior, design community incentives, and translate SORA's mission to new audiences.",
+    "summary": "The shared narratives, rituals, and community norms that influence how blockchain networks grow and govern themselves.",
+    "definition": "Blockchain culture covers memes, language, social coordination, and incentive structures that shape contributor behavior. Understanding culture helps projects design governance, communication, and incentive programs that resonate with their communities.",
     "aliases": [
       "Blockchain Culture"
     ],
@@ -3647,8 +3838,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Meme Coins vs Traditional Crypto",
-        "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        "label": "Harvard Business Review – What Blockchain Can Do",
+        "url": "https://hbr.org/2017/01/the-truth-about-blockchain"
       }
     ],
     "priority": 0,
@@ -3659,8 +3850,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Blockchain Architecture",
     "type": "term",
     "category": "technology",
-    "summary": "The technical structure that defines how blockchain components interact—consensus, networking, execution, and data availability. Soranauts evaluate architecture choices when comparing Substrate and Hyperledger Iroha.",
-    "definition": "Blockchain architecture describes how a network is engineered, including runtime modules, consensus layers, networking protocols, and upgrade paths. Soranauts analyze architectures like Polkadot's heterogeneous shards and SORA v3's Hyperledger Iroha stack to understand scalability, security, and product roadmap implications.",
+    "summary": "The design of blockchain components, including consensus, networking, data storage, and execution layers.",
+    "definition": "Blockchain architecture defines how nodes reach consensus, manage state, and upgrade over time. Reference models such as Substrate or Hyperledger Iroha separate the runtime, networking, and application layers to support modular upgrades and interoperability.",
     "aliases": [
       "Blockchain Architecture"
     ],
@@ -3680,8 +3871,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot Architecture Guide",
-        "url": "https://soranauts.com/polkadot-architecture-guide"
+        "label": "Hyperledger Iroha Docs",
+        "url": "https://docs.iroha.tech/"
+      },
+      {
+        "label": "Polkadot Technology Overview",
+        "url": "https://polkadot.network/technology/"
       }
     ],
     "priority": 0,
@@ -3692,8 +3887,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Kusama",
     "type": "term",
     "category": "network",
-    "summary": "Polkadot's canary network used for rapid experimentation with parachains, governance upgrades, and economic features. Kusama informed SORA's early integrations and governance strategy.",
-    "definition": "Kusama is a scalable, multi-chain network that mirrors Polkadot but moves at a faster pace with looser governance parameters. Soranauts documentation references Kusama to explain historical SORA parachain slots, bridge experiments, and governance learnings that feed into SORA v3.",
+    "summary": "A canary network for Polkadot that runs the same codebase with faster governance and higher risk tolerance.",
+    "definition": "Kusama provides a live environment for testing upgrades, parachain deployments, and economic experiments before they reach Polkadot. It offers shared security, staking, and governance mechanisms that closely mirror the Polkadot relay chain.",
     "aliases": [
       "Kusama"
     ],
@@ -3713,8 +3908,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot & Kusama Parachains",
-        "url": "https://soranauts.com/polkadot-kusama-parachains"
+        "label": "Kusama Network",
+        "url": "https://kusama.network/"
+      },
+      {
+        "label": "Polkadot Wiki – Kusama",
+        "url": "https://wiki.polkadot.network/docs/learn-kusama"
       }
     ],
     "priority": 0,
@@ -3725,8 +3924,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "XCMP",
     "type": "term",
     "category": "technology",
-    "summary": "Cross-Chain Message Passing (XCMP) is the protocol Polkadot uses for parachains to talk to each other. It underpins interoperability strategies relevant to SORA bridges.",
-    "definition": "XCMP lets Polkadot parachains send messages and assets without going through the relay chain, reducing latency and fees. Soranauts cover XCMP to explain how SORA integrates with Polkadot-era infrastructure and how future Hyperledger Iroha bridges will maintain interoperability.",
+    "summary": "Polkadot's Cross-Chain Message Passing protocol for parachain-to-parachain communication.",
+    "definition": "XCMP allows parachains to exchange messages directly while relying on the relay chain for ordering and security. It underpins trust-minimized asset transfers and remote calls, enabling SORA-aligned parachains to interoperate with the wider Polkadot ecosystem.",
     "aliases": [
       "XCMP"
     ],
@@ -3744,8 +3943,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "What Are Polkadot Parachains?",
-        "url": "https://soranauts.com/what-are-polkadot-parachains-scalability-shared-security-and-xcm"
+        "label": "Polkadot Wiki – XCMP",
+        "url": "https://wiki.polkadot.network/docs/learn-xcmp"
       }
     ],
     "priority": 0,
@@ -3756,8 +3955,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Coretime",
     "type": "term",
     "category": "technology",
-    "summary": "Coretime represents the compute resource that Polkadot sells to parachains. Tracking coretime helps Soranauts explain how SORA evaluates slot access and future interoperability.",
-    "definition": "Polkadot commoditizes parachain execution capacity as coretime. Projects can purchase coretime in bulk or on-demand to run their logic. Soranauts analyze coretime markets to understand how SORA and partner parachains plan deployment schedules and budgeting.",
+    "summary": "The compute resource that Polkadot sells to projects so they can execute workloads on relay-chain validators.",
+    "definition": "Coretime packages validator execution capacity into timeslices that projects buy via auctions or agile markets. Managing coretime commitments helps parachains plan throughput needs, budget DOT expenditures, and coordinate upgrades.",
     "aliases": [
       "Coretime"
     ],
@@ -3775,8 +3974,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot & Kusama Parachains",
-        "url": "https://soranauts.com/polkadot-kusama-parachains"
+        "label": "Polkadot Wiki – Coretime",
+        "url": "https://wiki.polkadot.network/docs/learn-coretime"
       }
     ],
     "priority": 0,
@@ -3787,8 +3986,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Asynchronous Backing",
     "type": "term",
     "category": "technology",
-    "summary": "A Polkadot upgrade that increases parachain throughput by decoupling validation stages. Soranauts track the feature to gauge scalability for SORA integrations.",
-    "definition": "Asynchronous backing allows validators to process parachain blocks in overlapping stages, dramatically boosting TPS and reducing latency. The Soranauts knowledge base explains how this upgrade impacts SORA-linked parachains and future Hyperledger Iroha bridges.",
+    "summary": "A Polkadot upgrade that lets parachains submit work in parallel stages to raise throughput and lower latency.",
+    "definition": "Asynchronous backing separates block production, validation, and availability into overlapping phases. Validators can approve availability for one block while producing the next, increasing parachain capacity without compromising security.",
     "aliases": [
       "Asynchronous Backing"
     ],
@@ -3806,8 +4005,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot Architecture Guide",
-        "url": "https://soranauts.com/polkadot-architecture-guide"
+        "label": "Polkadot Wiki – Asynchronous Backing",
+        "url": "https://wiki.polkadot.network/docs/learn-async-backing"
       }
     ],
     "priority": 0,
@@ -3818,8 +4017,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Parachain Auctions",
     "type": "term",
     "category": "governance",
-    "summary": "Parachain slot auctions let projects compete for coretime on Polkadot by bonding DOT or KSM. Soranauts document auctions to explain how SORA secured historical parachain access.",
-    "definition": "Auctions are Candle-style events where DOT or KSM is bonded to win parachain slots. Soranauts track auction results, strategies, and crowdloan participation to illustrate the economics of connecting SORA to Polkadot and Kusama.",
+    "summary": "Candle-style events where Polkadot and Kusama projects bond DOT or KSM to lease parachain slots.",
+    "definition": "Parachain slot auctions determine which projects gain access to shared security for a fixed lease period. Bids accumulate until a randomized ending block is selected, encouraging honest bidding and staking participation through crowdloans.",
     "aliases": [
       "Parachain Auctions",
       "auctions"
@@ -3838,8 +4037,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot & Kusama Parachains",
-        "url": "https://soranauts.com/polkadot-kusama-parachains"
+        "label": "Polkadot Wiki – Parachain Auctions",
+        "url": "https://wiki.polkadot.network/docs/learn-auction"
       }
     ],
     "priority": 0,
@@ -3850,8 +4049,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Crowdloans",
     "type": "term",
     "category": "governance",
-    "summary": "Crowdloans allow communities to bond DOT or KSM to support parachain auction bids in exchange for rewards. Soranauts reference crowdloans when detailing SORA's historical Polkadot participation.",
-    "definition": "Crowdloans pool tokens from supporters to back a project's parachain auction bid. Contributors receive their stake back after the lease plus rewards from the project. Soranauts document crowdloan strategies as part of the SORA ecosystem governance narrative.",
+    "summary": "Campaigns that let token holders bond assets to support a project's parachain auction bid.",
+    "definition": "Crowdloans escrow contributor DOT or KSM on the relay chain, returning the stake after the lease while projects distribute rewards separately. They democratize access to parachain slots and align community incentives with network growth.",
     "aliases": [
       "Crowdloans"
     ],
@@ -3869,8 +4068,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot & Kusama Parachains",
-        "url": "https://soranauts.com/polkadot-kusama-parachains"
+        "label": "Polkadot Wiki – Crowdloans",
+        "url": "https://wiki.polkadot.network/docs/learn-crowdloan"
       }
     ],
     "priority": 0,
@@ -3881,8 +4080,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Parathreads",
     "type": "term",
     "category": "technology",
-    "summary": "Pay-as-you-go parachain slots on Polkadot and Kusama. Parathreads offer flexible access to coretime before committing to a full lease, relevant for SORA partners testing integrations.",
-    "definition": "Parathreads share coretime on demand and pay per block. They allow projects to test workloads or run small services without winning an auction. Soranauts coverage notes parathreads as a stepping stone for SORA-aligned builders exploring Polkadot connectivity.",
+    "summary": "On-demand parachain slots that pay for execution per block instead of committing to a full lease.",
+    "definition": "Parathreads let projects share coretime in a pay-as-you-go model, ideal for lower throughput applications or pilots. They can later transition into full parachains once usage justifies a dedicated lease.",
     "aliases": [
       "Parathreads"
     ],
@@ -3900,8 +4099,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot & Kusama Parachains",
-        "url": "https://soranauts.com/polkadot-kusama-parachains"
+        "label": "Polkadot Wiki – Parathreads",
+        "url": "https://wiki.polkadot.network/docs/learn-parathreads"
       }
     ],
     "priority": 0,
@@ -3912,8 +4111,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Forkless Upgrades",
     "type": "term",
     "category": "technology",
-    "summary": "Polkadot and Kusama support runtime upgrades without hard forks. Soranauts highlight this capability when discussing SORA governance and tooling expectations.",
-    "definition": "Forkless upgrades allow Polkadot runtime changes to be enacted via governance without network disruption. This capability inspired SORA governance improvements and informs expectations for Hyperledger Iroha upgrades.",
+    "summary": "A Polkadot and Kusama feature that lets runtime logic be upgraded without hard forks.",
+    "definition": "Forkless upgrades leverage on-chain governance to authorize new runtime code. Validators automatically adopt the change once approved, minimizing chain splits and ensuring continuous availability for parachains and dApps.",
     "aliases": [
       "Forkless Upgrades"
     ],
@@ -3930,8 +4129,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot & Kusama Parachains",
-        "url": "https://soranauts.com/polkadot-kusama-parachains"
+        "label": "Polkadot Wiki – Upgrades",
+        "url": "https://wiki.polkadot.network/docs/learn-upgrades"
       }
     ],
     "priority": 0,
@@ -3942,8 +4141,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Slot Leases",
     "type": "term",
     "category": "economics",
-    "summary": "Parachain slots are leased for fixed periods (up to 96 weeks on Polkadot). Soranauts track lease structures to analyze SORA deployment costs and timelines.",
-    "definition": "Winning parachain auctions grants lease periods split into contiguous 12-week chunks. Projects must plan renewals or transition strategies before leases end. Soranauts documentation explains the financial planning required for SORA and partner parachains.",
+    "summary": "Fixed-duration access to Polkadot or Kusama validator resources granted after a successful parachain auction.",
+    "definition": "Slot leases are divided into 12-week periods bundled into longer terms (up to 96 weeks on Polkadot). Projects must plan renewal strategies or migrations before the lease expires to maintain uninterrupted service.",
     "aliases": [
       "Slot Leases"
     ],
@@ -3961,8 +4160,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot & Kusama Parachains",
-        "url": "https://soranauts.com/polkadot-kusama-parachains"
+        "label": "Polkadot Wiki – Parachains",
+        "url": "https://wiki.polkadot.network/docs/learn-parachains"
       }
     ],
     "priority": 0,
@@ -3973,8 +4172,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Rollups",
     "type": "term",
     "category": "technology",
-    "summary": "Rollups bundle transactions off-chain before submitting proofs on-chain. Soranauts compare rollups with SORA v3 architecture when discussing scalability approaches.",
-    "definition": "Rollups are a scaling technique where execution happens off-chain, with compressed proofs posted on-chain for security. Soranauts documentation references rollups to evaluate external ecosystems and highlight why SORA focuses on Hyperledger Iroha with deterministic BFT execution.",
+    "summary": "Scaling solutions that execute transactions off-chain and submit proofs or bundles on-chain for security.",
+    "definition": "Rollups batch transactions, compress state transitions, and post validity or fraud proofs to a base layer. They lower fees while retaining trust minimization, complementing approaches like Hyperledger Iroha's deterministic consensus.",
     "aliases": [
       "Rollups"
     ],
@@ -3991,8 +4190,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot Architecture Guide",
-        "url": "https://soranauts.com/polkadot-architecture-guide"
+        "label": "Ethereum.org – Rollups",
+        "url": "https://ethereum.org/en/developers/docs/scaling/#rollups"
       }
     ],
     "priority": 0,
@@ -4003,8 +4202,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Agile Coretime",
     "type": "term",
     "category": "economics",
-    "summary": "A marketplace model where Polkadot sells coretime in flexible chunks, allowing projects to acquire execution capacity dynamically. Soranauts track agile coretime developments for future SORA interoperability planning.",
-    "definition": "Agile coretime introduces programmatic sales of Polkadot execution resources, complementing auctions and crowdloans. The Soranauts knowledge base monitors this system to advise SORA builders on leasing strategies and cost forecasting.",
+    "summary": "A flexible market where Polkadot sells coretime slices directly through brokered deals instead of fixed auctions.",
+    "definition": "Agile coretime lets projects purchase future execution capacity programmatically, smoothing demand and reducing the need for large upfront bids. It complements auctions and crowdloans by offering shorter-term or incremental commitments.",
     "aliases": [
       "Agile Coretime"
     ],
@@ -4022,8 +4221,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot & Kusama Parachains",
-        "url": "https://soranauts.com/polkadot-kusama-parachains"
+        "label": "Polkadot Wiki – Agile Coretime",
+        "url": "https://wiki.polkadot.network/docs/learn-agile-coretime"
       }
     ],
     "priority": 0,
@@ -4034,8 +4233,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Blockchain Economics",
     "type": "term",
     "category": "economics",
-    "summary": "The study of how blockchain incentives, monetary policy, and governance interact to produce sustainable networks. Soranauts analyze blockchain economics to articulate SORA's supranational design.",
-    "definition": "Blockchain economics covers token supply, demand drivers, incentive alignment, and governance. Soranauts use the discipline to explain SORA's token bonding curve, treasury management, and ecosystem funding, comparing them with broader Web3 experiments.",
+    "summary": "The study of how token supply, incentives, and governance interact to sustain decentralized networks.",
+    "definition": "Blockchain economics analyzes monetary policy, reward distribution, and treasury design to keep participants aligned. Frameworks like the SORA token bonding curve illustrate how supply elasticity and governance controlled reserves stabilize ecosystem growth.",
     "aliases": [
       "Blockchain Economics"
     ],
@@ -4053,8 +4252,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "SORA Blockchain: New World Economic Order",
-        "url": "https://soranauts.com/sora-blockchain-new-world-economic-order"
+        "label": "SORA Tokenomics",
+        "url": "https://wiki.sora.org/tokenomics.html"
       }
     ],
     "priority": 0,
@@ -4095,8 +4294,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "APOLLO Token",
     "type": "term",
     "category": "token",
-    "summary": "A community-issued token that rewards contributors producing research, analytics, and documentation for the Apollo Protocol.",
-    "definition": "The APOLLO token incentivizes community workstreams such as glossary curation, knowledge base ingestion, and Polkaswap analytics. Rewards are distributed for measurable contributions, reinforcing SORA's community-first narrative while funding ecosystem education.",
+    "summary": "A community reward token used by the Apollo Protocol to incentivize research, documentation, and tooling for the SORA ecosystem.",
+    "definition": "The APOLLO token compensates contributors who publish technical research, produce analytics, and maintain documentation that supports SORA builders. Distribution is coordinated by the Apollo Protocol collective based on measurable ecosystem contributions.",
     "aliases": [
       "APOLLO Token",
       "Apollo Token"
@@ -4113,7 +4312,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Apollo Protocol Token Update",
+        "label": "Apollo Protocol Overview",
         "url": "https://soranauts.com/apollo-protocol-sora-network"
       }
     ],
@@ -4154,8 +4353,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Lending",
     "type": "term",
     "category": "defi",
-    "summary": "Providing assets to a protocol or counterparty in exchange for yield or collateral. Lending is central to future Kensetsu money markets on SORA.",
-    "definition": "SORA's roadmap includes credit primitives that allow users to supply assets, earn interest, and bootstrap liquidity for community projects. Lending strategies leverage collateralized vaults, algorithmic stablecoins, and governance-approved risk parameters.",
+    "summary": "Providing assets to a protocol or counterparty in exchange for yield or collateral. In DeFi this is handled by smart contracts that manage collateralized positions.",
+    "definition": "Lending allows participants to supply assets to automated vaults or liquidity pools in return for interest. Kensetsu vaults on SORA formalize this process by locking collateral, applying stability fees, and enforcing liquidation rules through on-chain governance.",
     "aliases": [
       "Lending"
     ],
@@ -4173,8 +4372,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "SORA Money Market Plans",
-        "url": "https://soranauts.com/sora-roadmap-token-repackaging-hub-chain-defi-upgrades"
+        "label": "SORA Wiki – Kensetsu Vaults",
+        "url": "https://wiki.sora.org/kensetsu-vaults.html"
       }
     ],
     "priority": 0,
@@ -4185,8 +4384,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Borrowing",
     "type": "term",
     "category": "defi",
-    "summary": "Taking on debt against posted collateral. Borrowing products planned for SORA will unlock liquidity for builders while maintaining on-chain transparency.",
-    "definition": "Borrowers will be able to pledge XOR, stablecoins, or tokenized assets to access liquidity denominated in Kensetsu stable instruments. Governance defines collateralization ratios and liquidation rules, enabling sustainable credit markets within the SORA economy.",
+    "summary": "Taking on debt against posted collateral using smart contracts that enforce repayment and liquidation rules.",
+    "definition": "Borrowing in DeFi involves locking approved collateral to mint or draw assets, paying stability fees until the position is closed. Kensetsu vaults on SORA apply governance-defined collateral ratios and liquidation procedures to keep the system solvent while providing access to KUSD or other approved assets.",
     "aliases": [
       "Borrowing"
     ],
@@ -4204,8 +4403,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "SORA Money Market Plans",
-        "url": "https://soranauts.com/sora-roadmap-token-repackaging-hub-chain-defi-upgrades"
+        "label": "SORA Wiki – Kensetsu Vaults",
+        "url": "https://wiki.sora.org/kensetsu-vaults.html"
       }
     ],
     "priority": 0,
@@ -4216,8 +4415,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Money Market",
     "type": "term",
     "category": "defi",
-    "summary": "A lending and borrowing marketplace where interest rates adjust based on supply and demand. Kensetsu aims to launch money market vaults tailored to SORA's supranational economy.",
-    "definition": "Money markets aggregate liquidity for collateralized lending, enabling capital-efficient use of XOR, VAL, and stable instruments. Soranauts track Kensetsu's roadmap to explain how money markets will power business financing, community projects, and cross-chain liquidity.",
+    "summary": "A financial marketplace for short-term lending and borrowing backed by collateral and dynamic interest rates.",
+    "definition": "Money markets match liquidity providers with borrowers who post collateral and pay variable yields. In DeFi, smart contracts automate liquidations and rate adjustments—concepts that inform Kensetsu vault design within the SORA ecosystem.",
     "aliases": [
       "Money Market"
     ],
@@ -4235,8 +4434,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Kensetsu Explained",
-        "url": "https://soranauts.com/exploring-sora-kensetsu-polkaswap"
+        "label": "SORA Wiki – Kensetsu Vaults",
+        "url": "https://wiki.sora.org/kensetsu-vaults.html"
+      },
+      {
+        "label": "International Monetary Fund – Money Market",
+        "url": "https://www.imf.org/external/np/exr/glossary/showTerm.asp#80"
       }
     ],
     "priority": 0,
@@ -4247,8 +4450,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Digital Ownership",
     "type": "term",
     "category": "technology",
-    "summary": "The ability to own, transfer, and monetize digital assets through cryptographic proof. NFTs and tokenized media on SORA leverage digital ownership to empower creators.",
-    "definition": "Digital ownership uses blockchain primitives such as NFTs, smart contracts, and provenance tracking to give creators and communities transparent control over digital goods. Soranauts highlight digital ownership in tutorials covering NFTs, tokenized art, and community rewards.",
+    "summary": "The ability to control and transfer digital assets using cryptographic proofs instead of centralized registries.",
+    "definition": "Digital ownership leverages NFTs, decentralized identifiers, and smart contracts to authenticate provenance and rights. It underpins use cases such as tokenized art, rewards, and governance credentials on networks like SORA.",
     "aliases": [
       "Digital Ownership"
     ],
@@ -4264,8 +4467,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Understanding NFTs with SORA",
-        "url": "https://soranauts.com/beginners-guide-to-understanding-nfts"
+        "label": "SORA Wiki – NFTs",
+        "url": "https://wiki.sora.org/nft.html"
       }
     ],
     "priority": 0,
@@ -4276,8 +4479,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Bitcoin (BTC)",
     "type": "term",
     "category": "economics",
-    "summary": "The first decentralized cryptocurrency. Bitcoin's monetary cycles and halving events influence liquidity and sentiment across the entire crypto market, including SORA.",
-    "definition": "Bitcoin introduced scarcity through proof-of-work mining and scheduled supply halvings. Soranauts analyze Bitcoin to contextualize SORA's token bonding curve, treasury diversification, and market narratives that shape Polkaswap liquidity.",
+    "summary": "The first decentralized cryptocurrency, created by Satoshi Nakamoto in 2009 with a capped 21 million supply.",
+    "definition": "Bitcoin combines proof-of-work consensus, public-key cryptography, and halving-based issuance to secure peer-to-peer digital cash. Its monetary policy and liquidity cycles influence broader crypto markets, including assets listed on Polkaswap.",
     "aliases": [
       "Bitcoin",
       "BTC"
@@ -4296,8 +4499,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Bitcoin Market Cycles Explained",
-        "url": "https://soranauts.com/bitcoin-market-cycles-explained"
+        "label": "Bitcoin Whitepaper",
+        "url": "https://bitcoin.org/bitcoin.pdf"
+      },
+      {
+        "label": "Bitcoin.org – How Bitcoin Works",
+        "url": "https://bitcoin.org/en/how-it-works"
       }
     ],
     "priority": 0,
@@ -4308,8 +4515,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Halving",
     "type": "term",
     "category": "economics",
-    "summary": "A programmed reduction in block rewards—most notably Bitcoin's four-year halving schedule—which reduces new supply and often triggers market repricing.",
-    "definition": "Halving events decrease the issuance of mined assets like Bitcoin. Soranauts track halvings to explain how scarcity narratives affect liquidity, market cycles, and SORA treasury strategies.",
+    "summary": "A scheduled reduction of block rewards that halves new coin issuance in proof-of-work networks like Bitcoin.",
+    "definition": "Bitcoin halves miner rewards roughly every four years, decreasing supply inflation and historically triggering market repricing. Similar emission cuts exist in other proof-of-work chains, shaping expectations for liquidity and mining economics.",
     "aliases": [
       "Halving",
       "Bitcoin Halving"
@@ -4326,8 +4533,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Understanding Bitcoin Halving",
-        "url": "https://soranauts.com/bitcoin-market-cycles-explained"
+        "label": "Bitcoin.org – Halving FAQ",
+        "url": "https://bitcoin.org/en/faq#what-is-the-bitcoin-halving"
       }
     ],
     "priority": 0,
@@ -4338,8 +4545,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Market Psychology",
     "type": "term",
     "category": "economics",
-    "summary": "Investor sentiment and behavioral patterns that drive crypto bull and bear cycles. Soranauts use market psychology to frame educational content on trading discipline.",
-    "definition": "Market psychology examines fear, greed, and narratives that influence trading decisions. Understanding this helps the SORA community manage volatility and plan liquidity programs during speculative manias or drawdowns.",
+    "summary": "Behavioral factors—such as fear and greed—that drive investor decisions and market cycles.",
+    "definition": "Market psychology examines how sentiment, narratives, and cognitive biases influence trading volume and volatility. Recognizing these patterns helps risk managers and treasuries plan for swings in liquidity across crypto ecosystems.",
     "aliases": [
       "Market Psychology"
     ],
@@ -4357,8 +4564,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Understanding Crypto Bull Markets",
-        "url": "https://soranauts.com/understanding-crypto-bull-markets-patterns-triggers-and-psychology"
+        "label": "Behavioral Finance Overview",
+        "url": "https://www.cfainstitute.org/en/research/foundation/2013/behavioral-finance"
       }
     ],
     "priority": 0,
@@ -4369,8 +4576,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Bull Market",
     "type": "term",
     "category": "economics",
-    "summary": "A period where asset prices rise and liquidity expands. Soranauts track bull market phases to plan token supply adjustments and liquidity incentives.",
-    "definition": "Bull markets occur when demand consistently outpaces supply, often driven by positive macro conditions or breakthrough narratives. SORA leverages bull cycles to launch new products, expand community programs, and accumulate reserves.",
+    "summary": "A prolonged period of rising asset prices accompanied by expanding liquidity and optimism.",
+    "definition": "Bull markets occur when demand consistently outpaces supply, often supported by macro trends, innovation, or positive narratives. Participants may increase risk exposure, but prudent treasury management still prepares for eventual reversals.",
     "aliases": [
       "Bull Market"
     ],
@@ -4386,8 +4593,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Understanding Crypto Bull Markets",
-        "url": "https://soranauts.com/understanding-crypto-bull-markets-patterns-triggers-and-psychology"
+        "label": "Investopedia – Bull Market",
+        "url": "https://www.investopedia.com/terms/b/bullmarket.asp"
       }
     ],
     "priority": 0,
@@ -4398,8 +4605,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Bear Market",
     "type": "term",
     "category": "economics",
-    "summary": "A period of declining asset prices and reduced liquidity. Bear markets test treasury resilience and community conviction.",
-    "definition": "Bear markets emerge when supply overwhelms demand, often after speculative peaks or macro shocks. Soranauts documentation covers defensive strategies such as liquidity management, product focus, and community updates to navigate drawdowns.",
+    "summary": "A market environment characterized by falling prices and defensive positioning.",
+    "definition": "Bear markets reflect sustained declines—commonly defined as drops of 20% or more—driven by risk aversion, deleveraging, or macro shocks. Strategies include conserving liquidity, diversifying collateral, and accelerating development to prepare for the next cycle.",
     "aliases": [
       "Bear Market"
     ],
@@ -4415,8 +4622,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Timing the Crypto Market",
-        "url": "https://soranauts.com/timing-the-crypto-market-insights-into-bull-cycles"
+        "label": "Investopedia – Bear Market",
+        "url": "https://www.investopedia.com/terms/b/bearmarket.asp"
       }
     ],
     "priority": 0,
@@ -4485,8 +4692,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Proof of Work (PoW)",
     "type": "term",
     "category": "technology",
-    "summary": "A consensus mechanism where miners expend energy to secure the network. PoW underpins Bitcoin and influences SORA's market analysis.",
-    "definition": "Proof of Work requires miners to solve computational puzzles, providing security through energy expenditure. Soranauts reference PoW to compare security models with SORA's BFT consensus and to discuss sustainability considerations.",
+    "summary": "A consensus method where miners expend computational energy to propose blocks and earn rewards.",
+    "definition": "Proof of Work secures networks such as Bitcoin by requiring miners to solve cryptographic puzzles. The difficulty adjusts to maintain steady block production, making attacks costly because adversaries must control the majority of hashing power.",
     "aliases": [
       "Proof of Work",
       "PoW"
@@ -4503,8 +4710,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Proof of Work vs Proof of Stake",
-        "url": "https://soranauts.com/differences-between-proof-of-stake-and-proof-of-work"
+        "label": "Bitcoin.org – Proof of Work",
+        "url": "https://bitcoin.org/en/developer-guide#proof-of-work"
       }
     ],
     "priority": 0,
@@ -4574,8 +4781,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Mining",
     "type": "term",
     "category": "technology",
-    "summary": "The process of producing new blocks in Proof of Work networks by expending computational energy.",
-    "definition": "Mining validates transactions and secures PoW networks like Bitcoin. Soranauts reference mining when comparing security models and sustainability trade-offs with SORA's energy-efficient consensus.",
+    "summary": "The process of validating transactions and producing blocks in proof-of-work systems.",
+    "definition": "Mining bundles transactions into candidate blocks, expends computational work, and—if successful—broadcasts the new block to the network. Rewards combine new coin issuance with transaction fees, incentivizing miners to secure the chain.",
     "aliases": [
       "Mining"
     ],
@@ -4591,8 +4798,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Proof of Work vs Proof of Stake",
-        "url": "https://soranauts.com/differences-between-proof-of-stake-and-proof-of-work"
+        "label": "Bitcoin.org – Mining Guide",
+        "url": "https://bitcoin.org/en/how-it-works#mining"
       }
     ],
     "priority": 0,
@@ -4694,8 +4901,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Blockchain Development",
     "type": "term",
     "category": "technology",
-    "summary": "Building decentralized applications, smart contracts, and infrastructure. SORAMITSU and the Soranauts community contribute open-source tooling for SORA and Polkaswap.",
-    "definition": "Blockchain development spans chain engineering, smart contract design, and full-stack application building. Soranauts encourage open-source contributions that advance SORA v3, Kensetsu, and Polkaswap integrations.",
+    "summary": "Engineering decentralized applications, smart contracts, and infrastructure that run on blockchain networks.",
+    "definition": "Blockchain development spans consensus clients, runtime modules, front-end interfaces, and integrations. Tooling such as Substrate, Hyperledger Iroha, and smart-contract frameworks enable teams to build features like Polkaswap, Kensetsu vaults, and cross-chain bridges.",
     "aliases": [
       "Blockchain Development"
     ],
@@ -4713,8 +4920,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Why Cryptocurrencies Embrace Rust",
-        "url": "https://soranauts.com/cryptocurrencies-rust-programming"
+        "label": "Hyperledger Iroha Docs",
+        "url": "https://docs.iroha.tech/"
+      },
+      {
+        "label": "Substrate Developer Hub",
+        "url": "https://docs.substrate.io/"
       }
     ],
     "priority": 0,
@@ -4725,8 +4936,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Rust",
     "type": "term",
     "category": "technology",
-    "summary": "A systems programming language emphasizing safety and performance. SORA v3's Hyperledger Iroha 3 is written in Rust.",
-    "definition": "Rust offers memory safety without garbage collection, making it ideal for high-performance blockchain infrastructure. Soranauts cover Rust to explain why SORA v3 migration improves security, concurrency, and developer experience.",
+    "summary": "A systems programming language focused on memory safety, concurrency, and performance.",
+    "definition": "Rust eliminates most classes of memory errors through ownership and borrowing rules, making it popular for blockchain clients and cryptography. Hyperledger Iroha 2 and 3, key components of SORA v3, are implemented in Rust to benefit from its safety guarantees.",
     "aliases": [
       "Rust"
     ],
@@ -4744,8 +4955,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Why Cryptocurrencies Are Embracing Rust",
-        "url": "https://soranauts.com/cryptocurrencies-rust-programming"
+        "label": "Rust Book – Concurrency",
+        "url": "https://doc.rust-lang.org/book/ch16-00-concurrency.html"
+      },
+      {
+        "label": "Rust Programming Language",
+        "url": "https://www.rust-lang.org/"
       }
     ],
     "priority": 0,
@@ -4756,8 +4971,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Programming",
     "type": "term",
     "category": "technology",
-    "summary": "The craft of writing code for blockchain applications, smart contracts, and automation scripts within the SORA ecosystem.",
-    "definition": "Programming skills enable contributors to build front-ends, indexers, and integrations for Polkaswap and Kensetsu. Languages like Rust, TypeScript, and Python drive Soranauts tooling and documentation pipelines.",
+    "summary": "The act of designing and writing instructions that computers execute.",
+    "definition": "Programming involves translating requirements into source code, testing, and maintaining software. Blockchain initiatives rely on languages such as Rust, TypeScript, and Python to build clients, tooling, and user interfaces.",
     "aliases": [
       "Programming"
     ],
@@ -4773,8 +4988,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Soranauts Knowledge Base Tooling",
-        "url": "https://soranauts.com/sora-roadmap-token-repackaging-hub-chain-defi-upgrades"
+        "label": "MDN Web Docs – Programming Basics",
+        "url": "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Programming_basics"
       }
     ],
     "priority": 0,
@@ -4785,8 +5000,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Solana",
     "type": "term",
     "category": "network",
-    "summary": "A high-throughput blockchain known for low fees and fast settlement. Soranauts compare Solana with SORA to analyze cross-ecosystem liquidity trends.",
-    "definition": "Solana's performance characteristics and meme coin culture influence Polkaswap markets through bridges and trading narratives. Understanding Solana helps Soranauts contextualize cross-chain opportunities like TONSWAP integrations.",
+    "summary": "A high-performance layer-1 blockchain that uses Proof of History and parallel transaction processing.",
+    "definition": "Solana achieves low-latency finality through a combination of Proof of History and a Tower BFT consensus. Its ecosystem of DeFi, NFT, and consumer apps provides comparative data points for cross-chain liquidity strategies.",
     "aliases": [
       "Solana"
     ],
@@ -4802,8 +5017,12 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Introducing TONSWAP & Cross-Chain Strategies",
-        "url": "https://soranauts.com/introducing-tonswap-the-dex-for-mass-adoption-on-ton"
+        "label": "Solana Docs",
+        "url": "https://docs.solana.com/"
+      },
+      {
+        "label": "Solana.com",
+        "url": "https://solana.com/"
       }
     ],
     "priority": 0,
@@ -4873,8 +5092,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Performance",
     "type": "term",
     "category": "technology",
-    "summary": "The throughput and efficiency of blockchain infrastructure. Performance improvements in SORA v3 come from Rust, WASM, and asynchronous architecture.",
-    "definition": "Performance metrics such as transactions per second, latency, and resource usage determine how user-friendly blockchain applications feel. Soranauts highlight performance gains from Hyperledger Iroha 3 to show how SORA can support mainstream financial workloads.",
+    "summary": "How efficiently a system executes work relative to resources such as time, memory, and energy.",
+    "definition": "Performance analysis measures throughput, latency, and resource utilization to spot bottlenecks. Optimizing performance is crucial for blockchain clients, smart contracts, and front-end applications that must stay responsive under load.",
     "aliases": [
       "Performance"
     ],
@@ -4890,8 +5109,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot Architecture Guide",
-        "url": "https://soranauts.com/polkadot-architecture-guide"
+        "label": "Computer Performance Overview",
+        "url": "https://en.wikipedia.org/wiki/Computer_performance"
       }
     ],
     "priority": 0,
@@ -4902,8 +5121,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Concurrency",
     "type": "term",
     "category": "technology",
-    "summary": "The ability to execute multiple operations simultaneously. Concurrency in Rust and Hyperledger Iroha 3 improves SORA's throughput.",
-    "definition": "Concurrency models like async/await and message passing allow blockchain runtimes to process tasks in parallel without compromising safety. Soranauts highlight concurrency to explain why the SORA v3 stack scales across validators and domains.",
+    "summary": "The ability of a system to handle multiple tasks or processes overlapping in time.",
+    "definition": "Concurrency techniques—such as threads, async executors, and message passing—allow software to utilize multi-core hardware and keep I/O operations non-blocking. SORA infrastructure written in Rust relies on disciplined concurrency to maintain reliability.",
     "aliases": [
       "Concurrency"
     ],
@@ -4919,15 +5138,14 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Polkadot Architecture Guide",
-        "url": "https://soranauts.com/polkadot-architecture-guide"
+        "label": "Rust Book – Fearless Concurrency",
+        "url": "https://doc.rust-lang.org/book/ch16-00-concurrency.html"
       }
     ],
     "priority": 0,
     "glossaryRef": "/glossary/concurrency"
   }
 };
-
 const findNodeByAlias = (value: string): TaxonomyNode | undefined => {
   const normalized = normalizeKey(value);
   return Object.values(baseTaxonomy).find((node) =>
