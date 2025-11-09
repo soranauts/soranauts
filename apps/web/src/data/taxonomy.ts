@@ -4341,8 +4341,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "links": [
       {
-        "label": "Ceres Ecosystem Overview",
-        "url": "https://ceres.tools/"
+        "label": "Ceres Official Site",
+        "url": "https://cerestoken.io/"
       }
     ],
     "priority": 0,
