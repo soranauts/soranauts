@@ -284,3 +284,8 @@ export interface Content extends Headline, Widget {
 }
 
 export interface Contact extends Headline, Form, Widget {}
+
+declare module 'astro-icon/components' {
+  // Minimal declaration so TypeScript recognizes the module in Astro files
+  export const Icon: any;
+}
