@@ -111,6 +111,16 @@
       "type": "term"
     },
     {
+      "alias": "parachains",
+      "slug": "parachain",
+      "type": "term"
+    },
+    {
+      "alias": "parachains",
+      "slug": "parachain",
+      "type": "term"
+    },
+    {
       "alias": "ipfs",
       "slug": "ipfs",
       "type": "term"
@@ -496,6 +506,16 @@
       "type": "term"
     },
     {
+      "alias": "consensus mechanisms",
+      "slug": "consensus",
+      "type": "term"
+    },
+    {
+      "alias": "consensus mechanisms",
+      "slug": "consensus",
+      "type": "term"
+    },
+    {
       "alias": "security",
       "slug": "security",
       "type": "term"
@@ -608,6 +628,151 @@
     {
       "alias": "market timing",
       "slug": "market-timing",
+      "type": "term"
+    },
+    {
+      "alias": "dogecoin doge",
+      "slug": "dogecoin",
+      "type": "term"
+    },
+    {
+      "alias": "dogecoin",
+      "slug": "dogecoin",
+      "type": "term"
+    },
+    {
+      "alias": "doge",
+      "slug": "dogecoin",
+      "type": "term"
+    },
+    {
+      "alias": "shiba inu shib",
+      "slug": "shiba-inu",
+      "type": "term"
+    },
+    {
+      "alias": "shiba inu",
+      "slug": "shiba-inu",
+      "type": "term"
+    },
+    {
+      "alias": "shib",
+      "slug": "shiba-inu",
+      "type": "term"
+    },
+    {
+      "alias": "pepe pepe",
+      "slug": "pepe",
+      "type": "term"
+    },
+    {
+      "alias": "pepe",
+      "slug": "pepe",
+      "type": "term"
+    },
+    {
+      "alias": "pepe",
+      "slug": "pepe",
+      "type": "term"
+    },
+    {
+      "alias": "bonk bonk",
+      "slug": "bonk",
+      "type": "term"
+    },
+    {
+      "alias": "bonk",
+      "slug": "bonk",
+      "type": "term"
+    },
+    {
+      "alias": "bonk",
+      "slug": "bonk",
+      "type": "term"
+    },
+    {
+      "alias": "volatility",
+      "slug": "volatility",
+      "type": "term"
+    },
+    {
+      "alias": "soshiba",
+      "slug": "soshiba",
+      "type": "term"
+    },
+    {
+      "alias": "blockchain culture",
+      "slug": "blockchain-culture",
+      "type": "term"
+    },
+    {
+      "alias": "blockchain architecture",
+      "slug": "blockchain-architecture",
+      "type": "term"
+    },
+    {
+      "alias": "kusama",
+      "slug": "kusama",
+      "type": "term"
+    },
+    {
+      "alias": "xcmp",
+      "slug": "xcmp",
+      "type": "term"
+    },
+    {
+      "alias": "coretime",
+      "slug": "coretime",
+      "type": "term"
+    },
+    {
+      "alias": "asynchronous backing",
+      "slug": "asynchronous-backing",
+      "type": "term"
+    },
+    {
+      "alias": "parachain auctions",
+      "slug": "auctions",
+      "type": "term"
+    },
+    {
+      "alias": "auctions",
+      "slug": "auctions",
+      "type": "term"
+    },
+    {
+      "alias": "crowdloans",
+      "slug": "crowdloans",
+      "type": "term"
+    },
+    {
+      "alias": "parathreads",
+      "slug": "parathreads",
+      "type": "term"
+    },
+    {
+      "alias": "forkless upgrades",
+      "slug": "forkless-upgrades",
+      "type": "term"
+    },
+    {
+      "alias": "slot leases",
+      "slug": "slot-leases",
+      "type": "term"
+    },
+    {
+      "alias": "rollups",
+      "slug": "rollups",
+      "type": "term"
+    },
+    {
+      "alias": "agile coretime",
+      "slug": "agile-coretime",
+      "type": "term"
+    },
+    {
+      "alias": "blockchain economics",
+      "slug": "blockchain-economics",
       "type": "term"
     },
     {
@@ -2481,6 +2646,141 @@
       "type": "tag"
     },
     {
+      "alias": "meme coins",
+      "slug": "tag-meme-coins",
+      "type": "tag"
+    },
+    {
+      "alias": "meme coins",
+      "slug": "tag-meme-coins",
+      "type": "tag"
+    },
+    {
+      "alias": "volatility",
+      "slug": "tag-volatility",
+      "type": "tag"
+    },
+    {
+      "alias": "volatility",
+      "slug": "tag-volatility",
+      "type": "tag"
+    },
+    {
+      "alias": "blockchain culture",
+      "slug": "tag-blockchain-culture",
+      "type": "tag"
+    },
+    {
+      "alias": "blockchain culture",
+      "slug": "tag-blockchain-culture",
+      "type": "tag"
+    },
+    {
+      "alias": "risk management",
+      "slug": "tag-risk-management",
+      "type": "tag"
+    },
+    {
+      "alias": "risk management",
+      "slug": "tag-risk-management",
+      "type": "tag"
+    },
+    {
+      "alias": "community",
+      "slug": "tag-community",
+      "type": "tag"
+    },
+    {
+      "alias": "community",
+      "slug": "tag-community",
+      "type": "tag"
+    },
+    {
+      "alias": "sora ecosystem",
+      "slug": "tag-sora-ecosystem",
+      "type": "tag"
+    },
+    {
+      "alias": "sora ecosystem",
+      "slug": "tag-sora-ecosystem",
+      "type": "tag"
+    },
+    {
+      "alias": "sora ecosystem",
+      "slug": "tag-sora-ecosystem",
+      "type": "tag"
+    },
+    {
+      "alias": "rollups",
+      "slug": "tag-rollups",
+      "type": "tag"
+    },
+    {
+      "alias": "rollups",
+      "slug": "tag-rollups",
+      "type": "tag"
+    },
+    {
+      "alias": "asynchronous backing",
+      "slug": "tag-asynchronous-backing",
+      "type": "tag"
+    },
+    {
+      "alias": "asynchronous backing",
+      "slug": "tag-asynchronous-backing",
+      "type": "tag"
+    },
+    {
+      "alias": "coretime",
+      "slug": "tag-coretime",
+      "type": "tag"
+    },
+    {
+      "alias": "coretime",
+      "slug": "tag-coretime",
+      "type": "tag"
+    },
+    {
+      "alias": "parachains",
+      "slug": "tag-parachains",
+      "type": "tag"
+    },
+    {
+      "alias": "parachains",
+      "slug": "tag-parachains",
+      "type": "tag"
+    },
+    {
+      "alias": "crowdloans",
+      "slug": "tag-crowdloans",
+      "type": "tag"
+    },
+    {
+      "alias": "crowdloans",
+      "slug": "tag-crowdloans",
+      "type": "tag"
+    },
+    {
+      "alias": "auctions",
+      "slug": "tag-auctions",
+      "type": "tag"
+    },
+    {
+      "alias": "auctions",
+      "slug": "tag-auctions",
+      "type": "tag"
+    },
+    {
+      "alias": "xcmp",
+      "slug": "tag-xcmp",
+      "type": "tag"
+    },
+    {
+      "alias": "xcmp",
+      "slug": "tag-xcmp",
+      "type": "tag"
+    },
+    {
       "alias": "agile coretime",
       "slug": "tag-agile-coretime",
       "type": "tag"
@@ -2488,6 +2788,46 @@
     {
       "alias": "agile coretime",
       "slug": "tag-agile-coretime",
+      "type": "tag"
+    },
+    {
+      "alias": "slot leases",
+      "slug": "tag-slot-leases",
+      "type": "tag"
+    },
+    {
+      "alias": "slot leases",
+      "slug": "tag-slot-leases",
+      "type": "tag"
+    },
+    {
+      "alias": "kusama",
+      "slug": "tag-kusama",
+      "type": "tag"
+    },
+    {
+      "alias": "kusama",
+      "slug": "tag-kusama",
+      "type": "tag"
+    },
+    {
+      "alias": "runtime upgrades",
+      "slug": "tag-runtime-upgrades",
+      "type": "tag"
+    },
+    {
+      "alias": "runtime upgrades",
+      "slug": "tag-runtime-upgrades",
+      "type": "tag"
+    },
+    {
+      "alias": "blockchain architecture",
+      "slug": "tag-blockchain-architecture",
+      "type": "tag"
+    },
+    {
+      "alias": "blockchain architecture",
+      "slug": "tag-blockchain-architecture",
       "type": "tag"
     },
     {
@@ -2526,26 +2866,6 @@
       "type": "tag"
     },
     {
-      "alias": "asynchronous backing",
-      "slug": "tag-asynchronous-backing",
-      "type": "tag"
-    },
-    {
-      "alias": "asynchronous backing",
-      "slug": "tag-asynchronous-backing",
-      "type": "tag"
-    },
-    {
-      "alias": "auctions",
-      "slug": "tag-auctions",
-      "type": "tag"
-    },
-    {
-      "alias": "auctions",
-      "slug": "tag-auctions",
-      "type": "tag"
-    },
-    {
       "alias": "bear market",
       "slug": "tag-bear-market",
       "type": "tag"
@@ -2578,26 +2898,6 @@
     {
       "alias": "bitcoin halving",
       "slug": "tag-bitcoin-halving",
-      "type": "tag"
-    },
-    {
-      "alias": "blockchain architecture",
-      "slug": "tag-blockchain-architecture",
-      "type": "tag"
-    },
-    {
-      "alias": "blockchain architecture",
-      "slug": "tag-blockchain-architecture",
-      "type": "tag"
-    },
-    {
-      "alias": "blockchain culture",
-      "slug": "tag-blockchain-culture",
-      "type": "tag"
-    },
-    {
-      "alias": "blockchain culture",
-      "slug": "tag-blockchain-culture",
       "type": "tag"
     },
     {
@@ -2711,26 +3011,6 @@
       "type": "tag"
     },
     {
-      "alias": "coretime",
-      "slug": "tag-coretime",
-      "type": "tag"
-    },
-    {
-      "alias": "coretime",
-      "slug": "tag-coretime",
-      "type": "tag"
-    },
-    {
-      "alias": "crowdloans",
-      "slug": "tag-crowdloans",
-      "type": "tag"
-    },
-    {
-      "alias": "crowdloans",
-      "slug": "tag-crowdloans",
-      "type": "tag"
-    },
-    {
       "alias": "cryptocurrency trends",
       "slug": "tag-cryptocurrency-trends",
       "type": "tag"
@@ -2871,16 +3151,6 @@
       "type": "tag"
     },
     {
-      "alias": "kusama",
-      "slug": "tag-kusama",
-      "type": "tag"
-    },
-    {
-      "alias": "kusama",
-      "slug": "tag-kusama",
-      "type": "tag"
-    },
-    {
       "alias": "lending",
       "slug": "tag-lending",
       "type": "tag"
@@ -2921,16 +3191,6 @@
       "type": "tag"
     },
     {
-      "alias": "meme coins",
-      "slug": "tag-meme-coins",
-      "type": "tag"
-    },
-    {
-      "alias": "meme coins",
-      "slug": "tag-meme-coins",
-      "type": "tag"
-    },
-    {
       "alias": "memory safety",
       "slug": "tag-memory-safety",
       "type": "tag"
@@ -2968,16 +3228,6 @@
     {
       "alias": "nfts",
       "slug": "tag-nfts",
-      "type": "tag"
-    },
-    {
-      "alias": "parachains",
-      "slug": "tag-parachains",
-      "type": "tag"
-    },
-    {
-      "alias": "parachains",
-      "slug": "tag-parachains",
       "type": "tag"
     },
     {
@@ -3061,16 +3311,6 @@
       "type": "tag"
     },
     {
-      "alias": "rollups",
-      "slug": "tag-rollups",
-      "type": "tag"
-    },
-    {
-      "alias": "rollups",
-      "slug": "tag-rollups",
-      "type": "tag"
-    },
-    {
       "alias": "rust",
       "slug": "tag-rust",
       "type": "tag"
@@ -3101,16 +3341,6 @@
       "type": "tag"
     },
     {
-      "alias": "slot leases",
-      "slug": "tag-slot-leases",
-      "type": "tag"
-    },
-    {
-      "alias": "slot leases",
-      "slug": "tag-slot-leases",
-      "type": "tag"
-    },
-    {
       "alias": "solana",
       "slug": "tag-solana",
       "type": "tag"
@@ -3118,21 +3348,6 @@
     {
       "alias": "solana",
       "slug": "tag-solana",
-      "type": "tag"
-    },
-    {
-      "alias": "sora ecosystem",
-      "slug": "tag-sora-ecosystem",
-      "type": "tag"
-    },
-    {
-      "alias": "sora ecosystem",
-      "slug": "tag-sora-ecosystem",
-      "type": "tag"
-    },
-    {
-      "alias": "sora ecosystem",
-      "slug": "tag-sora-ecosystem",
       "type": "tag"
     },
     {
@@ -3166,16 +3381,6 @@
       "type": "tag"
     },
     {
-      "alias": "volatility",
-      "slug": "tag-volatility",
-      "type": "tag"
-    },
-    {
-      "alias": "volatility",
-      "slug": "tag-volatility",
-      "type": "tag"
-    },
-    {
       "alias": "web3",
       "slug": "tag-web3",
       "type": "tag"
@@ -3193,16 +3398,6 @@
     {
       "alias": "webassembly",
       "slug": "tag-webassembly",
-      "type": "tag"
-    },
-    {
-      "alias": "xcmp",
-      "slug": "tag-xcmp",
-      "type": "tag"
-    },
-    {
-      "alias": "xcmp",
-      "slug": "tag-xcmp",
       "type": "tag"
     }
   ]
