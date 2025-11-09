@@ -4281,6 +4281,633 @@
           "url": "https://wiki.sora.org/sora-card-kyc-tutorial.html"
         }
       ]
+    },
+    {
+      "term": "Monetary Systems",
+      "slug": "monetary-systems",
+      "definition": "Monetary systems define how currency is issued, how value flows through an economy, and how stability is maintained. The SORA network applies a supranational monetary design in which XOR supply, lending, and spending are coordinated by on-chain governance and the token bonding curve instead of central banks, enabling borderless value exchange.",
+      "category": "economics",
+      "aliases": [
+        "Monetary Systems",
+        "monetary system",
+        "Monetary System"
+      ],
+      "tags": [
+        "economics",
+        "token bonding curve",
+        "redenomination",
+        "economic governance",
+        "elastic supply",
+        "price stability"
+      ],
+      "relatedTerms": [
+        "Token Bonding Curve",
+        "Redenomination",
+        "Elastic Supply",
+        "Economic Governance",
+        "Price Stability"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "The rules, infrastructure, and institutions that govern how money is created, distributed, and used. SORA aims to build a supranational monetary system that replaces legacy intermediaries with algorithmic policy enforced by the token bonding curve.",
+      "seeAlso": [
+        "Token Bonding Curve",
+        "Redenomination",
+        "Elastic Supply",
+        "Economic Governance",
+        "Price Stability"
+      ],
+      "relatedTags": [
+        "token bonding curve",
+        "redenomination",
+        "economic governance",
+        "elastic supply",
+        "price stability"
+      ],
+      "links": [
+        {
+          "label": "SORA Economic Vision",
+          "url": "https://soranauts.com/sora-blockchain-new-world-economic-order"
+        }
+      ]
+    },
+    {
+      "term": "Token Repackaging",
+      "slug": "token-repackaging",
+      "definition": "Token repackaging consolidates historical SORA and Polkaswap assets into a streamlined set of instruments—XOR for settlement, VAL for validator rewards, PSWAP for liquidity incentives, and new stable instruments such as TBCD. The program retires illiquid or redundant tokens, migrates balances, and funds ecosystem development through governance-approved conversions.",
+      "category": "economics",
+      "aliases": [
+        "Token Repackaging"
+      ],
+      "tags": [
+        "economics",
+        "redenomination",
+        "tokenomics",
+        "XOR",
+        "PSWAP",
+        "VAL"
+      ],
+      "relatedTerms": [
+        "Redenomination",
+        "Tokenomics",
+        "XOR",
+        "PSWAP",
+        "VAL"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "An initiative in the SORA roadmap to migrate legacy assets into a simplified portfolio of utility, reward, and stable tokens that align with the SORA v3 economic model.",
+      "seeAlso": [
+        "Redenomination",
+        "Tokenomics",
+        "XOR",
+        "PSWAP",
+        "VAL"
+      ],
+      "relatedTags": [
+        "redenomination",
+        "tokenomics",
+        "XOR",
+        "PSWAP",
+        "VAL"
+      ],
+      "links": [
+        {
+          "label": "SORA Token Repackaging Brief",
+          "url": "https://soranauts.com/sora-roadmap-token-repackaging-hub-chain-defi-upgrades"
+        }
+      ]
+    },
+    {
+      "term": "Redenomination",
+      "slug": "redenomination",
+      "definition": "Redenomination changes the nominal unit of account by splitting or combining circulating supply while preserving proportional ownership. SORA implemented a 1:100 XOR redenomination coordinated through on-chain governance to simplify pricing, rebalance treasury reserves, and prepare for the token bonding curve monetary system.",
+      "category": "economics",
+      "aliases": [
+        "Redenomination"
+      ],
+      "tags": [
+        "economics",
+        "monetary systems",
+        "token repackaging",
+        "elastic supply",
+        "tokenomics"
+      ],
+      "relatedTerms": [
+        "Monetary Systems",
+        "Token Repackaging",
+        "Elastic Supply",
+        "Tokenomics"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "The process of adjusting token denominations without changing total value. SORA redenominated XOR in 2020 to improve usability and align token supply with long-term monetary policy.",
+      "seeAlso": [
+        "Monetary Systems",
+        "Token Repackaging",
+        "Elastic Supply",
+        "Tokenomics"
+      ],
+      "relatedTags": [
+        "monetary systems",
+        "token repackaging",
+        "elastic supply",
+        "tokenomics"
+      ],
+      "links": [
+        {
+          "label": "Understanding the XOR Token Supply",
+          "url": "https://soranauts.com/sora-xor-token-supply-explained"
+        }
+      ]
+    },
+    {
+      "term": "Bokolo Cash",
+      "slug": "bokolo-cash",
+      "definition": "Bokolo Cash is a CBDC project launched by the Central Bank of Solomon Islands and SORAMITSU. It uses SORA technology to deliver secure wallets, point-of-sale integrations, and compliance workflows that make digital currency available to citizens and merchants without traditional banking infrastructure.",
+      "category": "economics",
+      "aliases": [
+        "Bokolo Cash"
+      ],
+      "tags": [
+        "economics",
+        "solomon islands",
+        "cbdc",
+        "mobile payments",
+        "qr payments",
+        "soramitsu"
+      ],
+      "relatedTerms": [
+        "Solomon Islands",
+        "CBDC",
+        "Mobile Payments",
+        "QR Payments",
+        "SORAMITSU"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "The Central Bank of Solomon Islands' digital currency pilot developed by SORAMITSU. Bokolo Cash demonstrates how SORA technology powers retail CBDCs with mobile-first payments.",
+      "seeAlso": [
+        "Solomon Islands",
+        "CBDC",
+        "Mobile Payments",
+        "QR Payments",
+        "SORAMITSU"
+      ],
+      "relatedTags": [
+        "solomon islands",
+        "cbdc",
+        "mobile payments",
+        "qr payments",
+        "soramitsu"
+      ],
+      "links": [
+        {
+          "label": "Soramitsu CBDC Pilot",
+          "url": "https://soranauts.com/soramitsu-pilots-central-bank-of-solomon-islands-cbdc"
+        }
+      ]
+    },
+    {
+      "term": "Solomon Islands",
+      "slug": "solomon-islands",
+      "definition": "The Solomon Islands collaborate with SORAMITSU on Bokolo Cash and broader digital financial services. The partnership showcases how SORA technology can deliver CBDCs, merchant tools, and cross-border remittances for emerging markets with limited legacy banking infrastructure.",
+      "category": "economics",
+      "aliases": [
+        "Solomon Islands"
+      ],
+      "tags": [
+        "economics",
+        "bokolo cash",
+        "cbdc",
+        "mobile payments",
+        "financial inclusion",
+        "soramitsu"
+      ],
+      "relatedTerms": [
+        "Bokolo Cash",
+        "CBDC",
+        "Mobile Payments",
+        "Financial Inclusion",
+        "SORAMITSU"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "A Pacific Island nation partnering with SORAMITSU to pilot Bokolo Cash and explore SORA-powered financial infrastructure.",
+      "seeAlso": [
+        "Bokolo Cash",
+        "CBDC",
+        "Mobile Payments",
+        "Financial Inclusion",
+        "SORAMITSU"
+      ],
+      "relatedTags": [
+        "bokolo cash",
+        "cbdc",
+        "mobile payments",
+        "financial inclusion",
+        "soramitsu"
+      ],
+      "links": [
+        {
+          "label": "Solomon Islands CBDC Overview",
+          "url": "https://soranauts.com/soras-leap-transforming-apac-with-cbdcs-and-savings-bonds"
+        }
+      ]
+    },
+    {
+      "term": "Mobile Payments",
+      "slug": "mobile-payments",
+      "definition": "Mobile payments enable users to initiate and accept transactions directly from mobile devices. In the SORA ecosystem, mobile payments power SORA Card spending, Bokolo Cash CBDC transfers, and retail experiences that do not require traditional point-of-sale terminals.",
+      "category": "defi",
+      "aliases": [
+        "Mobile Payments"
+      ],
+      "tags": [
+        "defi",
+        "sora card",
+        "bokolo cash",
+        "qr payments",
+        "financial inclusion",
+        "digital currency"
+      ],
+      "relatedTerms": [
+        "SORA Card",
+        "Bokolo Cash",
+        "QR Payments",
+        "Financial Inclusion",
+        "Digital Currency"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Transactions initiated from smartphones or tablets using NFC, QR codes, or in-app wallets. SORA Card and Bokolo Cash rely on mobile-first experiences to extend financial access.",
+      "seeAlso": [
+        "SORA Card",
+        "Bokolo Cash",
+        "QR Payments",
+        "Financial Inclusion",
+        "Digital Currency"
+      ],
+      "relatedTags": [
+        "sora card",
+        "bokolo cash",
+        "qr payments",
+        "financial inclusion",
+        "digital currency"
+      ],
+      "links": [
+        {
+          "label": "SORA Card Overview",
+          "url": "https://wiki.sora.org/sora-card.html"
+        }
+      ]
+    },
+    {
+      "term": "QR Payments",
+      "slug": "qr-payments",
+      "definition": "QR payments encode payment instructions in a scannable code that can be read by mobile devices. They remove the need for specialized hardware, letting SORA Card users and CBDC pilots like Bokolo Cash settle transactions instantly while retaining on-chain auditability.",
+      "category": "defi",
+      "aliases": [
+        "QR Payments",
+        "QR payment"
+      ],
+      "tags": [
+        "defi",
+        "mobile payments",
+        "sora card",
+        "bokolo cash",
+        "financial inclusion"
+      ],
+      "relatedTerms": [
+        "Mobile Payments",
+        "SORA Card",
+        "Bokolo Cash",
+        "Financial Inclusion"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Payments completed by scanning a Quick Response (QR) code. QR flows are widely used in SORA Card pilots and CBDC deployments to provide low-cost merchant acceptance.",
+      "seeAlso": [
+        "Mobile Payments",
+        "SORA Card",
+        "Bokolo Cash",
+        "Financial Inclusion"
+      ],
+      "relatedTags": [
+        "mobile payments",
+        "sora card",
+        "bokolo cash",
+        "financial inclusion"
+      ],
+      "links": [
+        {
+          "label": "SORA Card FAQ",
+          "url": "https://wiki.sora.org/sora-card.html"
+        }
+      ]
+    },
+    {
+      "term": "Asset Tokenization",
+      "slug": "asset-tokenization",
+      "definition": "Asset tokenization converts claims on physical or financial assets into programmable tokens. In SORA, tokenization is used to represent real-world assets, raise capital for new ventures, and create liquidity by listing these tokens on Polkaswap or other DeFi applications.",
+      "category": "economics",
+      "aliases": [
+        "Asset Tokenization"
+      ],
+      "tags": [
+        "economics",
+        "real-world assets",
+        "tokenization",
+        "chainlink",
+        "defi"
+      ],
+      "relatedTerms": [
+        "Real-World Assets",
+        "Tokenization",
+        "Chainlink",
+        "DeFi"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "The process of issuing blockchain-based tokens that represent ownership of real-world or digital assets. SORA leverages tokenization to bring commodities, currencies, and projects on-chain.",
+      "seeAlso": [
+        "Real-World Assets",
+        "Tokenization",
+        "Chainlink",
+        "DeFi"
+      ],
+      "relatedTags": [
+        "real-world assets",
+        "tokenization",
+        "chainlink",
+        "defi"
+      ],
+      "links": [
+        {
+          "label": "Guide to Asset Tokenization",
+          "url": "https://soranauts.com/the-ultimate-guide-to-asset-tokenization-in-crypto-and-blockchain"
+        }
+      ]
+    },
+    {
+      "term": "Real-World Assets",
+      "slug": "real-world-assets",
+      "definition": "Real-world assets (RWAs) are tangible or regulated assets that become programmable once they are tokenized. SORA uses RWAs to collateralize stable instruments, fund infrastructure projects, and provide transparent reporting to stakeholders.",
+      "category": "economics",
+      "aliases": [
+        "Real-World Assets",
+        "RWA",
+        "real world assets"
+      ],
+      "tags": [
+        "economics",
+        "asset tokenization",
+        "tokenization",
+        "chainlink",
+        "defi"
+      ],
+      "relatedTerms": [
+        "Asset Tokenization",
+        "Tokenization",
+        "Chainlink",
+        "DeFi"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Physical or traditional financial assets represented on-chain, such as commodities, invoices, or government bonds. Tokenizing RWAs expands Polkaswap liquidity and supports SORA's economic initiatives.",
+      "seeAlso": [
+        "Asset Tokenization",
+        "Tokenization",
+        "Chainlink",
+        "DeFi"
+      ],
+      "relatedTags": [
+        "asset tokenization",
+        "tokenization",
+        "chainlink",
+        "defi"
+      ],
+      "links": [
+        {
+          "label": "RWA Opportunities on SORA",
+          "url": "https://soranauts.com/soras-leap-transforming-apac-with-cbdcs-and-savings-bonds"
+        }
+      ]
+    },
+    {
+      "term": "Chainlink",
+      "slug": "chainlink",
+      "definition": "Chainlink delivers cryptographic proofs and reliable data to smart contracts. On SORA, Chainlink price feeds and automation support Polkaswap trading pairs, collateral monitoring for tokenized assets, and cross-chain messaging for enterprise integrations.",
+      "category": "technology",
+      "aliases": [
+        "Chainlink"
+      ],
+      "tags": [
+        "technology",
+        "asset tokenization",
+        "real-world assets",
+        "defi",
+        "oracles"
+      ],
+      "relatedTerms": [
+        "Asset Tokenization",
+        "Real-World Assets",
+        "DeFi",
+        "Oracles"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "A decentralized oracle network that provides tamper-resistant data feeds and automation services to smart contracts. SORA integrates Chainlink oracles to bridge real-world data for DeFi and RWA products.",
+      "seeAlso": [
+        "Asset Tokenization",
+        "Real-World Assets",
+        "DeFi",
+        "Oracles"
+      ],
+      "relatedTags": [
+        "asset tokenization",
+        "real-world assets",
+        "defi",
+        "oracles"
+      ],
+      "links": [
+        {
+          "label": "Chainlink Official Site",
+          "url": "https://chain.link/"
+        }
+      ]
+    },
+    {
+      "term": "Tokenization",
+      "slug": "tokenization",
+      "definition": "Tokenization abstracts ownership or utility into blockchain-based tokens that can be traded, fractionally owned, or used as collateral. It is a foundational capability for SORA's knowledge base, enabling CBDCs, RWAs, and incentive programs to interoperate within the Polkaswap ecosystem.",
+      "category": "economics",
+      "aliases": [
+        "Tokenization"
+      ],
+      "tags": [
+        "economics",
+        "asset tokenization",
+        "real-world assets",
+        "chainlink",
+        "defi"
+      ],
+      "relatedTerms": [
+        "Asset Tokenization",
+        "Real-World Assets",
+        "Chainlink",
+        "DeFi"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "The conversion of rights to an asset into a digital token on a blockchain. Tokenization underpins SORA's strategy of turning real-world economic activity into programmable, composable assets.",
+      "seeAlso": [
+        "Asset Tokenization",
+        "Real-World Assets",
+        "Chainlink",
+        "DeFi"
+      ],
+      "relatedTags": [
+        "asset tokenization",
+        "real-world assets",
+        "chainlink",
+        "defi"
+      ],
+      "links": [
+        {
+          "label": "Tokenization Explained",
+          "url": "https://soranauts.com/the-ultimate-guide-to-asset-tokenization-in-crypto-and-blockchain"
+        }
+      ]
+    },
+    {
+      "term": "Crypto Market Cycles",
+      "slug": "crypto-market-cycles",
+      "definition": "Crypto market cycles describe periods of expansion and contraction driven by macro events, liquidity, and investor sentiment. SORA tracks these cycles to plan token issuance, liquidity incentives, and treasury diversification so that builders can deploy capital efficiently.",
+      "category": "economics",
+      "aliases": [
+        "Crypto Market Cycles"
+      ],
+      "tags": [
+        "economics",
+        "trading strategy",
+        "market timing",
+        "tokenomics",
+        "defi"
+      ],
+      "relatedTerms": [
+        "Trading Strategy",
+        "Market Timing",
+        "Tokenomics",
+        "DeFi"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Recurring bull and bear phases observed in cryptocurrency markets. Understanding cycles informs staking, liquidity, and treasury decisions in the SORA ecosystem.",
+      "seeAlso": [
+        "Trading Strategy",
+        "Market Timing",
+        "Tokenomics",
+        "DeFi"
+      ],
+      "relatedTags": [
+        "trading strategy",
+        "market timing",
+        "tokenomics",
+        "defi"
+      ],
+      "links": [
+        {
+          "label": "Understanding Crypto Bull Markets",
+          "url": "https://soranauts.com/understanding-crypto-bull-markets-patterns-triggers-and-psychology"
+        }
+      ]
+    },
+    {
+      "term": "Trading Strategy",
+      "slug": "trading-strategy",
+      "definition": "Trading strategies outline rules for portfolio allocation, order placement, and risk management. In SORA, strategies can combine Polkaswap swaps, liquidity provision, and staking to capture yield while supporting ecosystem liquidity.",
+      "category": "economics",
+      "aliases": [
+        "Trading Strategy"
+      ],
+      "tags": [
+        "economics",
+        "market timing",
+        "crypto market cycles",
+        "liquidity",
+        "defi"
+      ],
+      "relatedTerms": [
+        "Market Timing",
+        "Crypto Market Cycles",
+        "Liquidity",
+        "DeFi"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "A framework for entering and exiting markets to achieve risk-adjusted returns. Polkaswap traders use strategies to balance liquidity mining, arbitrage, and long-term positioning.",
+      "seeAlso": [
+        "Market Timing",
+        "Crypto Market Cycles",
+        "Liquidity",
+        "DeFi"
+      ],
+      "relatedTags": [
+        "market timing",
+        "crypto market cycles",
+        "liquidity",
+        "defi"
+      ],
+      "links": [
+        {
+          "label": "Polkaswap Trading Tips",
+          "url": "https://soranauts.com/best-decentralized-exchanges-dexs"
+        }
+      ]
+    },
+    {
+      "term": "Market Timing",
+      "slug": "market-timing",
+      "definition": "Market timing attempts to anticipate price movements to optimize entry and exit points. SORA's governance and community track macro cycles, on-chain metrics, and liquidity flows to decide when to expand or contract incentives, execute buybacks, or deploy capital.",
+      "category": "economics",
+      "aliases": [
+        "Market Timing"
+      ],
+      "tags": [
+        "economics",
+        "crypto market cycles",
+        "trading strategy",
+        "tokenomics",
+        "treasury"
+      ],
+      "relatedTerms": [
+        "Crypto Market Cycles",
+        "Trading Strategy",
+        "Tokenomics",
+        "Treasury"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Deciding when to buy or sell assets based on cycle analysis or signals. Market timing impacts SORA treasury operations and individual liquidity decisions.",
+      "seeAlso": [
+        "Crypto Market Cycles",
+        "Trading Strategy",
+        "Tokenomics",
+        "Treasury"
+      ],
+      "relatedTags": [
+        "crypto market cycles",
+        "trading strategy",
+        "tokenomics",
+        "treasury"
+      ],
+      "links": [
+        {
+          "label": "Timing the Crypto Market",
+          "url": "https://soranauts.com/timing-the-crypto-market-insights-into-bull-cycles"
+        }
+      ]
     }
   ],
   "categories": {
@@ -4290,7 +4917,7 @@
     },
     "technology": {
       "name": "technology",
-      "count": 19
+      "count": 20
     },
     "network": {
       "name": "network",
@@ -4298,19 +4925,19 @@
     },
     "defi": {
       "name": "defi",
-      "count": 16
+      "count": 18
     },
     "economics": {
       "name": "economics",
-      "count": 12
+      "count": 23
     },
     "governance": {
       "name": "governance",
       "count": 11
     }
   },
-  "totalCount": 75,
-  "lastUpdated": "2025-11-08T16:51:33.810Z",
+  "totalCount": 89,
+  "lastUpdated": "2025-11-09T02:45:50.922Z",
   "aliasIndex": [
     {
       "alias": "XOR",
@@ -4825,6 +5452,101 @@
     {
       "alias": "SORA Card",
       "slug": "sora-card",
+      "type": "term"
+    },
+    {
+      "alias": "Monetary Systems",
+      "slug": "monetary-systems",
+      "type": "term"
+    },
+    {
+      "alias": "monetary system",
+      "slug": "monetary-systems",
+      "type": "term"
+    },
+    {
+      "alias": "Monetary System",
+      "slug": "monetary-systems",
+      "type": "term"
+    },
+    {
+      "alias": "Token Repackaging",
+      "slug": "token-repackaging",
+      "type": "term"
+    },
+    {
+      "alias": "Redenomination",
+      "slug": "redenomination",
+      "type": "term"
+    },
+    {
+      "alias": "Bokolo Cash",
+      "slug": "bokolo-cash",
+      "type": "term"
+    },
+    {
+      "alias": "Solomon Islands",
+      "slug": "solomon-islands",
+      "type": "term"
+    },
+    {
+      "alias": "Mobile Payments",
+      "slug": "mobile-payments",
+      "type": "term"
+    },
+    {
+      "alias": "QR Payments",
+      "slug": "qr-payments",
+      "type": "term"
+    },
+    {
+      "alias": "QR payment",
+      "slug": "qr-payments",
+      "type": "term"
+    },
+    {
+      "alias": "Asset Tokenization",
+      "slug": "asset-tokenization",
+      "type": "term"
+    },
+    {
+      "alias": "Real-World Assets",
+      "slug": "real-world-assets",
+      "type": "term"
+    },
+    {
+      "alias": "RWA",
+      "slug": "real-world-assets",
+      "type": "term"
+    },
+    {
+      "alias": "real world assets",
+      "slug": "real-world-assets",
+      "type": "term"
+    },
+    {
+      "alias": "Chainlink",
+      "slug": "chainlink",
+      "type": "term"
+    },
+    {
+      "alias": "Tokenization",
+      "slug": "tokenization",
+      "type": "term"
+    },
+    {
+      "alias": "Crypto Market Cycles",
+      "slug": "crypto-market-cycles",
+      "type": "term"
+    },
+    {
+      "alias": "Trading Strategy",
+      "slug": "trading-strategy",
+      "type": "term"
+    },
+    {
+      "alias": "Market Timing",
+      "slug": "market-timing",
       "type": "term"
     },
     {
@@ -6508,6 +7230,196 @@
       "type": "tag"
     },
     {
+      "alias": "Redenomination",
+      "slug": "tag-redenomination",
+      "type": "tag"
+    },
+    {
+      "alias": "redenomination",
+      "slug": "tag-redenomination",
+      "type": "tag"
+    },
+    {
+      "alias": "Economic Governance",
+      "slug": "tag-economic-governance",
+      "type": "tag"
+    },
+    {
+      "alias": "economic governance",
+      "slug": "tag-economic-governance",
+      "type": "tag"
+    },
+    {
+      "alias": "Tokenomics",
+      "slug": "tag-tokenomics",
+      "type": "tag"
+    },
+    {
+      "alias": "tokenomics",
+      "slug": "tag-tokenomics",
+      "type": "tag"
+    },
+    {
+      "alias": "Monetary Systems",
+      "slug": "tag-monetary-systems",
+      "type": "tag"
+    },
+    {
+      "alias": "monetary systems",
+      "slug": "tag-monetary-systems",
+      "type": "tag"
+    },
+    {
+      "alias": "Token Repackaging",
+      "slug": "tag-token-repackaging",
+      "type": "tag"
+    },
+    {
+      "alias": "token repackaging",
+      "slug": "tag-token-repackaging",
+      "type": "tag"
+    },
+    {
+      "alias": "Solomon Islands",
+      "slug": "tag-solomon-islands",
+      "type": "tag"
+    },
+    {
+      "alias": "solomon islands",
+      "slug": "tag-solomon-islands",
+      "type": "tag"
+    },
+    {
+      "alias": "Mobile Payments",
+      "slug": "tag-mobile-payments",
+      "type": "tag"
+    },
+    {
+      "alias": "mobile payments",
+      "slug": "tag-mobile-payments",
+      "type": "tag"
+    },
+    {
+      "alias": "Qr Payments",
+      "slug": "tag-qr-payments",
+      "type": "tag"
+    },
+    {
+      "alias": "qr payments",
+      "slug": "tag-qr-payments",
+      "type": "tag"
+    },
+    {
+      "alias": "Bokolo Cash",
+      "slug": "tag-bokolo-cash",
+      "type": "tag"
+    },
+    {
+      "alias": "bokolo cash",
+      "slug": "tag-bokolo-cash",
+      "type": "tag"
+    },
+    {
+      "alias": "Sora Card",
+      "slug": "tag-sora-card",
+      "type": "tag"
+    },
+    {
+      "alias": "sora card",
+      "slug": "tag-sora-card",
+      "type": "tag"
+    },
+    {
+      "alias": "Real World Assets",
+      "slug": "tag-real-world-assets",
+      "type": "tag"
+    },
+    {
+      "alias": "real-world assets",
+      "slug": "tag-real-world-assets",
+      "type": "tag"
+    },
+    {
+      "alias": "Tokenization",
+      "slug": "tag-tokenization",
+      "type": "tag"
+    },
+    {
+      "alias": "tokenization",
+      "slug": "tag-tokenization",
+      "type": "tag"
+    },
+    {
+      "alias": "Chainlink",
+      "slug": "tag-chainlink",
+      "type": "tag"
+    },
+    {
+      "alias": "chainlink",
+      "slug": "tag-chainlink",
+      "type": "tag"
+    },
+    {
+      "alias": "Asset Tokenization",
+      "slug": "tag-asset-tokenization",
+      "type": "tag"
+    },
+    {
+      "alias": "asset tokenization",
+      "slug": "tag-asset-tokenization",
+      "type": "tag"
+    },
+    {
+      "alias": "Oracles",
+      "slug": "tag-oracles",
+      "type": "tag"
+    },
+    {
+      "alias": "oracles",
+      "slug": "tag-oracles",
+      "type": "tag"
+    },
+    {
+      "alias": "Trading Strategy",
+      "slug": "tag-trading-strategy",
+      "type": "tag"
+    },
+    {
+      "alias": "trading strategy",
+      "slug": "tag-trading-strategy",
+      "type": "tag"
+    },
+    {
+      "alias": "Market Timing",
+      "slug": "tag-market-timing",
+      "type": "tag"
+    },
+    {
+      "alias": "market timing",
+      "slug": "tag-market-timing",
+      "type": "tag"
+    },
+    {
+      "alias": "Crypto Market Cycles",
+      "slug": "tag-crypto-market-cycles",
+      "type": "tag"
+    },
+    {
+      "alias": "crypto market cycles",
+      "slug": "tag-crypto-market-cycles",
+      "type": "tag"
+    },
+    {
+      "alias": "Treasury",
+      "slug": "tag-treasury",
+      "type": "tag"
+    },
+    {
+      "alias": "treasury",
+      "slug": "tag-treasury",
+      "type": "tag"
+    },
+    {
       "alias": "Agile Coretime",
       "slug": "tag-agile-coretime",
       "type": "tag"
@@ -6550,16 +7462,6 @@
     {
       "alias": "apollo token",
       "slug": "tag-apollo-token",
-      "type": "tag"
-    },
-    {
-      "alias": "Asset Tokenization",
-      "slug": "tag-asset-tokenization",
-      "type": "tag"
-    },
-    {
-      "alias": "asset tokenization",
-      "slug": "tag-asset-tokenization",
       "type": "tag"
     },
     {
@@ -6668,16 +7570,6 @@
       "type": "tag"
     },
     {
-      "alias": "Bokolo Cash",
-      "slug": "tag-bokolo-cash",
-      "type": "tag"
-    },
-    {
-      "alias": "bokolo cash",
-      "slug": "tag-bokolo-cash",
-      "type": "tag"
-    },
-    {
       "alias": "Bonding Curve",
       "slug": "tag-bonding-curve",
       "type": "tag"
@@ -6725,16 +7617,6 @@
     {
       "alias": "ceres",
       "slug": "tag-ceres",
-      "type": "tag"
-    },
-    {
-      "alias": "Chainlink",
-      "slug": "tag-chainlink",
-      "type": "tag"
-    },
-    {
-      "alias": "chainlink",
-      "slug": "tag-chainlink",
       "type": "tag"
     },
     {
@@ -6788,16 +7670,6 @@
       "type": "tag"
     },
     {
-      "alias": "Crypto Market Cycles",
-      "slug": "tag-crypto-market-cycles",
-      "type": "tag"
-    },
-    {
-      "alias": "crypto market cycles",
-      "slug": "tag-crypto-market-cycles",
-      "type": "tag"
-    },
-    {
       "alias": "Cryptocurrency Trends",
       "slug": "tag-cryptocurrency-trends",
       "type": "tag"
@@ -6835,16 +7707,6 @@
     {
       "alias": "dogecoin",
       "slug": "tag-dogecoin",
-      "type": "tag"
-    },
-    {
-      "alias": "Economic Governance",
-      "slug": "tag-economic-governance",
-      "type": "tag"
-    },
-    {
-      "alias": "economic governance",
-      "slug": "tag-economic-governance",
       "type": "tag"
     },
     {
@@ -6998,16 +7860,6 @@
       "type": "tag"
     },
     {
-      "alias": "Market Timing",
-      "slug": "tag-market-timing",
-      "type": "tag"
-    },
-    {
-      "alias": "market timing",
-      "slug": "tag-market-timing",
-      "type": "tag"
-    },
-    {
       "alias": "Meme Coins",
       "slug": "tag-meme-coins",
       "type": "tag"
@@ -7035,26 +7887,6 @@
     {
       "alias": "mining",
       "slug": "tag-mining",
-      "type": "tag"
-    },
-    {
-      "alias": "Mobile Payments",
-      "slug": "tag-mobile-payments",
-      "type": "tag"
-    },
-    {
-      "alias": "mobile payments",
-      "slug": "tag-mobile-payments",
-      "type": "tag"
-    },
-    {
-      "alias": "Monetary Systems",
-      "slug": "tag-monetary-systems",
-      "type": "tag"
-    },
-    {
-      "alias": "monetary systems",
-      "slug": "tag-monetary-systems",
       "type": "tag"
     },
     {
@@ -7168,41 +8000,6 @@
       "type": "tag"
     },
     {
-      "alias": "QR Payments",
-      "slug": "tag-qr-payments",
-      "type": "tag"
-    },
-    {
-      "alias": "QR payments",
-      "slug": "tag-qr-payments",
-      "type": "tag"
-    },
-    {
-      "alias": "qr payments",
-      "slug": "tag-qr-payments",
-      "type": "tag"
-    },
-    {
-      "alias": "Real World Assets",
-      "slug": "tag-real-world-assets",
-      "type": "tag"
-    },
-    {
-      "alias": "real-world assets",
-      "slug": "tag-real-world-assets",
-      "type": "tag"
-    },
-    {
-      "alias": "Redenomination",
-      "slug": "tag-redenomination",
-      "type": "tag"
-    },
-    {
-      "alias": "redenomination",
-      "slug": "tag-redenomination",
-      "type": "tag"
-    },
-    {
       "alias": "Rollups",
       "slug": "tag-rollups",
       "type": "tag"
@@ -7263,26 +8060,6 @@
       "type": "tag"
     },
     {
-      "alias": "Solomon Islands",
-      "slug": "tag-solomon-islands",
-      "type": "tag"
-    },
-    {
-      "alias": "solomon islands",
-      "slug": "tag-solomon-islands",
-      "type": "tag"
-    },
-    {
-      "alias": "SORA Card",
-      "slug": "tag-sora-card",
-      "type": "tag"
-    },
-    {
-      "alias": "sora card",
-      "slug": "tag-sora-card",
-      "type": "tag"
-    },
-    {
       "alias": "SORA Ecosystem",
       "slug": "tag-sora-ecosystem",
       "type": "tag"
@@ -7305,56 +8082,6 @@
     {
       "alias": "soshiba",
       "slug": "tag-soshiba",
-      "type": "tag"
-    },
-    {
-      "alias": "Token Repackaging",
-      "slug": "tag-token-repackaging",
-      "type": "tag"
-    },
-    {
-      "alias": "token repackaging",
-      "slug": "tag-token-repackaging",
-      "type": "tag"
-    },
-    {
-      "alias": "Tokenization",
-      "slug": "tag-tokenization",
-      "type": "tag"
-    },
-    {
-      "alias": "tokenization",
-      "slug": "tag-tokenization",
-      "type": "tag"
-    },
-    {
-      "alias": "Tokenomics",
-      "slug": "tag-tokenomics",
-      "type": "tag"
-    },
-    {
-      "alias": "tokenomics",
-      "slug": "tag-tokenomics",
-      "type": "tag"
-    },
-    {
-      "alias": "Trading Strategy",
-      "slug": "tag-trading-strategy",
-      "type": "tag"
-    },
-    {
-      "alias": "trading strategy",
-      "slug": "tag-trading-strategy",
-      "type": "tag"
-    },
-    {
-      "alias": "Treasury",
-      "slug": "tag-treasury",
-      "type": "tag"
-    },
-    {
-      "alias": "treasury",
-      "slug": "tag-treasury",
       "type": "tag"
     },
     {
