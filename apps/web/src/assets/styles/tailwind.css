@@ -370,6 +370,25 @@
     background-color: var(--overlay-subtle);
   }
 
+  .search-highlight {
+    display: inline;
+    padding: 0.08em 0;
+    color: #111827;
+    background-color: rgba(227, 36, 45, 0.2);
+    border-radius: var(--radius-sm);
+    box-shadow: inset 0 0 0 1px rgba(227, 36, 45, 0.4);
+    box-decoration-break: clone;
+    font-weight: 600;
+  }
+
+  :where(.dark) .search-highlight {
+    color: #111827;
+    background-color: rgba(227, 36, 45, 0.35);
+    background-color: color-mix(in srgb, var(--color-brand-400) 26%, transparent);
+    box-shadow: inset 0 0 0 1px rgba(227, 36, 45, 0.5);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-brand-400) 45%, transparent);
+  }
+
   .search-modal__result-title {
     @apply text-lg font-semibold text-text-main;
   }

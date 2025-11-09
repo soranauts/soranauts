@@ -1073,20 +1073,51 @@
     cleanSnippet(text: string) {
       if (!text) return '';
       return text
+        .replace(/<\/?mark[^>]*>/gi, '')
+        .replace(/<\/?em[^>]*>/gi, '')
+        .replace(/<\/?strong[^>]*>/gi, '')
+        .replace(/<[^>]+>/g, ' ')
         .replace(/\s+/g, ' ')
         .replace(/\b([A-Za-z0-9]+)\b(?:\s+\1\b){1,}/gi, '$1')
         .trim();
     }
     
     highlightText(text: string, query: string) {
-      if (!query) return text;
+      if (!query || !text) return text;
       const tokens = this.getHighlightTokens(query);
       if (!tokens.length) {
         return text;
       }
       const pattern = tokens.map((token) => this.escapeRegExp(token)).join('|');
       const regex = new RegExp(`(${pattern})`, 'gi');
-      return text.replace(regex, '<mark class="rounded bg-brand-soft px-1 text-text-main">$1</mark>');
+      const ranges: Array<[number, number]> = [];
+
+      let match: RegExpExecArray | null;
+      while ((match = regex.exec(text)) !== null) {
+        const start = match.index;
+        const end = start + match[0].length;
+        ranges.push(this.expandHighlightRange(text, start, end));
+
+        if (match[0].length === 0) {
+          regex.lastIndex += 1;
+        }
+      }
+
+      if (!ranges.length) {
+        return text;
+      }
+
+      const merged = this.mergeHighlightRanges(ranges);
+
+      let result = '';
+      let lastIndex = 0;
+      for (const [start, end] of merged) {
+        result += text.slice(lastIndex, start);
+        result += `<mark class="search-highlight">${text.slice(start, end)}</mark>`;
+        lastIndex = end;
+      }
+      result += text.slice(lastIndex);
+      return result;
     }
 
     getHighlightTokens(query: string) {
@@ -1100,6 +1131,53 @@
 
     escapeRegExp(value: string) {
       return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    expandHighlightRange(text: string, start: number, end: number): [number, number] {
+      let rangeStart = start;
+      let rangeEnd = end;
+
+      while (rangeStart > 0 && this.isWordChar(text.charAt(rangeStart - 1))) {
+        rangeStart -= 1;
+      }
+
+      while (rangeEnd < text.length && this.isWordChar(text.charAt(rangeEnd))) {
+        rangeEnd += 1;
+      }
+
+      return [rangeStart, rangeEnd];
+    }
+
+    mergeHighlightRanges(ranges: Array<[number, number]>) {
+      const sorted = ranges
+        .map(([start, end]) => [start, end] as [number, number])
+        .sort((a, b) => a[0] - b[0]);
+
+      const merged: Array<[number, number]> = [];
+      if (!sorted.length) {
+        return merged;
+      }
+
+      let [currentStart, currentEnd] = sorted[0];
+      for (let i = 1; i < sorted.length; i += 1) {
+        const [start, end] = sorted[i];
+        if (start <= currentEnd) {
+          currentEnd = Math.max(currentEnd, end);
+        } else {
+          merged.push([currentStart, currentEnd]);
+          currentStart = start;
+          currentEnd = end;
+        }
+      }
+      merged.push([currentStart, currentEnd]);
+      return merged;
+    }
+
+    isWordChar(value: string) {
+      if (!value) {
+        return false;
+      }
+      return /[A-Za-z0-9]/.test(value) || value === '-' || value === '_' || value === '\'' || value === '’';
     }
 
     attachResultHandlers() {
