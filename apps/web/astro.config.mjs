@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { defineConfig } from 'astro/config';
+import { execa } from 'execa';
 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
@@ -46,6 +47,31 @@ const redirects = {
   ...siteRedirects,
 };
 
+const pagefindIntegration = {
+  name: 'pagefind-cli-runner',
+  hooks: {
+    'astro:build:done': async ({ dir, logger }) => {
+      if (process.env.DISABLE_PAGEFIND === 'true') {
+        logger.info('Skipping Pagefind index build (DISABLE_PAGEFIND=true).');
+        return;
+      }
+
+      const siteDir = fileURLToPath(dir);
+      logger.info('Running Pagefind CLI to build search index…');
+
+      try {
+        await execa('pnpm', ['exec', 'pagefind', '--site', siteDir], {
+          stdio: 'inherit',
+        });
+        logger.info('Pagefind index generated successfully.');
+      } catch (error) {
+        logger.error('Pagefind build failed.');
+        throw error;
+      }
+    },
+  },
+};
+
 export default defineConfig({
   site: SITE.site,
   base: SITE.base,
@@ -70,6 +96,7 @@ export default defineConfig({
         tabler: () => import('@iconify-json/tabler/icons.json'),
       },
     }),
+    pagefindIntegration,
 
     // ...whenExternalScripts(() =>
     //   partytown({
