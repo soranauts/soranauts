@@ -463,7 +463,9 @@
       "definition": "A parallel blockchain in the Polkadot ecosystem that connects to the main relay chain and benefits from shared security. Parachains can specialize in specific use cases (DeFi, privacy, smart contracts) while maintaining interoperability through Cross-Consensus Messaging (XCM). They process transactions in parallel and are validated by the relay chain's validator set.",
       "category": "network",
       "aliases": [
-        "Parachain"
+        "Parachain",
+        "Parachains",
+        "parachains"
       ],
       "tags": [
         "network",
@@ -4002,7 +4004,9 @@
       "definition": "The mechanism by which blockchain networks agree on the validity of transactions and maintain a consistent state. SORA v2 uses Substrate-based consensus mechanisms (NPoS - Nominated Proof of Stake). SORA v3 will use Byzantine Fault Tolerance (BFT) consensus derived from Hyperledger Iroha 3's architecture, providing high-throughput transaction processing with deterministic finality, making it suitable for enterprise applications and CBDCs.",
       "category": "network",
       "aliases": [
-        "Consensus"
+        "Consensus",
+        "Consensus Mechanisms",
+        "consensus mechanisms"
       ],
       "tags": [
         "network",
@@ -4908,6 +4912,871 @@
           "url": "https://soranauts.com/timing-the-crypto-market-insights-into-bull-cycles"
         }
       ]
+    },
+    {
+      "term": "Dogecoin (DOGE)",
+      "slug": "dogecoin",
+      "definition": "Dogecoin is a proof-of-work cryptocurrency that began as a meme and grew into a large community economy. Within Soranauts coverage, DOGE is analyzed to highlight how meme coins influence trading behavior, liquidity cycles, and cultural adoption—context that informs SORA initiatives like SOSHIBA.",
+      "category": "economics",
+      "aliases": [
+        "Dogecoin",
+        "DOGE"
+      ],
+      "tags": [
+        "economics",
+        "meme coins",
+        "volatility",
+        "blockchain culture",
+        "trading strategy"
+      ],
+      "relatedTerms": [
+        "SOSHIBA",
+        "Pepe",
+        "Bonk",
+        "Volatility"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "A meme-inspired cryptocurrency that helped popularize community-driven token launches. Soranauts track Dogecoin to compare community culture, volatility, and meme coin mechanics with SORA-native projects.",
+      "seeAlso": [
+        "SOSHIBA",
+        "Pepe",
+        "Bonk",
+        "Volatility"
+      ],
+      "relatedTags": [
+        "meme coins",
+        "volatility",
+        "blockchain culture",
+        "trading strategy"
+      ],
+      "links": [
+        {
+          "label": "Meme Coins vs Traditional Crypto",
+          "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        }
+      ]
+    },
+    {
+      "term": "Shiba Inu (SHIB)",
+      "slug": "shiba-inu",
+      "definition": "Shiba Inu is a meme coin and DeFi ecosystem built on Ethereum. Its rapid growth, NFT integrations, and DAO experiments provide lessons for SORA on community incentives, liquidity programs, and messaging. The project is often contrasted with SORA-native initiatives in Soranauts research.",
+      "category": "economics",
+      "aliases": [
+        "Shiba Inu",
+        "SHIB"
+      ],
+      "tags": [
+        "economics",
+        "meme coins",
+        "volatility",
+        "blockchain culture",
+        "tokenomics"
+      ],
+      "relatedTerms": [
+        "Dogecoin (DOGE)",
+        "Pepe",
+        "Bonk",
+        "SOSHIBA"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "An Ethereum-based meme coin ecosystem that showcases community-led token launches, DeFi spin-offs, and extreme volatility. Soranauts reference SHIB when comparing meme coin strategies to SORA's token design.",
+      "seeAlso": [
+        "Dogecoin (DOGE)",
+        "Pepe",
+        "Bonk",
+        "SOSHIBA"
+      ],
+      "relatedTags": [
+        "meme coins",
+        "volatility",
+        "blockchain culture",
+        "tokenomics"
+      ],
+      "links": [
+        {
+          "label": "Meme Coins vs Traditional Crypto",
+          "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        }
+      ]
+    },
+    {
+      "term": "Pepe (PEPE)",
+      "slug": "pepe",
+      "definition": "Pepe is an Ethereum meme coin that surged in 2023, demonstrating how quickly capital moves toward recognizable cultural icons. The Soranauts knowledge base documents PEPE to explain liquidity churn, volatility management, and how SORA can harness culture-driven demand responsibly.",
+      "category": "economics",
+      "aliases": [
+        "Pepe",
+        "PEPE"
+      ],
+      "tags": [
+        "economics",
+        "meme coins",
+        "volatility",
+        "blockchain culture"
+      ],
+      "relatedTerms": [
+        "Dogecoin (DOGE)",
+        "Shiba Inu (SHIB)",
+        "Bonk",
+        "SOSHIBA"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "A viral meme coin that highlights capital flows chasing internet culture narratives. Soranauts track PEPE to understand speculative cycles impacting Polkaswap liquidity.",
+      "seeAlso": [
+        "Dogecoin (DOGE)",
+        "Shiba Inu (SHIB)",
+        "Bonk",
+        "SOSHIBA"
+      ],
+      "relatedTags": [
+        "meme coins",
+        "volatility",
+        "blockchain culture"
+      ],
+      "links": [
+        {
+          "label": "Meme Coins vs Traditional Crypto",
+          "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        }
+      ]
+    },
+    {
+      "term": "Bonk (BONK)",
+      "slug": "bonk",
+      "definition": "Bonk is a meme coin native to the Solana network that launched with a large community airdrop. Its rapid integration into wallets, NFT projects, and merchant pilots provides lessons for SORA builders on distribution mechanics and the risks of speculative mania.",
+      "category": "economics",
+      "aliases": [
+        "Bonk",
+        "BONK"
+      ],
+      "tags": [
+        "economics",
+        "meme coins",
+        "volatility",
+        "blockchain culture",
+        "tokenomics"
+      ],
+      "relatedTerms": [
+        "SOSHIBA",
+        "Dogecoin (DOGE)",
+        "Shiba Inu (SHIB)",
+        "Pepe"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "A Solana-based meme coin used as a case study for ecosystem marketing, community rewards, and airdrop distribution. Soranauts reference BONK when evaluating incentive design for SORA ecosystem tokens.",
+      "seeAlso": [
+        "SOSHIBA",
+        "Dogecoin (DOGE)",
+        "Shiba Inu (SHIB)",
+        "Pepe"
+      ],
+      "relatedTags": [
+        "meme coins",
+        "volatility",
+        "blockchain culture",
+        "tokenomics"
+      ],
+      "links": [
+        {
+          "label": "Meme Coins vs Traditional Crypto",
+          "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        }
+      ]
+    },
+    {
+      "term": "Volatility",
+      "slug": "volatility",
+      "definition": "Volatility measures the magnitude of price changes over time. Soranauts coverage explains how volatility affects Polkaswap liquidity, staking yields, and treasury operations. Strategies like dollar-cost averaging, hedging, and adaptive liquidity incentives are discussed to navigate volatile markets.",
+      "category": "economics",
+      "aliases": [
+        "Volatility"
+      ],
+      "tags": [
+        "economics",
+        "crypto market cycles",
+        "trading strategy",
+        "market timing",
+        "risk management"
+      ],
+      "relatedTerms": [
+        "Crypto Market Cycles",
+        "Trading Strategy",
+        "Market Timing",
+        "SOSHIBA"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "The rate at which asset prices fluctuate. Volatility impacts SORA's treasury planning, liquidity incentives, and meme coin risk management.",
+      "seeAlso": [
+        "Crypto Market Cycles",
+        "Trading Strategy",
+        "Market Timing",
+        "SOSHIBA"
+      ],
+      "relatedTags": [
+        "crypto market cycles",
+        "trading strategy",
+        "market timing",
+        "risk management"
+      ],
+      "links": [
+        {
+          "label": "Timing the Crypto Market",
+          "url": "https://soranauts.com/timing-the-crypto-market-insights-into-bull-cycles"
+        }
+      ]
+    },
+    {
+      "term": "SOSHIBA",
+      "slug": "soshiba",
+      "definition": "SOSHIBA is a community-driven meme coin launched within the SORA ecosystem. It is used to experiment with airdrops, liquidity mining, and social campaigns while promoting financial literacy. Soranauts track SOSHIBA to document best practices for responsible meme coin launches in the SORA community.",
+      "category": "economics",
+      "aliases": [
+        "SOSHIBA"
+      ],
+      "tags": [
+        "economics",
+        "meme coins",
+        "Polkaswap",
+        "community",
+        "volatility"
+      ],
+      "relatedTerms": [
+        "Dogecoin (DOGE)",
+        "Shiba Inu (SHIB)",
+        "Pepe",
+        "Bonk"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "A SORA-native meme coin experiment that channels community energy into educational content and liquidity bootstrapping on Polkaswap.",
+      "seeAlso": [
+        "Dogecoin (DOGE)",
+        "Shiba Inu (SHIB)",
+        "Pepe",
+        "Bonk"
+      ],
+      "relatedTags": [
+        "meme coins",
+        "Polkaswap",
+        "community",
+        "volatility"
+      ],
+      "links": [
+        {
+          "label": "Meme Coins vs Traditional Crypto",
+          "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        }
+      ]
+    },
+    {
+      "term": "Blockchain Culture",
+      "slug": "blockchain-culture",
+      "definition": "Blockchain culture encompasses the memes, stories, rituals, and social norms that influence how decentralized communities operate. Understanding culture helps Soranauts forecast user behavior, design community incentives, and translate SORA's mission to new audiences.",
+      "category": "technology",
+      "aliases": [
+        "Blockchain Culture"
+      ],
+      "tags": [
+        "technology",
+        "meme coins",
+        "community",
+        "SORA ecosystem"
+      ],
+      "relatedTerms": [
+        "SOSHIBA",
+        "Dogecoin (DOGE)",
+        "Shiba Inu (SHIB)",
+        "Bonk"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "The shared values, memes, and narratives that shape how blockchain communities build products and coordinate capital. Soranauts examine culture to explain adoption patterns in the SORA ecosystem.",
+      "seeAlso": [
+        "SOSHIBA",
+        "Dogecoin (DOGE)",
+        "Shiba Inu (SHIB)",
+        "Bonk"
+      ],
+      "relatedTags": [
+        "meme coins",
+        "community",
+        "SORA ecosystem"
+      ],
+      "links": [
+        {
+          "label": "Meme Coins vs Traditional Crypto",
+          "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
+        }
+      ]
+    },
+    {
+      "term": "Blockchain Architecture",
+      "slug": "blockchain-architecture",
+      "definition": "Blockchain architecture describes how a network is engineered, including runtime modules, consensus layers, networking protocols, and upgrade paths. Soranauts analyze architectures like Polkadot's heterogeneous shards and SORA v3's Hyperledger Iroha stack to understand scalability, security, and product roadmap implications.",
+      "category": "technology",
+      "aliases": [
+        "Blockchain Architecture"
+      ],
+      "tags": [
+        "technology",
+        "Polkadot",
+        "Hyperledger Iroha",
+        "rollups",
+        "asynchronous backing",
+        "coretime"
+      ],
+      "relatedTerms": [
+        "Polkadot",
+        "Hyperledger Iroha",
+        "Rollups",
+        "Asynchronous Backing",
+        "Coretime"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "The technical structure that defines how blockchain components interact—consensus, networking, execution, and data availability. Soranauts evaluate architecture choices when comparing Substrate and Hyperledger Iroha.",
+      "seeAlso": [
+        "Polkadot",
+        "Hyperledger Iroha",
+        "Rollups",
+        "Asynchronous Backing",
+        "Coretime"
+      ],
+      "relatedTags": [
+        "Polkadot",
+        "Hyperledger Iroha",
+        "rollups",
+        "asynchronous backing",
+        "coretime"
+      ],
+      "links": [
+        {
+          "label": "Polkadot Architecture Guide",
+          "url": "https://soranauts.com/polkadot-architecture-guide"
+        }
+      ]
+    },
+    {
+      "term": "Kusama",
+      "slug": "kusama",
+      "definition": "Kusama is a scalable, multi-chain network that mirrors Polkadot but moves at a faster pace with looser governance parameters. Soranauts documentation references Kusama to explain historical SORA parachain slots, bridge experiments, and governance learnings that feed into SORA v3.",
+      "category": "network",
+      "aliases": [
+        "Kusama"
+      ],
+      "tags": [
+        "network",
+        "parachains",
+        "crowdloans",
+        "auctions",
+        "XCMP",
+        "OpenGov"
+      ],
+      "relatedTerms": [
+        "Polkadot",
+        "Parachain",
+        "Crowdloans",
+        "Auctions",
+        "XCMP"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Polkadot's canary network used for rapid experimentation with parachains, governance upgrades, and economic features. Kusama informed SORA's early integrations and governance strategy.",
+      "seeAlso": [
+        "Polkadot",
+        "Parachain",
+        "Crowdloans",
+        "Auctions",
+        "XCMP"
+      ],
+      "relatedTags": [
+        "parachains",
+        "crowdloans",
+        "auctions",
+        "XCMP",
+        "OpenGov"
+      ],
+      "links": [
+        {
+          "label": "Polkadot & Kusama Parachains",
+          "url": "https://soranauts.com/polkadot-kusama-parachains"
+        }
+      ]
+    },
+    {
+      "term": "XCMP",
+      "slug": "xcmp",
+      "definition": "XCMP lets Polkadot parachains send messages and assets without going through the relay chain, reducing latency and fees. Soranauts cover XCMP to explain how SORA integrates with Polkadot-era infrastructure and how future Hyperledger Iroha bridges will maintain interoperability.",
+      "category": "technology",
+      "aliases": [
+        "XCMP"
+      ],
+      "tags": [
+        "technology",
+        "parachains",
+        "Polkadot",
+        "interoperability",
+        "coretime"
+      ],
+      "relatedTerms": [
+        "Parachain",
+        "Polkadot",
+        "Coretime",
+        "Asynchronous Backing"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Cross-Chain Message Passing (XCMP) is the protocol Polkadot uses for parachains to talk to each other. It underpins interoperability strategies relevant to SORA bridges.",
+      "seeAlso": [
+        "Parachain",
+        "Polkadot",
+        "Coretime",
+        "Asynchronous Backing"
+      ],
+      "relatedTags": [
+        "parachains",
+        "Polkadot",
+        "interoperability",
+        "coretime"
+      ],
+      "links": [
+        {
+          "label": "What Are Polkadot Parachains?",
+          "url": "https://soranauts.com/what-are-polkadot-parachains-scalability-shared-security-and-xcm"
+        }
+      ]
+    },
+    {
+      "term": "Coretime",
+      "slug": "coretime",
+      "definition": "Polkadot commoditizes parachain execution capacity as coretime. Projects can purchase coretime in bulk or on-demand to run their logic. Soranauts analyze coretime markets to understand how SORA and partner parachains plan deployment schedules and budgeting.",
+      "category": "technology",
+      "aliases": [
+        "Coretime"
+      ],
+      "tags": [
+        "technology",
+        "parachains",
+        "agile coretime",
+        "auctions",
+        "slot leases"
+      ],
+      "relatedTerms": [
+        "Agile Coretime",
+        "Parachain",
+        "Auctions",
+        "Slot Leases"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Coretime represents the compute resource that Polkadot sells to parachains. Tracking coretime helps Soranauts explain how SORA evaluates slot access and future interoperability.",
+      "seeAlso": [
+        "Agile Coretime",
+        "Parachain",
+        "Auctions",
+        "Slot Leases"
+      ],
+      "relatedTags": [
+        "parachains",
+        "agile coretime",
+        "auctions",
+        "slot leases"
+      ],
+      "links": [
+        {
+          "label": "Polkadot & Kusama Parachains",
+          "url": "https://soranauts.com/polkadot-kusama-parachains"
+        }
+      ]
+    },
+    {
+      "term": "Asynchronous Backing",
+      "slug": "asynchronous-backing",
+      "definition": "Asynchronous backing allows validators to process parachain blocks in overlapping stages, dramatically boosting TPS and reducing latency. The Soranauts knowledge base explains how this upgrade impacts SORA-linked parachains and future Hyperledger Iroha bridges.",
+      "category": "technology",
+      "aliases": [
+        "Asynchronous Backing"
+      ],
+      "tags": [
+        "technology",
+        "parachains",
+        "coretime",
+        "agile coretime",
+        "Polkadot"
+      ],
+      "relatedTerms": [
+        "Coretime",
+        "Agile Coretime",
+        "Parachain",
+        "Polkadot"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "A Polkadot upgrade that increases parachain throughput by decoupling validation stages. Soranauts track the feature to gauge scalability for SORA integrations.",
+      "seeAlso": [
+        "Coretime",
+        "Agile Coretime",
+        "Parachain",
+        "Polkadot"
+      ],
+      "relatedTags": [
+        "parachains",
+        "coretime",
+        "agile coretime",
+        "Polkadot"
+      ],
+      "links": [
+        {
+          "label": "Polkadot Architecture Guide",
+          "url": "https://soranauts.com/polkadot-architecture-guide"
+        }
+      ]
+    },
+    {
+      "term": "Parachain Auctions",
+      "slug": "auctions",
+      "definition": "Auctions are Candle-style events where DOT or KSM is bonded to win parachain slots. Soranauts track auction results, strategies, and crowdloan participation to illustrate the economics of connecting SORA to Polkadot and Kusama.",
+      "category": "governance",
+      "aliases": [
+        "Parachain Auctions",
+        "auctions"
+      ],
+      "tags": [
+        "governance",
+        "crowdloans",
+        "slot leases",
+        "coretime",
+        "Polkadot"
+      ],
+      "relatedTerms": [
+        "Crowdloans",
+        "Slot Leases",
+        "Polkadot",
+        "Kusama"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Parachain slot auctions let projects compete for coretime on Polkadot by bonding DOT or KSM. Soranauts document auctions to explain how SORA secured historical parachain access.",
+      "seeAlso": [
+        "Crowdloans",
+        "Slot Leases",
+        "Polkadot",
+        "Kusama"
+      ],
+      "relatedTags": [
+        "crowdloans",
+        "slot leases",
+        "coretime",
+        "Polkadot"
+      ],
+      "links": [
+        {
+          "label": "Polkadot & Kusama Parachains",
+          "url": "https://soranauts.com/polkadot-kusama-parachains"
+        }
+      ]
+    },
+    {
+      "term": "Crowdloans",
+      "slug": "crowdloans",
+      "definition": "Crowdloans pool tokens from supporters to back a project's parachain auction bid. Contributors receive their stake back after the lease plus rewards from the project. Soranauts document crowdloan strategies as part of the SORA ecosystem governance narrative.",
+      "category": "governance",
+      "aliases": [
+        "Crowdloans"
+      ],
+      "tags": [
+        "governance",
+        "auctions",
+        "Polkadot",
+        "Kusama",
+        "slot leases"
+      ],
+      "relatedTerms": [
+        "Auctions",
+        "Polkadot",
+        "Kusama",
+        "Slot Leases"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Crowdloans allow communities to bond DOT or KSM to support parachain auction bids in exchange for rewards. Soranauts reference crowdloans when detailing SORA's historical Polkadot participation.",
+      "seeAlso": [
+        "Auctions",
+        "Polkadot",
+        "Kusama",
+        "Slot Leases"
+      ],
+      "relatedTags": [
+        "auctions",
+        "Polkadot",
+        "Kusama",
+        "slot leases"
+      ],
+      "links": [
+        {
+          "label": "Polkadot & Kusama Parachains",
+          "url": "https://soranauts.com/polkadot-kusama-parachains"
+        }
+      ]
+    },
+    {
+      "term": "Parathreads",
+      "slug": "parathreads",
+      "definition": "Parathreads share coretime on demand and pay per block. They allow projects to test workloads or run small services without winning an auction. Soranauts coverage notes parathreads as a stepping stone for SORA-aligned builders exploring Polkadot connectivity.",
+      "category": "technology",
+      "aliases": [
+        "Parathreads"
+      ],
+      "tags": [
+        "technology",
+        "parachains",
+        "coretime",
+        "agile coretime",
+        "slot leases"
+      ],
+      "relatedTerms": [
+        "Parachain",
+        "Coretime",
+        "Agile Coretime",
+        "Slot Leases"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Pay-as-you-go parachain slots on Polkadot and Kusama. Parathreads offer flexible access to coretime before committing to a full lease, relevant for SORA partners testing integrations.",
+      "seeAlso": [
+        "Parachain",
+        "Coretime",
+        "Agile Coretime",
+        "Slot Leases"
+      ],
+      "relatedTags": [
+        "parachains",
+        "coretime",
+        "agile coretime",
+        "slot leases"
+      ],
+      "links": [
+        {
+          "label": "Polkadot & Kusama Parachains",
+          "url": "https://soranauts.com/polkadot-kusama-parachains"
+        }
+      ]
+    },
+    {
+      "term": "Forkless Upgrades",
+      "slug": "forkless-upgrades",
+      "definition": "Forkless upgrades allow Polkadot runtime changes to be enacted via governance without network disruption. This capability inspired SORA governance improvements and informs expectations for Hyperledger Iroha upgrades.",
+      "category": "technology",
+      "aliases": [
+        "Forkless Upgrades"
+      ],
+      "tags": [
+        "technology",
+        "Polkadot",
+        "Kusama",
+        "governance",
+        "runtime upgrades"
+      ],
+      "relatedTerms": [
+        "Polkadot",
+        "Kusama",
+        "Governance"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Polkadot and Kusama support runtime upgrades without hard forks. Soranauts highlight this capability when discussing SORA governance and tooling expectations.",
+      "seeAlso": [
+        "Polkadot",
+        "Kusama",
+        "Governance"
+      ],
+      "relatedTags": [
+        "Polkadot",
+        "Kusama",
+        "governance",
+        "runtime upgrades"
+      ],
+      "links": [
+        {
+          "label": "Polkadot & Kusama Parachains",
+          "url": "https://soranauts.com/polkadot-kusama-parachains"
+        }
+      ]
+    },
+    {
+      "term": "Slot Leases",
+      "slug": "slot-leases",
+      "definition": "Winning parachain auctions grants lease periods split into contiguous 12-week chunks. Projects must plan renewals or transition strategies before leases end. Soranauts documentation explains the financial planning required for SORA and partner parachains.",
+      "category": "economics",
+      "aliases": [
+        "Slot Leases"
+      ],
+      "tags": [
+        "economics",
+        "auctions",
+        "crowdloans",
+        "coretime",
+        "Polkadot"
+      ],
+      "relatedTerms": [
+        "Auctions",
+        "Crowdloans",
+        "Coretime",
+        "Polkadot"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Parachain slots are leased for fixed periods (up to 96 weeks on Polkadot). Soranauts track lease structures to analyze SORA deployment costs and timelines.",
+      "seeAlso": [
+        "Auctions",
+        "Crowdloans",
+        "Coretime",
+        "Polkadot"
+      ],
+      "relatedTags": [
+        "auctions",
+        "crowdloans",
+        "coretime",
+        "Polkadot"
+      ],
+      "links": [
+        {
+          "label": "Polkadot & Kusama Parachains",
+          "url": "https://soranauts.com/polkadot-kusama-parachains"
+        }
+      ]
+    },
+    {
+      "term": "Rollups",
+      "slug": "rollups",
+      "definition": "Rollups are a scaling technique where execution happens off-chain, with compressed proofs posted on-chain for security. Soranauts documentation references rollups to evaluate external ecosystems and highlight why SORA focuses on Hyperledger Iroha with deterministic BFT execution.",
+      "category": "technology",
+      "aliases": [
+        "Rollups"
+      ],
+      "tags": [
+        "technology",
+        "scalability",
+        "blockchain architecture",
+        "Polkadot",
+        "Hyperledger Iroha"
+      ],
+      "relatedTerms": [
+        "Blockchain Architecture",
+        "Polkadot",
+        "Hyperledger Iroha"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "Rollups bundle transactions off-chain before submitting proofs on-chain. Soranauts compare rollups with SORA v3 architecture when discussing scalability approaches.",
+      "seeAlso": [
+        "Blockchain Architecture",
+        "Polkadot",
+        "Hyperledger Iroha"
+      ],
+      "relatedTags": [
+        "scalability",
+        "blockchain architecture",
+        "Polkadot",
+        "Hyperledger Iroha"
+      ],
+      "links": [
+        {
+          "label": "Polkadot Architecture Guide",
+          "url": "https://soranauts.com/polkadot-architecture-guide"
+        }
+      ]
+    },
+    {
+      "term": "Agile Coretime",
+      "slug": "agile-coretime",
+      "definition": "Agile coretime introduces programmatic sales of Polkadot execution resources, complementing auctions and crowdloans. The Soranauts knowledge base monitors this system to advise SORA builders on leasing strategies and cost forecasting.",
+      "category": "economics",
+      "aliases": [
+        "Agile Coretime"
+      ],
+      "tags": [
+        "economics",
+        "coretime",
+        "parachains",
+        "auctions",
+        "slot leases"
+      ],
+      "relatedTerms": [
+        "Coretime",
+        "Parachain",
+        "Auctions",
+        "Slot Leases"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "A marketplace model where Polkadot sells coretime in flexible chunks, allowing projects to acquire execution capacity dynamically. Soranauts track agile coretime developments for future SORA interoperability planning.",
+      "seeAlso": [
+        "Coretime",
+        "Parachain",
+        "Auctions",
+        "Slot Leases"
+      ],
+      "relatedTags": [
+        "coretime",
+        "parachains",
+        "auctions",
+        "slot leases"
+      ],
+      "links": [
+        {
+          "label": "Polkadot & Kusama Parachains",
+          "url": "https://soranauts.com/polkadot-kusama-parachains"
+        }
+      ]
+    },
+    {
+      "term": "Blockchain Economics",
+      "slug": "blockchain-economics",
+      "definition": "Blockchain economics covers token supply, demand drivers, incentive alignment, and governance. Soranauts use the discipline to explain SORA's token bonding curve, treasury management, and ecosystem funding, comparing them with broader Web3 experiments.",
+      "category": "economics",
+      "aliases": [
+        "Blockchain Economics"
+      ],
+      "tags": [
+        "economics",
+        "tokenomics",
+        "monetary systems",
+        "token repackaging",
+        "elastic supply"
+      ],
+      "relatedTerms": [
+        "Monetary Systems",
+        "Token Repackaging",
+        "Elastic Supply",
+        "Tokenomics"
+      ],
+      "priority": 0,
+      "type": "term",
+      "summary": "The study of how blockchain incentives, monetary policy, and governance interact to produce sustainable networks. Soranauts analyze blockchain economics to articulate SORA's supranational design.",
+      "seeAlso": [
+        "Monetary Systems",
+        "Token Repackaging",
+        "Elastic Supply",
+        "Tokenomics"
+      ],
+      "relatedTags": [
+        "tokenomics",
+        "monetary systems",
+        "token repackaging",
+        "elastic supply"
+      ],
+      "links": [
+        {
+          "label": "SORA Blockchain: New World Economic Order",
+          "url": "https://soranauts.com/sora-blockchain-new-world-economic-order"
+        }
+      ]
     }
   ],
   "categories": {
@@ -4917,11 +5786,11 @@
     },
     "technology": {
       "name": "technology",
-      "count": 20
+      "count": 28
     },
     "network": {
       "name": "network",
-      "count": 11
+      "count": 12
     },
     "defi": {
       "name": "defi",
@@ -4929,15 +5798,15 @@
     },
     "economics": {
       "name": "economics",
-      "count": 23
+      "count": 32
     },
     "governance": {
       "name": "governance",
-      "count": 11
+      "count": 13
     }
   },
-  "totalCount": 89,
-  "lastUpdated": "2025-11-09T02:45:50.922Z",
+  "totalCount": 109,
+  "lastUpdated": "2025-11-09T02:57:33.298Z",
   "aliasIndex": [
     {
       "alias": "XOR",
@@ -5046,6 +5915,16 @@
     },
     {
       "alias": "Parachain",
+      "slug": "parachain",
+      "type": "term"
+    },
+    {
+      "alias": "Parachains",
+      "slug": "parachain",
+      "type": "term"
+    },
+    {
+      "alias": "parachains",
       "slug": "parachain",
       "type": "term"
     },
@@ -5435,6 +6314,16 @@
       "type": "term"
     },
     {
+      "alias": "Consensus Mechanisms",
+      "slug": "consensus",
+      "type": "term"
+    },
+    {
+      "alias": "consensus mechanisms",
+      "slug": "consensus",
+      "type": "term"
+    },
+    {
       "alias": "Security",
       "slug": "security",
       "type": "term"
@@ -5547,6 +6436,151 @@
     {
       "alias": "Market Timing",
       "slug": "market-timing",
+      "type": "term"
+    },
+    {
+      "alias": "Dogecoin (DOGE)",
+      "slug": "dogecoin",
+      "type": "term"
+    },
+    {
+      "alias": "Dogecoin",
+      "slug": "dogecoin",
+      "type": "term"
+    },
+    {
+      "alias": "DOGE",
+      "slug": "dogecoin",
+      "type": "term"
+    },
+    {
+      "alias": "Shiba Inu (SHIB)",
+      "slug": "shiba-inu",
+      "type": "term"
+    },
+    {
+      "alias": "Shiba Inu",
+      "slug": "shiba-inu",
+      "type": "term"
+    },
+    {
+      "alias": "SHIB",
+      "slug": "shiba-inu",
+      "type": "term"
+    },
+    {
+      "alias": "Pepe (PEPE)",
+      "slug": "pepe",
+      "type": "term"
+    },
+    {
+      "alias": "Pepe",
+      "slug": "pepe",
+      "type": "term"
+    },
+    {
+      "alias": "PEPE",
+      "slug": "pepe",
+      "type": "term"
+    },
+    {
+      "alias": "Bonk (BONK)",
+      "slug": "bonk",
+      "type": "term"
+    },
+    {
+      "alias": "Bonk",
+      "slug": "bonk",
+      "type": "term"
+    },
+    {
+      "alias": "BONK",
+      "slug": "bonk",
+      "type": "term"
+    },
+    {
+      "alias": "Volatility",
+      "slug": "volatility",
+      "type": "term"
+    },
+    {
+      "alias": "SOSHIBA",
+      "slug": "soshiba",
+      "type": "term"
+    },
+    {
+      "alias": "Blockchain Culture",
+      "slug": "blockchain-culture",
+      "type": "term"
+    },
+    {
+      "alias": "Blockchain Architecture",
+      "slug": "blockchain-architecture",
+      "type": "term"
+    },
+    {
+      "alias": "Kusama",
+      "slug": "kusama",
+      "type": "term"
+    },
+    {
+      "alias": "XCMP",
+      "slug": "xcmp",
+      "type": "term"
+    },
+    {
+      "alias": "Coretime",
+      "slug": "coretime",
+      "type": "term"
+    },
+    {
+      "alias": "Asynchronous Backing",
+      "slug": "asynchronous-backing",
+      "type": "term"
+    },
+    {
+      "alias": "Parachain Auctions",
+      "slug": "auctions",
+      "type": "term"
+    },
+    {
+      "alias": "auctions",
+      "slug": "auctions",
+      "type": "term"
+    },
+    {
+      "alias": "Crowdloans",
+      "slug": "crowdloans",
+      "type": "term"
+    },
+    {
+      "alias": "Parathreads",
+      "slug": "parathreads",
+      "type": "term"
+    },
+    {
+      "alias": "Forkless Upgrades",
+      "slug": "forkless-upgrades",
+      "type": "term"
+    },
+    {
+      "alias": "Slot Leases",
+      "slug": "slot-leases",
+      "type": "term"
+    },
+    {
+      "alias": "Rollups",
+      "slug": "rollups",
+      "type": "term"
+    },
+    {
+      "alias": "Agile Coretime",
+      "slug": "agile-coretime",
+      "type": "term"
+    },
+    {
+      "alias": "Blockchain Economics",
+      "slug": "blockchain-economics",
       "type": "term"
     },
     {
@@ -7420,6 +8454,141 @@
       "type": "tag"
     },
     {
+      "alias": "Meme Coins",
+      "slug": "tag-meme-coins",
+      "type": "tag"
+    },
+    {
+      "alias": "meme coins",
+      "slug": "tag-meme-coins",
+      "type": "tag"
+    },
+    {
+      "alias": "Volatility",
+      "slug": "tag-volatility",
+      "type": "tag"
+    },
+    {
+      "alias": "volatility",
+      "slug": "tag-volatility",
+      "type": "tag"
+    },
+    {
+      "alias": "Blockchain Culture",
+      "slug": "tag-blockchain-culture",
+      "type": "tag"
+    },
+    {
+      "alias": "blockchain culture",
+      "slug": "tag-blockchain-culture",
+      "type": "tag"
+    },
+    {
+      "alias": "Risk Management",
+      "slug": "tag-risk-management",
+      "type": "tag"
+    },
+    {
+      "alias": "risk management",
+      "slug": "tag-risk-management",
+      "type": "tag"
+    },
+    {
+      "alias": "Community",
+      "slug": "tag-community",
+      "type": "tag"
+    },
+    {
+      "alias": "community",
+      "slug": "tag-community",
+      "type": "tag"
+    },
+    {
+      "alias": "SORA Ecosystem",
+      "slug": "tag-sora-ecosystem",
+      "type": "tag"
+    },
+    {
+      "alias": "SORA ecosystem",
+      "slug": "tag-sora-ecosystem",
+      "type": "tag"
+    },
+    {
+      "alias": "sora ecosystem",
+      "slug": "tag-sora-ecosystem",
+      "type": "tag"
+    },
+    {
+      "alias": "Rollups",
+      "slug": "tag-rollups",
+      "type": "tag"
+    },
+    {
+      "alias": "rollups",
+      "slug": "tag-rollups",
+      "type": "tag"
+    },
+    {
+      "alias": "Asynchronous Backing",
+      "slug": "tag-asynchronous-backing",
+      "type": "tag"
+    },
+    {
+      "alias": "asynchronous backing",
+      "slug": "tag-asynchronous-backing",
+      "type": "tag"
+    },
+    {
+      "alias": "Coretime",
+      "slug": "tag-coretime",
+      "type": "tag"
+    },
+    {
+      "alias": "coretime",
+      "slug": "tag-coretime",
+      "type": "tag"
+    },
+    {
+      "alias": "Parachains",
+      "slug": "tag-parachains",
+      "type": "tag"
+    },
+    {
+      "alias": "parachains",
+      "slug": "tag-parachains",
+      "type": "tag"
+    },
+    {
+      "alias": "Crowdloans",
+      "slug": "tag-crowdloans",
+      "type": "tag"
+    },
+    {
+      "alias": "crowdloans",
+      "slug": "tag-crowdloans",
+      "type": "tag"
+    },
+    {
+      "alias": "Auctions",
+      "slug": "tag-auctions",
+      "type": "tag"
+    },
+    {
+      "alias": "auctions",
+      "slug": "tag-auctions",
+      "type": "tag"
+    },
+    {
+      "alias": "XCMP",
+      "slug": "tag-xcmp",
+      "type": "tag"
+    },
+    {
+      "alias": "xcmp",
+      "slug": "tag-xcmp",
+      "type": "tag"
+    },
+    {
       "alias": "Agile Coretime",
       "slug": "tag-agile-coretime",
       "type": "tag"
@@ -7427,6 +8596,46 @@
     {
       "alias": "agile coretime",
       "slug": "tag-agile-coretime",
+      "type": "tag"
+    },
+    {
+      "alias": "Slot Leases",
+      "slug": "tag-slot-leases",
+      "type": "tag"
+    },
+    {
+      "alias": "slot leases",
+      "slug": "tag-slot-leases",
+      "type": "tag"
+    },
+    {
+      "alias": "Kusama",
+      "slug": "tag-kusama",
+      "type": "tag"
+    },
+    {
+      "alias": "kusama",
+      "slug": "tag-kusama",
+      "type": "tag"
+    },
+    {
+      "alias": "Runtime Upgrades",
+      "slug": "tag-runtime-upgrades",
+      "type": "tag"
+    },
+    {
+      "alias": "runtime upgrades",
+      "slug": "tag-runtime-upgrades",
+      "type": "tag"
+    },
+    {
+      "alias": "Blockchain Architecture",
+      "slug": "tag-blockchain-architecture",
+      "type": "tag"
+    },
+    {
+      "alias": "blockchain architecture",
+      "slug": "tag-blockchain-architecture",
       "type": "tag"
     },
     {
@@ -7465,26 +8674,6 @@
       "type": "tag"
     },
     {
-      "alias": "Asynchronous Backing",
-      "slug": "tag-asynchronous-backing",
-      "type": "tag"
-    },
-    {
-      "alias": "asynchronous backing",
-      "slug": "tag-asynchronous-backing",
-      "type": "tag"
-    },
-    {
-      "alias": "Auctions",
-      "slug": "tag-auctions",
-      "type": "tag"
-    },
-    {
-      "alias": "auctions",
-      "slug": "tag-auctions",
-      "type": "tag"
-    },
-    {
       "alias": "Bear Market",
       "slug": "tag-bear-market",
       "type": "tag"
@@ -7517,26 +8706,6 @@
     {
       "alias": "bitcoin halving",
       "slug": "tag-bitcoin-halving",
-      "type": "tag"
-    },
-    {
-      "alias": "Blockchain Architecture",
-      "slug": "tag-blockchain-architecture",
-      "type": "tag"
-    },
-    {
-      "alias": "blockchain architecture",
-      "slug": "tag-blockchain-architecture",
-      "type": "tag"
-    },
-    {
-      "alias": "Blockchain Culture",
-      "slug": "tag-blockchain-culture",
-      "type": "tag"
-    },
-    {
-      "alias": "blockchain culture",
-      "slug": "tag-blockchain-culture",
       "type": "tag"
     },
     {
@@ -7647,26 +8816,6 @@
     {
       "alias": "consensus mechanisms",
       "slug": "tag-consensus-mechanisms",
-      "type": "tag"
-    },
-    {
-      "alias": "Coretime",
-      "slug": "tag-coretime",
-      "type": "tag"
-    },
-    {
-      "alias": "coretime",
-      "slug": "tag-coretime",
-      "type": "tag"
-    },
-    {
-      "alias": "Crowdloans",
-      "slug": "tag-crowdloans",
-      "type": "tag"
-    },
-    {
-      "alias": "crowdloans",
-      "slug": "tag-crowdloans",
       "type": "tag"
     },
     {
@@ -7810,16 +8959,6 @@
       "type": "tag"
     },
     {
-      "alias": "Kusama",
-      "slug": "tag-kusama",
-      "type": "tag"
-    },
-    {
-      "alias": "kusama",
-      "slug": "tag-kusama",
-      "type": "tag"
-    },
-    {
       "alias": "Lending",
       "slug": "tag-lending",
       "type": "tag"
@@ -7860,16 +8999,6 @@
       "type": "tag"
     },
     {
-      "alias": "Meme Coins",
-      "slug": "tag-meme-coins",
-      "type": "tag"
-    },
-    {
-      "alias": "meme coins",
-      "slug": "tag-meme-coins",
-      "type": "tag"
-    },
-    {
       "alias": "Memory Safety",
       "slug": "tag-memory-safety",
       "type": "tag"
@@ -7907,16 +9036,6 @@
     {
       "alias": "nfts",
       "slug": "tag-nfts",
-      "type": "tag"
-    },
-    {
-      "alias": "Parachains",
-      "slug": "tag-parachains",
-      "type": "tag"
-    },
-    {
-      "alias": "parachains",
-      "slug": "tag-parachains",
       "type": "tag"
     },
     {
@@ -8000,16 +9119,6 @@
       "type": "tag"
     },
     {
-      "alias": "Rollups",
-      "slug": "tag-rollups",
-      "type": "tag"
-    },
-    {
-      "alias": "rollups",
-      "slug": "tag-rollups",
-      "type": "tag"
-    },
-    {
       "alias": "Rust",
       "slug": "tag-rust",
       "type": "tag"
@@ -8040,16 +9149,6 @@
       "type": "tag"
     },
     {
-      "alias": "Slot Leases",
-      "slug": "tag-slot-leases",
-      "type": "tag"
-    },
-    {
-      "alias": "slot leases",
-      "slug": "tag-slot-leases",
-      "type": "tag"
-    },
-    {
       "alias": "Solana",
       "slug": "tag-solana",
       "type": "tag"
@@ -8057,21 +9156,6 @@
     {
       "alias": "solana",
       "slug": "tag-solana",
-      "type": "tag"
-    },
-    {
-      "alias": "SORA Ecosystem",
-      "slug": "tag-sora-ecosystem",
-      "type": "tag"
-    },
-    {
-      "alias": "SORA ecosystem",
-      "slug": "tag-sora-ecosystem",
-      "type": "tag"
-    },
-    {
-      "alias": "sora ecosystem",
-      "slug": "tag-sora-ecosystem",
       "type": "tag"
     },
     {
@@ -8105,16 +9189,6 @@
       "type": "tag"
     },
     {
-      "alias": "Volatility",
-      "slug": "tag-volatility",
-      "type": "tag"
-    },
-    {
-      "alias": "volatility",
-      "slug": "tag-volatility",
-      "type": "tag"
-    },
-    {
       "alias": "Web3",
       "slug": "tag-web3",
       "type": "tag"
@@ -8132,16 +9206,6 @@
     {
       "alias": "webassembly",
       "slug": "tag-webassembly",
-      "type": "tag"
-    },
-    {
-      "alias": "XCMP",
-      "slug": "tag-xcmp",
-      "type": "tag"
-    },
-    {
-      "alias": "xcmp",
-      "slug": "tag-xcmp",
       "type": "tag"
     }
   ]
