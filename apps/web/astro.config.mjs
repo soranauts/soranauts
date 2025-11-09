@@ -6,9 +6,9 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
-import partytown from '@astrojs/partytown';
 import react from '@astrojs/react';
-// import icon from 'astro-icon';
+import partytown from '@astrojs/partytown';
+import icon from 'astro-icon';
 import tasks from './src/utils/tasks';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter.mjs';
@@ -43,6 +43,9 @@ export default defineConfig({
   redirects: generatedRedirects,
 
   output: 'static',
+  legacy: {
+    collections: true
+  },
 
   integrations: [
     tailwind({
@@ -51,22 +54,11 @@ export default defineConfig({
     sitemap(),
     mdx(),
     react(),
-    // icon({
-    //   include: {
-    //     tabler: ['*'],
-    //     'flat-color-icons': [
-    //       'template',
-    //       'gallery',
-    //       'approval',
-    //       'document',
-    //       'advertising',
-    //       'currency-exchange',
-    //       'voice-presentation',
-    //       'business-contact',
-    //       'database',
-    //     ],
-    //   },
-    // }),
+    icon({
+      collections: {
+        tabler: () => import('@iconify-json/tabler/icons.json'),
+      },
+    }),
 
     // ...whenExternalScripts(() =>
     //   partytown({

@@ -291,7 +291,7 @@
   }
 
   .search-modal {
-    @apply fixed inset-0 z-50 hidden overflow-y-auto;
+    @apply fixed inset-0 z-50 overflow-y-auto;
   }
 
   .search-modal__backdrop {

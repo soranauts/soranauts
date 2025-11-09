@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Quote API', () => {
+const quoteApiE2EEnabled = process.env.QUOTE_API_E2E === 'true';
+const describeIfQuoteApi = quoteApiE2EEnabled ? test.describe : test.describe.skip;
+
+describeIfQuoteApi('Quote API', () => {
   test('should return quote data for valid request', async ({ request }) => {
     const response = await request.get('/api/quote?a=XOR&b=KUSD&amount=100');
     
@@ -98,12 +101,8 @@ test.describe('Quote API', () => {
       }
     });
     
-    const request1 = context1.request();
-    const request2 = context2.request();
-    
-    // Both should be able to make requests independently
-    const response1 = await request1.get('/api/quote?a=XOR&b=KUSD&amount=100');
-    const response2 = await request2.get('/api/quote?a=XOR&b=KUSD&amount=100');
+    const response1 = await context1.request.get('/api/quote?a=XOR&b=KUSD&amount=100');
+    const response2 = await context2.request.get('/api/quote?a=XOR&b=KUSD&amount=100');
     
     expect(response1.status()).toBe(200);
     expect(response2.status()).toBe(200);

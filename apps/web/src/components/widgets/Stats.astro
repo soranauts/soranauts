@@ -2,7 +2,7 @@
 import type { Stats } from '~/types';
 import WidgetWrapper from '../ui/WidgetWrapper.astro';
 import Headline from '../ui/Headline.astro';
-import { Icon } from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 
 const {
   title = await Astro.slots.render('title'),
@@ -35,7 +35,7 @@ const {
               </div>
             )}
             {title && (
-              <div class="text-sm font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-base">
+              <div class="text-sm font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-base mt-2">
                 {title}
               </div>
             )}

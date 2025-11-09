@@ -2,7 +2,7 @@
 // SearchModal.astro - Beautiful search modal component
 ---
 
-<div id="search-modal" class="search-modal">
+<div id="search-modal" class="search-modal hidden">
   <!-- Backdrop -->
   <div class="search-modal__backdrop" id="search-backdrop"></div>
   
@@ -99,6 +99,14 @@
 </div>
 
 <script>
+  // @ts-nocheck
+  declare global {
+    interface Window {
+      pagefind?: any;
+      __pagefindLoadPromise?: Promise<any>;
+    }
+  }
+
   class SearchModal {
     modal: HTMLElement | null;
     backdrop: HTMLElement | null;
@@ -110,6 +118,9 @@
     initial: HTMLElement | null;
     count: HTMLElement | null;
     pagefind: any;
+    pagefindPromise: Promise<any> | null;
+    isDevServer: boolean;
+    preloadedQueries: Set<string>;
     isOpen: boolean;
     currentQuery: string;
     debounceTimer: number | null;
@@ -126,6 +137,9 @@
       this.count = document.getElementById('search-count');
       
       this.pagefind = null;
+      this.pagefindPromise = null;
+      this.isDevServer = false;
+      this.preloadedQueries = new Set();
       this.isOpen = false;
       this.currentQuery = '';
       this.debounceTimer = null;
@@ -139,17 +153,14 @@
       const isDevServer = (window.location.hostname === 'localhost' || 
                           window.location.hostname === '127.0.0.1') && 
                          window.location.port === '3000';
+
+      this.isDevServer = isDevServer;
       
       if (!isDevServer) {
         try {
-          // Use eval to prevent Vite from trying to resolve the import at build time
-          const pagefindModule = await eval('import("/pagefind/pagefind.js")');
-          if (pagefindModule) {
-            this.pagefind = pagefindModule;
-            console.log('✅ Pagefind loaded successfully');
-          }
+          await this.loadPagefind();
         } catch (error) {
-          console.error('Failed to load Pagefind:', error);
+          // Errors are logged within loadPagefind; continue with UI bindings.
         }
       } else {
         // In development, show a message that search is only available in production
@@ -157,6 +168,113 @@
       }
       
       this.bindEvents();
+    }
+
+    async loadPagefind() {
+      if (this.pagefind) {
+        return this.pagefind;
+      }
+
+      if (this.pagefindPromise) {
+        return this.pagefindPromise;
+      }
+
+      if (this.isDevServer || typeof window === 'undefined') {
+        return null;
+      }
+
+      if (window.pagefind) {
+        this.pagefind = window.pagefind;
+        return this.pagefind;
+      }
+
+      if (window.__pagefindLoadPromise) {
+        this.pagefindPromise = window.__pagefindLoadPromise.then((module) => {
+          this.pagefind = module;
+          return module;
+        }).catch((error) => {
+          this.pagefindPromise = null;
+          throw error;
+        });
+        return this.pagefindPromise;
+      }
+
+      const loadScript = () =>
+        new Promise<any>((resolve, reject) => {
+          const existingScript = document.querySelector<HTMLScriptElement>('script[data-pagefind="true"]');
+
+          if (existingScript) {
+            existingScript.addEventListener('load', () => {
+              if (window.pagefind) {
+                resolve(window.pagefind);
+              } else {
+                reject(new Error('Pagefind script loaded but window.pagefind is undefined.'));
+              }
+            }, { once: true });
+
+            existingScript.addEventListener('error', (event) => {
+              reject(new Error('Failed to load Pagefind script.'));
+            }, { once: true });
+            return;
+          }
+
+          const script = document.createElement('script');
+          script.src = '/pagefind/pagefind.js';
+          script.async = true;
+          script.defer = true;
+          script.dataset.pagefind = 'true';
+
+          script.onload = () => {
+            if (window.pagefind) {
+              resolve(window.pagefind);
+            } else {
+              reject(new Error('Pagefind script loaded but window.pagefind is undefined.'));
+            }
+          };
+
+          script.onerror = () => {
+            script.remove();
+            reject(new Error('Failed to load Pagefind script.'));
+          };
+
+          document.head.appendChild(script);
+        });
+
+      window.__pagefindLoadPromise = loadScript();
+
+      this.pagefindPromise = window.__pagefindLoadPromise
+        .then((module) => {
+          this.pagefind = module;
+          console.log('✅ Pagefind loaded successfully');
+          return module;
+        })
+        .catch((error) => {
+          console.error('Failed to load Pagefind:', error);
+          this.pagefindPromise = null;
+          window.__pagefindLoadPromise = undefined;
+          throw error;
+        });
+
+      return this.pagefindPromise;
+    }
+
+    schedulePreload(query: string) {
+      const normalized = query.trim().toLowerCase();
+      if (!normalized || normalized.length < 2 || this.preloadedQueries.has(normalized)) {
+        return;
+      }
+
+      this.preloadedQueries.add(normalized);
+      this.loadPagefind()
+        .then((pagefind) => {
+          if (pagefind?.preload) {
+            pagefind.preload(normalized);
+          }
+        })
+        .catch((error) => {
+          console.error('Pagefind preload error:', error);
+          this.preloadedQueries.delete(normalized);
+        });
     }
     
     bindEvents() {
@@ -203,6 +321,9 @@
       this.isOpen = true;
       this.input?.focus();
       document.body.style.overflow = 'hidden';
+
+      // Begin loading assets needed for search in the background.
+      this.loadPagefind().catch(() => {});
       
       // Clear previous results
       this.clearResults();
@@ -221,19 +342,34 @@
       if (this.debounceTimer) {
         clearTimeout(this.debounceTimer);
       }
+      const rawQuery = query ?? '';
+      const normalizedQuery = rawQuery.trim();
+      this.schedulePreload(rawQuery);
       this.debounceTimer = window.setTimeout(() => {
-        this.search(query);
-      }, 300);
+        this.search(normalizedQuery);
+      }, 250);
     }
     
     async search(query: string) {
-      if (!this.pagefind) {
+      if (!query) {
+        this.clearResults();
+        return;
+      }
+
+      if (this.isDevServer) {
         this.showDevelopmentMessage();
         return;
       }
-      
-      if (!query.trim()) {
-        this.clearResults();
+
+      try {
+        await this.loadPagefind();
+      } catch (error) {
+        this.showError();
+        return;
+      }
+
+      if (!this.pagefind) {
+        this.showError();
         return;
       }
       

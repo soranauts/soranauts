@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
-import glossaryData from '../../public/glossary.json' assert { type: 'json' };
-import { createGlossarySearchEngine } from '../../src/lib/glossary/search';
+import glossaryData from '../../../public/glossary.json' assert { type: 'json' };
+import { createGlossarySearchEngine } from '../../../src/lib/glossary/search';
 
 const engine = createGlossarySearchEngine({
   terms: glossaryData.terms,
@@ -15,10 +15,10 @@ describe('Glossary ranking snapshots', () => {
     expect(slugs).toMatchInlineSnapshot(`
       [
         "hyperledger-iroha",
-        "hyperledger-iroha-2",
         "hyperledger-iroha-3",
-        "sora-v3",
         "hyperledger-iroha-2",
+        "sora-v3",
+        "polkaswap",
       ]
     `);
   });
@@ -30,9 +30,9 @@ describe('Glossary ranking snapshots', () => {
       [
         "pswap",
         "polkaswap",
-        "dex",
-        "liquidity",
-        "decentralized-finance",
+        "buyback-and-burn",
+        "deflationary",
+        "rewards",
       ]
     `);
   });

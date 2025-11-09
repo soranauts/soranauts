@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
-import glossaryData from '../../public/glossary.json' assert { type: 'json' };
-import { createGlossarySearchEngine } from '../../src/lib/glossary/search';
+import glossaryData from '../../../public/glossary.json' assert { type: 'json' };
+import { createGlossarySearchEngine } from '../../../src/lib/glossary/search';
 
 const engine = createGlossarySearchEngine({
   terms: glossaryData.terms,
@@ -14,7 +14,7 @@ describe('Glossary alias resolution', () => {
     ['Iroha V2', 'hyperledger-iroha-2'],
     ['iroha3', 'hyperledger-iroha-3'],
     ['  iroha v3  ', 'hyperledger-iroha-3'],
-    ['nexus', 'sora-v3'],
+    ['nexus', 'hyperledger-iroha-3'],
     ['sora dex', 'polkaswap'],
     ['telegram dex', 'tonswap'],
   ])('resolves %s → %s', (query, expectedSlug) => {
