@@ -1,6 +1,7 @@
 {
   "name": "soranauts-monorepo",
   "private": true,
+  "type": "module",
   "packageManager": "pnpm@9.12.2",
   "engines": {
     "node": "20.x",
