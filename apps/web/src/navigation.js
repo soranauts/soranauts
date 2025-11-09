@@ -15,6 +15,10 @@ export const headerData = {
       href: '/glossary',
     },
     {
+      text: 'Features',
+      href: '/features',
+    },
+    {
       text: 'Changelog',
       href: '/changelog',
     },
