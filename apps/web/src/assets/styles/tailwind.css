@@ -382,6 +382,74 @@
     @apply mt-2 flex flex-wrap gap-2 text-xs text-text-soft;
   }
 
+  .search-modal__filters {
+    @apply mb-4 flex flex-wrap gap-2;
+  }
+
+  .search-modal__filter-group {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .search-filter-chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-border-subtle bg-soft px-3 py-1 text-xs font-medium text-text-soft transition;
+  }
+
+  .search-filter-chip:hover:not(.search-filter-chip--disabled) {
+    @apply border-brand-400 text-text-main;
+  }
+
+  .search-filter-chip--active {
+    @apply border-brand-500 bg-brand-soft text-text-main;
+  }
+
+  .search-filter-chip--disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  .search-filter-chip__count {
+    @apply text-[0.7rem] font-semibold text-text-muted;
+  }
+
+  .search-modal__section {
+    @apply mb-6;
+  }
+
+  .search-modal__section-heading {
+    @apply mb-3 flex items-baseline justify-between gap-3;
+  }
+
+  .search-modal__section-title {
+    @apply text-sm font-semibold uppercase tracking-wide text-text-soft;
+  }
+
+  .search-modal__section-subtitle {
+    @apply text-xs text-text-muted;
+  }
+
+  .search-modal__section-link {
+    @apply text-xs font-medium text-link hover:text-link-hover;
+  }
+
+  .search-modal__section-footer {
+    @apply mt-3;
+  }
+
+  .search-modal__more-button {
+    @apply text-xs font-medium text-link hover:text-link-hover;
+  }
+
+  .search-modal__result--active {
+    @apply ring-2 ring-brand-400 ring-offset-2 ring-offset-surface;
+  }
+
+  .search-modal__result-kicker {
+    @apply text-[0.7rem] font-semibold uppercase tracking-wide text-text-soft;
+  }
+
+  .search-modal__meta-badge {
+    @apply inline-flex items-center rounded-full bg-soft px-2 py-0.5 text-[0.65rem] font-medium text-text-muted;
+  }
+
   .search-modal__badges {
     @apply flex items-center space-x-4 text-xs text-text-soft;
   }

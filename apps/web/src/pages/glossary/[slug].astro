@@ -200,7 +200,15 @@ const jsonLd = {
       <article 
         data-pagefind-body
         data-pagefind-url={`/glossary/${term.slug}/`}
-        data-pagefind-meta={`{"type":"glossary","term":"${term.term}","category":"${term.category}","aliases":["${term.aliases?.join('","') || ''}"]}`}
+        data-pagefind-meta={JSON.stringify({
+          type: 'glossary',
+          term: term.term,
+          category: term.category,
+          aliases: term.aliases || [],
+          summary: term.summary ?? term.definition.slice(0, 220),
+          definition: term.definition,
+          url: `/glossary/${term.slug}/`
+        })}
         class="prose prose-lg dark:prose-invert max-w-none mb-8"
       >
         <!-- Add separate filter elements so Pagefind registers multiple filters -->
