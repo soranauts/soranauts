@@ -37,12 +37,21 @@ const generatedRedirects = Object.fromEntries(
   (redirectsData?.redirects ?? []).map((entry) => [entry.from, entry.to])
 );
 
+const siteRedirects = {
+  '/improvements': '/changelog',
+};
+
+const redirects = {
+  ...generatedRedirects,
+  ...siteRedirects,
+};
+
 export default defineConfig({
   site: SITE.site,
   base: SITE.base,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
 
-  redirects: generatedRedirects,
+  redirects,
 
   output: 'static',
   legacy: {
