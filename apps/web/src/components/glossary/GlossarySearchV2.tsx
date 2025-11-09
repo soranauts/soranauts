@@ -193,7 +193,7 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
       const normalized = part.toLowerCase();
       if (tokens.has(normalized)) {
         return (
-          <mark key={`${result.term.slug}-${index}`} className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+          <mark key={`${result.term.slug}-${index}`} className="search-highlight">
             {part}
           </mark>
         );
