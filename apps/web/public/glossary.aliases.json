@@ -516,6 +516,101 @@
       "type": "term"
     },
     {
+      "alias": "monetary systems",
+      "slug": "monetary-systems",
+      "type": "term"
+    },
+    {
+      "alias": "monetary system",
+      "slug": "monetary-systems",
+      "type": "term"
+    },
+    {
+      "alias": "monetary system",
+      "slug": "monetary-systems",
+      "type": "term"
+    },
+    {
+      "alias": "token repackaging",
+      "slug": "token-repackaging",
+      "type": "term"
+    },
+    {
+      "alias": "redenomination",
+      "slug": "redenomination",
+      "type": "term"
+    },
+    {
+      "alias": "bokolo cash",
+      "slug": "bokolo-cash",
+      "type": "term"
+    },
+    {
+      "alias": "solomon islands",
+      "slug": "solomon-islands",
+      "type": "term"
+    },
+    {
+      "alias": "mobile payments",
+      "slug": "mobile-payments",
+      "type": "term"
+    },
+    {
+      "alias": "qr payments",
+      "slug": "qr-payments",
+      "type": "term"
+    },
+    {
+      "alias": "qr payment",
+      "slug": "qr-payments",
+      "type": "term"
+    },
+    {
+      "alias": "asset tokenization",
+      "slug": "asset-tokenization",
+      "type": "term"
+    },
+    {
+      "alias": "real-world assets",
+      "slug": "real-world-assets",
+      "type": "term"
+    },
+    {
+      "alias": "rwa",
+      "slug": "real-world-assets",
+      "type": "term"
+    },
+    {
+      "alias": "real world assets",
+      "slug": "real-world-assets",
+      "type": "term"
+    },
+    {
+      "alias": "chainlink",
+      "slug": "chainlink",
+      "type": "term"
+    },
+    {
+      "alias": "tokenization",
+      "slug": "tokenization",
+      "type": "term"
+    },
+    {
+      "alias": "crypto market cycles",
+      "slug": "crypto-market-cycles",
+      "type": "term"
+    },
+    {
+      "alias": "trading strategy",
+      "slug": "trading-strategy",
+      "type": "term"
+    },
+    {
+      "alias": "market timing",
+      "slug": "market-timing",
+      "type": "term"
+    },
+    {
       "alias": "val",
       "slug": "tag-val",
       "type": "tag"
@@ -2196,6 +2291,196 @@
       "type": "tag"
     },
     {
+      "alias": "redenomination",
+      "slug": "tag-redenomination",
+      "type": "tag"
+    },
+    {
+      "alias": "redenomination",
+      "slug": "tag-redenomination",
+      "type": "tag"
+    },
+    {
+      "alias": "economic governance",
+      "slug": "tag-economic-governance",
+      "type": "tag"
+    },
+    {
+      "alias": "economic governance",
+      "slug": "tag-economic-governance",
+      "type": "tag"
+    },
+    {
+      "alias": "tokenomics",
+      "slug": "tag-tokenomics",
+      "type": "tag"
+    },
+    {
+      "alias": "tokenomics",
+      "slug": "tag-tokenomics",
+      "type": "tag"
+    },
+    {
+      "alias": "monetary systems",
+      "slug": "tag-monetary-systems",
+      "type": "tag"
+    },
+    {
+      "alias": "monetary systems",
+      "slug": "tag-monetary-systems",
+      "type": "tag"
+    },
+    {
+      "alias": "token repackaging",
+      "slug": "tag-token-repackaging",
+      "type": "tag"
+    },
+    {
+      "alias": "token repackaging",
+      "slug": "tag-token-repackaging",
+      "type": "tag"
+    },
+    {
+      "alias": "solomon islands",
+      "slug": "tag-solomon-islands",
+      "type": "tag"
+    },
+    {
+      "alias": "solomon islands",
+      "slug": "tag-solomon-islands",
+      "type": "tag"
+    },
+    {
+      "alias": "mobile payments",
+      "slug": "tag-mobile-payments",
+      "type": "tag"
+    },
+    {
+      "alias": "mobile payments",
+      "slug": "tag-mobile-payments",
+      "type": "tag"
+    },
+    {
+      "alias": "qr payments",
+      "slug": "tag-qr-payments",
+      "type": "tag"
+    },
+    {
+      "alias": "qr payments",
+      "slug": "tag-qr-payments",
+      "type": "tag"
+    },
+    {
+      "alias": "bokolo cash",
+      "slug": "tag-bokolo-cash",
+      "type": "tag"
+    },
+    {
+      "alias": "bokolo cash",
+      "slug": "tag-bokolo-cash",
+      "type": "tag"
+    },
+    {
+      "alias": "sora card",
+      "slug": "tag-sora-card",
+      "type": "tag"
+    },
+    {
+      "alias": "sora card",
+      "slug": "tag-sora-card",
+      "type": "tag"
+    },
+    {
+      "alias": "real world assets",
+      "slug": "tag-real-world-assets",
+      "type": "tag"
+    },
+    {
+      "alias": "real-world assets",
+      "slug": "tag-real-world-assets",
+      "type": "tag"
+    },
+    {
+      "alias": "tokenization",
+      "slug": "tag-tokenization",
+      "type": "tag"
+    },
+    {
+      "alias": "tokenization",
+      "slug": "tag-tokenization",
+      "type": "tag"
+    },
+    {
+      "alias": "chainlink",
+      "slug": "tag-chainlink",
+      "type": "tag"
+    },
+    {
+      "alias": "chainlink",
+      "slug": "tag-chainlink",
+      "type": "tag"
+    },
+    {
+      "alias": "asset tokenization",
+      "slug": "tag-asset-tokenization",
+      "type": "tag"
+    },
+    {
+      "alias": "asset tokenization",
+      "slug": "tag-asset-tokenization",
+      "type": "tag"
+    },
+    {
+      "alias": "oracles",
+      "slug": "tag-oracles",
+      "type": "tag"
+    },
+    {
+      "alias": "oracles",
+      "slug": "tag-oracles",
+      "type": "tag"
+    },
+    {
+      "alias": "trading strategy",
+      "slug": "tag-trading-strategy",
+      "type": "tag"
+    },
+    {
+      "alias": "trading strategy",
+      "slug": "tag-trading-strategy",
+      "type": "tag"
+    },
+    {
+      "alias": "market timing",
+      "slug": "tag-market-timing",
+      "type": "tag"
+    },
+    {
+      "alias": "market timing",
+      "slug": "tag-market-timing",
+      "type": "tag"
+    },
+    {
+      "alias": "crypto market cycles",
+      "slug": "tag-crypto-market-cycles",
+      "type": "tag"
+    },
+    {
+      "alias": "crypto market cycles",
+      "slug": "tag-crypto-market-cycles",
+      "type": "tag"
+    },
+    {
+      "alias": "treasury",
+      "slug": "tag-treasury",
+      "type": "tag"
+    },
+    {
+      "alias": "treasury",
+      "slug": "tag-treasury",
+      "type": "tag"
+    },
+    {
       "alias": "agile coretime",
       "slug": "tag-agile-coretime",
       "type": "tag"
@@ -2238,16 +2523,6 @@
     {
       "alias": "apollo token",
       "slug": "tag-apollo-token",
-      "type": "tag"
-    },
-    {
-      "alias": "asset tokenization",
-      "slug": "tag-asset-tokenization",
-      "type": "tag"
-    },
-    {
-      "alias": "asset tokenization",
-      "slug": "tag-asset-tokenization",
       "type": "tag"
     },
     {
@@ -2353,16 +2628,6 @@
     {
       "alias": "blockchain technology",
       "slug": "tag-blockchain-technology",
-      "type": "tag"
-    },
-    {
-      "alias": "bokolo cash",
-      "slug": "tag-bokolo-cash",
-      "type": "tag"
-    },
-    {
-      "alias": "bokolo cash",
-      "slug": "tag-bokolo-cash",
       "type": "tag"
     },
     {
@@ -2416,16 +2681,6 @@
       "type": "tag"
     },
     {
-      "alias": "chainlink",
-      "slug": "tag-chainlink",
-      "type": "tag"
-    },
-    {
-      "alias": "chainlink",
-      "slug": "tag-chainlink",
-      "type": "tag"
-    },
-    {
       "alias": "collateral",
       "slug": "tag-collateral",
       "type": "tag"
@@ -2476,16 +2731,6 @@
       "type": "tag"
     },
     {
-      "alias": "crypto market cycles",
-      "slug": "tag-crypto-market-cycles",
-      "type": "tag"
-    },
-    {
-      "alias": "crypto market cycles",
-      "slug": "tag-crypto-market-cycles",
-      "type": "tag"
-    },
-    {
       "alias": "cryptocurrency trends",
       "slug": "tag-cryptocurrency-trends",
       "type": "tag"
@@ -2523,16 +2768,6 @@
     {
       "alias": "dogecoin",
       "slug": "tag-dogecoin",
-      "type": "tag"
-    },
-    {
-      "alias": "economic governance",
-      "slug": "tag-economic-governance",
-      "type": "tag"
-    },
-    {
-      "alias": "economic governance",
-      "slug": "tag-economic-governance",
       "type": "tag"
     },
     {
@@ -2686,16 +2921,6 @@
       "type": "tag"
     },
     {
-      "alias": "market timing",
-      "slug": "tag-market-timing",
-      "type": "tag"
-    },
-    {
-      "alias": "market timing",
-      "slug": "tag-market-timing",
-      "type": "tag"
-    },
-    {
       "alias": "meme coins",
       "slug": "tag-meme-coins",
       "type": "tag"
@@ -2723,26 +2948,6 @@
     {
       "alias": "mining",
       "slug": "tag-mining",
-      "type": "tag"
-    },
-    {
-      "alias": "mobile payments",
-      "slug": "tag-mobile-payments",
-      "type": "tag"
-    },
-    {
-      "alias": "mobile payments",
-      "slug": "tag-mobile-payments",
-      "type": "tag"
-    },
-    {
-      "alias": "monetary systems",
-      "slug": "tag-monetary-systems",
-      "type": "tag"
-    },
-    {
-      "alias": "monetary systems",
-      "slug": "tag-monetary-systems",
       "type": "tag"
     },
     {
@@ -2856,41 +3061,6 @@
       "type": "tag"
     },
     {
-      "alias": "qr payments",
-      "slug": "tag-qr-payments",
-      "type": "tag"
-    },
-    {
-      "alias": "qr payments",
-      "slug": "tag-qr-payments",
-      "type": "tag"
-    },
-    {
-      "alias": "qr payments",
-      "slug": "tag-qr-payments",
-      "type": "tag"
-    },
-    {
-      "alias": "real world assets",
-      "slug": "tag-real-world-assets",
-      "type": "tag"
-    },
-    {
-      "alias": "real-world assets",
-      "slug": "tag-real-world-assets",
-      "type": "tag"
-    },
-    {
-      "alias": "redenomination",
-      "slug": "tag-redenomination",
-      "type": "tag"
-    },
-    {
-      "alias": "redenomination",
-      "slug": "tag-redenomination",
-      "type": "tag"
-    },
-    {
       "alias": "rollups",
       "slug": "tag-rollups",
       "type": "tag"
@@ -2951,26 +3121,6 @@
       "type": "tag"
     },
     {
-      "alias": "solomon islands",
-      "slug": "tag-solomon-islands",
-      "type": "tag"
-    },
-    {
-      "alias": "solomon islands",
-      "slug": "tag-solomon-islands",
-      "type": "tag"
-    },
-    {
-      "alias": "sora card",
-      "slug": "tag-sora-card",
-      "type": "tag"
-    },
-    {
-      "alias": "sora card",
-      "slug": "tag-sora-card",
-      "type": "tag"
-    },
-    {
       "alias": "sora ecosystem",
       "slug": "tag-sora-ecosystem",
       "type": "tag"
@@ -2993,56 +3143,6 @@
     {
       "alias": "soshiba",
       "slug": "tag-soshiba",
-      "type": "tag"
-    },
-    {
-      "alias": "token repackaging",
-      "slug": "tag-token-repackaging",
-      "type": "tag"
-    },
-    {
-      "alias": "token repackaging",
-      "slug": "tag-token-repackaging",
-      "type": "tag"
-    },
-    {
-      "alias": "tokenization",
-      "slug": "tag-tokenization",
-      "type": "tag"
-    },
-    {
-      "alias": "tokenization",
-      "slug": "tag-tokenization",
-      "type": "tag"
-    },
-    {
-      "alias": "tokenomics",
-      "slug": "tag-tokenomics",
-      "type": "tag"
-    },
-    {
-      "alias": "tokenomics",
-      "slug": "tag-tokenomics",
-      "type": "tag"
-    },
-    {
-      "alias": "trading strategy",
-      "slug": "tag-trading-strategy",
-      "type": "tag"
-    },
-    {
-      "alias": "trading strategy",
-      "slug": "tag-trading-strategy",
-      "type": "tag"
-    },
-    {
-      "alias": "treasury",
-      "slug": "tag-treasury",
-      "type": "tag"
-    },
-    {
-      "alias": "treasury",
-      "slug": "tag-treasury",
       "type": "tag"
     },
     {
