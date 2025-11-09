@@ -17,7 +17,16 @@ export interface RateLimitOptions {
 export function createRateLimit(options: RateLimitOptions) {
   const { windowMs, maxRequests, keyGenerator } = options;
 
-  return (request: Request): { allowed: boolean; remaining: number; resetTime: number } => {
+  return (request?: Request | null): { allowed: boolean; remaining: number; resetTime: number } => {
+    if (!request) {
+      const now = Date.now();
+      return {
+        allowed: true,
+        remaining: maxRequests,
+        resetTime: now + windowMs,
+      };
+    }
+
     const key = keyGenerator ? keyGenerator(request) : 'default';
     const now = Date.now();
     
@@ -76,32 +85,41 @@ export function createRateLimit(options: RateLimitOptions) {
 }
 
 // Helper function to get client IP address
-function getClientIP(request: Request): string {
-  if (!request || typeof request.headers?.get !== 'function') {
+function getClientIP(request?: Request | null): string {
+  if (!request) {
     return 'prerender';
   }
 
-  const headers = request.headers;
-  
+  let headers: Headers;
+  try {
+    headers = request.headers;
+  } catch {
+    return 'prerender';
+  }
+
+  if (!headers || typeof headers.get !== 'function') {
+    return 'prerender';
+  }
+
   // Check for forwarded headers first (common in production)
   const forwardedFor = headers.get('x-forwarded-for');
   if (forwardedFor) {
     // Take the first IP if there are multiple
     return forwardedFor.split(',')[0].trim();
   }
-  
+
   // Check for real IP header
   const realIP = headers.get('x-real-ip');
   if (realIP) {
     return realIP.trim();
   }
-  
+
   // Check for Cloudflare IP
   const cfConnectingIP = headers.get('cf-connecting-ip');
   if (cfConnectingIP) {
     return cfConnectingIP.trim();
   }
-  
+
   // Fallback to a default key (for development)
   return 'development';
 }

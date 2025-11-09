@@ -9,7 +9,6 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import partytown from '@astrojs/partytown';
-import vercel from '@astrojs/vercel';
 import icon from 'astro-icon';
 import tasks from './src/utils/tasks';
 
@@ -45,11 +44,7 @@ export default defineConfig({
 
   redirects: generatedRedirects,
 
-  output: 'server',
-  prerender: {
-    default: true,
-  },
-  adapter: vercel(),
+  output: 'static',
   legacy: {
     collections: true
   },
