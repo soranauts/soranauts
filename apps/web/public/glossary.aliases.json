@@ -776,6 +776,201 @@
       "type": "term"
     },
     {
+      "alias": "apollo protocol",
+      "slug": "apollo-protocol",
+      "type": "term"
+    },
+    {
+      "alias": "apollo token",
+      "slug": "apollo-token",
+      "type": "term"
+    },
+    {
+      "alias": "apollo token",
+      "slug": "apollo-token",
+      "type": "term"
+    },
+    {
+      "alias": "ceres",
+      "slug": "ceres",
+      "type": "term"
+    },
+    {
+      "alias": "lending",
+      "slug": "lending",
+      "type": "term"
+    },
+    {
+      "alias": "borrowing",
+      "slug": "borrowing",
+      "type": "term"
+    },
+    {
+      "alias": "money market",
+      "slug": "money-market",
+      "type": "term"
+    },
+    {
+      "alias": "digital ownership",
+      "slug": "digital-ownership",
+      "type": "term"
+    },
+    {
+      "alias": "bitcoin btc",
+      "slug": "bitcoin",
+      "type": "term"
+    },
+    {
+      "alias": "bitcoin",
+      "slug": "bitcoin",
+      "type": "term"
+    },
+    {
+      "alias": "btc",
+      "slug": "bitcoin",
+      "type": "term"
+    },
+    {
+      "alias": "halving",
+      "slug": "halving",
+      "type": "term"
+    },
+    {
+      "alias": "bitcoin halving",
+      "slug": "halving",
+      "type": "term"
+    },
+    {
+      "alias": "market psychology",
+      "slug": "market-psychology",
+      "type": "term"
+    },
+    {
+      "alias": "bull market",
+      "slug": "bull-market",
+      "type": "term"
+    },
+    {
+      "alias": "bear market",
+      "slug": "bear-market",
+      "type": "term"
+    },
+    {
+      "alias": "scarcity economics",
+      "slug": "scarcity-economics",
+      "type": "term"
+    },
+    {
+      "alias": "economic systems",
+      "slug": "economic-systems",
+      "type": "term"
+    },
+    {
+      "alias": "proof of work pow",
+      "slug": "proof-of-work",
+      "type": "term"
+    },
+    {
+      "alias": "proof of work",
+      "slug": "proof-of-work",
+      "type": "term"
+    },
+    {
+      "alias": "pow",
+      "slug": "proof-of-work",
+      "type": "term"
+    },
+    {
+      "alias": "proof of stake pos",
+      "slug": "proof-of-stake",
+      "type": "term"
+    },
+    {
+      "alias": "proof of stake",
+      "slug": "proof-of-stake",
+      "type": "term"
+    },
+    {
+      "alias": "pos",
+      "slug": "proof-of-stake",
+      "type": "term"
+    },
+    {
+      "alias": "web3",
+      "slug": "web3",
+      "type": "term"
+    },
+    {
+      "alias": "mining",
+      "slug": "mining",
+      "type": "term"
+    },
+    {
+      "alias": "vaults",
+      "slug": "vaults",
+      "type": "term"
+    },
+    {
+      "alias": "collateral",
+      "slug": "collateral",
+      "type": "term"
+    },
+    {
+      "alias": "algorithmic stability",
+      "slug": "algorithmic-stability",
+      "type": "term"
+    },
+    {
+      "alias": "blockchain development",
+      "slug": "blockchain-development",
+      "type": "term"
+    },
+    {
+      "alias": "rust",
+      "slug": "rust-language",
+      "type": "term"
+    },
+    {
+      "alias": "programming",
+      "slug": "programming",
+      "type": "term"
+    },
+    {
+      "alias": "solana",
+      "slug": "solana",
+      "type": "term"
+    },
+    {
+      "alias": "memory safety",
+      "slug": "memory-safety",
+      "type": "term"
+    },
+    {
+      "alias": "wasm webassembly",
+      "slug": "wasm",
+      "type": "term"
+    },
+    {
+      "alias": "wasm",
+      "slug": "wasm",
+      "type": "term"
+    },
+    {
+      "alias": "webassembly",
+      "slug": "wasm",
+      "type": "term"
+    },
+    {
+      "alias": "performance",
+      "slug": "performance",
+      "type": "term"
+    },
+    {
+      "alias": "concurrency",
+      "slug": "concurrency",
+      "type": "term"
+    },
+    {
       "alias": "val",
       "slug": "tag-val",
       "type": "tag"
@@ -2831,13 +3026,13 @@
       "type": "tag"
     },
     {
-      "alias": "algorithmic stability",
-      "slug": "tag-algorithmic-stability",
+      "alias": "apollo token",
+      "slug": "tag-apollo-token",
       "type": "tag"
     },
     {
-      "alias": "algorithmic stability",
-      "slug": "tag-algorithmic-stability",
+      "alias": "apollo token",
+      "slug": "tag-apollo-token",
       "type": "tag"
     },
     {
@@ -2851,53 +3046,63 @@
       "type": "tag"
     },
     {
-      "alias": "apollo token",
-      "slug": "tag-apollo-token",
+      "alias": "borrowing",
+      "slug": "tag-borrowing",
       "type": "tag"
     },
     {
-      "alias": "apollo token",
-      "slug": "tag-apollo-token",
+      "alias": "borrowing",
+      "slug": "tag-borrowing",
       "type": "tag"
     },
     {
-      "alias": "apollo token",
-      "slug": "tag-apollo-token",
+      "alias": "money market",
+      "slug": "tag-money-market",
       "type": "tag"
     },
     {
-      "alias": "bear market",
-      "slug": "tag-bear-market",
+      "alias": "money market",
+      "slug": "tag-money-market",
       "type": "tag"
     },
     {
-      "alias": "bear market",
-      "slug": "tag-bear-market",
+      "alias": "collateral",
+      "slug": "tag-collateral",
       "type": "tag"
     },
     {
-      "alias": "bitcoin",
-      "slug": "tag-bitcoin",
+      "alias": "collateral",
+      "slug": "tag-collateral",
       "type": "tag"
     },
     {
-      "alias": "bitcoin",
-      "slug": "tag-bitcoin",
+      "alias": "vaults",
+      "slug": "tag-vaults",
       "type": "tag"
     },
     {
-      "alias": "bitcoin halving",
-      "slug": "tag-bitcoin-halving",
+      "alias": "vaults",
+      "slug": "tag-vaults",
       "type": "tag"
     },
     {
-      "alias": "bitcoin halving",
-      "slug": "tag-bitcoin-halving",
+      "alias": "lending",
+      "slug": "tag-lending",
       "type": "tag"
     },
     {
-      "alias": "bitcoin halving",
-      "slug": "tag-bitcoin-halving",
+      "alias": "lending",
+      "slug": "tag-lending",
+      "type": "tag"
+    },
+    {
+      "alias": "nfts",
+      "slug": "tag-nfts",
+      "type": "tag"
+    },
+    {
+      "alias": "nfts",
+      "slug": "tag-nfts",
       "type": "tag"
     },
     {
@@ -2911,6 +3116,76 @@
       "type": "tag"
     },
     {
+      "alias": "market cycles",
+      "slug": "tag-market-cycles",
+      "type": "tag"
+    },
+    {
+      "alias": "market cycles",
+      "slug": "tag-market-cycles",
+      "type": "tag"
+    },
+    {
+      "alias": "halving",
+      "slug": "tag-halving",
+      "type": "tag"
+    },
+    {
+      "alias": "halving",
+      "slug": "tag-halving",
+      "type": "tag"
+    },
+    {
+      "alias": "bear market",
+      "slug": "tag-bear-market",
+      "type": "tag"
+    },
+    {
+      "alias": "bear market",
+      "slug": "tag-bear-market",
+      "type": "tag"
+    },
+    {
+      "alias": "bull market",
+      "slug": "tag-bull-market",
+      "type": "tag"
+    },
+    {
+      "alias": "bull market",
+      "slug": "tag-bull-market",
+      "type": "tag"
+    },
+    {
+      "alias": "bitcoin",
+      "slug": "tag-bitcoin",
+      "type": "tag"
+    },
+    {
+      "alias": "bitcoin",
+      "slug": "tag-bitcoin",
+      "type": "tag"
+    },
+    {
+      "alias": "scarcity economics",
+      "slug": "tag-scarcity-economics",
+      "type": "tag"
+    },
+    {
+      "alias": "scarcity economics",
+      "slug": "tag-scarcity-economics",
+      "type": "tag"
+    },
+    {
+      "alias": "market psychology",
+      "slug": "tag-market-psychology",
+      "type": "tag"
+    },
+    {
+      "alias": "market psychology",
+      "slug": "tag-market-psychology",
+      "type": "tag"
+    },
+    {
       "alias": "blockchain economics",
       "slug": "tag-blockchain-economics",
       "type": "tag"
@@ -2918,6 +3193,161 @@
     {
       "alias": "blockchain economics",
       "slug": "tag-blockchain-economics",
+      "type": "tag"
+    },
+    {
+      "alias": "mining",
+      "slug": "tag-mining",
+      "type": "tag"
+    },
+    {
+      "alias": "mining",
+      "slug": "tag-mining",
+      "type": "tag"
+    },
+    {
+      "alias": "energy",
+      "slug": "tag-energy",
+      "type": "tag"
+    },
+    {
+      "alias": "energy",
+      "slug": "tag-energy",
+      "type": "tag"
+    },
+    {
+      "alias": "digital ownership",
+      "slug": "tag-digital-ownership",
+      "type": "tag"
+    },
+    {
+      "alias": "digital ownership",
+      "slug": "tag-digital-ownership",
+      "type": "tag"
+    },
+    {
+      "alias": "decentralized exchange",
+      "slug": "tag-decentralized-exchange",
+      "type": "tag"
+    },
+    {
+      "alias": "decentralized exchange",
+      "slug": "tag-decentralized-exchange",
+      "type": "tag"
+    },
+    {
+      "alias": "proof of work",
+      "slug": "tag-proof-of-work",
+      "type": "tag"
+    },
+    {
+      "alias": "proof of work",
+      "slug": "tag-proof-of-work",
+      "type": "tag"
+    },
+    {
+      "alias": "programming",
+      "slug": "tag-programming",
+      "type": "tag"
+    },
+    {
+      "alias": "programming",
+      "slug": "tag-programming",
+      "type": "tag"
+    },
+    {
+      "alias": "rust",
+      "slug": "tag-rust",
+      "type": "tag"
+    },
+    {
+      "alias": "rust",
+      "slug": "tag-rust",
+      "type": "tag"
+    },
+    {
+      "alias": "web3",
+      "slug": "tag-web3",
+      "type": "tag"
+    },
+    {
+      "alias": "web3",
+      "slug": "tag-web3",
+      "type": "tag"
+    },
+    {
+      "alias": "memory safety",
+      "slug": "tag-memory-safety",
+      "type": "tag"
+    },
+    {
+      "alias": "memory safety",
+      "slug": "tag-memory-safety",
+      "type": "tag"
+    },
+    {
+      "alias": "performance",
+      "slug": "tag-performance",
+      "type": "tag"
+    },
+    {
+      "alias": "performance",
+      "slug": "tag-performance",
+      "type": "tag"
+    },
+    {
+      "alias": "concurrency",
+      "slug": "tag-concurrency",
+      "type": "tag"
+    },
+    {
+      "alias": "concurrency",
+      "slug": "tag-concurrency",
+      "type": "tag"
+    },
+    {
+      "alias": "webassembly",
+      "slug": "tag-webassembly",
+      "type": "tag"
+    },
+    {
+      "alias": "webassembly",
+      "slug": "tag-webassembly",
+      "type": "tag"
+    },
+    {
+      "alias": "bonk",
+      "slug": "tag-bonk",
+      "type": "tag"
+    },
+    {
+      "alias": "bonk",
+      "slug": "tag-bonk",
+      "type": "tag"
+    },
+    {
+      "alias": "algorithmic stability",
+      "slug": "tag-algorithmic-stability",
+      "type": "tag"
+    },
+    {
+      "alias": "algorithmic stability",
+      "slug": "tag-algorithmic-stability",
+      "type": "tag"
+    },
+    {
+      "alias": "bitcoin halving",
+      "slug": "tag-bitcoin-halving",
+      "type": "tag"
+    },
+    {
+      "alias": "bitcoin halving",
+      "slug": "tag-bitcoin-halving",
+      "type": "tag"
+    },
+    {
+      "alias": "bitcoin halving",
+      "slug": "tag-bitcoin-halving",
       "type": "tag"
     },
     {
@@ -2941,36 +3371,6 @@
       "type": "tag"
     },
     {
-      "alias": "bonk",
-      "slug": "tag-bonk",
-      "type": "tag"
-    },
-    {
-      "alias": "bonk",
-      "slug": "tag-bonk",
-      "type": "tag"
-    },
-    {
-      "alias": "borrowing",
-      "slug": "tag-borrowing",
-      "type": "tag"
-    },
-    {
-      "alias": "borrowing",
-      "slug": "tag-borrowing",
-      "type": "tag"
-    },
-    {
-      "alias": "bull market",
-      "slug": "tag-bull-market",
-      "type": "tag"
-    },
-    {
-      "alias": "bull market",
-      "slug": "tag-bull-market",
-      "type": "tag"
-    },
-    {
       "alias": "ceres",
       "slug": "tag-ceres",
       "type": "tag"
@@ -2978,26 +3378,6 @@
     {
       "alias": "ceres",
       "slug": "tag-ceres",
-      "type": "tag"
-    },
-    {
-      "alias": "collateral",
-      "slug": "tag-collateral",
-      "type": "tag"
-    },
-    {
-      "alias": "collateral",
-      "slug": "tag-collateral",
-      "type": "tag"
-    },
-    {
-      "alias": "concurrency",
-      "slug": "tag-concurrency",
-      "type": "tag"
-    },
-    {
-      "alias": "concurrency",
-      "slug": "tag-concurrency",
       "type": "tag"
     },
     {
@@ -3021,26 +3401,6 @@
       "type": "tag"
     },
     {
-      "alias": "decentralized exchange",
-      "slug": "tag-decentralized-exchange",
-      "type": "tag"
-    },
-    {
-      "alias": "decentralized exchange",
-      "slug": "tag-decentralized-exchange",
-      "type": "tag"
-    },
-    {
-      "alias": "digital ownership",
-      "slug": "tag-digital-ownership",
-      "type": "tag"
-    },
-    {
-      "alias": "digital ownership",
-      "slug": "tag-digital-ownership",
-      "type": "tag"
-    },
-    {
       "alias": "dogecoin",
       "slug": "tag-dogecoin",
       "type": "tag"
@@ -3061,16 +3421,6 @@
       "type": "tag"
     },
     {
-      "alias": "energy",
-      "slug": "tag-energy",
-      "type": "tag"
-    },
-    {
-      "alias": "energy",
-      "slug": "tag-energy",
-      "type": "tag"
-    },
-    {
       "alias": "forkless upgrades",
       "slug": "tag-forkless-upgrades",
       "type": "tag"
@@ -3078,16 +3428,6 @@
     {
       "alias": "forkless upgrades",
       "slug": "tag-forkless-upgrades",
-      "type": "tag"
-    },
-    {
-      "alias": "halving",
-      "slug": "tag-halving",
-      "type": "tag"
-    },
-    {
-      "alias": "halving",
-      "slug": "tag-halving",
       "type": "tag"
     },
     {
@@ -3151,16 +3491,6 @@
       "type": "tag"
     },
     {
-      "alias": "lending",
-      "slug": "tag-lending",
-      "type": "tag"
-    },
-    {
-      "alias": "lending",
-      "slug": "tag-lending",
-      "type": "tag"
-    },
-    {
       "alias": "market analysis",
       "slug": "tag-market-analysis",
       "type": "tag"
@@ -3168,66 +3498,6 @@
     {
       "alias": "market analysis",
       "slug": "tag-market-analysis",
-      "type": "tag"
-    },
-    {
-      "alias": "market cycles",
-      "slug": "tag-market-cycles",
-      "type": "tag"
-    },
-    {
-      "alias": "market cycles",
-      "slug": "tag-market-cycles",
-      "type": "tag"
-    },
-    {
-      "alias": "market psychology",
-      "slug": "tag-market-psychology",
-      "type": "tag"
-    },
-    {
-      "alias": "market psychology",
-      "slug": "tag-market-psychology",
-      "type": "tag"
-    },
-    {
-      "alias": "memory safety",
-      "slug": "tag-memory-safety",
-      "type": "tag"
-    },
-    {
-      "alias": "memory safety",
-      "slug": "tag-memory-safety",
-      "type": "tag"
-    },
-    {
-      "alias": "mining",
-      "slug": "tag-mining",
-      "type": "tag"
-    },
-    {
-      "alias": "mining",
-      "slug": "tag-mining",
-      "type": "tag"
-    },
-    {
-      "alias": "money market",
-      "slug": "tag-money-market",
-      "type": "tag"
-    },
-    {
-      "alias": "money market",
-      "slug": "tag-money-market",
-      "type": "tag"
-    },
-    {
-      "alias": "nfts",
-      "slug": "tag-nfts",
-      "type": "tag"
-    },
-    {
-      "alias": "nfts",
-      "slug": "tag-nfts",
       "type": "tag"
     },
     {
@@ -3251,16 +3521,6 @@
       "type": "tag"
     },
     {
-      "alias": "performance",
-      "slug": "tag-performance",
-      "type": "tag"
-    },
-    {
-      "alias": "performance",
-      "slug": "tag-performance",
-      "type": "tag"
-    },
-    {
       "alias": "pos",
       "slug": "tag-pos",
       "type": "tag"
@@ -3281,16 +3541,6 @@
       "type": "tag"
     },
     {
-      "alias": "programming",
-      "slug": "tag-programming",
-      "type": "tag"
-    },
-    {
-      "alias": "programming",
-      "slug": "tag-programming",
-      "type": "tag"
-    },
-    {
       "alias": "proof of stake",
       "slug": "tag-proof-of-stake",
       "type": "tag"
@@ -3298,36 +3548,6 @@
     {
       "alias": "proof of stake",
       "slug": "tag-proof-of-stake",
-      "type": "tag"
-    },
-    {
-      "alias": "proof of work",
-      "slug": "tag-proof-of-work",
-      "type": "tag"
-    },
-    {
-      "alias": "proof of work",
-      "slug": "tag-proof-of-work",
-      "type": "tag"
-    },
-    {
-      "alias": "rust",
-      "slug": "tag-rust",
-      "type": "tag"
-    },
-    {
-      "alias": "rust",
-      "slug": "tag-rust",
-      "type": "tag"
-    },
-    {
-      "alias": "scarcity economics",
-      "slug": "tag-scarcity-economics",
-      "type": "tag"
-    },
-    {
-      "alias": "scarcity economics",
-      "slug": "tag-scarcity-economics",
       "type": "tag"
     },
     {
@@ -3368,36 +3588,6 @@
     {
       "alias": "validator rewards",
       "slug": "tag-validator-rewards",
-      "type": "tag"
-    },
-    {
-      "alias": "vaults",
-      "slug": "tag-vaults",
-      "type": "tag"
-    },
-    {
-      "alias": "vaults",
-      "slug": "tag-vaults",
-      "type": "tag"
-    },
-    {
-      "alias": "web3",
-      "slug": "tag-web3",
-      "type": "tag"
-    },
-    {
-      "alias": "web3",
-      "slug": "tag-web3",
-      "type": "tag"
-    },
-    {
-      "alias": "webassembly",
-      "slug": "tag-webassembly",
-      "type": "tag"
-    },
-    {
-      "alias": "webassembly",
-      "slug": "tag-webassembly",
       "type": "tag"
     }
   ]

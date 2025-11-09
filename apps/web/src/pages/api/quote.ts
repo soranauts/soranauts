@@ -9,8 +9,6 @@ const quoteSchema = z.object({
   amount: z.string().regex(/^\d+(\.\d+)?$/, 'Invalid amount format'),
 });
 
-export const prerender = false;
-
 export const GET: APIRoute = async ({ request, url }) => {
   try {
     // Check rate limit
