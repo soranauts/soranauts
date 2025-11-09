@@ -9,10 +9,18 @@ const quoteSchema = z.object({
   amount: z.string().regex(/^\d+(\.\d+)?$/, 'Invalid amount format'),
 });
 
-export const prerender = false;
-
 export const GET: APIRoute = async ({ request, url }) => {
   try {
+    if (import.meta.env.PRERENDER) {
+      return new Response(
+        JSON.stringify({ error: 'Quote API is available at runtime only.' }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        },
+      );
+    }
+
     // Check rate limit
     const rateLimitResult = quoteRateLimit(request);
     if (!rateLimitResult.allowed) {
