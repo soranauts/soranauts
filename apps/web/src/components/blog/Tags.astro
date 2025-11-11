@@ -33,7 +33,7 @@ const resolvedTags = Array.isArray(tags)
       const tooltipSlug = glossaryNode?.slug ?? glossarySlug ?? node?.slug;
       const tooltipCategory = glossaryNode?.category ?? node?.category ?? 'tag';
       const glossaryTitle = glossaryNode?.title ?? tag;
-      const glossarySummary = toPlainText(glossaryNode?.summary ?? glossaryNode?.description ?? '');
+      const glossarySummary = toPlainText(glossaryNode?.summary ?? node?.summary ?? '');
 
       return {
         label: tag,

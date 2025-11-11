@@ -1,0 +1,154 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import BlogList from '~/components/blog/List.astro';
+import Pagination from '~/components/blog/Pagination.astro';
+import { TAG_HUB_V1_ENABLED } from '~/utils/featureFlags';
+import {
+  formatTagLabel,
+  getAllTagHubViewModels,
+} from '~/lib/tag-hub';
+import {
+  getPostsForTagSlug,
+  getTagViewModelBySlug,
+  TAG_POSTS_PER_PAGE,
+} from '~/lib/tag-pages';
+import type { MetaData, Post } from '~/types';
+import TagHero from '~/components/tag-hub/TagHero.astro';
+import { getGlossaryForTag } from '~/lib/taxonomy';
+
+export const prerender = true;
+
+interface PageStaticProps {
+  tagSlug: string;
+  posts: Post[];
+  pageNumber: number;
+}
+
+type PagePath = {
+  params: { slug: string; page: string };
+  props: PageStaticProps;
+};
+
+export const getStaticPaths = async (): Promise<PagePath[]> => {
+  if (!TAG_HUB_V1_ENABLED) return [];
+
+  const tags = getAllTagHubViewModels().filter((tag) => tag.usageCount > TAG_POSTS_PER_PAGE);
+
+  const paths: PagePath[] = [];
+
+  for (const tag of tags) {
+    const posts = await getPostsForTagSlug(tag.slug);
+    const totalPages = Math.ceil(posts.length / TAG_POSTS_PER_PAGE);
+
+    for (let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
+      paths.push({
+        params: {
+          slug: tag.slug.replace(/^tag-/, ''),
+          page: String(pageNumber),
+        },
+        props: {
+          tagSlug: tag.slug,
+          posts,
+          pageNumber,
+        },
+      });
+    }
+  }
+
+  return paths;
+};
+
+const { tagSlug, posts, pageNumber } = Astro.props as PageStaticProps;
+
+const tag = getTagViewModelBySlug(tagSlug);
+
+if (!tag) {
+  throw new Error(`Unable to locate tag data for slug "${tagSlug}"`);
+}
+
+const totalPosts = posts.length;
+const totalPages = Math.ceil(totalPosts / TAG_POSTS_PER_PAGE) || 1;
+const currentPage = pageNumber;
+const start = (currentPage - 1) * TAG_POSTS_PER_PAGE;
+const paginatedPosts = posts.slice(start, start + TAG_POSTS_PER_PAGE);
+const glossaryEntry = getGlossaryForTag(tag.slug);
+
+const formattedFirstSeen = tag.firstSeen ? new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(new Date(tag.firstSeen)) : undefined;
+const formattedLastSeen = tag.lastSeen ? new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(new Date(tag.lastSeen)) : undefined;
+
+const canonicalSlug = tag.slug.replace(/^tag-/, '');
+const canonicalPath = `/tag/${canonicalSlug}`;
+
+const domainLabels: Record<string, string> = {
+  ecosystem: 'Ecosystem & Adoption',
+  defi: 'DeFi & Liquidity',
+  economics: 'Economics & Tokenomics',
+  governance: 'Governance & Policy',
+  technology: 'Technology & Infrastructure',
+  network: 'Network & Validators',
+};
+
+const domainLabel =
+  domainLabels[tag.domain] ?? tag.domain.replace(/-/g, ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase());
+
+const formattedLabel = formatTagLabel(tag.slug, tag.title);
+
+const metadata: MetaData = {
+  title: `${formattedLabel} — Page ${currentPage}`,
+  description:
+    tag.summary ??
+    glossaryEntry?.summary ??
+    `Explore curated resources, glossary context, and the latest posts for ${formattedLabel} in the SORA ecosystem.`,
+  canonical: `https://soranauts.com${canonicalPath}`,
+  robots: {
+    index: false,
+    follow: true,
+  },
+  openGraph: {
+    type: 'article',
+    url: `https://soranauts.com${canonicalPath}`,
+  },
+};
+
+const prevUrl =
+  currentPage === 2
+    ? canonicalPath
+    : `${canonicalPath}/page/${currentPage - 1}`;
+const nextUrl =
+  currentPage < totalPages ? `${canonicalPath}/page/${currentPage + 1}` : undefined;
+---
+
+<PageLayout metadata={metadata}>
+  <main class="tag-detail-page px-4 md:px-6 lg:px-12 py-12 md:py-16 lg:py-20 mx-auto max-w-5xl">
+    <TagHero
+      tag={tag}
+      totalPosts={totalPosts}
+      formattedFirstSeen={formattedFirstSeen}
+      formattedLastSeen={formattedLastSeen}
+      glossaryEntry={glossaryEntry}
+      domainLabel={domainLabel}
+    />
+
+    <section class="tag-detail-section">
+      <div class="tag-detail-section__header">
+        <h2 class="tag-detail-section__title">Articles — Page {currentPage}</h2>
+        <p class="tag-detail-section__description">
+          Page {currentPage} of {totalPages}. Continue browsing articles related to {formattedLabel}.
+        </p>
+      </div>
+
+      {paginatedPosts.length > 0 ? (
+        <BlogList posts={paginatedPosts} />
+      ) : (
+        <div class="tag-detail-empty">
+          <h3>No articles on this page</h3>
+          <p>Return to previous pages to see more coverage for this tag.</p>
+        </div>
+      )}
+
+      <Pagination prevUrl={prevUrl} nextUrl={nextUrl} />
+    </section>
+  </main>
+</PageLayout>
+
+

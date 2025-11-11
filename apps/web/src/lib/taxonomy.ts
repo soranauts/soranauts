@@ -1,5 +1,7 @@
 import { taxonomy, type TaxonomyNode, type TaxonomyNodeType } from '../data/taxonomy';
 
+export type { TaxonomyNode, TaxonomyNodeType } from '../data/taxonomy';
+
 export type TaxonomySlug = keyof typeof taxonomy;
 
 type AliasEntry = {
@@ -21,7 +23,7 @@ const normalize = (value: string): string =>
 
 export const normalizeTaxonomyValue = normalize;
 
-const toTagSlug = (value: string): string => `tag-${normalize(value).replace(/\s+/g, '-')}`;
+export const toTagSlug = (value: string): string => `tag-${normalize(value).replace(/\s+/g, '-')}`;
 
 const aliasEntries: AliasEntry[] = entities.flatMap((node) => {
   const aliases = new Set<string>([node.title, ...(node.aliases ?? [])]);

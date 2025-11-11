@@ -1,0 +1,31 @@
+# Production Backup Information
+Created: Mon Nov 10 13:05:46 CST 2025
+Backup Date: 2025-11-10 130546
+Description: Production backup before deployment
+
+## Backup References
+- Branch: backup/production-2025-11-10-130546
+- Tag: backup-production-2025-11-10-130546
+- Commit: 3458f1b0c3a4dc440859dd84ad68baf5bb810f63
+- Commit Message: Improve search highlight styling and fix features page search
+- Commit Date: 2025-11-09 08:38:55 -0600
+
+## Revert Commands
+To revert to this backup:
+
+```bash
+# Method 1: Use backup branch
+git reset --hard backup/production-2025-11-10-130546
+
+# Method 2: Use backup tag
+git reset --hard backup-production-2025-11-10-130546
+
+# Method 3: Use commit hash
+git reset --hard 3458f1b0c3a4dc440859dd84ad68baf5bb810f63
+```
+
+## View This Backup
+```bash
+git show backup/production-2025-11-10-130546
+git log backup/production-2025-11-10-130546 -1
+```

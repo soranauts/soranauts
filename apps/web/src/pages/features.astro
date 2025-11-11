@@ -10,123 +10,128 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import { Icon } from 'astro-icon/components';
 import type { MetaData } from '~/types';
 
+// Checklist: tighten hero/metadata, refresh feature signals + deployment snapshot, align stats/highlights/search/timeline/resources/CTA copy.
 const metadata: MetaData = {
-  title: 'Soranauts Platform Features',
+  title: 'Soranauts Platform Features & Safeguards',
   description:
-    'Explore the Soranauts platform highlights—design guardrails, glossary evolution, and automation work that keep the site fast and trustworthy.',
+    'See how SORA Explorer, Glossary v2, and Command + K search make Soranauts fast, reliable, and transparent.',
 };
 
 const featureLinks = {
   glossary: '/glossary',
   changelog: '/changelog',
+  explore: '/explore',
   latestBlog: '/sora-v3-vision-defi-milestones-and-polkaswap-news-update-88',
 };
 
 const featureSignals = [
   {
-    icon: 'tabler:rocket',
-    title: 'Design system guardrails',
-    description: 'Tokens, gradients, and typography refresh ensure every release lands with consistent styling.',
+    icon: 'tabler:compass',
+    title: 'Explorer Tag Hub journeys',
+    description: 'Six Explorer domains, quick paths, and trait filters surface governance, DeFi, and network context in one view.',
   },
   {
-    icon: 'tabler:book',
-    title: 'Glossary & glossary search',
-    description: 'Interactive definitions and tooltips keep ecosystem language aligned with official docs.',
+    icon: 'tabler:book-2',
+    title: 'Glossary v2 instant clarity',
+    description: 'Instant search, hover previews, and alias detection keep 130+ definitions aligned with Explorer tags and articles.',
   },
   {
-    icon: 'tabler:news',
-    title: 'Article modernization',
-    description: 'Long-form guides now open with TL;DRs, comparison tables, and collapsible FAQs.',
+    icon: 'tabler:search',
+    title: 'Unified Command+K overlay',
+    description: 'Search glossary terms, deep dives, and Explorer entries from one modal with filter chips and keyboard-first navigation.',
   },
   {
     icon: 'tabler:device-analytics',
     title: 'Automated knowledge base',
-    description: 'Nightly syncs, provenance snapshots, and SARIF QA power reliable answers.',
+    description: 'Nightly syncs, provenance snapshots, and SARIF QA keep wiki, Soramitsu, Medium, Iroha, and GitHub sources verifiable.',
   },
 ];
 
 const deploymentFocus = [
   {
     icon: 'tabler:layout-grid',
-    title: 'Design tokens live sitewide',
+    title: 'Explorer quick journeys',
     description:
-      'Layered CSS tokens, Tailwind guardrails, and updated layouts keep every page aligned without manual overrides.',
+      'Tag Hub domains, curated quick paths, and trait filters guide contributors from onboarding to advanced governance research.',
   },
   {
     icon: 'tabler:bookmarks',
-    title: 'Glossary 2.0 shipping daily',
+    title: 'Glossary freshness checks',
     description:
-      '130+ linked definitions, instant search, and contextual tooltips make SORA terminology effortless to explore.',
+      'Taxonomy-driven definitions rebuild nightly so hover previews, alias detection, and related articles stay aligned with production sources.',
   },
   {
-    icon: 'tabler:article',
-    title: '26+ long-form guides modernized',
+    icon: 'tabler:palette',
+    title: 'Design system guardrails',
     description:
-      'Article TL;DRs, comparison tables, and collapsible FAQs are rolling out across the 2023–2024 catalog.',
+      'Token-driven colors, Tailwind guardrails, and layered CSS keep every layout aligned without ad-hoc overrides.',
   },
   {
     icon: 'tabler:clock',
-    title: 'Nightly sync at 03:17 UTC',
+    title: 'Nightly automation cadence',
     description:
-      'Automated pulls from SORA wiki, Soramitsu, Medium, and GitHub rebuild provenance-backed indices while you sleep.',
+      'Automated ingestion merges SORA wiki, Soramitsu docs, Medium updates, GitHub repos, and Iroha references with auditable provenance.',
   },
 ];
 
 const stats = [
   {
-    amount: '26+',
-    title: 'Articles rebuilt with TL;DRs, evidence-backed links, and updated governance coverage since Q3 2025',
-    icon: 'tabler:article-filled-filled',
+    amount: '6',
+    title: 'Explorer domains spanning ecosystem, DeFi, economics, governance, technology, and network coverage',
+    icon: 'tabler:hexagon',
   },
   {
     amount: '130+',
-    title: 'Glossary entries with instant search, tooltips, and auto-linking across the site',
+    title: 'Glossary definitions with instant search, alias detection, and hover previews backed by taxonomy metadata',
     icon: 'tabler:book',
   },
   {
-    amount: '1,000+',
-    title: 'Knowledge assets indexed with provenance snapshots and hybrid retrieval guardrails',
-    icon: 'tabler:layers-union',
+    amount: '6',
+    title: 'Explorer trait filters highlighting foundational, glossary-linked, beginner, advanced, trending, and builder guides',
+    icon: 'tabler:adjustments-horizontal',
   },
   {
     amount: '10+',
-    title: 'Automated pipelines syncing wiki docs, repos, partner sites, and Medium digests',
+    title: 'Automated pipelines syncing wiki docs, GitHub repos, partner sites, and Medium digests',
     icon: 'tabler:git-branch',
   },
 ];
 
 const highlightItems = [
   {
-    icon: 'tabler:clipboard-data',
-    title: 'Public changelog',
+    icon: 'tabler:compass',
+    title: 'SORA Explorer Tag Hub',
     description:
-      'We publish a running log of UX, content, and automation updates so supporters can see what shipped each week.',
+      'Browse six domain dashboards, curated quick journeys, and trait filters that surface governance, DeFi, and technology stories together.',
+    callToAction: {
+      href: featureLinks.explore,
+      text: 'Navigate SORA Explorer',
+      icon: 'tabler:arrow-up-right',
+      isCardLink: true,
+    },
+  },
+  {
+    icon: 'tabler:book-2',
+    title: 'Glossary v2 instant clarity',
+    description:
+      'Search 130+ definitions with alias detection, hover previews, and related articles that mirror the taxonomy powering Explorer cards.',
+    callToAction: {
+      href: featureLinks.glossary,
+      text: 'Explore the glossary',
+      icon: 'tabler:arrow-up-right',
+      isCardLink: true,
+    },
+  },
+  {
+    icon: 'tabler:clipboard-data',
+    title: 'Command+K & release cadence',
+    description:
+      'Follow weekly release notes, Command+K enhancements, and provenance-backed search updates that document every deployment.',
     callToAction: {
       href: featureLinks.changelog,
       text: 'Review recent releases',
       icon: 'tabler:external-link',
-    },
-  },
-  {
-    icon: 'tabler:search',
-    title: 'Glossary search revamp',
-    description:
-      'Interactive filters, hover tooltips, and category chips make 130+ SORA definitions discoverable in seconds.',
-    callToAction: {
-      href: featureLinks.glossary,
-      text: 'Explore glossary 2.0',
-      icon: 'tabler:arrow-up-right',
-    },
-  },
-  {
-    icon: 'tabler:script',
-    title: 'Article modernization sprint',
-    description:
-      'Long-form content now ships with TL;DRs, FAQ toggles, strategic linking, and consistent metadata for SEO + UX gains.',
-    callToAction: {
-      href: '/sora-roadmap-token-repackaging-hub-chain-defi-upgrades',
-      text: 'See an updated article',
-      icon: 'tabler:external-link',
+      isCardLink: true,
     },
   },
 ];
@@ -134,71 +139,67 @@ const highlightItems = [
 const searchEnhancements = [
   {
     icon: 'tabler:filter',
-    title: 'Glossary & article filters',
-    description:
-      'Instantly pivot between definitions and long-form guides with type chips, category filters, and result counts that stay in sync.',
+    title: 'Type-aware filters',
+    description: 'Pivot between glossary entries, long-form guides, and tag results with chips and counts that stay in sync.',
   },
   {
     icon: 'tabler:layout',
-    title: 'Context-rich cards',
-    description:
-      'Each result surfaces metadata — publish dates, reading time, tags, and aliases — so you know what you are opening before you click.',
+    title: 'Metadata-rich cards',
+    description: 'See publish dates, reading time, aliases, and tags before you click so you always know what you are opening.',
   },
   {
     icon: 'tabler:keyboard',
     title: 'Keyboard-first navigation',
-    description:
-      'Arrow through results, press Enter to open, and rely on global ⌘K / Ctrl+K shortcuts anywhere on the site.',
+    description: 'Arrow through results, press Enter to open, and rely on global ⌘K / Ctrl+K shortcuts anywhere on the site.',
   },
   {
     icon: 'tabler:chart-dots',
-    title: 'Search analytics + synonyms',
-    description:
-      'Built-in synonym expansion and lightweight analytics capture what the community searches for so we can prioritize new content.',
+    title: 'Synonyms & analytics',
+    description: 'Synonym expansion (SORA ↔ Soramitsu, XOR ↔ token bonding curve) pairs with self-hosted analytics to guide new content.',
   },
 ];
 
 const searchInsights = [
   {
     icon: 'tabler:app-window',
-    title: 'One unified overlay',
-    description: 'The modal preloads Pagefind assets and caches responses so searches stay fast even on repeat queries.',
+    title: 'Unified overlay',
+    description: 'The modal preloads Pagefind assets, caches responses, and respects feature flags so searches stay fast on repeat queries.',
   },
   {
     icon: 'tabler:sparkles',
     title: 'Smart highlighting',
-    description: 'Highlights include synonyms (e.g., SORA ↔ Soramitsu) and deduplicate repeated terms for easier scanning.',
+    description: 'Highlights expand synonyms, collapse duplicates, and emphasize glossary matches for easier scanning.',
   },
   {
     icon: 'tabler:shield-check',
-    title: 'Built for privacy',
-    description: 'Everything runs client-side without third-party trackers; analytics funnel through self-hosted PostHog events.',
+    title: 'Privacy-first telemetry',
+    description: 'Search runs client-side and only records opt-in analytics through self-hosted PostHog.',
   },
 ];
 
 const timelineItems = [
   {
-    title: 'November 2025 — Knowledge base hardening complete',
+    title: 'November 2025 — SORA Explorer preview ships',
     description:
-      'We locked in provenance snapshots, hybrid retrieval, and CI guardrails so every answer cites auditable evidence.',
-    icon: 'tabler:shield-lock',
+      'Tag Hub V1 launched with domain filters, quick journeys, and usage signals that map governance, DeFi, and technology coverage in minutes.',
+    icon: 'tabler:compass',
   },
   {
     title: 'October 2025 — Article modernization wave',
     description:
-      '26+ long-form guides received TL;DRs, comparison tables, expanded tags, and collapsible FAQs for faster scanning.',
+      '26+ long-form guides gained TL;DRs, comparison tables, structured tags, and collapsible FAQs so readers can audit releases faster.',
     icon: 'tabler:news',
   },
   {
-    title: 'September 2025 — Glossary 2.0 rollout',
+    title: 'September 2025 — SORA Glossary redesign',
     description:
-      'Interactive search, taxonomy chips, and hover previews shipped alongside Related Articles and visual refreshes.',
+      'Glossary v2 shipped instant search, taxonomy chips, hover previews, and alias detection so terminology stays synchronized with Explorer cards.',
     icon: 'tabler:book-2',
   },
   {
     title: 'June 2025 — Release cadence reboot',
     description:
-      'Website improvements log launched with performance tuning, SEO guardrails, and navigation reordering for clarity.',
+      'The release log, navigation order, and performance guardrails were rebuilt so every deployment documents what changed and why.',
     icon: 'tabler:rocket',
   },
 ];
@@ -208,22 +209,29 @@ const resourceLinks = [
     icon: 'tabler:clipboard-check',
     title: 'SORA Network Changelog',
     description:
-      'Track mainnet releases, bridge upgrades, and validator tooling milestones from the public network changelog.',
+      'Public record of mainnet releases, bridge upgrades, and validator tooling milestones maintained by the core network team.',
     href: 'https://wiki.sora.org/changelog.html',
     external: true,
+  },
+  {
+    icon: 'tabler:compass',
+    title: 'Explore SORA Explorer',
+    description:
+      'Navigate curated domains, quick journeys, and trait filters that connect glossary definitions to governance and DeFi context.',
+    href: featureLinks.explore,
   },
   {
     icon: 'tabler:planet',
     title: 'Soranauts Release Log',
     description:
-      'Dive deeper into the UX, content, and automation work shipping each week across the platform.',
+      'Read weekly Soranauts release notes that catalog Command+K, Explorer, and knowledge base improvements.',
     href: featureLinks.changelog,
   },
   {
     icon: 'tabler:route',
     title: 'SORA Integrated Plan Insights',
     description:
-      'Understand how community goals align with the roadmap across business, backend, web, and mobile tracks.',
+      'Reference the official integrated plan to see how business, backend, web, and mobile tracks align with community goals.',
     href: 'https://wiki.sora.org/integrated-plan.html',
     external: true,
   },
@@ -239,10 +247,10 @@ const resourceLinks = [
           Platform Highlights
         </span>
         <h1 class="mt-6 text-4xl font-bold leading-tight text-text-main md:text-5xl lg:text-6xl">
-          Explore the Soranauts platform features that keep the site credible, fast, and easy to trust.
+          Inside the systems that keep Soranauts credible, fast, and easy to navigate.
         </h1>
         <p class="mt-6 text-lg text-text-muted">
-          The Soranauts platform blends UX design, knowledge base automation, and community documentation. These sections showcase the systems that shape every release.
+          This overview documents how Explorer journeys, Glossary v2, Command+K search, and knowledge base automation work together so you can verify how Soranauts stays trusted and current.
         </p>
         <div class="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:gap-4">
           <Button variant="primary" href="#highlights" text="Jump to highlights" icon="tabler:sparkles" class="w-full justify-center sm:w-auto sm:min-w-[220px]" />
@@ -267,7 +275,7 @@ const resourceLinks = [
             <p class="text-xs font-semibold uppercase tracking-[0.3em] text-text-soft">Deployment Snapshot</p>
             <h2 class="mt-3 text-2xl font-semibold text-text-main">How the platform earns trust.</h2>
             <p class="mt-4 text-sm text-text-muted">
-              These pillars explain how Soranauts features combine: front-end polish, glossary clarity, and automation that keeps information current.
+              These pillars show how Explorer journeys, glossary freshness, design guardrails, and nightly automation reinforce each other to earn trust.
             </p>
           </div>
           <div class="grid gap-4">
@@ -309,7 +317,7 @@ const resourceLinks = [
         items={highlightItems}
         classes={{
           container: 'gap-10',
-          panel: 'flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-elevated h-full',
+          panel: 'flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-elevated hover:border-brand-500 h-full',
           icon: 'w-10 h-10 text-brand-500',
           title: 'text-2xl text-text-main',
           description: 'text-base text-text-muted',
@@ -324,11 +332,11 @@ const resourceLinks = [
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Search & Navigation</p>
         <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">
-          Command+K now surfaces the entire Soranauts knowledge base.
+          Command+K searches the entire Soranauts knowledge base from one overlay.
         </h2>
         <p class="mt-4 text-lg text-text-muted">
-          The new search modal blends glossary precision with article depth. Filters, metadata-rich cards, and synonym-aware highlighting
-          make it easier to jump from definitions to deep dives without leaving the keyboard.
+          The unified search modal blends glossary precision with release notes and Explorer tags. Filters, metadata-rich cards, and synonym-aware highlighting
+          make it easy to jump from terminology to implementation without leaving the keyboard.
         </p>
         <ul class="mt-8 space-y-4">
           {searchEnhancements.map(({ icon, title, description }) => (
@@ -363,8 +371,8 @@ const resourceLinks = [
         <div class="mt-auto rounded-2xl border border-border-subtle bg-surface/90 p-5 shadow-sm">
           <p class="text-sm font-semibold uppercase tracking-[0.25em] text-brand-500">Why it matters</p>
           <p class="mt-3 text-sm text-text-muted">
-            Search analytics stay self-hosted, and every result links back to content backed by provenance snapshots. It is a faster path
-            to trustworthy answers, whether you are clarifying terminology or citing a governance update.
+            Search analytics stay self-hosted, and every result links back to provenance-tracked docs sourced from nightly knowledge base automation. It is a faster path
+            to verifiable answers, whether you need a definition or a governance citation.
           </p>
         </div>
       </div>
@@ -466,12 +474,13 @@ const resourceLinks = [
     ]}
   >
     <Fragment slot="title">
-      Help us keep the decentralized frontier approachable.
+      Help keep Soranauts coverage independent and well-documented.
     </Fragment>
     <Fragment slot="subtitle">
-      Every guide, glossary entry, and deployment log is crafted to make the SORA ecosystem easier to navigate. Your support keeps that cadence going.
+      Your support funds the research, glossary updates, release cadence, and knowledge base automation that keep SORA Explorer and our docs neutral and current.
     </Fragment>
   </CallToAction>
+  <!-- Copy refresh aligns metadata, hero, signals, stats, search, timeline, resources, and CTA with current Soranauts capabilities and safeguards. -->
 </PageLayout>
 
 

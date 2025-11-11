@@ -1,0 +1,30 @@
+---
+import GlossaryStats from './GlossaryStats.astro';
+
+export interface GlossaryHeroStat {
+  label: string;
+  value: string;
+  helper?: string;
+}
+
+export interface Props {
+  title: string;
+  description?: string;
+  kicker?: string;
+  stats?: GlossaryHeroStat[];
+  children?: AstroChildren;
+}
+
+const { title, description, kicker, stats = [] } = Astro.props;
+---
+
+<section class="glossary-hero">
+  {kicker && <span class="glossary-hero__kicker">{kicker}</span>}
+  <h1>{title}</h1>
+  {description && <p>{description}</p>}
+  {Astro.slots.has('default') && <div class="glossary-hero__extras"><slot /></div>}
+  {stats.length ? (
+    <GlossaryStats stats={stats} class="glossary-hero__stats" />
+  ) : null}
+</section>
+

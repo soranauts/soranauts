@@ -1,0 +1,41 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import { TAG_HUB_V1_ENABLED } from '~/utils/featureFlags';
+import type { MetaData } from '~/types';
+
+export const prerender = true;
+
+if (TAG_HUB_V1_ENABLED) {
+  return new Response(null, {
+    status: 308,
+    headers: {
+      Location: '/explore',
+    },
+  });
+}
+
+const metadata: MetaData = {
+  title: 'SORA Explorer Preview',
+  description:
+    'SORA Explorer is currently in preview on this environment. You can still browse glossary entries and posts while we finish the rollout.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+---
+
+<PageLayout metadata={metadata}>
+  <main class="px-4 md:px-6 lg:px-12 py-16 md:py-20 lg:py-24 mx-auto max-w-4xl text-center space-y-6">
+    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight">SORA Explorer Preview</h1>
+    <p class="text-lg text-text-muted">
+      SORA Explorer lives at <a class="text-link hover:text-link-hover" href="/explore">/explore</a>. This environment
+      has the feature disabled, but you can still find glossary terms and blog posts for every topic.
+    </p>
+    <p class="text-base text-text-soft">
+      Need something specific? Try the site search or head to the <a class="text-link hover:text-link-hover" href="/glossary">glossary</a> for definitions.
+    </p>
+  </main>
+</PageLayout>
+
+

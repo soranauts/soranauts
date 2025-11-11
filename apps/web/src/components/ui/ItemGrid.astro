@@ -32,9 +32,30 @@ const {
         containerClass
       )}
     >
-      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }) => (
-        <div>
-          <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
+      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }) => {
+        const callToActionProps = callToAction ?? {};
+        const {
+          text: actionText,
+          icon: actionIcon,
+          class: actionClassName = '',
+          variant: actionVariant = 'link',
+          isCardLink,
+          labelClass: actionLabelClass = '',
+          ...actionRest
+        } = callToActionProps;
+        const isExternal = actionRest?.target === '_blank';
+        const isCardLinkEnabled = Boolean(isCardLink && actionRest?.href);
+        const panelClasses = twMerge(
+          'flex flex-row max-w-md',
+          panelClass,
+          itemClasses?.panel,
+          isCardLinkEnabled ? 'group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400' : ''
+        );
+        const needsRel = (!('rel' in actionRest) || actionRest.rel === undefined) && isExternal;
+        const relProps = needsRel ? { rel: 'noopener noreferrer' } : {};
+
+        const content = (
+          <>
             <div class="flex justify-center">
               {(icon || defaultIcon) && (
                 <Icon
@@ -51,7 +72,7 @@ const {
                   set:html={description}
                 />
               )}
-              {callToAction && (
+              {callToAction && actionText && (
                 <div
                   class={twMerge(
                     `${title || description ? 'mt-3' : ''}`,
@@ -59,13 +80,52 @@ const {
                     itemClasses?.actionClass
                   )}
                 >
-                  <Button variant="link" {...callToAction} />
+                  {isCardLinkEnabled ? (
+                    <span
+                      class={twMerge(
+                        'inline-flex items-center gap-2 text-sm font-semibold text-link group-hover:text-link-hover',
+                        actionLabelClass
+                      )}
+                    >
+                      <span set:html={actionText} />
+                      {actionIcon && <Icon name={actionIcon} class="h-4 w-4" />}
+                    </span>
+                  ) : (
+                    <Button
+                      {...{
+                        ...actionRest,
+                        ...relProps,
+                        text: actionText,
+                        icon: actionIcon,
+                        class: actionClassName,
+                        variant: actionVariant,
+                      }}
+                    />
+                  )}
                 </div>
               )}
             </div>
+          </>
+        );
+
+        return (
+          <div>
+            {isCardLinkEnabled ? (
+              <a
+                class={twMerge(panelClasses, actionClassName)}
+                {...actionRest}
+                {...relProps}
+              >
+                {content}
+              </a>
+            ) : (
+              <div class={panelClasses}>
+                {content}
+              </div>
+            )}
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   )
 }

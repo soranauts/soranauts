@@ -8,6 +8,11 @@ const envSchema = z.object({
   KV_TOKEN: z.string().default('dev'),
   SENTRY_DSN: z.string().optional(),
   NEXT_PUBLIC_SITE_URL: z.string().url().default('http://localhost:4321'),
+  TAG_HUB_V1: z
+    .string()
+    .transform((val) => val === 'true')
+    .pipe(z.boolean())
+    .default('false'),
   // Knowledge Base RAG configuration
   OPENAI_API_KEY: z.string().min(1).optional(),
   OPENAI_BASE_URL: z.string().url().optional(),

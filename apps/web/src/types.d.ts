@@ -184,6 +184,8 @@ export interface CallToAction extends HTMLAttributes<a> {
   text?: string;
   icon?: string;
   classes?: Record<string, string>;
+  isCardLink?: boolean;
+  labelClass?: string;
   type?: 'button' | 'submit' | 'reset';
 }
 
