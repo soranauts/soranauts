@@ -81,18 +81,21 @@ export const adaptOpenGraphImages = async (
           };
         }
 
-        const _image = await getImage({
+        const targetWidth = typeof image?.width === 'number' ? image.width : resolvedImage.width ?? defaultWidth;
+        const targetHeight = typeof image?.height === 'number' ? image.height : resolvedImage.height ?? defaultHeight;
+
+        const generatedImage = await getImage({
           src: resolvedImage,
           alt: 'Placeholder alt',
-          width: image?.width || defaultWidth,
-          height: image?.height || defaultHeight,
+          width: targetWidth,
+          height: targetHeight,
         });
 
-        if (typeof _image === 'object') {
+        if (typeof generatedImage === 'object' && 'src' in generatedImage) {
           return {
-            url: typeof _image.src === 'string' ? String(new URL(_image.src, astroSite)) : '',
-            width: typeof _image.width === 'number' ? _image.width : undefined,
-            height: typeof _image.height === 'number' ? _image.height : undefined,
+            url: typeof generatedImage.src === 'string' ? String(new URL(generatedImage.src, astroSite)) : '',
+            width: targetWidth,
+            height: targetHeight,
           };
         }
         return {

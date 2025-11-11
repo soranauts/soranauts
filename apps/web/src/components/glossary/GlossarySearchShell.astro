@@ -1,0 +1,30 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  class?: string;
+}
+
+const { title, description, class: className } = Astro.props;
+---
+
+<section class:list={['glossary-search-shell', className]}>
+  <div class="glossary-search-shell__inner">
+    {(title || description || Astro.slots.has('actions')) && (
+      <header class="glossary-search-shell__header">
+        {title && <h2 class="glossary-search-shell__title">{title}</h2>}
+        {description && <p class="glossary-search-shell__description">{description}</p>}
+        {Astro.slots.has('actions') && (
+          <div class="glossary-search-shell__actions">
+            <slot name="actions" />
+          </div>
+        )}
+      </header>
+    )}
+    <div class="glossary-search-shell__body">
+      <slot />
+    </div>
+  </div>
+</section>
+
+

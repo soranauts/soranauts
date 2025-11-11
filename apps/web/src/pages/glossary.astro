@@ -1,18 +1,99 @@
 ---
-import Layout from '~/layouts/Layout.astro';
-import Header from '~/components/widgets/Header.astro';
-import Footer from '~/components/widgets/Footer.astro';
+import GlossaryCard from '~/components/glossary/GlossaryCard.astro';
+import GlossaryHero from '~/components/glossary/GlossaryHero.astro';
 import GlossarySearchFallback from '~/components/glossary/GlossarySearchFallback';
+import GlossarySearchShell from '~/components/glossary/GlossarySearchShell.astro';
 import GlossarySearchV2 from '~/components/glossary/GlossarySearchV2';
+import Footer from '~/components/widgets/Footer.astro';
+import Header from '~/components/widgets/Header.astro';
+import Layout from '~/layouts/Layout.astro';
 import { SITE } from '~/utils/config';
-import { headerData, footerData } from '~/navigation';
+import { footerData, headerData } from '~/navigation';
 import glossary from '../../public/glossary.json';
 
 // Get initial term from URL hash for deep linking
 const initialTerm = Astro.url.hash.replace('#', '');
 const initialQuery = Astro.url.searchParams.get('q') ?? initialTerm;
 const enableSearchV2 = import.meta.env.GLOSSARY_SEARCH_V2 === 'true';
-const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
+
+const totalCount = typeof glossary.totalCount === 'number' ? glossary.totalCount : glossary.terms.length;
+const categories = new Set<string>();
+
+for (const term of glossary.terms) {
+  if (typeof term.category === 'string' && term.category.trim().length) {
+    categories.add(term.category.trim().toLowerCase());
+  }
+}
+
+const lastUpdatedValue = typeof glossary.lastUpdated === 'string' ? glossary.lastUpdated : undefined;
+const lastUpdatedDate = lastUpdatedValue ? new Date(lastUpdatedValue) : undefined;
+const formattedLastUpdated =
+  lastUpdatedDate && !Number.isNaN(lastUpdatedDate.valueOf())
+    ? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(lastUpdatedDate)
+    : '—';
+
+const heroStats = [
+  { label: 'Glossary terms', value: totalCount.toLocaleString('en-US') },
+  { label: 'Categories tracked', value: categories.size ? categories.size.toString() : '—' },
+  { label: 'Last update', value: formattedLastUpdated },
+];
+
+const heroCopy =
+  'Explore canonical definitions for the SORA network: tokens, governance, DeFi primitives, and cross-chain infrastructure. Each entry links to related glossary terms, Explorer tags, and deeper resources so you can stay oriented.';
+
+const toExcerpt = (value: string | undefined, length = 165): string => {
+  if (!value) return '';
+  if (value.length <= length) return value;
+  return `${value.slice(0, length - 1).trimEnd()}…`;
+};
+
+const sortTerms = [...glossary.terms].sort((a, b) => {
+  const priorityA = typeof a.priority === 'number' ? a.priority : Number.MAX_SAFE_INTEGER;
+  const priorityB = typeof b.priority === 'number' ? b.priority : Number.MAX_SAFE_INTEGER;
+  if (priorityA !== priorityB) return priorityA - priorityB;
+  return a.term.localeCompare(b.term, 'en');
+});
+
+const FEATURED_SORA_SLUGS = [
+  'xor',
+  'val',
+  'pswap',
+  'polkaswap',
+  'token-bonding-curve',
+  'elastic-supply',
+  'sora-parliament',
+  'sora-council',
+  'sora-v3',
+  'sora-v2',
+  'sora-card',
+  'iroha-special-instructions',
+] as const;
+
+const featuredSlugSet = new Set(FEATURED_SORA_SLUGS);
+
+const curatedFeatured = FEATURED_SORA_SLUGS.flatMap((slug) => {
+  const match = sortTerms.find((term) => term.slug === slug);
+  return match ? [match] : [];
+});
+
+const fallbackFeatured = sortTerms.filter((term) => !featuredSlugSet.has(term.slug));
+
+const featuredTerms = [
+  ...curatedFeatured,
+  ...fallbackFeatured.slice(0, Math.max(0, 12 - curatedFeatured.length)),
+];
+
+const buildMeta = (term: (typeof glossary.terms)[number]): string[] => {
+  const meta: string[] = [];
+  if (Array.isArray(term.aliases) && term.aliases.length > 1) {
+    const aliasCount = term.aliases.length - 1;
+    meta.push(`${aliasCount}+ alias${aliasCount > 1 ? 'es' : ''}`);
+  }
+  if (Array.isArray(term.relatedTerms) && term.relatedTerms.length > 0) {
+    meta.push(`${term.relatedTerms.length} related`);
+  }
+  return meta;
+};
 
 // Generate DefinedTermSet schema for main glossary page
 const definedTermSetSchema = {
@@ -21,15 +102,15 @@ const definedTermSetSchema = {
   "name": "SORA Glossary",
   "description": "Complete glossary of SORA ecosystem terms, definitions, and concepts. Learn about XOR, VAL, PSWAP, governance, DeFi, and more.",
   "url": `${SITE.site}/glossary`,
-  "hasDefinedTerm": glossary.terms.map(term => ({
+  "hasDefinedTerm": glossary.terms.map((term) => ({
     "@type": "DefinedTerm",
     "name": term.term,
     "termCode": term.slug,
     "description": term.definition,
     "url": `${SITE.site}/glossary/${term.slug}`,
     "inDefinedTermSet": `${SITE.site}/glossary`,
-    "alternateName": term.aliases ?? []
-  }))
+    "alternateName": term.aliases ?? [],
+  })),
 };
 
 // Breadcrumb schema for glossary page
@@ -41,17 +122,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": SITE.site
+      "item": SITE.site,
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "SORA Glossary",
-      "item": `${SITE.site}/glossary`
-    }
-  ]
+      "item": `${SITE.site}/glossary`,
+    },
+  ],
 };
+
 ---
+
 
 <Layout 
   metadata={{
@@ -62,7 +145,7 @@ const breadcrumbSchema = {
       url: `${SITE.site}/glossary`,
       type: 'website',
       images: [{
-        url: `${SITE.site}/og/glossary.jpg`,
+        url: `${SITE.site}/og/og-sora-glossary.jpg`,
         width: 1200,
         height: 630
       }]
@@ -74,31 +157,66 @@ const breadcrumbSchema = {
     
     <Header {...headerData} isSticky showRssFeed showToggleTheme />
   
-  <main class="py-8 sm:py-16 lg:py-20">
-    <div class:list={['container mx-auto px-4 sm:px-6 max-w-6xl', { 'glossary-index': GLOSSARY_V2 }]}>
-      <!-- Header Section -->
-      <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading mb-6">
-          SORA Glossary
-        </h1>
-        <p class="text-xl md:text-2xl text-muted dark:text-slate-400 max-w-3xl mx-auto">
-          Your comprehensive guide to SORA ecosystem language and the core crypto and blockchain concepts behind it. 
-          Search, filter, and explore to understand SORA alongside the broader decentralized finance landscape.
-        </p>
-      </div>
+  <main class="glossary-page px-4 md:px-6 lg:px-12 pt-8 md:pt-10 lg:pt-12 pb-12 md:pb-16 lg:pb-20 mx-auto max-w-7xl">
+    <GlossaryHero kicker="Reference" title="SORA Glossary" description={heroCopy} stats={heroStats} />
 
-          <!-- Main Glossary Search Component -->
-          {enableSearchV2 ? (
-            <GlossarySearchV2 client:load initialQuery={initialQuery ?? ''} />
-          ) : (
-            <GlossarySearchFallback client:load />
-          )}
-    </div>
+    <GlossarySearchShell title="Search the SORA glossary" description="Look up tokens, governance models, DeFi concepts, and cross-chain primitives. Filters and shortcuts keep research quick.">
+      <div id="glossary-search-controls" class="glossary-search glossary-search--controls" />
+    </GlossarySearchShell>
+
+    <section class="glossary-section" id="glossary-featured-terms">
+      <div class="glossary-section__header">
+        <div>
+          <h2 class="glossary-section__title">Featured glossary terms</h2>
+          <p class="glossary-section__description">
+            Start with the most-referenced SORA vocabulary—from elastic tokenomics through governance and cross-chain infrastructure.
+          </p>
+        </div>
+      </div>
+      <div class="glossary-grid">
+        {featuredTerms.map((term) => {
+          const summary = toExcerpt(term.summary ?? term.definition);
+          const tags = Array.isArray(term.relatedTags) && term.relatedTags.length
+            ? term.relatedTags
+            : Array.isArray(term.tags)
+              ? term.tags
+              : [];
+          const meta = buildMeta(term);
+          return (
+            <GlossaryCard
+              href={`/glossary/${term.slug}`}
+              title={term.term}
+              summary={summary}
+              category={term.category}
+              tags={tags}
+              meta={meta}
+            />
+          );
+        })}
+      </div>
+    </section>
+
+    <div id="glossary-search-results" class="glossary-search glossary-search--results" />
+
+    {enableSearchV2 ? (
+      <GlossarySearchV2
+        client:load
+        initialQuery={initialQuery ?? ''}
+        controlsContainerId="glossary-search-controls"
+        resultsContainerId="glossary-search-results"
+      />
+    ) : (
+      <GlossarySearchFallback
+        client:load
+        controlsContainerId="glossary-search-controls"
+        resultsContainerId="glossary-search-results"
+      />
+    )}
   </main>
 
   <Footer {...footerData} />
   
   <!-- Structured Data for SEO -->
-  <script type="application/ld+json" set:html={JSON.stringify(definedTermSetSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(definedTermSetSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </Layout>

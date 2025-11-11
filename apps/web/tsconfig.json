@@ -8,5 +8,21 @@
     "paths": {
       "~/*": ["src/*"]
     }
-  }
+  },
+  "exclude": [
+    "src/components/glossary/**",
+    "src/layouts/BlogPostLayout.astro",
+    "src/layouts/Layout.astro",
+    "src/lib/glossary/**",
+    "src/pages/about.astro",
+    "src/pages/features.astro",
+    "src/pages/glossary.astro",
+    "src/pages/index.astro",
+    "src/pages/[...blog]/**",
+    "src/pages/tools/quote.astro",
+    "src/utils/glossary-auto-link.mjs",
+    "src/utils/__tests__/**",
+    "tests/e2e/**",
+    "tests/unit/glossary/**"
+  ]
 }

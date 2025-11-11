@@ -1,0 +1,190 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BlogList from '~/components/blog/List.astro';
+import Pagination from '~/components/blog/Pagination.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
+import { TAG_HUB_V1_ENABLED } from '~/utils/featureFlags';
+import { getGlossaryForTag } from '~/lib/taxonomy';
+import {
+  formatTagLabel,
+  getAllTagHubViewModels,
+  getTagHubViewModel,
+} from '~/lib/tag-hub';
+import {
+  getPostsForTagSlug,
+  getTagViewModelBySlug,
+  shouldIndexTagPage,
+  TAG_POSTS_PER_PAGE,
+} from '~/lib/tag-pages';
+import type { MetaData, Post } from '~/types';
+import TagHero from '~/components/tag-hub/TagHero.astro';
+
+export const prerender = true;
+
+interface TagPageProps {
+  tagSlug: string;
+  posts: Post[];
+}
+
+export const getStaticPaths = (async () => {
+  if (!TAG_HUB_V1_ENABLED) return [];
+
+  const tags = getAllTagHubViewModels().filter((tag) => tag.usageCount > 0 || Boolean(tag.glossaryRef));
+
+  const tagPosts = await Promise.all(
+    tags.map(async (tag) => {
+      const posts = await getPostsForTagSlug(tag.slug);
+      return { tagSlug: tag.slug, posts };
+    }),
+  );
+
+  return tagPosts.map(({ tagSlug, posts }) => ({
+    params: { slug: tagSlug.replace(/^tag-/, '') },
+    props: {
+      tagSlug,
+      posts,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { tagSlug, posts } = Astro.props as TagPageProps;
+
+const tag = getTagViewModelBySlug(tagSlug);
+
+if (!tag) {
+  throw new Error(`Unable to locate tag data for slug "${tagSlug}"`);
+}
+
+const totalPosts = posts.length;
+const paginatedPosts = posts.slice(0, TAG_POSTS_PER_PAGE);
+const totalPages = Math.ceil(totalPosts / TAG_POSTS_PER_PAGE) || 1;
+
+const glossaryEntry = getGlossaryForTag(tag.slug);
+const relatedTags = (tag.relatedTags ?? [])
+  .map((relatedSlug) => getTagHubViewModel(relatedSlug))
+  .filter((related): related is NonNullable<typeof related> => Boolean(related))
+  .slice(0, 8);
+
+const shouldIndex = shouldIndexTagPage(totalPosts, Boolean(tag.summary), Boolean(tag.glossaryRef));
+
+const canonicalPath = `/tag/${tag.slug.replace(/^tag-/, '')}`;
+
+const formattedLabel = formatTagLabel(tag.slug, tag.title);
+
+const metadata: MetaData = {
+  title: `${formattedLabel} — SORA Topic`,
+  description:
+    tag.summary ??
+    glossaryEntry?.summary ??
+    `Explore curated resources, glossary context, and the latest posts for ${formattedLabel} in the SORA ecosystem.`,
+  canonical: `https://soranauts.com${canonicalPath}`,
+  robots: {
+    index: shouldIndex,
+    follow: true,
+  },
+  openGraph: {
+    type: 'article',
+    url: `https://soranauts.com${canonicalPath}`,
+  },
+};
+
+const firstSeen = tag.firstSeen ? new Date(tag.firstSeen) : undefined;
+const lastSeen = tag.lastSeen ? new Date(tag.lastSeen) : undefined;
+
+const formatDate = (date?: Date) =>
+  date
+    ? new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(date)
+    : undefined;
+
+const formattedFirstSeen = formatDate(firstSeen);
+const formattedLastSeen = formatDate(lastSeen);
+
+const domainLabels: Record<string, string> = {
+  ecosystem: 'Ecosystem & Adoption',
+  defi: 'DeFi & Liquidity',
+  economics: 'Economics & Tokenomics',
+  governance: 'Governance & Policy',
+  technology: 'Technology & Infrastructure',
+  network: 'Network & Validators',
+};
+
+const domainLabel =
+  domainLabels[tag.domain] ?? tag.domain.replace(/-/g, ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase());
+
+const pagefindMeta = {
+  type: 'tag',
+  title: formattedLabel,
+  description: metadata.description,
+  url: `${canonicalPath}/`,
+  domain: tag.domain,
+  domainLabel,
+  usageCount: tag.usageCount,
+  firstSeen: tag.firstSeen ?? null,
+  lastUpdated: tag.lastSeen ?? null,
+  traits: tag.traits,
+};
+---
+
+<PageLayout metadata={metadata}>
+  <main
+    class="tag-detail-page px-4 md:px-6 lg:px-12 py-12 md:py-16 lg:py-20 mx-auto max-w-5xl"
+    data-pagefind-body={shouldIndex ? true : undefined}
+    data-pagefind-filter={shouldIndex ? `type:tag,domain:${tag.domain}` : undefined}
+    data-pagefind-meta={shouldIndex ? JSON.stringify(pagefindMeta) : undefined}
+  >
+    <TagHero
+      tag={tag}
+      totalPosts={totalPosts}
+      formattedFirstSeen={formattedFirstSeen}
+      formattedLastSeen={formattedLastSeen}
+      glossaryEntry={glossaryEntry}
+      domainLabel={domainLabel}
+    />
+
+    {relatedTags.length > 0 && (
+      <section class="tag-detail-section">
+        <h2 class="tag-detail-section__title">Related tags</h2>
+        <ul class="tag-detail-related">
+          {relatedTags.map((relatedTag) => {
+            const relatedLabel = formatTagLabel(relatedTag.slug, relatedTag.title);
+            return (
+              <li>
+                <a class="tag" href={`/tag/${relatedTag.slug.replace(/^tag-/, '')}`}>{relatedLabel}</a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    )}
+
+    <section class="tag-detail-section">
+      <div class="tag-detail-section__header">
+        <h2 class="tag-detail-section__title">Latest articles</h2>
+        <p class="tag-detail-section__description">
+          Posts covering {tag.title} across the SORA ecosystem. New entries are added automatically from the Soranauts blog.
+        </p>
+      </div>
+
+      {paginatedPosts.length > 0 ? (
+        <BlogList posts={paginatedPosts} />
+      ) : (
+        <div class="tag-detail-empty">
+          <h3>No articles yet</h3>
+          <p>
+            We haven’t published feature coverage for this topic yet. Check back soon or follow the glossary link for
+            foundational context.
+          </p>
+        </div>
+      )}
+
+      {totalPages > 1 && (
+        <Pagination
+          prevUrl={undefined}
+          nextUrl={`/tag/${tag.slug.replace(/^tag-/, '')}/page/2`}
+        />
+      )}
+    </section>
+  </main>
+</PageLayout>
+
+

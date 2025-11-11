@@ -1,0 +1,30 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  kicker?: string;
+  class?: string;
+  id?: string;
+}
+
+const { title, description, kicker, class: className, id } = Astro.props;
+---
+
+<section class:list={['glossary-section-card', className]} {...(id ? { id } : {})}>
+  <header class="glossary-section-card__header">
+    {kicker && <span class="glossary-section-card__kicker">{kicker}</span>}
+    <div>
+      <h2 class="glossary-section-card__title">{title}</h2>
+      {description && <p class="glossary-section-card__description">{description}</p>}
+    </div>
+    {Astro.slots.has('actions') && (
+      <div class="glossary-section-card__actions">
+        <slot name="actions" />
+      </div>
+    )}
+  </header>
+  <div class="glossary-section-card__body">
+    <slot />
+  </div>
+</section>
+

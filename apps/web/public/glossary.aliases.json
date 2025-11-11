@@ -981,6 +981,16 @@
       "type": "tag"
     },
     {
+      "alias": "val",
+      "slug": "tag-val",
+      "type": "tag"
+    },
+    {
+      "alias": "pswap",
+      "slug": "tag-pswap",
+      "type": "tag"
+    },
+    {
       "alias": "pswap",
       "slug": "tag-pswap",
       "type": "tag"
@@ -1041,6 +1051,11 @@
       "type": "tag"
     },
     {
+      "alias": "xor",
+      "slug": "tag-xor",
+      "type": "tag"
+    },
+    {
       "alias": "validator",
       "slug": "tag-validator",
       "type": "tag"
@@ -1081,6 +1096,16 @@
       "type": "tag"
     },
     {
+      "alias": "hashi",
+      "slug": "tag-hashi",
+      "type": "tag"
+    },
+    {
+      "alias": "dex",
+      "slug": "tag-dex",
+      "type": "tag"
+    },
+    {
       "alias": "dex",
       "slug": "tag-dex",
       "type": "tag"
@@ -1101,7 +1126,7 @@
       "type": "tag"
     },
     {
-      "alias": "buyback and burn",
+      "alias": "buyback-and-burn",
       "slug": "tag-buyback-and-burn",
       "type": "tag"
     },
@@ -1111,6 +1136,16 @@
       "type": "tag"
     },
     {
+      "alias": "buyback and burn",
+      "slug": "tag-buyback-and-burn",
+      "type": "tag"
+    },
+    {
+      "alias": "soramitsu",
+      "slug": "tag-soramitsu",
+      "type": "tag"
+    },
+    {
       "alias": "soramitsu",
       "slug": "tag-soramitsu",
       "type": "tag"
@@ -1151,6 +1186,11 @@
       "type": "tag"
     },
     {
+      "alias": "cbdc",
+      "slug": "tag-cbdc",
+      "type": "tag"
+    },
+    {
       "alias": "enterprise",
       "slug": "tag-enterprise",
       "type": "tag"
@@ -1158,6 +1198,11 @@
     {
       "alias": "enterprise",
       "slug": "tag-enterprise",
+      "type": "tag"
+    },
+    {
+      "alias": "wasm webassembly",
+      "slug": "tag-wasm",
       "type": "tag"
     },
     {
@@ -1221,6 +1266,16 @@
       "type": "tag"
     },
     {
+      "alias": "sora v2",
+      "slug": "tag-sora-v2",
+      "type": "tag"
+    },
+    {
+      "alias": "sora v3",
+      "slug": "tag-sora-v3",
+      "type": "tag"
+    },
+    {
       "alias": "sora v3",
       "slug": "tag-sora-v3",
       "type": "tag"
@@ -1271,6 +1326,11 @@
       "type": "tag"
     },
     {
+      "alias": "bft consensus",
+      "slug": "tag-bft-consensus",
+      "type": "tag"
+    },
+    {
       "alias": "modular architecture",
       "slug": "tag-modular-architecture",
       "type": "tag"
@@ -1301,7 +1361,7 @@
       "type": "tag"
     },
     {
-      "alias": "cross chain",
+      "alias": "cross-chain",
       "slug": "tag-cross-chain",
       "type": "tag"
     },
@@ -1311,6 +1371,11 @@
       "type": "tag"
     },
     {
+      "alias": "cross chain",
+      "slug": "tag-cross-chain",
+      "type": "tag"
+    },
+    {
       "alias": "relay chain",
       "slug": "tag-relay-chain",
       "type": "tag"
@@ -1318,6 +1383,11 @@
     {
       "alias": "relay chain",
       "slug": "tag-relay-chain",
+      "type": "tag"
+    },
+    {
+      "alias": "xcm",
+      "slug": "tag-xcm",
       "type": "tag"
     },
     {
@@ -1358,6 +1428,11 @@
     {
       "alias": "network",
       "slug": "tag-network",
+      "type": "tag"
+    },
+    {
+      "alias": "nft",
+      "slug": "tag-nft",
       "type": "tag"
     },
     {
@@ -1458,6 +1533,16 @@
     {
       "alias": "tonswap",
       "slug": "tag-tonswap",
+      "type": "tag"
+    },
+    {
+      "alias": "tonswap",
+      "slug": "tag-tonswap",
+      "type": "tag"
+    },
+    {
+      "alias": "defi",
+      "slug": "tag-defi",
       "type": "tag"
     },
     {
@@ -1681,6 +1766,11 @@
       "type": "tag"
     },
     {
+      "alias": "sora council",
+      "slug": "tag-sora-council",
+      "type": "tag"
+    },
+    {
       "alias": "council motion",
       "slug": "tag-council-motion",
       "type": "tag"
@@ -1771,7 +1861,7 @@
       "type": "tag"
     },
     {
-      "alias": "cross border payments",
+      "alias": "cross-border payments",
       "slug": "tag-cross-border-payments",
       "type": "tag"
     },
@@ -1781,6 +1871,11 @@
       "type": "tag"
     },
     {
+      "alias": "cross border payments",
+      "slug": "tag-cross-border-payments",
+      "type": "tag"
+    },
+    {
       "alias": "consensus",
       "slug": "tag-consensus",
       "type": "tag"
@@ -1851,6 +1946,11 @@
       "type": "tag"
     },
     {
+      "alias": "kusd",
+      "slug": "tag-kusd",
+      "type": "tag"
+    },
+    {
       "alias": "fujiwara testnet",
       "slug": "tag-fujiwara-testnet",
       "type": "tag"
@@ -1868,6 +1968,11 @@
     {
       "alias": "supranational platform",
       "slug": "tag-supranational-platform",
+      "type": "tag"
+    },
+    {
+      "alias": "sora parliament",
+      "slug": "tag-sora-parliament",
       "type": "tag"
     },
     {
@@ -2061,6 +2166,16 @@
       "type": "tag"
     },
     {
+      "alias": "xyk pools",
+      "slug": "tag-xyk-pools",
+      "type": "tag"
+    },
+    {
+      "alias": "amm",
+      "slug": "tag-amm",
+      "type": "tag"
+    },
+    {
       "alias": "amm",
       "slug": "tag-amm",
       "type": "tag"
@@ -2128,6 +2243,11 @@
     {
       "alias": "code",
       "slug": "tag-code",
+      "type": "tag"
+    },
+    {
+      "alias": "ipfs",
+      "slug": "tag-ipfs",
       "type": "tag"
     },
     {
@@ -2511,6 +2631,11 @@
       "type": "tag"
     },
     {
+      "alias": "tbcd",
+      "slug": "tag-tbcd",
+      "type": "tag"
+    },
+    {
       "alias": "reserve asset",
       "slug": "tag-reserve-asset",
       "type": "tag"
@@ -2731,6 +2856,11 @@
       "type": "tag"
     },
     {
+      "alias": "qr payments",
+      "slug": "tag-qr-payments",
+      "type": "tag"
+    },
+    {
       "alias": "bokolo cash",
       "slug": "tag-bokolo-cash",
       "type": "tag"
@@ -2751,7 +2881,12 @@
       "type": "tag"
     },
     {
-      "alias": "real world assets",
+      "alias": "sora card",
+      "slug": "tag-sora-card",
+      "type": "tag"
+    },
+    {
+      "alias": "real-world assets",
       "slug": "tag-real-world-assets",
       "type": "tag"
     },
@@ -2761,6 +2896,11 @@
       "type": "tag"
     },
     {
+      "alias": "real world assets",
+      "slug": "tag-real-world-assets",
+      "type": "tag"
+    },
+    {
       "alias": "tokenization",
       "slug": "tag-tokenization",
       "type": "tag"
@@ -2936,6 +3076,11 @@
       "type": "tag"
     },
     {
+      "alias": "parachain",
+      "slug": "tag-parachains",
+      "type": "tag"
+    },
+    {
       "alias": "parachains",
       "slug": "tag-parachains",
       "type": "tag"
@@ -2953,6 +3098,11 @@
     {
       "alias": "crowdloans",
       "slug": "tag-crowdloans",
+      "type": "tag"
+    },
+    {
+      "alias": "parachain auctions",
+      "slug": "tag-auctions",
       "type": "tag"
     },
     {
@@ -3036,6 +3186,11 @@
       "type": "tag"
     },
     {
+      "alias": "apollo token",
+      "slug": "tag-apollo-token",
+      "type": "tag"
+    },
+    {
       "alias": "apollo protocol",
       "slug": "tag-apollo-protocol",
       "type": "tag"
@@ -3096,6 +3251,11 @@
       "type": "tag"
     },
     {
+      "alias": "nft",
+      "slug": "tag-nfts",
+      "type": "tag"
+    },
+    {
       "alias": "nfts",
       "slug": "tag-nfts",
       "type": "tag"
@@ -3113,6 +3273,11 @@
     {
       "alias": "blockchain development",
       "slug": "tag-blockchain-development",
+      "type": "tag"
+    },
+    {
+      "alias": "crypto market cycles",
+      "slug": "tag-market-cycles",
       "type": "tag"
     },
     {
@@ -3153,6 +3318,11 @@
     {
       "alias": "bull market",
       "slug": "tag-bull-market",
+      "type": "tag"
+    },
+    {
+      "alias": "bitcoin btc",
+      "slug": "tag-bitcoin",
       "type": "tag"
     },
     {
@@ -3206,6 +3376,11 @@
       "type": "tag"
     },
     {
+      "alias": "proof of work pow",
+      "slug": "tag-energy",
+      "type": "tag"
+    },
+    {
       "alias": "energy",
       "slug": "tag-energy",
       "type": "tag"
@@ -3226,6 +3401,11 @@
       "type": "tag"
     },
     {
+      "alias": "dex",
+      "slug": "tag-decentralized-exchange",
+      "type": "tag"
+    },
+    {
       "alias": "decentralized exchange",
       "slug": "tag-decentralized-exchange",
       "type": "tag"
@@ -3233,6 +3413,11 @@
     {
       "alias": "decentralized exchange",
       "slug": "tag-decentralized-exchange",
+      "type": "tag"
+    },
+    {
+      "alias": "proof of work pow",
+      "slug": "tag-proof-of-work",
       "type": "tag"
     },
     {
@@ -3306,6 +3491,11 @@
       "type": "tag"
     },
     {
+      "alias": "wasm webassembly",
+      "slug": "tag-webassembly",
+      "type": "tag"
+    },
+    {
       "alias": "webassembly",
       "slug": "tag-webassembly",
       "type": "tag"
@@ -3313,6 +3503,11 @@
     {
       "alias": "webassembly",
       "slug": "tag-webassembly",
+      "type": "tag"
+    },
+    {
+      "alias": "bonk bonk",
+      "slug": "tag-bonk",
       "type": "tag"
     },
     {
@@ -3336,7 +3531,7 @@
       "type": "tag"
     },
     {
-      "alias": "bitcoin halving",
+      "alias": "halving",
       "slug": "tag-bitcoin-halving",
       "type": "tag"
     },
@@ -3351,7 +3546,12 @@
       "type": "tag"
     },
     {
-      "alias": "blockchain technology",
+      "alias": "bitcoin halving",
+      "slug": "tag-bitcoin-halving",
+      "type": "tag"
+    },
+    {
+      "alias": "blockchain",
       "slug": "tag-blockchain-technology",
       "type": "tag"
     },
@@ -3361,7 +3561,12 @@
       "type": "tag"
     },
     {
-      "alias": "bonding curve",
+      "alias": "blockchain technology",
+      "slug": "tag-blockchain-technology",
+      "type": "tag"
+    },
+    {
+      "alias": "token bonding curve",
       "slug": "tag-bonding-curve",
       "type": "tag"
     },
@@ -3371,8 +3576,8 @@
       "type": "tag"
     },
     {
-      "alias": "ceres",
-      "slug": "tag-ceres",
+      "alias": "bonding curve",
+      "slug": "tag-bonding-curve",
       "type": "tag"
     },
     {
@@ -3381,7 +3586,12 @@
       "type": "tag"
     },
     {
-      "alias": "consensus mechanisms",
+      "alias": "ceres",
+      "slug": "tag-ceres",
+      "type": "tag"
+    },
+    {
+      "alias": "consensus",
       "slug": "tag-consensus-mechanisms",
       "type": "tag"
     },
@@ -3391,6 +3601,16 @@
       "type": "tag"
     },
     {
+      "alias": "consensus mechanisms",
+      "slug": "tag-consensus-mechanisms",
+      "type": "tag"
+    },
+    {
+      "alias": "crypto market cycles",
+      "slug": "tag-cryptocurrency-trends",
+      "type": "tag"
+    },
+    {
       "alias": "cryptocurrency trends",
       "slug": "tag-cryptocurrency-trends",
       "type": "tag"
@@ -3398,6 +3618,11 @@
     {
       "alias": "cryptocurrency trends",
       "slug": "tag-cryptocurrency-trends",
+      "type": "tag"
+    },
+    {
+      "alias": "dogecoin doge",
+      "slug": "tag-dogecoin",
       "type": "tag"
     },
     {
@@ -3431,7 +3656,7 @@
       "type": "tag"
     },
     {
-      "alias": "hyperledger",
+      "alias": "hyperledger iroha",
       "slug": "tag-hyperledger",
       "type": "tag"
     },
@@ -3441,7 +3666,12 @@
       "type": "tag"
     },
     {
-      "alias": "investment strategy",
+      "alias": "hyperledger",
+      "slug": "tag-hyperledger",
+      "type": "tag"
+    },
+    {
+      "alias": "trading strategy",
       "slug": "tag-investment-strategy",
       "type": "tag"
     },
@@ -3451,7 +3681,12 @@
       "type": "tag"
     },
     {
-      "alias": "iroha",
+      "alias": "investment strategy",
+      "slug": "tag-investment-strategy",
+      "type": "tag"
+    },
+    {
+      "alias": "hyperledger iroha",
       "slug": "tag-iroha",
       "type": "tag"
     },
@@ -3461,7 +3696,12 @@
       "type": "tag"
     },
     {
-      "alias": "iroha 2",
+      "alias": "iroha",
+      "slug": "tag-iroha",
+      "type": "tag"
+    },
+    {
+      "alias": "hyperledger iroha 2",
       "slug": "tag-iroha-2",
       "type": "tag"
     },
@@ -3471,7 +3711,12 @@
       "type": "tag"
     },
     {
-      "alias": "iroha3",
+      "alias": "iroha 2",
+      "slug": "tag-iroha-2",
+      "type": "tag"
+    },
+    {
+      "alias": "hyperledger iroha 3",
       "slug": "tag-iroha3",
       "type": "tag"
     },
@@ -3481,6 +3726,16 @@
       "type": "tag"
     },
     {
+      "alias": "iroha3",
+      "slug": "tag-iroha3",
+      "type": "tag"
+    },
+    {
+      "alias": "kensetsu",
+      "slug": "tag-ken",
+      "type": "tag"
+    },
+    {
       "alias": "ken",
       "slug": "tag-ken",
       "type": "tag"
@@ -3488,6 +3743,11 @@
     {
       "alias": "ken",
       "slug": "tag-ken",
+      "type": "tag"
+    },
+    {
+      "alias": "crypto market cycles",
+      "slug": "tag-market-analysis",
       "type": "tag"
     },
     {
@@ -3511,7 +3771,7 @@
       "type": "tag"
     },
     {
-      "alias": "pepe",
+      "alias": "pepe pepe",
       "slug": "tag-pepe",
       "type": "tag"
     },
@@ -3521,7 +3781,12 @@
       "type": "tag"
     },
     {
-      "alias": "pos",
+      "alias": "pepe",
+      "slug": "tag-pepe",
+      "type": "tag"
+    },
+    {
+      "alias": "proof of stake pos",
       "slug": "tag-pos",
       "type": "tag"
     },
@@ -3531,7 +3796,12 @@
       "type": "tag"
     },
     {
-      "alias": "pow",
+      "alias": "pos",
+      "slug": "tag-pos",
+      "type": "tag"
+    },
+    {
+      "alias": "proof of work pow",
       "slug": "tag-pow",
       "type": "tag"
     },
@@ -3541,6 +3811,16 @@
       "type": "tag"
     },
     {
+      "alias": "pow",
+      "slug": "tag-pow",
+      "type": "tag"
+    },
+    {
+      "alias": "proof of stake pos",
+      "slug": "tag-proof-of-stake",
+      "type": "tag"
+    },
+    {
       "alias": "proof of stake",
       "slug": "tag-proof-of-stake",
       "type": "tag"
@@ -3548,6 +3828,11 @@
     {
       "alias": "proof of stake",
       "slug": "tag-proof-of-stake",
+      "type": "tag"
+    },
+    {
+      "alias": "shiba inu shib",
+      "slug": "tag-shiba-inu",
       "type": "tag"
     },
     {
@@ -3578,6 +3863,11 @@
     {
       "alias": "soshiba",
       "slug": "tag-soshiba",
+      "type": "tag"
+    },
+    {
+      "alias": "validator",
+      "slug": "tag-validator-rewards",
       "type": "tag"
     },
     {

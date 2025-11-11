@@ -1,6 +1,16 @@
 // Unified taxonomy dataset for glossary terms, entities, versions, and tags.
 
 import tagsData from './taxonomy-tags.json';
+import rawTagStats from './tag-stats.json';
+import { tagHubMetadata, type TagHubMetadataEntry } from './tag-hub.config';
+type TagStatsEntry = {
+  count: number;
+  firstSeen?: string;
+  lastSeen?: string;
+};
+
+const tagStats = rawTagStats as Record<string, TagStatsEntry>;
+
 
 export type TaxonomyNodeType = 'term' | 'entity' | 'version' | 'tag';
 
@@ -20,6 +30,10 @@ export interface TaxonomyNode {
   entity?: string;
   versions?: string[];
   glossaryRef?: string;
+  hub?: TagHubMetadataEntry;
+  usageCount?: number;
+  firstSeen?: string;
+  lastSeen?: string;
 }
 
 const normalizeKey = (value: string): string =>
@@ -5209,16 +5223,23 @@ for (const node of Object.values(baseTaxonomy)) {
     }
 
     const possibleTermSlug = normalizeKey(tag).replace(/\s+/g, '-');
-    const glossaryCandidate = baseTaxonomy[possibleTermSlug];
+    const overrideSlug = tagGlossaryOverrides[possibleTermSlug] ?? tagGlossaryOverrides[normalizeKey(tag)];
+    const candidateSlug = overrideSlug ?? possibleTermSlug;
+    const glossaryCandidate =
+      baseTaxonomy[candidateSlug] ??
+      baseTaxonomy[possibleTermSlug] ??
+      findNodeByAlias(tag) ??
+      findNodeByAlias(candidateSlug);
 
     taxonomyWithTags[slug] = {
       slug,
-      title: humanize(tag),
+      title: glossaryCandidate?.title ?? humanize(tag),
       type: 'tag',
-      aliases: Array.from(new Set([tag, humanize(tag), normalizeKey(tag)])).filter(Boolean),
+      aliases: Array.from(new Set([tag, glossaryCandidate?.title ?? tag, humanize(tag), normalizeKey(tag)])).filter(Boolean),
       relatedTags: [],
       seeAlso: [],
       glossaryRef: glossaryCandidate?.glossaryRef ?? node.glossaryRef,
+    hub: tagHubMetadata[slug],
     };
   }
 }
@@ -5241,13 +5262,49 @@ for (const tag of externalTags) {
 
   taxonomyWithTags[slug] = {
     slug,
-    title: humanize(tag),
+    title: candidateNode?.title ?? tag,
     type: 'tag',
-    aliases: Array.from(new Set([tag, humanize(tag), normalizeKey(tag)])).filter(Boolean),
+    aliases: Array.from(new Set([tag, candidateNode?.title ?? tag, humanize(tag), normalizeKey(tag)])).filter(Boolean),
     relatedTags: [],
     seeAlso: [],
     glossaryRef: candidateNode?.glossaryRef,
+    hub: tagHubMetadata[slug],
   };
+}
+
+for (const [slug, metadata] of Object.entries(tagHubMetadata)) {
+  if (!taxonomyWithTags[slug]) {
+    const tagName = slug.replace(/^tag-/, '');
+    const normalizedTag = normalizeKey(tagName);
+    const possibleTermSlug = normalizedTag.replace(/\s+/g, '-');
+    const overrideSlug = tagGlossaryOverrides[possibleTermSlug] ?? tagGlossaryOverrides[normalizedTag];
+    const candidateSlug = overrideSlug ?? possibleTermSlug;
+    const candidateNode =
+      baseTaxonomy[candidateSlug] ??
+      baseTaxonomy[possibleTermSlug] ??
+      findNodeByAlias(tagName) ??
+      findNodeByAlias(candidateSlug);
+    
+    taxonomyWithTags[slug] = {
+      slug,
+      title: candidateNode?.title ?? humanize(tagName),
+      type: 'tag',
+      aliases: Array.from(new Set([tagName, candidateNode?.title ?? tagName, humanize(tagName), normalizeKey(tagName)])).filter(Boolean),
+      relatedTags: [],
+      seeAlso: [],
+      glossaryRef: candidateNode?.glossaryRef,
+      hub: metadata,
+    };
+  } else {
+    taxonomyWithTags[slug].hub = metadata;
+  }
+}
+
+for (const [slug, stat] of Object.entries(tagStats)) {
+  if (!taxonomyWithTags[slug]) continue;
+  taxonomyWithTags[slug].usageCount = stat.count;
+  if (stat.firstSeen) taxonomyWithTags[slug].firstSeen = stat.firstSeen;
+  if (stat.lastSeen) taxonomyWithTags[slug].lastSeen = stat.lastSeen;
 }
 
 export const taxonomy: Record<string, TaxonomyNode> = taxonomyWithTags;

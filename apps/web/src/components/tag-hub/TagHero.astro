@@ -1,0 +1,51 @@
+---
+import { formatTagLabel, type TagHubViewModel } from '~/lib/tag-hub';
+import type { TaxonomyNode } from '~/data/taxonomy';
+
+export interface Props {
+  tag: TagHubViewModel;
+  totalPosts: number;
+  formattedFirstSeen?: string;
+  formattedLastSeen?: string;
+  glossaryEntry?: TaxonomyNode;
+  domainLabel?: string;
+}
+
+const { tag, totalPosts, formattedFirstSeen, formattedLastSeen, glossaryEntry, domainLabel } = Astro.props;
+const formattedTitle = formatTagLabel(tag.slug, tag.title);
+---
+
+<section class="tag-detail-hero">
+  <div class="tag-detail-hero__heading">
+    <span class="tag-detail-hero__badge">{domainLabel ?? tag.domain.replace(/-/g, ' ')}</span>
+    <h1>{formattedTitle}</h1>
+    {tag.summary && <p class="tag-detail-hero__summary">{tag.summary}</p>}
+  </div>
+
+  <dl class="tag-detail-stats">
+    <div class="tag-detail-stats__item">
+      <dt>Articles</dt>
+      <dd>{totalPosts}</dd>
+    </div>
+    <div class="tag-detail-stats__item">
+      <dt>First seen</dt>
+      <dd>{formattedFirstSeen ?? '—'}</dd>
+    </div>
+    <div class="tag-detail-stats__item">
+      <dt>Last updated</dt>
+      <dd>{formattedLastSeen ?? '—'}</dd>
+    </div>
+  </dl>
+
+  {glossaryEntry && (
+    <div class="tag-detail-glossary">
+      <h2>From the Glossary</h2>
+      <p>{glossaryEntry.summary ?? glossaryEntry.definition}</p>
+      <a class="tag-detail-glossary__link" href={glossaryEntry.glossaryRef ?? `/glossary/${glossaryEntry.slug}`}>
+        View full glossary entry
+      </a>
+    </div>
+  )}
+</section>
+
+
