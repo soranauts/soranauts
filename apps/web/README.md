@@ -5,6 +5,7 @@ This is the main Astro web application for the SORA ecosystem, featuring an inte
 ## Features
 
 - **Interactive Glossary**: Search and filter SORA ecosystem terms
+- **SORA Explorer**: Feature-flagged topic hub (`/explore`) with interactive tag navigation powered by unified taxonomy data
 - **React Islands**: Interactive components using Astro's React integration
 - **Search Functionality**: Both Typesense-powered search and fallback local search
 - **Responsive Design**: Mobile-first design with dark/light mode support
@@ -27,6 +28,23 @@ This is the main Astro web application for the SORA ecosystem, featuring an inte
    ```bash
    pnpm generate:glossary
    ```
+
+## SORA Explorer Data Pipeline
+
+The SORA Explorer rollout introduces tag metadata and statistics that must be generated before builds:
+
+```bash
+pnpm web:tags:build   # produces src/data/tag-stats.json
+pnpm web:tags:test    # validates helper logic, tag metadata, and canonical labels
+```
+
+Enable the explorer locally with:
+
+```bash
+TAG_HUB_V1=true pnpm dev
+```
+
+End-to-end tests automatically build a tagged preview via `pnpm pretest:e2e`.
 
 ## Glossary Search Options
 

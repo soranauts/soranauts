@@ -12,34 +12,40 @@ const glossaryAstroPath = join(__dirname, '../src/pages/glossary.astro');
 
 function switchToTypesense() {
   let content = readFileSync(glossaryAstroPath, 'utf8');
-  
-  content = content.replace(
-    /import GlossarySearchFallback from '~/components\/glossary\/GlossarySearchFallback';/,
-    "import GlossarySearch from '~/components/glossary/GlossarySearch';"
-  );
-  
-  content = content.replace(
-    /<!-- React Glossary Search \(Fallback\) -->\s*<GlossarySearchFallback client:load \/>/,
-    '<!-- React InstantSearch Glossary -->\n          <GlossarySearch client:load />'
-  );
-  
+
+  const fallbackImport = "import GlossarySearchFallback from '~/components/glossary/GlossarySearchFallback';";
+  const typesenseImport = "import GlossarySearch from '~/components/glossary/GlossarySearch';";
+  const fallbackMarkup = '<!-- React Glossary Search (Fallback) -->\n          <GlossarySearchFallback client:load />';
+  const typesenseMarkup = '<!-- React InstantSearch Glossary -->\n          <GlossarySearch client:load />';
+
+  if (content.includes(fallbackImport)) {
+    content = content.replace(fallbackImport, typesenseImport);
+  }
+
+  if (content.includes(fallbackMarkup)) {
+    content = content.replace(fallbackMarkup, typesenseMarkup);
+  }
+
   writeFileSync(glossaryAstroPath, content);
   console.log('✅ Switched to Typesense InstantSearch');
 }
 
 function switchToFallback() {
   let content = readFileSync(glossaryAstroPath, 'utf8');
-  
-  content = content.replace(
-    /import GlossarySearch from '~/components\/glossary\/GlossarySearch';/,
-    "import GlossarySearchFallback from '~/components/glossary/GlossarySearchFallback';"
-  );
-  
-  content = content.replace(
-    /<!-- React InstantSearch Glossary -->\s*<GlossarySearch client:load \/>/,
-    '<!-- React Glossary Search (Fallback) -->\n          <GlossarySearchFallback client:load />'
-  );
-  
+
+  const fallbackImport = "import GlossarySearchFallback from '~/components/glossary/GlossarySearchFallback';";
+  const typesenseImport = "import GlossarySearch from '~/components/glossary/GlossarySearch';";
+  const fallbackMarkup = '<!-- React Glossary Search (Fallback) -->\n          <GlossarySearchFallback client:load />';
+  const typesenseMarkup = '<!-- React InstantSearch Glossary -->\n          <GlossarySearch client:load />';
+
+  if (content.includes(typesenseImport)) {
+    content = content.replace(typesenseImport, fallbackImport);
+  }
+
+  if (content.includes(typesenseMarkup)) {
+    content = content.replace(typesenseMarkup, fallbackMarkup);
+  }
+
   writeFileSync(glossaryAstroPath, content);
   console.log('✅ Switched to Fallback Search');
 }

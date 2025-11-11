@@ -11,7 +11,7 @@ test('site search modal opens and handles missing index gracefully', async ({ pa
   await input.fill('xor');
   await page.waitForTimeout(500);
 
-  const results = page.locator('#search-results-list a');
+  const results = page.locator('#search-results-list a.search-modal__result');
   const resultCount = await results.count();
 
   if (resultCount > 0) {

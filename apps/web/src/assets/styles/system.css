@@ -5,6 +5,7 @@
 @import "./components/button.css" layer(components);
 @import "./components/card.css" layer(components);
 @import "./components/tag.css" layer(components);
+@import "./components/glossary.css" layer(components);
 @import "./components/form.css" layer(components);
 @import "./components/layout.css" layer(components);
 @import "./utilities.css" layer(utilities);

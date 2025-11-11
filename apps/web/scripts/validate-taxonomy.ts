@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 
 import { taxonomy } from '../src/data/taxonomy';
+import tagStats from '../src/data/tag-stats.json';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,9 +44,9 @@ function collectPostTags(): Map<string, Set<string>> {
     const tags: string[] = Array.isArray(data?.tags) ? data.tags : [];
 
     for (const tag of tags) {
-      const normalized = normalize(String(tag));
-      if (!tagUsage.has(normalized)) tagUsage.set(normalized, new Set());
-      tagUsage.get(normalized)!.add(entry);
+      const slug = toTagSlug(String(tag));
+      if (!tagUsage.has(slug)) tagUsage.set(slug, new Set());
+      tagUsage.get(slug)!.add(entry);
     }
   }
 
@@ -54,8 +55,7 @@ function collectPostTags(): Map<string, Set<string>> {
 
 function validateTags(tagUsage: Map<string, Set<string>>) {
   for (const [tag, files] of tagUsage.entries()) {
-    const slug = toTagSlug(tag);
-    const tagNode = taxonomy[slug];
+    const tagNode = taxonomy[tag];
     if (!tagNode) {
       issues.push({
         type: 'error',
@@ -66,6 +66,39 @@ function validateTags(tagUsage: Map<string, Set<string>>) {
       issues.push({
         type: 'warning',
         message: `Tag "${tag}" exists in taxonomy but lacks a glossaryRef`,
+      });
+    }
+  }
+}
+
+function validateTagStats(tagUsage: Map<string, Set<string>>) {
+  for (const [tag, files] of tagUsage.entries()) {
+    const stat = tagStats[tag];
+    const usageCount = files.size;
+
+    if (!stat) {
+      issues.push({
+        type: 'error',
+        message: `Tag stats missing entry for "${tag}"`,
+        file: Array.from(files).join(', '),
+      });
+      continue;
+    }
+
+    if (stat.count !== usageCount) {
+      issues.push({
+        type: 'error',
+        message: `Tag stats for "${tag}" count ${stat.count} does not match usage ${usageCount}`,
+        file: Array.from(files).join(', '),
+      });
+    }
+  }
+
+  for (const slug of Object.keys(tagStats)) {
+    if (!taxonomy[slug]) {
+      issues.push({
+        type: 'warning',
+        message: `Tag stats include "${slug}" which is missing from taxonomy`,
       });
     }
   }
@@ -98,6 +131,7 @@ function validateTerms() {
 function main() {
   const tagUsage = collectPostTags();
   validateTags(tagUsage);
+  validateTagStats(tagUsage);
   validateTerms();
 
   const errors = issues.filter((issue) => issue.type === 'error');

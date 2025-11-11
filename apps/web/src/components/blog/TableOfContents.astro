@@ -30,28 +30,41 @@
 </div>
 
 <script>
-  // Completely isolated TOC generation
-  (function() {
-    'use strict';
-    
+// @ts-nocheck - Legacy inline DOM script pending migration to a typed island
+// Completely isolated TOC generation
+(function () {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     let tocInitialized = false;
     let scrollListenerAdded = false;
-    let currentTocLinks = [];
-    let currentHeadingElements = [];
-    
+    let currentTocLinks = /** @type {any[]} */ ([]);
+    let currentHeadingElements = /** @type {any[]} */ ([]);
+
     function updateActiveLink() {
       if (currentTocLinks.length === 0) return;
-      
+
       let current = '';
       const scrollPos = window.scrollY + 100; // Offset for header
 
-      currentHeadingElements.forEach((heading) => {
-        if (heading && heading.offsetTop <= scrollPos) {
+      currentHeadingElements.forEach((rawHeading) => {
+        if (!(rawHeading instanceof HTMLElement)) {
+          return;
+        }
+        const heading = rawHeading;
+
+        if (heading.offsetTop <= scrollPos) {
           current = heading.id;
         }
       });
 
-      currentTocLinks.forEach(link => {
+      currentTocLinks.forEach((rawLink) => {
+        if (!(rawLink instanceof HTMLElement)) {
+          return;
+        }
+        const link = rawLink;
+
         const targetId = link.getAttribute('data-target-id');
         if (targetId === current) {
           link.classList.add('toc-link--active');
@@ -60,97 +73,89 @@
         }
       });
     }
-    
+
     function generateTOC() {
-      const tocList = document.getElementById('toc-list');
-      const tocNav = document.getElementById('toc-nav');
-      const tocToggle = document.querySelector('.toc-toggle');
-      const tocContainer = document.querySelector('.toc-container');
+      const tocListEl = document.getElementById('toc-list');
+      const tocNavEl = document.getElementById('toc-nav');
+      const tocToggleEl = document.querySelector('.toc-toggle');
+      const tocContainerEl = document.querySelector('.toc-container');
 
-      if (!tocList || !tocNav || !tocToggle || !tocContainer) return;
-
-      // Only look for headings within the article content, not the entire page
-      const articleContent = document.querySelector('.prose') || document.querySelector('article') || document.body;
-      const headings = articleContent ? articleContent.querySelectorAll('h1, h2, h3, h4, h5, h6') : [];
-      
-      // Skip the first few headings as they might be from manual TOC
-      const skipFirstN = 0; // Skip first 0 headings - no manual TOC in this article
-      const headingsArray = Array.from(headings);
-      const actualHeadings = headingsArray.slice(skipFirstN);
-      
-      if (actualHeadings.length === 0) {
-        tocContainer.style.display = 'none';
+      if (!(tocListEl instanceof HTMLElement) || !(tocNavEl instanceof HTMLElement) || !(tocToggleEl instanceof HTMLElement) || !(tocContainerEl instanceof HTMLElement)) {
         return;
       }
 
-      let tocHTML = '';
+      const articleContent = document.querySelector('.prose') || document.querySelector('article') || document.body;
+      const headings = articleContent ? articleContent.querySelectorAll('h1, h2, h3, h4, h5, h6') : [];
 
-      actualHeadings.forEach((heading) => {
-        // Ensure this is actually a heading element
-        if (!heading.tagName || !heading.tagName.match(/^H[1-6]$/)) {
-          return;
-        }
+      const skipFirstN = 0;
+      const actualHeadings = Array.from(headings)
+        .slice(skipFirstN)
+        .filter((heading) => heading instanceof HTMLElement);
 
-        const level = parseInt(heading.tagName.charAt(1));
-        const text = heading.textContent || '';
-        const id = heading.id || text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
+      if (actualHeadings.length === 0) {
+        tocContainerEl.style.display = 'none';
+        return;
+      }
 
-        // Skip empty or very short headings
-        if (!text || text.trim().length < 3) {
-          return;
-        }
+      const tocHTML = actualHeadings
+        .map((heading) => {
+          if (!(heading instanceof HTMLElement)) {
+            return '';
+          }
 
-        // Ensure heading has an ID
-        if (!heading.id) {
-          heading.id = id;
-        }
+          const level = parseInt(heading.tagName.charAt(1));
+          const text = heading.textContent || '';
+          const id = heading.id || text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
 
-        // Add indentation based on level
-        const indentClass = level > 2 ? 'ml-4' : level > 3 ? 'ml-8' : '';
-        const fontClass = level === 1 ? 'font-semibold' : level === 2 ? 'font-medium' : '';
+          if (!text || text.trim().length < 3) {
+            return '';
+          }
 
-        tocHTML += `
-          <li class="${indentClass}">
-            <a
-              href="#${id}"
-              class="toc-link ${fontClass}"
-              data-target-id="${id}"
-            >
-              ${text}
-            </a>
-          </li>
-        `;
-      });
+          if (!heading.id) {
+            heading.id = id;
+          }
 
-      // Clear any existing content first
-      tocList.innerHTML = '';
-      tocList.innerHTML = tocHTML;
+          const indentClass = level > 2 ? 'ml-4' : level > 3 ? 'ml-8' : '';
+          const fontClass = level === 1 ? 'font-semibold' : level === 2 ? 'font-medium' : '';
 
-      // Update references for active link tracking
-      currentTocLinks = Array.from(tocList.querySelectorAll('.toc-link'));
-      currentHeadingElements = Array.from(actualHeadings).map(h => document.getElementById(h.id)).filter(Boolean);
+          return `
+            <li class="${indentClass}">
+              <a
+                href="#${id}"
+                class="toc-link ${fontClass}"
+                data-target-id="${id}"
+              >
+                ${text}
+              </a>
+            </li>
+          `;
+        })
+        .filter(Boolean)
+        .join('');
 
-      // Update on scroll and initial load (only add listener once)
+      tocListEl.innerHTML = tocHTML;
+
+      currentTocLinks = Array.from(tocListEl.querySelectorAll('.toc-link'));
+      currentHeadingElements = actualHeadings;
+
       if (!scrollListenerAdded && currentTocLinks.length > 0) {
         window.addEventListener('scroll', updateActiveLink, { passive: true });
         updateActiveLink();
         scrollListenerAdded = true;
       } else if (scrollListenerAdded) {
-        // If listener already exists, just update the active link
         updateActiveLink();
       }
 
-      // Auto-expand on mobile
-      const isMobile = window.innerWidth < 768;
-      if (isMobile) {
+      if (window.innerWidth < 768) {
         expandTOC();
       }
 
-      // Only add event listener once
       if (!tocInitialized) {
-        tocToggle.addEventListener('click', () => {
-          const isExpanded = tocNav.classList.contains('hidden');
-          if (isExpanded) {
+        tocToggleEl.addEventListener('click', () => {
+          const nav = document.getElementById('toc-nav');
+          if (!(nav instanceof HTMLElement)) return;
+          const isCollapsed = nav.classList.contains('hidden');
+          if (isCollapsed) {
             expandTOC();
           } else {
             collapseTOC();
@@ -165,10 +170,12 @@
       const tocToggle = document.querySelector('.toc-toggle');
       const chevron = document.querySelector('.toc-chevron');
 
-      if (tocNav && tocToggle && chevron) {
+      if (tocNav instanceof HTMLElement && tocToggle instanceof HTMLElement) {
         tocNav.classList.remove('hidden');
         tocToggle.setAttribute('aria-expanded', 'true');
-        chevron.style.transform = 'rotate(180deg)';
+        if (chevron instanceof SVGElement || chevron instanceof HTMLElement) {
+          chevron.style.transform = 'rotate(180deg)';
+        }
       }
     }
 
@@ -177,28 +184,27 @@
       const tocToggle = document.querySelector('.toc-toggle');
       const chevron = document.querySelector('.toc-chevron');
 
-      if (tocNav && tocToggle && chevron) {
+      if (tocNav instanceof HTMLElement && tocToggle instanceof HTMLElement) {
         tocNav.classList.add('hidden');
         tocToggle.setAttribute('aria-expanded', 'false');
-        chevron.style.transform = 'rotate(0deg)';
+        if (chevron instanceof SVGElement || chevron instanceof HTMLElement) {
+          chevron.style.transform = 'rotate(0deg)';
+        }
       }
     }
 
-    // Initialize TOC with multiple attempts
     function initTOC() {
       if (!tocInitialized) {
         generateTOC();
       }
     }
 
-    // Try multiple initialization methods
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initTOC);
     } else {
       initTOC();
     }
 
-    // Also try after a delay
     setTimeout(initTOC, 100);
     setTimeout(initTOC, 500);
     setTimeout(initTOC, 1000);

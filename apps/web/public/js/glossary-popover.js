@@ -1,7 +1,7 @@
 import { mountGlossaryPopover } from './GlossaryPopover';
 
 if (typeof window !== 'undefined') {
-  const globalWindow = window as typeof window & { __GLOSSARY_POP_MOUNTED__?: boolean };
+  const globalWindow = /** @type {Window & { __GLOSSARY_POP_MOUNTED__?: boolean }} */ (window);
 
   if (!globalWindow.__GLOSSARY_POP_MOUNTED__) {
     try {

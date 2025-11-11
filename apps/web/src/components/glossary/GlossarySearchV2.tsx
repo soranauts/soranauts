@@ -22,7 +22,24 @@ interface CategoryStats {
 
 interface GlossarySearchV2Props {
   initialQuery?: string;
+  controlsContainerId?: string;
+  resultsContainerId?: string;
 }
+
+const CATEGORY_LABELS: Record<string, string> = {
+  token: 'Token',
+  technology: 'Technology',
+  governance: 'Governance',
+  defi: 'DeFi',
+  network: 'Network',
+  economics: 'Economics',
+  tag: 'Tag',
+};
+
+const formatLabel = (value: string): string =>
+  value
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, (match) => match.toUpperCase());
 
 const fetchGlossaryData = async (): Promise<GlossaryJsonPayload> => {
   const response = await fetch('/glossary.json', {
@@ -39,7 +56,13 @@ const fetchGlossaryData = async (): Promise<GlossaryJsonPayload> => {
   return response.json();
 };
 
-export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2Props) {
+import { createPortal } from 'react-dom';
+
+export default function GlossarySearchV2({
+  initialQuery = '',
+  controlsContainerId,
+  resultsContainerId,
+}: GlossarySearchV2Props) {
   const [searchInput, setSearchInput] = useState(initialQuery);
   const [categoryFilter, setCategoryFilter] = useState<string>('');
   const [response, setResponse] = useState<GlossarySearchResponse | null>(null);
@@ -51,8 +74,26 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
 
   const engineRef = useRef<ReturnType<typeof createGlossarySearchEngine> | null>(null);
   const debounceRef = useRef<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const [controlsContainer, setControlsContainer] = useState<HTMLElement | null>(null);
+  const [resultsContainer, setResultsContainer] = useState<HTMLElement | null>(null);
+  const isBrowser = typeof window !== 'undefined';
+  const isServer = !isBrowser;
+  const shouldUsePortals = Boolean(controlsContainerId && resultsContainerId);
+
+  useEffect(() => {
+    if (!shouldUsePortals || !isBrowser) return;
+    const controlsEl = document.getElementById(controlsContainerId!);
+    const resultsEl = document.getElementById(resultsContainerId!);
+    setControlsContainer(controlsEl);
+    setResultsContainer(resultsEl);
+  }, [controlsContainerId, resultsContainerId, shouldUsePortals, isBrowser]);
+
+  useEffect(() => {
+    if (controlsContainer) {
+      controlsContainer.setAttribute('data-testid', 'glossary-search-v2');
+    }
+  }, [controlsContainer]);
 
   const ensureEngine = useCallback(async () => {
     if (engineRef.current || isLoading) return;
@@ -113,6 +154,28 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
       if (debounceRef.current) window.clearTimeout(debounceRef.current);
     };
   }, [searchInput, categoryFilter, isReady, debouncedSearch]);
+
+  // Dispatch search state events for UX improvements
+  useEffect(() => {
+    if (!isBrowser) return;
+    const hasActiveSearch = Boolean(searchInput.trim() || categoryFilter);
+    const featuredSection = document.getElementById('glossary-featured-terms');
+    
+    if (featuredSection) {
+      if (hasActiveSearch) {
+        featuredSection.classList.add('is-hidden');
+      } else {
+        featuredSection.classList.remove('is-hidden');
+      }
+    }
+
+    // Dispatch custom event for other potential listeners
+    window.dispatchEvent(
+      new CustomEvent('glossary:search-state-change', {
+        detail: { isActive: hasActiveSearch, query: searchInput, category: categoryFilter },
+      })
+    );
+  }, [searchInput, categoryFilter, isBrowser]);
 
   const handleFocus = useCallback(() => {
     if (!engineRef.current) {
@@ -177,6 +240,35 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
 
   const featuredEntity = response?.featured;
 
+  const numberFormatter = useMemo(
+    () =>
+      new Intl.NumberFormat('en', {
+        maximumFractionDigits: 0,
+      }),
+    [],
+  );
+
+  const resultCountLabel = useMemo(() => {
+    if (error) {
+      return 'There was an issue loading the glossary index.';
+    }
+    if (isLoading && !response) {
+      return 'Loading glossary index…';
+    }
+    if (!response) {
+      return 'Preparing glossary index…';
+    }
+    const count = response.results.length;
+    if (count === 0) {
+      if (searchInput || categoryFilter) {
+        return 'No glossary entries match your filters yet.';
+      }
+      return 'No glossary entries available yet.';
+    }
+    const formattedCount = numberFormatter.format(count);
+    return `${formattedCount} glossary entr${count === 1 ? 'y' : 'ies'} available`;
+  }, [response, isLoading, searchInput, categoryFilter, numberFormatter, error]);
+
   const renderMatchHighlight = (result: GlossarySearchResult) => {
     const tokens = new Set(
       result.matches
@@ -204,45 +296,64 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
 
   const renderResult = (result: GlossarySearchResult, index: number) => {
     const isFocused = index === focusedIndex;
+    const categoryLabel = result.term.category
+      ? CATEGORY_LABELS[result.term.category] ?? formatLabel(result.term.category)
+      : undefined;
     return (
       <a
         key={result.term.slug}
         href={`/glossary/${result.term.slug}`}
-        className={`block rounded-lg border p-5 transition-all ${
-          isFocused
-            ? 'border-red-500 shadow-md dark:border-red-400'
-            : 'border-gray-200 hover:border-red-300 dark:border-gray-700 dark:hover:border-red-600'
-        }`}
+        className={`glossary-card glossary-search__result ${isFocused ? 'is-focused' : ''}`}
         data-testid={`glossary-result-${result.term.slug}`}
         onMouseEnter={() => setFocusedIndex(index)}
       >
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{result.term.term}</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">{renderMatchHighlight(result)}</p>
-          </div>
-          {result.term.category && (
-            <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-red-600 dark:bg-red-900/20 dark:text-red-300">
-              {result.term.category}
-            </span>
+        <div className="glossary-card__header">
+          <div className="glossary-search__result-title">{result.term.term}</div>
+          {categoryLabel && (
+            <button
+              type="button"
+              className="glossary-chip glossary-search__chip"
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                setCategoryFilter(result.term.category ?? '');
+              }}
+              title={`Filter by ${categoryLabel}`}
+            >
+              {categoryLabel}
+            </button>
           )}
         </div>
 
+        <p className="glossary-search__result-summary">{renderMatchHighlight(result)}</p>
+
         {result.term.aliases?.length > 1 && (
-          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-            <span>Also: </span>
-            {result.term.aliases.slice(1, 4).map((alias) => (
-              <span key={alias} className="rounded bg-gray-100 px-2 py-1 dark:bg-gray-700">
+          <div className="glossary-search__chips">
+            <span className="glossary-chip glossary-chip--muted glossary-search__chip" style={{ pointerEvents: 'none' }}>
+              Also
+            </span>
+            {result.term.aliases.slice(1, 5).map((alias) => (
+              <button
+                key={alias}
+                type="button"
+                className="glossary-chip glossary-chip--muted glossary-search__chip"
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  setSearchInput(alias);
+                }}
+                title={`Search for ${alias}`}
+              >
                 {alias}
-              </span>
+              </button>
             ))}
           </div>
         )}
 
         {result.term.relatedTerms?.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-2 text-xs text-gray-400 dark:text-gray-500">
+          <div className="glossary-search__chips">
             {result.term.relatedTerms.slice(0, 6).map((related) => (
-              <span key={related} className="rounded bg-gray-50 px-2 py-1 dark:bg-gray-800">
+              <span key={related} className="glossary-chip glossary-chip--muted">
                 #{related.toLowerCase()}
               </span>
             ))}
@@ -253,37 +364,30 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
   };
 
   const renderFeatured = (featured: FeaturedEntityResult) => (
-    <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-6 shadow-sm dark:border-red-900/40 dark:bg-red-900/10" data-testid="glossary-featured">
-      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+    <div className="glossary-search__featured" data-testid="glossary-featured">
+      <div className="glossary-search__featured-header">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-red-600 dark:text-red-300">Featured Entity</p>
-          <h2 className="mt-1 text-2xl font-bold text-gray-900 dark:text-white">{featured.entity.term.term}</h2>
-          <p className="mt-2 max-w-2xl text-sm text-gray-600 dark:text-gray-300">
+          <p className="glossary-search__label">Featured entity</p>
+          <h2 className="glossary-search__featured-title">{featured.entity.term.term}</h2>
+          <p className="glossary-search__result-summary">
             {featured.entity.term.summary ?? featured.entity.term.definition}
           </p>
         </div>
-        <div className="flex flex-col items-start gap-2">
-          <a
-            href={`/glossary/${featured.entity.term.slug}`}
-            className="rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-          >
+        <div className="glossary-search__featured-actions">
+          <a href={`/glossary/${featured.entity.term.slug}`} className="glossary-chip">
             View entity
           </a>
         </div>
       </div>
 
       {featured.children.length > 0 && (
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
+        <div className="glossary-search__featured-grid">
           {featured.children.map((child) => (
-            <a
-              key={child.term.slug}
-              href={`/glossary/${child.term.slug}`}
-              className="rounded-lg border border-red-200 bg-white p-4 shadow-sm transition hover:border-red-400 dark:border-red-900/40 dark:bg-red-950/30"
-            >
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{child.term.term}</h3>
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+            <a key={child.term.slug} href={`/glossary/${child.term.slug}`} className="glossary-related-link">
+              <span className="glossary-related-link__title">{child.term.term}</span>
+              <span className="glossary-related-link__summary">
                 {child.term.summary ?? child.term.definition}
-              </p>
+              </span>
             </a>
           ))}
         </div>
@@ -292,17 +396,17 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
   );
 
   useEffect(() => {
-    if (!containerRef.current) return;
-    const element = containerRef.current;
+    if (!isBrowser) return;
     const handleKey = (event: KeyboardEvent) => {
       if (event.key === '/' && document.activeElement !== searchInputRef.current) {
         event.preventDefault();
         searchInputRef.current?.focus();
       }
     };
-    element.addEventListener('keydown', handleKey);
-    return () => element.removeEventListener('keydown', handleKey);
-  }, []);
+
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [isBrowser]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -322,110 +426,117 @@ export default function GlossarySearchV2({ initialQuery = '' }: GlossarySearchV2
     window.history.replaceState({}, '', `${url.pathname}${url.search}`);
   }, [searchInput, categoryFilter]);
 
-  return (
-    <div ref={containerRef} className="glossary-search-v2" data-testid="glossary-search-v2">
-      <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
-        <div className="flex flex-col gap-4">
-          <div>
-            <label htmlFor="glossary-search-v2" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Search Glossary
-            </label>
-            <div className="relative mt-1">
-              <input
-                id="glossary-search-v2"
-                ref={searchInputRef}
-                type="search"
-                value={searchInput}
-                onFocus={handleFocus}
-                onChange={(event) => setSearchInput(event.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Search entities, versions, aliases, or tags"
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base shadow-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 bg-white text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-              />
-              <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-gray-400 dark:text-gray-500">
-                /
-              </div>
-            </div>
-            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-              Use ↑ ↓ to navigate, Enter to open, Esc to reset.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => setCategoryFilter('')}
-              className={`rounded-full px-3 py-1 text-sm font-medium transition ${
-                !categoryFilter
-                  ? 'bg-red-600 text-white shadow'
-                  : 'bg-gray-100 text-gray-700 hover:bg-red-100 hover:text-red-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-red-900/30'
-              }`}
-            >
-              All
-            </button>
-            {categoryCounts.map((category) => (
-              <button
-                key={category.key}
-                type="button"
-                onClick={() => handleCategoryClick(category.key)}
-                className={`rounded-full px-3 py-1 text-sm font-medium transition ${
-                  categoryFilter === category.key
-                    ? 'bg-red-600 text-white shadow'
-                    : 'bg-gray-100 text-gray-700 hover:bg-red-100 hover:text-red-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-red-900/30'
-                }`}
-              >
-                {category.name} ({category.count})
-              </button>
-            ))}
-          </div>
+  const controlsContent = (
+    <div className="glossary-search__controls">
+      <div className="glossary-search__panel">
+        <label htmlFor="glossary-search-v2" className="glossary-search__label">
+          Search glossary
+        </label>
+        <div className="glossary-search__control">
+          <input
+            id="glossary-search-v2"
+            ref={searchInputRef}
+            type="search"
+            value={searchInput}
+            onFocus={handleFocus}
+            onChange={(event) => setSearchInput(event.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Search entities, versions, aliases, or tags"
+            className="glossary-search__input"
+          />
         </div>
+        <p className="glossary-search__hint">Press / to focus, use ↑ ↓ to navigate, Enter to open, Esc to reset.</p>
       </div>
 
-      {error && (
-        <div className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-900/40 dark:bg-red-900/20 dark:text-red-200">
-          {error}
-        </div>
-      )}
+      <div className="glossary-search__filters">
+        <button
+          type="button"
+          onClick={() => setCategoryFilter('')}
+          className={`glossary-search__filter ${!categoryFilter ? 'is-active' : ''}`}
+        >
+          All
+        </button>
+        {categoryCounts.map((category) => (
+          <button
+            key={category.key}
+            type="button"
+            onClick={() => handleCategoryClick(category.key)}
+            className={`glossary-search__filter ${categoryFilter === category.key ? 'is-active' : ''}`}
+          >
+            {category.name} ({category.count})
+          </button>
+        ))}
+      </div>
+
+      <div className="glossary-search__meta" role="status" aria-live="polite">
+        {resultCountLabel}
+      </div>
+
+      {error && <div className="glossary-search__status glossary-search__status--error">{error}</div>}
 
       {isLoading && !response && (
-        <div className="mt-6 flex items-center justify-center gap-3 text-sm text-gray-500 dark:text-gray-400">
-          <span className="h-4 w-4 animate-spin rounded-full border-2 border-red-200 border-t-red-600"></span>
+        <div className="glossary-search__status">
+          <span className="glossary-search__status-indicator" />
           Loading glossary…
         </div>
       )}
 
-      {response && (
-        <div className="mt-6 space-y-6">
-          {response.didYouMean && (
-            <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-sm text-yellow-800 dark:border-yellow-900/40 dark:bg-yellow-900/20 dark:text-yellow-200">
-              Did you mean{' '}
-              <button
-                className="font-semibold text-yellow-900 underline hover:text-yellow-700 dark:text-yellow-100"
-                onClick={() => setSearchInput(response.didYouMean ?? '')}
-              >
-                {response.didYouMean}
-              </button>
-              ?
-            </div>
-          )}
-
-          {featuredEntity && renderFeatured(featuredEntity)}
-
-          <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-            <span>{response.results.length} result{response.results.length === 1 ? '' : 's'}</span>
-          </div>
-
-          {response.results.length > 0 ? (
-            <div className="grid gap-4">
-              {response.results.map((result, index) => renderResult(result, index))}
-            </div>
-          ) : (
-            <div className="rounded-lg border border-gray-200 bg-white p-8 text-center text-sm text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
-              <p>No results yet. Try searching for “hyperled”, “iroha v3”, or “polkaswap”.</p>
-            </div>
-          )}
+      {response?.didYouMean && (
+        <div className="glossary-search__status glossary-search__status--suggestion">
+          Did you mean{' '}
+          <button
+            type="button"
+            onClick={() => setSearchInput(response.didYouMean ?? '')}
+            className="glossary-search__suggestion"
+          >
+            {response.didYouMean}
+          </button>
+          ?
         </div>
       )}
+    </div>
+  );
+
+  const resultsContent = response ? (
+    <>
+      {featuredEntity && renderFeatured(featuredEntity)}
+
+      <div className="glossary-search__results">
+        {response.results.length ? (
+          response.results.map((result, index) => renderResult(result, index))
+        ) : (
+          <div className="glossary-search__status glossary-search__status--empty">
+            No results yet. Try adjusting your search or category filter.
+          </div>
+        )}
+      </div>
+    </>
+  ) : null;
+
+  if (shouldUsePortals) {
+    if (isServer) {
+      return null;
+    }
+    if (!controlsContainer || !resultsContainer) {
+      return null;
+    }
+
+    return (
+      <>
+        {createPortal(controlsContent, controlsContainer)}
+        {createPortal(resultsContent ?? null, resultsContainer)}
+      </>
+    );
+  }
+
+  if (isServer) {
+    return null;
+  }
+
+  return (
+    <div className="glossary-search" data-testid="glossary-search-v2">
+      {controlsContent}
+      {resultsContent}
     </div>
   );
 }
