@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Emergency Revert Script - Restore to Production State
-# Created: November 4, 2025
-# Backup Commit: 06a2cf217c93d7209dbe16ecb8a272ef0da90702
+# Created: November 11, 2025
+# Backup Commit: 3458f1b0c3a4dc440859dd84ad68baf5bb810f63
 
 set -e  # Exit on error
 
-BACKUP_BRANCH="backup/pre-changelog-revamp-2025-11-04"
-BACKUP_TAG="backup-production-2025-11-04"
-BACKUP_COMMIT="06a2cf217c93d7209dbe16ecb8a272ef0da90702"
+BACKUP_BRANCH="backup/production-2025-11-11-121924"
+BACKUP_TAG="backup-production-2025-11-11-121924"
+BACKUP_COMMIT="3458f1b0c3a4dc440859dd84ad68baf5bb810f63"
 
 echo "⚠️  WARNING: This will reset your current branch to the production state!"
 echo "📋 Backup Information:"
