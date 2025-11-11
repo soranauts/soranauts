@@ -92,7 +92,8 @@ const HIGH_PRIORITY_THRESHOLD = 90;
  * @returns {Function} - A remark plugin function
  */
 export function createGlossaryAutoLinkPlugin(glossaryData) {
-  const useGlossaryV2 = process.env.GLOSSARY_V2 === 'true';
+  // V2 mode is now default (can be disabled with GLOSSARY_V2=false)
+  const useGlossaryV2 = process.env.GLOSSARY_V2 !== 'false';
   if (!glossaryData || !glossaryData.terms) {
     console.warn('No glossary data provided to auto-link plugin');
     return () => {}; // Return no-op plugin
@@ -308,6 +309,26 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
         selectedOccurrences.set(slug, bestOccurrence);
       }
 
+      // Enforce MAX_LINKS_PER_ARTICLE limit by sorting all occurrences by score
+      // and taking only the top N highest-scoring terms
+      if (selectedOccurrences.size > MAX_LINKS_PER_ARTICLE) {
+        const sortedByScore = Array.from(selectedOccurrences.entries())
+          .map(([slug, occ]) => ({ slug, ...occ }))
+          .sort((a, b) => {
+            if (a.score !== b.score) return b.score - a.score;
+            return a.paragraphIndex - b.paragraphIndex;
+          })
+          .slice(0, MAX_LINKS_PER_ARTICLE);
+        
+        selectedOccurrences.clear();
+        for (const item of sortedByScore) {
+          const { slug, ...occ } = item;
+          selectedOccurrences.set(slug, occ);
+        }
+        
+        console.log(`📊 Limited glossary links to ${MAX_LINKS_PER_ARTICLE} highest-priority terms (${termOccurrences.size} total found)`);
+      }
+
       // Fourth pass: apply the links directly to text nodes
       for (const [slug, occurrence] of selectedOccurrences.entries()) {
         const { textNode, startIndex, endIndex, matchText, category, priority, isFoundational, ancestors } = occurrence;
@@ -337,6 +358,10 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
         // Add the link
         const url = getLinkDestination(slug, category, priority, isFoundational);
         const meta = termMetadata.get(slug) || { title: matchText, definition: '', category: category || '' };
+        
+        // Determine link type for visual indicators
+        const isFullPageLink = (isFoundational && priority >= 30) || priority >= HIGH_PRIORITY_THRESHOLD;
+        const linkType = isFullPageLink ? 'full-page' : url.includes('#') ? 'anchor' : 'tooltip';
 
         const linkNode = {
           type: 'link',
@@ -347,21 +372,15 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
           children: [{ type: 'text', value: matchText }],
         };
 
-        if (useGlossaryV2) {
-          linkNode.data.hProperties = {
-            class: 'glossary',
-            'data-cat': meta.category || '',
-            'data-title': meta.title || matchText,
-            'data-def': toPlainText(meta.definition).slice(0, 240),
-          };
-        } else {
-          linkNode.data.hProperties = {
-            class: `glossary-term glossary-term-${category}`,
-            'data-term': slug,
-            'data-category': category,
-            'aria-describedby': `tip-${slug}`,
-          };
-        }
+        // Always use V2 mode attributes (legacy mode removed)
+        linkNode.data.hProperties = {
+          class: 'glossary',
+          'data-cat': meta.category || '',
+          'data-title': meta.title || matchText,
+          'data-def': toPlainText(meta.definition).slice(0, 240),
+          'data-link-type': linkType,
+          'aria-label': `Glossary term: ${meta.title || matchText}. Click for definition.`,
+        };
 
         newChildren.push(linkNode);
 

@@ -186,11 +186,20 @@ const TagFilters = ({ tags, domains, traitFilters, title, description }: Props) 
     useQueryState(tags, traitFilters);
 
   const traitSet = useMemo(() => new Set(traits), [traits]);
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
+
+  // Debounce search input (150ms) for performance
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [search]);
 
   const results = useMemo(() => {
-    const filtered = tags.filter((tag) => filterTag(tag, search, domain, traitSet));
+    const filtered = tags.filter((tag) => filterTag(tag, debouncedSearch, domain, traitSet));
     return filtered.sort(SORTERS[sort]);
-  }, [tags, search, domain, traitSet, sort]);
+  }, [tags, debouncedSearch, domain, traitSet, sort]);
 
   const toggleTrait = (trait: TagHubTrait) => {
     setTraits((prev) => {
