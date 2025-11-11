@@ -200,7 +200,7 @@ export default function GlossaryStatic({ initialTerm }: GlossaryStaticProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search terms, definitions, or tags..."
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 dark:bg-gray-700 dark:text-white"
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent bg-white text-gray-900 dark:bg-gray-700 dark:text-white"
             />
             <div className="absolute inset-y-0 right-0 flex items-center pr-3">
               <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -222,7 +222,7 @@ export default function GlossaryStatic({ initialTerm }: GlossaryStaticProps) {
                 onClick={() => handleCategoryChange(category.name)}
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === category.name
-                    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                    ? 'bg-brand-soft text-brand-600 dark:bg-brand-600 dark:text-brand-400'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
@@ -284,7 +284,7 @@ export default function GlossaryStatic({ initialTerm }: GlossaryStaticProps) {
                         }}
                         className={`px-2 py-1 rounded-full font-medium transition-colors cursor-pointer ${
                           term.category === 'token' ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:hover:bg-yellow-800' :
-                          term.category === 'technology' ? 'bg-blue-100 text-blue-800 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800' :
+                          term.category === 'technology' ? 'bg-status-info/20 text-status-info hover:bg-status-info/30 dark:bg-status-info/30 dark:text-status-info dark:hover:bg-status-info/40' :
                           term.category === 'governance' ? 'bg-purple-100 text-purple-800 hover:bg-purple-200 dark:bg-purple-900 dark:text-purple-200 dark:hover:bg-purple-800' :
                           term.category === 'defi' ? 'bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900 dark:text-green-200 dark:hover:bg-green-800' :
                           term.category === 'network' ? 'bg-red-100 text-red-800 hover:bg-red-200 dark:bg-red-900 dark:text-red-200 dark:hover:bg-red-800' :
@@ -296,7 +296,7 @@ export default function GlossaryStatic({ initialTerm }: GlossaryStaticProps) {
                       {term.aliases.length > 1 && (
                         <span className="text-gray-500 dark:text-gray-400">
                           Also: {term.aliases.slice(1, 4).map((alias, index) => (
-                            <span key={alias} className="hover:text-blue-600 dark:hover:text-blue-400">
+                            <span key={alias} className="hover:text-link dark:hover:text-link-hover">
                               {alias}{index < term.aliases.slice(1, 4).length - 1 ? ', ' : ''}
                             </span>
                           ))}
@@ -312,18 +312,18 @@ export default function GlossaryStatic({ initialTerm }: GlossaryStaticProps) {
       </div>
 
       {/* Info about full glossary */}
-      <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+      <div className="mt-8 p-4 bg-status-info/10 dark:bg-status-info/20 border border-status-info/30 dark:border-status-info/40 rounded-lg">
         <div className="flex items-start">
           <div className="flex-shrink-0">
-            <svg className="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+            <svg className="h-5 w-5 text-status-info" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
             </svg>
           </div>
           <div className="ml-3">
-            <h3 className="text-sm font-medium text-blue-800 dark:text-blue-200">
+            <h3 className="text-sm font-medium text-status-info dark:text-status-info">
               Full Glossary Available
             </h3>
-            <div className="mt-2 text-sm text-blue-700 dark:text-blue-300">
+            <div className="mt-2 text-sm text-status-info/90 dark:text-status-info/80">
               <p>
                 This shows the first 20 terms of our complete SORA glossary. 
                 The full glossary contains <strong>58 terms</strong> covering tokens, technology, governance, DeFi, network infrastructure, and economics.
