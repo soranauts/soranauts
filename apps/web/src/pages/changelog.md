@@ -1,7 +1,7 @@
 ---
 title: 'Changelog'
 layout: '~/layouts/MarkdownLayout.astro'
-lastUpdated: '2025-01-27'
+lastUpdated: '2025-11-11'
 metadata:
   title: 'Changelog | Soranauts'
   description: 'Release notes and improvements shipped to the Soranauts platform.'
@@ -69,4 +69,4 @@ We are tracking additional UX experiments (interactive metrics, contributor dash
 
 ---
 
-*Last updated: January 27, 2025*
+*Last updated: November 11, 2025*
