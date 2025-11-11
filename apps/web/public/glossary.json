@@ -7017,7 +7017,7 @@
     }
   },
   "totalCount": 138,
-  "lastUpdated": "2025-11-09T14:36:34.003Z",
+  "lastUpdated": "2025-11-11T18:18:56.837Z",
   "aliasIndex": [
     {
       "alias": "XOR",
@@ -7990,7 +7990,7 @@
       "type": "term"
     },
     {
-      "alias": "Val",
+      "alias": "VAL",
       "slug": "tag-val",
       "type": "tag"
     },
@@ -8000,12 +8000,22 @@
       "type": "tag"
     },
     {
-      "alias": "Pswap",
+      "alias": "Val",
+      "slug": "tag-val",
+      "type": "tag"
+    },
+    {
+      "alias": "PSWAP",
       "slug": "tag-pswap",
       "type": "tag"
     },
     {
       "alias": "pswap",
+      "slug": "tag-pswap",
+      "type": "tag"
+    },
+    {
+      "alias": "Pswap",
       "slug": "tag-pswap",
       "type": "tag"
     },
@@ -8050,12 +8060,17 @@
       "type": "tag"
     },
     {
-      "alias": "Xor",
+      "alias": "XOR",
       "slug": "tag-xor",
       "type": "tag"
     },
     {
       "alias": "xor",
+      "slug": "tag-xor",
+      "type": "tag"
+    },
+    {
+      "alias": "Xor",
       "slug": "tag-xor",
       "type": "tag"
     },
@@ -8090,7 +8105,7 @@
       "type": "tag"
     },
     {
-      "alias": "Hashi",
+      "alias": "HASHI",
       "slug": "tag-hashi",
       "type": "tag"
     },
@@ -8100,12 +8115,22 @@
       "type": "tag"
     },
     {
-      "alias": "Dex",
+      "alias": "Hashi",
+      "slug": "tag-hashi",
+      "type": "tag"
+    },
+    {
+      "alias": "DEX",
       "slug": "tag-dex",
       "type": "tag"
     },
     {
       "alias": "dex",
+      "slug": "tag-dex",
+      "type": "tag"
+    },
+    {
+      "alias": "Dex",
       "slug": "tag-dex",
       "type": "tag"
     },
@@ -8120,7 +8145,7 @@
       "type": "tag"
     },
     {
-      "alias": "Buyback And Burn",
+      "alias": "Buyback-and-burn",
       "slug": "tag-buyback-and-burn",
       "type": "tag"
     },
@@ -8130,12 +8155,22 @@
       "type": "tag"
     },
     {
-      "alias": "Soramitsu",
+      "alias": "Buyback And Burn",
+      "slug": "tag-buyback-and-burn",
+      "type": "tag"
+    },
+    {
+      "alias": "SORAMITSU",
       "slug": "tag-soramitsu",
       "type": "tag"
     },
     {
       "alias": "soramitsu",
+      "slug": "tag-soramitsu",
+      "type": "tag"
+    },
+    {
+      "alias": "Soramitsu",
       "slug": "tag-soramitsu",
       "type": "tag"
     },
@@ -8160,12 +8195,17 @@
       "type": "tag"
     },
     {
-      "alias": "Cbdc",
+      "alias": "CBDC",
       "slug": "tag-cbdc",
       "type": "tag"
     },
     {
       "alias": "cbdc",
+      "slug": "tag-cbdc",
+      "type": "tag"
+    },
+    {
+      "alias": "Cbdc",
       "slug": "tag-cbdc",
       "type": "tag"
     },
@@ -8180,12 +8220,17 @@
       "type": "tag"
     },
     {
-      "alias": "Wasm",
+      "alias": "WASM (WebAssembly)",
       "slug": "tag-wasm",
       "type": "tag"
     },
     {
       "alias": "wasm",
+      "slug": "tag-wasm",
+      "type": "tag"
+    },
+    {
+      "alias": "Wasm",
       "slug": "tag-wasm",
       "type": "tag"
     },
@@ -8230,7 +8275,7 @@
       "type": "tag"
     },
     {
-      "alias": "Sora V2",
+      "alias": "SORA v2",
       "slug": "tag-sora-v2",
       "type": "tag"
     },
@@ -8240,12 +8285,22 @@
       "type": "tag"
     },
     {
-      "alias": "Sora V3",
+      "alias": "Sora V2",
+      "slug": "tag-sora-v2",
+      "type": "tag"
+    },
+    {
+      "alias": "SORA v3",
       "slug": "tag-sora-v3",
       "type": "tag"
     },
     {
       "alias": "sora v3",
+      "slug": "tag-sora-v3",
+      "type": "tag"
+    },
+    {
+      "alias": "Sora V3",
       "slug": "tag-sora-v3",
       "type": "tag"
     },
@@ -8280,12 +8335,17 @@
       "type": "tag"
     },
     {
-      "alias": "Bft Consensus",
+      "alias": "BFT Consensus",
       "slug": "tag-bft-consensus",
       "type": "tag"
     },
     {
       "alias": "bft consensus",
+      "slug": "tag-bft-consensus",
+      "type": "tag"
+    },
+    {
+      "alias": "Bft Consensus",
       "slug": "tag-bft-consensus",
       "type": "tag"
     },
@@ -8320,12 +8380,17 @@
       "type": "tag"
     },
     {
-      "alias": "Cross Chain",
+      "alias": "Cross-chain",
       "slug": "tag-cross-chain",
       "type": "tag"
     },
     {
       "alias": "cross-chain",
+      "slug": "tag-cross-chain",
+      "type": "tag"
+    },
+    {
+      "alias": "Cross Chain",
       "slug": "tag-cross-chain",
       "type": "tag"
     },
@@ -8340,12 +8405,17 @@
       "type": "tag"
     },
     {
-      "alias": "Xcm",
+      "alias": "XCM",
       "slug": "tag-xcm",
       "type": "tag"
     },
     {
       "alias": "xcm",
+      "slug": "tag-xcm",
+      "type": "tag"
+    },
+    {
+      "alias": "Xcm",
       "slug": "tag-xcm",
       "type": "tag"
     },
@@ -8380,12 +8450,17 @@
       "type": "tag"
     },
     {
-      "alias": "Nft",
+      "alias": "NFT",
       "slug": "tag-nft",
       "type": "tag"
     },
     {
       "alias": "nft",
+      "slug": "tag-nft",
+      "type": "tag"
+    },
+    {
+      "alias": "Nft",
       "slug": "tag-nft",
       "type": "tag"
     },
@@ -8470,7 +8545,7 @@
       "type": "tag"
     },
     {
-      "alias": "Tonswap",
+      "alias": "TONSWAP",
       "slug": "tag-tonswap",
       "type": "tag"
     },
@@ -8480,12 +8555,22 @@
       "type": "tag"
     },
     {
-      "alias": "Defi",
+      "alias": "Tonswap",
+      "slug": "tag-tonswap",
+      "type": "tag"
+    },
+    {
+      "alias": "DeFi",
       "slug": "tag-defi",
       "type": "tag"
     },
     {
       "alias": "defi",
+      "slug": "tag-defi",
+      "type": "tag"
+    },
+    {
+      "alias": "Defi",
       "slug": "tag-defi",
       "type": "tag"
     },
@@ -8690,12 +8775,17 @@
       "type": "tag"
     },
     {
-      "alias": "Sora Council",
+      "alias": "SORA Council",
       "slug": "tag-sora-council",
       "type": "tag"
     },
     {
       "alias": "sora council",
+      "slug": "tag-sora-council",
+      "type": "tag"
+    },
+    {
+      "alias": "Sora Council",
       "slug": "tag-sora-council",
       "type": "tag"
     },
@@ -8790,12 +8880,17 @@
       "type": "tag"
     },
     {
-      "alias": "Cross Border Payments",
+      "alias": "Cross-border Payments",
       "slug": "tag-cross-border-payments",
       "type": "tag"
     },
     {
       "alias": "cross-border payments",
+      "slug": "tag-cross-border-payments",
+      "type": "tag"
+    },
+    {
+      "alias": "Cross Border Payments",
       "slug": "tag-cross-border-payments",
       "type": "tag"
     },
@@ -8860,12 +8955,17 @@
       "type": "tag"
     },
     {
-      "alias": "Kusd",
+      "alias": "KUSD",
       "slug": "tag-kusd",
       "type": "tag"
     },
     {
       "alias": "kusd",
+      "slug": "tag-kusd",
+      "type": "tag"
+    },
+    {
+      "alias": "Kusd",
       "slug": "tag-kusd",
       "type": "tag"
     },
@@ -8890,12 +8990,17 @@
       "type": "tag"
     },
     {
-      "alias": "Sora Parliament",
+      "alias": "SORA Parliament",
       "slug": "tag-sora-parliament",
       "type": "tag"
     },
     {
       "alias": "sora parliament",
+      "slug": "tag-sora-parliament",
+      "type": "tag"
+    },
+    {
+      "alias": "Sora Parliament",
       "slug": "tag-sora-parliament",
       "type": "tag"
     },
@@ -9070,7 +9175,7 @@
       "type": "tag"
     },
     {
-      "alias": "Xyk Pools",
+      "alias": "XYK Pools",
       "slug": "tag-xyk-pools",
       "type": "tag"
     },
@@ -9080,12 +9185,22 @@
       "type": "tag"
     },
     {
-      "alias": "Amm",
+      "alias": "Xyk Pools",
+      "slug": "tag-xyk-pools",
+      "type": "tag"
+    },
+    {
+      "alias": "AMM",
       "slug": "tag-amm",
       "type": "tag"
     },
     {
       "alias": "amm",
+      "slug": "tag-amm",
+      "type": "tag"
+    },
+    {
+      "alias": "Amm",
       "slug": "tag-amm",
       "type": "tag"
     },
@@ -9150,12 +9265,17 @@
       "type": "tag"
     },
     {
-      "alias": "Ipfs",
+      "alias": "IPFS",
       "slug": "tag-ipfs",
       "type": "tag"
     },
     {
       "alias": "ipfs",
+      "slug": "tag-ipfs",
+      "type": "tag"
+    },
+    {
+      "alias": "Ipfs",
       "slug": "tag-ipfs",
       "type": "tag"
     },
@@ -9520,12 +9640,17 @@
       "type": "tag"
     },
     {
-      "alias": "Tbcd",
+      "alias": "TBCD",
       "slug": "tag-tbcd",
       "type": "tag"
     },
     {
       "alias": "tbcd",
+      "slug": "tag-tbcd",
+      "type": "tag"
+    },
+    {
+      "alias": "Tbcd",
       "slug": "tag-tbcd",
       "type": "tag"
     },
@@ -9740,12 +9865,17 @@
       "type": "tag"
     },
     {
-      "alias": "Qr Payments",
+      "alias": "QR Payments",
       "slug": "tag-qr-payments",
       "type": "tag"
     },
     {
       "alias": "qr payments",
+      "slug": "tag-qr-payments",
+      "type": "tag"
+    },
+    {
+      "alias": "Qr Payments",
       "slug": "tag-qr-payments",
       "type": "tag"
     },
@@ -9760,7 +9890,7 @@
       "type": "tag"
     },
     {
-      "alias": "Sora Card",
+      "alias": "SORA Card",
       "slug": "tag-sora-card",
       "type": "tag"
     },
@@ -9770,12 +9900,22 @@
       "type": "tag"
     },
     {
-      "alias": "Real World Assets",
+      "alias": "Sora Card",
+      "slug": "tag-sora-card",
+      "type": "tag"
+    },
+    {
+      "alias": "Real-World Assets",
       "slug": "tag-real-world-assets",
       "type": "tag"
     },
     {
       "alias": "real-world assets",
+      "slug": "tag-real-world-assets",
+      "type": "tag"
+    },
+    {
+      "alias": "Real World Assets",
       "slug": "tag-real-world-assets",
       "type": "tag"
     },
@@ -9955,12 +10095,17 @@
       "type": "tag"
     },
     {
-      "alias": "Parachains",
+      "alias": "Parachain",
       "slug": "tag-parachains",
       "type": "tag"
     },
     {
       "alias": "parachains",
+      "slug": "tag-parachains",
+      "type": "tag"
+    },
+    {
+      "alias": "Parachains",
       "slug": "tag-parachains",
       "type": "tag"
     },
@@ -9975,12 +10120,17 @@
       "type": "tag"
     },
     {
-      "alias": "Auctions",
+      "alias": "Parachain Auctions",
       "slug": "tag-auctions",
       "type": "tag"
     },
     {
       "alias": "auctions",
+      "slug": "tag-auctions",
+      "type": "tag"
+    },
+    {
+      "alias": "Auctions",
       "slug": "tag-auctions",
       "type": "tag"
     },
@@ -10045,12 +10195,17 @@
       "type": "tag"
     },
     {
-      "alias": "Apollo Token",
+      "alias": "APOLLO Token",
       "slug": "tag-apollo-token",
       "type": "tag"
     },
     {
       "alias": "apollo token",
+      "slug": "tag-apollo-token",
+      "type": "tag"
+    },
+    {
+      "alias": "Apollo Token",
       "slug": "tag-apollo-token",
       "type": "tag"
     },
@@ -10115,6 +10270,11 @@
       "type": "tag"
     },
     {
+      "alias": "NFT",
+      "slug": "tag-nfts",
+      "type": "tag"
+    },
+    {
       "alias": "NFTs",
       "slug": "tag-nfts",
       "type": "tag"
@@ -10135,12 +10295,17 @@
       "type": "tag"
     },
     {
-      "alias": "Market Cycles",
+      "alias": "Crypto Market Cycles",
       "slug": "tag-market-cycles",
       "type": "tag"
     },
     {
       "alias": "market cycles",
+      "slug": "tag-market-cycles",
+      "type": "tag"
+    },
+    {
+      "alias": "Market Cycles",
       "slug": "tag-market-cycles",
       "type": "tag"
     },
@@ -10175,12 +10340,17 @@
       "type": "tag"
     },
     {
-      "alias": "Bitcoin",
+      "alias": "Bitcoin (BTC)",
       "slug": "tag-bitcoin",
       "type": "tag"
     },
     {
       "alias": "bitcoin",
+      "slug": "tag-bitcoin",
+      "type": "tag"
+    },
+    {
+      "alias": "Bitcoin",
       "slug": "tag-bitcoin",
       "type": "tag"
     },
@@ -10225,12 +10395,17 @@
       "type": "tag"
     },
     {
-      "alias": "Energy",
+      "alias": "Proof of Work (PoW)",
       "slug": "tag-energy",
       "type": "tag"
     },
     {
       "alias": "energy",
+      "slug": "tag-energy",
+      "type": "tag"
+    },
+    {
+      "alias": "Energy",
       "slug": "tag-energy",
       "type": "tag"
     },
@@ -10245,7 +10420,7 @@
       "type": "tag"
     },
     {
-      "alias": "Decentralized Exchange",
+      "alias": "DEX",
       "slug": "tag-decentralized-exchange",
       "type": "tag"
     },
@@ -10255,12 +10430,22 @@
       "type": "tag"
     },
     {
-      "alias": "Proof Of Work",
+      "alias": "Decentralized Exchange",
+      "slug": "tag-decentralized-exchange",
+      "type": "tag"
+    },
+    {
+      "alias": "Proof of Work (PoW)",
       "slug": "tag-proof-of-work",
       "type": "tag"
     },
     {
       "alias": "proof of work",
+      "slug": "tag-proof-of-work",
+      "type": "tag"
+    },
+    {
+      "alias": "Proof Of Work",
       "slug": "tag-proof-of-work",
       "type": "tag"
     },
@@ -10325,7 +10510,7 @@
       "type": "tag"
     },
     {
-      "alias": "Webassembly",
+      "alias": "WASM (WebAssembly)",
       "slug": "tag-webassembly",
       "type": "tag"
     },
@@ -10335,12 +10520,22 @@
       "type": "tag"
     },
     {
-      "alias": "Bonk",
+      "alias": "Webassembly",
+      "slug": "tag-webassembly",
+      "type": "tag"
+    },
+    {
+      "alias": "Bonk (BONK)",
       "slug": "tag-bonk",
       "type": "tag"
     },
     {
       "alias": "bonk",
+      "slug": "tag-bonk",
+      "type": "tag"
+    },
+    {
+      "alias": "Bonk",
       "slug": "tag-bonk",
       "type": "tag"
     },
@@ -10355,7 +10550,7 @@
       "type": "tag"
     },
     {
-      "alias": "Bitcoin Halving",
+      "alias": "Halving",
       "slug": "tag-bitcoin-halving",
       "type": "tag"
     },
@@ -10365,12 +10560,17 @@
       "type": "tag"
     },
     {
+      "alias": "Bitcoin Halving",
+      "slug": "tag-bitcoin-halving",
+      "type": "tag"
+    },
+    {
       "alias": "bitcoin halving",
       "slug": "tag-bitcoin-halving",
       "type": "tag"
     },
     {
-      "alias": "Blockchain Technology",
+      "alias": "Blockchain",
       "slug": "tag-blockchain-technology",
       "type": "tag"
     },
@@ -10380,12 +10580,22 @@
       "type": "tag"
     },
     {
-      "alias": "Bonding Curve",
+      "alias": "Blockchain Technology",
+      "slug": "tag-blockchain-technology",
+      "type": "tag"
+    },
+    {
+      "alias": "Token Bonding Curve",
       "slug": "tag-bonding-curve",
       "type": "tag"
     },
     {
       "alias": "bonding-curve",
+      "slug": "tag-bonding-curve",
+      "type": "tag"
+    },
+    {
+      "alias": "Bonding Curve",
       "slug": "tag-bonding-curve",
       "type": "tag"
     },
@@ -10400,7 +10610,7 @@
       "type": "tag"
     },
     {
-      "alias": "Consensus Mechanisms",
+      "alias": "Consensus",
       "slug": "tag-consensus-mechanisms",
       "type": "tag"
     },
@@ -10410,13 +10620,28 @@
       "type": "tag"
     },
     {
-      "alias": "Cryptocurrency Trends",
+      "alias": "Consensus Mechanisms",
+      "slug": "tag-consensus-mechanisms",
+      "type": "tag"
+    },
+    {
+      "alias": "Crypto Market Cycles",
       "slug": "tag-cryptocurrency-trends",
       "type": "tag"
     },
     {
       "alias": "cryptocurrency trends",
       "slug": "tag-cryptocurrency-trends",
+      "type": "tag"
+    },
+    {
+      "alias": "Cryptocurrency Trends",
+      "slug": "tag-cryptocurrency-trends",
+      "type": "tag"
+    },
+    {
+      "alias": "Dogecoin (DOGE)",
+      "slug": "tag-dogecoin",
       "type": "tag"
     },
     {
@@ -10450,6 +10675,11 @@
       "type": "tag"
     },
     {
+      "alias": "Hyperledger Iroha",
+      "slug": "tag-hyperledger",
+      "type": "tag"
+    },
+    {
       "alias": "Hyperledger",
       "slug": "tag-hyperledger",
       "type": "tag"
@@ -10460,7 +10690,7 @@
       "type": "tag"
     },
     {
-      "alias": "Investment Strategy",
+      "alias": "Trading Strategy",
       "slug": "tag-investment-strategy",
       "type": "tag"
     },
@@ -10470,13 +10700,28 @@
       "type": "tag"
     },
     {
-      "alias": "Iroha",
+      "alias": "Investment Strategy",
+      "slug": "tag-investment-strategy",
+      "type": "tag"
+    },
+    {
+      "alias": "Hyperledger Iroha",
       "slug": "tag-iroha",
       "type": "tag"
     },
     {
       "alias": "iroha",
       "slug": "tag-iroha",
+      "type": "tag"
+    },
+    {
+      "alias": "Iroha",
+      "slug": "tag-iroha",
+      "type": "tag"
+    },
+    {
+      "alias": "Hyperledger Iroha 2",
+      "slug": "tag-iroha-2",
       "type": "tag"
     },
     {
@@ -10490,13 +10735,23 @@
       "type": "tag"
     },
     {
-      "alias": "Iroha3",
+      "alias": "Hyperledger Iroha 3",
       "slug": "tag-iroha3",
       "type": "tag"
     },
     {
       "alias": "iroha3",
       "slug": "tag-iroha3",
+      "type": "tag"
+    },
+    {
+      "alias": "Iroha3",
+      "slug": "tag-iroha3",
+      "type": "tag"
+    },
+    {
+      "alias": "Kensetsu",
+      "slug": "tag-ken",
       "type": "tag"
     },
     {
@@ -10510,12 +10765,17 @@
       "type": "tag"
     },
     {
-      "alias": "Market Analysis",
+      "alias": "Crypto Market Cycles",
       "slug": "tag-market-analysis",
       "type": "tag"
     },
     {
       "alias": "market analysis",
+      "slug": "tag-market-analysis",
+      "type": "tag"
+    },
+    {
+      "alias": "Market Analysis",
       "slug": "tag-market-analysis",
       "type": "tag"
     },
@@ -10530,6 +10790,11 @@
       "type": "tag"
     },
     {
+      "alias": "Pepe (PEPE)",
+      "slug": "tag-pepe",
+      "type": "tag"
+    },
+    {
       "alias": "Pepe",
       "slug": "tag-pepe",
       "type": "tag"
@@ -10537,6 +10802,11 @@
     {
       "alias": "pepe",
       "slug": "tag-pepe",
+      "type": "tag"
+    },
+    {
+      "alias": "Proof of Stake (PoS)",
+      "slug": "tag-pos",
       "type": "tag"
     },
     {
@@ -10550,6 +10820,11 @@
       "type": "tag"
     },
     {
+      "alias": "Proof of Work (PoW)",
+      "slug": "tag-pow",
+      "type": "tag"
+    },
+    {
       "alias": "PoW",
       "slug": "tag-pow",
       "type": "tag"
@@ -10560,13 +10835,23 @@
       "type": "tag"
     },
     {
-      "alias": "Proof Of Stake",
+      "alias": "Proof of Stake (PoS)",
       "slug": "tag-proof-of-stake",
       "type": "tag"
     },
     {
       "alias": "proof of stake",
       "slug": "tag-proof-of-stake",
+      "type": "tag"
+    },
+    {
+      "alias": "Proof Of Stake",
+      "slug": "tag-proof-of-stake",
+      "type": "tag"
+    },
+    {
+      "alias": "Shiba Inu (SHIB)",
+      "slug": "tag-shiba-inu",
       "type": "tag"
     },
     {
@@ -10600,12 +10885,17 @@
       "type": "tag"
     },
     {
-      "alias": "Validator Rewards",
+      "alias": "Validator",
       "slug": "tag-validator-rewards",
       "type": "tag"
     },
     {
       "alias": "validator rewards",
+      "slug": "tag-validator-rewards",
+      "type": "tag"
+    },
+    {
+      "alias": "Validator Rewards",
       "slug": "tag-validator-rewards",
       "type": "tag"
     }

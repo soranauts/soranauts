@@ -1,47 +1,53 @@
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { TAG_HUB_V1_ENABLED } from './utils/featureFlags';
+
+type NavigationLink = {
+  text: string;
+  href: string;
+  target?: string;
+};
+
+type NavigationSection = {
+  title: string;
+  links: NavigationLink[];
+};
+
+const headerLinks: NavigationLink[] = [
+  { text: 'Blog', href: getBlogPermalink() },
+  { text: 'Glossary', href: '/glossary' },
+  { text: 'Features', href: '/features' },
+  { text: 'About', href: '/about' },
+  { text: 'Donate', href: '/donate' },
+];
+
+if (TAG_HUB_V1_ENABLED) {
+  headerLinks.unshift({ text: 'Explore', href: '/explore' });
+}
 
 export const headerData = {
-  links: [
-    {
-      text: 'About',
-      href: '/about',
-    },
-    {
-      text: 'Blog',
-      href: getBlogPermalink(),
-    },
-    {
-      text: 'Glossary',
-      href: '/glossary',
-    },
-    {
-      text: 'Features',
-      href: '/features',
-    },
-    {
-      text: 'Changelog',
-      href: '/changelog',
-    },
-    {
-      text: 'Donate',
-      href: '/donate',
-    },
-  ],
+  links: headerLinks,
   actions: [{ text: 'SORA Wiki', href: 'https://wiki.sora.org/', target: '_blank' }],
 };
+
+const learnLinks: NavigationLink[] = [
+  { text: 'SORA Glossary', href: '/glossary' },
+  { text: 'Tokenomics', href: 'https://wiki.sora.org/tokenomics.html' },
+  { text: 'Governance', href: 'https://wiki.sora.org/sora-governance.html' },
+  { text: 'Staking', href: 'https://wiki.sora.org/nominating-validators.html' },
+  { text: 'Polkaswap', href: 'https://wiki.sora.org/polkaswap.html' },
+  { text: 'Integrated Plan', href: 'https://wiki.sora.org/integrated-plan.html' },
+  { text: 'Changelog', href: '/changelog' },
+];
+
+if (TAG_HUB_V1_ENABLED) {
+  learnLinks.unshift({ text: 'SORA Explorer', href: '/explore' });
+}
 
 export const footerData = {
   links: [
     {
       title: 'Learn',
-      links: [
-        { text: 'SORA Glossary', href: '/glossary' },
-        { text: 'Tokenomics', href: 'https://wiki.sora.org/tokenomics.html' },
-        { text: 'Governance', href: 'https://wiki.sora.org/sora-governance.html' },
-        { text: 'Staking', href: 'https://wiki.sora.org/nominating-validators.html' },
-        { text: 'Polkaswap', href: 'https://wiki.sora.org/polkaswap.html' },
-        { text: 'Integrated Plan', href: 'https://wiki.sora.org/integrated-plan.html' },
-      ],
+      links: learnLinks,
     },
     {
       title: 'Explore',
@@ -61,7 +67,10 @@ export const footerData = {
         { text: 'ADAR Business', href: 'https://adar.com/' },
         { text: 'Demeter Farming', href: 'https://farming.deotoken.io/' },
         { text: 'Builders Programme', href: 'https://wiki.sora.org/sora-builders.html' },
-        { text: 'Bokolo Cash CBDC', href: 'https://medium.com/sora-xor/the-sora-network-hosts-the-first-substrate-polkadot-based-cbdc-in-collaboration-with-the-central-6cc78e9b82b8' },
+        {
+          text: 'Bokolo Cash CBDC',
+          href: 'https://medium.com/sora-xor/the-sora-network-hosts-the-first-substrate-polkadot-based-cbdc-in-collaboration-with-the-central-6cc78e9b82b8',
+        },
         { text: 'GitHub', href: 'https://github.com/soranauts' },
       ],
     },
@@ -76,7 +85,7 @@ export const footerData = {
         { text: 'Twitter/X', href: 'https://x.com/sora_xor' },
       ],
     },
-  ],
+  ] as NavigationSection[],
   secondaryLinks: [
     { text: 'Terms', href: getPermalink('/terms') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
@@ -93,3 +102,6 @@ export const footerData = {
     This website is maintained by the <a class="text-link hover:text-link-hover hover:underline transition-colors" href="https://t.me/sora_xor">SORA Community</a> &copy;
   `,
 };
+
+
+

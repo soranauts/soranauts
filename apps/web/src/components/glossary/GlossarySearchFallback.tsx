@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { scoreTerm } from './utils';
+import { createPortal } from 'react-dom';
 
 // Dev-only logging utility
 const __DEV__ = import.meta.env?.MODE !== 'production';
@@ -24,6 +25,26 @@ interface GlossaryData {
   totalCount: number;
   lastUpdated: string;
 }
+
+interface GlossarySearchFallbackProps {
+  controlsContainerId?: string;
+  resultsContainerId?: string;
+}
+
+const CATEGORY_LABELS: Record<string, string> = {
+  token: 'Token',
+  technology: 'Technology',
+  governance: 'Governance',
+  defi: 'DeFi',
+  network: 'Network',
+  economics: 'Economics',
+  tag: 'Tag',
+};
+
+const formatLabel = (value: string): string =>
+  value
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, (match) => match.toUpperCase());
 
 // Fetch glossary data
 async function fetchGlossaryData(): Promise<GlossaryData> {
@@ -85,78 +106,83 @@ function Hit({ hit, onAliasClick, onTagClick }: {
   onAliasClick: (alias: string) => void;
   onTagClick: (tag: string) => void;
 }) {
+  const categoryLabel = hit.category ? CATEGORY_LABELS[hit.category] ?? formatLabel(hit.category) : undefined;
   return (
     <a
       href={`/glossary/${hit.slug}`}
       id={`glossary-${hit.slug}`}
-      className="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-red-300 dark:hover:border-red-600 transition-all cursor-pointer scroll-mt-24"
+      className="glossary-card glossary-search__result"
       aria-label={`Open ${hit.term} term page`}
     >
-      <div className="flex items-start justify-between mb-3">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white hover:text-red-600 dark:hover:text-red-400 transition-colors">
-          {hit.term}
-        </h3>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            onTagClick(hit.category);
-          }}
-          className={`px-2 py-1 rounded-full text-xs font-medium transition-colors hover:opacity-80 cursor-pointer ${
-            hit.category === 'token' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-            hit.category === 'technology' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
-            hit.category === 'governance' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' :
-            hit.category === 'defi' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-            hit.category === 'network' ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200' :
-            'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200'
-          }`}
-          title={`Filter by ${hit.category} category`}
-        >
-          {hit.category}
-        </button>
+      <div className="glossary-card__header">
+        <span className="glossary-search__result-title">{hit.term}</span>
+        {categoryLabel && (
+          <button
+            type="button"
+            className="glossary-chip glossary-search__chip"
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              onTagClick(hit.category);
+            }}
+            title={`Filter by ${categoryLabel}`}
+          >
+            {categoryLabel}
+          </button>
+        )}
       </div>
       
-      <div className="text-gray-600 dark:text-gray-300 mb-3">
-        {hit.definition}
-      </div>
+      <p className="glossary-search__result-summary">{hit.definition}</p>
       
       {hit.aliases && hit.aliases.length > 1 && (
-        <div className="mb-3">
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Also:</p>
-          <div className="flex flex-wrap gap-1">
-            {hit.aliases.slice(1).map((alias: string) => (
-              <button
-                key={alias}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  onAliasClick(alias);
-                }}
-                className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
-                title={`Jump to ${alias}`}
-              >
-                {alias}
-              </button>
-            ))}
-          </div>
+        <div className="glossary-search__chips">
+          <span className="glossary-chip glossary-chip--muted glossary-search__chip" style={{ pointerEvents: 'none' }}>
+            Also
+          </span>
+          {hit.aliases.slice(1).map((alias: string) => (
+            <button
+              key={alias}
+              type="button"
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                onAliasClick(alias);
+              }}
+              className="glossary-chip glossary-chip--muted glossary-search__chip"
+              title={`Jump to ${alias}`}
+            >
+              {alias}
+            </button>
+          ))}
         </div>
       )}
       
       {hit.tags && hit.tags.length > 0 && (
-        <div className="flex flex-wrap gap-1">
+        <div className="glossary-search__chips">
           {hit.tags.slice(0, 5).map((tag: string) => (
-            <button
+              <button
               key={tag}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+              type="button"
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
                 onTagClick(tag);
               }}
-              className="px-2 py-1 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs rounded hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors cursor-pointer"
+              className="glossary-chip glossary-chip--muted glossary-search__chip"
               title={`Filter by ${tag} tag`}
             >
-              #{tag}
+              #{formatLabel(tag)}
             </button>
+          ))}
+        </div>
+      )}
+
+      {hit.relatedTerms && hit.relatedTerms.length > 0 && (
+        <div className="glossary-search__chips">
+          {hit.relatedTerms.slice(0, 6).map((related) => (
+            <span key={related} className="glossary-chip glossary-chip--muted">
+              #{related.toLowerCase()}
+            </span>
           ))}
         </div>
       )}
@@ -166,7 +192,10 @@ function Hit({ hit, onAliasClick, onTagClick }: {
 
 
 // Main search component
-export default function GlossarySearchFallback() {
+export default function GlossarySearchFallback({
+  controlsContainerId,
+  resultsContainerId,
+}: GlossarySearchFallbackProps) {
   const [searchInput, setSearchInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -175,6 +204,27 @@ export default function GlossarySearchFallback() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [focusedTermSlug, setFocusedTermSlug] = useState<string | null>(null);
+  
+  const numberFormatter = useMemo(
+    () =>
+      new Intl.NumberFormat('en', {
+        maximumFractionDigits: 0,
+      }),
+    [],
+  );
+
+  const [controlsContainer, setControlsContainer] = useState<HTMLElement | null>(null);
+  const [resultsContainer, setResultsContainer] = useState<HTMLElement | null>(null);
+  const isBrowser = typeof window !== 'undefined';
+  const shouldUsePortals = Boolean(controlsContainerId && resultsContainerId);
+
+  useEffect(() => {
+    if (!shouldUsePortals || !isBrowser) return;
+    const controlsEl = document.getElementById(controlsContainerId!);
+    const resultsEl = document.getElementById(resultsContainerId!);
+    setControlsContainer(controlsEl ?? null);
+    setResultsContainer(resultsEl ?? null);
+  }, [shouldUsePortals, controlsContainerId, resultsContainerId, isBrowser]);
   
   // Debounce ref for search input
   const debounceRef = useRef<number | null>(null);
@@ -295,7 +345,7 @@ export default function GlossarySearchFallback() {
   const mountedRef = useRef(false);
 
   // Manual data loading function that can be triggered by user interaction
-  const loadDataManually = async () => {
+  const loadDataManually = useCallback(async () => {
     log('🔄 [loadDataManually] Attempting manual load...');
     if (hasLoaded.current) {
       log('🔄 [loadDataManually] Data already loaded, skipping manual load.');
@@ -347,7 +397,7 @@ export default function GlossarySearchFallback() {
           setError(err instanceof Error ? err : new Error('Failed to load glossary data manually'));
           setIsLoading(false);
         }
-      };
+  }, []);
 
       useEffect(() => {
         let cancelled = false;
@@ -458,26 +508,40 @@ export default function GlossarySearchFallback() {
       useEffect(() => {
         return () => {
           hasLoaded.current = false;
+          if (loadFallbackTimeoutRef.current) {
+            window.clearTimeout(loadFallbackTimeoutRef.current);
+          }
         };
       }, []);
 
   // Fallback: Use a callback ref to trigger loading when component is mounted
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const setContainerRef = (node: HTMLDivElement | null) => {
-    if (node && !mountedRef.current) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const loadFallbackTimeoutRef = useRef<number | null>(null);
+
+  const attachContainerRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (!node || mountedRef.current) return;
       mountedRef.current = true;
       containerRef.current = node;
-      
-          // If useEffect didn't work (still loading after 2 seconds), try manual approach
-          setTimeout(() => {
-            if (isLoading && !hasLoaded.current) {
-              log('⚠️ [setContainerRef] useEffect did not complete, triggering manual load fallback.');
-              loadDataManually();
-            }
-          }, 2000);
-    }
-  };
+
+      if (loadFallbackTimeoutRef.current) {
+        window.clearTimeout(loadFallbackTimeoutRef.current);
+      }
+
+      loadFallbackTimeoutRef.current = window.setTimeout(() => {
+        if (isLoading && !hasLoaded.current) {
+          log('⚠️ [GlossarySearchFallback] useEffect did not complete, triggering manual load fallback.');
+          loadDataManually();
+        }
+      }, 2000);
+    },
+    [isLoading, loadDataManually],
+  );
+
+  useEffect(() => {
+    if (!shouldUsePortals || !controlsContainer) return;
+    attachContainerRef(controlsContainer as HTMLDivElement);
+  }, [shouldUsePortals, controlsContainer, attachContainerRef]);
 
   // Preserve focus when filtering - if focused term is no longer visible, clear focus
   useEffect(() => {
@@ -490,10 +554,32 @@ export default function GlossarySearchFallback() {
     }
   }, [searchQuery, selectedCategory, focusedTermSlug, glossaryData]);
 
+  // Dispatch search state events for UX improvements
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const hasActiveSearch = Boolean(searchQuery.trim() || selectedCategory);
+    const featuredSection = document.getElementById('glossary-featured-terms');
+    
+    if (featuredSection) {
+      if (hasActiveSearch) {
+        featuredSection.classList.add('is-hidden');
+      } else {
+        featuredSection.classList.remove('is-hidden');
+      }
+    }
+
+    // Dispatch custom event for other potential listeners
+    window.dispatchEvent(
+      new CustomEvent('glossary:search-state-change', {
+        detail: { isActive: hasActiveSearch, query: searchQuery, category: selectedCategory },
+      })
+    );
+  }, [searchQuery, selectedCategory]);
+
   // Early returns after all hooks
   if (isLoading) {
-    return (
-      <div ref={setContainerRef} className="max-w-4xl mx-auto p-6">
+    const loadingView = (
+      <div ref={attachContainerRef} className="max-w-4xl mx-auto p-6">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-8">
           <div className="flex flex-col items-center justify-center py-12" aria-busy="true">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mb-4"></div>
@@ -511,11 +597,20 @@ export default function GlossarySearchFallback() {
         </div>
       </div>
     );
+
+    if (shouldUsePortals) {
+      if (resultsContainer) {
+        return createPortal(loadingView, resultsContainer);
+      }
+      return null;
+    }
+
+    return loadingView;
   }
 
   if (error) {
-    return (
-      <div className="max-w-4xl mx-auto p-6" role="alert">
+    const errorView = (
+      <div ref={attachContainerRef} className="max-w-4xl mx-auto p-6" role="alert">
         <div className="bg-red-50 border border-red-200 rounded-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
@@ -535,13 +630,22 @@ export default function GlossarySearchFallback() {
         </div>
       </div>
     );
+
+    if (shouldUsePortals) {
+      if (resultsContainer) {
+        return createPortal(errorView, resultsContainer);
+      }
+      return null;
+    }
+
+    return errorView;
   }
 
   // TEMPORARY: Modify this to return a visible message if glossaryData is null
   if (!glossaryData && !isLoading && !error) {
     console.log('⚠️ [render] Glossary data is null, not loading, and no error. Returning "No Data" message.');
-    return (
-      <div ref={setContainerRef} className="max-w-4xl mx-auto p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg text-center py-12">
+    const noDataView = (
+      <div ref={attachContainerRef} className="max-w-4xl mx-auto p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg text-center py-12">
         <p className="text-yellow-800 dark:text-yellow-200 font-semibold">
           Glossary component rendered, but no data was loaded.
         </p>
@@ -556,6 +660,15 @@ export default function GlossarySearchFallback() {
         </button>
       </div>
     );
+
+    if (shouldUsePortals) {
+      if (resultsContainer) {
+        return createPortal(noDataView, resultsContainer);
+      }
+      return null;
+    }
+
+    return noDataView;
   }
 
   // Single, explicit filtering pipeline with category > search precedence
@@ -649,95 +762,104 @@ export default function GlossarySearchFallback() {
     
   const categories = Object.values(glossaryData.categories).sort((a, b) => a.name.localeCompare(b.name));
 
-  return (
-    <div ref={setContainerRef} className="max-w-4xl mx-auto" data-testid="glossary-container">
-      
-      {/* Search Header */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
-        <div className="mb-4">
+  const filteredCount = filteredTerms.length;
+  const hasActiveFilter = Boolean(searchQuery || selectedCategory);
+  const filteredMetaLabel =
+    filteredCount === 0
+      ? hasActiveFilter
+        ? 'No glossary entries match your filters yet.'
+        : 'No glossary entries available yet.'
+      : `${numberFormatter.format(filteredCount)} glossary entr${filteredCount === 1 ? 'y' : 'ies'} available`;
+
+  const controlsContent = (
+    <div className="glossary-search__controls">
+      <div className="glossary-search__panel">
+        <label htmlFor="glossary-fallback-input" className="glossary-search__label">
+          Search glossary
+        </label>
+        <div className="glossary-search__control">
           <input
+            id="glossary-fallback-input"
             type="text"
             value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Search glossary terms, definitions, or tags..."
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900 dark:bg-gray-700 dark:text-white text-lg"
+            onChange={(event) => setSearchInput(event.target.value)}
+            placeholder="Search glossary terms, definitions, or tags…"
+            className="glossary-search__input"
           />
         </div>
-        
-        <div className="flex flex-wrap gap-4">
-          {/* Category Filter */}
-          <div className="flex-1 min-w-0">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Category
-            </label>
-            <div className="flex flex-wrap gap-2">
-              {/* All button */}
-              <button
-                onClick={() => {
-                  setSelectedCategory('');
-                  setSearchInput('');
-                  setSearchQuery('');
-                }}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                  !selectedCategory
-                    ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                }`}
-              >
-                All ({glossaryData?.terms.length || 0})
-              </button>
-              {categories.map(category => {
-                // Derive count from actual filtered results, not static category count
-                const categoryCount = selectedCategory === category.name 
-                  ? filteredTerms.length 
-                  : category.count;
-                
-                return (
-                  <button
-                    key={category.name}
-                    onClick={() => handleTagClick(category.name)}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                      selectedCategory === category.name
-                        ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                    }`}
-                  >
-                    {category.name} ({categoryCount})
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        
-        <div className="mt-4">
-          <div className="text-sm text-gray-600 dark:text-gray-400 mb-4" aria-live="polite">
-            Found {filteredTerms.length} term{filteredTerms.length !== 1 ? 's' : ''}
-          </div>
-        </div>
+        <p className="glossary-search__hint">Results update instantly as you type. Use filters to refine.</p>
       </div>
 
-      {/* Search Results */}
-      <div className="space-y-4">
-        {filteredTerms.length > 0 ? (
-          <div className="space-y-4">
-            {filteredTerms.map((term) => (
-              <Hit 
-                key={term.slug} 
-                hit={term} 
-                onAliasClick={handleAliasClick}
-                onTagClick={handleTagClick}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400">
-              No terms found. Try adjusting your search or filters.
-            </p>
-          </div>
-        )}
+      <div className="glossary-search__filters">
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedCategory('');
+            setSearchInput('');
+            setSearchQuery('');
+          }}
+          className={`glossary-search__filter ${!selectedCategory ? 'is-active' : ''}`}
+        >
+          All ({glossaryData?.terms.length || 0})
+        </button>
+        {categories.map((category) => {
+          const categoryCount = selectedCategory === category.name ? filteredTerms.length : category.count;
+
+          return (
+            <button
+              key={category.name}
+              type="button"
+              onClick={() => handleTagClick(category.name)}
+              className={`glossary-search__filter ${selectedCategory === category.name ? 'is-active' : ''}`}
+            >
+              {category.name} ({categoryCount})
+            </button>
+          );
+        })}
       </div>
+
+      <div className="glossary-search__meta" role="status" aria-live="polite">
+        {filteredMetaLabel}
+      </div>
+    </div>
+  );
+
+  const resultsContent = (
+    <div className="glossary-search__results">
+      {filteredTerms.length > 0 ? (
+        filteredTerms.map((term) => (
+          <Hit
+            key={term.slug}
+            hit={term}
+            onAliasClick={handleAliasClick}
+            onTagClick={handleTagClick}
+          />
+        ))
+      ) : (
+        <div className="glossary-search__status glossary-search__status--empty">
+          No terms found. Try adjusting your search or filters.
+        </div>
+      )}
+    </div>
+  );
+
+  if (shouldUsePortals) {
+    if (!controlsContainer || !resultsContainer) {
+      return null;
+    }
+
+    return (
+      <>
+        {createPortal(controlsContent, controlsContainer)}
+        {createPortal(resultsContent, resultsContainer)}
+      </>
+    );
+  }
+
+  return (
+    <div ref={attachContainerRef} className="glossary-search" data-testid="glossary-container">
+      {controlsContent}
+      {resultsContent}
     </div>
   );
 }

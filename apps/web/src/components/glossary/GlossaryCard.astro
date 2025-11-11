@@ -1,0 +1,57 @@
+---
+export interface Props {
+  href: string;
+  title: string;
+  summary?: string;
+  category?: string;
+  tags?: string[];
+  meta?: string[];
+  badge?: string;
+}
+
+const CATEGORY_LABELS: Record<string, string> = {
+  token: 'Token',
+  technology: 'Technology',
+  governance: 'Governance',
+  defi: 'DeFi',
+  network: 'Network',
+  economics: 'Economics',
+  tag: 'Tag',
+};
+
+const formatLabel = (value: string): string =>
+  value
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, (match) => match.toUpperCase());
+
+const { href, title, summary, category, tags = [], meta = [], badge } = Astro.props;
+const categoryLabel = category ? CATEGORY_LABELS[category] ?? formatLabel(category) : undefined;
+const tagList = tags.slice(0, 6);
+---
+
+<a class="glossary-card" href={href} role="group">
+  {(categoryLabel || badge) && (
+    <div class="glossary-card__header">
+      {categoryLabel && <span class="glossary-chip">{categoryLabel}</span>}
+      {badge && <span class="glossary-chip glossary-chip--neutral">{badge}</span>}
+    </div>
+  )}
+  <h3 class="glossary-card__title">{title}</h3>
+  {summary && <p class="glossary-card__summary">{summary}</p>}
+  {meta.length ? (
+    <div class="glossary-card__meta">
+      {meta.map((item) => (
+        <span>{item}</span>
+      ))}
+    </div>
+  ) : null}
+  {tagList.length ? (
+    <div class="glossary-card__tags" aria-label="Related tags">
+      {tagList.map((tag) => (
+        <span class="glossary-chip glossary-chip--muted">#{formatLabel(tag)}</span>
+      ))}
+    </div>
+  ) : null}
+</a>
+
+

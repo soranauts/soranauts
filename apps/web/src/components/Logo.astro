@@ -1,8 +1,14 @@
 ---
 import { Image } from 'astro:assets';
 import soranautsLogo from '~/assets/images/new-logo-250x80.png';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props as Props;
 ---
 
-<span class="self-center text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
-  <Image src={soranautsLogo} alt="Soranauts" class="image-rendering-crisp-edges w-[225px] h-[72px] object-contain"/>
+<span class:list={["self-center text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white", className]}>
+  <Image src={soranautsLogo} alt="Soranauts" class="image-rendering-crisp-edges w-[225px] h-[72px] object-contain" />
 </span>

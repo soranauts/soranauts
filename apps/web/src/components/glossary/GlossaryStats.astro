@@ -1,0 +1,28 @@
+---
+export interface GlossaryStat {
+  label: string;
+  value: string | number;
+  helper?: string;
+}
+
+export interface Props {
+  stats: GlossaryStat[];
+  class?: string;
+}
+
+const { stats = [], class: className } = Astro.props;
+---
+
+{stats.length ? (
+  <dl class:list={['glossary-stats', className]}>
+    {stats.map((stat) => (
+      <div class="glossary-stats__item">
+        <dt>{stat.label}</dt>
+        <dd>{stat.value}</dd>
+        {stat.helper && <span class="glossary-stats__helper">{stat.helper}</span>}
+      </div>
+    ))}
+  </dl>
+) : null}
+
+

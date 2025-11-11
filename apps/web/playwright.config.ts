@@ -18,12 +18,13 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm dev',
+    command: 'pnpm preview -- --port 4321 --host 127.0.0.1',
     url: 'http://localhost:4321',
     reuseExistingServer: !process.env.CI,
     env: {
       ...process.env,
       GLOSSARY_SEARCH_V2: 'true',
+      TAG_HUB_V1: 'true',
     },
   },
 });

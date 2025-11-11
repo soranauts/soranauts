@@ -2,7 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/widgets/Header.astro';
 import Footer from '../../components/widgets/Footer.astro';
-import { AstroSeo } from '@astrolib/seo';
+import GlossaryHero from '~/components/glossary/GlossaryHero.astro';
+import GlossarySectionCard from '~/components/glossary/GlossarySectionCard.astro';
 import glossary from '../../../public/glossary.json';
 import { headerData, footerData } from '../../navigation';
 import fs from 'node:fs';
@@ -22,7 +23,6 @@ export async function getStaticPaths() {
 }
 
 const { term } = Astro.props;
-const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
 
 if (!term) {
   return Astro.redirect('/glossary');
@@ -114,10 +114,12 @@ const relatedTagArticles = relatedTagNodes.map((tagNode) => {
   };
 }).filter((entry) => entry.posts.length > 0);
 
-const versionEntries = Array.isArray(term.versions)
+type GlossaryTermEntry = (typeof glossary.terms)[number];
+
+const versionEntries: GlossaryTermEntry[] = Array.isArray(term.versions)
   ? term.versions
       .map((slug: string) => glossary.terms.find((entry) => entry.slug === slug))
-      .filter(Boolean)
+      .filter((entry): entry is GlossaryTermEntry => Boolean(entry))
   : [];
 
 const parentEntity = term.entity ? glossary.terms.find((entry) => entry.slug === term.entity) : null;
@@ -142,6 +144,37 @@ const jsonLd = {
     ...tagSubjectEntries,
   ],
 };
+
+const CATEGORY_LABELS: Record<string, string> = {
+  token: 'Token',
+  technology: 'Technology',
+  governance: 'Governance',
+  defi: 'DeFi',
+  network: 'Network',
+  economics: 'Economics',
+  tag: 'Tag',
+};
+
+const formatLabel = (value: string): string =>
+  value
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, (match) => match.toUpperCase());
+
+const categoryLabel = typeof term.category === 'string' ? CATEGORY_LABELS[term.category] ?? formatLabel(term.category) : undefined;
+const aliasCount = Array.isArray(term.aliases) && term.aliases.length > 1 ? term.aliases.length - 1 : 0;
+const relatedTermsCount = relatedTermsWithLinks.length;
+const tagPostCount = relatedTagArticles.reduce((total, entry) => total + entry.posts.length, 0);
+
+const heroStats = [
+  { label: 'Aliases', value: aliasCount ? aliasCount.toString() : '—' },
+  { label: 'Related terms', value: relatedTermsCount ? relatedTermsCount.toString() : '—' },
+  { label: 'Tagged articles', value: tagPostCount ? tagPostCount.toString() : '—' },
+];
+
+const heroDescription = term.summary ?? term.definition;
+const aliasList = Array.isArray(term.aliases) ? term.aliases.slice(1) : [];
+const glossaryTags = Array.isArray(term.tags) ? term.tags : [];
+const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
 ---
 
 <Layout 
@@ -158,200 +191,131 @@ const jsonLd = {
 >
   <Header {...headerData} isSticky showRssFeed showToggleTheme />
   
-  <main class="py-8 sm:py-16 lg:py-20">
-    <div class:list={['container mx-auto px-4 sm:px-6 max-w-4xl', { 'glossary-index': GLOSSARY_V2 }]}>
-      <!-- Back Navigation -->
-      <div class="mb-8">
-        <a 
-          href="/glossary" 
-          class="inline-flex items-center text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+  <main class="glossary-detail px-4 md:px-6 lg:px-12 pt-10 md:pt-12 lg:pt-14 pb-16 md:pb-20 mx-auto max-w-5xl">
+    <a class="glossary-back-link" href="/glossary">← Back to glossary</a>
+
+    <GlossaryHero title={term.term} description={heroDescription} stats={heroStats}>
+      <div class="glossary-detail__chips">
+        {categoryLabel && term.category && (
+          <a class="glossary-chip" href={`/glossary#${encodeURIComponent(term.category)}`}>
+            {categoryLabel}
+          </a>
+        )}
+        {parentEntity && (
+          <a class="glossary-chip glossary-chip--muted" href={`/glossary/${parentEntity.slug}`}>
+            Parent · {parentEntity.term}
+          </a>
+        )}
+      </div>
+    </GlossaryHero>
+
+    <div class="glossary-detail__stack">
+      <GlossarySectionCard kicker="Core definition" title="What it means">
+        <article
+          data-pagefind-body
+          data-pagefind-url={`/glossary/${term.slug}/`}
+          data-pagefind-meta={JSON.stringify({
+            type: 'glossary',
+            term: term.term,
+            category: term.category,
+            aliases: term.aliases || [],
+            summary: term.summary ?? term.definition.slice(0, 220),
+            definition: term.definition,
+            url: `/glossary/${term.slug}/`,
+          })}
+          class="prose"
         >
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-          </svg>
-          Back to Glossary
-        </a>
-      </div>
+          <span data-pagefind-filter="type:glossary"></span>
+          <span data-pagefind-filter={`category:${term.category}`}></span>
+          <span class="sr-only" aria-hidden="true">
+            {term.term} {term.aliases?.join(' ')} {term.category} glossary
+          </span>
+          <p>{term.definition}</p>
+        </article>
 
-      <!-- Term Header -->
-      <div class="mb-8">
-        <div class="flex items-start justify-between mb-4">
-          <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading text-gray-900 dark:text-white">
-            {term.term}
-          </h1>
-          <a 
-            href={`/glossary#${encodeURIComponent(term.category)}`}
-            class={`px-3 py-1 rounded-full text-sm font-medium ml-4 transition-colors hover:opacity-80 cursor-pointer inline-block ${
-              term.category === 'token' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-              term.category === 'technology' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
-              term.category === 'governance' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' :
-              term.category === 'defi' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-              term.category === 'network' ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200' :
-              'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200'
-            }`}
-            title={`Filter by ${term.category} category in glossary`}
-          >
-            {term.category}
-          </a>
-        </div>
-      </div>
-
-      <!-- Term Definition -->
-      <article 
-        data-pagefind-body
-        data-pagefind-url={`/glossary/${term.slug}/`}
-        data-pagefind-meta={JSON.stringify({
-          type: 'glossary',
-          term: term.term,
-          category: term.category,
-          aliases: term.aliases || [],
-          summary: term.summary ?? term.definition.slice(0, 220),
-          definition: term.definition,
-          url: `/glossary/${term.slug}/`
-        })}
-        class="prose prose-lg dark:prose-invert max-w-none mb-8"
-      >
-        <!-- Add separate filter elements so Pagefind registers multiple filters -->
-        <span data-pagefind-filter="type:glossary"></span>
-        <span data-pagefind-filter={`category:${term.category}`}></span>
-
-        <!-- Optional: strengthen searchability for short all-caps terms -->
-        <span class="sr-only" aria-hidden="true">
-          {term.term} {term.aliases?.join(' ')} {term.category} glossary
-        </span>
-        <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-          {term.definition}
-        </p>
-      </article>
-
-      {parentEntity && (
-        <div class="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
-          Part of the {parentEntity.term} entity. Learn more on
-          {' '}
-          <a href={`/glossary/${parentEntity.slug}`} class="font-semibold text-red-600 hover:text-red-500 dark:text-red-400 dark:hover:text-red-300">
-            {parentEntity.term}
-          </a>
-          .
-        </div>
-      )}
+        {parentEntity && (
+          <div class="glossary-note">
+            <span class="glossary-note__label">Parent entity</span>
+            <a class="glossary-note__link" href={`/glossary/${parentEntity.slug}`}>
+              {parentEntity.term}
+            </a>
+          </div>
+        )}
+      </GlossarySectionCard>
 
       {versionEntries.length > 0 && (
-        <div class="mb-8">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Versions</h2>
-          <div class="grid gap-4 md:grid-cols-2">
+        <GlossarySectionCard title="Version history" description="Adjacent glossary entries that track releases and upgrades.">
+          <div class="glossary-list glossary-list--stacked">
             {versionEntries.map((version) => (
-              <a
-                href={`/glossary/${version.slug}`}
-                class="block rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:border-red-300 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-red-500/60"
-              >
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{version.term}</h3>
-                <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">{version.summary ?? version.definition}</p>
+              <a class="glossary-related-link" href={`/glossary/${version.slug}`}>
+                <span class="glossary-related-link__title">{version.term}</span>
+                <span class="glossary-related-link__summary">{version.summary ?? version.definition}</span>
               </a>
             ))}
           </div>
-        </div>
+        </GlossarySectionCard>
       )}
 
-      <!-- Aliases -->
-      {term.aliases && term.aliases.length > 1 && (
-        <div class="mb-8">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Also known as</h2>
-          <div class="flex flex-wrap gap-2">
-            {term.aliases.slice(1).map((alias) => (
-              <a 
-                href={`/glossary#${encodeURIComponent(alias)}`}
-                class="px-3 py-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 rounded-md text-sm transition-colors cursor-pointer inline-block"
-                title={`Search for ${alias} in glossary`}
-              >
-                {alias}
-              </a>
+      {aliasList.length > 0 && (
+        <GlossarySectionCard title="Also known as" description="Alternate spellings and abbreviations linked to this entry.">
+          <ul class="glossary-list">
+            {aliasList.map((alias) => (
+              <li>
+                <a class="glossary-chip glossary-chip--muted" href={`/glossary#${encodeURIComponent(alias)}`}>
+                  {alias}
+                </a>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </GlossarySectionCard>
       )}
 
-      <!-- Tags -->
-      {term.tags && term.tags.length > 0 && (
-        <div class="mb-8">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Tags</h2>
-          <div class="flex flex-wrap gap-2">
-            {term.tags.map((tag) => (
-              <a 
-                href={`/glossary#${encodeURIComponent(tag)}`}
-                class="px-3 py-1 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/40 text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 rounded-md text-sm transition-colors cursor-pointer inline-block"
-                title={`Filter by ${tag} tag in glossary`}
-              >
-                #{tag}
-              </a>
+      {glossaryTags.length > 0 && (
+        <GlossarySectionCard title="Glossary tags">
+          <ul class="glossary-list">
+            {glossaryTags.map((tag) => (
+              <li>
+                <a class="glossary-chip glossary-chip--muted" href={`/glossary#${encodeURIComponent(tag)}`}>
+                  #{formatLabel(tag)}
+                </a>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </GlossarySectionCard>
       )}
 
-      {relatedTagArticles.length > 0 && (
-        <div class="mb-8">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Related Tags</h2>
-          <div class="flex flex-wrap gap-2">
-            {relatedTagArticles.map(({ tag, tagName, tagPermalink }) => (
-              <a
-                href={tagPermalink}
-                class="px-3 py-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-md text-sm transition-colors inline-flex items-center gap-1"
-              >
-                #{tag.title}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <!-- Related Terms -->
       {relatedTermsWithLinks.length > 0 && (
-        <div class="mb-8">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Related Terms</h2>
-          <div class="flex flex-wrap gap-2">
+        <GlossarySectionCard title="Related glossary entries">
+          <ul class="glossary-list">
             {relatedTermsWithLinks.map((related) => (
-              <a 
-                href={`/glossary/${related.slug}`}
-                class="px-3 py-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md text-sm transition-colors"
-              >
-                {related.term}
-              </a>
+              <li>
+                <a class="glossary-chip glossary-chip--muted" href={`/glossary/${related.slug}`}>
+                  {related.term}
+                </a>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </GlossarySectionCard>
       )}
 
       {relatedTagArticles.length > 0 && (
-        <div class="mb-12">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Articles using these tags</h2>
-          <div class="space-y-6">
-            {relatedTagArticles.map(({ tag, tagName, tagPermalink, posts }) => (
-              <div class="rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900" key={tag.slug}>
-                <div class="flex items-center justify-between">
-                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">#{tag.title}</h3>
-                  <a
-                    href={tagPermalink}
-                    class="text-sm font-medium text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
-                  >
-                    View all
+        <GlossarySectionCard title="Explorer coverage" description="Recent Soranauts articles tagged with this glossary concept.">
+          <div class="glossary-related">
+            {relatedTagArticles.map(({ tag, tagPermalink, posts }) => (
+              <div class="glossary-related__item">
+                <div class="glossary-related__header">
+                  <div class="glossary-related__title">#{tag.title}</div>
+                  <a class="glossary-related__action" href={tagPermalink}>
+                    View Explorer tag
                   </a>
                 </div>
-                <ul class="mt-3 space-y-2">
+                <ul class="glossary-related__list">
                   {posts.map((post) => {
                     const postPermalink = getPermalink(post.slug, 'post');
                     return (
-                      <li key={post.slug} class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                        <a
-                          href={postPermalink}
-                          class="text-sm font-medium text-gray-800 hover:text-red-600 dark:text-gray-200 dark:hover:text-red-400"
-                        >
-                          {post.data.title}
-                        </a>
-                        {post.data.publishDate && (
-                          <span class="text-xs text-gray-500 dark:text-gray-400">
-                            {I18N.dateFormatter.format(post.data.publishDate)}
-                          </span>
-                        )}
+                      <li class="glossary-related__list-item">
+                        <a href={postPermalink}>{post.data.title}</a>
+                        {post.data.publishDate && <time>{dateFormatter.format(post.data.publishDate)}</time>}
                       </li>
                     );
                   })}
@@ -359,40 +323,36 @@ const jsonLd = {
               </div>
             ))}
           </div>
-        </div>
+        </GlossarySectionCard>
       )}
 
-      <!-- Examples -->
       {term.examples && term.examples.length > 0 && (
-        <div class="mb-8">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Examples</h2>
-          <ul class="space-y-2">
+        <GlossarySectionCard title="Examples" description="Common scenarios where this concept appears.">
+          <ul class="glossary-list glossary-list--stacked">
             {term.examples.map((example) => (
-              <li class="text-gray-600 dark:text-gray-300">• {example}</li>
+              <li class="glossary-list__bullet">{example}</li>
             ))}
           </ul>
-        </div>
+        </GlossarySectionCard>
       )}
 
-      <!-- Links -->
       {term.links && term.links.length > 0 && (
-        <div class="mb-8">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Learn More</h2>
-          <ul class="space-y-2">
+        <GlossarySectionCard title="More resources">
+          <ul class="glossary-list glossary-list--stacked">
             {term.links.map((link) => (
               <li>
                 <a
+                  class="glossary-related-link glossary-related-link--external"
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-link hover:text-link-hover hover:underline transition-colors"
                 >
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
-        </div>
+        </GlossarySectionCard>
       )}
     </div>
   </main>
@@ -401,5 +361,5 @@ const jsonLd = {
 </Layout>
 
 <!-- Structured Data for SEO -->
-<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

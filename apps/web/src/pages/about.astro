@@ -13,35 +13,35 @@ import type { MetaData } from '~/types';
 const metadata: MetaData = {
   title: 'About Soranauts',
   description:
-    'Soranauts turns the SORA and Polkaswap roadmap into actionable knowledge. Explore our mission, production-ready knowledge base, and how you can support the journey.',
+    'Soranauts brings the SORA and Polkaswap roadmap to life — explore our mission, knowledge base, and how to get involved.',
 };
 
 const articleLinks = {
   deepDive: '/exploring-sora-kensetsu-polkaswap',
   roadmap: '/sora-roadmap-token-repackaging-hub-chain-defi-upgrades',
-  latest: '/polkadot-vs-ethereum-a-comparative-analysis',
+  latest: '/sora-v3-blockchain-innovations-at-the-sora-economic-forum-2024',
 };
 
 const missionPillars = [
   {
     icon: 'tabler:compass',
-    title: 'Guides for the decentralized frontier',
+    title: 'Actionable builder guides',
     description:
-      'We untangle SORA’s supranational economic model, Polkaswap upgrades, and the Token Bonding Curve so builders and newcomers alike can participate with confidence.',
+      'We translate SORA’s supranational economy, Polkaswap flows, and the Token Bonding Curve into operations-ready walkthroughs for wallets, staking, and liquidity.',
     callToAction: {
       href: articleLinks.deepDive,
-      text: 'Read our deep dives',
+      text: 'Read the SORA + Polkaswap guide',
       icon: 'tabler:external-link',
     },
   },
   {
     icon: 'tabler:shield-check',
-    title: 'Production-ready intelligence',
+    title: 'Production-grade intelligence',
     description:
-      'Our knowledge base is hardened with provenance tracking, nightly syncs, BM25 + vector retrieval, and SARIF-backed QA — and we publish deep-dive ecosystem updates that unpack every milestone.',
+      'Our knowledge base is hardened with provenance tracking, nightly syncs, BM25 + vector retrieval, and SARIF-backed QA — giving contributors vetted context on every governance and production milestone.',
     callToAction: {
-      href: '/polkadot-sora-governance-model',
-      text: 'Read the latest update',
+      href: articleLinks.roadmap,
+      text: 'Review the roadmap brief',
       icon: 'tabler:timeline-event',
     },
   },
@@ -49,7 +49,7 @@ const missionPillars = [
     icon: 'tabler:users',
     title: 'Community-first storytelling',
     description:
-      'We amplify voices across the ecosystem with Medium imports, ecosystem updates, and tutorials, making it easier for anyone to find the signal behind SORA’s rapid iteration.',
+      'We amplify ecosystem voices with Medium imports, contributor spotlights, and tutorials so anyone can follow SORA’s rapid iteration without chasing scattered channels.',
     callToAction: {
       href: 'https://t.me/Soranauts',
       target: '_blank',
@@ -62,60 +62,60 @@ const missionPillars = [
 const kbFocusPoints = [
   {
     icon: 'tabler:clock',
-    title: 'Nightly sync at 03:17 UTC',
+    title: 'Nightly syncs',
     description:
-      'Automated workflows refresh content from the SORA wiki, Soramitsu, Medium, Hyperledger Iroha, and more without manual intervention.',
+      'Automated 03:17 UTC workflows refresh the SORA wiki, Soramitsu, Hyperledger Iroha, Medium, and partner docs so contributors always pull current data.',
   },
   {
     icon: 'tabler:chart-dots-3',
-    title: 'Evidence-backed retrieval',
+    title: 'Auditable retrieval',
     description:
-      'Hybrid BM25 + vector search, Reciprocal Rank Fusion, and deterministic chunking deliver traceable answers for research and claim validation.',
+      'Hybrid BM25 + vector search with Reciprocal Rank Fusion returns answers with citations, making it fast to validate claims before publishing.',
   },
   {
     icon: 'tabler:certificate',
-    title: 'Provenance + snapshots',
+    title: 'Traceable provenance',
     description:
-      'Every document ships with checksums, snapshot IDs, and run logs, ensuring reviewers can audit when and how knowledge entered the system.',
+      'Checksums, snapshot IDs, and run logs follow every ingest so reviewers can inspect when knowledge landed and who approved it.',
   },
   {
     icon: 'tabler:shield-check',
-    title: 'CI guardrails',
+    title: 'QA guardrails',
     description:
-      'Backtests, determinism checks, and SARIF alerts run on every update so regressions are caught before they reach the community.',
+      'Determinism checks, regression backtests, and SARIF alerts protect the knowledge base so contributors trust every update.',
   },
 ];
 
 const stats = [
-  { amount: '1,000+', title: 'Markdown knowledge assets spanning SORA, Polkaswap, Fearless, TONSwap, and more', icon: 'tabler:layers-union' },
-  { amount: '10+', title: 'Active sync pipelines across wiki docs, GitHub repos, partner sites, and Medium feeds', icon: 'tabler:network' },
-  { amount: '930 MB', title: 'ChromaDB + BM25 indices rebuilt on every ingest cycle to serve fresh search results', icon: 'tabler:database' },
-  { amount: 'Nightly', title: 'Automated syncs, provenance snapshots, and CI guardrails validating each knowledge base update', icon: 'tabler:shield-lock' },
+  { amount: '1,000+', title: 'Curated knowledge assets from the SORA wiki, Polkaswap docs, Fearless Wallet, TONSWAP, and community GitHub repos', icon: 'tabler:layers-union' },
+  { amount: '10+', title: 'Active sync pipelines keeping wiki docs, GitHub repos, partner sites, and Medium feeds aligned with release cadence', icon: 'tabler:network' },
+  { amount: '930 MB', title: 'Verified ChromaDB and BM25 indices refreshed each ingest so search stays current without sacrificing precision', icon: 'tabler:database' },
+  { amount: 'Nightly', title: 'Nightly validation across sync jobs, provenance snapshots, and CI guardrails so regressions surface before publication', icon: 'tabler:shield-lock' },
 ];
 
 const timelineItems = [
   {
     title: '2022 — Foundations for SORA participation',
     description:
-      'Demeter rewards, SORA parachain tooling, and XSTUSD laid the groundwork. Soranauts began charting these moves so the community could follow along without decoding Substrate docs.',
+      'Demeter rewards, SORA parachain tooling, and XSTUSD laid the groundwork. Soranauts documented these steps so the community could onboard without deciphering raw Substrate references.',
     icon: 'tabler:flag',
   },
   {
     title: '2023 — Ecosystem momentum',
     description:
-      'SORA DAO, trustless bridges, Polkaswap charts, and validator tooling shipped. We expanded coverage and launched tutorials that help users stake, bridge, and trade with confidence.',
+      'SORA DAO, trustless bridges, Polkaswap analytics, and validator tooling shipped. We expanded coverage with tutorials that help contributors stake, bridge, and trade with confidence.',
     icon: 'tabler:rocket',
   },
   {
     title: '2024 — Kensetsu era in progress',
     description:
-      'Kensetsu, dynamic fees, KUSD, cross-chain bridges, and governance upgrades are actively progressing. Our KB tracks each milestone so contributors see what’s shipping next.',
+      'Kensetsu settlement rails, dynamic fees, KUSD, cross-chain bridges, and governance upgrades are actively progressing. Our knowledge base tracks each milestone so contributors see what’s shipping next.',
     icon: 'tabler:timeline-event',
   },
   {
     title: '2025 — Nexus launch horizon',
     description:
-      'SORA v3 on Hyperledger Iroha, SORAacles, Bitcoin bridge support, and the SORA Societas initiative are on deck. Soranauts keeps this roadmap legible and ready for action.',
+      'SORA v3 on Hyperledger Iroha, SORAacles, Bitcoin bridge support, Nexus, and the SORA Societas initiative are being built. Soranauts keeps the roadmap legible so collaborators know where help is needed.',
     icon: 'tabler:planet',
   },
 ];
@@ -125,7 +125,7 @@ const supportItems = [
     icon: 'tabler:heart-handshake',
     title: 'Back the mission',
     description:
-      'Help us keep independent research, tutorials, and infrastructure alive. Every contribution powers new guides, audits, and tools for the ecosystem.',
+      'Help fund independent research, audits, tutorials, and retrieval infrastructure that keep the ecosystem verifiable.',
     callToAction: {
       href: '/donate',
       text: 'Donate to Soranauts',
@@ -136,7 +136,7 @@ const supportItems = [
     icon: 'tabler:message-circle-2',
     title: 'Stay close to the pulse',
     description:
-      'Join the Soranauts Telegram to swap notes, ask questions, and collaborate with builders pushing SORA’s v3 launch and Polkaswap improvements forward.',
+      'Join the Soranauts Telegram to trade notes, surface blockers, and collaborate with builders advancing SORA v3 and Polkaswap upgrades.',
     callToAction: {
       href: 'https://t.me/Soranauts',
       target: '_blank',
@@ -148,7 +148,7 @@ const supportItems = [
     icon: 'tabler:book',
     title: 'Go deeper with research',
     description:
-      'From integrated plan breakdowns to safety guides, our blog distills complex releases into step-by-step narratives you can trust.',
+      'Explore integrated plan breakdowns, safety guides, and research digests curated from our knowledge base.',
     callToAction: {
       href: '/blog',
       text: 'Browse latest posts',
@@ -162,7 +162,7 @@ const resourceLinks = [
     icon: 'tabler:clipboard-check',
     title: 'SORA Network Changelog',
     description:
-      'Follow network releases, bridge upgrades, and validator tooling milestones captured in the public development changelog.',
+      'Track validator tooling, bridge upgrades, and runtime releases documented by the core team in the public changelog.',
     href: 'https://wiki.sora.org/changelog.html',
     external: true,
   },
@@ -170,7 +170,7 @@ const resourceLinks = [
     icon: 'tabler:shield-checkered',
     title: 'Polkaswap Ecosystem Updates',
     description:
-      'Stay current on Polkaswap feature releases, liquidity campaigns, and Kensetsu progress via the ecosystem update feed.',
+      'Follow liquidity campaigns, Kensetsu integration notes, and Polkaswap feature drops as they are published to the ecosystem update feed.',
     href: 'https://medium.com/polkaswap',
     external: true,
   },
@@ -178,8 +178,9 @@ const resourceLinks = [
     icon: 'tabler:route',
     title: 'SORA Integrated Plan Insights',
     description:
-      'See how the roadmap translates into action with our deep-dive on upcoming launches, Kensetsu phases, and Polkaswap upgrades.',
+      'Read the official Integrated Plan to understand what’s live, what’s in flight, and how upcoming releases fit together.',
     href: 'https://wiki.sora.org/integrated-plan.html',
+    external: true,
   },
 ];
 ---
@@ -193,16 +194,16 @@ const resourceLinks = [
           Mission Update
         </span>
         <h1 class="mt-6 text-4xl font-bold leading-tight text-text-main md:text-5xl lg:text-6xl">
-          We help the world understand and support SORA’s supranational economy.
+          Soranauts is the neutral, verified knowledge hub for SORA v3, Polkaswap, Kensetsu, and the Token Bonding Curve.
         </h1>
         <p class="mt-6 text-lg text-text-muted">
-          Soranauts exists so that the breakthroughs behind SORA v3, Polkaswap, and the Token Bonding Curve stay accessible to everyone — not just protocol insiders. We translate the roadmap, surface verified insights from our production-ready knowledge base, and give builders, validators, and explorers the guardrails they need to act.
+          We keep SORA’s supranational economy — the borderless monetary system behind SORA v3, Polkaswap, Kensetsu, and the Token Bonding Curve — legible for everyone. Soranauts turns roadmap signals into vetted, actionable guidance grounded in a production-hardened knowledge base so builders, validators, and contributors can act with confidence.
         </p>
         <div class="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:gap-4">
           <Button
             variant="primary"
             href="/donate"
-            text="Support the mission"
+            text="Support Soranauts"
             icon="tabler:heart"
             class="w-full justify-center sm:w-auto sm:min-w-[220px]"
           />
@@ -210,14 +211,14 @@ const resourceLinks = [
             variant="secondary"
             href="https://t.me/Soranauts"
             target="_blank"
-            text="Join our Telegram"
+            text="Join the Telegram community"
             icon="tabler:send"
             class="w-full justify-center sm:w-auto sm:min-w-[220px]"
           />
           <Button
             variant="tertiary"
             href={articleLinks.latest}
-            text="Read latest research"
+            text="Review flagship research"
             icon="tabler:arrow-up-right"
             class="w-full justify-center border-border-subtle text-text-muted hover:border-brand-500 hover:text-link sm:w-auto sm:min-w-[220px]"
           />
@@ -225,19 +226,19 @@ const resourceLinks = [
         <ul class="mt-10 grid gap-4 text-base text-text-muted sm:grid-cols-2">
           <li class="flex items-start gap-3 rounded-xl border border-border-subtle bg-surface/90 p-4 shadow-sm">
             <Icon name="tabler:compass" class="mt-0.5 h-6 w-6 text-brand-500" />
-            <span>Practical walkthroughs for wallets, liquidity, staking, and governance so you can move from curiosity to participation.</span>
+            <span>Step-by-step guides for wallets, staking, liquidity, and validator safety so you can execute with confidence.</span>
           </li>
           <li class="flex items-start gap-3 rounded-xl border border-border-subtle bg-surface/90 p-4 shadow-sm">
             <Icon name="tabler:scan" class="mt-0.5 h-6 w-6 text-brand-500" />
-            <span>Evidence-backed research from a hardened knowledge base with provenance, nightly syncs, and automated QA.</span>
+            <span>Evidence-backed research from a hardened knowledge base where provenance, nightly syncs, and automated QA keep every claim traceable.</span>
           </li>
           <li class="flex items-start gap-3 rounded-xl border border-border-subtle bg-surface/90 p-4 shadow-sm">
             <Icon name="tabler:world" class="mt-0.5 h-6 w-6 text-brand-500" />
-            <span>Coverage that connects SORA, Hyperledger Iroha, and Polkaswap innovations to the broader Web3 movement.</span>
+            <span>Context that links SORA, Hyperledger Iroha, Polkaswap, bridges, and tooling so you understand the ecosystem in one view.</span>
           </li>
           <li class="flex items-start gap-3 rounded-xl border border-border-subtle bg-surface/90 p-4 shadow-sm">
             <Icon name="tabler:arrows-right-left" class="mt-0.5 h-6 w-6 text-brand-500" />
-            <span>Open collaboration with community leaders, auditors, and protocol teams to keep the mission transparent.</span>
+            <span>Open collaboration with community leads, auditors, and protocol teams to keep decisions and trade-offs transparent.</span>
           </li>
         </ul>
       </div>
@@ -245,9 +246,9 @@ const resourceLinks = [
         <div class="space-y-6">
           <div>
             <p class="text-xs font-semibold uppercase tracking-[0.3em] text-text-soft">Knowledge Base</p>
-            <h2 class="mt-3 text-2xl font-semibold text-text-main">Production hardened, continually expanding.</h2>
+            <h2 class="mt-3 text-2xl font-semibold text-text-main">Production-hardened knowledge you can audit.</h2>
             <p class="mt-4 text-sm text-text-muted">
-              The Soranauts knowledge base ingests authoritative sources, captures provenance, and fuses search results so contributors can cite evidence instantly. Hardening completed on <time datetime="2025-11-02">November 2, 2025</time>, and the system now runs as part of our daily operations.
+              The Soranauts knowledge base ingests authoritative sources, captures provenance, and fuses search results so contributors can cite evidence instantly. Hardening completed on <time datetime="2025-11-02">November 2, 2025</time> as a stability milestone — provenance checks, nightly syncs, and automated QA now run as part of daily operations.
             </p>
           </div>
           <div class="grid gap-4">
@@ -420,10 +421,10 @@ const resourceLinks = [
     ]}
   >
     <Fragment slot="title">
-      Help us keep the decentralized frontier approachable.
+      Help us keep SORA’s roadmap verifiable.
     </Fragment>
     <Fragment slot="subtitle">
-      Every guide we publish and every retrieval improvement we ship is designed to make SORA’s mission tangible. Your support turns roadmap milestones into collective wins.
+      Your support funds independent audits, new guides, infrastructure maintenance, and retrieval tooling so the community can rely on trusted, up-to-date intelligence.
     </Fragment>
   </CallToAction>
 </PageLayout>
