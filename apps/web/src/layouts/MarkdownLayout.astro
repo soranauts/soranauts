@@ -17,7 +17,8 @@ const metadata: MetaData = {
   title: frontmatter?.title,
   ...frontmatter?.metadata,
 };
-const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
+// Default to V2 mode unless explicitly disabled
+const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 !== 'false';
 ---
 
 <Layout metadata={metadata}>
