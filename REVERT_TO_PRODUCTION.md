@@ -1,6 +1,20 @@
 # Revert to Production Site Version - Emergency Backup Plan
 
-## 📋 Backup Information
+## 📋 Latest Backup Information
+
+**Backup Created:** November 11, 2025  
+**Production Commit Hash:** `3458f1b0c3a4dc440859dd84ad68baf5bb810f63`  
+**Commit Message:** "Improve search highlight styling and fix features page search"  
+**Commit Date:** 2025-11-09 08:38:55 -0600
+
+**Backup Branch:** `backup/production-2025-11-11-121924`  
+**Backup Tag:** `backup-production-2025-11-11-121924`
+
+This backup represents the state of the production site before merging `feature/about-page-polish` on November 11, 2025.
+
+---
+
+## 📋 Previous Backup Information (November 4, 2025)
 
 **Backup Created:** November 4, 2025  
 **Production Commit Hash:** `06a2cf217c93d7209dbe16ecb8a272ef0da90702`  
@@ -23,10 +37,10 @@ This backup represents the state of the production site before any changes made 
 ```bash
 # Discard all local changes and reset to production state
 git fetch origin
-git reset --hard backup/pre-changelog-revamp-2025-11-04
+git reset --hard backup/production-2025-11-11-121924
 
 # Or reset to the backup tag
-git reset --hard backup-production-2025-11-04
+git reset --hard backup-production-2025-11-11-121924
 ```
 
 **If you have already committed changes:**
@@ -36,7 +50,7 @@ git reset --hard backup-production-2025-11-04
 git branch backup/current-state-$(date +%Y-%m-%d)
 
 # Reset main to production state
-git reset --hard backup/pre-changelog-revamp-2025-11-04
+git reset --hard backup/production-2025-11-11-121924
 
 # Force push to remote (USE WITH CAUTION - only if you're sure)
 git push origin main --force
@@ -46,7 +60,7 @@ git push origin main --force
 
 ```bash
 # Reset to the exact production commit
-git reset --hard 06a2cf217c93d7209dbe16ecb8a272ef0da90702
+git reset --hard 3458f1b0c3a4dc440859dd84ad68baf5bb810f63
 
 # If you need to force push
 git push origin main --force
