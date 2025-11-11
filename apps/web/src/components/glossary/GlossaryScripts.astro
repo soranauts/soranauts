@@ -1,4 +1,5 @@
-const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
+// Default to V2 mode unless explicitly disabled
+const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 !== 'false';
 ---
 
 {GLOSSARY_V2 && (
@@ -56,9 +57,25 @@ const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
         show(anchor);
       });
 
+      // Keyboard support: Enter/Space to open popover, Escape to close
       document.addEventListener('keydown', function(event) {
+        // Close popover with Escape
         if (event.key === 'Escape' && pop.getAttribute('aria-hidden') === 'false') {
           hide();
+          return;
+        }
+
+        // Open popover with Enter or Space when focus is on a glossary link
+        if (event.key === 'Enter' || event.key === ' ') {
+          const target = event.target;
+          const anchor = target?.closest?.('a.glossary');
+          
+          if (anchor && pop.getAttribute('aria-hidden') === 'true') {
+            // Prevent default link navigation for Enter/Space
+            event.preventDefault();
+            event.stopPropagation();
+            show(anchor);
+          }
         }
       });
 
@@ -84,6 +101,17 @@ const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
 
         pop.classList.toggle('g-pop--sheet', top < 160 || viewportWidth < 640);
         pop.setAttribute('aria-hidden', 'false');
+        
+        // Announce popover opening to screen readers
+        const announcement = titleText ? `Glossary definition for ${titleText}` : 'Glossary definition opened';
+        const liveRegion = document.createElement('div');
+        liveRegion.setAttribute('role', 'status');
+        liveRegion.setAttribute('aria-live', 'polite');
+        liveRegion.setAttribute('aria-atomic', 'true');
+        liveRegion.className = 'sr-only';
+        liveRegion.textContent = announcement;
+        document.body.appendChild(liveRegion);
+        setTimeout(() => document.body.removeChild(liveRegion), 1000);
 
         closeBtn.focus({ preventScroll: true });
       }
@@ -104,23 +132,4 @@ const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
   </script>
 )}
 
-{!GLOSSARY_V2 && (
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', () => {
-      document
-        .querySelectorAll('details > summary a.glossary-term, details p summary a.glossary-term')
-        .forEach((link) => {
-          const textNode = document.createTextNode(link.textContent || '');
-          link.parentNode?.replaceChild(textNode, link);
-        });
-
-      document.querySelectorAll('details > summary, details p summary').forEach((summary) => {
-        summary.style.display = 'flex';
-        summary.style.alignItems = 'center';
-        summary.style.justifyContent = 'space-between';
-        summary.style.width = '100%';
-      });
-    });
-  </script>
-)}
 

@@ -31,6 +31,17 @@ These overlays are defined via `color-mix()` so they automatically reference the
 - `error` — `#F97316`
 - `info` — `#38BDF8`
 
+**Glossary Category Colors**
+
+- `category-token` — `#F97316` (orange, for token-related terms)
+- `category-technology` — uses `brand-500` (red, for technology terms)
+- `category-governance` — `#7C3AED` (purple, for governance terms)
+- `category-defi` — `#15803D` (green, for DeFi terms)
+- `category-network` — `#2563EB` (blue, for network terms)
+- `category-economics` — `#BE185D` (pink, for economics terms)
+
+These category colors are used only within glossary contexts (`.glossary-index`, `.glossary-article`) and should not affect global link styling.
+
 No other random brand colors should be introduced without updating this file.
 
 ---
