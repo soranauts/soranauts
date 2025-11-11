@@ -215,20 +215,11 @@ const quickPathSections = quickPaths.map((path) => ({
 
     {isEnabled && (
       <>
-        <TagFilters 
-          client:load 
-          tags={islandTags} 
-          domains={domainOptions} 
-          traitFilters={traitFilters}
-          title="Search SORA Explorer"
-          description="Look up topics, tags, and curated journeys. Filters and sorting help you discover governance updates, DeFi strategies, and ecosystem insights."
-        />
-
         <section class="tag-hub-section" id="foundational">
       <div class="tag-hub-section__header">
         <h2>Foundational Topics</h2>
         <p class="tag-hub-section__description">
-          Start here for SORA’s core primitives—network tokens, liquidity venues, and economic
+          Start here for SORA's core primitives—network tokens, liquidity venues, and economic
           guardrails that every contributor should know.
         </p>
       </div>
@@ -284,6 +275,15 @@ const quickPathSections = quickPaths.map((path) => ({
         ))}
       </div>
     </section>
+
+        <TagFilters 
+          client:load 
+          tags={islandTags} 
+          domains={domainOptions} 
+          traitFilters={traitFilters}
+          title="Search SORA Explorer"
+          description="Look up topics, tags, and curated journeys. Filters and sorting help you discover governance updates, DeFi strategies, and ecosystem insights."
+        />
 
     <section class="tag-hub-section" id="domains">
       <div class="tag-hub-section__header">
