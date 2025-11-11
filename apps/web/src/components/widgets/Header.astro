@@ -65,7 +65,7 @@ const desktopNavLinks = desktopNavOrder
 
 const wikiButtonClass = 'sora-wiki-pill';
 const iconButtonClass =
-  'inline-flex h-10 w-10 items-center justify-center rounded-full text-text-muted transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface';
+  'inline-flex h-11 w-11 lg:h-12 lg:w-12 items-center justify-center rounded-full text-text-muted transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface';
 ---
 
 <header
@@ -78,7 +78,7 @@ const iconButtonClass =
 >
   <div class="header-surface absolute inset-0"></div>
   <div
-    class="mobile-nav-overlay absolute inset-0 md:hidden"
+    class="mobile-nav-overlay absolute inset-0 lg:hidden"
     aria-hidden="true"
     data-aw-mobile-overlay
   ></div>
@@ -93,7 +93,7 @@ const iconButtonClass =
     <div
       class:list={[
         { "mr-auto rtl:mr-0 rtl:ml-auto": position === "right" },
-        "flex w-full items-center justify-between md:hidden",
+        "flex w-full items-center justify-between lg:hidden",
       ]}
     >
       <a class="flex items-center" href={getHomePermalink()}>
@@ -104,21 +104,21 @@ const iconButtonClass =
       </div>
     </div>
 
-    <div class="hidden w-full items-center justify-between gap-8 md:flex">
+    <div class="hidden w-full items-center justify-between gap-4 lg:flex lg:gap-8">
       <div class="flex items-center">
         <a class="flex items-center" href={getHomePermalink()}>
           <Logo />
         </a>
       </div>
       <nav class="flex flex-1 justify-center" aria-label="Primary navigation">
-        <ul class="flex items-center gap-6 text-sm font-medium">
+        <ul class="flex items-center gap-4 lg:gap-6 text-xs lg:text-sm font-medium">
           {desktopNavLinks.map((link) => {
             const isActive = link.href === currentPath;
             return (
               <li>
                 <a
                   class:list={[
-                    "nav-link text-sm font-medium tracking-tight hover:underline decoration-2 underline-offset-8",
+                    "nav-link text-xs lg:text-sm font-medium tracking-tight hover:underline decoration-2 underline-offset-8",
                     { active: isActive },
                   ]}
                   href={link.href}
@@ -131,7 +131,7 @@ const iconButtonClass =
           })}
         </ul>
       </nav>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 lg:gap-3">
         {showToggleTheme && (
           <ToggleTheme
             class={iconButtonClass}
@@ -169,7 +169,7 @@ const iconButtonClass =
 
     <nav
       data-aw-mobile-nav
-      class:list={["mobile-nav md:hidden text-text-main"]}
+      class:list={["mobile-nav lg:hidden text-text-main"]}
       aria-label="Main navigation"
       aria-hidden="true"
     >
@@ -180,7 +180,7 @@ const iconButtonClass =
       )}
       <div
         class:list={[
-          "md:hidden flex h-full flex-col gap-10 pb-6",
+          "lg:hidden flex h-full flex-col gap-10 pb-6",
           showLayeredLogo ? "pt-20" : "",
         ]}
       >
@@ -194,7 +194,7 @@ const iconButtonClass =
             </div>
             <button
               type="button"
-              class="flex h-12 w-12 items-center justify-center rounded-full border border-border-subtle bg-surface/80 text-text-muted transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+              class="flex h-12 w-12 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-border-subtle bg-surface/80 text-text-muted transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
               aria-label="Close menu"
               aria-expanded="false"
               data-aw-toggle-menu
@@ -289,13 +289,13 @@ const iconButtonClass =
             <div class="flex items-center gap-2">
               {showToggleTheme && (
                 <ToggleTheme
-                  class="rounded-xl px-2 py-2 text-text-muted transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                  class="rounded-xl px-3 py-3 min-h-[44px] min-w-[44px] text-text-muted transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                   iconClass="w-6 h-6"
                 />
               )}
               <button
                 data-aw-search-trigger
-                class="rounded-xl px-2 py-2 text-text-muted transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                class="rounded-xl px-3 py-3 min-h-[44px] min-w-[44px] text-text-muted transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                 aria-label="Search"
                 title="Search (⌘K)"
               >
@@ -304,7 +304,7 @@ const iconButtonClass =
               {
                 showRssFeed && (
                   <a
-                    class="rounded-xl px-2 py-2 text-text-muted transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                    class="rounded-xl px-3 py-3 min-h-[44px] min-w-[44px] text-text-muted transition-colors duration-200 hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                     aria-label="RSS Feed"
                     href={getAsset('/rss.xml')}
                   >

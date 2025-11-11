@@ -179,7 +179,7 @@
   }
 
   #header .mobile-nav-overlay {
-    @apply pointer-events-none opacity-0 transition-opacity duration-200 ease-out md:hidden;
+    @apply pointer-events-none opacity-0 transition-opacity duration-200 ease-out lg:hidden;
     background: color-mix(in srgb, var(--overlay-strong) 55%, transparent);
     z-index: 20;
   }
@@ -189,7 +189,7 @@
   }
 
   #header nav.mobile-nav {
-    @apply pointer-events-none fixed inset-x-0 bottom-0 top-20 z-30 flex flex-col justify-between gap-10 overflow-y-auto rounded-t-3xl bg-surface px-6 pb-8 pt-8 backdrop-blur-xl translate-x-full opacity-0 transition-all duration-300 ease-out md:relative md:inset-auto md:z-auto md:flex md:h-auto md:translate-x-0 md:opacity-100 md:pointer-events-auto md:overflow-visible md:bg-transparent md:px-0 md:pb-0 md:pt-0 md:backdrop-blur-none md:rounded-none md:gap-0 md:transition-none;
+    @apply pointer-events-none fixed inset-x-0 bottom-0 top-20 z-30 flex flex-col justify-between gap-10 overflow-y-auto rounded-t-3xl bg-surface px-6 pb-8 pt-8 backdrop-blur-xl translate-x-full opacity-0 transition-all duration-300 ease-out lg:relative lg:inset-auto lg:z-auto lg:flex lg:h-auto lg:translate-x-0 lg:opacity-100 lg:pointer-events-auto lg:overflow-visible lg:bg-transparent lg:px-0 lg:pb-0 lg:pt-0 lg:backdrop-blur-none lg:rounded-none lg:gap-0 lg:transition-none;
   }
 
   .dark #header nav.mobile-nav {
@@ -210,6 +210,7 @@
 
   #header .mobile-primary-link {
     @apply relative flex items-center justify-between gap-3 rounded-2xl border border-border-subtle border-l-2 border-l-transparent bg-surface pl-7 pr-1 py-3 text-base font-semibold text-text-muted shadow-lg transition-colors duration-100 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface;
+    min-height: 44px;
   }
 
   .dark #header .mobile-primary-link {
@@ -239,7 +240,8 @@
   }
 
   #header .mobile-secondary-link {
-    @apply flex items-center justify-between rounded-lg px-3 py-2 text-base font-medium text-text-muted transition-colors duration-100 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface;
+    @apply flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-text-muted transition-colors duration-100 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface;
+    min-height: 44px;
   }
 
   .dark #header .mobile-secondary-link {
@@ -260,7 +262,7 @@
   }
 
   #header nav.mobile-nav .mobile-utility-bar {
-    @apply md:hidden pointer-events-none opacity-0 translate-y-4 transition-all duration-300 ease-out;
+    @apply lg:hidden pointer-events-none opacity-0 translate-y-4 transition-all duration-300 ease-out;
     padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
   }
 
@@ -289,14 +291,14 @@
   }
 
   #header .header-inner {
-    @apply relative mx-auto w-full px-4 py-3 md:px-6 lg:px-8;
+    @apply relative mx-auto w-full px-4 py-3 lg:px-6 xl:px-8;
   }
 
   .header-offset {
     height: var(--space-20);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .header-offset {
       height: var(--space-24);
     }
