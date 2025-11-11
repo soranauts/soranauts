@@ -85,6 +85,13 @@ body.glossary-v2 .g-pop__close {
   line-height: 1;
   cursor: pointer;
   color: var(--color-text-soft);
+  /* Ensure minimum 44×44px touch target for accessibility */
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -114,9 +114,7 @@
 }
 
 .glossary-search-shell {
-  position: sticky;
-  top: var(--space-20);
-  z-index: 10;
+  /* Removed sticky positioning - search stays at top of page for better UX when viewing term definitions */
   border-radius: var(--radius-3xl);
   border: 1px solid color-mix(in srgb, var(--color-border) 65%, transparent);
   background: color-mix(in srgb, var(--color-surface) 96%, var(--color-surface-soft) 4%);
@@ -129,9 +127,9 @@
   margin-right: auto;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .glossary-search-shell {
-    top: var(--space-24);
+    backdrop-filter: blur(12px);
   }
 }
 

@@ -8,6 +8,18 @@
   transition: color 150ms ease, text-decoration-color 150ms ease;
 }
 
+/* Ensure minimum touch target on mobile for accessibility */
+@media (max-width: 767px) {
+  .glossary-term,
+  a.glossary {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.125rem;
+    margin: -0.25rem -0.125rem;
+  }
+}
+
 .glossary-index .glossary-term {
   position: relative;
   display: inline-block;
@@ -18,6 +30,24 @@
 .glossary-index .glossary-term:focus {
   outline: 2px solid var(--color-link);
   outline-offset: 2px;
+}
+
+.glossary-term:focus-visible,
+a.glossary:focus-visible {
+  outline: 2px solid var(--overlay-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Link type indicators - subtle visual differentiation */
+a.glossary[data-link-type="full-page"] {
+  text-decoration-style: solid;
+  font-weight: 500;
+}
+
+a.glossary[data-link-type="anchor"],
+a.glossary[data-link-type="tooltip"] {
+  text-decoration-style: dotted;
 }
 
 .glossary-index .glossary-term:not([data-cat]):hover {
@@ -33,35 +63,35 @@
   color: var(--color-link);
 }
 
-/* Category colors (light) */
+/* Category colors (light) - using design tokens */
 .glossary-index .glossary-term[data-cat="token"],
 .glossary-index .glossary-term-token {
-  color: #F97316;
+  color: var(--color-category-token);
 }
 
 .glossary-index .glossary-term[data-cat="technology"],
 .glossary-index .glossary-term-technology {
-  color: #E3242D;
+  color: var(--color-category-technology);
 }
 
 .glossary-index .glossary-term[data-cat="governance"],
 .glossary-index .glossary-term-governance {
-  color: #7C3AED;
+  color: var(--color-category-governance);
 }
 
 .glossary-index .glossary-term[data-cat="defi"],
 .glossary-index .glossary-term-defi {
-  color: #15803D;
+  color: var(--color-category-defi);
 }
 
 .glossary-index .glossary-term[data-cat="network"],
 .glossary-index .glossary-term-network {
-  color: #2563EB;
+  color: var(--color-category-network);
 }
 
 .glossary-index .glossary-term[data-cat="economics"],
 .glossary-index .glossary-term-economics {
-  color: #BE185D;
+  color: var(--color-category-economics);
 }
 
 .glossary-index .glossary-term[data-cat="tag"],
@@ -69,10 +99,10 @@
   color: var(--color-text-soft);
 }
 
-/* Category hovers (light) */
+/* Category hovers (light) - using design tokens */
 .glossary-index .glossary-term[data-cat="token"]:hover,
 .glossary-index .glossary-term-token:hover {
-  color: #EA580C;
+  color: color-mix(in srgb, var(--color-category-token) 85%, black);
 }
 
 .glossary-index .glossary-term[data-cat="technology"]:hover,
@@ -82,22 +112,22 @@
 
 .glossary-index .glossary-term[data-cat="governance"]:hover,
 .glossary-index .glossary-term-governance:hover {
-  color: #8B5CF6;
+  color: color-mix(in srgb, var(--color-category-governance) 85%, black);
 }
 
 .glossary-index .glossary-term[data-cat="defi"]:hover,
 .glossary-index .glossary-term-defi:hover {
-  color: #16A34A;
+  color: color-mix(in srgb, var(--color-category-defi) 85%, black);
 }
 
 .glossary-index .glossary-term[data-cat="network"]:hover,
 .glossary-index .glossary-term-network:hover {
-  color: #3B82F6;
+  color: color-mix(in srgb, var(--color-category-network) 85%, black);
 }
 
 .glossary-index .glossary-term[data-cat="economics"]:hover,
 .glossary-index .glossary-term-economics:hover {
-  color: #DB2777;
+  color: color-mix(in srgb, var(--color-category-economics) 85%, black);
 }
 
 .glossary-index .glossary-term[data-cat="tag"]:hover,
@@ -108,42 +138,42 @@
 /* Dark mode categories */
 .dark .glossary-index .glossary-term[data-cat="token"],
 .dark .glossary-index .glossary-term-token {
-  color: #FDBA74;
+  color: color-mix(in srgb, var(--color-category-token) 70%, white);
 }
 
 .dark .glossary-index .glossary-term[data-cat="technology"],
 .dark .glossary-index .glossary-term-technology {
-  color: #F472B6;
+  color: var(--color-brand-400);
 }
 
 .dark .glossary-index .glossary-term[data-cat="governance"],
 .dark .glossary-index .glossary-term-governance {
-  color: #C4B5FD;
+  color: color-mix(in srgb, var(--color-category-governance) 70%, white);
 }
 
 .dark .glossary-index .glossary-term[data-cat="defi"],
 .dark .glossary-index .glossary-term-defi {
-  color: #4ADE80;
+  color: color-mix(in srgb, var(--color-category-defi) 70%, white);
 }
 
 .dark .glossary-index .glossary-term[data-cat="network"],
 .dark .glossary-index .glossary-term-network {
-  color: #93C5FD;
+  color: color-mix(in srgb, var(--color-category-network) 70%, white);
 }
 
 .dark .glossary-index .glossary-term[data-cat="economics"],
 .dark .glossary-index .glossary-term-economics {
-  color: #F9A8D4;
+  color: color-mix(in srgb, var(--color-category-economics) 70%, white);
 }
 
 .dark .glossary-index .glossary-term[data-cat="tag"],
 .dark .glossary-index .glossary-term-tag {
-  color: #E5E7EB;
+  color: var(--color-text-main);
 }
 
 .dark .glossary-index .glossary-term[data-cat="tag"]:hover,
 .dark .glossary-index .glossary-term-tag:hover {
-  color: #F9FAFB;
+  color: var(--color-text-main);
 }
 
 /* Tooltip positioning */

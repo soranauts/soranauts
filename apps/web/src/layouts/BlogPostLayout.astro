@@ -21,7 +21,8 @@ export interface Props {
 }
 
 const { post, url, metadata = {} } = Astro.props;
-const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 === 'true';
+// Default to V2 mode unless explicitly disabled
+const GLOSSARY_V2 = import.meta.env.GLOSSARY_V2 !== 'false';
 
 // Fetch all posts for related articles
 const allPosts = await fetchPosts();
@@ -164,53 +165,4 @@ const enhancedMetadata = {
     <Footer {...footerData} />
   </slot>
 
-  {!GLOSSARY_V2 && (
-    <script>
-      (() => {
-        const SHOW_MS = 8000;
-        let lastOpen = null;
-
-        function showTip(termEl) {
-          const tip = document.getElementById(termEl.getAttribute('aria-describedby') || '');
-          if (!tip) return;
-          const rect = termEl.getBoundingClientRect();
-          tip.hidden = false;
-          tip.style.left = `${rect.left + window.scrollX}px`;
-          tip.style.top = `${rect.bottom + window.scrollY + 6}px`;
-          if (lastOpen && lastOpen !== tip) lastOpen.hidden = true;
-          lastOpen = tip;
-          clearTimeout(tip._t);
-          tip._t = setTimeout(() => (tip.hidden = true), SHOW_MS);
-        }
-
-        document.addEventListener('click', (event) => {
-          const anchor = event.target.closest('a.glossary-term');
-          if (!anchor) {
-            if (lastOpen) lastOpen.hidden = true;
-            return;
-          }
-          const tip = document.getElementById(anchor.getAttribute('aria-describedby') || '');
-          if (tip && tip.hidden) {
-            event.preventDefault();
-            showTip(anchor);
-          }
-        });
-
-        document.addEventListener('keydown', (event) => {
-          if (event.key !== 'Enter') return;
-          const anchor = event.target.closest && event.target.closest('a.glossary-term');
-          if (!anchor) return;
-          const tip = document.getElementById(anchor.getAttribute('aria-describedby') || '');
-          if (tip && tip.hidden) {
-            event.preventDefault();
-            showTip(anchor);
-          }
-        });
-
-        document.addEventListener('keydown', (event) => {
-          if (event.key === 'Escape' && lastOpen) lastOpen.hidden = true;
-        });
-      })();
-    </script>
-  )}
 </Layout>
