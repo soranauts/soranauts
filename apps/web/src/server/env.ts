@@ -19,7 +19,7 @@ const envSchema = z.object({
   EMBED_MODEL: z.enum(['text-embedding-3-large', 'text-embedding-3-small']).default('text-embedding-3-large'),
   TOKENIZER: z.enum(['tiktoken-cl100k']).default('tiktoken-cl100k'),
   KB_DIR: z.string().default('./knowledge_base'),
-  INDEX_DIR: z.string().default('./knowledge_base/index'),
+  INDEX_DIR: z.string().default('./knowledge_base/.kb_index'),
   USER_AGENT: z.string().default('SoranautsBot/1.0 (+https://soranauts.com)'),
   REQUEST_TIMEOUT: z.string().transform((val) => parseInt(val, 10)).pipe(z.number()).default('12000'),
   MEDIUM_FEED_URL: z.string().url().default('https://sora-xor.medium.com/feed'),
@@ -49,7 +49,7 @@ const envSchema = z.object({
   QDRANT_URL: z.string().url().optional(),
   QDRANT_API_KEY: z.string().optional(),
   BM25_ENABLED: z.string().transform((val) => val === 'true' || val === '').pipe(z.boolean()).default('true'),
-  BM25_INDEX_DIR: z.string().default('./knowledge_base/index/bm25'),
+  BM25_INDEX_DIR: z.string().default('./knowledge_base/.kb_index/bm25'),
   RETRIEVE_ASOF_DEFAULT: z.string().datetime().optional(),
   HTML_NORMALIZE: z.string().transform((val) => val === 'true' || val === '').pipe(z.boolean()).default('true'),
   DEDUPE_SIMHASH_THRESHOLD: z.string().transform((val) => parseInt(val, 10)).pipe(z.number()).default('8'),
@@ -57,7 +57,7 @@ const envSchema = z.object({
   CI_WRITE_SARIF: z.string().transform((val) => val === 'true' || val === '').pipe(z.boolean()).default('true'),
   // Incremental ingestion & embedding cache
   KB_INCREMENTAL: z.string().transform((val) => val !== 'false').pipe(z.boolean()).default('true'),
-  KB_EMBED_CACHE_DIR: z.string().default('./knowledge_base/index/.embedding_cache'),
+  KB_EMBED_CACHE_DIR: z.string().default('./knowledge_base/.kb_index/.embedding_cache'),
   KB_DETERMINISM_NOCACHE: z.string().transform((val) => val === 'true').pipe(z.boolean()).default('false'),
   KB_SUBSET: z.string().default(''),
 });

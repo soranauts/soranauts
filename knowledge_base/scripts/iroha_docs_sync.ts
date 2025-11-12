@@ -5,13 +5,13 @@ import { join } from 'path';
 import { env } from './env';
 
 const IROHA_DOCS_REPO = 'https://github.com/hyperledger/iroha-2-docs';
-const IROHA_DOCS_DIR = join(env.KB_DIR, 'iroha_docs');
+const IROHA_DOCS_DIR = join(env.KB_DIR, 'curated', 'iroha_docs');
 
 async function main() {
   console.log('Syncing Iroha 2 docs...');
   
   // Ensure parent directory exists
-  mkdirSync(join(env.KB_DIR), { recursive: true });
+  mkdirSync(join(env.KB_DIR, 'curated'), { recursive: true });
   
   const repoExists = existsSync(join(IROHA_DOCS_DIR, '.git'));
   

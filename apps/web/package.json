@@ -56,7 +56,9 @@
     "kb:test:retrieval": "cd ../.. && tsx knowledge_base/scripts/tests/test-retrieval-golden.ts",
     "kb:bm25:build": "cd ../.. && tsx knowledge_base/scripts/bm25.ts --build",
     "kb:hero": "cd ../.. && tsx knowledge_base/scripts/image_wide_hero.ts",
-    "kb:pdf:import": "cd ../.. && tsx knowledge_base/scripts/pdf_import.ts"
+    "kb:pdf:import": "cd ../.. && tsx knowledge_base/scripts/pdf_import.ts",
+    "kb:migrate": "cd ../.. && tsx knowledge_base/scripts/migrate-frontmatter.ts",
+    "kb:validate": "cd ../.. && tsx knowledge_base/scripts/validate-kb.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.4",

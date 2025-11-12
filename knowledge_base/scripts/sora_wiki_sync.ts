@@ -5,13 +5,13 @@ import { join } from 'path';
 import { env } from './env';
 
 const SORA_DOCS_REPO = 'https://github.com/sora-xor/sora-docs';
-const SORA_DOCS_DIR = join(env.KB_DIR, 'wiki');
+const SORA_DOCS_DIR = join(env.KB_DIR, 'curated', 'wiki');
 
 async function main() {
   console.log('Syncing SORA docs (wiki.sora.org) from GitHub...');
   
   // Ensure parent directory exists
-  mkdirSync(join(env.KB_DIR), { recursive: true });
+  mkdirSync(join(env.KB_DIR, 'curated'), { recursive: true });
   
   const repoExists = existsSync(join(SORA_DOCS_DIR, '.git'));
   

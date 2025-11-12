@@ -24,39 +24,40 @@ package-lock.json
 .astro
 
 # --- Soranauts KB (local artifacts, do not commit) ---
-# Auto-generated/synced content (daily sync via GitHub Actions)
-knowledge_base/index/
+# Build artifacts (reproducible from curated content)
+knowledge_base/.kb_index/
 knowledge_base/index.baseline/
-knowledge_base/index/.embedding_cache/
 knowledge_base/**/*.sqlite3
 knowledge_base/**/*.bin
 knowledge_base/**/*.log
+# Raw source mirrors (not ingested directly)
+knowledge_base/sources/fearless_github/android/
+knowledge_base/sources/fearless_github/ios/
 # Embedded git repos (handled by sync scripts)
-knowledge_base/wiki/
-knowledge_base/iroha_docs/
-# Fearless GitHub cloned repos (handled by sync scripts)
-knowledge_base/fearless_github/android/
-knowledge_base/fearless_github/ios/
+knowledge_base/curated/wiki/
+knowledge_base/curated/iroha_docs/
 # Metadata files
 knowledge_base/scripts/.meta/
 # Scraped images (large, can be re-generated)
-knowledge_base/soramitsu_site/images/
-knowledge_base/ecosystem_updates/images/
-knowledge_base/polkaswap_updates/images/
-knowledge_base/fearless_updates/images/
-knowledge_base/tonswap_site/images/
-knowledge_base/tonswap_updates/images/
+knowledge_base/curated/soramitsu_site/images/
+knowledge_base/curated/ecosystem_updates/images/
+knowledge_base/curated/polkaswap_updates/images/
+knowledge_base/curated/fearless_updates/images/
+knowledge_base/curated/tonswap_site/images/
+knowledge_base/curated/tonswap_updates/images/
 # Daily synced content (auto-generated, do not commit)
 # These directories are populated by nightly sync workflow
-knowledge_base/ecosystem_updates/
-knowledge_base/polkaswap_updates/
-knowledge_base/fearless_updates/
-knowledge_base/tonswap_updates/
-knowledge_base/soramitsu_site/
-knowledge_base/tonswap_site/
-knowledge_base/articles/
+knowledge_base/curated/ecosystem_updates/
+knowledge_base/curated/polkaswap_updates/
+knowledge_base/curated/fearless_updates/
+knowledge_base/curated/tonswap_updates/
+knowledge_base/curated/soramitsu_site/
+knowledge_base/curated/tonswap_site/
+knowledge_base/curated/articles/
 # Keep only specific KB files (docs, configs, scripts)
 !knowledge_base/README.md
+!knowledge_base/KB_STANDARDS.md
+!knowledge_base/KB_REFACTOR_REPORT.md
 !knowledge_base/**/*.txt
 !knowledge_base/**/*.ts
 !knowledge_base/**/*.js
@@ -64,4 +65,5 @@ knowledge_base/articles/
 !knowledge_base/docs/**/*.md
 !knowledge_base/scripts/**/*.md
 # Keep root-level documentation files
-!knowledge_base/*.mdBACKUP_INFO_*.txt
+!knowledge_base/*.md
+!BACKUP_INFO_*.txt
