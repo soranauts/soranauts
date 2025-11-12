@@ -6,6 +6,7 @@ import { glob as globAsync } from 'glob';
 import matter from 'gray-matter';
 import { Command } from 'commander';
 import { env } from './env';
+import { computeAuthority } from './utils/authority';
 
 const program = new Command();
 program
@@ -25,6 +26,7 @@ export interface Bm25Document {
   source: string;
   source_url: string;
   snapshot_id: string;
+  authority: number; // Authority level: 1 (highest) to 4 (lowest), default 3
 }
 
 async function buildIndex(): Promise<MiniSearch<Bm25Document>> {
@@ -51,14 +53,20 @@ async function buildIndex(): Promise<MiniSearch<Bm25Document>> {
       const h1Match = parsed.content.match(/^#\s+(.+)$/m);
       const h1 = h1Match ? h1Match[1].trim() : '';
       
+      // Compute authority based on source and file path
+      const source = frontmatter.source || 'unknown';
+      const relativePath = filepath.replace(env.KB_DIR + '/', '');
+      const authority = computeAuthority(source, relativePath);
+      
       const doc: Bm25Document = {
         id: filepath,
         title: frontmatter.title || '',
         h1: h1,
         body: parsed.content,
-        source: frontmatter.source || 'unknown',
+        source: source,
         source_url: frontmatter.source_url || '',
         snapshot_id: frontmatter.snapshot_id || '',
+        authority: authority,
       };
       
       documents.push(doc);
@@ -71,7 +79,7 @@ async function buildIndex(): Promise<MiniSearch<Bm25Document>> {
   
   const search = new MiniSearch<Bm25Document>({
     fields: ['title', 'h1', 'body'],
-    storeFields: ['title', 'h1', 'source', 'source_url', 'snapshot_id'],
+    storeFields: ['title', 'h1', 'source', 'source_url', 'snapshot_id', 'authority'],
   });
   
   search.addAll(documents);
@@ -95,7 +103,7 @@ export async function loadIndex(): Promise<MiniSearch<Bm25Document>> {
   const indexData = JSON.parse(readFileSync(indexPath, 'utf8'));
   return MiniSearch.loadJSON(indexData, {
     fields: ['title', 'h1', 'body'],
-    storeFields: ['title', 'h1', 'source', 'source_url', 'snapshot_id'],
+    storeFields: ['title', 'h1', 'source', 'source_url', 'snapshot_id', 'authority'],
   });
 }
 

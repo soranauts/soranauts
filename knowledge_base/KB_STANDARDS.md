@@ -30,7 +30,12 @@ knowledge_base/
 │   ├── tonswap_updates/     # Medium posts (TONSWAP)
 │   ├── soramitsu_site/      # Scraped SORAMITSU website
 │   ├── tonswap_site/        # Scraped TONSWAP website
-│   └── articles/            # Reference articles
+│   ├── articles/            # Reference articles
+│   ├── internal-research/  # Internal research notes (Authority Level 1)
+│   └── community-memos/     # Community governance memos (Authority Level 3)
+│       ├── 2023/            # Memos organized by year
+│       ├── 2024/
+│       └── 2025/
 ├── meta/                # Metadata and configuration
 │   └── tag-suggestion-matrix.md
 ├── docs/                # KB documentation
@@ -147,6 +152,10 @@ The `source` field must be one of:
 - `article` - Reference articles
 - `imported` - Manually imported content
 - `meta` - Metadata/documentation files
+- `bck21`, `bck22`, `bck23`, `bck24` - BCK research papers
+- `internal-research` - Internal research notes (Authority Level 1, requires team confirmation)
+- `community-memo` - Community governance memos (Authority Level 3, supplemental)
+- `pdf` - PDF imports
 
 ## Ingestion Rules
 
@@ -256,6 +265,64 @@ Snapshots are read-only historical records for reproducibility and auditing.
 - **Optional pruning** - remove obviously redundant snapshots (e.g., empty or identical to previous)
 - **Documentation** - Each snapshot should have a manifest documenting what was captured
 
+## Authority Weighting
+
+### Overview
+
+The KB system uses authority-based scoring to prioritize high-quality, authoritative sources in retrieval results. Authority is computed automatically at ingestion time based on source type and file path.
+
+### Authority Levels
+
+- **Level 1 (Highest)**: BCK research papers, formal whitepapers/specs, internal research
+  - BCK papers: `source` in `["bck21", "bck22", "bck23", "bck24"]`
+  - Path pattern: `curated/research/bck*`
+  - Internal research: `source` in `["internal-research"]` or path pattern `curated/internal-research/`
+  - **Note**: Internal research requires explicit confirmation from SORAMITSU Core Research Team to be assigned Level 1
+  
+- **Level 2 (High)**: Official documentation
+  - SORA wiki: `curated/wiki/`
+  - Iroha docs: `curated/iroha_docs/`
+  - Official sites: `curated/soramitsu_site/`, `curated/tonswap_site/`
+  - Source types: `wiki`, `iroha_docs`, `soramitsu`, `tonswap_site`
+  
+- **Level 3 (Normal)**: Soranauts editorial content, community memos (default)
+  - Ecosystem updates, articles, guides, governance notes
+  - Community memos: `source` in `["community-memo"]` or path pattern `curated/community-memos/`
+  - Default for any content that doesn't match Level 1 or 2
+  - Community memos are supplemental and never override Level 1–2 sources
+  
+- **Level 4 (Low)**: External blogs/opinion/unverified commentary
+  - Currently defaults to Level 3 (can be extended if external sources are identified)
+
+### Authority Multipliers
+
+Authority affects retrieval scoring through multipliers:
+
+- **Level 1**: ×1.30 (+30% boost)
+- **Level 2**: ×1.15 (+15% boost)
+- **Level 3**: ×1.00 (neutral)
+- **Level 4**: ×0.85 (-15% penalty)
+
+### Application
+
+Authority multipliers are applied:
+- **Vector search**: After computing similarity scores
+- **BM25 search**: After computing BM25 relevance scores
+- **Hybrid fusion**: Applied before combining BM25 and vector scores (both RRF and alpha blending)
+
+### Computation
+
+Authority is computed deterministically in `knowledge_base/scripts/utils/authority.ts`:
+- Based on `source` field from frontmatter
+- Based on file path relative to KB root
+- Defaults to Level 3 if no match
+
+### Storage
+
+- Stored in `ChunkMetadata.authority` (optional, defaults to 3)
+- Stored in `Bm25Document.authority` (required, defaults to 3)
+- Persisted in ChromaDB metadata and BM25 index
+
 ## Validation
 
 ### Automated Checks
@@ -265,6 +332,7 @@ Snapshots are read-only historical records for reproducibility and auditing.
 3. **Schema Compliance**: Required fields present and valid
 4. **Slug Uniqueness**: No duplicate slugs
 5. **Link Validation**: Internal links resolve correctly
+6. **Authority Assignment**: BCK papers → Level 1, official docs → Level 2, others → Level 3
 
 ### CI Integration
 

@@ -24,17 +24,24 @@ Additionally, when you push changes to `knowledge_base/**` files, the `kb-index.
 
 ### Step 1: Create a Markdown File
 
-Create a new markdown file in one of these locations:
-- `knowledge_base/articles/` - For reference articles
-- `knowledge_base/internal/` - For private/internal notes (create this directory if needed)
+Create a new markdown file in:
+- `knowledge_base/curated/internal-research/` - For internal research notes (Authority Level 1)
 
-Example structure:
+**Important**: Internal research notes require explicit confirmation from SORAMITSU Core Research Team to be assigned Authority Level 1.
+
+Example structure (canonical KB schema):
 ```markdown
 ---
-title: Internal Notes - [Topic]
-source: internal
-date: YYYY-MM-DD
-tags: [internal, topic1, topic2]
+title: "Internal Notes - [Topic]"
+slug: "internal-notes-topic"
+source: "internal-research"
+source_url: "internal://soranauts/internal-research/internal-notes-topic"
+publishDate: "2025-09-30T00:00:00Z"
+updateDate: "2025-11-04T00:00:00Z"
+content_sha256: ""
+snapshot_id: "2025-11-04"
+verified_by: "SORAMITSU Core Research Team"
+tags: ["internal", "topic1", "topic2"]
 ---
 
 # Your Title
@@ -45,7 +52,7 @@ tags: [internal, topic1, topic2]
 ### Step 2: Add Your Information
 
 Edit the template file at:
-- `knowledge_base/articles/internal-notes-tonswap-sora-v3-iroha.md`
+- `knowledge_base/curated/internal-research/internal-notes-tonswap-sora-v3-iroha.md`
 
 Or create a new file with your specific information.
 
@@ -155,16 +162,21 @@ pnpm index:glossary
 
 ## File Organization
 
-Suggested structure for internal notes:
+Current structure for internal notes:
 
 ```
 knowledge_base/
-  articles/
-    internal-notes-tonswap-sora-v3-iroha.md  # Your private notes
-  internal/  # Alternative: dedicated directory for private info
-    tonswap-details.md
-    sora-v3-details.md
-    iroha-details.md
+  curated/
+    internal-research/  # Internal research (Authority Level 1)
+      internal-notes-tonswap-sora-v3-iroha.md
+    community-memos/    # Community memos (Authority Level 3)
+      ├── 2023/         # Organized by year
+      ├── 2024/
+      │   ├── SORA Community Memo-2024-January.pdf
+      │   └── sora-community-memo-2024-january.md  # Auto-generated
+      └── 2025/
+          ├── SORA Community Memo-2025-September.pdf
+          └── sora-community-memo-2025-september.md  # Auto-generated
 ```
 
 ## Security Considerations
@@ -211,6 +223,56 @@ knowledge_base/
 **Need to exclude certain files?**
 - Files in `knowledge_base/index/` and `knowledge_base/snapshots/` are automatically excluded
 - You can modify the ignore patterns in `knowledge_base/scripts/ingest.ts` if needed
+
+## Method 3: Adding Community Memos
+
+Community memos provide contextual, supplemental information about ecosystem developments and governance decisions. They are indexed with **Authority Level 3** (supplemental, never override Level 1–2 sources).
+
+### Step 1: Place PDF or Create Markdown
+
+Place PDF memo files in the appropriate year subdirectory:
+- `knowledge_base/curated/community-memos/2023/`
+- `knowledge_base/curated/community-memos/2024/`
+- `knowledge_base/curated/community-memos/2025/`
+
+The ingestion pipeline will recursively scan all year subdirectories and automatically convert PDFs to markdown (placed next to the PDF in the same folder). Alternatively, create markdown files directly in the appropriate year folder.
+
+### Step 2: Use Proper Frontmatter
+
+```markdown
+---
+title: "Community Memo – 2025 September"
+slug: "community-memo-2025-09"
+source: "community-memo"
+source_url: "internal://soranauts/community-memos/2025/community-memo-2025-09"
+publishDate: "2025-09-30T00:00:00Z"
+updateDate: "2025-09-30T00:00:00Z"
+content_sha256: ""
+snapshot_id: "2025-09-30"
+verified_by: "Community Governance Group"
+tags: ["sora", "governance", "ecosystem", "community"]
+---
+```
+
+### Step 3: Exclude Invoices
+
+To exclude a file from ingestion:
+- **Filename method**: Include `invoice` in the filename (e.g., `2025/Community-Memo-Invoice-2025-09.pdf`)
+- **Frontmatter method**: Add `type: invoice` to the frontmatter
+
+**Note**: Invoices can be archived in year folders for record-keeping but will be automatically excluded from ingestion via these rules.
+
+### Step 4: Ingest
+
+Run the ingestion process:
+```bash
+pnpm --filter @soranauts/web kb:ingest
+```
+
+Or use the PDF import script to convert PDFs first:
+```bash
+pnpm --filter @soranauts/web tsx knowledge_base/scripts/pdf_import.ts
+```
 
 ## Next Steps
 

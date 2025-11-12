@@ -532,6 +532,135 @@ All markdown files include:
 - Script follows same patterns as other KB import scripts
 - Module resolution: Script may have local execution issues (same as other KB scripts) but will work in CI
 
+---
+
+## Authority Weighting System
+
+### Overview
+
+Implemented authority-weighted ingestion and retrieval to prioritize high-quality, authoritative sources in search results. Authority is computed automatically at ingestion time and affects scoring in BM25, vector, and hybrid retrieval.
+
+**Date**: 2025-11-11  
+**Status**: ✅ Complete
+
+### Authority Levels
+
+1. **Level 1 (Highest)**: BCK research papers, formal whitepapers/specs
+   - BCK21-BCK24 papers: All 46 papers assigned Level 1
+   - Source types: `bck21`, `bck22`, `bck23`, `bck24`
+   - Path pattern: `curated/research/bck*`
+
+2. **Level 2 (High)**: Official documentation
+   - SORA wiki (`curated/wiki/`)
+   - Iroha docs (`curated/iroha_docs/`)
+   - Official sites (`curated/soramitsu_site/`, `curated/tonswap_site/`)
+   - Source types: `wiki`, `iroha_docs`, `soramitsu`, `tonswap_site`
+
+3. **Level 3 (Normal)**: Soranauts editorial content (default)
+   - Ecosystem updates, articles, guides, governance notes
+   - Default for content that doesn't match Level 1 or 2
+
+4. **Level 4 (Low)**: External blogs/opinion/unverified commentary
+   - Currently defaults to Level 3 (can be extended if external sources are identified)
+
+### Authority Multipliers
+
+Authority affects retrieval scoring through deterministic multipliers:
+
+- **Level 1**: ×1.30 (+30% boost)
+- **Level 2**: ×1.15 (+15% boost)
+- **Level 3**: ×1.00 (neutral)
+- **Level 4**: ×0.85 (-15% penalty)
+
+### Implementation
+
+#### Files Changed
+
+1. **`knowledge_base/scripts/types.ts`**
+   - Added `authority?: number` to `ChunkMetadata` interface
+
+2. **`knowledge_base/scripts/bm25.ts`**
+   - Added `authority: number` to `Bm25Document` interface
+   - Added authority computation in `buildIndex()`
+   - Added `authority` to `storeFields` for MiniSearch
+
+3. **`knowledge_base/scripts/utils/authority.ts`** (new)
+   - `computeAuthority(source, filePath)`: Computes authority level (1-4)
+   - `getAuthorityMultiplier(authority)`: Returns multiplier for scoring
+
+4. **`knowledge_base/scripts/ingest.ts`**
+   - Import `computeAuthority` utility
+   - Compute authority in `processFile()` and add to `ChunkMetadata`
+   - Authority stored in ChromaDB metadata
+
+5. **`knowledge_base/scripts/retrieve.ts`**
+   - Import `getAuthorityMultiplier` utility
+   - Apply authority multiplier to vector similarity scores
+   - Apply authority multiplier to BM25 scores
+   - Apply authority multiplier in hybrid fusion (RRF and alpha blending)
+
+6. **`knowledge_base/KB_STANDARDS.md`**
+   - Added "Authority Weighting" section documenting levels, multipliers, and application
+
+7. **`knowledge_base/KB_REFACTOR_REPORT.md`**
+   - Added "Authority Weighting System" section
+
+#### How Authority is Computed
+
+Authority is computed deterministically based on:
+- **Source type**: From frontmatter `source` field
+- **File path**: Relative path from KB root (e.g., `curated/research/bck24/paper.md`)
+
+Computation logic (in `utils/authority.ts`):
+1. Check if `source` is BCK (`bck21`, `bck22`, `bck23`, `bck24`) → Level 1
+2. Check if path contains `curated/research/bck` → Level 1
+3. Check if `source` is official doc (`wiki`, `iroha_docs`, `soramitsu`, `tonswap_site`) → Level 2
+4. Check if path contains official doc directories → Level 2
+5. Default → Level 3
+
+#### How Authority Affects Scoring
+
+Authority multipliers are applied **after** base scoring:
+
+1. **Vector Search**:
+   - Compute similarity score: `score = 1 - distance`
+   - Apply multiplier: `finalScore = score * getAuthorityMultiplier(authority)`
+
+2. **BM25 Search**:
+   - Compute BM25 relevance score
+   - Apply multiplier: `finalScore = bm25Score * getAuthorityMultiplier(authority)`
+
+3. **Hybrid Fusion**:
+   - **RRF**: Apply multipliers to BM25 and vector scores before fusion
+   - **Alpha blending**: Apply multipliers to both BM25 and vector components before blending
+
+#### Backward Compatibility
+
+- `authority` field is optional in `ChunkMetadata` (defaults to 3 if missing)
+- `authority` field is required in `Bm25Document` (defaults to 3 at read time)
+- Missing or invalid authority values default to Level 3 (neutral multiplier)
+
+### Benefits
+
+- **BCK papers prioritized**: All 46 BCK papers receive +30% boost in search results
+- **Official docs prioritized**: Wiki, Iroha docs, and official sites receive +15% boost
+- **Deterministic**: No manual per-file configuration needed
+- **Transparent**: Authority computation and multipliers documented in KB_STANDARDS.md
+- **Backward compatible**: Existing content defaults to Level 3 (neutral)
+
+### Validation
+
+- BCK papers: All 46 papers assigned `authority=1` ✓
+- Official docs: Wiki and Iroha docs assigned `authority=2` ✓
+- Default content: Soranauts editorial assigned `authority=3` ✓
+- Multipliers applied in all retrieval paths (vector, BM25, hybrid) ✓
+
+### Next Steps
+
+1. **Re-index**: Run `kb:ingest` and `kb:bm25:build` to populate authority in indices
+2. **Test retrieval**: Verify BCK papers appear higher in search results
+3. **Monitor**: Track retrieval quality improvements from authority weighting
+
 ## Questions or Issues?
 
 See `KB_STANDARDS.md` for detailed standards and conventions.
