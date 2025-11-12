@@ -57,8 +57,8 @@
     "kb:bm25:build": "cd ../.. && tsx knowledge_base/scripts/bm25.ts --build",
     "kb:hero": "cd ../.. && tsx knowledge_base/scripts/image_wide_hero.ts",
     "kb:pdf:import": "cd ../.. && tsx knowledge_base/scripts/pdf_import.ts",
-    "kb:migrate": "cd ../.. && tsx knowledge_base/scripts/migrate-frontmatter.ts",
-    "kb:validate": "cd ../.. && tsx knowledge_base/scripts/validate-kb.ts"
+    "kb:migrate": "node ../../knowledge_base/scripts/run-migrate.cjs",
+    "kb:validate": "node ../../knowledge_base/scripts/run-validate.cjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.4",
