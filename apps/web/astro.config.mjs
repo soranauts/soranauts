@@ -40,6 +40,15 @@ const generatedRedirects = Object.fromEntries(
 
 const siteRedirects = {
   '/improvements': '/changelog',
+  // SORA article redirects
+  '/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation': '/sora-ecosystem-explained',
+  '/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation/': '/sora-ecosystem-explained',
+  '/soramitsu-sora-polkaswap': '/sora-ecosystem-explained',
+  '/soramitsu-sora-polkaswap/': '/sora-ecosystem-explained',
+  '/sora-defi-ecosystem': '/sora-ecosystem-explained',
+  '/sora-defi-ecosystem/': '/sora-ecosystem-explained',
+  '/sora-ecosystem': '/sora-ecosystem-explained',
+  '/sora-ecosystem/': '/sora-ecosystem-explained',
 };
 
 const redirects = {
