@@ -54,6 +54,7 @@ const postCollection = defineCollection({
     title: z.string(),
     excerpt: z.string().optional(),
     image: z.string().optional(),
+    customSlug: z.string().optional(), // Custom field to override URL slug
 
     category: z.string().optional(),
     tags: z.array(z.string()).optional(),
