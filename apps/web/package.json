@@ -57,7 +57,7 @@
     "kb:bm25:build": "cd ../.. && tsx knowledge_base/scripts/bm25.ts --build",
     "kb:hero": "cd ../.. && tsx knowledge_base/scripts/image_wide_hero.ts",
     "kb:pdf:import": "cd ../.. && tsx knowledge_base/scripts/pdf_import.ts",
-    "kb:bck24:import": "cd ../.. && tsx knowledge_base/scripts/bck24_import.ts",
+    "kb:bck24:import": "node ../../knowledge_base/scripts/bck24_import_node.cjs",
     "kb:migrate": "node ../../knowledge_base/scripts/run-migrate.cjs",
     "kb:validate": "node ../../knowledge_base/scripts/run-validate.cjs"
   },
