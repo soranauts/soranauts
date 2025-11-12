@@ -336,20 +336,35 @@ Files in `curated/ecosystem_updates/` and other curated directories use legacy f
 - [x] .gitignore updated
 - [x] Environment variables updated
 - [x] Documentation complete
-- [ ] CI workflows pass (test after push)
+- [x] Pre-push hook created and tested
+- [x] Branch rebased on latest main
+- [x] Branch pushed to origin for CI validation
+- [x] Pre-push hook created and configured (blocks files >5MB)
+- [x] Branch pushed to origin: `feature/kb-refactor-v1`
+- [ ] CI workflows pass (monitoring in progress)
 - [ ] Migration script tested in CI (local execution has module resolution issues)
 - [ ] Validation script tested in CI (local execution has module resolution issues)
 - [ ] Ingestion tested in CI
 - [x] Large files check: `.kb_index/` is gitignored (929MB), no large tracked files detected
 - [x] `.gitignore` properly excludes all build artifacts and large source mirrors
+- [x] Pre-push hook verified: no large files detected
 
 ### Post-Merge Tasks
 
-1. **Run Migration**: Execute `kb:migrate` in CI to migrate all frontmatter
-2. **Run Validation**: Execute `kb:validate` to verify compliance
-3. **Test Ingestion**: Run `kb:ingest` to rebuild index
-4. **Monitor CI**: Ensure all workflows pass consistently
+1. **Monitor CI**: Verify all workflows (`kb-sync.yml`, `kb-index.yml`) pass
+2. **Run Migration**: Execute `kb:migrate` in CI to migrate all frontmatter (after CI validation)
+3. **Run Validation**: Execute `kb:validate` to verify compliance
+4. **Test Ingestion**: Run `kb:ingest` to rebuild index
 5. **Update Contributors**: Add note to README about `kb:validate` requirement
+
+### Current Status (2025-11-11)
+
+- ✅ **Pre-push hook**: Created and configured, successfully blocks large files
+- ✅ **Script wrappers**: Updated to match CI execution pattern
+- ✅ **Documentation**: Updated with module resolution limitation details
+- ✅ **Branch pushed**: `feature/kb-refactor-v1` pushed to origin
+- ⏳ **CI Validation**: In progress - monitoring GitHub Actions workflows
+- ⏳ **Merge**: Waiting for CI to pass before merging to main
 
 ### Rollback Plan
 
