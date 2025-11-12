@@ -33,6 +33,9 @@ knowledge_base/**/*.log
 # Raw source mirrors (not ingested directly)
 knowledge_base/sources/fearless_github/android/
 knowledge_base/sources/fearless_github/ios/
+# BCK24 PDFs and RIS files (raw sources, not ingested)
+knowledge_base/sources/bck24/*.pdf
+knowledge_base/sources/bck24/*.ris
 # Embedded git repos (handled by sync scripts)
 knowledge_base/curated/wiki/
 knowledge_base/curated/iroha_docs/

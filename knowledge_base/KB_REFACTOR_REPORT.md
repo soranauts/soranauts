@@ -377,6 +377,111 @@ git revert <merge-commit-sha>
 git reset --hard <previous-main-sha>
 ```
 
+## BCK24 Integration
+
+### Overview
+
+Integrated Blockchain Kaigi 2024 (BCK24) proceedings as a high-quality research source following KB refactor standards.
+
+### Implementation
+
+**Date**: 2025-11-11  
+**Source**: JPS Conference Proceedings Vol. 44 (BCK24)  
+**URL**: https://journals.jps.jp/doi/book/10.7566/BCK24
+
+#### Directory Structure
+
+- **Raw sources**: `knowledge_base/sources/bck24/`
+  - RIS files (`.ris`) for bibliographic metadata
+  - PDF files (`.pdf`) for full papers
+  - Both are gitignored (not committed)
+
+- **Curated content**: `knowledge_base/curated/research/bck24/`
+  - One markdown file per paper
+  - Follows KB_STANDARDS.md frontmatter schema
+  - Ready for ingestion
+
+#### Script: `bck24_import.ts`
+
+**Features**:
+- Parses RIS files for metadata (title, authors, DOI, year, abstract, journal)
+- Matches PDFs to RIS entries by filename/DOI
+- Extracts summaries from PDFs (introduction + conclusion sections)
+- Generates one curated markdown file per paper (not per page)
+- Filters papers: includes all Makoto Takemiya papers and SORA/Iroha/Soramitsu relevant papers
+- All BCK24 papers included (tagged as general if not directly relevant)
+
+**Usage**:
+```bash
+# Dry run (preview)
+pnpm --filter @soranauts/web kb:bck24:import --dry-run
+
+# Import papers
+pnpm --filter @soranauts/web kb:bck24:import
+```
+
+#### Frontmatter Schema
+
+Each paper markdown includes:
+- **Required**: `title`, `slug`, `source: "bck24"`, `source_url` (DOI), `publishDate`, `content_sha256`, `snapshot_id`
+- **Optional**: `authors` (array), `tags`, `pdf_path` (relative path to PDF)
+
+#### Content Structure
+
+Each markdown file contains:
+1. **Summary** (1-3 paragraphs): Extracted from PDF introduction/conclusion
+2. **Abstract**: From RIS metadata or PDF
+3. **Relevance note**: If relevant to SORA/Iroha/Soramitsu
+4. **Citation**: DOI link to official publication
+
+#### Filtering Logic
+
+Papers are included if:
+- Author is Makoto Takemiya (CEO of SORAMITSU)
+- Contains keywords: sora, iroha, soramitsu, hyperledger, cbdc, blockchain, consensus, substrate, polkadot, defi, cross-chain, bridge, interoperability
+- All BCK24 papers (tagged as `["research","bck24","general"]` if not directly relevant)
+
+#### Gitignore Updates
+
+Added to `.gitignore`:
+```
+knowledge_base/sources/bck24/*.pdf
+knowledge_base/sources/bck24/*.ris
+```
+
+#### Source Type Update
+
+Added `'bck24'` to `kbSourceSchema` in `knowledge_base/scripts/types.ts`.
+
+### Status
+
+- ✅ Directory structure created
+- ✅ RIS parser implemented
+- ✅ PDF summary extraction implemented
+- ✅ Markdown generation with KB_STANDARDS.md compliance
+- ✅ Filtering logic implemented
+- ✅ .gitignore updated
+- ✅ Script added to package.json (`kb:bck24:import`)
+- ⏳ **Awaiting**: RIS and PDF files to be placed in `knowledge_base/sources/bck24/`
+
+### Next Steps
+
+1. **Download files** from https://journals.jps.jp/doi/book/10.7566/BCK24
+2. **Place files** in `knowledge_base/sources/bck24/`:
+   - RIS file(s): `*.ris`
+   - PDF file(s): `*.pdf`
+3. **Run import**: `pnpm --filter @soranauts/web kb:bck24:import`
+4. **Validate**: `pnpm --filter @soranauts/web kb:validate --strict`
+5. **Ingest**: `pnpm --filter @soranauts/web kb:ingest`
+
+### Notes
+
+- PDFs are used ONLY to improve summaries (extract introduction/conclusion)
+- No per-page markdown is created (one file per paper)
+- All PDFs are gitignored (not committed to repository)
+- Script follows same patterns as other KB import scripts
+- Module resolution: Script may have local execution issues (same as other KB scripts) but will work in CI
+
 ## Questions or Issues?
 
 See `KB_STANDARDS.md` for detailed standards and conventions.
