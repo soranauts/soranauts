@@ -11,8 +11,7 @@ import { Command } from 'commander';
 import { env } from './env';
 import { normalizeForHash, hashContent, normalizeCJKWhitespace } from './utils/text-normalize';
 import { chunkTokens, chunkTextByCharacters, type TokenChunk } from './utils/tokenizer';
-import type { ChunkMetadata, ExtendedChunkMetadata, IndexManifest, Metrics } from './types';
-import { KBFrontmatter } from './types';
+import type { ChunkMetadata, ExtendedChunkMetadata, IndexManifest, Metrics, KBFrontmatter } from './types';
 import { computeAuthority } from './utils/authority';
 
 const snapshotId = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
