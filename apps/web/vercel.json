@@ -12,28 +12,6 @@
   ],
   "redirects": [
     {
-      "source": "/soramitsu-sora-polkaswap{/}?",
-      "has": [{ "type": "host", "value": "www.soranauts.com" }],
-      "destination": "https://soranauts.com/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.soranauts.com" }],
-      "destination": "https://soranauts.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/top-decentralized-exchanges-crypto-trading",
-      "destination": "/best-decentralized-exchanges-dexs",
-      "permanent": true
-    },
-    {
-      "source": "/best-decentralized-exchanges-dexs-in-2025",
-      "destination": "/best-decentralized-exchanges-dexs",
-      "permanent": true
-    },
-    {
       "source": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
       "destination": "/sora-ecosystem-explained",
       "permanent": true
@@ -71,6 +49,28 @@
     {
       "source": "/sora-ecosystem/",
       "destination": "/sora-ecosystem-explained",
+      "permanent": true
+    },
+    {
+      "source": "/soramitsu-sora-polkaswap{/}?",
+      "has": [{ "type": "host", "value": "www.soranauts.com" }],
+      "destination": "https://soranauts.com/sora-ecosystem-explained",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.soranauts.com" }],
+      "destination": "https://soranauts.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/top-decentralized-exchanges-crypto-trading",
+      "destination": "/best-decentralized-exchanges-dexs",
+      "permanent": true
+    },
+    {
+      "source": "/best-decentralized-exchanges-dexs-in-2025",
+      "destination": "/best-decentralized-exchanges-dexs",
       "permanent": true
     },
     {
