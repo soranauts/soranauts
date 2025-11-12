@@ -34,14 +34,8 @@ knowledge_base/**/*.log
 knowledge_base/sources/fearless_github/android/
 knowledge_base/sources/fearless_github/ios/
 # BCK (Blockchain Kaigi) PDFs and RIS files (raw sources, not ingested)
-knowledge_base/sources/bck21/*.pdf
-knowledge_base/sources/bck21/*.ris
-knowledge_base/sources/bck22/*.pdf
-knowledge_base/sources/bck22/*.ris
-knowledge_base/sources/bck23/*.pdf
-knowledge_base/sources/bck23/*.ris
-knowledge_base/sources/bck24/*.pdf
-knowledge_base/sources/bck24/*.ris
+knowledge_base/sources/bck*/**/*.pdf
+knowledge_base/sources/bck*/**/*.ris
 # Embedded git repos (handled by sync scripts)
 knowledge_base/curated/wiki/
 knowledge_base/curated/iroha_docs/
