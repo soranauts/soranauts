@@ -41,7 +41,7 @@ const generatePermalink = async ({
 };
 
 const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> => {
-  const { id, data } = post;
+  const { id, data, body } = post;
   const { Content, remarkPluginFrontmatter } = await post.render();
 
   const {
@@ -55,9 +55,12 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     author,
     draft = false,
     metadata = {},
-    slug: frontmatterSlug,
   } = data;
 
+  // Access slug from raw frontmatter (Astro doesn't allow it in schema)
+  // @ts-expect-error - slug is not in schema but may be in frontmatter
+  const frontmatterSlug = (data as any).slug;
+  
   // Use frontmatter slug if provided, otherwise fall back to filename (id)
   const slug = cleanSlug(frontmatterSlug || id);
   const publishDate = new Date(rawPublishDate);
