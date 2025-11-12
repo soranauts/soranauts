@@ -55,14 +55,11 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     author,
     draft = false,
     metadata = {},
+    customSlug,
   } = data;
 
-  // Access slug from raw frontmatter (Astro doesn't allow it in schema)
-  // @ts-expect-error - slug is not in schema but may be in frontmatter
-  const frontmatterSlug = (data as any).slug;
-  
-  // Use frontmatter slug if provided, otherwise fall back to filename (id)
-  const slug = cleanSlug(frontmatterSlug || id);
+  // Use customSlug from frontmatter if provided, otherwise fall back to filename (id)
+  const slug = cleanSlug(customSlug || id);
   const publishDate = new Date(rawPublishDate);
   const updateDate = rawUpdateDate ? new Date(rawUpdateDate) : undefined;
   const category = rawCategory ? cleanSlug(rawCategory) : undefined;
