@@ -11,8 +11,10 @@ import { kbFrontmatterSchema, type KBFrontmatter } from './types';
 import limax from 'limax';
 
 const KB_DIR = env.KB_DIR;
-const SOURCES_DIR = join(KB_DIR, 'sources', 'bck24');
-const CURATED_DIR = join(KB_DIR, 'curated', 'research', 'bck24');
+
+// Supported BCK years
+const BCK_YEARS = ['bck21', 'bck22', 'bck23', 'bck24'] as const;
+type BCKYear = typeof BCK_YEARS[number];
 
 interface RISEntry {
   title?: string;
@@ -112,20 +114,50 @@ function parseRISFile(risPath: string): RISEntry[] {
   }));
 }
 
-function generateSlug(title: string, doi?: string): string {
+function detectBCKYear(doi?: string, year?: string): BCKYear {
+  // Try to detect from DOI
+  if (doi) {
+    const doiMatch = doi.match(/10\.7566\/BCK(\d{2})/i);
+    if (doiMatch) {
+      const yearNum = parseInt(doiMatch[1]);
+      if (yearNum >= 21 && yearNum <= 24) {
+        return `bck${yearNum}` as BCKYear;
+      }
+    }
+  }
+  
+  // Try to detect from year field
+  if (year) {
+    const yearNum = parseInt(year);
+    if (yearNum >= 2021 && yearNum <= 2024) {
+      const bckYear = yearNum - 2000;
+      if (bckYear >= 21 && bckYear <= 24) {
+        return `bck${bckYear}` as BCKYear;
+      }
+    }
+  }
+  
+  // Default to bck24
+  return 'bck24';
+}
+
+function generateSlug(title: string, doi?: string, bckYear?: BCKYear): string {
   if (doi) {
     // Extract meaningful part from DOI (e.g., "10.7566/BCK24.123" -> "bck24-123")
-    const doiMatch = doi.match(/10\.7566\/BCK24\.?(\d+)/i);
+    const doiMatch = doi.match(/10\.7566\/BCK(\d{2})\.?(\d+)/i);
     if (doiMatch) {
-      return `bck24-${doiMatch[1]}`;
+      const year = doiMatch[1];
+      const paperNum = doiMatch[2];
+      return `bck${year}-${paperNum}`;
     }
     // Fallback: use DOI as slug base
     const doiSlug = doi.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-    return `bck24-${doiSlug}`;
+    return `${bckYear || 'bck24'}-${doiSlug}`;
   }
   
   // Generate from title
-  return limax(title, { separator: '-', lowercase: true });
+  const baseSlug = limax(title, { separator: '-', lowercase: true });
+  return bckYear ? `${bckYear}-${baseSlug}` : baseSlug;
 }
 
 function extractPDFSummary(pdfPath: string): { summary: string; abstract: string } {
@@ -206,9 +238,11 @@ function shouldIncludePaper(metadata: PaperMetadata): { include: boolean; reason
   return { include: true, reason: 'BCK24 general research' };
 }
 
-async function generateMarkdown(metadata: PaperMetadata, summary: string, abstract: string): Promise<string> {
-  const publishDate = metadata.year ? `${metadata.year}-01-01T00:00:00Z` : '2024-01-01T00:00:00Z';
-  const snapshotId = metadata.year || '2024-11-11';
+async function generateMarkdown(metadata: PaperMetadata, summary: string, abstract: string, bckYear: BCKYear): Promise<string> {
+  const yearNum = parseInt(bckYear.replace('bck', ''));
+  const fullYear = 2000 + yearNum;
+  const publishDate = metadata.year ? `${metadata.year}-01-01T00:00:00Z` : `${fullYear}-01-01T00:00:00Z`;
+  const snapshotId = metadata.year || `${fullYear}-11-11`;
   
   // Build content
   let content = `# ${metadata.title}\n\n`;
@@ -259,7 +293,7 @@ async function generateMarkdown(metadata: PaperMetadata, summary: string, abstra
   const frontmatter: Partial<KBFrontmatter> = {
     title: metadata.title || 'Untitled Paper',
     slug: metadata.slug,
-    source: 'bck24',
+    source: bckYear as any, // bck21, bck22, bck23, bck24 are all valid
     source_url: metadata.doi ? (metadata.doi.startsWith('http') ? metadata.doi : `https://doi.org/${metadata.doi}`) : (metadata.url || ''),
     publishDate,
     content_sha256: contentHash,
@@ -282,53 +316,55 @@ async function generateMarkdown(metadata: PaperMetadata, summary: string, abstra
   return matter.stringify(content, validated as any);
 }
 
-async function main() {
-  const program = new Command();
-  program
-    .option('--ris <file>', 'RIS file path', join(SOURCES_DIR, '*.ris'))
-    .option('--dry-run', 'Preview changes without writing files')
-    .parse();
+async function processBCKYear(bckYear: BCKYear, dryRun: boolean = false): Promise<{ processed: number; included: number; skipped: number }> {
+  const sourcesDir = join(KB_DIR, 'sources', bckYear);
+  const curatedDir = join(KB_DIR, 'curated', 'research', bckYear);
   
-  const options = program.opts();
-  
-  // Find RIS files
-  const risFiles = readdirSync(SOURCES_DIR).filter(f => f.endsWith('.ris'));
-  
-  if (risFiles.length === 0) {
-    console.log('No RIS files found in', SOURCES_DIR);
-    console.log('Please place RIS files in:', SOURCES_DIR);
-    return;
+  if (!existsSync(sourcesDir)) {
+    console.log(`\n⚠ Directory does not exist: ${sourcesDir}`);
+    return { processed: 0, included: 0, skipped: 0 };
   }
   
+  // Find RIS files
+  const risFiles = readdirSync(sourcesDir).filter(f => f.endsWith('.ris'));
+  
+  if (risFiles.length === 0) {
+    console.log(`\n⚠ No RIS files found in ${sourcesDir}`);
+    return { processed: 0, included: 0, skipped: 0 };
+  }
+  
+  console.log(`\n📚 Processing ${bckYear.toUpperCase()}`);
   console.log(`Found ${risFiles.length} RIS file(s)`);
   
   // Find PDF files
-  const pdfFiles = readdirSync(SOURCES_DIR).filter(f => f.endsWith('.pdf'));
+  const pdfFiles = readdirSync(sourcesDir).filter(f => f.endsWith('.pdf'));
   console.log(`Found ${pdfFiles.length} PDF file(s)`);
   
-  mkdirSync(CURATED_DIR, { recursive: true });
+  mkdirSync(curatedDir, { recursive: true });
   
   let processed = 0;
   let included = 0;
   let skipped = 0;
   
   for (const risFile of risFiles) {
-    const risPath = join(SOURCES_DIR, risFile);
-    console.log(`\nProcessing RIS: ${risFile}`);
+    const risPath = join(sourcesDir, risFile);
+    console.log(`\n  Processing RIS: ${risFile}`);
     
     const entries = parseRISFile(risPath);
-    console.log(`  Found ${entries.length} entries`);
+    console.log(`    Found ${entries.length} entries`);
     
     for (const entry of entries) {
       processed++;
       
       if (!entry.title) {
-        console.warn(`  ⚠ Skipping entry without title`);
+        console.warn(`    ⚠ Skipping entry without title`);
         skipped++;
         continue;
       }
       
-      const slug = generateSlug(entry.title, entry.doi);
+      // Detect BCK year from entry
+      const detectedYear = detectBCKYear(entry.doi, entry.year);
+      const slug = generateSlug(entry.title, entry.doi, detectedYear);
       const metadata: PaperMetadata = {
         ...entry,
         slug,
@@ -343,19 +379,19 @@ async function main() {
       });
       
       if (pdfMatch) {
-        metadata.pdfPath = join(SOURCES_DIR, pdfMatch);
-        console.log(`  ✓ Found PDF: ${pdfMatch}`);
+        metadata.pdfPath = join(sourcesDir, pdfMatch);
+        console.log(`    ✓ Found PDF: ${pdfMatch}`);
       }
       
       // Check if should include
       const { include, reason } = shouldIncludePaper(metadata);
       if (!include) {
-        console.log(`  ⊘ Skipping: ${entry.title} (${reason})`);
+        console.log(`    ⊘ Skipping: ${entry.title} (${reason})`);
         skipped++;
         continue;
       }
       
-      console.log(`  ✓ Including: ${entry.title} (${reason})`);
+      console.log(`    ✓ Including: ${entry.title} (${reason})`);
       
       // Process PDF for summary if available
       let summary = '';
@@ -368,24 +404,56 @@ async function main() {
       }
       
       // Generate markdown
-      const markdown = await generateMarkdown(metadata, summary, abstract);
+      const markdown = await generateMarkdown(metadata, summary, abstract, detectedYear);
       
-      if (options.dryRun) {
-        console.log(`  [DRY RUN] Would create: ${slug}.md`);
-        console.log(`  Frontmatter preview:`, JSON.stringify(metadata, null, 2));
+      if (dryRun) {
+        console.log(`    [DRY RUN] Would create: ${slug}.md`);
       } else {
-        const outputPath = join(CURATED_DIR, `${slug}.md`);
+        const outputPath = join(curatedDir, `${slug}.md`);
         writeFileSync(outputPath, markdown);
-        console.log(`  ✓ Created: ${slug}.md`);
+        console.log(`    ✓ Created: ${slug}.md`);
       }
       
       included++;
     }
   }
   
-  console.log(`\n✓ Processed ${processed} papers`);
-  console.log(`  Included: ${included}`);
-  console.log(`  Skipped: ${skipped}`);
+  return { processed, included, skipped };
+}
+
+async function main() {
+  const program = new Command();
+  program
+    .option('--year <year>', 'BCK year to process (bck21, bck22, bck23, bck24)', 'all')
+    .option('--dry-run', 'Preview changes without writing files')
+    .parse();
+  
+  const options = program.opts();
+  
+  const yearsToProcess: BCKYear[] = options.year === 'all' 
+    ? [...BCK_YEARS] 
+    : [options.year as BCKYear].filter(y => BCK_YEARS.includes(y));
+  
+  if (yearsToProcess.length === 0) {
+    console.error('Invalid year. Use: bck21, bck22, bck23, bck24, or "all"');
+    process.exit(1);
+  }
+  
+  let totalProcessed = 0;
+  let totalIncluded = 0;
+  let totalSkipped = 0;
+  
+  for (const year of yearsToProcess) {
+    const stats = await processBCKYear(year, options.dryRun);
+    totalProcessed += stats.processed;
+    totalIncluded += stats.included;
+    totalSkipped += stats.skipped;
+  }
+  
+  console.log(`\n📊 Summary`);
+  console.log(`  Processed: ${totalProcessed} papers`);
+  console.log(`  Included: ${totalIncluded}`);
+  console.log(`  Skipped: ${totalSkipped}`);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

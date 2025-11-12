@@ -33,7 +33,13 @@ knowledge_base/**/*.log
 # Raw source mirrors (not ingested directly)
 knowledge_base/sources/fearless_github/android/
 knowledge_base/sources/fearless_github/ios/
-# BCK24 PDFs and RIS files (raw sources, not ingested)
+# BCK (Blockchain Kaigi) PDFs and RIS files (raw sources, not ingested)
+knowledge_base/sources/bck21/*.pdf
+knowledge_base/sources/bck21/*.ris
+knowledge_base/sources/bck22/*.pdf
+knowledge_base/sources/bck22/*.ris
+knowledge_base/sources/bck23/*.pdf
+knowledge_base/sources/bck23/*.ris
 knowledge_base/sources/bck24/*.pdf
 knowledge_base/sources/bck24/*.ris
 # Embedded git repos (handled by sync scripts)
