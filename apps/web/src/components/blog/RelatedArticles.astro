@@ -1,4 +1,9 @@
 ---
+import { getPermalink } from '~/utils/permalinks';
+import { getRelatedArticles, debugRelatedArticles } from '~/utils/related';
+import { fetchPosts } from '~/utils/blog';
+import type { Post } from '~/types';
+
 export interface Props {
   currentArticle: {
     slug: string;
@@ -12,64 +17,141 @@ export interface Props {
     tags: string[];
     category: string;
     publishDate: Date;
+    updateDate?: Date;
   }>;
   maxArticles?: number;
+  sectionLabel?: string;
 }
 
-const { currentArticle, allArticles, maxArticles = 3 } = Astro.props;
+const { currentArticle, allArticles, maxArticles = 3, sectionLabel = 'Related Articles' } = Astro.props;
 
-// Calculate relevance score based on tag overlap
-function calculateRelevance(currentTags: string[], articleTags: string[]): number {
-  const matches = currentTags.filter(tag => articleTags.includes(tag)).length;
-  return matches;
+// Feature flag: RELATED_V2 (default true in dev, false in prod unless explicitly set)
+let RELATED_V2 = import.meta.env.RELATED_V2 !== 'false' && (import.meta.env.DEV || import.meta.env.RELATED_V2 === 'true');
+
+let relatedArticles: Array<{
+  slug: string;
+  title: string;
+  excerpt: string;
+  tags: string[];
+  category: string;
+  publishDate: Date;
+  updateDate?: Date;
+  score?: number;
+  signals?: Record<string, number>;
+  label?: string;
+}> = [];
+
+if (RELATED_V2) {
+  // New hybrid recommender logic
+  try {
+    const allPosts = await fetchPosts();
+    const currentPost = allPosts.find((p) => p.slug === currentArticle.slug);
+    
+    if (currentPost) {
+      const results = await getRelatedArticles(currentPost, maxArticles);
+      
+      // Debug in development
+      if (import.meta.env.DEV) {
+        debugRelatedArticles(currentPost, results);
+      }
+      
+      // Convert to component format
+      relatedArticles = results.map((r) => ({
+        slug: r.slug,
+        title: r.title,
+        excerpt: r.excerpt,
+        tags: r.tags,
+        category: r.category,
+        publishDate: r.publishDate,
+        updateDate: r.updateDate,
+        score: r.score,
+        signals: {
+          tagMatch: r.signals.tagMatch,
+          foundationalBonus: r.signals.foundationalBonus,
+          glossaryOverlap: r.signals.glossaryOverlap,
+          titleKeyword: r.signals.titleKeyword,
+          sameSection: r.signals.sameSection,
+          recency: r.signals.recency,
+        },
+        label: r.label,
+      }));
+    }
+  } catch (error) {
+    console.error('[RelatedArticles] Error in RELATED_V2 logic:', error);
+    // Fall through to legacy logic
+    RELATED_V2 = false;
+  }
 }
 
-// Find related articles
-let relatedArticles = allArticles
-  .filter(article => article.slug !== currentArticle.slug)
-  .map(article => ({
-    ...article,
-    relevanceScore: calculateRelevance(currentArticle.tags, article.tags)
-  }))
-  .filter(article => article.relevanceScore > 0) // Only show articles with matching tags
-  .sort((a, b) => b.relevanceScore - a.relevanceScore)
-  .slice(0, maxArticles);
+if (!RELATED_V2 || relatedArticles.length === 0) {
+  // Legacy logic
+  function calculateRelevance(currentTags: string[], articleTags: string[]): number {
+    const matches = currentTags.filter(tag => articleTags.includes(tag)).length;
+    return matches;
+  }
 
-// If no related articles found, show recent articles from same category
-if (relatedArticles.length === 0) {
-  relatedArticles = allArticles
-    .filter(article => 
-      article.slug !== currentArticle.slug && 
-      article.category === currentArticle.category
-    )
+  let legacyArticles = allArticles
+    .filter(article => article.slug !== currentArticle.slug)
     .map(article => ({
       ...article,
-      relevanceScore: 0
+      relevanceScore: calculateRelevance(currentArticle.tags, article.tags)
     }))
-    .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
+    .filter(article => article.relevanceScore > 0) // Only show articles with matching tags
+    .sort((a, b) => b.relevanceScore - a.relevanceScore)
     .slice(0, maxArticles);
+
+  // If no related articles found, show recent articles from same category
+  if (legacyArticles.length === 0) {
+    legacyArticles = allArticles
+      .filter(article => 
+        article.slug !== currentArticle.slug && 
+        article.category === currentArticle.category
+      )
+      .map(article => ({
+        ...article,
+        relevanceScore: 0
+      }))
+      .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
+      .slice(0, maxArticles);
+  }
+  
+  relatedArticles = legacyArticles;
 }
+
+// Zero-state: hide if fewer than 2 results (for V2) or 0 results (for legacy)
+const shouldShow = RELATED_V2 
+  ? relatedArticles.length >= 2 
+  : relatedArticles.length > 0;
 ---
 
-{relatedArticles.length > 0 && (
+{shouldShow && (
   <section class="related-articles not-prose">
     <h3 class="related-articles__title">
-      Related Articles
+      {sectionLabel}
     </h3>
 
     <div class="related-articles__list">
-      {relatedArticles.map(article => (
-        <a href={`/${article.slug}`} class="card-link card-link--block related-link">
-          <h4 class="card-link__title">
-            {article.title}
-          </h4>
-          {article.excerpt && (
-            <p class="card-link__meta">
-              {article.excerpt}
-            </p>
-          )}
-        </a>
-      ))}
+      {relatedArticles.map(article => {
+        const score = article.score !== undefined ? article.score.toFixed(3) : '';
+        const signals = article.signals ? JSON.stringify(article.signals) : '';
+        return (
+          <a 
+            href={getPermalink(article.slug, 'post')} 
+            class="card-link card-link--block related-link"
+            data-rel-score={score}
+            data-rel-signals={signals}
+          >
+            <h4 class="card-link__title">
+              {article.title}
+            </h4>
+            {article.excerpt && (
+              <p class="card-link__meta">
+                {article.excerpt}
+              </p>
+            )}
+          </a>
+        );
+      })}
     </div>
   </section>
 )}

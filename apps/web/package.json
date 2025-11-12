@@ -34,6 +34,8 @@
     "web:tags:build": "tsx scripts/build-tag-stats.ts",
     "web:tags:test": "vitest run tests/unit/tags",
     "web:glossary:determinism": "tsx scripts/check-glossary-determinism.ts",
+    "web:related:suggest": "tsx scripts/related-tags-suggest.ts",
+    "web:test:related": "vitest run -t related",
     "kb:ingest": "cd ../.. && tsx knowledge_base/scripts/ingest.ts",
     "kb:update": "cd ../.. && bash knowledge_base/scripts/update-kb.sh",
     "kb:retrieve": "cd ../.. && tsx knowledge_base/scripts/retrieve.ts",
