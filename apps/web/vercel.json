@@ -22,16 +22,6 @@
       "permanent": true
     },
     {
-      "source": "/soramitsu-sora-polkaswap",
-      "destination": "/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/soramitsu-sora-polkaswap/",
-      "destination": "/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
       "source": "/sora-defi-ecosystem",
       "destination": "/sora-ecosystem-explained",
       "permanent": true
@@ -49,12 +39,6 @@
     {
       "source": "/sora-ecosystem/",
       "destination": "/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/soramitsu-sora-polkaswap{/}?",
-      "has": [{ "type": "host", "value": "www.soranauts.com" }],
-      "destination": "https://soranauts.com/sora-ecosystem-explained",
       "permanent": true
     },
     {
