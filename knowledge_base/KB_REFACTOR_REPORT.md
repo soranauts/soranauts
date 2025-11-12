@@ -377,31 +377,39 @@ git revert <merge-commit-sha>
 git reset --hard <previous-main-sha>
 ```
 
-## BCK24 Integration
+## BCK Integration (BCK21, BCK22, BCK23, BCK24)
 
 ### Overview
 
-Integrated Blockchain Kaigi 2024 (BCK24) proceedings as a high-quality research source following KB refactor standards.
+Integrated Blockchain Kaigi proceedings (BCK21-BCK24) as high-quality research sources following KB refactor standards.
+
+- **BCK21**: Blockchain in Kyoto 2021
+- **BCK22**: Blockchain Kaigi 2022
+- **BCK23**: Blockchain Kaigi 2023
+- **BCK24**: Blockchain Kaigi 2024
 
 ### Implementation
 
 **Date**: 2025-11-11  
-**Source**: JPS Conference Proceedings Vol. 44 (BCK24)  
-**URL**: https://journals.jps.jp/doi/book/10.7566/BCK24
+**Sources**: 
+- BCK21: Blockchain in Kyoto 2021
+- BCK22: Blockchain Kaigi 2022
+- BCK23: Blockchain Kaigi 2023
+- BCK24: JPS Conference Proceedings Vol. 44 - https://journals.jps.jp/doi/book/10.7566/BCK24
 
 #### Directory Structure
 
-- **Raw sources**: `knowledge_base/sources/bck24/`
+- **Raw sources**: `knowledge_base/sources/bck{21,22,23,24}/`
   - RIS files (`.ris`) for bibliographic metadata
   - PDF files (`.pdf`) for full papers
   - Both are gitignored (not committed)
 
-- **Curated content**: `knowledge_base/curated/research/bck24/`
+- **Curated content**: `knowledge_base/curated/research/bck{21,22,23,24}/`
   - One markdown file per paper
   - Follows KB_STANDARDS.md frontmatter schema
   - Ready for ingestion
 
-#### Script: `bck24_import.ts`
+#### Script: `bck24_import.ts` (handles all BCK years)
 
 **Features**:
 - Parses RIS files for metadata (title, authors, DOI, year, abstract, journal)
@@ -413,17 +421,20 @@ Integrated Blockchain Kaigi 2024 (BCK24) proceedings as a high-quality research 
 
 **Usage**:
 ```bash
-# Dry run (preview)
-pnpm --filter @soranauts/web kb:bck24:import --dry-run
+# Process specific year
+pnpm --filter @soranauts/web kb:bck24:import --year bck24
 
-# Import papers
-pnpm --filter @soranauts/web kb:bck24:import
+# Process all years
+pnpm --filter @soranauts/web kb:bck24:import --year all
+
+# Dry run (preview)
+pnpm --filter @soranauts/web kb:bck24:import --year bck24 --dry-run
 ```
 
 #### Frontmatter Schema
 
 Each paper markdown includes:
-- **Required**: `title`, `slug`, `source: "bck24"`, `source_url` (DOI), `publishDate`, `content_sha256`, `snapshot_id`
+- **Required**: `title`, `slug`, `source: "bck21|bck22|bck23|bck24"`, `source_url` (DOI), `publishDate`, `content_sha256`, `snapshot_id`
 - **Optional**: `authors` (array), `tags`, `pdf_path` (relative path to PDF)
 
 #### Content Structure
@@ -445,13 +456,19 @@ Papers are included if:
 
 Added to `.gitignore`:
 ```
+knowledge_base/sources/bck21/*.pdf
+knowledge_base/sources/bck21/*.ris
+knowledge_base/sources/bck22/*.pdf
+knowledge_base/sources/bck22/*.ris
+knowledge_base/sources/bck23/*.pdf
+knowledge_base/sources/bck23/*.ris
 knowledge_base/sources/bck24/*.pdf
 knowledge_base/sources/bck24/*.ris
 ```
 
 #### Source Type Update
 
-Added `'bck24'` to `kbSourceSchema` in `knowledge_base/scripts/types.ts`.
+Added `'bck21'`, `'bck22'`, `'bck23'`, `'bck24'` to `kbSourceSchema` in `knowledge_base/scripts/types.ts`.
 
 ### Status
 
@@ -462,15 +479,24 @@ Added `'bck24'` to `kbSourceSchema` in `knowledge_base/scripts/types.ts`.
 - ✅ Filtering logic implemented
 - ✅ .gitignore updated
 - ✅ Script added to package.json (`kb:bck24:import`)
-- ⏳ **Awaiting**: RIS and PDF files to be placed in `knowledge_base/sources/bck24/`
+- ⏳ **Awaiting**: RIS and PDF files to be placed in respective `knowledge_base/sources/bck{21,22,23,24}/` directories
 
 ### Next Steps
 
-1. **Download files** from https://journals.jps.jp/doi/book/10.7566/BCK24
-2. **Place files** in `knowledge_base/sources/bck24/`:
-   - RIS file(s): `*.ris`
-   - PDF file(s): `*.pdf`
-3. **Run import**: `pnpm --filter @soranauts/web kb:bck24:import`
+1. **Download files** for each BCK year from their respective publication pages
+2. **Place files** in appropriate directories:
+   - BCK21: `knowledge_base/sources/bck21/`
+   - BCK22: `knowledge_base/sources/bck22/`
+   - BCK23: `knowledge_base/sources/bck23/`
+   - BCK24: `knowledge_base/sources/bck24/` (https://journals.jps.jp/doi/book/10.7566/BCK24)
+3. **Run import**:
+   ```bash
+   # Process all years
+   pnpm --filter @soranauts/web kb:bck24:import --year all
+   
+   # Or process specific year
+   pnpm --filter @soranauts/web kb:bck24:import --year bck24
+   ```
 4. **Validate**: `pnpm --filter @soranauts/web kb:validate --strict`
 5. **Ingest**: `pnpm --filter @soranauts/web kb:ingest`
 
