@@ -36,7 +36,7 @@ async function buildIndex(): Promise<MiniSearch<Bm25Document>> {
   const files = await globAsync('**/*.md', {
     cwd: env.KB_DIR,
     absolute: true,
-    ignore: ['**/node_modules/**', '**/.git/**', '**/index/**', '**/snapshots/**'],
+      ignore: ['**/node_modules/**', '**/.git/**', '**/.kb_index/**', '**/snapshots/**', '**/sources/**'],
   });
   
   const documents: Bm25Document[] = [];

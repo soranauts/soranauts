@@ -8,9 +8,9 @@ import { createProvenance, currentSnapshotId } from './utils/provenance';
 
 const FEARLESS_ANDROID_REPO = 'https://github.com/soramitsu/fearless-Android';
 const FEARLESS_IOS_REPO = 'https://github.com/soramitsu/fearless-iOS';
-const FEARLESS_ANDROID_DIR = join(env.KB_DIR, 'fearless_github', 'android');
-const FEARLESS_IOS_DIR = join(env.KB_DIR, 'fearless_github', 'ios');
-const OUTPUT_DIR = join(env.KB_DIR, 'fearless_github');
+const FEARLESS_ANDROID_DIR = join(env.KB_DIR, 'sources', 'fearless_github', 'android');
+const FEARLESS_IOS_DIR = join(env.KB_DIR, 'sources', 'fearless_github', 'ios');
+const OUTPUT_DIR = join(env.KB_DIR, 'sources', 'fearless_github');
 
 // Directories to include (release notes, docs, features)
 const INCLUDE_PATTERNS = [

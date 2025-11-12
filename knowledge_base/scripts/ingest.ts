@@ -61,7 +61,7 @@ async function findMarkdownFiles(rootDir: string): Promise<string[]> {
     const matches = await globAsync(pattern, {
       cwd: rootDir,
       absolute: true,
-      ignore: ['**/node_modules/**', '**/.git/**', '**/index/**', '**/snapshots/**'],
+      ignore: ['**/node_modules/**', '**/.git/**', '**/.kb_index/**', '**/snapshots/**', '**/sources/**'],
     });
     files.push(...matches);
   }
@@ -452,19 +452,17 @@ async function main() {
   } else {
     // Find all markdown files
     const sourceDirs = [
-      { path: join(env.KB_DIR, 'iroha_docs'), source: 'iroha_docs' },
-      { path: join(env.KB_DIR, 'wiki'), source: 'wiki' },
-      { path: join(env.KB_DIR, 'soramitsu_site'), source: 'soramitsu' },
-      { path: join(env.KB_DIR, 'ecosystem_updates'), source: 'update' },
-      { path: join(env.KB_DIR, 'polkaswap_updates'), source: 'polkaswap_update' },
-      { path: join(env.KB_DIR, 'fearless_updates'), source: 'fearless_update' },
-      { path: join(env.KB_DIR, 'fearless_github'), source: 'fearless_github' },
-      { path: join(env.KB_DIR, 'pdfs_md'), source: 'pdf' },
-      { path: join(env.KB_DIR, 'imported'), source: 'imported' },
-      { path: join(env.KB_DIR, 'articles'), source: 'article' },
-      { path: join(env.KB_DIR, 'tonswap_site'), source: 'tonswap_site' },
-      { path: join(env.KB_DIR, 'tonswap_updates'), source: 'tonswap_update' },
-      { path: join(env.KB_DIR, 'meta'), source: 'meta' },
+      { path: join(env.KB_DIR, 'curated', 'iroha_docs'), source: 'iroha_docs' },
+      { path: join(env.KB_DIR, 'curated', 'wiki'), source: 'wiki' },
+      { path: join(env.KB_DIR, 'curated', 'soramitsu_site'), source: 'soramitsu' },
+      { path: join(env.KB_DIR, 'curated', 'ecosystem_updates'), source: 'update' },
+      { path: join(env.KB_DIR, 'curated', 'polkaswap_updates'), source: 'polkaswap_update' },
+      { path: join(env.KB_DIR, 'curated', 'fearless_updates'), source: 'fearless_update' },
+      { path: join(env.KB_DIR, 'curated', 'tonswap_site'), source: 'tonswap_site' },
+      { path: join(env.KB_DIR, 'curated', 'tonswap_updates'), source: 'tonswap_update' },
+      { path: join(env.KB_DIR, 'curated', 'articles'), source: 'article' },
+      { path: join(env.KB_DIR, 'curated', 'imported'), source: 'imported' },
+      { path: join(env.KB_DIR, 'pdfs'), source: 'pdf' },
     ];
     
     for (const { path: sourceDir, source } of sourceDirs) {
@@ -502,19 +500,17 @@ async function main() {
   // Process files that need updating
   // Define sourceDirs for use in processing loop
   const allSourceDirs = [
-    { path: join(env.KB_DIR, 'iroha_docs'), source: 'iroha_docs' },
-    { path: join(env.KB_DIR, 'wiki'), source: 'wiki' },
-    { path: join(env.KB_DIR, 'soramitsu_site'), source: 'soramitsu' },
-    { path: join(env.KB_DIR, 'ecosystem_updates'), source: 'update' },
-    { path: join(env.KB_DIR, 'polkaswap_updates'), source: 'polkaswap_update' },
-    { path: join(env.KB_DIR, 'fearless_updates'), source: 'fearless_update' },
-    { path: join(env.KB_DIR, 'fearless_github'), source: 'fearless_github' },
-    { path: join(env.KB_DIR, 'pdfs_md'), source: 'pdf' },
-    { path: join(env.KB_DIR, 'imported'), source: 'imported' },
-    { path: join(env.KB_DIR, 'articles'), source: 'article' },
-    { path: join(env.KB_DIR, 'tonswap_site'), source: 'tonswap_site' },
-    { path: join(env.KB_DIR, 'tonswap_updates'), source: 'tonswap_update' },
-    { path: join(env.KB_DIR, 'meta'), source: 'meta' },
+    { path: join(env.KB_DIR, 'curated', 'iroha_docs'), source: 'iroha_docs' },
+    { path: join(env.KB_DIR, 'curated', 'wiki'), source: 'wiki' },
+    { path: join(env.KB_DIR, 'curated', 'soramitsu_site'), source: 'soramitsu' },
+    { path: join(env.KB_DIR, 'curated', 'ecosystem_updates'), source: 'update' },
+    { path: join(env.KB_DIR, 'curated', 'polkaswap_updates'), source: 'polkaswap_update' },
+    { path: join(env.KB_DIR, 'curated', 'fearless_updates'), source: 'fearless_update' },
+    { path: join(env.KB_DIR, 'curated', 'tonswap_site'), source: 'tonswap_site' },
+    { path: join(env.KB_DIR, 'curated', 'tonswap_updates'), source: 'tonswap_update' },
+    { path: join(env.KB_DIR, 'curated', 'articles'), source: 'article' },
+    { path: join(env.KB_DIR, 'curated', 'imported'), source: 'imported' },
+    { path: join(env.KB_DIR, 'pdfs'), source: 'pdf' },
   ];
   
   for (const filepath of filesToProcess) {

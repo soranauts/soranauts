@@ -25,25 +25,25 @@ const options = program.opts();
 // Map publication to directory, source, and RSS feed
 const publicationConfig: Record<string, { dir: string; source: string; stateFile: string; rssFeed: string }> = {
   sora: {
-    dir: 'ecosystem_updates',
+    dir: 'curated/ecosystem_updates',
     source: 'update',
     stateFile: '.medium_state.json',
     rssFeed: env.MEDIUM_FEED_URL,
   },
   polkaswap: {
-    dir: 'polkaswap_updates',
+    dir: 'curated/polkaswap_updates',
     source: 'polkaswap_update',
     stateFile: '.polkaswap_state.json',
     rssFeed: env.POLKASWAP_FEED_URL,
   },
   fearless: {
-    dir: 'fearless_updates',
+    dir: 'curated/fearless_updates',
     source: 'fearless_update',
     stateFile: '.fearless_state.json',
     rssFeed: env.FEARLESS_FEED_URL,
   },
   tonswap: {
-    dir: 'tonswap_updates',
+    dir: 'curated/tonswap_updates',
     source: 'tonswap_update',
     stateFile: '.tonswap_state.json',
     rssFeed: env.TONSWAP_FEED_URL,

@@ -23,7 +23,7 @@ program
 const options = program.opts();
 
 const td = new Turndown({ headingStyle: 'atx', codeBlockStyle: 'fenced' });
-const outDir = path.resolve(env.KB_DIR, 'soramitsu_site');
+const outDir = path.resolve(env.KB_DIR, 'curated', 'soramitsu_site');
 const imgDir = path.join(outDir, 'images');
 const stateDir = path.join(env.KB_DIR, 'scripts', '.state');
 const statePath = path.join(stateDir, 'soramitsu.jsonl');

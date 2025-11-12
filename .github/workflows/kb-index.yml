@@ -67,15 +67,15 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: kb-index-manifest
-          path: knowledge_base/index/manifest.json
+          path: knowledge_base/.kb_index/manifest.json
           retention-days: 7
           
       - name: Cache index
         if: success()
         uses: actions/cache@v4
         with:
-          path: knowledge_base/index
-          key: kb-index-${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}-${{ vars.TOKENIZER || 'tiktoken-cl100k' }}-${{ hashFiles('knowledge_base/**') }}
+          path: knowledge_base/.kb_index
+          key: kb-index-${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}-${{ vars.TOKENIZER || 'tiktoken-cl100k' }}-${{ hashFiles('knowledge_base/curated/**') }}
           restore-keys: |
             kb-index-${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}-${{ vars.TOKENIZER || 'tiktoken-cl100k' }}-
 
