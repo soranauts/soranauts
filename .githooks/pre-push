@@ -1,0 +1,47 @@
+#!/bin/bash
+# Pre-push hook to prevent large files from being pushed
+# Blocks any tracked file over 5MB
+
+MAX_SIZE=5242880  # 5MB in bytes
+EXIT_CODE=0
+
+echo "Checking for large files (>5MB)..."
+
+# Get list of files that would be pushed
+files=$(git diff --cached --name-only --diff-filter=ACM 2>/dev/null)
+
+if [ -z "$files" ]; then
+    # If no staged files, check all tracked files
+    files=$(git ls-files)
+fi
+
+large_files=()
+
+for file in $files; do
+    if [ -f "$file" ]; then
+        size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null || echo 0)
+        if [ "$size" -gt "$MAX_SIZE" ]; then
+            size_mb=$(echo "scale=2; $size / 1048576" | bc)
+            large_files+=("$file: ${size_mb}MB")
+            EXIT_CODE=1
+        fi
+    fi
+done
+
+if [ $EXIT_CODE -eq 1 ]; then
+    echo ""
+    echo "ERROR: Large files detected (>5MB):"
+    printf '%s\n' "${large_files[@]}"
+    echo ""
+    echo "These files should be gitignored or removed from tracking."
+    echo "To remove from git (but keep locally):"
+    echo "  git rm --cached <file>"
+    echo ""
+    echo "To add to .gitignore:"
+    echo "  echo '<pattern>' >> .gitignore"
+    exit 1
+fi
+
+echo "✓ No large files detected"
+exit 0
+
