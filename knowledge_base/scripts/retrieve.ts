@@ -3,6 +3,7 @@ import Table from 'cli-table3';
 import { env } from './env';
 import { loadIndex, type Bm25Document } from './bm25';
 import type { ChunkMetadata } from './types';
+import { getAuthorityMultiplier } from './utils/authority';
 
 interface HybridResult {
   id: string;
@@ -224,10 +225,15 @@ async function main() {
     const vectorChunks = vectorResults.ids[0].map((id, idx) => {
       const distances = vectorResults.distances?.[0]?.[idx] ?? [];
       const distance = Array.isArray(distances) ? distances[0] : distances;
-      const score = 1 - (distance ?? 1); // Convert distance to similarity
+      const baseScore = 1 - (distance ?? 1); // Convert distance to similarity
       
       const metadata = vectorResults.metadatas?.[0]?.[idx] as ChunkMetadata | undefined;
       const document = vectorResults.documents?.[0]?.[idx];
+      
+      // Apply authority multiplier to vector score
+      const authority = metadata?.authority;
+      const authorityMultiplier = getAuthorityMultiplier(authority);
+      const score = baseScore * authorityMultiplier;
       
       return {
         id,
@@ -244,20 +250,29 @@ async function main() {
         const bm25Index = await loadIndex();
         const bm25Results = bm25Index.search(query, { boost: { title: 3, h1: 2, body: 1 } });
         
-        // Create map of file path -> best BM25 score
+        // Create map of file path -> best BM25 score (with authority multiplier applied)
         const bm25Scores = new Map<string, number>();
         for (const result of bm25Results.slice(0, limitValue * 3)) {
           const filepath = result.id;
+          // Apply authority multiplier to BM25 score
+          const authority = (result as any).authority;
+          const authorityMultiplier = getAuthorityMultiplier(authority);
+          const adjustedScore = result.score * authorityMultiplier;
           const currentScore = bm25Scores.get(filepath) || 0;
-          bm25Scores.set(filepath, Math.max(currentScore, result.score));
+          bm25Scores.set(filepath, Math.max(currentScore, adjustedScore));
         }
         
         if (fusionMethod === 'rrf') {
           // Reciprocal Rank Fusion
-          const rrfResults = reciprocalRankFusion(
-            bm25Results.slice(0, limitValue * 2).map(r => ({ id: r.id, score: r.score })),
-            vectorChunks.map(c => ({ id: c.id, score: c.vectorScore! }))
-          );
+          // Apply authority multipliers before RRF
+          const bm25WithAuthority = bm25Results.slice(0, limitValue * 2).map(r => {
+            const authority = (r as any).authority;
+            const multiplier = getAuthorityMultiplier(authority);
+            return { id: r.id, score: r.score * multiplier };
+          });
+          const vectorWithAuthority = vectorChunks.map(c => ({ id: c.id, score: c.vectorScore! }));
+          
+          const rrfResults = reciprocalRankFusion(bm25WithAuthority, vectorWithAuthority);
           
           // Map RRF results back to full chunk data
           const vectorMap = new Map(vectorChunks.map(c => [c.id, c]));
@@ -321,12 +336,17 @@ async function main() {
             }
             
             const normalizedBm25 = normalizeScore(bm25Score, bm25Min, bm25Max);
-            const finalScore = alphaValue * chunk.vectorScore! + (1 - alphaValue) * normalizedBm25;
+            // Authority multipliers already applied to vectorScore in vectorChunks mapping
+            // Apply authority multiplier to normalized BM25 score as well
+            const chunkAuthority = chunk.metadata?.authority;
+            const authorityMultiplier = getAuthorityMultiplier(chunkAuthority);
+            const adjustedBm25 = normalizedBm25 * authorityMultiplier;
+            const finalScore = alphaValue * chunk.vectorScore! + (1 - alphaValue) * adjustedBm25;
             
             fused.set(chunk.id, {
               ...chunk,
               score: finalScore,
-              bm25Score: normalizedBm25,
+              bm25Score: adjustedBm25,
             });
           }
           
@@ -340,9 +360,13 @@ async function main() {
             
             if (!hasVectorMatch) {
               const normalizedBm25 = normalizeScore(result.score, bm25Min, bm25Max);
+              // Apply authority multiplier to BM25-only results
+              const authority = (result as any).authority;
+              const authorityMultiplier = getAuthorityMultiplier(authority);
+              const adjustedBm25 = normalizedBm25 * authorityMultiplier;
               fused.set(`bm25:${filepath}`, {
                 id: `bm25:${filepath}`,
-                score: (1 - alphaValue) * normalizedBm25,
+                score: (1 - alphaValue) * adjustedBm25,
                 text: result.body?.substring(0, 500) || '',
                 metadata: {
                   source: result.source || 'unknown',
@@ -356,8 +380,9 @@ async function main() {
                   token_count: 0,
                   content_sha256: '',
                   file_path: filepath,
+                  authority: authority,
                 } as ChunkMetadata,
-                bm25Score: normalizedBm25,
+                bm25Score: adjustedBm25,
               });
             }
           }

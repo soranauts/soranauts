@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 // KB Source types
-export const kbSourceSchema = z.enum(['wiki', 'update', 'article', 'glossary', 'iroha_docs', 'soramitsu', 'polkaswap_update', 'fearless_update', 'fearless_github', 'tonswap_site', 'tonswap_update', 'pdf', 'imported', 'meta', 'bck21', 'bck22', 'bck23', 'bck24']);
+export const kbSourceSchema = z.enum(['wiki', 'update', 'article', 'glossary', 'iroha_docs', 'soramitsu', 'polkaswap_update', 'fearless_update', 'fearless_github', 'tonswap_site', 'tonswap_update', 'pdf', 'imported', 'meta', 'bck21', 'bck22', 'bck23', 'bck24', 'internal-research', 'community-memo']);
 
 // Enhanced front-matter schema with provenance tracking
 export const kbFrontmatterSchema = z.object({
@@ -47,6 +47,7 @@ export interface ChunkMetadata {
   content_sha256: string;
   canonical_url?: string;
   file_path?: string;
+  authority?: number; // Authority level: 1 (highest) to 4 (lowest), default 3
 }
 
 // Extended metadata in sidecar JSON

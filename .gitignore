@@ -57,6 +57,8 @@ knowledge_base/curated/tonswap_updates/
 knowledge_base/curated/soramitsu_site/
 knowledge_base/curated/tonswap_site/
 knowledge_base/curated/articles/
+# Community memos PDFs (large files, markdown versions are committed)
+knowledge_base/curated/community-memos/**/*.pdf
 # Keep only specific KB files (docs, configs, scripts)
 !knowledge_base/README.md
 !knowledge_base/KB_STANDARDS.md

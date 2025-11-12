@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 import { readFileSync, readdirSync, statSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join, relative, dirname } from 'path';
+import { join, relative, dirname, basename } from 'path';
 import { createHash } from 'crypto';
 import { glob as globAsync } from 'glob';
 import matter from 'gray-matter';
@@ -13,6 +13,7 @@ import { normalizeForHash, hashContent, normalizeCJKWhitespace } from './utils/t
 import { chunkTokens, chunkTextByCharacters, type TokenChunk } from './utils/tokenizer';
 import type { ChunkMetadata, ExtendedChunkMetadata, IndexManifest, Metrics } from './types';
 import { KBFrontmatter } from './types';
+import { computeAuthority } from './utils/authority';
 
 const snapshotId = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 const CHUNKER_VERSION = '1.0.0'; // Stable version identifier for chunking algorithm
@@ -153,6 +154,10 @@ function processFile(
         // Include contentSha256 to ensure uniqueness across different files
         const chunkId = `${contentSha256}::${chunkTextHash}::${tokenChunk.start}::${tokenLen}::${CHUNKER_VERSION}`;
 
+        // Compute authority based on source and file path
+        const relativePath = relative(env.KB_DIR, filepath);
+        const authority = computeAuthority(source, relativePath);
+        
         const metadata: ChunkMetadata = {
           source: source,
           source_url: sourceUrl,
@@ -166,7 +171,8 @@ function processFile(
           lang: frontmatter.lang,
           content_sha256: contentSha256,
           canonical_url: frontmatter.canonical_url,
-          file_path: relative(env.KB_DIR, filepath),
+          file_path: relativePath,
+          authority: authority,
         };
 
         const extendedMetadata: ExtendedChunkMetadata = {
@@ -462,6 +468,8 @@ async function main() {
       { path: join(env.KB_DIR, 'curated', 'tonswap_updates'), source: 'tonswap_update' },
       { path: join(env.KB_DIR, 'curated', 'articles'), source: 'article' },
       { path: join(env.KB_DIR, 'curated', 'imported'), source: 'imported' },
+      { path: join(env.KB_DIR, 'curated', 'internal-research'), source: 'internal-research' },
+      { path: join(env.KB_DIR, 'curated', 'community-memos'), source: 'community-memo' },
       { path: join(env.KB_DIR, 'pdfs'), source: 'pdf' },
     ];
     
@@ -510,12 +518,30 @@ async function main() {
     { path: join(env.KB_DIR, 'curated', 'tonswap_updates'), source: 'tonswap_update' },
     { path: join(env.KB_DIR, 'curated', 'articles'), source: 'article' },
     { path: join(env.KB_DIR, 'curated', 'imported'), source: 'imported' },
+    { path: join(env.KB_DIR, 'curated', 'internal-research'), source: 'internal-research' },
+    { path: join(env.KB_DIR, 'curated', 'community-memos'), source: 'community-memo' },
     { path: join(env.KB_DIR, 'pdfs'), source: 'pdf' },
   ];
   
+  // Valid source types for validation
+  const validSources = ['wiki', 'update', 'article', 'glossary', 'iroha_docs', 'soramitsu', 'polkaswap_update', 'fearless_update', 'fearless_github', 'tonswap_site', 'tonswap_update', 'pdf', 'imported', 'meta', 'bck21', 'bck22', 'bck23', 'bck24', 'internal-research', 'community-memo'];
+  
   for (const filepath of filesToProcess) {
     const relPath = relative(env.KB_DIR, filepath);
-    const source = allSourceDirs.find(sd => filepath.startsWith(sd.path))?.source || 'unknown';
+    // Prefer frontmatter source if present and valid, otherwise use path-based detection
+    const { frontmatter } = parseMarkdownFile(filepath, 'unknown');
+    
+    // Skip invoices: check filename or frontmatter type
+    const filename = basename(filepath).toLowerCase();
+    if (filename.includes('invoice') || (frontmatter as any)?.type === 'invoice') {
+      console.log(`  Skipping invoice: ${filepath}`);
+      metrics.files_skipped++;
+      continue;
+    }
+    
+    const pathBasedSource = allSourceDirs.find(sd => filepath.startsWith(sd.path))?.source || 'unknown';
+    // Use frontmatter.source if it's a valid source type, otherwise fall back to path-based
+    const source = (frontmatter.source && typeof frontmatter.source === 'string' && validSources.includes(frontmatter.source)) ? frontmatter.source : pathBasedSource;
     const processed = processFile(filepath, source, env.EMBED_MODEL, snapshotId, env.TOKENIZER);
     if (processed) {
       processedFiles.set(relPath, processed);
