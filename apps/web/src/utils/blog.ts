@@ -59,7 +59,9 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
   } = data;
 
   // Use customSlug from frontmatter if provided, otherwise fall back to filename (id)
-  const slug = cleanSlug(customSlug || id);
+  // Strip file extension from id if no customSlug is provided
+  const baseId = customSlug ? undefined : id.replace(/\.(mdx?|md)$/i, '');
+  const slug = cleanSlug(customSlug || baseId || id);
   const publishDate = new Date(rawPublishDate);
   const updateDate = rawUpdateDate ? new Date(rawUpdateDate) : undefined;
   const category = rawCategory ? cleanSlug(rawCategory) : undefined;
