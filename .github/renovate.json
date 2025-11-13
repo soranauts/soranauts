@@ -1,0 +1,129 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "schedule": [
+    "before 3am on Monday"
+  ],
+  "timezone": "UTC",
+  "rangeStrategy": "bump",
+  "semanticCommits": "enabled",
+  "automerge": false,
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "enabledManagers": ["npm", "pnpm"],
+  "packageRules": [
+    {
+      "description": "Astro ecosystem updates",
+      "groupName": "astro-ecosystem",
+      "matchPackagePatterns": [
+        "^astro$",
+        "^@astrojs/",
+        "^@astrolib/"
+      ],
+      "separateMajorMinor": true,
+      "schedule": ["before 3am on Monday"]
+    },
+    {
+      "description": "Development tools",
+      "groupName": "dev-tools",
+      "matchPackageNames": [
+        "eslint",
+        "prettier",
+        "typescript",
+        "tsx"
+      ],
+      "matchPackagePatterns": [
+        "^@types/",
+        "^eslint-",
+        "^@typescript-eslint/"
+      ],
+      "separateMajorMinor": true,
+      "schedule": ["before 3am on Monday"]
+    },
+    {
+      "description": "Testing frameworks",
+      "groupName": "testing",
+      "matchPackageNames": [
+        "playwright",
+        "@playwright/test",
+        "vitest"
+      ],
+      "separateMajorMinor": true,
+      "schedule": ["before 3am on Monday"]
+    },
+    {
+      "description": "Blockchain and AI SDKs",
+      "groupName": "blockchain-sdks",
+      "matchPackageNames": [
+        "chromadb",
+        "openai",
+        "tiktoken"
+      ],
+      "separateMajorMinor": true,
+      "schedule": ["before 3am on Monday"]
+    },
+    {
+      "description": "React ecosystem",
+      "groupName": "react-ecosystem",
+      "matchPackageNames": [
+        "react",
+        "react-dom"
+      ],
+      "matchPackagePatterns": [
+        "^@tanstack/"
+      ],
+      "separateMajorMinor": true,
+      "schedule": ["before 3am on Monday"]
+    },
+    {
+      "description": "Tailwind CSS ecosystem",
+      "groupName": "tailwind-ecosystem",
+      "matchPackageNames": [
+        "tailwindcss",
+        "tailwind-merge"
+      ],
+      "matchPackagePatterns": [
+        "^@tailwindcss/"
+      ],
+      "separateMajorMinor": true,
+      "schedule": ["before 3am on Monday"]
+    },
+    {
+      "description": "Group minor and patch updates",
+      "groupName": "dependencies-minor",
+      "matchUpdateTypes": ["minor", "patch"],
+      "excludePackageNames": [
+        "astro",
+        "@astrojs/check",
+        "react",
+        "react-dom",
+        "typescript"
+      ],
+      "schedule": ["before 3am on Monday"]
+    },
+    {
+      "description": "Separate major updates - no grouping",
+      "matchUpdateTypes": ["major"],
+      "separateMajorMinor": true,
+      "automerge": false
+    },
+    {
+      "description": "Pin Node.js version from .nvmrc",
+      "matchPackageNames": ["node"],
+      "enabled": false
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "schedule": ["at any time"]
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 3am on the first day of the month"]
+  },
+  "labels": ["dependencies"]
+}
+

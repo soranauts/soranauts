@@ -5,7 +5,7 @@
 
 🚀 _Your gateway to the SORA ecosystem and DeFi innovation_. 🚀
 
-**Soranauts** is a comprehensive content platform built with **[Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)** that provides expert analysis, guides, and insights into the SORA blockchain ecosystem, DeFi protocols, and the future of decentralized finance.
+**Soranauts** is a comprehensive content platform built with **[Astro 5.15.3](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)** that provides expert analysis, guides, and insights into the SORA blockchain ecosystem, DeFi protocols, and the future of decentralized finance.
 
 - ✅ **Production-ready** scores in **PageSpeed Insights** reports.
 - ✅ **SORA-focused content** covering XOR, VAL, PSWAP tokens and ecosystem developments.
@@ -36,6 +36,7 @@
   - [Project structure](#project-structure)
   - [Commands](#commands)
   - [Configuration](#configuration)
+  - [Knowledge Base](#knowledge-base)
   - [Deploy](#deploy)
 - [Content Focus](#content-focus)
 - [Recent Updates](#recent-updates)
@@ -62,7 +63,7 @@ Soranauts provides comprehensive coverage of the SORA ecosystem, including:
 
 ## Getting started
 
-**Soranauts** is built using [Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/) for optimal performance and SEO. The platform focuses on delivering high-quality content about the SORA ecosystem with a clean, fast-loading interface.
+**Soranauts** is built using [Astro 5.15.3](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/) for optimal performance and SEO. The platform focuses on delivering high-quality content about the SORA ecosystem with a clean, fast-loading interface.
 
 The site uses minimal JavaScript for core functionality while maintaining excellent performance scores and SEO optimization for maximum discoverability of SORA-related content.
 
@@ -126,14 +127,13 @@ All commands are run from the root of the project, from a terminal:
 | :-------------------- | :------------------------------------------------- |
 | `pnpm install`        | Installs dependencies for the entire monorepo     |
 | `pnpm dev`            | Starts local dev server at `localhost:4321`       |
-| `pnpm build`          | Build your production site to `./dist/`            |
+| `pnpm build`          | Build your production site to `./dist/` (includes Pagefind search index) |
 | `pnpm preview`        | Preview your build locally, before deploying       |
 | `pnpm lint`           | Run ESLint across all packages                     |
 | `pnpm typecheck`      | Run TypeScript checks across all packages          |
-| `pnpm generate:glossary` | Generate glossary JSON data                       |
-| `pnpm index:glossary` | Index glossary data into Typesense                 |
-| `pnpm glossary:typesense` | Switch to Typesense search                       |
-| `pnpm glossary:fallback` | Switch to fallback search                        |
+| `pnpm verify:og`      | Validate Open Graph images for all content         |
+| `pnpm kb:sync:*`      | Sync content from external sources (medium, wiki, etc.) |
+| `pnpm kb:backtest`    | Run knowledge base retrieval tests                 |
 
 <br>
 
@@ -212,6 +212,31 @@ analytics:
 ui:
   theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 ```
+
+<br>
+
+### Knowledge Base
+
+Soranauts includes an advanced RAG (Retrieval-Augmented Generation) knowledge base system that powers content discovery and intelligent search features.
+
+**Key Features:**
+- **Multi-source ingestion**: Automatically syncs content from Medium, SORA Wiki, GitHub, and other sources
+- **Semantic search**: ChromaDB-powered vector search for intelligent content retrieval
+- **Quality testing**: Built-in backtesting to ensure retrieval accuracy
+- **Automated workflows**: GitHub Actions for continuous knowledge base updates
+
+**Common Commands:**
+- `pnpm kb:sync:medium` — Sync articles from Medium publications
+- `pnpm kb:sync:wiki` — Import SORA Wiki documentation
+- `pnpm kb:sync:fearless:github` — Sync Fearless Wallet docs from GitHub
+- `pnpm kb:backtest` — Run retrieval quality tests
+- `pnpm kb:verify` — Self-test the knowledge base system
+
+For detailed documentation, see [knowledge_base/README.md](./knowledge_base/README.md).
+
+**Pagefind Search:**
+
+The site uses [Pagefind](https://pagefind.app/) for static search functionality. The search index is automatically built during `pnpm build` and requires no additional configuration. The index includes all blog posts, glossary terms, and documentation pages.
 
 <br>
 

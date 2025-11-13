@@ -25,6 +25,12 @@ export interface Props {
 }
 
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+
+// Helper function to check if a link is external
+const isExternalLink = (href?: string): boolean => {
+  if (!href) return false;
+  return href.startsWith('http://') || href.startsWith('https://');
+};
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-border-subtle bg-soft dark:bg-page not-prose']}>
@@ -46,20 +52,27 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
             <nav class="mt-4 text-sm text-text-soft" aria-label="Footer secondary links">
               <ul class="flex flex-wrap items-center gap-y-2">
                 {
-                  secondaryLinks.map(({ text, href, ariaLabel }, index) => (
-                    <li class="flex items-center">
-                      {index > 0 && (
-                        <span class="mx-2 text-text-soft/70" aria-hidden="true">|</span>
-                      )}
-                      <a
-                        class="text-text-soft hover:text-link hover:underline focus-visible:outline-none focus-visible:text-link focus-visible:underline transition duration-150 ease-in-out"
-                        href={href}
-                        aria-label={ariaLabel ?? text}
-                      >
-                        {text ? <span set:html={text}></span> : null}
-                      </a>
-                    </li>
-                  ))
+                  secondaryLinks.map(({ text, href, ariaLabel }, index) => {
+                    const isExternal = isExternalLink(href);
+                    return (
+                      <li class="flex items-center">
+                        {index > 0 && (
+                          <span class="mx-2 text-text-soft/70" aria-hidden="true">|</span>
+                        )}
+                        <a
+                          class="inline-flex items-center gap-1.5 text-text-soft hover:text-link hover:underline focus-visible:outline-none focus-visible:text-link focus-visible:underline transition duration-150 ease-in-out"
+                          href={href}
+                          aria-label={ariaLabel ?? text}
+                          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        >
+                          {text ? <span set:html={text}></span> : null}
+                          {isExternal && (
+                            <Icon name="tabler:external-link" class="w-3 h-3 flex-shrink-0 opacity-70" aria-hidden="true" />
+                          )}
+                        </a>
+                      </li>
+                    );
+                  })
                 }
               </ul>
             </nav>
@@ -77,17 +90,26 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
               ) : null}
               {sectionLinks && Array.isArray(sectionLinks) && sectionLinks.length > 0 && (
                 <ul class="text-sm space-y-2.5">
-                  {sectionLinks.map(({ text, href, ariaLabel }) => (
-                    <li>
-                      <a
-                        class="inline-block text-text-soft hover:text-link hover:underline focus-visible:outline-none focus-visible:text-link focus-visible:underline transition duration-150 ease-in-out"
-                        href={href}
-                        aria-label={ariaLabel ?? text}
-                      >
-                        {text ? <span set:html={text}></span> : null}
-                      </a>
-                    </li>
-                  ))}
+                  {sectionLinks.map(({ text, href, ariaLabel, icon }) => {
+                    const isExternal = isExternalLink(href);
+                    return (
+                      <li>
+                        <a
+                          class="inline-flex items-center gap-1.5 text-text-soft hover:text-link hover:underline focus-visible:outline-none focus-visible:text-link focus-visible:underline transition duration-150 ease-in-out"
+                          href={href}
+                          aria-label={ariaLabel ?? text}
+                          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        >
+                          {text ? <span set:html={text}></span> : null}
+                          {icon ? (
+                            <Icon name={icon} class="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+                          ) : isExternal ? (
+                            <Icon name="tabler:external-link" class="w-3.5 h-3.5 flex-shrink-0 opacity-70" aria-hidden="true" />
+                          ) : null}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               )}
             </div>

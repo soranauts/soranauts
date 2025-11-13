@@ -1,4 +1,15 @@
-dist
-node_modules
-.github
-types.generated.d.ts
+# Protected content paths
+apps/web/src/content/**
+apps/web/src/pages/**
+apps/web/src/data/sora-glossary.ts
+apps/web/src/data/taxonomy.ts
+apps/web/public/**
+
+# Build artifacts
+**/dist/**
+**/node_modules/**
+**/.astro/**
+
+# Generated files
+apps/web/public/pagefind/**
+pnpm-lock.yaml

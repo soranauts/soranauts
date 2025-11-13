@@ -27,6 +27,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
         
+      - name: Verify no protected paths modified
+        run: |
+          PROTECTED=$(git diff --name-only origin/main...HEAD | \
+            grep -E "^apps/web/src/(content|pages|data/sora-glossary|data/taxonomy)|^apps/web/public/" || true)
+          if [ -n "$PROTECTED" ]; then
+            echo "❌ Protected paths modified:"
+            echo "$PROTECTED"
+            exit 1
+          fi
+          echo "✅ No protected paths modified"
+        
       - name: Build packages
         run: pnpm --filter @soranauts/config build
         

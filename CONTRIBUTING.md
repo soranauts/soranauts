@@ -2,6 +2,33 @@
 
 Welcome to the Soranauts monorepo! This guide will help you get started with development.
 
+## Protected Paths
+
+⚠️ **IMPORTANT**: The following paths are protected and should **NEVER** be modified unless you are explicitly working on content or feature updates:
+
+**Content & Data:**
+- `apps/web/src/content/**` — All MDX blog posts and pages
+- `apps/web/src/data/sora-glossary.ts` — Glossary term definitions
+- `apps/web/src/data/taxonomy.ts` — Term taxonomy and relationships
+- `apps/web/public/**` — Static assets, OG images, glossary JSON
+
+**Website Pages (ALL ROUTES):**
+- `apps/web/src/pages/**` — ALL Astro page templates and API routes
+  - This includes: `/explore` (SORA Explorer), `/glossary`, `/blog`, `/tools/*`, API endpoints
+  - NO pages should be modified without explicit approval
+
+**Application Code:**
+- `apps/web/src/components/**` — UI components (unless fixing bugs)
+- `apps/web/src/assets/styles/**` — Design tokens and CSS system
+- `apps/web/tailwind.config.cjs` — Tailwind configuration
+- `apps/web/astro.config.mjs` — Astro build configuration
+
+**Build & Generation:**
+- `apps/web/scripts/**` — Content pipelines (OG, taxonomy, glossary indexing)
+- `knowledge_base/**` — RAG system and ingestion scripts
+
+Pre-commit hooks (see below) will automatically skip linting/formatting for protected paths.
+
 ## Prerequisites
 
 - **Node.js**: v20.x (use `.nvmrc` file)
@@ -81,8 +108,24 @@ soranauts/
 2. **Make changes** following the architecture principles
 3. **Test locally** with `pnpm dev`
 4. **Run tests** with `pnpm exec playwright test`
-5. **Commit with conventional commits** (feat:, fix:, chore:, etc.)
-6. **Create PR** with description and checklist
+5. **Validate changes** (see validation workflows below)
+6. **Commit with conventional commits** (feat:, fix:, chore:, etc.)
+7. **Create PR** with description and checklist
+
+### Pre-Commit Hooks
+
+The repository uses Husky and lint-staged to automatically check code quality before commits:
+
+- **Automatic formatting**: Prettier runs on staged files
+- **Linting**: ESLint checks TypeScript/JavaScript files
+- **Protected path exemption**: Content and protected files are automatically skipped
+
+**Emergency bypass** (use sparingly):
+```bash
+git commit --no-verify
+```
+
+Hooks are automatically installed when you run `pnpm install`.
 
 ## Key Features
 
@@ -91,6 +134,51 @@ soranauts/
 - **API Endpoints**: Rate-limited endpoints in `/src/pages/api/`
 - **Environment Validation**: Zod schemas for all env vars
 - **Testing**: Playwright smoke tests for key flows
+
+## Validation Workflows
+
+### Open Graph (OG) Image Validation
+
+Before deploying, ensure all content has valid OG images:
+
+```bash
+# Run OG validation
+pnpm verify:og
+
+# Or manually validate during build
+pnpm build  # OG validation runs automatically in prebuild
+```
+
+The validation checks:
+- All blog posts have corresponding OG images
+- Images exist in `apps/web/public/og/`
+- Images meet size and format requirements
+
+### Knowledge Base Workflows
+
+**Syncing External Content:**
+```bash
+# Sync from Medium publications
+pnpm kb:sync:medium
+pnpm kb:sync:polkaswap
+pnpm kb:sync:fearless
+
+# Sync from other sources
+pnpm kb:sync:wiki           # SORA Wiki
+pnpm kb:sync:fearless:github  # Fearless GitHub docs
+pnpm kb:sync:soramitsu      # SORAMITSU site
+```
+
+**Testing Knowledge Base Quality:**
+```bash
+# Run retrieval backtests
+pnpm kb:backtest
+
+# Verify system health
+pnpm kb:verify
+```
+
+For detailed KB documentation, see [knowledge_base/README.md](../../knowledge_base/README.md).
 
 ## Troubleshooting
 

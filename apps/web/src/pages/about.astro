@@ -27,11 +27,12 @@ const missionPillars = [
     icon: 'tabler:compass',
     title: 'Actionable builder guides',
     description:
-      'We translate SORA’s supranational economy, Polkaswap flows, and the Token Bonding Curve into operations-ready walkthroughs for wallets, staking, and liquidity.',
+      "We translate SORA's supranational economy, Polkaswap flows, and the Token Bonding Curve into operations-ready walkthroughs for wallets, staking, and liquidity.",
     callToAction: {
       href: articleLinks.deepDive,
       text: 'Read the SORA + Polkaswap guide',
       icon: 'tabler:external-link',
+      isCardLink: true,
     },
   },
   {
@@ -43,18 +44,20 @@ const missionPillars = [
       href: articleLinks.roadmap,
       text: 'Review the roadmap brief',
       icon: 'tabler:timeline-event',
+      isCardLink: true,
     },
   },
   {
     icon: 'tabler:users',
     title: 'Community-first storytelling',
     description:
-      'We amplify ecosystem voices with Medium imports, contributor spotlights, and tutorials so anyone can follow SORA’s rapid iteration without chasing scattered channels.',
+      "We amplify ecosystem voices with Medium imports, contributor spotlights, and tutorials so anyone can follow SORA's rapid iteration without chasing scattered channels.",
     callToAction: {
       href: 'https://t.me/Soranauts',
       target: '_blank',
       text: 'Join the discussion',
       icon: 'tabler:send',
+      isCardLink: true,
     },
   },
 ];
@@ -130,6 +133,7 @@ const supportItems = [
       href: '/donate',
       text: 'Donate to Soranauts',
       icon: 'tabler:heart',
+      isCardLink: true,
     },
   },
   {
@@ -142,6 +146,7 @@ const supportItems = [
       target: '_blank',
       text: 'Jump into Telegram',
       icon: 'tabler:send',
+      isCardLink: true,
     },
   },
   {
@@ -153,6 +158,7 @@ const supportItems = [
       href: '/blog',
       text: 'Browse latest posts',
       icon: 'tabler:external-link',
+      isCardLink: true,
     },
   },
 ];
@@ -290,7 +296,7 @@ const resourceLinks = [
         items={missionPillars}
         classes={{
           container: 'gap-10',
-          panel: 'flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-elevated h-full',
+          panel: 'flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-elevated h-full cursor-pointer',
           body: 'flex-1 flex flex-col',
           icon: 'w-10 h-10 text-brand-500',
           title: 'text-2xl text-text-main',
@@ -385,7 +391,7 @@ const resourceLinks = [
         items={supportItems}
         classes={{
           container: 'gap-8',
-          panel: 'flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-elevated h-full',
+          panel: 'flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-elevated h-full cursor-pointer',
           body: 'flex-1 flex flex-col',
           icon: 'w-10 h-10 text-brand-500',
           title: 'text-2xl text-text-main',
