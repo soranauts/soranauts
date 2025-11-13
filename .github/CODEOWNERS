@@ -1,0 +1,32 @@
+# CODEOWNERS for Soranauts Monorepo
+# 
+# These owners will be the default owners for everything in the repo.
+# Unless a later match takes precedence, these users will be requested for
+# review when someone opens a pull request.
+#
+# For more information: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global owners (fallback)
+* @soranauts/maintainers
+
+# Web application
+/apps/web/ @soranauts/maintainers
+
+# Packages
+/packages/ @soranauts/maintainers
+
+# Knowledge base
+/knowledge_base/ @soranauts/maintainers
+
+# CI/CD workflows
+/.github/workflows/ @soranauts/maintainers
+
+# Root configuration files
+/package.json @soranauts/maintainers
+/pnpm-lock.yaml @soranauts/maintainers
+/pnpm-workspace.yaml @soranauts/maintainers
+/tsconfig.json @soranauts/maintainers
+
+# Documentation
+/*.md @soranauts/maintainers
+

@@ -437,22 +437,6 @@
     background-color: var(--color-brand-400);
   }
 
-  .financial-disclaimer {
-    @apply flex gap-3 rounded-md border-l-4 border-status-warning bg-soft px-4 py-4 shadow-sm;
-  }
-
-  .financial-disclaimer__icon {
-    @apply mt-1 text-status-warning;
-  }
-
-  .financial-disclaimer__title {
-    @apply text-sm font-semibold uppercase tracking-wide text-status-warning;
-  }
-
-  .financial-disclaimer__body {
-    @apply text-sm;
-    color: color-mix(in srgb, var(--color-warning) 90%, var(--color-text-main) 10%);
-  }
 
   .search-modal {
     @apply fixed inset-0 z-50 overflow-y-auto;

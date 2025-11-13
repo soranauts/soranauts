@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "preinstall": "node -e \"if (!process.env.npm_execpath || !process.env.npm_execpath.includes('pnpm')) { console.error('Use pnpm to install'); process.exit(1) }\"",
+    "prepare": "husky install",
     "build": "pnpm --filter @soranauts/web build",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
@@ -25,12 +26,27 @@
     "commander": "^14.0.2",
     "glob": "^11.0.3",
     "gray-matter": "^4.0.3",
+    "minisearch": "^7.0.1",
     "openai": "^4.28.0",
     "p-retry": "^6.2.0",
     "pdf-parse": "^1.1.1",
     "tiktoken": "^1.0.10"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
     "tsx": "^4.20.5"
+  },
+  "lint-staged": {
+    "{apps,packages}/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "{apps,packages}/**/*.astro": [
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write"
+    ]
   }
 }

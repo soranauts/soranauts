@@ -5,6 +5,7 @@ import Image from '~/components/common/Image.astro';
 import PostTags from '~/components/blog/Tags.astro';
 import SocialShare from '~/components/common/SocialShare.astro';
 import TableOfContents from '~/components/blog/TableOfContents.astro';
+import FinancialDisclaimer from '~/components/ui/FinancialDisclaimer.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
@@ -111,23 +112,7 @@ const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.l
 
     <!-- Financial Disclaimer -->
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 mb-6">
-      <div class="financial-disclaimer">
-        <div class="financial-disclaimer__icon">
-          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-            </svg>
-          </div>
-        <div>
-          <h3 class="financial-disclaimer__title">
-              Financial Disclaimer
-            </h3>
-          <div class="financial-disclaimer__body">
-              <p>
-                <strong>Financial Disclaimer:</strong> The information provided on Soranauts is for educational and informational purposes only and should not be taken as financial, investment, or trading advice. Content related to SORA, Polkaswap, TONSWAP, or other cryptocurrencies does not constitute investment recommendations. Cryptocurrency and DeFi investments are highly volatile and involve significant risk, including potential loss of capital, smart contract vulnerabilities, impermanent loss, and regulatory changes. Always conduct your own research (DYOR) and consult a qualified financial advisor before making any decisions. Past performance does not guarantee future results. Soranauts and its authors assume no responsibility for financial losses resulting from actions taken based on this information.
-              </p>
-          </div>
-        </div>
-      </div>
+      <FinancialDisclaimer variant="subtle" />
     </div>
 
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">

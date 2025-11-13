@@ -1,0 +1,284 @@
+---
+publishDate: 2025-11-13T00:00:00Z
+title: "TONSWAP: Telegram DeFi Hub on TON (Complete Guide)"
+excerpt: "Trade, launch, and earn in Telegram with TONSWAP—DeFi on TON featuring CLMM swaps, perps, options, and on-chain risk control."
+image: ~/assets/images/tonswap-telegram-defi-hub-on-ton-complete-guide.jpg
+category: "DeFi & Trading"
+tags: ["tonswap", "ton", "defi", "dex", "telegram", "sora", "liquidity", "cross-chain", "tokenomics"]
+canonicalURL: https://soranauts.com/tonswap-telegram-defi-hub-on-ton-complete-guide
+---
+
+In October 2025, a flash crash wiped out $19 billion in leveraged positions within hours—exposing how fragile DeFi becomes when risk controls fail. TONSWAP's answer? A fully on-chain risk engine that responds instantly, without human intervention. This isn't just another DEX; it's Telegram's first mainstream DeFi super-app, built for up to one billion users.
+
+---
+
+## TL;DR
+
+- **Mass adoption:** DeFi directly in Telegram for up to 1B users  
+- **Complete suite:** CLMM DEX, Launchpad, Perps (100×), Options, LP Protection, Risk Engine  
+- **TON blockchain:** Sub-second finality, fees `≤ $0.01`, throughput `100,000+ TPS`  
+- **$TS tokenomics:** 100M supply (70M launch), deflationary buy-and-burn, 10% XOR integration  
+- **SORA bridge:** Cross-chain liquidity with [SORA v3](/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge)  
+- **Play MeowFi:** <a href="https://t.me/tonswap_org_bot" target="_blank" rel="noopener noreferrer">@tonswap_org_bot</a> — earn points before launch
+
+---
+
+## Why TONSWAP Matters
+
+TONSWAP represents a paradigm shift: **DeFi that feels like texting.** No browser extensions, no steep learning curve—just open Telegram and trade.
+
+The platform combines six major DeFi modules into one unified ecosystem—all powered by an autonomous on-chain risk engine built after October 2025’s $19B liquidation event.
+
+**For users:** Swap, trade, launch, and earn without leaving Telegram.  
+**For DeFi:** Sophisticated tools accessible to anyone.  
+**For TON:** Infrastructure for mass crypto adoption.
+
+First announced in 2024 as ["the DEX for mass adoption"](/introducing-tonswap-the-dex-for-mass-adoption-on-ton), TONSWAP has evolved into a **complete DeFi hub** expected to launch in Q1–Q2 2026.
+
+| Feature | Description | Why It Matters |
+|----------|-------------|----------------|
+| **CLMM DEX** | Concentrated liquidity with T3 stablecoin hub | Capital efficiency, minimal slippage |
+| **Launchpad** | Permissionless token sales and instant listings | One-click token creation for communities |
+| **Perpetual Futures** | Up to 100× leverage, on-chain liquidation | Advanced trading inside Telegram |
+| **Options & Derivatives** | Shout, outperformance, and volatility perps | Wall Street tools, mobile UX |
+| **LP Protection** | Parisian-style time-based IL insurance | Safety net for LPs |
+| **Risk Engine** | Fully on-chain autonomous management | Instant market-response system |
+
+---
+
+## Why TON?
+
+TON offers the perfect base for mass-adopted DeFi: **sub-second finality, negligible fees, and native Telegram integration.** It meets users where they already are—no browser wallets, no friction.
+
+| Metric         | TON Performance                    | Impact on TONSWAP              |
+|----------------|------------------------------------|--------------------------------|
+| Block Finality | `≤ 1 second`                       | Near-instant confirmations     |
+| Fees           | `≤ $0.01`                          | Affordable for micro-traders   |
+| Throughput     | `100,000+ TPS (tested)`            | Scales to mass adoption        |
+| Integration    | Native Telegram mini-apps & wallet | Seamless onboarding experience |
+
+The <a href="https://docs.ton.org/" target="_blank" rel="noopener noreferrer">TON blockchain</a>, originally conceived by Telegram, bridges social media and crypto. Combined with <a href="https://core.telegram.org/bots/webapps" target="_blank" rel="noopener noreferrer">Telegram Mini Apps</a>, TONSWAP delivers smooth blockchain interactions directly in chat.
+
+---
+
+## Core DeFi Features
+
+### The T3 Liquidity Hub
+
+T3 is a **composite stablecoin** (USDT + USDC + SORA’s KUSD). Every pool routes through T3 for one or two-hop swaps (Token A → T3 → Token B).
+
+**Benefits:**
+- Unified liquidity backbone  
+- Minimal impermanent loss (volatility on one side only)  
+- CEX-level execution on-chain  
+- High capital efficiency via CLMM  
+
+TONSWAP uses **Concentrated Liquidity Market Maker (CLMM)** technology. LPs allocate capital to price ranges, with prices set by TWAP oracles. Contracts are written in TOLK for speed and safety.
+
+### Advanced Trading: Perpetuals & Options
+
+**Perpetual Futures:** Up to 100× leverage, on-chain funding rates, transparent liquidation. Uses impact-weighted oracles to prevent manipulation.
+
+**Options & Derivatives:** “Shout” options (lock early profits), outperformance contracts, volatility-linked perpetuals.  
+**Settlement:** Always in T3. Positions are Jettons/NFTs—composable and ownable.
+
+### Token Launchpad
+
+Create tokens and run IDOs directly inside Telegram. When sales end, liquidity auto-seeds pools—**instant tradability.**
+
+**Formats:**
+- Fair price sales  
+- Bonding-curve launches  
+- Auctions  
+
+A viral referral system amplifies growth—*one billion users, one billion tokens.*
+
+### LP Safety: Parisian Range Protection
+
+If pool price stays outside your range for 24+ hours, insurance triggers automatically. This protects LPs from prolonged price shocks without false positives.
+
+---
+
+## The Risk Engine: Autonomous On-Chain Protection
+
+In October 2025, a flash crash liquidated ~$19B across markets, revealing how slow manual risk control can be. TONSWAP solves this with its **on-chain Risk Engine**—a fully autonomous system that acts in seconds, not hours.
+
+**Risk Controller (RC):** Calculates a Global Risk Index (GRI) with four postures:
+- **Green:** Normal  
+- **Yellow:** Elevated risk  
+- **Red:** High risk (tightens limits)  
+- **Black:** Critical (pauses risky actions)
+
+**Control Mesh:** Sends heartbeat updates adjusting:
+- Trading fees  
+- Leverage caps  
+- Peg rates  
+- Gas vault allocation  
+- LP insurance parameters  
+
+Algorithms include Peg Control, Fee Allocation, Gas PI Controller, Perps LQR, and Insurance CVaR.
+
+**Two-Phase Authorization:** Every high-risk action is pre-checked. The RC logs intent, evaluates exposure, and issues cryptographic authorization receipts.
+
+**Result:** The system tightens leverage, raises fees, and stabilizes markets—**instantly, on-chain, and without human input.**
+
+| Feature | Traditional DeFi | TONSWAP Risk Engine |
+|---------|------------------|---------------------|
+| **Risk Detection** | Off-chain keepers | Fully on-chain |
+| **Response Time** | Minutes–hours | Seconds |
+| **Transparency** | Limited | Full on-chain logic |
+| **Human Dependency** | Manual | Autonomous |
+| **Risk Levels** | Binary (on/off) | Four-tier (Green→Black) |
+
+---
+
+## $TS Tokenomics: Deflationary by Design
+
+$TS (Tonswap Token) powers TONSWAP’s economy with a strictly deflationary supply.
+
+| Mechanism | Details | Purpose |
+|-----------|----------|----------|
+| **Total Supply** | 100M (70M launch, 30M incentives) | Fixed cap |
+| **Buy-Back-and-Burn** | 0.3% swap fee buys & burns $TS | Continuous deflation |
+| **Daily Burn/Re-Mint** | 90% re-minted, 10% burned forever | Net deflation |
+| **Distribution (of 90%)** | 70% LPs · 10% DAO · 10% [XOR](/deep-dive-into-xor-val-and-pswap) buy-and-burn | Aligns with SORA |
+| **Governance** | Community voting | DAO-controlled |
+
+The [buy-and-burn model](/sora-xor-token-supply-explained) creates positive feedback: more trading → more burns → greater scarcity. The XOR allocation links TONSWAP to the [SORA ecosystem](/sora-ecosystem-explained), fusing two economies.
+
+---
+
+## Community & Governance
+
+TONSWAP is community-driven from day one.
+
+**Referral Program:** Tiered fee-sharing (3-level). Earn when friends trade.  
+**Open Liquidity Mining:** Any project can incentivize pools—fully permissionless.  
+**DAO Governance:** Open-source, audited, and immutable parameters.
+
+Join the <a href="https://t.me/tonswap_org" target="_blank" rel="noopener noreferrer">TONSWAP Telegram community</a>.
+
+---
+
+## MeowFi: Gamified Pre-Launch Experience
+
+While TONSWAP finalizes, **MeowFi** builds community through gameplay. Play as Meowkoto, the samurai trader cat.
+
+**Features:**
+- Earn TSP (Tonswap Points)  
+- 5-level referral system  
+- Daily rewards & leaderboards  
+- Idle tax for inactive players  
+
+A fun on-ramp to DeFi, similar to other [SORA mini-apps](/soratopia-play-to-earn-telegram-game-in-the-sora-ecosystem).
+
+Start playing: <a href="https://t.me/tonswap_org_bot" target="_blank" rel="noopener noreferrer">@tonswap_org_bot</a>
+
+---
+
+## SORA Integration: Cross-Chain Synergy
+
+TONSWAP connects to [SORA v3](/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge) through a trust-minimized bridge.
+
+- Bridge XOR, KUSD, and other SORA assets to TON  
+- Access [Polkaswap](/exploring-sora-kensetsu-polkaswap) liquidity  
+- Enable cross-chain DeFi without leaving Telegram  
+
+**Economic link:** 10% of re-minted $TS funds XOR buy-and-burn, directly connecting TON and SORA economies.
+
+---
+
+## TONSWAP vs Traditional DEXs
+
+| Feature | Traditional DEXs | TONSWAP |
+|---------|------------------|---------|
+| **Access** | Browser extensions | Telegram mini-app |
+| **Onboarding** | Complex setup | As simple as texting |
+| **Risk Control** | Off-chain, manual | Fully on-chain |
+| **User Base** | Crypto natives | Up to 1B Telegram users |
+| **LP Protection** | Rare | Parisian insurance |
+| **Launchpad** | External | Integrated |
+| **Derivatives** | Limited | Perps + Options |
+| **Fees** | Variable | `≤ $0.01` on TON |
+
+---
+
+## FAQs
+
+<details>
+<summary>When will TONSWAP launch?</summary>
+Expected Q1–Q2 2026. In the meantime, play **MeowFi** (<a href="https://t.me/tonswap_org_bot" target="_blank" rel="noopener noreferrer">bot link</a>) to earn points and test referrals.
+</details>
+
+<details>
+<summary>What's the total supply of $TS tokens?</summary>
+**100 million max.** 70M at launch, 30M reserved for liquidity rewards. 10% of daily burns are permanent, ensuring continuous deflation.
+</details>
+
+<details>
+<summary>How does TONSWAP differ from Polkaswap?</summary>
+| Feature | TONSWAP (TON) | Polkaswap (SORA) |
+|----------|----------------|-----------------|
+| **Interface** | Telegram mini-app | Web DEX |
+| **Focus** | Mass adoption | Cross-chain liquidity |
+| **Token** | $TS (deflationary, buy-back) | $PSWAP (deflationary, remint) |
+| **Bridge** | TON↔SORA | SORA↔Polkadot/Ethereum |
+
+They complement each other through the [SORA bridge](/how-polkaswap-and-tonswap-work-together-on-sora).
+</details>
+
+<details>
+<summary>How does the SORA bridge work?</summary>
+Trust-minimized cryptographic proofs link TON and SORA. Move XOR, KUSD, and other assets without custodians. Bridge directly from TONSWAP—no extra UI. The bridge uses [SORA v3](/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge) technology.
+</details>
+
+<details>
+<summary>What makes the Risk Engine special?</summary>
+It’s fully on-chain. When volatility rises (Green → Yellow → Red), it tightens leverage, raises fees, and protects LPs automatically—in seconds.
+</details>
+
+<details>
+<summary>Is $TS deflationary?</summary>
+Yes. 10% of burned tokens stay burned forever. The rest re-mint to LPs, DAO, and XOR burn, ensuring net deflation daily.
+</details>
+
+<details>
+<summary>What are the risks?</summary>
+Smart contract bugs, bridge exploits, market volatility, and evolving regulations. TONSWAP mitigates many but not all risks. Use caution and diversify.
+</details>
+
+<details>
+<summary>Can I use TONSWAP entirely inside Telegram?</summary>
+Yes. It’s a Telegram mini-app—no wallet extensions or websites required.
+</details>
+
+
+## Conclusion: DeFi for the Masses
+
+TONSWAP merges **DeFi power** with **chat simplicity**.  
+A unified Telegram app delivering swaps, perps, launchpad, LP protection, and autonomous risk control.
+
+The 2025 crash exposed DeFi’s weaknesses; TONSWAP encodes the solution.  
+With TON’s speed, Telegram’s reach, and SORA’s bridge, it could onboard the next billion users.
+
+**Explore the [SORA ecosystem](/sora-ecosystem-explained)** and watch TONSWAP reshape DeFi accessibility.
+
+---
+
+### 📚 Further Reading
+
+**Official Resources**
+- <a href="https://tonswap.org/blog" target="_blank" rel="noopener noreferrer">TONSWAP Blog</a>
+- <a href="https://tonswap.org/blog/risk-engine" target="_blank" rel="noopener noreferrer">TONSWAP Risk Engine</a>
+- <a href="https://docs.ton.org/" target="_blank" rel="noopener noreferrer">TON Documentation</a>
+- <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer">SORA Wiki</a>
+- <a href="https://sora.org" target="_blank" rel="noopener noreferrer">SORA Network</a>
+
+**Related Soranauts Articles**
+- [How Polkaswap and TONSWAP Work Together](/how-polkaswap-and-tonswap-work-together-on-sora)
+- [Best Decentralized Exchanges](/best-decentralized-exchanges-dexs)
+- [SORA v3 Guide](/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge)
+
+---
+
+*Join the community, play MeowFi, and get ready—DeFi on Telegram starts here.* 🚀

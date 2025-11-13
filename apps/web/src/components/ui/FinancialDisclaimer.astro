@@ -1,0 +1,92 @@
+---
+/**
+ * FinancialDisclaimer Component
+ * 
+ * A tokenized disclaimer component with two variants for displaying financial disclaimers.
+ * 
+ * @prop {string} variant - 'emphasis' | 'subtle' (default: 'subtle')
+ * @prop {string} title - Title text (default: "Financial Disclaimer")
+ * @prop {string} icon - Icon name from astro-icon (default: "tabler:alert-triangle")
+ * @prop {string} class - Additional CSS classes
+ * 
+ * @slot default - Body text content (defaults to standard disclaimer if not provided)
+ * 
+ * @example
+ * <FinancialDisclaimer variant="subtle" />
+ * 
+ * @example
+ * <FinancialDisclaimer variant="emphasis" title="Important Notice">
+ *   Custom disclaimer text here.
+ * </FinancialDisclaimer>
+ */
+import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
+
+export interface Props {
+  variant?: 'emphasis' | 'subtle';
+  title?: string;
+  icon?: string;
+  class?: string;
+}
+
+const {
+  variant = 'subtle',
+  title = 'Financial Disclaimer',
+  icon = 'tabler:alert-triangle',
+  class: className = '',
+} = Astro.props;
+
+const defaultBody = 'Information on Soranauts is educational, not financial advice. Crypto and DeFi carry risk. DYOR and consult a professional. Past performance is not a guarantee.';
+
+const hasSlot = Astro.slots.has('default');
+const bodyContent = hasSlot ? await Astro.slots.render('default') : defaultBody;
+
+// Variant-specific base classes
+const variantClasses = {
+  emphasis: twMerge(
+    'bg-soft',
+    'border-l-2 border-status-warning',
+    'text-text-main'
+  ),
+  subtle: twMerge(
+    'bg-surface',
+    'border border-border-subtle',
+    'text-text-main'
+  ),
+};
+
+// Icon and title color classes
+const iconTitleClasses = {
+  emphasis: 'text-status-warning',
+  subtle: 'text-text-subtle',
+};
+
+const containerClasses = twMerge(
+  'flex gap-3 p-4 md:p-5 rounded-2xl',
+  variantClasses[variant],
+  className
+);
+
+const titleClasses = twMerge(
+  'text-sm font-semibold tracking-wide uppercase mb-2',
+  iconTitleClasses[variant]
+);
+
+const bodyClasses = 'text-sm md:text-[15px] leading-relaxed text-text-subtle/90';
+---
+
+<div role="note" class={containerClasses}>
+  <Icon 
+    name={icon} 
+    class={twMerge(
+      'flex-shrink-0',
+      variant === 'emphasis' ? 'w-5 h-5 mt-0.5' : 'w-4 h-4 mt-1 opacity-60',
+      iconTitleClasses[variant]
+    )} 
+    aria-hidden="true" 
+  />
+  <div class="flex-1 min-w-0">
+    <h3 class={titleClasses}>{title}</h3>
+    <div class={bodyClasses} set:html={bodyContent} />
+  </div>
+</div>
