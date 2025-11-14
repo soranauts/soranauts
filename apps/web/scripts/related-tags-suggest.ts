@@ -78,7 +78,7 @@ function tokenize(text: string): Set<string> {
       .toLowerCase()
       .replace(/[^a-z0-9\s-]/g, ' ')
       .split(/\s+/)
-      .filter((token) => token.length > 0 && !stopWords.has(token))
+      .filter((token) => token.length > 0 && !stopWords.has(token as any))
   );
 }
 
@@ -260,7 +260,7 @@ async function main() {
   const suggestions: PostSuggestion[] = [];
 
   for (const post of postsWithoutTags.slice(0, limit)) {
-    const entry = entryMap.get(post.id);
+    const entry = entryMap.get(post.id as any);
     if (!entry) continue;
 
     const suggestion = await suggestTags(
@@ -269,7 +269,7 @@ async function main() {
         excerpt: post.excerpt,
         slug: post.slug,
       },
-      postsWithTags,
+      postsWithTags.map(p => ({ title: p.title, tags: p.tags || [] })),
       glossary,
       confidenceThreshold
     );

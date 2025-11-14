@@ -90,7 +90,7 @@ function tokenizeTitle(text: string): Set<string> {
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, ' ')
     .split(/\s+/)
-    .filter((token) => token.length > 0 && !stopWords.has(token))
+    .filter((token) => token.length > 0 && !stopWords.has(token as any))
     .slice(0, 12);
 
   return new Set(tokens);
