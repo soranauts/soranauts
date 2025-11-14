@@ -1,12 +1,16 @@
 #!/usr/bin/env tsx
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import MiniSearch from 'minisearch';
 import { glob as globAsync } from 'glob';
 import matter from 'gray-matter';
 import { Command } from 'commander';
 import { env } from './env';
 import { computeAuthority } from './utils/authority';
+
+// Dynamic import to handle ESM module resolution issues in CI
+const MiniSearchModule = await import('minisearch');
+const MiniSearchClass = (MiniSearchModule.default || MiniSearchModule) as typeof import('minisearch').default;
+type MiniSearch<T> = InstanceType<typeof MiniSearchClass>;
 
 const program = new Command();
 program
@@ -77,7 +81,7 @@ async function buildIndex(): Promise<MiniSearch<Bm25Document>> {
   
   console.log(`  Indexing ${documents.length} documents...`);
   
-  const search = new MiniSearch<Bm25Document>({
+  const search = new MiniSearchClass<Bm25Document>({
     fields: ['title', 'h1', 'body'],
     storeFields: ['title', 'h1', 'source', 'source_url', 'snapshot_id', 'authority'],
   });
@@ -101,7 +105,7 @@ export async function loadIndex(): Promise<MiniSearch<Bm25Document>> {
   }
   
   const indexData = JSON.parse(readFileSync(indexPath, 'utf8'));
-  return MiniSearch.loadJSON(indexData, {
+  return MiniSearchClass.loadJSON(indexData, {
     fields: ['title', 'h1', 'body'],
     storeFields: ['title', 'h1', 'source', 'source_url', 'snapshot_id', 'authority'],
   });
