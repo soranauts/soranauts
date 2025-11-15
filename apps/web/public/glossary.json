@@ -7017,7 +7017,7 @@
     }
   },
   "totalCount": 138,
-  "lastUpdated": "2025-11-15T12:55:15.505Z",
+  "lastUpdated": "2025-11-15T13:00:30.793Z",
   "aliasIndex": [
     {
       "alias": "XOR",
@@ -10680,12 +10680,12 @@
       "type": "tag"
     },
     {
-      "alias": "Hyperledger",
+      "alias": "hyperledger",
       "slug": "tag-hyperledger",
       "type": "tag"
     },
     {
-      "alias": "hyperledger",
+      "alias": "Hyperledger",
       "slug": "tag-hyperledger",
       "type": "tag"
     },
@@ -10732,6 +10732,21 @@
     {
       "alias": "iroha 2",
       "slug": "tag-iroha-2",
+      "type": "tag"
+    },
+    {
+      "alias": "Hyperledger Iroha 3",
+      "slug": "tag-iroha3",
+      "type": "tag"
+    },
+    {
+      "alias": "iroha3",
+      "slug": "tag-iroha3",
+      "type": "tag"
+    },
+    {
+      "alias": "Iroha3",
+      "slug": "tag-iroha3",
       "type": "tag"
     },
     {
