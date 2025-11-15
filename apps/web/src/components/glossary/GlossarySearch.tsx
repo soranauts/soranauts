@@ -41,14 +41,7 @@ function Hit({ hit }: { hit: any }) {
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
           <Highlight attribute="term" hit={hit} />
         </h3>
-        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-          hit.category === 'token' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-          hit.category === 'technology' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
-          hit.category === 'governance' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' :
-          hit.category === 'defi' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-          hit.category === 'network' ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200' :
-          'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200'
-        }`}>
+        <span className="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
           {hit.category}
         </span>
       </div>
@@ -78,7 +71,7 @@ function Hit({ hit }: { hit: any }) {
           {hit.tags.slice(0, 5).map((tag: string, index: number) => (
             <span
               key={index}
-              className="px-2 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 text-xs rounded"
+              className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded"
             >
               #{tag}
             </span>
@@ -239,7 +232,7 @@ export default function GlossarySearch() {
                 item: 'block',
                 link: 'px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300',
                 selectedItem: 'block',
-                selectedLink: 'px-3 py-2 bg-blue-600 text-white rounded-lg',
+                selectedLink: 'px-3 py-2 bg-gray-600 text-white rounded-lg',
                 disabledItem: 'block',
                 disabledLink: 'px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-400 dark:text-gray-500 cursor-not-allowed',
               }}

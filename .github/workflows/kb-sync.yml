@@ -203,12 +203,22 @@ jobs:
       - name: Scrape TONSWAP site (with retry)
         run: |
           n=0
+          success=false
           until [ "$n" -ge "$RETRY_COUNT" ]; do
-            pnpm --filter @soranauts/web kb:sync:tonswap && break
+            if pnpm --filter @soranauts/web kb:sync:tonswap; then
+              success=true
+              break
+            fi
             n=$((n+1))
-            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
-            sleep "$RETRY_DELAY"
+            if [ "$n" -lt "$RETRY_COUNT" ]; then
+              echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+              sleep "$RETRY_DELAY"
+            fi
           done
+          if [ "$success" != "true" ]; then
+            echo "❌ TONSWAP site scrape failed after $RETRY_COUNT attempts"
+            exit 1
+          fi
 
   import_tonswap_medium:
     runs-on: ubuntu-latest
@@ -228,12 +238,22 @@ jobs:
       - name: Import TONSWAP Medium posts (with retry)
         run: |
           n=0
+          success=false
           until [ "$n" -ge "$RETRY_COUNT" ]; do
-            pnpm --filter @soranauts/web kb:sync:tonswap:medium && break
+            if pnpm --filter @soranauts/web kb:sync:tonswap:medium; then
+              success=true
+              break
+            fi
             n=$((n+1))
-            echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
-            sleep "$RETRY_DELAY"
+            if [ "$n" -lt "$RETRY_COUNT" ]; then
+              echo "Retry $n/$RETRY_COUNT after $RETRY_DELAY sec..."
+              sleep "$RETRY_DELAY"
+            fi
           done
+          if [ "$success" != "true" ]; then
+            echo "❌ TONSWAP Medium import failed after $RETRY_COUNT attempts"
+            exit 1
+          fi
 
   index:
     needs: [sync_iroha, sync_soramitsu, import_medium, import_polkaswap, import_fearless, sync_fearless_github, sync_wiki, sync_tonswap, import_tonswap_medium]

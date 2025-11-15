@@ -12,16 +12,7 @@ export interface Props {
 
 const { term, definition, category = 'technology', relatedTerms = [], class: className = '' } = Astro.props;
 
-// Category styling
-const categoryStyles = {
-  token: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
-  technology: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
-  governance: 'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800',
-  defi: 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800',
-  network: 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-200 dark:border-indigo-800',
-  economics: 'bg-pink-50 dark:bg-pink-900/20 border-pink-200 dark:border-pink-800'
-};
-
+// Category labels (no color styling)
 const categoryLabels = {
   token: 'Token',
   technology: 'Technology',
@@ -31,7 +22,6 @@ const categoryLabels = {
   economics: 'Economics'
 };
 
-const categoryStyle = categoryStyles[category] || categoryStyles.technology;
 const categoryLabel = categoryLabels[category] || 'Technology';
 ---
 
@@ -90,30 +80,5 @@ const categoryLabel = categoryLabels[category] || 'Technology';
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
-  }
-
-  /* Category-specific styling */
-  .sora-glossary-term[data-glossary-category="token"]:hover::after {
-    border-left: 4px solid #3b82f6;
-  }
-
-  .sora-glossary-term[data-glossary-category="technology"]:hover::after {
-    border-left: 4px solid #10b981;
-  }
-
-  .sora-glossary-term[data-glossary-category="governance"]:hover::after {
-    border-left: 4px solid #8b5cf6;
-  }
-
-  .sora-glossary-term[data-glossary-category="defi"]:hover::after {
-    border-left: 4px solid #f59e0b;
-  }
-
-  .sora-glossary-term[data-glossary-category="network"]:hover::after {
-    border-left: 4px solid #6366f1;
-  }
-
-  .sora-glossary-term[data-glossary-category="economics"]:hover::after {
-    border-left: 4px solid #ec4899;
   }
 </style>

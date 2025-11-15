@@ -22,15 +22,23 @@
     "pre-push": "cd apps/web && pnpm install --frozen-lockfile && pnpm build && pnpm test"
   },
   "dependencies": {
+    "cheerio": "^1.0.0",
     "chromadb": "^1.8.1",
     "commander": "^14.0.2",
     "glob": "^11.0.3",
+    "got": "^14.2.0",
     "gray-matter": "^4.0.3",
     "minisearch": "^7.0.1",
     "openai": "^4.28.0",
+    "p-queue": "^8.0.1",
     "p-retry": "^6.2.0",
     "pdf-parse": "^1.1.1",
-    "tiktoken": "^1.0.10"
+    "robots-parser": "^3.0.1",
+    "rss-parser": "^3.13.0",
+    "sanitize-html": "^2.11.0",
+    "sitemapper": "^4.0.2",
+    "tiktoken": "^1.0.10",
+    "turndown": "^7.2.0"
   },
   "devDependencies": {
     "husky": "^9.1.7",
