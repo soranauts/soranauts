@@ -1,14 +1,18 @@
 #!/usr/bin/env tsx
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { glob as globAsync } from 'glob';
 import matter from 'gray-matter';
 import { Command } from 'commander';
 import { env } from './env';
 import { computeAuthority } from './utils/authority';
 
-// Import MiniSearch - explicitly reference from root node_modules
-const MiniSearchModule = await import('../../node_modules/minisearch/dist/es/index.js');
+// Import MiniSearch - resolve package path relative to this script
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const miniSearchPath = join(__dirname, '../../node_modules/minisearch/dist/es/index.js');
+const MiniSearchModule = await import(miniSearchPath);
 const MiniSearchClass = (MiniSearchModule.default || MiniSearchModule) as typeof import('minisearch').default;
 type MiniSearch<T> = InstanceType<typeof MiniSearchClass>;
 
