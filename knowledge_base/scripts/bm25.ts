@@ -7,8 +7,8 @@ import { Command } from 'commander';
 import { env } from './env';
 import { computeAuthority } from './utils/authority';
 
-// Dynamic import to handle ESM module resolution issues in CI
-const MiniSearchModule = await import('minisearch');
+// Import MiniSearch - explicitly reference from root node_modules
+const MiniSearchModule = await import('../../node_modules/minisearch/dist/es/index.js');
 const MiniSearchClass = (MiniSearchModule.default || MiniSearchModule) as typeof import('minisearch').default;
 type MiniSearch<T> = InstanceType<typeof MiniSearchClass>;
 
