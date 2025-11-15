@@ -51,8 +51,9 @@ a.glossary[data-link-type="tooltip"] {
 }
 
 .glossary-index .glossary-term:not([data-cat]):hover {
-  color: var(--color-link);
-  text-decoration-color: var(--color-link);
+  /* Subtle hover - brighten underline, keep text neutral */
+  color: var(--color-text-main);
+  text-decoration-color: rgba(148, 163, 184, 0.75);
 }
 
 .dark .glossary-index .glossary-term {
@@ -60,120 +61,58 @@ a.glossary[data-link-type="tooltip"] {
 }
 
 .dark .glossary-index .glossary-term:not([data-cat]):hover {
-  color: var(--color-link);
+  /* Subtle hover - brighten underline, keep text neutral */
+  color: var(--color-text-muted);
+  text-decoration-color: rgba(148, 163, 184, 0.65);
 }
 
-/* Category colors (light) - using design tokens */
-.glossary-index .glossary-term[data-cat="token"],
-.glossary-index .glossary-term-token {
-  color: var(--color-category-token);
-}
-
-.glossary-index .glossary-term[data-cat="technology"],
-.glossary-index .glossary-term-technology {
-  color: var(--color-category-technology);
-}
-
-.glossary-index .glossary-term[data-cat="governance"],
-.glossary-index .glossary-term-governance {
-  color: var(--color-category-governance);
-}
-
-.glossary-index .glossary-term[data-cat="defi"],
-.glossary-index .glossary-term-defi {
-  color: var(--color-category-defi);
-}
-
-.glossary-index .glossary-term[data-cat="network"],
-.glossary-index .glossary-term-network {
-  color: var(--color-category-network);
-}
-
-.glossary-index .glossary-term[data-cat="economics"],
-.glossary-index .glossary-term-economics {
-  color: var(--color-category-economics);
-}
-
-.glossary-index .glossary-term[data-cat="tag"],
+/* Category terms use neutral colors - no color differentiation */
+.glossary-index .glossary-term[data-cat],
+.glossary-index .glossary-term-token,
+.glossary-index .glossary-term-technology,
+.glossary-index .glossary-term-governance,
+.glossary-index .glossary-term-defi,
+.glossary-index .glossary-term-network,
+.glossary-index .glossary-term-economics,
 .glossary-index .glossary-term-tag {
-  color: var(--color-text-soft);
+  color: var(--color-text-main);
 }
 
-/* Category hovers (light) - using design tokens */
-.glossary-index .glossary-term[data-cat="token"]:hover,
-.glossary-index .glossary-term-token:hover {
-  color: color-mix(in srgb, var(--color-category-token) 85%, black);
-}
-
-.glossary-index .glossary-term[data-cat="technology"]:hover,
-.glossary-index .glossary-term-technology:hover {
-  color: var(--color-brand-400);
-}
-
-.glossary-index .glossary-term[data-cat="governance"]:hover,
-.glossary-index .glossary-term-governance:hover {
-  color: color-mix(in srgb, var(--color-category-governance) 85%, black);
-}
-
-.glossary-index .glossary-term[data-cat="defi"]:hover,
-.glossary-index .glossary-term-defi:hover {
-  color: color-mix(in srgb, var(--color-category-defi) 85%, black);
-}
-
-.glossary-index .glossary-term[data-cat="network"]:hover,
-.glossary-index .glossary-term-network:hover {
-  color: color-mix(in srgb, var(--color-category-network) 85%, black);
-}
-
-.glossary-index .glossary-term[data-cat="economics"]:hover,
-.glossary-index .glossary-term-economics:hover {
-  color: color-mix(in srgb, var(--color-category-economics) 85%, black);
-}
-
-.glossary-index .glossary-term[data-cat="tag"]:hover,
+.glossary-index .glossary-term[data-cat]:hover,
+.glossary-index .glossary-term-token:hover,
+.glossary-index .glossary-term-technology:hover,
+.glossary-index .glossary-term-governance:hover,
+.glossary-index .glossary-term-defi:hover,
+.glossary-index .glossary-term-network:hover,
+.glossary-index .glossary-term-economics:hover,
 .glossary-index .glossary-term-tag:hover {
+  /* Subtle hover - brighten underline, keep text neutral */
   color: var(--color-text-main);
+  text-decoration-color: rgba(148, 163, 184, 0.75);
 }
 
-/* Dark mode categories */
-.dark .glossary-index .glossary-term[data-cat="token"],
-.dark .glossary-index .glossary-term-token {
-  color: color-mix(in srgb, var(--color-category-token) 70%, white);
-}
-
-.dark .glossary-index .glossary-term[data-cat="technology"],
-.dark .glossary-index .glossary-term-technology {
-  color: var(--color-brand-400);
-}
-
-.dark .glossary-index .glossary-term[data-cat="governance"],
-.dark .glossary-index .glossary-term-governance {
-  color: color-mix(in srgb, var(--color-category-governance) 70%, white);
-}
-
-.dark .glossary-index .glossary-term[data-cat="defi"],
-.dark .glossary-index .glossary-term-defi {
-  color: color-mix(in srgb, var(--color-category-defi) 70%, white);
-}
-
-.dark .glossary-index .glossary-term[data-cat="network"],
-.dark .glossary-index .glossary-term-network {
-  color: color-mix(in srgb, var(--color-category-network) 70%, white);
-}
-
-.dark .glossary-index .glossary-term[data-cat="economics"],
-.dark .glossary-index .glossary-term-economics {
-  color: color-mix(in srgb, var(--color-category-economics) 70%, white);
-}
-
-.dark .glossary-index .glossary-term[data-cat="tag"],
+.dark .glossary-index .glossary-term[data-cat],
+.dark .glossary-index .glossary-term-token,
+.dark .glossary-index .glossary-term-technology,
+.dark .glossary-index .glossary-term-governance,
+.dark .glossary-index .glossary-term-defi,
+.dark .glossary-index .glossary-term-network,
+.dark .glossary-index .glossary-term-economics,
 .dark .glossary-index .glossary-term-tag {
-  color: var(--color-text-main);
+  color: var(--color-text-muted);
 }
 
-.dark .glossary-index .glossary-term[data-cat="tag"]:hover,
+.dark .glossary-index .glossary-term[data-cat]:hover,
+.dark .glossary-index .glossary-term-token:hover,
+.dark .glossary-index .glossary-term-technology:hover,
+.dark .glossary-index .glossary-term-governance:hover,
+.dark .glossary-index .glossary-term-defi:hover,
+.dark .glossary-index .glossary-term-network:hover,
+.dark .glossary-index .glossary-term-economics:hover,
 .dark .glossary-index .glossary-term-tag:hover {
-  color: var(--color-text-main);
+  /* Subtle hover - brighten underline, keep text neutral */
+  color: var(--color-text-muted);
+  text-decoration-color: rgba(148, 163, 184, 0.65);
 }
 
 /* Tooltip positioning */

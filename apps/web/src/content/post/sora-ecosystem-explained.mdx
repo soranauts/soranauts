@@ -11,9 +11,9 @@ customSlug: sora-ecosystem-explained
 ---
 
 ## Introduction
-The [SORA ecosystem](https://sora.org), developed by [SORAMITSU](https://soramitsu.co.jp), represents one of the boldest attempts to rethink global finance. Combining the **SORA blockchain**, the **XOR token**, and **Polkaswap**, this ecosystem isn't just another blockchain project — it's a blueprint for a decentralized, interoperable, and community-governed economy.
+The <a href="https://sora.org" target="_blank" rel="noopener noreferrer">SORA ecosystem</a>, developed by <a href="https://soramitsu.co.jp" target="_blank" rel="noopener noreferrer">SORAMITSU</a>, represents one of the boldest attempts to rethink global finance. Combining the **SORA blockchain**, the **XOR token**, and **Polkaswap**, this ecosystem isn't just another blockchain project — it's a blueprint for a decentralized, interoperable, and community-governed economy.
 
-With [SORA v3](https://wiki.sora.org/sora-v3.html) in development, the network is evolving toward a Hub Chain architecture that bridges permissioned and decentralized systems, enabling seamless collaboration between CBDCs, DeFi applications, and traditional financial infrastructure.
+With <a href="https://wiki.sora.org/sora-v3.html" target="_blank" rel="noopener noreferrer">SORA v3</a> in development, the network is evolving toward a Hub Chain architecture that bridges permissioned and decentralized systems, enabling seamless collaboration between CBDCs, DeFi applications, and traditional financial infrastructure.
 
 In this guide, we'll explore how SORA works, what makes it unique, and how its components fit together to form a financial system built for the future.
 
@@ -40,12 +40,12 @@ At its core, SORA is more than a blockchain: it's an **economic system**. Guided
 Polkaswap is the decentralized exchange (DEX) built on SORA. Unlike typical DEXs, Polkaswap is **interoperable**, allowing assets from different blockchains to trade in a trustless way.
 
 Key features include:
-- **Cross-chain trading** via [HASHI bridges](https://wiki.sora.org/interoperability.html) to Ethereum, Polkadot, and Kusama, enabling seamless asset transfers across heterogeneous blockchains.  
-- **Liquidity aggregation** to optimize swaps across multiple liquidity sources.  
-- **Fee structure**: 0.3% trading fees are used to buy back and burn PSWAP tokens on Polkaswap. Burned PSWAP tokens are partially reminted as rewards for liquidity providers, starting at 90% of daily burned tokens and linearly decreasing to 35% after 5 years.  
+- **Cross-chain trading** via <a href="https://wiki.sora.org/interoperability.html" target="_blank" rel="noopener noreferrer">HASHI bridges</a> to Ethereum, Polkadot, and Kusama, enabling seamless asset transfers across heterogeneous blockchains.
+- **Liquidity aggregation** to optimize swaps across multiple liquidity sources.
+- **Fee structure**: 0.3% trading fees are used to buy back and burn PSWAP tokens on Polkaswap. Burned PSWAP tokens are partially reminted as rewards for liquidity providers, starting at 90% of daily burned tokens and linearly decreasing to 35% after 5 years.
 - **Integration with the SORA Card** for real-world spending.
 
-For detailed documentation, see [Polkaswap Docs](https://wiki.sora.org/polkaswap.html).
+For detailed documentation, see <a href="https://wiki.sora.org/polkaswap.html" target="_blank" rel="noopener noreferrer">Polkaswap Docs</a>.
 
 ---
 
@@ -53,9 +53,9 @@ For detailed documentation, see [Polkaswap Docs](https://wiki.sora.org/polkaswap
 **TONSWAP** is a next-generation decentralized exchange built on The Open Network (TON), featuring concentrated liquidity technology and seamless Telegram integration for mobile-first DeFi access.
 
 A key innovation connects TONSWAP directly to the SORA economy: **10% of all TONSWAP trading fees are automatically allocated to buy back and burn XOR tokens**. This mechanism:
-- Creates sustained on-chain demand for XOR from TON ecosystem activity.  
-- Reduces XOR circulating supply through recurring burns executed automatically through integrated smart-contract logic.  
-- Aligns TON ecosystem activity with the SORA economy by turning trading volume into a recurring XOR sink.  
+- Creates sustained on-chain demand for XOR from TON ecosystem activity.
+- Reduces XOR circulating supply through recurring burns executed automatically through integrated smart-contract logic.
+- Aligns TON ecosystem activity with the SORA economy by turning trading volume into a recurring XOR sink.
 - Connects two major blockchain ecosystems (TON and SORA) through economic alignment.
 
 Accounting and transparency improvements for the burn mechanism are planned for upcoming releases. This cross-ecosystem buyback design demonstrates how SORA's interoperable architecture captures value from multiple blockchains.
@@ -63,32 +63,32 @@ Accounting and transparency improvements for the burn mechanism are planned for 
 ---
 
 ### How the Bonding Curve Powers the SORA Economy
-SORA's [**token bonding curve (TBC)**](https://wiki.sora.org/tbc.html) governs how new XOR enters circulation. Instead of mining or fixed issuance, the system expands or contracts XOR supply depending on market demand through buy and sell price functions. This ensures:
-- Predictable liquidity for ecosystem growth.  
-- A self-balancing system resistant to manipulation.  
-- Transparent monetary policy coded into the protocol.  
+SORA's <a href="https://wiki.sora.org/tbc.html" target="_blank" rel="noopener noreferrer"><strong>token bonding curve (TBC)</strong></a> governs how new XOR enters circulation. Instead of mining or fixed issuance, the system expands or contracts XOR supply depending on market demand through buy and sell price functions. This ensures:
+- Predictable liquidity for ecosystem growth.
+- A self-balancing system resistant to manipulation.
+- Transparent monetary policy coded into the protocol.
 - Deep and immediate liquidity, as the bonding curve contract always serves as the counterparty.
 
-The bonding curve maintains **TBCD (Token Bonding Curve Dollar)**, an algorithmic, non-synthetic stablecoin whose value is maintained by the TBC. TBCD can only be created and allocated by on-chain governance through referenda, meaning XOR holders decide the supply. While [SORA v3 tokenomics](https://wiki.sora.org/sora-v3.html) suspend TBCD minting, TBCD remains an active on-chain asset that can be traded on Polkaswap and used as collateral on Kensetsu. Historically, TBCD served as a reserve asset and was allocated for funding the creation of new goods and services within the ecosystem.
+The bonding curve maintains **TBCD (Token Bonding Curve Dollar)**, an algorithmic, non-synthetic stablecoin whose value is maintained by the TBC. TBCD can only be created and allocated by on-chain governance through referenda, meaning XOR holders decide the supply. While <a href="https://wiki.sora.org/sora-v3.html" target="_blank" rel="noopener noreferrer">SORA v3 tokenomics</a> suspend TBCD minting, TBCD remains an active on-chain asset that can be traded on Polkaswap and used as collateral on Kensetsu. Historically, TBCD served as a reserve asset and was allocated for funding the creation of new goods and services within the ecosystem.
 
 ---
 
 ## Kensetsu: SORA's Over-Collateralized Stablecoin Platform
-The [**Kensetsu Platform**](https://wiki.sora.org/kensetsu-vaults.html) is SORA's version of MakerDAO, enabling users to create over-collateralized stablecoins through a decentralized borrowing system. Users can:
-- Create vaults and deposit collateral (XOR, VAL, PSWAP, TBCD, ETH, or DAI).  
-- Borrow **KUSD** (Kensetsu USD) against their collateral while maintaining the $1 peg through algorithmic governance.  
+The <a href="https://wiki.sora.org/kensetsu-vaults.html" target="_blank" rel="noopener noreferrer"><strong>Kensetsu Platform</strong></a> is SORA's version of MakerDAO, enabling users to create over-collateralized stablecoins through a decentralized borrowing system. Users can:
+- Create vaults and deposit collateral (XOR, VAL, PSWAP, TBCD, ETH, or DAI).
+- Borrow **KUSD** (Kensetsu USD) against their collateral while maintaining the $1 peg through algorithmic governance.
 - Benefit from stability mechanisms where **19.5% of all SORA network transaction fees** are allocated for KUSD buyback and burning, alongside 0.5% for TBCD buyback, 50% for VAL buyback, 20% for XOR burning, and 10% for referral rewards.
 
-In [**SORA v3 tokenomics**](https://wiki.sora.org/sora-v3.html), KUSD is proposed to pay builders instead of XOR, maintaining the KUSD peg while funding development—a sustainable model for growth and stability that addresses the need for a stable unit of account in a dollarized world economy.
+In <a href="https://wiki.sora.org/sora-v3.html" target="_blank" rel="noopener noreferrer"><strong>SORA v3 tokenomics</strong></a>, KUSD is proposed to pay builders instead of XOR, maintaining the KUSD peg while funding development—a sustainable model for growth and stability that addresses the need for a stable unit of account in a dollarized world economy.
 
 ---
 
 ## Governance in SORA
-SORA currently uses [**Polkadot v1 Governance**](https://wiki.sora.org/sora-governance.html), a decentralized system of **council-initiated proposals and referenda**. It operates independently but follows Polkadot's original governance model. Unlike traditional systems where power concentrates at the top, SORA governance aims to distribute influence fairly among participants.
+SORA currently uses <a href="https://wiki.sora.org/sora-governance.html" target="_blank" rel="noopener noreferrer"><strong>Polkadot v1 Governance</strong></a>, a decentralized system of **council-initiated proposals and referenda**. It operates independently but follows Polkadot's original governance model. Unlike traditional systems where power concentrates at the top, SORA governance aims to distribute influence fairly among participants.
 
 Holders of both **XOR** and **VAL** can participate, aligning governance incentives with network security.
 
-Looking ahead, **SORA v3 (Nexus)** will introduce the [**SORA Parliament**](https://wiki.sora.org/sora-governance.html), a next-generation governance system built on three principles inspired by Athenian democracy: **Isonomia** (political equality for all citizens), **Isegoria** (the right of all citizens to speak and contribute), and **Sortition** (randomly choosing groups of citizens to make decisions). Citizens will post XOR bonds to participate, and the Parliament will allocate newly minted XOR to productive projects. The Parliament utilizes supranational global governance with multiple bodies and clear separation of powers, where members are chosen randomly to prevent plutocratic control.
+Looking ahead, **SORA v3 (Nexus)** will introduce the <a href="https://wiki.sora.org/sora-governance.html" target="_blank" rel="noopener noreferrer"><strong>SORA Parliament</strong></a>, a next-generation governance system built on three principles inspired by Athenian democracy: **Isonomia** (political equality for all citizens), **Isegoria** (the right of all citizens to speak and contribute), and **Sortition** (randomly choosing groups of citizens to make decisions). Citizens will post XOR bonds to participate, and the Parliament will allocate newly minted XOR to productive projects. The Parliament utilizes supranational global governance with multiple bodies and clear separation of powers, where members are chosen randomly to prevent plutocratic control.
 
 Governance in **SORA v3 (Nexus)** aims to evolve toward a **hybrid DAO framework**, integrating council-based accountability with modular governance logic written in Iroha 3's **Special Instructions (ISI)**. The new system may adopt elements of Polkadot's OpenGov philosophy (greater inclusivity and automation) while maintaining SORA's distinct parliamentary structure for strategic oversight. This would allow more granular proposal management, domain-specific voting (e.g., for bridges or subnets), and interoperability with external governance systems like TON or Polkadot.
 
@@ -96,39 +96,39 @@ Governance in **SORA v3 (Nexus)** aims to evolve toward a **hybrid DAO framework
 
 ## The SORA Card: Bridging Crypto and Everyday Spending
 The **SORA Card** extends the ecosystem into the real world. With it, users can:
-- Spend crypto like cash at merchants worldwide.  
-- Fund their card directly from Polkaswap with swaps between BTC, ETH, USDC, and EUR in-app.  
-- Retain privacy and control while staying connected to traditional financial rails with SEPA IBAN support.  
+- Spend crypto like cash at merchants worldwide.
+- Fund their card directly from Polkaswap with swaps between BTC, ETH, USDC, and EUR in-app.
+- Retain privacy and control while staying connected to traditional financial rails with SEPA IBAN support.
 
 Issued in partnership with EU-regulated fintech providers, the SORA Card makes SORA one of the few ecosystems bridging **DeFi and daily life**.
 
 ---
 
 ### Why SORA Chose Hyperledger Iroha 3
-**SORA v2** operates on Substrate (a Polkadot-compatible chain). The upcoming **SORA v3 Hub Chain** — code-named **SORA Nexus** — is being developed on [**Hyperledger Iroha 3**](https://wiki.sora.org/sora-v3.html), establishing an independent Hub Chain architecture that bridges permissioned and decentralized systems.
+**SORA v2** operates on Substrate (a Polkadot-compatible chain). The upcoming **SORA v3 Hub Chain** — code-named **SORA Nexus** — is being developed on <a href="https://wiki.sora.org/sora-v3.html" target="_blank" rel="noopener noreferrer"><strong>Hyperledger Iroha 3</strong></a>, establishing an independent Hub Chain architecture that bridges permissioned and decentralized systems.
 
 Development began with experimental **Hubchain Phase 1–2** prototypes built on **Hyperledger Iroha 2**, which provided cross-chain transfer proofs and verifier mechanisms. The project is now transitioning toward a full implementation on **Hyperledger Iroha 3**, featuring improved modularity, new consensus logic, and scalability enhancements.
 
 This transition provides:
-- **Higher performance** with BFT consensus. Iroha 3 introduces a re-engineered architecture with new consensus mechanisms, building on Iroha 2's foundation that demonstrated theoretical throughput up to 20,000 TPS in lab tests, providing enterprise-grade scalability.  
-- **Enhanced modularity** with layered runtime for domain-specific modules and upgraded command model for deterministic operations.  
-- **Enterprise-grade stability** proven in CBDC deployments, including Cambodia's Bakong system and the Central Bank of Solomon Islands' Bokolo Cash pilot.  
+- **Higher performance** with BFT consensus. Iroha 3 introduces a re-engineered architecture with new consensus mechanisms, building on Iroha 2's foundation that demonstrated theoretical throughput up to 20,000 TPS in lab tests, providing enterprise-grade scalability.
+- **Enhanced modularity** with layered runtime for domain-specific modules and upgraded command model for deterministic operations.
+- **Enterprise-grade stability** proven in CBDC deployments, including Cambodia's Bakong system and the Central Bank of Solomon Islands' Bokolo Cash pilot.
 - **Hub Chain architecture** enabling seamless collaboration between permissioned systems (CBDCs, government digital assets) and decentralized systems (TON, Polkadot, Ethereum), reducing costs and providing mutual benefit.
 - **Deterministic smart-contract logic** using **Iroha Special Instructions (ISI)** and domain-oriented command sets, supporting enhanced governance with on-chain council and Parliament integration.
 
-The [**Fujiwara testnet**](https://wiki.sora.org/running-a-sora-testnet-node.html) serves as the development playground for SORA v3 features, providing insight for this next-generation public blockchain infrastructure. Named after Japan's influential Fujiwara family, this testnet represents the first step toward SORA v3's Hub Chain architecture.
+The <a href="https://wiki.sora.org/running-a-sora-testnet-node.html" target="_blank" rel="noopener noreferrer"><strong>Fujiwara testnet</strong></a> serves as the development playground for SORA v3 features, providing insight for this next-generation public blockchain infrastructure. Named after Japan's influential Fujiwara family, this testnet represents the first step toward SORA v3's Hub Chain architecture.
 
 Migration planning from Iroha 2 → Iroha 3 is under evaluation to ensure backward compatibility and smooth transition. Core design goals include a unified Hub Chain connecting external networks (TON, Polkadot, Ethereum), high-throughput BFT-finality consensus, and enhanced governance moving toward fully modular SORA DAO operations.
 
-This move reflects SORAMITSU's experience as developer of national-level CBDCs such as Cambodia's [Bakong system](https://bakong.nbc.gov.kh/en/), which processes over $300 million daily.
+This move reflects SORAMITSU's experience as developer of national-level CBDCs such as Cambodia's <a href="https://bakong.nbc.gov.kh/en/" target="_blank" rel="noopener noreferrer">Bakong system</a>, which processes over $300 million daily.
 
 ---
 
 ### Real-World Impact: From Bakong to SORA v3
 SORAMITSU has built multiple national-level blockchain systems that demonstrate the scalability and reliability of Hyperledger Iroha technology:
-- **Bakong** (Cambodia): A live CBDC processing over $300 million daily, integrating with payment systems in neighboring countries like Thailand and Vietnam.  
-- **Bokolo Cash** (Solomon Islands): A CBDC pilot bringing digital currency to Pacific nations, bridging to the SORA permissionless blockchain platform via a permissioned bridge.  
-- **Palau Digital Bonds**: Government digital bond infrastructure demonstrating blockchain's ability to simplify complex financial instruments.  
+- **Bakong** (Cambodia): A live CBDC processing over $300 million daily, integrating with payment systems in neighboring countries like Thailand and Vietnam.
+- **Bokolo Cash** (Solomon Islands): A CBDC pilot bringing digital currency to Pacific nations, bridging to the SORA permissionless blockchain platform via a permissioned bridge.
+- **Palau Digital Bonds**: Government digital bond infrastructure demonstrating blockchain's ability to simplify complex financial instruments.
 
 This experience directly informs the design of SORA v3's Hub Chain architecture—showing that the technology can scale to national and global finance while maintaining security, interoperability, and compliance with regulatory frameworks.
 
@@ -143,9 +143,9 @@ The primary tokens are **XOR** (utility and governance), **VAL** (security), and
 
 <details>
 <summary>What is the difference between XOR, VAL, and KUSD?</summary>
-- **XOR** powers transactions and governance (50% of transaction fees burned, 50% to validators). XOR has elastic supply managed by the token bonding curve.  
-- **VAL** secures the network through validator rewards, burned on every transaction with elastic rewards distributed to validators and nominators.  
-- **KUSD** is an over-collateralized stablecoin from Kensetsu, pegged to USD, with 19.5% of network fees allocated for buyback-and-burn.  
+- **XOR** powers transactions and governance (50% of transaction fees burned, 50% to validators). XOR has elastic supply managed by the token bonding curve.
+- **VAL** secures the network through validator rewards, burned on every transaction with elastic rewards distributed to validators and nominators.
+- **KUSD** is an over-collateralized stablecoin from Kensetsu, pegged to USD, with 19.5% of network fees allocated for buyback-and-burn.
 - **TBCD** is an algorithmic stablecoin maintained by the token bonding curve. While minting is suspended in SORA v3, TBCD remains active and tradable on Polkaswap, usable as Kensetsu collateral.
 </details>
 
@@ -156,7 +156,7 @@ No. Polkaswap supports cross-chain swaps, allowing trades across multiple blockc
 
 <details>
 <summary>How does SORA governance work?</summary>
-SORA currently uses [Polkadot v1 Governance](https://wiki.sora.org/sora-governance.html), a council-based proposal and referendum system. **SORA v3** will introduce the **SORA Parliament**, a next-generation governance system built on three principles: Isonomia (political equality), Isegoria (right to speak), and Sortition (random citizen selection). Citizens post XOR bonds to participate, and the Parliament allocates newly minted XOR to productive projects through multiple bodies with clear separation of powers.
+SORA currently uses <a href="https://wiki.sora.org/sora-governance.html" target="_blank" rel="noopener noreferrer">Polkadot v1 Governance</a>, a council-based proposal and referendum system. **SORA v3** will introduce the **SORA Parliament**, a next-generation governance system built on three principles: Isonomia (political equality), Isegoria (right to speak), and Sortition (random citizen selection). Citizens post XOR bonds to participate, and the Parliament allocates newly minted XOR to productive projects through multiple bodies with clear separation of powers.
 </details>
 
 <details>
@@ -166,8 +166,8 @@ SORA currently uses [Polkadot v1 Governance](https://wiki.sora.org/sora-governan
 
 <details>
 <summary>Can I use the SORA Card anywhere?</summary>
-The SORA Card is for global use, letting you spend crypto like cash at merchants and online stores that accept standard debit payments.  
-⚠️ Some regions are restricted — see the [blacklist](https://soracard.com/blacklist).
+The SORA Card is for global use, letting you spend crypto like cash at merchants and online stores that accept standard debit payments.
+⚠️ Some regions are restricted — see the <a href="https://soracard.com/blacklist" target="_blank" rel="noopener noreferrer">blacklist</a>.
 </details>
 
 ## Conclusion
@@ -175,4 +175,4 @@ SORA, Polkaswap, and the broader ecosystem represent a **new financial architect
 
 As SORA v3's Hub Chain architecture (SORA Nexus) develops on Hyperledger Iroha 3, the network is positioned to enable seamless collaboration between permissioned systems (CBDCs, government digital assets) and decentralized systems, creating a supranational economic framework that prioritizes productive finance, democratic governance, and sustainable growth. While SORA v3 development targets a 2025 launch window, no specific date is guaranteed—the roadmap depends on coordinated progress across SORAMITSU, Iroha core, and SORA governance initiatives, with security audits, performance testing, and cross-chain stability prioritized over arbitrary release dates.
 
-For more, explore the [SORA Wiki](https://wiki.sora.org) or the [Soranauts Glossary](/glossary).
+For more, explore the <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer">SORA Wiki</a> or the [Soranauts Glossary](/glossary).

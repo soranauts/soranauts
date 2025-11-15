@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      cheerio:
+        specifier: ^1.0.0
+        version: 1.1.2
       chromadb:
         specifier: ^1.8.1
         version: 1.10.5(openai@4.104.0(zod@3.25.76))
@@ -17,6 +20,9 @@ importers:
       glob:
         specifier: ^11.0.3
         version: 11.0.3
+      got:
+        specifier: ^14.2.0
+        version: 14.6.2
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -26,15 +32,33 @@ importers:
       openai:
         specifier: ^4.28.0
         version: 4.104.0(zod@3.25.76)
+      p-queue:
+        specifier: ^8.0.1
+        version: 8.1.1
       p-retry:
         specifier: ^6.2.0
         version: 6.2.1
       pdf-parse:
         specifier: ^1.1.1
         version: 1.1.4
+      robots-parser:
+        specifier: ^3.0.1
+        version: 3.0.1
+      rss-parser:
+        specifier: ^3.13.0
+        version: 3.13.0
+      sanitize-html:
+        specifier: ^2.11.0
+        version: 2.17.0
+      sitemapper:
+        specifier: ^4.0.2
+        version: 4.0.2
       tiktoken:
         specifier: ^1.0.10
         version: 1.0.22
+      turndown:
+        specifier: ^7.2.0
+        version: 7.2.2
     devDependencies:
       husky:
         specifier: ^9.1.7

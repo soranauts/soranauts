@@ -222,7 +222,7 @@ export default function GlossaryStatic({ initialTerm }: GlossaryStaticProps) {
                 onClick={() => handleCategoryChange(category.name)}
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === category.name
-                    ? 'bg-brand-soft text-brand-600 dark:bg-brand-600 dark:text-brand-400'
+                    ? 'bg-gray-200 text-gray-900 dark:bg-gray-600 dark:text-gray-100'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
@@ -282,14 +282,7 @@ export default function GlossaryStatic({ initialTerm }: GlossaryStaticProps) {
                           e.stopPropagation();
                           handleCategoryChange(term.category);
                         }}
-                        className={`px-2 py-1 rounded-full font-medium transition-colors cursor-pointer ${
-                          term.category === 'token' ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:hover:bg-yellow-800' :
-                          term.category === 'technology' ? 'bg-status-info/20 text-status-info hover:bg-status-info/30 dark:bg-status-info/30 dark:text-status-info dark:hover:bg-status-info/40' :
-                          term.category === 'governance' ? 'bg-purple-100 text-purple-800 hover:bg-purple-200 dark:bg-purple-900 dark:text-purple-200 dark:hover:bg-purple-800' :
-                          term.category === 'defi' ? 'bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900 dark:text-green-200 dark:hover:bg-green-800' :
-                          term.category === 'network' ? 'bg-red-100 text-red-800 hover:bg-red-200 dark:bg-red-900 dark:text-red-200 dark:hover:bg-red-800' :
-                          'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
-                        }`}
+                        className="px-2 py-1 rounded-full font-medium transition-colors cursor-pointer bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
                       >
                         {term.category}
                       </button>

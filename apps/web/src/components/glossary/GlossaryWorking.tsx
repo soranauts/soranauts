@@ -103,7 +103,7 @@ export default function GlossaryWorking() {
               onClick={() => setSelectedCategory('')}
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 !selectedCategory
-                  ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                  ? 'bg-gray-200 text-gray-900 dark:bg-gray-600 dark:text-gray-100'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
               }`}
             >
@@ -115,7 +115,7 @@ export default function GlossaryWorking() {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === category
-                    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                    ? 'bg-gray-200 text-gray-900 dark:bg-gray-600 dark:text-gray-100'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
@@ -141,12 +141,7 @@ export default function GlossaryWorking() {
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                 {term.term}
               </h3>
-              <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                term.category === 'token' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-                term.category === 'defi' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
-                term.category === 'governance' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' :
-                'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-              }`}>
+              <span className="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
                 {term.category}
               </span>
             </div>

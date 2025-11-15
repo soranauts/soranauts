@@ -1,226 +1,151 @@
 ---
 publishDate: 2024-01-27T00:00:00Z
-title: "WASM / Rust (Parity's Ink Substrate) vs EVM / Solidity (Ethereum)"
-excerpt: "Learn about blockchain development with our comparison of WASM / Rust (Parity's Ink Substrate) and EVM / Solidity on (Ethereum) for smart contracts."
+updateDate: 2025-11-15T00:00:00Z
+title: "Polkadot (WASM / Rust) vs Ethereum (EVM / Solidity)"
+excerpt: "How WASM/Rust on Hyperledger Iroha contrasts with the EVM/Solidity stack across SORA v3, Polkaswap, and Kensetsu."
+description: "Compare WASM/Rust on Hyperledger Iroha 3 with EVM/Solidity through SORA’s 2025 roadmap, Fujiwara testnet insights, and DeFi integrations."
 image: ~/assets/images/wasm-rust-substrate-vs-evm-solidity-ethereum.jpg
 category: "Blockchain Technology"
-canonicalURL: https://soranauts.com/wasm-rust-substrate-vs-evm-solidity-ethereum
----Smart contracts are like special rules that help people trade money, property, or anything valuable in a clear and safe way without needing a middle person. Think of it as a computer program that you can trust to do what it promises.
+tags:
+  - sora
+  - iroha
+  - iroha3
+  - hyperledger
+  - substrate
+  - polkaswap
+  - kensetsu
+  - defi
+  - governance
+  - interoperability
+  - bridges
+  - blockchain
+canonicalURL: https://soranauts.com/polkadot-wasm-rust-vs-ethereum-evm-solidity
+source_url: https://soranauts.com/polkadot-wasm-rust-vs-ethereum-evm-solidity
+snapshot_id: "2025-11-14"
+---
 
-Two types of smart contract systems have become popular: one is called EVM/Solidity, which is used by Ethereum, and the other is WASM/Rust with Substrate. They each have their own ways of doing things.
+Smart contracts continue to automate agreements across nearly every blockchain, but 2025 forces developers to choose between two distinct approaches: the liquidity network of Ethereum’s EVM or the governance-driven, WASM-powered path SORA is adopting with Hyperledger Iroha 3 (“Nexus”).
 
-EVM/Solidity has been around for some time and lots of people use it for making apps on blockchain. On the other hand, WASM/Rust is newer and lets programmers do more complex stuff while having more control over how they work.
+This choice matters because SORA’s roadmap now bridges both worlds—maintaining legacy Substrate runtimes while advancing Iroha 3 on the Fujiwara testnet. Together they connect to CBDC pilots and DeFi products like Polkaswap, Kensetsu, SORA Card, and TONSWAP’s burn mechanics.
 
-Both systems keep track of everything using something called storage keys; however, [Substrate](https://www.parity.io/blog/what-is-substrate/) lets programmers choose different ways to make these keys safe. Also, once you put your smart contracts onto Ethereum's system, you usually can't change them – but both systems do let you update things in different ways if really needed.
+---
 
-Substrate also offers tools that help fix errors without messing up any data—something EVM doesn't always handle well. This means developers can create smarter programs on Substrate than they could before with just Ethereum.
+## TL;DR
 
-Look at [SORA's blockchain](https://soranauts.com/sora-blockchain-new-world-economic-order) example—it uses Rust language on Substrate framework to run its DeFi platform Polkaswap where people swap different kinds of digital coins easily and safely.
+Hyperledger Iroha 3 anchors SORA v3 around WASM/Rust for safety and modular governance. The EVM/Solidity stack still dominates global DeFi for liquidity and tooling. Fujiwara testnet progress shows SORA’s Hubchain logic already functioning pre-mainnet, while Polkaswap and Kensetsu confirm the ecosystem’s multi-runtime economy.
 
-Knowing all this matters because these two systems will shape how we buy, sell, or trade almost anything online in the future! Keep reading to find out even more about these cool technologies!
+In short: choose EVM when you need immediate market reach, and WASM when you need deterministic upgrades, governance control, or CBDC interoperability.
 
-### Key Takeaways
+---
 
-- Smart contracts can be made in different languages and work on various blockchains. Solidity is used for Ethereum while Rust is used with Substrate.
-- Ethereum's smart contracts are like rules set in stone, but they keep getting better with help from the people using them. Substrate gives developers the chance to change how their blockchain stores and finds things.
-- Blockchains built using WASM/Rust, like Polkadot or Solana, focus on safety and speed. They let programmers write secure code that runs fast without errors.
-- Both EVM/Solidity and WASM/Rust systems have tools for creating smart contracts, but they are different from each other in many ways.
-- Choosing between WASM/Rust (Substrate) and EVM/Solidity (Ethereum) depends on what you need for your project. Each has its own strengths whether you want more control or a tried-and-tested system.
+## Key Takeaways
 
-## Understanding the Building Blocks of Smart Contracts
+- SORA is migrating contract logic to **Hyperledger Iroha 3**, while retaining Substrate modules for legacy compatibility.
+- **EVM/Solidity** remains the global standard for composability and liquidity, but SORA bridges these ecosystems through wrapped assets and verifiable cross-chain flows.
+- Products like **Polkaswap**, **Kensetsu**, **SORA Card**, and **TONSWAP** already rely on WASM-based governance.
+- Historical **Substrate/ink!** experience is still relevant, but new features align with Iroha 3’s modular domains and Special Instructions (ISI).
+- Definitions for governance, bonding curves, and liquidity live in the **Soranauts Glossary**, with related datasets viewable in **SORA Explorer**.
 
-Dive into the core of decentralized innovation where smart contracts stand as digital architects – EVM with its Solidity craftsmen on one side, and WASM's Rust builders under the Substrate framework on the other.
+---
 
-It's a tale of two technologies, each offering unique tools to construct the intricate world of blockchain operations – let's unpack their blueprints.
+## Understanding the Building Blocks
 
-### EVM/Solidity
+Smart contracts are deterministic programs that define on-chain state transitions, but their execution environments differ dramatically.
 
-EVM stands for [Ethereum Virtual Machine](https://www.quicknode.com/guides/ethereum-development/getting-started/what-is-the-ethereum-virtual-machine-evm), the place where all Ethereum smart contracts live and run. Solidity is the main language people use to write these smart contracts on Ethereum.
+- The **EVM** prioritizes global composability and compatibility across Ethereum, Base, Polygon, and similar networks.
+- **WASM runtimes**, such as those in Hyperledger Iroha 3, focus on verifiable execution, modular governance, and safe upgrade paths.
 
-It's like a set of rules that tell the EVM what to do when certain conditions are met. Solidity feels familiar if you've ever used other object-oriented languages; it handles complex actions without too much code.
+### EVM / Solidity
 
-Smart contracts written in Solidity are super secure because they can't change after they're added to the blockchain – think of them as "written in stone." But developers have found ways to update their projects when needed, just like on Substrate where everyone has to agree before changes happen.
+The Ethereum Virtual Machine standardizes how bytecode executes across chains, enabling Solidity contracts to behave consistently. Solidity's syntax feels familiar to web developers, while its ecosystem offers formal verification, proxy upgrades, and extensive dev tooling. The <a href="https://ethereum.org/en/developers/docs/evm/" target="_blank" rel="noopener noreferrer">Ethereum Virtual Machine documentation</a> provides comprehensive technical details on execution, opcodes, and gas mechanics.
 
-This means even though each contract is fixed, big projects can still improve over time with community support.
+The tradeoff: the EVM's opcode limits and shared gas model can restrict innovation. Developers benefit from massive network effects but must operate within Ethereum's long-standing constraints. For a deeper comparison of Polkadot and Ethereum architectures, see our [Polkadot vs Ethereum analysis](/polkadot-vs-ethereum-a-comparative-analysis).
 
-### WASM/Rust (Substrate)
+### WASM / Rust (Hyperledger Iroha 3)
 
-WASM, short for WebAssembly, lets you run code on web pages at near-native speed. It's like a super-fast engine that can power up blockchains too. Substrate is a toolkit for making blockchains and it uses WASM to handle smart contracts and other complex stuff behind the scenes.
+WASM brings near-native performance and language flexibility. In Hyperledger Iroha 3, domain-specific logic compiles into WASM modules, enabling deterministic execution and runtime hot-swaps when approved by SORA's Parliament. The <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly standard</a> enables portable, sandboxed execution across different platforms.
 
-[Rust](https://soranauts.com/cryptocurrencies-rust-programming) is the language people use to write these smart contracts on Substrate – think of it as a trusty pen that writes clear instructions.
+Rust enforces memory safety through strict typing and ownership rules. Together, they form a secure foundation for SORA's governance-driven model, allowing validated updates without disrupting the entire network. For developers new to Rust in blockchain contexts, see our guide on [Rust programming for cryptocurrencies](/cryptocurrencies-rust-programming).
 
-Rust gives builders strong tools to prevent mistakes in their code with its strict rules on types and memory management. This makes sure everything runs smoothly without crashing or doing something unexpected.
+> **Context:** Earlier SORA versions (v1–v2) used Substrate pallets and ink! contracts. Those chains remain online, while new modules transition to Hyperledger Iroha 3 through Fujiwara testnet validation.
 
-When building with Substrate, developers get to pick how things are stored and found by choosing different hashing functions - this means more control over their blockchain's toolbox!
+---
 
-## In-depth Analysis of EVM and Solidity
-
-Dive into the heart of Ethereum's functionality—discover how the EVM serves as the execution powerhouse, running code that's penned in Solidity, its core language. Imagine a well-oiled machine where every cog—the syntax, logic, and data types—are tailored for creating decentralized marvels; this section is where you'll grasp each intricate piece.
-
-### What is Solidity?
-
-Solidity is the main language for creating smart contracts on the Ethereum blockchain. Think of it as a tool to write rules that run exactly as programmed, without any chance of fraud or third parties getting in the way.
-
-It's object-oriented, which means it uses objects—like real-world things with properties and actions—to organize code.
-
-Developers use [Solidity](https://www.simplilearn.com/tutorials/blockchain-tutorial/what-is-solidity-programming) when they want their applications to do certain things on the blockchain. For example, transferring money after some conditions are met. With Solidity, writing these instructions becomes easier because it's designed specifically for Ethereum’s unique features.
-
-You can think of Solidity as the bridge between human ideas and digital execution that makes apps trustworthy and automatic.
-
-### Blockchains that Support Solidity
-
-Solidity is the main language to write smart contracts for the Ethereum Virtual Machine, or EVM. Many blockchains use EVM because it lets developers create decentralized applications securely.
-
-- Ethereum: The first and most well-known blockchain supporting Solidity. It's a public, permissionless blockchain where anyone can deploy and interact with smart contracts.
-- Binance Smart Chain (BSC): Offers a similar environment to Ethereum but with faster block times and lower fees. BSC is EVM-compatible, making it easy for Solidity developers to work on this platform.
-- Polygon (formerly Matic Network): A sidechain scaling solution for Ethereum, also supports EVM-compatible smart contracts. Developers use Solidity here for its high efficiency and low-cost transactions.
-- Avalanche: It has an EVM-compatible chain called C-Chain. This chain allows for fast transactions while keeping the ability to run Solidity smart contracts.
-- Fantom: Known for high speeds and low costs, it runs on an EVM-compatible platform that supports Solidity-based [smart contract development](https://www.techtarget.com/searchcio/tip/How-to-become-a-smart-contract-developer).
-- Harmony: Another fast and cost-effective EVM-compatible blockchain that supports decentralized applications built with Solidity.
-
-## Exploring WASM and Rust
-
-As we delve into the realm of WebAssembly (WASM) and the [Rust programming language](https://www.rust-lang.org/), we uncover potent tools reshaping smart contract development—imagine coding with a safety net that catches errors before they wreak havoc.
-
-Strap in; our journey through this technological frontier promises insights into why some developers are betting big on this combo for future blockchain applications.
-
-### Introduction to WASM
-
-WASM stands for WebAssembly, and it's a big deal for web and blockchain development. It lets developers use many different programming languages to make software that works fast on web pages.
-
-Big tech groups like Google and Apple are working together to make WASM even better because they know it can help make the internet run smoothly.
-
-Rust is one of the languages you can use with WASM. It's great for making sure programs are safe from common mistakes that can cause crashes or security problems. Rust also helps your programs run super fast, which is why blockchains like to use it.
-
-When you combine Rust with WASM, you get smart contracts that are not only quick but also tough as nails against errors.
-
-### What is Rust?
-
-After peeking into the world of WASM, let's dive into Rust. Rust is a powerful programming language that people use to create all kinds of software. It's known for being safe and fast.
-
-Think of it like LEGO; you can build things with little blocks, and if you put them together well, they hold strong.
-
-Now imagine making rules for these blocks so they fit just right without crashing down or having missing parts. That's how Rust works when someone writes code for blockchain stuff called smart contracts.
-
-It makes sure everything fits in the perfect spot.
-
-People who create blockchains love Rust because it helps them make sure their smart contracts do exactly what they want — no surprises! And there's this special tool called [Ink!](https://www.parity.io/blog/what-is-paritys-ink) that Parity Technologies made.
-
-It lets coders use Rust to write smart contracts on blockchains built with something cool called Substrate.
-
-### Blockchains that Support Rust
-
-Rust is a core programming language for building smart contracts on different blockchains. It's known for being safe and fast, which makes it great for blockchain technology.
-
-- Polkadot: This network uses Substrate, created by Parity Technologies. Substrate has Rust at its heart, letting developers write secure smart contracts.
-- Solana: Known for high speeds, Solana supports Rust for creating smart contracts on its platform. The language helps make these contracts safer.
-- Near Protocol: Offers a place to create apps using Rust. It focuses on making things easy for developers.
-- Aleph Zero: This public blockchain uses Rust to offer private transactions and high security.
-- Secret Network: Here, privacy is key. Rust allows the creation of 'secret' smart contracts that protect users' data.
-- [Parity’s Substrate](https://www.parity.io/technologies/substrate/): Though not a blockchain itself, it lets people build their own blockchains with Rust. It's like Lego for blockchain!
-
-## Comparative Study: EVM/Solidity Vs. WASM/Rust
-
-Diving into the heart of blockchain's future, our comparison unfurls a tapestry of innovation and choice — where EVM/Solidity and WASM/Rust represent two distinct philosophies in smart contract development.
-
-Let’s peel back the layers to unveil how each ecosystem shapes the landscape of decentralized applications, weighing in on their unique strengths and trade-offs.
+## Comparing EVM/Solidity and WASM/Rust
 
 ### Similarities
 
-Both EVM/Solidity and WASM/Rust platforms focus on creating smart contracts that are small, powerful, and activated by users. They use storage keys to save important info in a way that's similar across both types of blockchains.
+- Both are **Turing-complete**, deterministic, and meter execution (via gas or weight).
+- Both provide testing frameworks and automation pipelines.
+- Bridges and wrapped assets allow liquidity and logic to flow between them.
 
-When you write smart contracts in Rust or Solidity, you're making programs with special rules for how they work.
+### Key Differences
 
-Ethereum and Substrate treat the energy used by contracts—called gas or weight—in much the same way. This means despite using different virtual machines and coding languages, they still think about running costs similarly.
+| Category | EVM / Solidity | WASM / Rust (Hyperledger Iroha 3) |
+|-----------|----------------|-----------------------------------|
+| **Language Scope** | Domain-specific scripting (Solidity) | System-level programming (Rust) with ownership semantics |
+| **Governance** | Fork-based upgrades | Domain-scoped, modular updates under Parliament oversight |
+| **Performance** | Predictable gas model, bounded throughput | Near-native speed, customizable execution limits |
+| **State Model** | Flat key-value storage | Structured domains, accounts, and assets |
+| **Bridging** | Generic messaging or Layer-2 rollups | Verifier/prover logic tied to Hubchain and CBDC links |
 
-Next up: let's delve into their differences to get a full picture.
+### Tradeoffs
 
-### Differences
+- **EVM/Solidity**: mature, composable, but constrained and security-intensive.
+- **WASM/Rust**: flexible, deterministic, but newer and requires deeper technical skill.
 
-EVM/Solidity and WASM/Rust have their own unique features. They cater to different needs of smart contract development.
+---
 
-- Language Limitation: EVM works mainly with Solidity, while Substrate's WASM lets developers choose from various languages.
-- Runtime Environment: Smart contracts on EVM run in a more uniform environment, whereas Substrate provides a more flexible runtime.
-- Compilation Process: Solidity compiles down to EVM bytecode. Meanwhile, Rust can be compiled to WASM for execution on the blockchain.
-- Performance: The compilation target of WASM generally leads to faster and more efficient code than EVM bytecode.
-- Safety Features: Rust offers memory safety and type safety which help prevent common bugs. Solidity has had issues like integer overflow which it's improving upon.
-- Developer Tools: While both platforms offer tools for building smart contracts, the decade of LLVM's compiler optimization benefits Rust with mature tooling.
+## Case Study: The SORA Stack
 
-### Benefits and tradeoffs
+SORA’s evolution illustrates how a network can move from Substrate to Hyperledger Iroha without breaking its DeFi economy.
 
-When considering the two powerful ecosystems of smart contract development—EVM/Solidity and WASM/Rust—developers and stakeholders are often weighing the benefits and tradeoffs associated with each. These comparisons can help in deciding the most suitable framework for a specific blockchain project.
+### Fujiwara Testnet
 
-| Aspect              | EVM/Solidity Benefits                      | EVM/Solidity Tradeoffs                         | WASM/Rust Benefits                              | WASM/Rust Tradeoffs                   |
-| ------------------- | ------------------------------------------ | ---------------------------------------------- | ----------------------------------------------- | ------------------------------------- |
-| Language Maturity   | Solidity is mature and widely used.        | May not offer the most advanced features.      | Rust provides cutting-edge capabilities.        | Less mature in blockchain space.      |
-| Performance         | Optimized for EVM compatibility.           | Performance can be limited by EVM.             | High performance with WASM optimization.        | Requires deeper system knowledge.     |
-| Flexibility         | Widespread tools and libraries.            | Immutable contracts by default.                | Enhanced flexibility with macro usage.          | Complex governance for upgrades.      |
-| Memory Safety       | Less strict, which can be easier to learn. | Potential for security vulnerabilities.        | Strict memory management for enhanced security. | Steeper learning curve.               |
-| Upgradeability      | Upgradeable contracts are possible.        | Tradeoff between immutability and flexibility. | Modules can be changed by validator quorum.     | May centralize control to validators. |
-| Developer Ecosystem | Large, active community.                   | May feel restrictive for some devs.            | Emerging, enthusiastic community.               | Smaller ecosystem than Ethereum's.    |
+Fujiwara serves as SORA’s public sandbox for Iroha 3 modules—mirroring validator orchestration, governance testing, and telemetry. It extends Hubchain’s verifier model and allows developers to validate upgrades before mainnet activation.
 
-The choices made here have far-reaching implications, not just for the immediate development process, but also for future operations, scalability, and governance. Moving forward, we shift our attention to a practical application in the SORA blockchain, underscoring how these technologies perform in real-world scenarios.
+SORA v3, codenamed **Nexus**, prioritizes auditability and bridge security over speed. Internal research notes show ongoing refinement before full release.
 
-## Case Study: SORA Blockchain
+### Polkaswap & Kensetsu
 
-Delve into the [SORA](https://sora.org/) Blockchain's innovative embrace of Substrate and WASM, shedding light on its groundbreaking journey in DeFi through Polkaswap — a narrative rich with insights, waiting to unfold for the curious reader.
+Polkaswap continues as the liquidity core for XOR, VAL, PSWAP, and cross-chain assets. Kensetsu complements it by issuing KUSD and TBCD, funding builders through the bonding-curve treasury.
 
-### Use of Polkadot and Substrate
+Together they form SORA’s economic engine—balancing DeFi liquidity with modular, WASM-based governance validated by Fujiwara.
 
-Polkadot and Substrate work together like a dream team for building blockchains. They make it easy to create and connect different chains. With Polkadot, you can have many chains talk to each other which is super cool if you want to move info or something else across them.
+### SORA Card & TONSWAP
 
-This is called [cross-chain communication](https://chain.link/education/cross-chain), and it's like sending texts between friends who use different phone services.
+SORA Card demonstrates how Iroha 3 governance can coexist with compliance frameworks, while TONSWAP closes the loop between Telegram-based liquidity and SORA’s burn mechanics. Both show how WASM logic powers cross-ecosystem integration without sacrificing decentralization.
 
-Substrate has another neat trick; it lets developers fine-tune how much users pay for transactions by managing something called "weight." Think of weight as gas in a car - it helps decide how much fuel (or fees) your blockchain trip needs.
-
-And because Rust is the go-to language here, smart contracts do exactly what they're supposed to do without any surprises, making things safer and more predictable. So using Polkadot with Substrate can lead to networks that are not only tight on security but also cost-effective compared to older systems like Ethereum.
-
-### Implementation of DeFi platform Polkaswap
-
-[Polkaswap](https://polkaswap.io/) got its power from SORA blockchain, which builds on Polkadot and Substrate technologies. It lets people swap different tokens directly without the need for a middleman. The platform aims to be fast and secure, making trades easier for everyone.
-
-Rust is key in this setup because it helps make sure smart contracts are safe and work well.
-
-This DeFi tool uses WebAssembly (WASM) to run its code smoothly. Programs written in ink!, Polkadot's own smart contract language, compile into WASM. This makes Polkaswap strong and adaptable.
-
-With these features, users enjoy a new way of trading their digital assets effectively.
+---
 
 ## Conclusion
 
-In the world of smart contracts, choosing between WASM/Rust (Substrate) and EVM/Solidity (Ethereum) depends on your project's needs. Rust brings flexible design and detailed control, great for complex systems.
+EVM/Solidity and WASM/Rust are not rivals—they’re two halves of a broader DeFi evolution.
 
-Solidity shines with its secure network for big, decentralized projects. Both have their perks – it's like picking between a Swiss Army knife or a shield; each is powerful in its own way.
+Ethereum’s stack provides instant composability and global liquidity. SORA’s Iroha 3 stack brings governance, modularity, and sovereign programmability. The most resilient builders will use both: Solidity where market access matters, Rust/WASM where safety and policy integration dominate.
 
-So dive in, explore both landscapes, and build something amazing!
+For deeper context on how these systems connect, see the [SORA Ecosystem Guide](/sora-ecosystem-explained).
+
+---
 
 ## FAQs
 
-### What's the difference between Substrate and Ethereum for smart contracts?
+<details>
+<summary>When will the next major SORA network version launch?</summary>
+**SORA v3** remains under active development and is live only on **Fujiwara testnet**. Production release follows audits and **Parliament** approval.
+</details>
 
-Substrate uses WASM and Rust to create flexible, modular blockchains where you can write smart contracts in various languages, while Ethereum relies on EVM with Solidity as its main language for creating dapps.
+<details>
+<summary>What changed between Iroha version 2 and version 3?</summary>
+**Iroha 2** powered SORA's Hubchain Phase 1–2 prototypes, providing the foundation for cross-chain verifiers and prover-verifier logic. **Iroha 3 (Nexus)** introduces a re-engineered architecture with modular domains, upgraded consensus mechanisms, and enhanced security primitives. Key improvements include layered runtime for domain-specific modules, upgraded command model for deterministic operations, and simplified validator orchestration for multi-domain deployments. This evolution enables **SORA v3's** vision of connecting permissioned systems (CBDCs, government assets) with decentralized networks.
+</details>
 
-### Is Rust better than Solidity for smart contract development?
+<details>
+<summary>Can I still use Solidity on SORA?</summary>
+**SORA v3** uses **WASM/Rust** for smart contracts, but bridges and wrapped assets enable interaction with **EVM** chains for liquidity and composability.
+</details>
 
-It's not about one being better—Rust offers more control but is more complex; it's a low-level language. Solidity is designed specifically for Ethereum smart contracts—it's high-level and easier to start with if you're new.
-
-### Can I use WASM outside of blockchain development?
-
-Yes! WASM lets you run high-performance programs in web browsers, making it handy beyond just blockchain - part of why W3C workgroup recommends from medium to heavy computational tasks.
-
-### Do both platforms support object-oriented programming?
-
-Solidity is an object-oriented language tailored for the Ethereum Virtual Machine (EVM). Rust takes a multiparadigm approach, blending elements that allow developers versatility when writing code...
-
-### How secure are Substrate and Ethereum when developing my app?
-
-Both prioritize security—smart contract-based blockchains need to be safe! Rust aims for memory-safe applications through static analysis; previous versions of Solidity have seen updates following bugs... Each has its strengths!
-
-### Does Turing completeness matter in choosing between these platforms?
-
-Absolutely! Turing complete means a system can solve any computation problem given enough resources... Both offer this power but manage constraints differently—think processor limits or gas fees on calls in Ethereum.
-
-## Disclaimer
-
-_Cryptocurrencies involve substantial risk and volatility. This article does not provide individually tailored investment advice. It has been prepared without regard to the individual financial circumstances and objectives of persons who receive it. The cryptocurrencies mentioned are speculative, involve a high degree of risk and are not suitable for all investors. The valuation of cryptocurrencies and futures may fluctuate, and, as a result, clients may lose more than their original investment._
-
-_The past performance of a cryptocurrency is not indicative of future results. Please ensure you fully **understand the risks** involved before investing in any cryptocurrency. This article should not be viewed as a form of endorsement or recommendation. For advice regarding your individual circumstances, please consult with a professional financial advisor._
+<details>
+<summary>Why did SORA move from Substrate to a different blockchain framework?</summary>
+**Iroha 3** offers deterministic upgrades, structured **governance**, and compatibility with permissioned systems like **CBDCs**—core to SORA's long-term vision.
+</details>

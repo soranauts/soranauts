@@ -38,14 +38,6 @@
     --color-error: #f97316;
     --color-info: #38bdf8;
 
-    /* Glossary category colors */
-    --color-category-token: #f97316;
-    --color-category-technology: var(--color-brand-500);
-    --color-category-governance: #7c3aed;
-    --color-category-defi: #15803d;
-    --color-category-network: #2563eb;
-    --color-category-economics: #be185d;
-
     /* Legacy aliases (to be removed once migration completes) */
     --color-bg-page: var(--color-bg);
     --color-bg-surface: var(--color-surface);

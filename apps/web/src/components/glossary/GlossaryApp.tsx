@@ -322,7 +322,7 @@ export default function GlossaryApp({ initialTerm }: GlossaryAppProps) {
                 onClick={() => handleCategoryChange(category.name)}
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === category.name
-                    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                    ? 'bg-gray-200 text-gray-900 dark:bg-gray-600 dark:text-gray-100'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
                 aria-pressed={selectedCategory === category.name}
@@ -345,7 +345,7 @@ export default function GlossaryApp({ initialTerm }: GlossaryAppProps) {
                 onClick={() => handleTagToggle(tag)}
                 className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
                   selectedTags.includes(tag)
-                    ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                    ? 'bg-gray-200 text-gray-900 dark:bg-gray-600 dark:text-gray-100'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600'
                 }`}
                 aria-pressed={selectedTags.includes(tag)}
@@ -399,9 +399,9 @@ export default function GlossaryApp({ initialTerm }: GlossaryAppProps) {
                 aria-selected={focusedIndex === index}
                 className={`p-4 rounded-lg border transition-all cursor-pointer ${
                   focusedIndex === index
-                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                    ? 'border-gray-400 bg-gray-50 dark:bg-gray-800'
                     : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
-                } ${selectedTerm?.slug === term.slug ? 'ring-2 ring-blue-500' : ''}`}
+                } ${selectedTerm?.slug === term.slug ? 'ring-2 ring-gray-400 dark:ring-gray-500' : ''}`}
                 onClick={() => handleTermClick(term)}
                 onMouseEnter={() => setFocusedIndex(index)}
               >
@@ -416,14 +416,7 @@ export default function GlossaryApp({ initialTerm }: GlossaryAppProps) {
                     <div className="flex items-center gap-2 text-xs">
                       <button
                         onClick={() => handleCategoryChange(term.category)}
-                        className={`px-2 py-1 rounded-full font-medium transition-colors cursor-pointer ${
-                          term.category === 'token' ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:hover:bg-yellow-800' :
-                          term.category === 'technology' ? 'bg-blue-100 text-blue-800 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800' :
-                          term.category === 'governance' ? 'bg-purple-100 text-purple-800 hover:bg-purple-200 dark:bg-purple-900 dark:text-purple-200 dark:hover:bg-purple-800' :
-                          term.category === 'defi' ? 'bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900 dark:text-green-200 dark:hover:bg-green-800' :
-                          term.category === 'network' ? 'bg-red-100 text-red-800 hover:bg-red-200 dark:bg-red-900 dark:text-red-200 dark:hover:bg-red-800' :
-                          'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800'
-                        }`}
+                        className="px-2 py-1 rounded-full font-medium transition-colors cursor-pointer bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
                         title={`Filter by ${term.category}`}
                       >
                         {term.category}

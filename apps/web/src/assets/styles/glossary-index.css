@@ -6,68 +6,29 @@ body.glossary-v2 .glossary-index a.glossary {
   transition: color 150ms ease, text-decoration-color 150ms ease;
 }
 
-body.glossary-v2 .glossary-index a.glossary:hover {
-  color: var(--color-link);
-  text-decoration-color: var(--color-link);
+body.glossary-v2 .glossary-index a.glossary:hover,
+body.glossary-v2 .glossary-index a.glossary[data-cat]:hover {
+  /* Subtle hover - brighten underline, keep text neutral */
+  color: var(--color-text-main);
+  text-decoration-color: rgba(148, 163, 184, 0.75);
 }
 
-body.glossary-v2 .glossary-index a.glossary[data-cat="token"] {
-  color: #F97316;
-}
-
-body.glossary-v2 .glossary-index a.glossary[data-cat="defi"] {
-  color: #15803D;
-}
-
-body.glossary-v2 .glossary-index a.glossary[data-cat="governance"] {
-  color: #7C3AED;
-}
-
-body.glossary-v2 .glossary-index a.glossary[data-cat="technology"] {
-  color: var(--color-brand-500);
-}
-
-body.glossary-v2 .glossary-index a.glossary[data-cat="network"] {
-  color: #2563EB;
-}
-
-body.glossary-v2 .glossary-index a.glossary[data-cat="economics"] {
-  color: #BE185D;
-}
-
-body.glossary-v2 .glossary-index a.glossary[data-cat="tag"] {
-  color: var(--color-text-soft);
+/* All categories use neutral colors - no color differentiation */
+body.glossary-v2 .glossary-index a.glossary[data-cat] {
+  color: var(--color-text-main);
 }
 
 .dark.glossary-v2 .glossary-index a.glossary {
   color: var(--color-text-muted);
 }
 
-.dark.glossary-v2 .glossary-index a.glossary[data-cat="token"] {
-  color: #FDBA74;
+.dark.glossary-v2 .glossary-index a.glossary[data-cat] {
+  color: var(--color-text-muted);
 }
 
-.dark.glossary-v2 .glossary-index a.glossary[data-cat="defi"] {
-  color: #4ADE80;
-}
-
-.dark.glossary-v2 .glossary-index a.glossary[data-cat="governance"] {
-  color: #C4B5FD;
-}
-
-.dark.glossary-v2 .glossary-index a.glossary[data-cat="technology"] {
-  color: #F472B6;
-}
-
-.dark.glossary-v2 .glossary-index a.glossary[data-cat="network"] {
-  color: #93C5FD;
-}
-
-.dark.glossary-v2 .glossary-index a.glossary[data-cat="economics"] {
-  color: #F9A8D4;
-}
-
-.dark.glossary-v2 .glossary-index a.glossary[data-cat="tag"] {
-  color: #E5E7EB;
+.dark.glossary-v2 .glossary-index a.glossary[data-cat]:hover {
+  /* Subtle hover - brighten underline, keep text neutral */
+  color: var(--color-text-muted);
+  text-decoration-color: rgba(148, 163, 184, 0.65);
 }
 

@@ -56,7 +56,7 @@ const td = new Turndown();
 const outDir = path.resolve(env.KB_DIR, pub.dir);
 const imgDir = path.join(outDir, 'images');
 const statePath = path.join(env.KB_DIR, 'scripts', '.state', pub.stateFile);
-const { createHash } = require('crypto');
+import { createHash } from 'node:crypto';
 const sha = (s: string) => createHash('sha256').update(s).digest('hex');
 
 async function dl(url: string) {
