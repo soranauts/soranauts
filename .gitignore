@@ -72,3 +72,9 @@ knowledge_base/curated/community-memos/**/*.pdf
 # Keep root-level documentation files
 !knowledge_base/*.md
 !BACKUP_INFO_*.txt
+
+# Prevent changelog.astro from being created (changelog.md is the correct file)
+apps/web/src/pages/changelog.astro
+
+# Prevent improvements.md from being created (redirects to /changelog, use changelog.md instead)
+apps/web/src/pages/improvements.md
