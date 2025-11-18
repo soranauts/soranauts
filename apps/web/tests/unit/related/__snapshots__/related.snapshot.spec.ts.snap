@@ -1,0 +1,98 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`getRelatedArticles snapshot > produces deterministic results for tagged posts 1`] = `
+[
+  {
+    "label": undefined,
+    "score": 9.8,
+    "signals": {
+      "foundationalBonus": 1,
+      "glossaryOverlap": 1,
+      "recency": 0,
+      "sameSection": 1,
+      "tagMatch": 2,
+      "titleKeyword": 1,
+    },
+    "slug": "tagged-1",
+  },
+  {
+    "label": undefined,
+    "score": 5.6,
+    "signals": {
+      "foundationalBonus": 1,
+      "glossaryOverlap": 1,
+      "recency": 0,
+      "sameSection": 1,
+      "tagMatch": 1,
+      "titleKeyword": 0,
+    },
+    "slug": "tagged-2",
+  },
+  {
+    "label": undefined,
+    "score": 5.2,
+    "signals": {
+      "foundationalBonus": 1,
+      "glossaryOverlap": 0,
+      "recency": 0,
+      "sameSection": 1,
+      "tagMatch": 1,
+      "titleKeyword": 1,
+    },
+    "slug": "tagged-3",
+  },
+  {
+    "label": undefined,
+    "score": 1.2,
+    "signals": {
+      "foundationalBonus": 0,
+      "glossaryOverlap": 0,
+      "recency": 0,
+      "sameSection": 0,
+      "tagMatch": 0,
+      "titleKeyword": 1,
+    },
+    "slug": "untagged-2",
+  },
+  {
+    "label": undefined,
+    "score": 0.6,
+    "signals": {
+      "foundationalBonus": 0,
+      "glossaryOverlap": 0,
+      "recency": 0,
+      "sameSection": 1,
+      "tagMatch": 0,
+      "titleKeyword": 0,
+    },
+    "slug": "untagged-1",
+  },
+]
+`;
+
+exports[`getRelatedArticles snapshot > produces deterministic results for untagged posts 1`] = `
+[
+  {
+    "label": undefined,
+    "score": 1.8,
+    "signals": {
+      "glossaryOverlap": 0,
+      "sameSection": 1,
+      "tagMatch": 0,
+      "titleKeyword": 1,
+    },
+    "slug": "post-1",
+  },
+  {
+    "label": undefined,
+    "score": 1.8,
+    "signals": {
+      "glossaryOverlap": 0,
+      "sameSection": 1,
+      "tagMatch": 0,
+      "titleKeyword": 1,
+    },
+    "slug": "post-2",
+  },
+]
+`;

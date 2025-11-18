@@ -2,12 +2,11 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { Post } from '~/types';
 import { getRelatedArticles } from '~/utils/related';
 
-// Mock fetchPosts
+// Mock fetchPosts - must be defined inside vi.mock factory due to hoisting
 const mockPosts: Post[] = [];
-const fetchPostsMock = vi.fn(async () => mockPosts);
 
 vi.mock('~/utils/blog', () => ({
-  fetchPosts: fetchPostsMock,
+  fetchPosts: vi.fn(async () => mockPosts),
 }));
 
 // Mock glossary.json
@@ -61,9 +60,10 @@ describe('getRelatedArticles snapshot', () => {
     ...overrides,
   });
 
-  beforeEach(() => {
+  beforeEach(async () => {
     mockPosts.length = 0;
-    fetchPostsMock.mockClear();
+    const blogModule = await import('~/utils/blog');
+    vi.mocked(blogModule.fetchPosts).mockClear();
   });
 
   it('produces deterministic results for tagged posts', async () => {

@@ -3,12 +3,11 @@ import type { Post } from '~/types';
 import { getRelatedArticles } from '~/utils/related';
 import { relatedConfig } from '~/config/related.config';
 
-// Mock fetchPosts
+// Mock fetchPosts - must be defined inside vi.mock factory due to hoisting
 const mockPosts: Post[] = [];
-const fetchPostsMock = vi.fn(async () => mockPosts);
 
 vi.mock('~/utils/blog', () => ({
-  fetchPosts: fetchPostsMock,
+  fetchPosts: vi.fn(async () => mockPosts),
 }));
 
 // Mock glossary.json
@@ -39,9 +38,10 @@ vi.mock('node:fs', async () => {
 });
 
 describe('getRelatedArticles', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     mockPosts.length = 0;
-    fetchPostsMock.mockClear();
+    const blogModule = await import('~/utils/blog');
+    vi.mocked(blogModule.fetchPosts).mockClear();
   });
 
   const createMockPost = (
