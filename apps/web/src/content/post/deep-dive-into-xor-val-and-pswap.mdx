@@ -1,166 +1,167 @@
 ---
 publishDate: 2023-11-08T00:00:00Z
-updateDate: 2025-10-10T00:00:00Z
+updateDate: 2025-11-17T00:00:00Z
 title: "How XOR, VAL, and PSWAP Power the SORA Ecosystem"
-excerpt: Learn how XOR, VAL, and PSWAP form the foundation of the SORA ecosystem, enabling decentralized governance, liquidity, and algorithmic stability.
+excerpt: Discover how XOR, VAL, and PSWAP drive SORA’s economy, governance, and liquidity — and how they extend into SORA v3 (Nexus) on Hyperledger Iroha 3.
 image: ~/assets/images/xor-pswap-val-investment-strategies.jpg
 category: "DeFi & Trading"
 tags:
-  - XOR
-  - VAL
-  - PSWAP
-  - SORA ecosystem
-  - tokenomics
+  - sora
+  - xor
+  - val
+  - pswap
+  - hyperledger-iroha
+  - kensetsu
+  - kusd
+  - polkaswap
+  - tonswap
+  - bonding-curve
   - governance
-  - liquidity
-  - DeFi
-  - investment strategy
-  - decentralized exchange
-  - Polkaswap
-  - token bonding curve
-  - staking
-  - validator rewards
-  - algorithmic stability
+  - defi
 canonicalURL: https://soranauts.com/deep-dive-into-xor-val-and-pswap
 ---
 
-**Updated for 2025** — The SORA ecosystem runs on three foundational tokens: **XOR**, **VAL**, and **PSWAP**.  
-Each serves a distinct purpose — from economic coordination and governance to liquidity provisioning — working together to sustain a **self-regulating, decentralized economy**.
+import FaqSection from '~/components/blog/FaqSection.astro';
+
+## TL;DR
+
+SORA’s economy runs on three interconnected tokens: **XOR** as the monetary base, **VAL** for governance, and **PSWAP** for liquidity rewards across Polkaswap and Kensetsu.  
+Together they coordinate currency, governance, and market activity that sustain DeFi on SORA and cross-chain platforms like TONSWAP.  
+These mechanisms are now evolving under **SORA v3 (SORA Nexus)** — a new hub chain built on **Hyperledger Iroha 3** and tested on the Fujiwara network.
 
 ---
 
-## Understanding SORA's Token Framework
+## Understanding SORA’s Token Framework
 
-The SORA Network is more than just a blockchain — it's an **economic system** built to manage resources, decision-making, and liquidity in a decentralized way.  
-Instead of relying on central banks or intermediaries, SORA uses algorithmic and governance-based mechanisms powered by its native tokens.
+SORA is more than a blockchain — it’s a **coordinated, algorithmic economy** designed to manage liquidity, governance, and value creation without central control. For a broader ecosystem overview, see [“SORA Ecosystem Explained”](/sora-ecosystem-explained).
 
-| Token | Primary Role | Core Function | Layer of the Ecosystem |
-|--------|---------------|----------------|------------------------|
-| **XOR** | Economic Base | Acts as SORA’s main currency for transactions, liquidity, and minting assets | Economic layer |
-| **VAL** | Governance | Allows voting, decision-making, and treasury management | Governance layer |
-| **PSWAP** | Liquidity & Incentives | Rewards liquidity providers and supports decentralized trading | Market layer |
+| Token | Role | Core Function |
+|--------|------|----------------|
+| **XOR** | Economic Base | Currency, liquidity reserve, and KUSD collateral |
+| **VAL** | Governance | Voting, validator staking, and treasury management |
+| **PSWAP** | Market Incentive | Liquidity and trading rewards on DEXs |
 
-Together, these tokens enable a **self-balancing system** that supports trading, decision-making, and sustainable tokenomics across the SORA and Polkaswap networks.
+These tokens underpin SORA’s three-layer design — economic, governance, and market — extending across **Polkaswap**, **Kensetsu**, and **TONSWAP**.
 
 ---
 
-## 1. XOR — The Economic Engine of SORA
+## 1. XOR — The Economic Engine
 
-**XOR (SORA Token)** is the foundation of SORA’s digital economy.
+**XOR** is SORA’s native currency and foundation for all network liquidity and stability.
 
-### Key Functions
-- **Currency and Settlement Unit:** Used to pay transaction fees and for cross-chain swaps on Polkaswap.  
-- **Liquidity Reserve:** Acts as the base asset for minting and redeeming stablecoins such as **KUSD (Kensetsu USD)**.  
-- **Dynamic Supply Control:** Its supply adjusts algorithmically through the **token bonding curve**, expanding or contracting based on market activity. The [Bancor Protocol](https://bancor.network/) pioneered this concept for algorithmic market makers.  
-- **Decentralized Monetary Policy:** Removes the need for centralized control over money issuance, creating a self-regulating financial system. This approach is similar to [MakerDAO's DAI stability mechanisms](https://makerdao.com/en/whitepaper/).
+### Key Roles
+- **Currency & Settlement:** Used for transactions, liquidity, and cross-chain swaps.  
+- **Bonding Curve Supply Control:** The token’s supply expands or contracts algorithmically to match demand.  
+- **Collateral:** Locked in **Kensetsu vaults** to mint **KUSD (Kensetsu USD)**, SORA’s stablecoin used as a base pair on Polkaswap and TONSWAP.
+
+### Bonding Curve Overview
+
+SORA’s **token bonding curve (TBC)** dynamically adjusts XOR’s price and supply based on real demand. For a detailed curve walkthrough, see [“SORA’s Token Bonding Curve Explained”](/soras-token-bonding-curve-dollar-tbcd-explained).
+
+- **Buy Function:** Purchasing XOR mints new tokens, adding reserves (like DAI or KUSD) to the treasury and raising price incrementally.  
+- **Sell Function:** Selling XOR burns tokens and releases reserves, with a small spread acting as a stabilizer.  
+
+This algorithmic model acts as SORA’s **monetary policy engine**, ensuring elastic liquidity and market equilibrium without centralized control.
 
 | Feature | Description |
 |----------|-------------|
-| Token Type | Native currency of the SORA network |
-| Supply Model | Algorithmically adjusted via bonding curve |
-| Use Cases | Payments, liquidity, asset creation, and network fees |
-| Interoperability | Cross-chain swaps via Polkaswap and bridges |
-
-**In essence:** XOR represents **economic energy** — the fuel for transactions and the anchor for stability across SORA’s ecosystem.
+| Token Type | Native currency |
+| Supply Model | Elastic via bonding curve |
+| Collateral Use | Minting KUSD through Kensetsu |
+| Interoperability | Connects Polkaswap, TONSWAP, and other chains |
 
 ---
 
-## 2. VAL — Governance and Network Coordination
+## 2. VAL — Governance and Coordination
 
-**VAL (SORA Validator Token)** empowers the community to **govern and evolve** the SORA network.
+**VAL** powers SORA’s on-chain governance under the **Governance V1** model.
 
-### Key Functions
-- **Voting Power:** VAL holders propose and vote on governance decisions like validator policies, treasury allocations, and network parameters.  
-- **Validator Incentives:** Supports the consensus layer by rewarding network validators.  
-- **Ecosystem Development:** VAL is used to fund projects that strengthen the ecosystem, such as community grants or infrastructure upgrades.
+### Governance Structure
+- **Council:** Oversees strategic proposals and project direction.  
+- **Technical Committee:** Fast-tracks urgent or technical changes.  
+- **Parliament:** VAL holders vote on referenda, treasury spending, and upgrades.
 
-| Governance Function | Example |
-|----------------------|----------|
-| Proposal Voting | Adjusting transaction fees or staking parameters |
-| Treasury Allocation | Funding ecosystem tools, education, or DeFi apps |
-| Validator Staking | Securing network operations |
-| Community Incentives | Rewarding participation in governance or development |
+### Core Uses
+- **Voting & Referenda:** Define network rules and allocate treasury funds.  
+- **Validator Staking:** Supports consensus and network integrity.  
+- **Ecosystem Growth:** Directs funding toward innovation and community projects.
 
-**In essence:** VAL transforms SORA into a **community-driven economy**, where users control the rules, priorities, and future direction.
+As SORA transitions to **v3 (Nexus)**, governance is expected to evolve into a more modular **Parliament-style** model on **Hyperledger Iroha 3**, maintaining transparency and decentralization.
 
 ---
 
 ## 3. PSWAP — Liquidity and Market Efficiency
 
-**PSWAP (Polkaswap Token)** incentivizes and sustains liquidity across Polkaswap, SORA’s decentralized exchange.
+**PSWAP** fuels liquidity across **Polkaswap**, **Kensetsu**, and **TONSWAP**. For more context on DEX design and trading, see [“Best Decentralized Exchanges (DEXs)”](/best-decentralized-exchanges-dexs).
 
-### Key Functions
-- **Liquidity Provider Rewards:** Distributed to users who contribute liquidity to trading pools.  
-- **Swap Incentives:** Encourages consistent participation and market depth.  
-- **Deflationary Mechanism:** A percentage of PSWAP is burned with each swap, gradually reducing total supply.  
-- **Cross-Chain Utility:** Helps balance liquidity between XOR-based and bridged assets like ETH, DAI, and DOT.
+### Key Roles
+- **Liquidity Rewards:** Incentivizes liquidity providers across pools.  
+- **Deflationary Design:** Trading fees fund PSWAP buy-and-burn mechanics.  
+- **Cross-Chain Utility:** Connects liquidity between XOR, KUSD, and bridged assets.  
+- **TONSWAP Integration:** Aligns with cross-chain liquidity expansion on TON.
 
 | Feature | Description |
 |----------|-------------|
-| Token Type | DEX reward and incentive token |
-| Emission Model | Decreasing over time with burning mechanism |
-| Utility | Liquidity rewards, market incentives, and governance integration |
-| Network | Polkaswap on the SORA Network |
-
-**In essence:** PSWAP keeps Polkaswap **efficient, liquid, and community-driven**, aligning incentives for traders, liquidity providers, and developers alike.
+| Token Type | DEX incentive token |
+| Emission | Decreasing with periodic burns |
+| Utility | Liquidity rewards and cross-chain incentives |
 
 ---
 
-## 4. How XOR, VAL, and PSWAP Work Together
+## 4. Token Synergy — How They Work Together
 
-These three tokens interact like **organs in a living economy**, each fulfilling a unique function but relying on the others for balance and sustainability.
+| Layer | Token | Function |
+|--------|--------|----------|
+| **Economic** | XOR | Base currency, collateral, and liquidity |
+| **Governance** | VAL | Network voting and treasury management |
+| **Market** | PSWAP | Incentives for liquidity and trading |
 
-| Role | Token | Description |
-|------|--------|-------------|
-| **Monetary Base** | XOR | Provides liquidity, unit of account, and monetary stability |
-| **Governance & Coordination** | VAL | Directs system evolution and economic decisions |
-| **Market Efficiency** | PSWAP | Rewards liquidity, maintains active and fair trading |
+**Example Flow:**
+1. Users trade assets on **Polkaswap** using XOR or KUSD.  
+2. Liquidity providers earn **PSWAP** rewards.  
+3. **VAL** holders govern reward rates and protocol updates.  
+4. **XOR’s bonding curve** dynamically adjusts supply to meet demand.
 
-**Example Flow in Action:**
-1. A user trades assets on **Polkaswap** using XOR.  
-2. Liquidity providers receive **PSWAP** rewards.  
-3. **VAL** holders vote to adjust reward structures or protocol upgrades.
-
-This interdependence keeps SORA’s economy self-regulating, efficient, and adaptable to real-world use.
+This self-regulating loop coordinates liquidity, governance, and incentives across SORA’s DeFi layers.
 
 ---
 
 ## 5. Real-World Applications
 
-The SORA token model isn't just theoretical — it provides a **blueprint for decentralized economic coordination**:
+- **Cross-Border Payments:** Low-fee, real-time global transactions.  
+- **Stable Value:** KUSD provides pegged liquidity for DeFi.  
+- **Community Governance:** VAL holders guide funding and upgrades.  
+- **Adaptive Supply:** XOR’s curve aligns token supply with demand.  
+- **Cross-Chain Liquidity:** PSWAP unites SORA with TON and other networks.
 
-- **Cross-Border Payments:** Seamless, low-fee transactions without centralized banks.  
-- **Community-Led Governance:** Economic rules set by participants, not intermediaries.  
-- **Liquidity Infrastructure:** Supports cross-chain trading and DeFi applications.  
-- **Monetary Experimentation:** A working model for algorithmic stability and adaptive token supply.
-
-As SORA evolves through **SORA v3** and its **Hyperledger Iroha integration**, these tokens will continue to play a vital role in linking digital and real-world economies.
-
----
-
-## 6. Frequently Asked Questions (FAQ)
-
-**Q1: What gives XOR its value if it’s algorithmically adjusted?**  
-XOR’s value comes from its **utility and demand** — it’s required for transactions, liquidity, and stable asset creation. Its algorithmic model maintains balance between supply and ecosystem activity.
-
-**Q2: How is VAL different from PSWAP?**  
-VAL governs the network and treasury, while PSWAP incentivizes liquidity on Polkaswap. VAL directs long-term strategy; PSWAP supports short-term market efficiency.
-
-**Q3: Can I use PSWAP for governance?**  
-Not directly. Governance is primarily handled via **VAL**, though future integrations may connect PSWAP's role to liquidity governance mechanisms.
-
-**Q4: What is the connection between XOR and KUSD?**  
-XOR is used as collateral and pricing reference for minting **KUSD (Kensetsu USD)**, maintaining a stable, interoperable unit of value within the ecosystem.
-
-**Q5: How does SORA prevent token inflation?**  
-Through mechanisms like **PSWAP burning**, **VAL governance**, and **XOR's bonding curve**, SORA continuously rebalances supply and demand without relying on fixed inflation models.
+With **SORA v3 (SORA Nexus)** advancing on **Hyperledger Iroha 3** and validated on Fujiwara, these token mechanisms are expected to extend across Polkadot, TON, and Ethereum — combining deterministic finality with modular governance.
 
 ---
 
-## 7. Conclusion
+<div data-no-glossary>
+  <FaqSection>
+    <details><summary>What gives XOR its value?</summary><p>XOR’s value is derived from its use in transactions, DeFi activity, and as KUSD collateral — all backed by its bonding curve mechanism that balances supply and demand.</p></details>
+    <details><summary>How are VAL and PSWAP different?</summary><p>VAL governs network decisions and treasury; PSWAP rewards liquidity and trading activity.</p></details>
+    <details><summary>What connects XOR and KUSD?</summary><p>Users lock XOR into Kensetsu vaults to mint KUSD, a USD-pegged stablecoin for trading and DeFi.</p></details>
+    <details><summary>How does SORA control inflation?</summary><p>Through PSWAP burns funded by fees, VAL oversight of treasury spending, and XOR’s demand-based minting via the bonding curve.</p></details>
+    <details><summary>How do XOR, VAL, and PSWAP interact with Kensetsu?</summary><p>XOR provides vault collateral, VAL influences Kensetsu parameters through governance, and PSWAP incentivizes liquidity in KUSD/XOR pools.</p></details>
+    <details><summary>When will SORA v3 launch?</summary><p>SORA v3 (Nexus) is in active development on the Fujiwara testnet. No fixed launch date has been set — deployment depends on technical and governance milestones.</p></details>
+  </FaqSection>
+</div>
 
-**XOR, VAL, and PSWAP** are more than tokens — they're the **building blocks of a decentralized economic system**.  
-Together, they create a self-sustaining loop of liquidity, governance, and growth that powers SORA's vision of a **truly decentralized global economy**.
+---
 
-As the ecosystem advances with [**SORA v3**](/sora-v3-vision-defi-milestones-and-polkaswap-news-update-88), these tokens will remain central to achieving a future where money, decision-making, and opportunity are open to everyone.
+## Further Reading
 
+- **Internal articles**
+  - [“SORA Ecosystem Explained”](/sora-ecosystem-explained) — high-level view of SORA’s economics, governance, and products.  
+  - [“SORA’s Token Bonding Curve Explained”](/soras-token-bonding-curve-dollar-tbcd-explained) — in-depth look at the bonding curve model behind XOR.  
+  - [“Best Decentralized Exchanges (DEXs)”](/best-decentralized-exchanges-dexs) — context for how Polkaswap and other DEXs fit into DeFi.
+- **External references**
+  - <a href="https://wiki.sora.org/" target="_blank" rel="noopener noreferrer">SORA Wiki</a> — official knowledge base for the SORA ecosystem.  
+  - <a href="https://docs.iroha.tech/" target="_blank" rel="noopener noreferrer">Hyperledger Iroha documentation</a> — technical background for Iroha 3 and related components.
+
+## Conclusion
+
+**XOR, VAL, and PSWAP** form the backbone of SORA’s decentralized economy — liquidity, governance, and stability unified through algorithmic design.  
+As **SORA v3 (Nexus)** progresses on **Hyperledger Iroha 3**, these tokens remain central to linking networks and building a transparent, scalable, and interoperable financial future.

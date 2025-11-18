@@ -155,10 +155,17 @@ const CATEGORY_LABELS: Record<string, string> = {
   tag: 'Tag',
 };
 
-const formatLabel = (value: string): string =>
-  value
+const formatLabel = (value: string): string => {
+  const raw = String(value || '');
+  const lower = raw.toLowerCase();
+  // Force specific brand/style acronyms to uppercase
+  if (lower === 'sora' || lower === 'ton') {
+    return lower.toUpperCase();
+  }
+  return raw
     .replace(/[-_]+/g, ' ')
     .replace(/\b\w/g, (match) => match.toUpperCase());
+};
 
 const categoryLabel = typeof term.category === 'string' ? CATEGORY_LABELS[term.category] ?? formatLabel(term.category) : undefined;
 const aliasCount = Array.isArray(term.aliases) && term.aliases.length > 1 ? term.aliases.length - 1 : 0;
@@ -304,7 +311,7 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
             {relatedTagArticles.map(({ tag, tagPermalink, posts }) => (
               <div class="glossary-related__item">
                 <div class="glossary-related__header">
-                  <div class="glossary-related__title">#{tag.title}</div>
+                  <div class="glossary-related__title">#{formatLabel(tag.title)}</div>
                   <a class="glossary-related__action" href={tagPermalink}>
                     View Explorer tag
                   </a>

@@ -517,6 +517,11 @@ Create `knowledge_base/docs/kb.md` covering:
 - Hybrid retrieval configuration
 - Metadata sidecar system
 
+### Editorial Standards
+
+- Use `docs/ARTICLE_EDIT_PLAN_TEMPLATE.md` as the starting point for any major article revision.  
+- Ensure edit plans follow the KB source hierarchy, glossary auto-linking rules, and FAQ/TL;DR conventions defined there.  
+
 ## Dependencies
 
 ```json
@@ -580,6 +585,7 @@ Create `knowledge_base/docs/kb.md` covering:
 - [ ] Token-accurate offsets stored and retrievable
 - [ ] HTTP caching reduces redundant fetches (ETag/Last-Modified honored)
 - [ ] Image deduplication prevents re-downloading same assets across sources
+
 
 
 

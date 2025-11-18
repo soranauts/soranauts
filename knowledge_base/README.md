@@ -20,6 +20,9 @@ This directory contains the RAG (Retrieval-Augmented Generation) knowledge base 
 # Install dependencies
 pnpm install
 
+# Start ChromaDB (required for ingestion)
+docker-compose -f docker-compose.chroma.yml up -d
+
 # Sync Iroha docs
 pnpm kb:sync:iroha
 
@@ -29,8 +32,12 @@ pnpm kb:sync:medium
 # Scrape SORAMITSU site
 pnpm kb:sync:soramitsu
 
-# Build embeddings index
+# Build embeddings index (with ChromaDB)
+export OPENAI_API_KEY=sk-...
 pnpm kb:ingest
+
+# Or use local DuckDB (no Docker required)
+pnpm kb:ingest:local
 
 # Search the knowledge base
 pnpm kb:retrieve "SORA v3 governance changes"
@@ -77,14 +84,21 @@ See `apps/web/src/server/env.ts` for all configuration options. Key variables:
 - `EMBED_MODEL` - `text-embedding-3-large` (default) or `text-embedding-3-small`
 - `KB_DIR` - Knowledge base root directory (default: `./knowledge_base`)
 - `INDEX_DIR` - Vector DB storage location
+- `CHROMA_URL` - ChromaDB HTTP endpoint (default: `http://127.0.0.1:8000`)
+- `LOCAL_EMBED_STORE` - Store mode: `chroma-http` (default) or `duckdb` (local file)
+- `CHROMA_STRICT` - If `true`, fail fast if ChromaDB unavailable (CI mode)
+- `KB_DRY_RUN` - If `true`, skip embeddings and vector store writes
 
 ## Documentation
 
-Full documentation: `knowledge_base/docs/kb.md`
+- Full documentation: `knowledge_base/docs/kb.md`
+- **Ingestion Reliability**: `knowledge_base/docs/INGEST_RELIABILITY.md` - Complete guide to fixing CI failures, architecture, runbook, and troubleshooting
 
 ## CI/CD
 
 The knowledge base syncs automatically via GitHub Actions:
 - Nightly sync at 03:17 UTC (`.github/workflows/kb-sync.yml`)
-- Reindex on changes (`.github/workflows/kb-index.yml`)
+- Reindex on changes (`.github/workflows/kb-index.yml`) - Now includes ChromaDB service container with health checks
+
+**Note**: The CI workflow now automatically provisions a ChromaDB service container. See `INGEST_RELIABILITY.md` for details on architecture and troubleshooting.
 

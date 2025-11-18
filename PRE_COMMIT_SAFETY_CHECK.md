@@ -57,7 +57,7 @@ knowledge_base/soramitsu_site/* 3.md
 - `scripts/revert-to-backup.sh` - Generic revert script ✅
 - `apps/web/public/og/glossary.jpg` - Image file (~56KB) - Verify if needed ✅
 - `apps/web/scripts/build-og-glossary.ts` - New script ✅
-- `apps/web/src/pages/improvements.md` - New page (verify if needed)
+- `apps/web/src/pages/improvements.md` - (Removed later; `/improvements` now redirects to `/changelog` only)
 - `apps/web/src/pages/soramitsu-sora-polkaswap.astro` - New page (verify if needed)
 - `knowledge_base/articles/internal-notes-tonswap-sora-v3-iroha.md` - Internal notes ✅
 - `knowledge_base/docs/ADDING_INTERNAL_NOTES.md` - Documentation ✅
@@ -167,6 +167,7 @@ These are legitimate changes to existing files:
 ---
 
 **Last Updated:** November 4, 2025
+
 
 
 

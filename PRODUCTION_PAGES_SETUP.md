@@ -8,16 +8,14 @@
 - **Status:** ✅ Correct - standalone .astro file
 
 ### `/changelog`
-- **File:** `apps/web/src/pages/changelog.astro`
-- **Layout:** `PageLayout.astro` (full-featured design with Stats, ItemGrid, Timeline widgets)
-- **Status:** ⚠️ Route collision - both `changelog.astro` and `changelog.md` exist
-- **Action Needed:** Remove or archive `changelog.md` (the .astro file takes precedence in production)
+- **File:** `apps/web/src/pages/changelog.md`
+- **Layout:** `MarkdownLayout.astro` (simple markdown layout)
+- **Status:** ✅ Canonical changelog page (matches live site)
 
 ### `/improvements`
-- **File:** `apps/web/src/pages/improvements.md`
-- **Layout:** `MarkdownLayout.astro` (simple markdown layout)
+- **File:** _none_ (handled via redirect only)
 - **Redirect:** `/improvements` → `/changelog` (configured in `astro.config.mjs`)
-- **Status:** ✅ Correct - redirects to changelog as intended
+- **Status:** ✅ Correct - direct visits are forwarded to `/changelog`
 
 ## Configuration Files
 
@@ -34,15 +32,16 @@ const redirects = {
 ```
 
 ### Route Resolution Priority
-1. `.astro` files take precedence over `.md` files
-2. Astro redirects are processed before route matching
-3. So `/improvements` redirects to `/changelog` before any file matching
+1. Astro redirects are processed before route matching  
+2. If no redirect applies, route files are resolved normally (`.astro` or `.md`)  
+3. For `/improvements`, the redirect fires first, so the markdown changelog is always served
 
 ## Summary
 
-- ✅ `/features` - Uses `features.astro` (PageLayout)
-- ✅ `/changelog` - Uses `changelog.astro` (PageLayout) - `.md` file should be archived/removed
-- ✅ `/improvements` - Redirects to `/changelog` via Astro config
+- ✅ `/features` — Uses `features.astro` (PageLayout)  
+- ✅ `/changelog` — Uses `changelog.md` (MarkdownLayout)  
+- ✅ `/improvements` — Redirects to `/changelog` via Astro config; no standalone page file  
+
 
 
 

@@ -1,5 +1,8 @@
 # Article Template & Guidelines for Soranauts
 
+> For KB-aligned edit planning (before you rewrite an article), see  
+> `docs/ARTICLE_EDIT_PLAN_TEMPLATE.md`.
+
 ## 📋 Article Structure Template
 
 ### Frontmatter (Required)

@@ -32,9 +32,13 @@ knowledge_base/
 │   ├── tonswap_site/        # Scraped TONSWAP website
 │   ├── articles/            # Reference articles
 │   ├── internal-research/  # Internal research notes (Authority Level 1)
-│   └── community-memos/     # Community governance memos (Authority Level 3)
-│       ├── 2023/            # Memos organized by year
-│       ├── 2024/
+│   ├── community-memos/     # Community governance memos (Authority Level 3)
+│   │   ├── 2023/            # Memos organized by year
+│   │   ├── 2024/
+│   │   └── 2025/
+│   └── transcriptions/      # Transcriptions of seminars, talks, conferences (Authority Level 3)
+│       ├── 2023/            # Transcriptions organized by year
+│       ├── 2024/            # Optional: event type subdirectories (conferences/, seminars/, etc.)
 │       └── 2025/
 ├── meta/                # Metadata and configuration
 │   └── tag-suggestion-matrix.md
@@ -155,6 +159,7 @@ The `source` field must be one of:
 - `bck21`, `bck22`, `bck23`, `bck24` - BCK research papers
 - `internal-research` - Internal research notes (Authority Level 1, requires team confirmation)
 - `community-memo` - Community governance memos (Authority Level 3, supplemental)
+- `transcription` - Transcriptions of seminars, talks, conferences, webinars (Authority Level 3, supplemental)
 - `pdf` - PDF imports
 
 ## Ingestion Rules
@@ -285,11 +290,12 @@ The KB system uses authority-based scoring to prioritize high-quality, authorita
   - Official sites: `curated/soramitsu_site/`, `curated/tonswap_site/`
   - Source types: `wiki`, `iroha_docs`, `soramitsu`, `tonswap_site`
   
-- **Level 3 (Normal)**: Soranauts editorial content, community memos (default)
+- **Level 3 (Normal)**: Soranauts editorial content, community memos, transcriptions (default)
   - Ecosystem updates, articles, guides, governance notes
   - Community memos: `source` in `["community-memo"]` or path pattern `curated/community-memos/`
+  - Transcriptions: `source` in `["transcription"]` or path pattern `curated/transcriptions/`
   - Default for any content that doesn't match Level 1 or 2
-  - Community memos are supplemental and never override Level 1–2 sources
+  - Community memos and transcriptions are supplemental and never override Level 1–2 sources
   
 - **Level 4 (Low)**: External blogs/opinion/unverified commentary
   - Currently defaults to Level 3 (can be extended if external sources are identified)

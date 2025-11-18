@@ -1,0 +1,135 @@
+name: Knowledge Base Ingest
+
+on:
+  push:
+    paths:
+      - 'knowledge_base/**'
+      - 'knowledge_base/scripts/**'
+      - 'apps/web/src/server/env.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/kb-ingest.yml'
+  pull_request:
+    paths:
+      - 'knowledge_base/**'
+      - 'knowledge_base/scripts/**'
+      - 'apps/web/src/server/env.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/kb-ingest.yml'
+  workflow_dispatch:
+
+jobs:
+  ingest:
+    name: kb:${{ matrix.slice }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        slice: [full]
+    env:
+      CHROMA_URL: http://127.0.0.1:8000
+      LOCAL_EMBED_STORE: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork) && 'duckdb' || 'chroma-http' }}
+      KB_DRY_RUN: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork) && '1' || '0' }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    services:
+      chroma:
+        image: ghcr.io/chroma-core/chroma:latest
+        ports:
+          - 8000:8000
+        env:
+          CHROMA_SERVER_HOST: 0.0.0.0
+          ALLOW_RESET: 'TRUE'
+        options: >-
+          --health-cmd "curl -fsS http://127.0.0.1:8000/api/v1/heartbeat || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect relevant changes
+        id: paths
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            kb:
+              - 'knowledge_base/**'
+              - 'knowledge_base/scripts/**'
+              - 'apps/web/src/server/env.ts'
+              - 'package.json'
+              - 'pnpm-lock.yaml'
+
+      - name: Skip ingest (no KB changes)
+        if: steps.paths.outputs.kb != 'true'
+        run: echo "No knowledge base changes detected; skipping ingest."
+
+      - name: Setup pnpm
+        if: steps.paths.outputs.kb == 'true'
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+
+      - name: Setup Node.js
+        if: steps.paths.outputs.kb == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Restore KB index cache
+        if: steps.paths.outputs.kb == 'true'
+        uses: actions/cache@v4
+        with:
+          path: knowledge_base/.kb_index
+          key: kb-index-${{ runner.os }}-${{ hashFiles('knowledge_base/curated/**', 'knowledge_base/scripts/**') }}
+          restore-keys: |
+            kb-index-${{ runner.os }}-
+
+      - name: Install dependencies
+        if: steps.paths.outputs.kb == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Wait for Chroma heartbeat
+        if: steps.paths.outputs.kb == 'true'
+        run: |
+          success=0
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:8000/api/v1/heartbeat > /tmp/chroma-heartbeat.json; then
+              cat /tmp/chroma-heartbeat.json
+              echo "Chroma heartbeat OK at http://127.0.0.1:8000"
+              success=1
+              break
+            fi
+            echo "Waiting for Chroma (${attempt}/30)..."
+            sleep 2
+          done
+          if [ "$success" -ne 1 ]; then
+            echo "Chroma heartbeat failed after 30 attempts"
+            docker logs chroma || true
+            exit 1
+          fi
+
+      - name: Print Chroma version
+        if: steps.paths.outputs.kb == 'true'
+        run: curl -fsS http://127.0.0.1:8000/api/v1/version || true
+
+      - name: Run kb:ingest
+        if: steps.paths.outputs.kb == 'true'
+        env:
+          CHROMA_URL: ${{ env.CHROMA_URL }}
+          OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
+          LOCAL_EMBED_STORE: ${{ env.LOCAL_EMBED_STORE }}
+          KB_DRY_RUN: ${{ env.KB_DRY_RUN }}
+        run: pnpm --filter @soranauts/web kb:ingest:ci
+
+      - name: Upload KB manifest
+        if: always() && steps.paths.outputs.kb == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: kb-index-manifest
+          path: knowledge_base/.kb_index/manifest.json
+          retention-days: 7
+

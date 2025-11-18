@@ -3521,16 +3521,6 @@
       "type": "tag"
     },
     {
-      "alias": "algorithmic stability",
-      "slug": "tag-algorithmic-stability",
-      "type": "tag"
-    },
-    {
-      "alias": "algorithmic stability",
-      "slug": "tag-algorithmic-stability",
-      "type": "tag"
-    },
-    {
       "alias": "halving",
       "slug": "tag-bitcoin-halving",
       "type": "tag"
@@ -3873,21 +3863,6 @@
     {
       "alias": "soshiba",
       "slug": "tag-soshiba",
-      "type": "tag"
-    },
-    {
-      "alias": "validator",
-      "slug": "tag-validator-rewards",
-      "type": "tag"
-    },
-    {
-      "alias": "validator rewards",
-      "slug": "tag-validator-rewards",
-      "type": "tag"
-    },
-    {
-      "alias": "validator rewards",
-      "slug": "tag-validator-rewards",
       "type": "tag"
     }
   ]
