@@ -7017,7 +7017,7 @@
     }
   },
   "totalCount": 138,
-  "lastUpdated": "2025-11-15T13:02:23.598Z",
+  "lastUpdated": "2025-11-16T15:19:09.980Z",
   "aliasIndex": [
     {
       "alias": "XOR",
@@ -10540,16 +10540,6 @@
       "type": "tag"
     },
     {
-      "alias": "Algorithmic Stability",
-      "slug": "tag-algorithmic-stability",
-      "type": "tag"
-    },
-    {
-      "alias": "algorithmic stability",
-      "slug": "tag-algorithmic-stability",
-      "type": "tag"
-    },
-    {
       "alias": "Halving",
       "slug": "tag-bitcoin-halving",
       "type": "tag"
@@ -10892,21 +10882,6 @@
     {
       "alias": "soshiba",
       "slug": "tag-soshiba",
-      "type": "tag"
-    },
-    {
-      "alias": "Validator",
-      "slug": "tag-validator-rewards",
-      "type": "tag"
-    },
-    {
-      "alias": "validator rewards",
-      "slug": "tag-validator-rewards",
-      "type": "tag"
-    },
-    {
-      "alias": "Validator Rewards",
-      "slug": "tag-validator-rewards",
       "type": "tag"
     }
   ]

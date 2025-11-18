@@ -17,6 +17,24 @@ jobs:
     runs-on: ubuntu-latest
     # Don't block PR merges if indexing fails (useful if secrets aren't configured)
     continue-on-error: ${{ github.event_name == 'pull_request' }}
+    
+    services:
+      chroma:
+        image: ghcr.io/chroma-core/chroma:latest
+        ports:
+          - 8000:8000
+        env:
+          CHROMA_SERVER_HOST: 0.0.0.0
+          CHROMA_SERVER_HTTP_PORT: 8000
+          ALLOW_RESET: "TRUE"
+          IS_PERSISTENT: "TRUE"
+        options: >-
+          --health-cmd "curl -f http://localhost:8000/api/v1/heartbeat || exit 1"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 5
+          --health-start-period 10s
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,6 +53,23 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         
+      - name: Wait for Chroma health check
+        run: |
+          echo "Waiting for Chroma to be ready..."
+          for i in {1..30}; do
+            if curl -f http://127.0.0.1:8000/api/v1/heartbeat > /dev/null 2>&1; then
+              echo "Chroma is ready!"
+              curl -s http://127.0.0.1:8000/api/v1/heartbeat | jq -r '.nanosecond heartbeat' || echo "Heartbeat OK"
+              break
+            fi
+            if [ $i -eq 30 ]; then
+              echo "Chroma failed to start after 30 attempts"
+              exit 1
+            fi
+            echo "Attempt $i/30: waiting 2s..."
+            sleep 2
+          done
+        
       - name: Determine changed files
         id: changed-files
         run: |
@@ -51,16 +86,32 @@ jobs:
             fi
           fi
           
-      - name: Reindex KB
+      - name: Restore index cache
+        uses: actions/cache@v4
+        with:
+          path: knowledge_base/.kb_index
+          key: kb-index-${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}-${{ vars.TOKENIZER || 'tiktoken-cl100k' }}-${{ hashFiles('knowledge_base/curated/**') }}
+          restore-keys: |
+            kb-index-${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}-${{ vars.TOKENIZER || 'tiktoken-cl100k' }}-
+      
+      - name: Build BM25 index
+        if: steps.changed-files.outputs.changed != 'none'
+        run: |
+          pnpm --filter @soranauts/web kb:bm25:build || echo "BM25 build skipped"
+          
+      - name: Ingest and index
         if: steps.changed-files.outputs.changed != 'none'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           EMBED_MODEL: ${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}
           TOKENIZER: ${{ vars.TOKENIZER || 'tiktoken-cl100k' }}
+          CHROMA_URL: http://127.0.0.1:8000
+          CHROMA_STRICT: "1"
+          CI: "1"
         run: |
-          # Delta reindex: only re-embed changed files
-          # For now, we'll do a full reindex (can be optimized later with file registry)
-          pnpm --filter @soranauts/web kb:ingest
+          echo "Chroma URL: $CHROMA_URL"
+          echo "Running ingestion with strict mode..."
+          pnpm --filter @soranauts/web kb:ingest:ci
           
       - name: Upload index manifest
         if: always()
@@ -69,6 +120,7 @@ jobs:
           name: kb-index-manifest
           path: knowledge_base/.kb_index/manifest.json
           retention-days: 7
+          if-no-files-found: ignore
           
       - name: Cache index
         if: success()

@@ -1,0 +1,76 @@
+---
+const { title = 'FAQs', ...rest } = Astro.props as Record<string, any>;
+const sectionAttrs = {
+  ...rest,
+  'data-no-glossary': rest['data-no-glossary'] ?? true,
+};
+---
+
+<section class="faq-section" {...sectionAttrs}>
+  <h2 class="faq-heading">{title}</h2>
+  <slot />
+</section>
+
+<style>
+  .faq-section {
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-border-subtle, rgba(148, 163, 184, 0.2));
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .faq-heading {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-section details {
+    border-bottom: 1px solid var(--color-border-subtle, rgba(148, 163, 184, 0.2));
+    padding: 0.75rem 0;
+  }
+
+  .faq-section summary {
+    cursor: pointer;
+    line-height: 1.6;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+  }
+
+  .faq-section summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-section summary::after {
+    content: '▾';
+    font-size: 0.85rem;
+    color: var(--color-text-soft);
+    transition: transform 150ms ease, color 150ms ease;
+  }
+
+  .faq-section details[open] summary::after {
+    transform: rotate(180deg);
+    color: var(--color-link);
+  }
+
+  .faq-section summary .glossary-link,
+  .faq-section summary .glossary {
+    border-bottom: none !important;
+    text-decoration: none !important;
+    pointer-events: none;
+  }
+
+  .faq-answer {
+    margin-top: 0.5rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+</style>
+

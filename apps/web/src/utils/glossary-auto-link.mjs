@@ -28,7 +28,14 @@ function isSkippable(ancestors) {
   
   for (const a of ancestors) {
     if (a.type === 'mdxJsxFlowElement') {
-      if (a.name === 'details' || a.name === 'summary' || a.name === 'pre' || a.name === 'code') {
+      const elementName = typeof a.name === 'string' ? a.name.toLowerCase() : '';
+      if (
+        elementName === 'faqsection' ||
+        elementName === 'details' ||
+        elementName === 'summary' ||
+        elementName === 'pre' ||
+        elementName === 'code'
+      ) {
         return true;
       }
       if (hasNoGlossaryAttribute(a)) {
@@ -38,8 +45,14 @@ function isSkippable(ancestors) {
     if (a.type === 'heading') {
       return true;
     }
-    if (a.type === 'mdxJsxTextElement' && hasNoGlossaryAttribute(a)) {
-      return true;
+    if (a.type === 'mdxJsxTextElement') {
+      const elementName = typeof a.name === 'string' ? a.name.toLowerCase() : '';
+      if (elementName === 'summary' || elementName === 'details') {
+        return true;
+      }
+      if (hasNoGlossaryAttribute(a)) {
+        return true;
+      }
     }
     // Skip inside tables
     if (TABLE_TYPES.has(a.type)) {

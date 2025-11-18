@@ -1,8 +1,8 @@
 ---
 publishDate: 2023-10-11T00:00:00Z
-updateDate: 2025-11-05T00:00:00Z
+updateDate: 2025-11-17T00:00:00Z
 title: SORA's Token Bonding Curve Dollar (TBCD) Explained
-excerpt: Explore how SORA's Token Bonding Curve Dollar (TBCD) became KUSD and Kensetsu — creating algorithmic stability, liquidity, and community-driven finance.
+excerpt: SORA’s Token Bonding Curve Dollar (TBCD) set the stage for KUSD and Kensetsu, powering on-chain stability and liquidity.
 image: ~/assets/images/soras-token-bonding-curve-dollar-tbcd-explained.jpg
 category: "Economics & Policy"
 tags:
@@ -18,10 +18,21 @@ tags:
   - economics
   - polkaswap
   - governance
+  - sora-v3
+  - hyperledger-iroha
 canonicalURL: https://soranauts.com/soras-token-bonding-curve-dollar-tbcd-explained
 ---
 
-> **TL;DR:** The Token Bonding Curve Dollar (TBCD) is SORA’s algorithmic reserve asset designed to stabilize XOR’s economy. It laid the groundwork for KUSD — the over-collateralized stablecoin of the Kensetsu Platform.
+import FaqSection from '~/components/blog/FaqSection.astro';
+
+SORA’s Token Bonding Curve Dollar (TBCD) was the first major experiment in algorithmic monetary design for the SORA economy, tying a reserve asset’s value directly to SORA’s token bonding curve.  
+This article is for DeFi users, governance participants, and researchers who want to understand how TBCD, KUSD, and the Kensetsu Platform fit together as layers of a single economic system.
+
+## TL;DR
+TBCD is SORA’s algorithmic reserve asset whose value is maintained by the token bonding curve and governed via on-chain referenda.  
+It helped build reserves, support ecosystem funding, and provided a foundation for KUSD — the over-collateralized stablecoin of the Kensetsu Platform.  
+Kensetsu extends this design into vault-based borrowing, using KUSD and the KEN token to manage risk and incentives across the SORA DeFi stack.  
+Together with SORA v3, which is being developed on a Hyperledger Iroha–based hub chain and tested on the Fujiwara environment, these components aim to create a self-adjusting, on-chain economic system.
 
 ---
 
@@ -30,7 +41,7 @@ canonicalURL: https://soranauts.com/soras-token-bonding-curve-dollar-tbcd-explai
 The **Token Bonding Curve Dollar (TBCD)** originated as SORA’s first experiment in algorithmic monetary design — an asset created and valued entirely by the **Token Bonding Curve (TBC)**.  
 It maintains **economic equilibrium** by stabilizing XOR’s price, building reserves, and funding development through the **Economic Growth Fund (EGF)**.
 
-TBCD remains an **active on-chain asset** within the SORA network. It can be traded on **Polkaswap**, used as **collateral on Kensetsu**, and continues to function as a **governance-controlled reserve instrument** tied to the Token Bonding Curve.
+TBCD remains an **active on-chain asset** within the SORA network. It remains tradable on **Polkaswap**, usable as **collateral on Kensetsu**, and continues to function as a **governance-controlled reserve instrument** tied to the token bonding curve.
 
 ### Core Properties
 
@@ -38,24 +49,27 @@ TBCD remains an **active on-chain asset** within the SORA network. It can be tra
 - **Governance-minted:** Created only through on-chain referenda approved by XOR holders.  
 - **Economic engine:** Used to finance ecosystem projects via the EGF and to expand SORA’s productive economy.  
 - **Self-balancing:** When XOR is below the bonding-curve price, TBCD trades slightly under $1, discouraging redemptions and supporting price stability.  
-- **Fee support:** Around **0.5–1 %** of network transaction fees are allocated for **TBCD buyback and burn**.  
+- **Fee support:** Around **0.5%** of network transaction fees are allocated for **TBCD buyback and burn**, alongside KUSD and other fee destinations in SORA’s tokenomics.  
 - **Tradable:** Active on Polkaswap and usable as collateral on Kensetsu.  
 
 Although its supply remains limited and governance-controlled, TBCD acts as a **monetary buffer** that keeps XOR liquidity balanced — the on-chain equivalent of a decentralized reserve.
 
 ---
 
-## From TBCD to KUSD: Evolution of SORA's Stable Asset
+## From TBCD to KUSD: The Evolution of SORA’s Stablecoin Layer
 
 While TBCD proved that algorithmic equilibrium could work, it wasn’t designed as a retail stablecoin.  
 As the network evolved, SORA **extended the concept** through **KUSD (Kensetsu USD)** — an over-collateralized, USD-pegged stablecoin built on the **Kensetsu Platform**.
 
+In practice, this means TBCD operates as a governance-controlled reserve inside the token bonding curve, while KUSD sits “one layer up” as a user-facing stablecoin backed by vault collateral.  
+Kensetsu connects these pieces so that fee flows, collateral design, and buyback mechanisms can reinforce the broader SORA economy rather than relying on custodial or fiat-backed models.
+
 ### KUSD in a Nutshell
 
 - **Collateralized borrowing:** Users lock assets such as XOR, VAL, PSWAP, TBCD, ETH, or DAI as collateral to mint KUSD.  
-- **MakerDAO-style vaults:** Each vault has parameters for collateral ratio, loan-to-value (LTV), stability fee, borrow tax (1 %), and liquidation penalty.  
-- **Peg maintenance:** 19.5 % of all network fees fund **KUSD buyback and burn** (with 0.5 % still directed to TBCD).  
-- **Governance & incentives:** The **KEN token** rewards liquidity providers and governs Kensetsu risk parameters.
+- **MakerDAO-style vaults:** Each vault has parameters for collateral ratio, loan-to-value (LTV), stability fee, borrow tax (1%), and liquidation penalty.  
+- **Peg maintenance:** 19.5% of all network fees fund **KUSD buyback and burn** (with 0.5% still directed to TBCD).  
+- **Governance & incentives:** The **KEN token** governs Kensetsu’s risk parameters and rewards liquidity providers.
 
 KUSD transforms TBCD’s conceptual model into a **fully functional DeFi stablecoin**, giving users direct access to decentralized borrowing and lending within SORA.
 
@@ -81,7 +95,7 @@ By including TBCD as one of its collateral options, Kensetsu ties the **new stab
 
 ## Algorithmic Central Banking in Practice
 
-Together, TBCD and KUSD form SORA’s **algorithmic central-banking model**:
+The three tokens below represent distinct but interconnected layers of SORA’s monetary system:
 
 | Layer | Type | Peg | Backing | Governance | Role |
 |-------|------|-----|----------|-------------|------|
@@ -107,10 +121,11 @@ TBCD, KUSD, and Kensetsu together show how algorithmic finance has evolved from 
 
 ## SORA's Broader Vision: A Decentralized Economic System
 
-With **SORA v3** — being developed on **Hyperledger Iroha 3** — expected to introduce enterprise-grade transparency and scalability for its next generation of DeFi systems, the network is poised for significant advancement.  
-These improvements are expected to strengthen the foundation for **KUSD**, **TBCD**, and future SORA assets that extend algorithmic monetary design across interoperable networks.
+With **SORA v3** — being developed on **Hyperledger Iroha 3** — expected to introduce enterprise-grade transparency and scalability for its next generation of DeFi systems, the network is gradually evolving through ongoing research, testing, and audits.  
+These improvements are expected to strengthen the foundation for **KUSD**, **TBCD**, and future SORA assets that extend algorithmic monetary design across interoperable networks, subject to successful validation on environments such as the Fujiwara testnet.
 
-To explore vault creation or learn more about the Kensetsu system, visit the official [**SORA Wiki – KUSD & Kensetsu**](https://wiki.sora.org/kusd.html).
+To explore vault creation or learn more about the Kensetsu system, visit the official
+<a href="https://wiki.sora.org/kusd.html" target="_blank" rel="noopener noreferrer"><strong>SORA Wiki – KUSD &amp; Kensetsu</strong></a>.
 
 ---
 
@@ -123,33 +138,42 @@ To explore vault creation or learn more about the Kensetsu system, visit the off
 
 ---
 
-## FAQ
+<FaqSection>
+  <details>
+    <summary>Is TBCD still active?</summary>
+    TBCD is an active on-chain asset within the SORA network. It can be swapped on Polkaswap and used as Kensetsu collateral, but its issuance and role remain governed by on-chain decisions rather than free-market minting.
+  </details>
 
-<details>
-<summary>Is TBCD still active?</summary>
-Yes. TBCD is an active on-chain asset. It can be swapped on Polkaswap and used as Kensetsu collateral, but its issuance and role remain governed by SORA's on-chain policies rather than free-market minting.
-</details>
+  <details>
+    <summary>How does KUSD maintain its peg?</summary>
+    KUSD relies on over-collateralized vaults, stability fees, and a buyback-and-burn mechanism funded by network transaction fees, with governance able to adjust parameters over time.
+  </details>
 
-<details>
-<summary>How does KUSD maintain its peg?</summary>
-Through over-collateralized vaults, stability fees, and a buyback-and-burn mechanism funded by network transaction fees.
-</details>
+  <details>
+    <summary>What is the KEN token used for?</summary>
+    KEN is the Kensetsu platform token used for farming rewards and governance, helping align incentives around vault health, liquidity, and peg stability.
+  </details>
 
-<details>
-<summary>What is the KEN token used for?</summary>
-KEN distributes Kensetsu farming rewards and captures platform value through periodic buybacks.
-</details>
+  <details>
+    <summary>What role will Hyperledger Iroha 3 play in SORA v3?</summary>
+    Hyperledger Iroha 3 is expected to provide a transparent, modular, and scalable foundation for next-generation SORA DeFi infrastructure, with features being tested on the Fujiwara testnet before production decisions are made.
+  </details>
 
-<details>
-<summary>What role will Hyperledger Iroha 3 play in SORA v3?</summary>
-Hyperledger Iroha 3 is expected to provide a transparent, modular, and scalable foundation for next-generation SORA DeFi infrastructure once SORA v3 launches.
-</details>
+  <details>
+    <summary>How is TBCD different from KUSD?</summary>
+    TBCD is an algorithmic reserve asset created through governance and tied directly to the token bonding curve, while KUSD is a user-facing stablecoin minted from over-collateralized vaults on Kensetsu. TBCD primarily supports reserves and funding, whereas KUSD is designed for everyday pricing, borrowing, and settlement.
+  </details>
 
----
+  <details>
+    <summary>What risks should I understand before using KUSD or Kensetsu?</summary>
+    Users face risks such as collateral price volatility, liquidation if vaults become under-collateralized, parameter changes through governance, and technical risks common to DeFi protocols. It is important to review current documentation and risk parameters before opening a vault or relying on KUSD for payments.
+  </details>
+</FaqSection>
 
 ## Related Resources
  
-- [SORA Official Wiki - Token Bonding Curve](https://wiki.sora.org/tbc.html)  
-- [SORA Official Wiki - TBCD](https://wiki.sora.org/tbcd.html)  
-- [SORA Official Wiki - KUSD & Kensetsu](https://wiki.sora.org/kusd.html)  
-- [SORA Official Wiki - Tokenomics](https://wiki.sora.org/tokenomics.html)
+<a href="/sora-ecosystem-explained">Soranauts – SORA Ecosystem Explained</a>  
+<a href="https://wiki.sora.org/tbc.html" target="_blank" rel="noopener noreferrer">SORA Official Wiki - Token Bonding Curve</a>  
+<a href="https://wiki.sora.org/tbcd.html" target="_blank" rel="noopener noreferrer">SORA Official Wiki - TBCD</a>  
+<a href="https://wiki.sora.org/kusd.html" target="_blank" rel="noopener noreferrer">SORA Official Wiki - KUSD &amp; Kensetsu</a>  
+<a href="https://wiki.sora.org/tokenomics.html" target="_blank" rel="noopener noreferrer">SORA Official Wiki - Tokenomics</a>

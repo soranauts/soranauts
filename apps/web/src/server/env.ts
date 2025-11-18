@@ -46,6 +46,18 @@ const envSchema = z.object({
   RAG_STORE: z.enum(['chroma','qdrant','lancedb']).default('chroma'),
   CHROMA_COLLECTION: z.string().default('soranauts-kb'),
   CHROMA_URL: z.string().url().default('http://127.0.0.1:8000'),
+  CHROMA_HOST: z.string().default('127.0.0.1'),
+  CHROMA_PORT: z
+    .string()
+    .transform((val) => parseInt(val, 10))
+    .pipe(z.number())
+    .default('8000'),
+  CHROMA_STRICT: z
+    .string()
+    .transform((val) => val === '1' || val === 'true')
+    .pipe(z.boolean())
+    .default('false'),
+  LOCAL_EMBED_STORE: z.enum(['chroma-http', 'duckdb']).default('chroma-http'),
   QDRANT_URL: z.string().url().optional(),
   QDRANT_API_KEY: z.string().optional(),
   BM25_ENABLED: z.string().transform((val) => val === 'true' || val === '').pipe(z.boolean()).default('true'),
@@ -60,6 +72,11 @@ const envSchema = z.object({
   KB_EMBED_CACHE_DIR: z.string().default('./knowledge_base/.kb_index/.embedding_cache'),
   KB_DETERMINISM_NOCACHE: z.string().transform((val) => val === 'true').pipe(z.boolean()).default('false'),
   KB_SUBSET: z.string().default(''),
+  KB_DRY_RUN: z
+    .string()
+    .transform((val) => val === '1' || val === 'true')
+    .pipe(z.boolean())
+    .default('false'),
 });
 
 export const env = envSchema.parse(process.env);

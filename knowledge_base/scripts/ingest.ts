@@ -4,18 +4,100 @@ import { join, relative, dirname, basename } from 'path';
 import { createHash } from 'crypto';
 import { glob as globAsync } from 'glob';
 import matter from 'gray-matter';
-import { ChromaClient } from 'chromadb';
 import OpenAI from 'openai';
 import pRetry from 'p-retry';
 import { Command } from 'commander';
 import { env } from './env';
+import type { KBEnv } from './env';
 import { normalizeForHash, hashContent, normalizeCJKWhitespace } from './utils/text-normalize';
 import { chunkTokens, chunkTextByCharacters, type TokenChunk } from './utils/tokenizer';
 import type { ChunkMetadata, ExtendedChunkMetadata, IndexManifest, Metrics, KBFrontmatter } from './types';
 import { computeAuthority } from './utils/authority';
+import {
+  createVectorStoreClient,
+  type VectorStoreClient,
+  type VectorStoreCollection,
+  type VectorStoreHandle,
+} from './utils/chroma-client';
 
 const snapshotId = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 const CHUNKER_VERSION = '1.0.0'; // Stable version identifier for chunking algorithm
+
+type LogLevel = 'info' | 'warn' | 'error';
+
+interface RuntimeConfig {
+  isCi: boolean;
+  dryRun: boolean;
+  strictHttp: boolean;
+  chromaUrl: string;
+  chromaHost: string;
+  chromaPort: number;
+  preferDuckDB: boolean;
+  allowDuckFallback: boolean;
+}
+
+const LOG_PREFIX = '[kb:ingest]';
+
+function log(level: LogLevel, event: string, fields: Record<string, unknown> = {}): void {
+  const payload = {
+    ts: new Date().toISOString(),
+    level,
+    event,
+    ...fields,
+  };
+  const message = `${LOG_PREFIX} ${JSON.stringify(payload)}`;
+  if (level === 'error') {
+    console.error(message);
+  } else if (level === 'warn') {
+    console.warn(message);
+  } else {
+    console.log(message);
+  }
+}
+
+function resolveRuntimeConfig(): RuntimeConfig {
+  const normalizedUrl = (env.CHROMA_URL || `http://${env.CHROMA_HOST}:${env.CHROMA_PORT}`).replace(/\/$/, '');
+  const isCi = process.env.CI === '1';
+  const preferDuckDB = env.LOCAL_EMBED_STORE === 'duckdb';
+
+  return {
+    isCi,
+    dryRun: env.KB_DRY_RUN,
+    strictHttp: env.CHROMA_STRICT,
+    chromaUrl: normalizedUrl,
+    chromaHost: env.CHROMA_HOST,
+    chromaPort: env.CHROMA_PORT,
+    preferDuckDB,
+    allowDuckFallback: !env.CHROMA_STRICT && (preferDuckDB || isCi),
+  };
+}
+
+async function establishVectorStore(runtime: RuntimeConfig): Promise<VectorStoreHandle> {
+  const baseEnv: KBEnv = { ...env, CHROMA_URL: runtime.chromaUrl };
+
+  if (runtime.preferDuckDB) {
+    log('info', 'vector_store.mode', { mode: 'duckdb', reason: 'LOCAL_EMBED_STORE=duckdb' });
+    return createVectorStoreClient({ ...baseEnv, LOCAL_EMBED_STORE: 'duckdb' });
+  }
+
+  try {
+    log('info', 'vector_store.connect', {
+      endpoint: runtime.chromaUrl,
+      strict: runtime.strictHttp,
+    });
+    return await createVectorStoreClient(baseEnv, { strict: runtime.strictHttp });
+  } catch (error) {
+    if (!runtime.allowDuckFallback) {
+      throw error;
+    }
+    const reason = error instanceof Error ? error.message : String(error);
+    log('warn', 'vector_store.fallback', {
+      fallback: 'duckdb',
+      reason,
+    });
+    return createVectorStoreClient({ ...baseEnv, LOCAL_EMBED_STORE: 'duckdb' });
+  }
+}
 
 function sanitizeForEmbedding(text: unknown): string {
   if (typeof text !== 'string') {
@@ -369,42 +451,55 @@ async function main() {
   console.log(`Snapshot ID: ${snapshotId}`);
   console.log(`Embed model: ${env.EMBED_MODEL}`);
   console.log(`Incremental: ${env.KB_INCREMENTAL}, Cache: ${useCache ? 'enabled' : 'disabled'}`);
-  
-  // Initialize OpenAI
-  if (!env.OPENAI_API_KEY) {
-    throw new Error('OPENAI_API_KEY is required');
+  const isDryRun = env.KB_DRY_RUN;
+  if (isDryRun) {
+    console.log('[kb:ingest] KB_DRY_RUN=1 - running in dry-run mode (no embeddings will be persisted)');
   }
   
-  const openai = new OpenAI({
-    apiKey: env.OPENAI_API_KEY,
-    baseURL: env.OPENAI_BASE_URL,
-  });
+  let openai: OpenAI | null = null;
+  if (!isDryRun) {
+    if (!env.OPENAI_API_KEY) {
+      throw new Error('OPENAI_API_KEY is required');
+    }
+    openai = new OpenAI({
+      apiKey: env.OPENAI_API_KEY,
+      baseURL: env.OPENAI_BASE_URL,
+    });
+  } else {
+    console.log('[kb:ingest] Skipping OpenAI initialization because KB_DRY_RUN=1');
+  }
   
   // Ensure index directory exists (for local server volume mounts)
   mkdirSync(env.INDEX_DIR, { recursive: true });
   
-  // Initialize ChromaDB (HTTP client)
-  const chromaClient = new ChromaClient({
-    path: env.CHROMA_URL,
-  });
-  
-  // Get or create collection
-  let collection;
-  try {
-    collection = await chromaClient.getCollection({
-      name: env.CHROMA_COLLECTION,
-    });
-    console.log(`Using existing collection: ${env.CHROMA_COLLECTION}`);
-  } catch {
-    collection = await chromaClient.createCollection({
-      name: env.CHROMA_COLLECTION,
-      metadata: {
-        embedding_model: env.EMBED_MODEL,
-        tokenizer: env.TOKENIZER,
-      },
-    });
-    console.log(`Created new collection: ${env.CHROMA_COLLECTION}`);
+  const vectorStore = await createVectorStoreClient(env, { strict: env.CHROMA_STRICT });
+  const vectorClient = vectorStore.client;
+  console.log(`Vector store mode: ${vectorStore.mode}${vectorStore.endpoint ? ` (${vectorStore.endpoint})` : ''}`);
+  if (vectorStore.heartbeat) {
+    console.log(`Chroma heartbeat: ${vectorStore.heartbeat.ok ? 'OK' : 'FAILED'} (${vectorStore.heartbeat.elapsedMs}ms)`);
   }
+  const closeVectorStore = async () => {
+    if (typeof vectorClient.close === 'function') {
+      await vectorClient.close();
+    }
+  };
+  try {
+    let collection: VectorStoreCollection;
+    try {
+      collection = await vectorClient.getCollection({
+        name: env.CHROMA_COLLECTION,
+      });
+      console.log(`Using existing collection: ${env.CHROMA_COLLECTION}`);
+    } catch {
+      collection = await vectorClient.createCollection({
+        name: env.CHROMA_COLLECTION,
+        metadata: {
+          embedding_model: env.EMBED_MODEL,
+          tokenizer: env.TOKENIZER,
+        },
+      });
+      console.log(`Created new collection: ${env.CHROMA_COLLECTION}`);
+    }
   
   // Load embedding cache if enabled
   const embeddingCache = useCache ? loadEmbeddingCache(env.KB_EMBED_CACHE_DIR) : new Map<string, number[]>();
@@ -469,6 +564,7 @@ async function main() {
       { path: join(env.KB_DIR, 'curated', 'imported'), source: 'imported' },
       { path: join(env.KB_DIR, 'curated', 'internal-research'), source: 'internal-research' },
       { path: join(env.KB_DIR, 'curated', 'community-memos'), source: 'community-memo' },
+      { path: join(env.KB_DIR, 'curated', 'transcriptions'), source: 'transcription' },
       { path: join(env.KB_DIR, 'pdfs'), source: 'pdf' },
     ];
     
@@ -519,11 +615,12 @@ async function main() {
     { path: join(env.KB_DIR, 'curated', 'imported'), source: 'imported' },
     { path: join(env.KB_DIR, 'curated', 'internal-research'), source: 'internal-research' },
     { path: join(env.KB_DIR, 'curated', 'community-memos'), source: 'community-memo' },
+    { path: join(env.KB_DIR, 'curated', 'transcriptions'), source: 'transcription' },
     { path: join(env.KB_DIR, 'pdfs'), source: 'pdf' },
   ];
   
   // Valid source types for validation
-  const validSources = ['wiki', 'update', 'article', 'glossary', 'iroha_docs', 'soramitsu', 'polkaswap_update', 'fearless_update', 'fearless_github', 'tonswap_site', 'tonswap_update', 'pdf', 'imported', 'meta', 'bck21', 'bck22', 'bck23', 'bck24', 'internal-research', 'community-memo'];
+  const validSources = ['wiki', 'update', 'article', 'glossary', 'iroha_docs', 'soramitsu', 'polkaswap_update', 'fearless_update', 'fearless_github', 'tonswap_site', 'tonswap_update', 'pdf', 'imported', 'meta', 'bck21', 'bck22', 'bck23', 'bck24', 'internal-research', 'community-memo', 'transcription'];
   
   for (const filepath of filesToProcess) {
     const relPath = relative(env.KB_DIR, filepath);
@@ -607,6 +704,15 @@ async function main() {
   
   console.log(`\nEmbedding ${chunksToEmbed.length} chunks (${metrics.cache_hits} from cache, ${metrics.cache_misses} new)...`);
   
+  if (isDryRun) {
+    console.log('[kb:ingest] DRY-RUN OK', {
+      files_processed: metrics.files_processed,
+      files_skipped: metrics.files_skipped,
+      chunks_ready: deduplicatedChunks.length,
+    });
+    return;
+  }
+  
   // Generate embeddings for chunks not in cache
   const batchSize = process.env.CI ? env.EMBED_BATCH_SIZE_CI : env.EMBED_BATCH_SIZE;
   const embeddings: number[][] = [];
@@ -618,7 +724,7 @@ async function main() {
     
     try {
       const batchEmbeddings = await createEmbeddings(
-        openai,
+        openai!,
         batchTexts,
         env.EMBED_MODEL
       );
@@ -804,9 +910,12 @@ async function main() {
   console.log(`\n✓ Ingestion complete!`);
   console.log(`  Files: ${metrics.files_processed} processed, ${metrics.files_skipped} skipped`);
   console.log(`  Chunks: ${metrics.chunks_written} written (${metrics.chunks_created} new, ${metrics.chunks_skipped} from cache), ${metrics.chunks_deleted} deleted`);
-  console.log(`  Cache: ${metrics.cache_hits} hits, ${metrics.cache_misses} misses (${metrics.cache_hit_rate.toFixed(1)}% hit rate)`);
-  console.log(`  Cost estimate: $${metrics.api_cost_estimate_usd.toFixed(4)}`);
-  console.log(`  Duration: ${(metrics.duration_ms / 1000).toFixed(2)}s`);
+    console.log(`  Cache: ${metrics.cache_hits} hits, ${metrics.cache_misses} misses (${metrics.cache_hit_rate.toFixed(1)}% hit rate)`);
+    console.log(`  Cost estimate: $${metrics.api_cost_estimate_usd.toFixed(4)}`);
+    console.log(`  Duration: ${(metrics.duration_ms / 1000).toFixed(2)}s`);
+  } finally {
+    await closeVectorStore();
+  }
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
