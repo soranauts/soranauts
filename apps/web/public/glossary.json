@@ -7017,7 +7017,7 @@
     }
   },
   "totalCount": 138,
-  "lastUpdated": "2025-11-18T12:17:52.711Z",
+  "lastUpdated": "2025-11-19T22:42:40.073Z",
   "aliasIndex": [
     {
       "alias": "XOR",
@@ -10615,6 +10615,16 @@
       "type": "tag"
     },
     {
+      "alias": "crypto-trends",
+      "slug": "tag-crypto-trends",
+      "type": "tag"
+    },
+    {
+      "alias": "Crypto Trends",
+      "slug": "tag-crypto-trends",
+      "type": "tag"
+    },
+    {
       "alias": "Crypto Market Cycles",
       "slug": "tag-cryptocurrency-trends",
       "type": "tag"
@@ -10652,6 +10662,16 @@
     {
       "alias": "economic systems",
       "slug": "tag-economic-systems",
+      "type": "tag"
+    },
+    {
+      "alias": "energy-efficiency",
+      "slug": "tag-energy-efficiency",
+      "type": "tag"
+    },
+    {
+      "alias": "Energy Efficiency",
+      "slug": "tag-energy-efficiency",
       "type": "tag"
     },
     {
@@ -10780,16 +10800,6 @@
       "type": "tag"
     },
     {
-      "alias": "parliament",
-      "slug": "tag-parliament",
-      "type": "tag"
-    },
-    {
-      "alias": "Parliament",
-      "slug": "tag-parliament",
-      "type": "tag"
-    },
-    {
       "alias": "Pepe (PEPE)",
       "slug": "tag-pepe",
       "type": "tag"
@@ -10802,36 +10812,6 @@
     {
       "alias": "pepe",
       "slug": "tag-pepe",
-      "type": "tag"
-    },
-    {
-      "alias": "Proof of Stake (PoS)",
-      "slug": "tag-pos",
-      "type": "tag"
-    },
-    {
-      "alias": "PoS",
-      "slug": "tag-pos",
-      "type": "tag"
-    },
-    {
-      "alias": "pos",
-      "slug": "tag-pos",
-      "type": "tag"
-    },
-    {
-      "alias": "Proof of Work (PoW)",
-      "slug": "tag-pow",
-      "type": "tag"
-    },
-    {
-      "alias": "PoW",
-      "slug": "tag-pow",
-      "type": "tag"
-    },
-    {
-      "alias": "pow",
-      "slug": "tag-pow",
       "type": "tag"
     },
     {
@@ -10882,6 +10862,16 @@
     {
       "alias": "soshiba",
       "slug": "tag-soshiba",
+      "type": "tag"
+    },
+    {
+      "alias": "sustainability",
+      "slug": "tag-sustainability",
+      "type": "tag"
+    },
+    {
+      "alias": "Sustainability",
+      "slug": "tag-sustainability",
       "type": "tag"
     }
   ]
