@@ -347,3 +347,4 @@ docker-compose -f docker-compose.chroma.yml restart chroma
 - DuckDB: https://duckdb.org/
 - OpenAI Embeddings API: https://platform.openai.com/docs/guides/embeddings
 
+

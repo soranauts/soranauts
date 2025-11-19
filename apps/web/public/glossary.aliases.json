@@ -3596,6 +3596,16 @@
       "type": "tag"
     },
     {
+      "alias": "crypto-trends",
+      "slug": "tag-crypto-trends",
+      "type": "tag"
+    },
+    {
+      "alias": "crypto trends",
+      "slug": "tag-crypto-trends",
+      "type": "tag"
+    },
+    {
       "alias": "crypto market cycles",
       "slug": "tag-cryptocurrency-trends",
       "type": "tag"
@@ -3633,6 +3643,16 @@
     {
       "alias": "economic systems",
       "slug": "tag-economic-systems",
+      "type": "tag"
+    },
+    {
+      "alias": "energy-efficiency",
+      "slug": "tag-energy-efficiency",
+      "type": "tag"
+    },
+    {
+      "alias": "energy efficiency",
+      "slug": "tag-energy-efficiency",
       "type": "tag"
     },
     {
@@ -3761,16 +3781,6 @@
       "type": "tag"
     },
     {
-      "alias": "parliament",
-      "slug": "tag-parliament",
-      "type": "tag"
-    },
-    {
-      "alias": "parliament",
-      "slug": "tag-parliament",
-      "type": "tag"
-    },
-    {
       "alias": "pepe pepe",
       "slug": "tag-pepe",
       "type": "tag"
@@ -3783,36 +3793,6 @@
     {
       "alias": "pepe",
       "slug": "tag-pepe",
-      "type": "tag"
-    },
-    {
-      "alias": "proof of stake pos",
-      "slug": "tag-pos",
-      "type": "tag"
-    },
-    {
-      "alias": "pos",
-      "slug": "tag-pos",
-      "type": "tag"
-    },
-    {
-      "alias": "pos",
-      "slug": "tag-pos",
-      "type": "tag"
-    },
-    {
-      "alias": "proof of work pow",
-      "slug": "tag-pow",
-      "type": "tag"
-    },
-    {
-      "alias": "pow",
-      "slug": "tag-pow",
-      "type": "tag"
-    },
-    {
-      "alias": "pow",
-      "slug": "tag-pow",
       "type": "tag"
     },
     {
@@ -3863,6 +3843,16 @@
     {
       "alias": "soshiba",
       "slug": "tag-soshiba",
+      "type": "tag"
+    },
+    {
+      "alias": "sustainability",
+      "slug": "tag-sustainability",
+      "type": "tag"
+    },
+    {
+      "alias": "sustainability",
+      "slug": "tag-sustainability",
       "type": "tag"
     }
   ]

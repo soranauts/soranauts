@@ -1,190 +1,228 @@
-# Article Edit Plan Template for Soranauts
+# ARTICLE_EDIT_PLAN_TEMPLATE.md
+# Soranauts — Master Article Edit Plan Template (2025 Edition)
 
-This template is designed for editors and AI assistants (Cursor, ChatGPT, etc.) to create **edit plans** for Soranauts articles in a consistent, KB-aligned way.
+# 1. Purpose & Workflow
+This template defines how editors or AI assistants (Cursor, ChatGPT, etc.) must analyze and improve a Soranauts article.
 
-Use it whenever you are:
+Your task:
+Create a FULL Edit Plan for <article link or path> using the sections in this document exactly.
 
-- Updating an existing article with new ecosystem data  
-- Migrating legacy content (old FAQs, manual glossary links)  
-- Performing a full editorial pass on structure, tags, or metadata  
+Inputs expected:
+- Article URL or MDX path (e.g. apps/web/src/content/post/sora-ecosystem-explained.mdx)
+- Change scope: minor update / targeted update / full modernization
+- Notes about outdated mechanisms or recent SORA/TON/KUSD developments
 
----
+Output:
+A structured Edit Plan — NOT a rewrite — using the exact section order below.
 
-## 1. Task & Workflow
+# 2. Knowledge Base & Source–of–Truth Hierarchy
+When making factual corrections or recommendations, follow this authority order (highest → lowest):
 
-**Task:**  
-Create a structured **Edit Plan** to improve `<article link or path>` while preserving its voice and intent.
+1. knowledge_base/curated/wiki — SORA Wiki  
+2. knowledge_base/curated/iroha_docs — Hyperledger Iroha Docs  
+3. knowledge_base/curated/soramitsu_site — Soramitsu  
+4. knowledge_base/curated/research — bck21–bck24  
+5. knowledge_base/curated/internal-research  
+6. knowledge_base/curated/articles — prior Soranauts features  
+7. knowledge_base/curated/*_updates — Polkaswap, TONSWAP, SORA v3 updates  
 
-**Inputs you should receive or infer:**
+When sources conflict: prefer higher-ranked directories and the most recent snapshot.
 
-- Article URL or repo path (e.g., `apps/web/src/content/post/sora-ecosystem-explained.mdx`)  
-- Change scope: `minor update` / `targeted section updates` / `full rewrite`  
-- Any notes on outdated data, governance changes, or glossary behavior  
+# 2.1 Plan-Mode Execution Rules (Cursor & AI Assistants)
 
-**Outputs you should produce:**
+These rules define *how* Cursor must behave when generating an Edit Plan using the standard prompt:
 
-- An **Edit Plan** with these sections:
-  - `Assessment`
-  - `Recommended KB-backed changes`
-  - `FAQ plan`
-  - `Metadata & tags`
-  - `Open questions` (if any)  
-- Optionally, a **revised MDX draft** if explicitly requested
+“Use ARTICLE_EDIT_PLAN_TEMPLATE.md. Create a full Edit Plan for <link>.”
 
-**Rules of engagement:**
+### A. Plan-Only Behavior (No Rewriting)
+- The assistant must ONLY produce an Edit Plan.
+- No rewritten article content, no partial rewrites, no summaries, no draft replacements.
+- All rewrite instructions must appear *inside the plan*, not executed in the output.
 
-- Do **not** add manual glossary links (`<a>`, `<GlossaryLink>`, markdown links) for glossary terms  
-- Keep tone factual, neutral, and non-promotional  
-- Cross-check any SORA v3 / Fujiwara / Iroha 3 statements with the Knowledge Base hierarchy before including  
+### B. <link> as the Primary Source of Truth
+- The article located at <link> is the base document for the entire plan.
+- All analysis must align with this version of the article.
+- Do not reference older revisions or unrelated drafts.
 
----
+### C. Required Knowledge Base Integration
+When the template calls for factual verification or expansion, Cursor must:
+- Cross-check details against the Knowledge Base Source Hierarchy.
+- Use curated wiki files, polkaswap_updates, ecosystem_updates, and research snapshots as authoritative sources.
+- Clearly identify where KB-driven corrections or expansions are required.
+- Tag all roadmap or speculative statements with:
+  **“As of <Month Year>…”**
+  to distinguish live vs planned features.
 
-## 2. Knowledge Base & Glossary Standards
+### D. Glossary & FAQ Enforcement
+- No manual glossary links are ever allowed.
+- Glossary auto-linking must operate on plain text only.
+- FAQs must follow Section 3 rules (FaqSection + literal <details> children).
+- If the auto-linker injects excessive links inside FAQs, instruct wrapping problematic areas with `<div data-no-glossary>`.
 
-**Authoritative source order (highest → lowest):**
+### E. Linking Guardrails
+- Internal links must use real slugs only (`/slug`).
+- No `/blog/...`, file-system paths, or `/glossary/...` links.
+- External links must follow Section 5 whitelisting.
+- All forbidden external sources must be summarized, not linked.
 
-1. `knowledge_base/curated/wiki` — SORA Wiki  
-2. `knowledge_base/curated/iroha_docs` — Hyperledger Iroha docs  
-3. `knowledge_base/curated/soramitsu_site` — SORAMITSU official pages  
-4. `knowledge_base/curated/research` — numbered research sets (bck21–bck24)  
-5. `knowledge_base/curated/internal-research` — internal technical notes  
-6. `knowledge_base/curated/articles` — prior Soranauts features  
-7. `knowledge_base/curated/*_updates` — ecosystem, Polkaswap, TONSWAP, etc.  
+### F. Tag & Metadata Normalization
+Every Edit Plan must:
+- Propose 8–12 normalized tags.
+- Provide a ≤160-character excerpt revision.
+- Confirm category alignment.
+- Confirm image path without changing it.
+- Validate canonical URL and dates.
 
-When sources conflict, prefer the higher-ranked directory and the **most recent snapshot**.
+### G. Edit Plan Tone & Density
+- The Edit Plan must be concise, actionable, and template-driven.
+- Avoid unnecessary exposition or re-explaining the entire article.
+- Each section should map cleanly to the template’s structure.
 
-### Glossary rules
+### H. Structural & Organizational Compliance
+- Follow the section order in the ARTICLE EDIT PLAN format exactly.
+- Do not introduce new sections or rearrange required ones.
+- Any deviation must be justified inside the plan but not executed.
 
-- Leave glossary terms as **plain text**; the auto-linker handles them at build time  
-- Do **not** wrap terms like `bonding curve`, `liquidity`, `governance`, `SORA Parliament`, etc. in manual links  
-- Avoid adding links inside `<details>` summaries or component props  
-- You may link to `/explore/...` pages for **Explorer tag pages**, but never to `/glossary/...` term URLs  
+# 3. Glossary, Auto-Linker, and FAQ Rules
+Glossary rules:
+- Do not add manual glossary links (/glossary/...).
+- Do not wrap glossary terms in <a> or custom components.
+- The auto-linker handles glossary linking.
+- Avoid glossary terms inside <details> summaries or props.
 
-### Tag guidelines
+FAQ rules:
+- Use the FaqSection component.
+- FaqSection must wrap literal <details> children.
+- Do NOT use items={[...]} or any props-based content.
+- Use <div data-no-glossary> only if auto-linker injects links into FAQ content.
 
-- Aim for **8–12 tags** per article  
-- Use **lowercase, hyphenated** tokens (e.g., `sora-v3`, `bonding-curve`, `governance`)  
-- Align with the Tag Suggestion Matrix categories:
-  - Core: `sora`, `xor`, `kusd`, `val`, `pswap`  
-  - Ecosystem: `polkaswap`, `tonswap`, `kensetsu`  
-  - Governance: `governance`, `parliament`, `treasury`  
-  - Infra: `hyperledger-iroha`, `sora-v3`, `hub-chain`  
-  - Research: `economics`, `tokenomics`, `cbdc`  
+FAQ heading rules:
+- FaqSection renders a heading by default (“FAQs”).
+- Avoid double headings:
+  - EITHER rely on the default heading and do NOT add `## FAQs`,
+  - OR set `title=""` on FaqSection and add your own `## FAQs`.
+- Every Edit Plan must declare which pattern to use.
 
-### Quick verification checklist
+# 4. Internal Link System (CRITICAL)
+Soranauts uses NO "/blog" prefix.
 
-For any article touching core topics, verify:
+All article URLs follow:
+/<slug>
 
-- **SORA v3 status:** pre-mainnet, in active development on Fujiwara testnet  
-- **Iroha 3 / Nexus phrasing:** “being developed on Hyperledger Iroha 3” and “expected to introduce” future features  
-- **Kensetsu & KUSD:** over-collateralized vaults, 19.5% fee allocation, KUSD as proposed builder payment unit in v3  
-- **SORA Card:** current rollout region, supported assets, and positioning as DeFi ↔ fiat bridge  
-- **Polkaswap & TONSWAP:** roles, bridge connectivity, fee and burn mechanics at a high level  
-- **Governance & Parliament:** SORA v2 governance vs planned SORA v3 (Nexus) Parliament-based model  
+Examples:
+- /sora-ecosystem-explained
+- /deep-dive-into-xor-val-and-pswap
+- /soras-token-bonding-curve-dollar-tbcd-explained
+- /best-decentralized-exchanges-dexs
 
-If something is uncertain or speculative, mark it as **“research in progress”** or use phrasing like **“is expected to”** rather than asserting it as live.
+Internal link rules:
+- MUST use real slugs: /<slug>
+- NEVER generate:
+  - /blog/...
+  - /content/...
+  - /post/...
+  - /glossary/...
+  - /explore/...
+  - /features
+  - /donate
+  - /about
 
----
+Required internal link hierarchy (3–6 links):
 
-## 3. TL;DR & Structure Guidelines
+Tier 1 — Direct ecosystem context  
+Tier 2 — Protocol + economic structure  
+Tier 3 — Market/behavior (only when contextually relevant)
 
-### TL;DR pattern
+For each internal link:
+- Provide exact slug path
+- Explain relevance
+- Specify placement (intro, mid-section, conclusion)
 
-- Add a `## TL;DR` section **near the top** (after the intro paragraph if present)  
-- Use **2–4 short, neutral sentences**  
-- Mention at least **one** core ecosystem component (SORA, Polkaswap, Iroha 3 / Nexus, Kensetsu, SORA Card, TONSWAP)  
-- Avoid hype, marketing language, or exact launch dates for SORA v3  
+# 5. External Link Guardrails
+Whitelisted domains (MUST use target="_blank" rel="noopener noreferrer"):
+- SORA Wiki
+- Soramitsu
+- Hyperledger Iroha Docs
+- Polkaswap
+- Kensetsu
+- TONSWAP
 
-**Example:**
+Implementation detail for MDX articles:
+- When proposing or editing article content, external links to whitelisted domains MUST be written as HTML `<a>` tags with `target="_blank" rel="noopener noreferrer"` (not bare Markdown `[text](url)`), so they always open in a new tab and follow security best practices.
 
-> SORA is an economic system built around XOR, Polkaswap, Kensetsu, and a forthcoming SORA v3 hub chain on Hyperledger Iroha 3.  
-> This article explains how tokenomics, governance, and cross-chain connectivity fit together to support a decentralized economy.  
-> It reflects the current 2025 roadmap, where SORA v3 remains in active development on the Fujiwara testnet.
+Forbidden:
+- Ethereum.org
+- TON.org general docs
+- Generic crypto education sites
 
-### Structural checklist
+Non-whitelisted sources must be summarized, not linked.
 
-When writing your Edit Plan, note whether the article has:
+# 6. Metadata & Frontmatter Standards
+Title:
+- Clear, descriptive, ~50–60 characters
 
-- A clear **introduction** explaining who the article is for and why it matters  
-- Logical flow: background → core mechanics → implications / use cases  
-- Smooth transitions between sections (no abrupt topic jumps)  
-- A **conclusion** or “Why this matters” section summarizing the big picture  
-- Optional **Further Reading** section for internal and external links  
+Excerpt:
+- ≤160 characters
+- Neutral, factual
+- Include 1–2 ecosystem elements
 
-### Voice & tone
+Dates:
+- ISO-8601  
+- updateDate must reflect real edits
 
-- **Explanatory, confident, and concise** — Soranauts style  
-- Preserve **historical context** instead of deleting outdated mechanisms; mark them as historical where needed  
-- Avoid speculative or promotional phrasing; flag opinions as such and keep the core narrative factual  
+Tags:
+- 8–12 normalized
+- lowercase, hyphenated
+- no deprecated tags (vxor, substrate)
 
----
+Image:
+- Wide aspect ratio
+- Do not change path
 
-## 4. Recommended Article Length & Structure
+# 7. TL;DR Guidelines
+- Place after introduction
+- 2–4 concise sentences
+- Mention an ecosystem piece (XOR, Polkaswap, KUSD, Iroha 3, TONSWAP, Kensetsu, SORA Card)
+- No hype
 
-Use these ranges to keep depth, SEO value, and KB performance consistent:
+Example TL;DR:
+SORA’s decentralized economy is built around XOR, Polkaswap, KUSD and ongoing SORA v3 development on Hyperledger Iroha 3. This article explains how governance, liquidity, and cross-chain infrastructure connect across the ecosystem.
 
-| Type | Word Count | Best Used For |
-|------|-------------|---------------|
-| **Short form** | 600–1,000 | News updates, small feature announcements |
-| **Standard** | 1,200–1,800 | Focused educational explainers or governance summaries |
-| **Pillar / Flagship** | 2,000–3,500+ | Ecosystem overviews and long-form deep dives (e.g., “SORA Ecosystem Explained”) |
-| **Technical / KB Reference** | 1,000–2,200 | Documentation-style posts (tokenomics, protocols, parameters) |
+# 8. Structural Checklist
+Check for:
+- Strong introduction
+- TL;DR
+- Logical flow
+- Smooth transitions
+- Conclusion or “Why It Matters”
+- Proper FAQ section
 
-**Soranauts Ideal Range:**  
-**1,800–2,800 words** for core ecosystem articles — ensures rich context without overloading readers or Pagefind (~25 KB/page limit).
+Preferred paragraph size: 2–4 lines.
 
-**Formatting best practices:**
-- Short paragraphs (3–4 lines max)  
-- Clear hierarchy (H2 → H3 → bullets)  
-- 2–3 internal links per section  
-- Include `## TL;DR`, and 4–7 FAQs using `FaqSection`  
-- Maintain calm, factual tone  
-- Include 8–12 normalized tags  
+# 9. Recommended Length
+Short updates: 600–1,000  
+Standard explainers: 1,200–1,800  
+Pillar/flagship: 2,000–3,500+  
+Technical: 1,000–2,200  
 
-These standards help every article stay semantically rich, SEO-aligned, and retrievable through the Knowledge Base embeddings.
+Soranauts sweet spot: 1,800–2,800.
 
----
+# 10. ARTICLE EDIT PLAN — REQUIRED OUTPUT FORMAT
 
-## 5. SEO & Linking Strategy
+Cursor MUST output sections in this exact order:
 
-- **Internal links:** Use canonical slug paths (e.g., `/sora-ecosystem-explained`) without `/blog` or other directory prefixes. This keeps live URLs consistent across Astro routes and eliminates mismatched links in production.
-- **Allowed destinations:** Limit internal references to `/blog`, `/explore`, `/features`, `/donate`, and `/glossary` namespaces plus canonical slugs. Do not link to staging or localhost URLs.
-- **External links:** Only include approved domains (SORA Wiki, Soramitsu, Hyperledger Iroha Docs, Polkaswap, Kensetsu, TONSWAP) and append `{target="_blank" rel="noopener noreferrer"}` to each. Prefer sourcing claims from the Knowledge Base hierarchy before referencing external docs.
-- **Anchor density:** Aim for 2–3 internal links per major section and keep anchor text descriptive (avoid “click here”).
+1️⃣ Overview  
+2️⃣ Audience & Intent  
+3️⃣ Structure & Flow Analysis  
+4️⃣ Clarity, Tone & Voice  
+5️⃣ Technical & Factual Accuracy  
+6️⃣ Glossary Integration  
+7️⃣ Internal & External Linking Strategy  
+8️⃣ Tag & Metadata Optimization  
+9️⃣ Validation & QA  
 
----
+✅ Final Review Summary
 
-## 6. FAQ System with `FaqSection`
-*(existing content unchanged)*
+Each section must follow the bullet structure defined earlier.
 
----
-
-## 7. Metadata & Frontmatter
-
-When drafting an Edit Plan, include a short checklist for frontmatter and on-page SEO:
-
-- **Title (`title` / HTML `<title>`):**
-  - Aim for a concise, descriptive title that surfaces core entities (e.g., `SORA`, `TBCD`, `KUSD`, `Kensetsu`).  
-  - Keep total length around **580 px** in common SEO tools (roughly **50–60 characters** in Latin script) to avoid truncation in search results.  
-  - Avoid keyword stuffing; prioritize clarity over packing in every term.
-
-- **Meta description (`excerpt` / description):**
-  - Write **1–2 neutral sentences** summarizing what the article covers and who it is for.  
-  - Target around **920 px** in SEO tools (roughly **140–160 characters**) so the description is readable without being cut off.  
-  - Mention at least one or two key concepts or entities (e.g., `SORA`, `Polkaswap`, `Kensetsu`, `SORA v3`) in natural language, not as a keyword list.
-
-- **Other frontmatter:**
-  - Ensure `publishDate` and `updateDate` are ISO8601 (`YYYY-MM-DDTHH:MM:SSZ`) and reflect reality.  
-  - Confirm `category` matches the current article emphasis (e.g., `Economics & Policy`, `DeFi & Trading`, `Technology & Architecture`).  
-  - Keep `canonicalURL` pointing to the live production URL for the article.  
-  - Validate that `image` paths resolve and are appropriate for social previews.
-
----
-
-## 8. Edit Plan Skeleton
-*(existing content unchanged)*
-
----
-
-## 9. Applying This Template to an Article
-*(existing content unchanged)*
+# END OF TEMPLATE

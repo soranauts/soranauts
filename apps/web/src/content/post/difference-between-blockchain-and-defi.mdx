@@ -1,28 +1,30 @@
 ---
 publishDate: 2023-11-28T00:00:00Z
-updateDate: 2025-10-15T00:00:00Z
+updateDate: 2025-11-22T00:00:00Z
 title: Understanding the Difference Between Blockchain and DeFi
-excerpt: Blockchain is the trust layer; DeFi is the app layer. Learn how SORA’s Hyperledger Iroha stack powers Polkaswap, cross-chain assets, and decentralized finance.
+excerpt: See how blockchain provides SORA’s trust layer and how DeFi apps like Polkaswap and KUSD-based tools turn that infrastructure into usable, open finance.
 image: ~/assets/images/difference-between-blockchain-and-defi.jpg
 category: "Blockchain Technology"
 canonicalURL: https://soranauts.com/difference-between-blockchain-and-defi
 tags: 
   - blockchain
-  - DeFi
-  - smart contracts
-  - SORA ecosystem
-  - Polkaswap
-  - Hyperledger Iroha
-  - cross-chain
-  - DEX
+  - decentralized-finance
+  - sora-ecosystem
+  - polkaswap
+  - hyperledger-iroha
+  - xor
+  - kusd
+  - decentralized-exchanges
   - staking
   - validators
 ---
 
+import FaqSection from '~/components/blog/FaqSection.astro';
+
 > **TL;DR:**  
 > **Blockchain** is the **infrastructure** that securely records and stores data across a distributed network.  
 > **DeFi (Decentralized Finance)** is the **application layer** built on blockchain that provides financial services without traditional intermediaries.  
-> In the **SORA ecosystem**, **Hyperledger Iroha** powers **DeFi** apps like **Polkaswap**, enabling transparent, permissionless, and interoperable finance.
+> In the **SORA** ecosystem, the **SORA v3 hub chain** (SORA Nexus), being developed on next-generation **Hyperledger Iroha 3**, is designed to underpin DeFi tools like **Polkaswap** and **KUSD** for transparent, interoperable finance.
 
 ---
 
@@ -65,14 +67,14 @@ Because it has no central authority, **blockchain** enables **trustless** system
 Common examples include:
 - **Proof of Work (PoW):** Requires computational effort (e.g., Bitcoin)  
 - **Proof of Stake (PoS):** Requires token staking (e.g., Ethereum 2.0)  
-- **Byzantine Fault Tolerance (BFT):** Used by **SORA** for fast and secure validation  
+- **Byzantine Fault Tolerance (BFT):** Used in **SORA v3’s hub-chain architecture** for fast and secure validation  
 
 ### SORA’s Hyperledger Iroha Foundation
 
-**SORA runs on Hyperledger Iroha**, using a **BFT consensus**, **granular permissions**, and **built-in asset management**.  
-It supports **WASM/trigger-based smart logic**, providing enterprise-grade security, fast finality, and interoperability across networks.
+Early **Hubchain Phase 1–2** prototypes for SORA were built on **Hyperledger Iroha 2**, providing cross-chain transfer proofs and decentralized verification.  
+The next-generation **SORA v3 hub chain (SORA Nexus)** is now being developed on **Hyperledger Iroha 3**, a modular, BFT-based blockchain framework with role-based permissions, domain-oriented instructions (Iroha Special Instructions), and rich asset tooling for predictable, rule-based execution.
 
-This foundation powers SORA’s decentralized economy, enabling secure token issuance, governance, and cross-chain operations.
+As of November 2025, this hub chain is being designed to connect institutional and public networks, giving SORA a robust trust layer for secure token issuance, governance, and cross-chain operations. For a deeper architectural overview, see the <a href="https://wiki.sora.org/sora-v3" target="_blank" rel="noopener noreferrer">SORA v3 docs</a>.
 
 ---
 
@@ -92,15 +94,22 @@ Anyone with an internet connection can lend, borrow, trade, or earn yield — wi
 ### Common DeFi Applications
 - **Decentralized exchanges (DEXs):** Peer-to-peer token trading  
 - **Lending platforms:** Earn or borrow via liquidity pools  
-- **Stablecoins:** Maintain consistent value, e.g. **KUSD**  
+- **Stablecoins:** Maintain consistent value, e.g. **KUSD**, SORA’s USD-pegged synthetic asset  
 - **Yield farming:** Earn rewards for staking or liquidity provision  
 - **Cross-chain bridges:** Move assets between networks  
 
+These applications run on blockchain infrastructure but execute their rules in code instead of through traditional intermediaries.
+
 ### SORA’s DeFi Token Ecosystem
-- **XOR:** Network utility token for fees, staking, and governance  
-- **VAL:** Validator reward and governance token  
-- **PSWAP:** Liquidity incentive token for Polkaswap  
-- **KUSD:** Cross-chain stablecoin designed for SORA’s DeFi economy  
+- **XOR:** Network utility token used for fees, governance, and as a base asset for liquidity on Polkaswap  
+- **VAL:** Staking reward and governance-aligned token for SORA validators and nominators  
+- **PSWAP:** Incentive token that rewards Polkaswap liquidity providers  
+- **KUSD:** USD-pegged synthetic asset used as a stable unit of account in SORA’s DeFi economy  
+
+For a deeper breakdown of how these tokens interact, see [How XOR, VAL, and PSWAP Power the SORA Ecosystem](/deep-dive-into-xor-val-and-pswap).  
+To understand how KUSD and Kensetsu integrate with Polkaswap, read [Exploring SORA Kensetsu & Polkaswap](/exploring-sora-kensetsu-polkaswap).
+
+For step-by-step guides to wallets, Polkaswap, and block explorers, visit the <a href="https://wiki.sora.org/sora-academy" target="_blank" rel="noopener noreferrer">SORA Academy</a>.
 
 ---
 
@@ -109,21 +118,24 @@ Anyone with an internet connection can lend, borrow, trade, or earn yield — wi
 **Blockchain** provides the **trust layer**, and **DeFi** builds the **functionality** on top. Without blockchain’s transparency and security, decentralized finance couldn’t exist.
 
 ### Trust and Execution
-In **SORA**, **Hyperledger Iroha** records all transactions immutably, while **smart contracts** on **Polkaswap** manage trading, liquidity, and governance.  
-This synergy ensures:
+In the **SORA** ecosystem today, a **public SORA DeFi network** records transactions immutably, while on-chain logic in **Polkaswap** manages trading, liquidity, and governance.  
+As of November 2025, the **SORA v3 hub chain (SORA Nexus)**, built on **Hyperledger Iroha 3**, is being developed as a **permissioned trust layer** that connects institutional deployments with that public DeFi network via interoperability and bridge layers.
+
+This layered design helps ensure:
 - Transparent and verifiable on-chain actions  
 - Reliable **cross-chain** asset movement  
 - Secure **staking** and **validator** participation  
 - Governance via **SORA Parliament**
 
 ### Polkaswap in Action
-**Polkaswap**, built on **SORA’s blockchain**, serves as its primary **DeFi** hub:
+**Polkaswap**, built on the **SORA** network, is a key **DeFi** venue in the ecosystem:
 - Aggregates liquidity from multiple sources  
 - Finds optimal trading routes automatically  
 - Supports **XOR**, **VAL**, **PSWAP**, and **cross-chain** assets  
 - Rewards users for participation in liquidity pools  
 
-This integration shows how **DeFi** leverages **blockchain** to create a fully self-regulating economy — decentralized, transparent, and user-driven.
+You can explore the DEX at <a href="https://polkaswap.io/" target="_blank" rel="noopener noreferrer">Polkaswap</a>.  
+This integration shows how **DeFi** leverages **blockchain** to support a decentralized, transparent, and user-driven economy.
 
 ---
 
@@ -134,7 +146,7 @@ It gives individuals the ability to access financial tools globally — without 
 
 ### The Future of Decentralized Finance
 As **blockchain** scalability and interoperability improve, **DeFi** will become faster, fairer, and more accessible.  
-Projects like **SORA** demonstrate how advanced infrastructure and transparent governance can merge into a cohesive decentralized economy.
+Projects like **SORA** demonstrate how advanced infrastructure and transparent governance can merge into a cohesive decentralized economy. For a detailed look at SORA v3’s roadmap and the Fujiwara testnet, read [The Fujiwara Testnet: Pioneering SORA v3’s Decentralized Future](/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future).
 
 **Key advantages:**
 - **Financial inclusion:** Access for anyone, anywhere  
@@ -145,47 +157,47 @@ Projects like **SORA** demonstrate how advanced infrastructure and transparent g
 
 ---
 
-## FAQs
+<FaqSection>
+  <details>
+    <summary>What's the main difference between blockchain and DeFi?</summary>
+    <p><strong>Blockchain</strong> is the foundation that records and secures data, while <strong>DeFi</strong> is the application layer providing financial services built on that foundation.</p>
+  </details>
 
-<details>
-  <summary>What's the main difference between blockchain and DeFi?</summary>
-  <p><strong>Blockchain</strong> is the foundation that records and secures data, while <strong>DeFi</strong> is the application layer providing financial services built on that foundation.</p>
-</details>
+  <details>
+    <summary>Can DeFi exist without blockchain?</summary>
+    <p>No. <strong>DeFi</strong> depends on blockchain for decentralization, transparency, and immutability.</p>
+  </details>
 
-<details>
-  <summary>Can DeFi exist without blockchain?</summary>
-  <p>No. <strong>DeFi</strong> depends on blockchain for decentralization, transparency, and immutability.</p>
-</details>
+  <details>
+    <summary>How does SORA’s blockchain differ from others?</summary>
+    <p>As of November 2025, SORA is building the <strong>SORA v3</strong> hub chain (SORA Nexus) on <strong>Hyperledger Iroha 3</strong>, combining Byzantine fault tolerance, granular permissions, and asset tooling to support both institutional and public DeFi use cases.</p>
+  </details>
 
-<details>
-  <summary>How does SORA’s blockchain differ from others?</summary>
-  <p><strong>SORA</strong> uses <strong>Hyperledger Iroha</strong> with Byzantine fault tolerance, granular permissions, and built-in asset management for faster, secure transactions.</p>
-</details>
+  <details>
+    <summary>What makes SORA’s DeFi unique?</summary>
+    <p><strong>SORA</strong> combines cross-chain interoperability, <strong>XOR</strong>-based tokenomics, and community governance via <strong>SORA Parliament</strong> into a unified financial system.</p>
+  </details>
 
-<details>
-  <summary>What makes SORA’s DeFi unique?</summary>
-  <p><strong>SORA</strong> combines cross-chain interoperability, <strong>XOR</strong> tokenomics, and community governance via <strong>SORA Parliament</strong> into a unified financial system.</p>
-</details>
+  <details>
+    <summary>How do smart contracts work in DeFi?</summary>
+    <p>They automatically enforce rules like lending, trading, or staking once preset conditions are met — no intermediaries needed.</p>
+  </details>
 
-<details>
-  <summary>How do smart contracts work in DeFi?</summary>
-  <p>They automatically enforce rules like lending, trading, or staking once preset conditions are met — no intermediaries needed.</p>
-</details>
+  <details>
+    <summary>Can I use DeFi without technical knowledge?</summary>
+    <p>Yes. Platforms like <strong>Polkaswap</strong> offer intuitive interfaces, making DeFi accessible to many users.</p>
+  </details>
 
-<details>
-  <summary>Can I use DeFi without technical knowledge?</summary>
-  <p>Yes. Platforms like <strong>Polkaswap</strong> offer intuitive interfaces, making DeFi accessible to everyone.</p>
-</details>
+  <details>
+    <summary>How secure is DeFi compared to traditional finance?</summary>
+    <p>Security relies on blockchain transparency, protocol design, and code audits rather than regulations. Users maintain control but must carefully manage risk.</p>
+  </details>
 
-<details>
-  <summary>How secure is DeFi compared to traditional finance?</summary>
-  <p>Security relies on blockchain transparency and code audits rather than regulations. Users maintain control but must practice caution.</p>
-</details>
-
-<details>
-  <summary>What's next for blockchain and DeFi integration?</summary>
-  <p>Better scalability, standardized cross-chain operations, and integration with traditional finance are the next milestones.</p>
-</details>
+  <details>
+    <summary>What's next for blockchain and DeFi integration?</summary>
+    <p>As of November 2025, better scalability, standardized cross-chain operations, and closer collaboration with traditional finance are key areas of active development.</p>
+  </details>
+</FaqSection>
 
 ---
 
