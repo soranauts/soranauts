@@ -1,23 +1,24 @@
 name: Knowledge Base Ingest
 
 on:
-  push:
-    paths:
-      - 'knowledge_base/**'
-      - 'knowledge_base/scripts/**'
-      - 'apps/web/src/server/env.ts'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - '.github/workflows/kb-ingest.yml'
-  pull_request:
-    paths:
-      - 'knowledge_base/**'
-      - 'knowledge_base/scripts/**'
-      - 'apps/web/src/server/env.ts'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - '.github/workflows/kb-ingest.yml'
-  workflow_dispatch:
+  # Disabled automatic triggers - run manually only until pipeline is fixed
+  # push:
+  #   paths:
+  #     - 'knowledge_base/**'
+  #     - 'knowledge_base/scripts/**'
+  #     - 'apps/web/src/server/env.ts'
+  #     - 'package.json'
+  #     - 'pnpm-lock.yaml'
+  #     - '.github/workflows/kb-ingest.yml'
+  # pull_request:
+  #   paths:
+  #     - 'knowledge_base/**'
+  #     - 'knowledge_base/scripts/**'
+  #     - 'apps/web/src/server/env.ts'
+  #     - 'package.json'
+  #     - 'pnpm-lock.yaml'
+  #     - '.github/workflows/kb-ingest.yml'
+  workflow_dispatch:  # Manual trigger only
 
 jobs:
   ingest:

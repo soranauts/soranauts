@@ -1,16 +1,17 @@
 name: Reindex on KB or Article changes
 
 on:
-  push:
-    paths:
-      - 'knowledge_base/**'
-      - 'apps/web/src/content/post/**'
-    branches: [main]  # Only run on main branch pushes
-  workflow_dispatch:  # Allow manual trigger
-  pull_request:
-    paths:
-      - 'knowledge_base/**'
-      - 'apps/web/src/content/post/**'
+  # Disabled automatic triggers - run manually only until pipeline is fixed
+  # push:
+  #   paths:
+  #     - 'knowledge_base/**'
+  #     - 'apps/web/src/content/post/**'
+  #   branches: [main]  # Only run on main branch pushes
+  workflow_dispatch:  # Manual trigger only
+  # pull_request:
+  #   paths:
+  #     - 'knowledge_base/**'
+  #     - 'apps/web/src/content/post/**'
 
 jobs:
   index:
