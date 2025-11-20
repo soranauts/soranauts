@@ -138,7 +138,7 @@ For each internal link:
 - Explain relevance
 - Specify placement (intro, mid-section, conclusion)
 
-# 5. External Link Guardrails
+# 5. External Link Guardrails (UPDATED)
 Whitelisted domains (MUST use target="_blank" rel="noopener noreferrer"):
 - SORA Wiki
 - Soramitsu
@@ -146,14 +146,19 @@ Whitelisted domains (MUST use target="_blank" rel="noopener noreferrer"):
 - Polkaswap
 - Kensetsu
 - TONSWAP
+- Polkadot Wiki
+- Polkadot Documentation (docs.polkadot.com)
+- Kusama Wiki
 
 Implementation detail for MDX articles:
 - When proposing or editing article content, external links to whitelisted domains MUST be written as HTML `<a>` tags with `target="_blank" rel="noopener noreferrer"` (not bare Markdown `[text](url)`), so they always open in a new tab and follow security best practices.
+- Do NOT remove, rewrite, or de-link whitelisted sources.
 
 Forbidden:
 - Ethereum.org
 - TON.org general docs
 - Generic crypto education sites
+- Commercial crypto blogs
 
 Non-whitelisted sources must be summarized, not linked.
 
