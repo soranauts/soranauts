@@ -45,7 +45,15 @@ const envSchema = z.object({
   IMAGE_ASPECT: z.string().default('2:1'),
   RAG_STORE: z.enum(['chroma','qdrant','lancedb']).default('chroma'),
   CHROMA_COLLECTION: z.string().default('soranauts-kb'),
-  CHROMA_URL: z.string().url().default('http://127.0.0.1:8000'),
+  CHROMA_URL: z.string().refine(
+    (val) => {
+      // Allow URLs (http://, https://) or local paths (./, /, or relative)
+      return val.startsWith('http://') || val.startsWith('https://') || 
+             val.startsWith('./') || val.startsWith('/') || 
+             !val.includes('://');
+    },
+    { message: 'CHROMA_URL must be a valid URL or local path' }
+  ).default('http://127.0.0.1:8000'),
   CHROMA_HOST: z.string().default('127.0.0.1'),
   CHROMA_PORT: z
     .string()

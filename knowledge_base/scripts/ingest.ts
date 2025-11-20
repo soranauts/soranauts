@@ -13,6 +13,7 @@ import { normalizeForHash, hashContent, normalizeCJKWhitespace } from './utils/t
 import { chunkTokens, chunkTextByCharacters, type TokenChunk } from './utils/tokenizer';
 import type { ChunkMetadata, ExtendedChunkMetadata, IndexManifest, Metrics, KBFrontmatter } from './types';
 import { computeAuthority } from './utils/authority';
+import { currentSnapshotId } from './utils/provenance';
 import {
   createVectorStoreClient,
   type VectorStoreClient,
@@ -387,7 +388,7 @@ async function createEmbeddings(
     {
       retries,
       onFailedAttempt: (error) => {
-        if (error.statusCode === 429) {
+        if ((error as any).statusCode === 429 || (error as any).status === 429) {
           // Rate limited - exponential backoff with jitter
           const delay = Math.min(1000 * Math.pow(2, error.attemptNumber) + Math.random() * 1000, 60000);
           console.warn(`Rate limited, retrying in ${Math.round(delay)}ms...`);
@@ -704,15 +705,6 @@ async function main() {
   
   console.log(`\nEmbedding ${chunksToEmbed.length} chunks (${metrics.cache_hits} from cache, ${metrics.cache_misses} new)...`);
   
-  if (isDryRun) {
-    console.log('[kb:ingest] DRY-RUN OK', {
-      files_processed: metrics.files_processed,
-      files_skipped: metrics.files_skipped,
-      chunks_ready: deduplicatedChunks.length,
-    });
-    return;
-  }
-  
   // Generate embeddings for chunks not in cache
   const batchSize = process.env.CI ? env.EMBED_BATCH_SIZE_CI : env.EMBED_BATCH_SIZE;
   const embeddings: number[][] = [];
@@ -806,6 +798,15 @@ async function main() {
     console.log(`Deduplicated ${allChunks.length - deduplicatedChunks.length} duplicate chunks`);
   }
   
+  if (isDryRun) {
+    console.log('[kb:ingest] DRY-RUN OK', {
+      files_processed: metrics.files_processed,
+      files_skipped: metrics.files_skipped,
+      chunks_ready: deduplicatedChunks.length,
+    });
+    return;
+  }
+  
   // Upsert to ChromaDB
   console.log('\nUpserting chunks to ChromaDB...');
   
@@ -890,7 +891,6 @@ async function main() {
   metrics.avg_rps = metrics.tokens_embedded / (metrics.duration_ms / 1000);
   
   // Emit metrics summary table
-  const { currentSnapshotId } = require('./utils/provenance');
   console.log('\n=== Ingestion Summary ===');
   console.table({
     documents: { value: metrics.files_processed + metrics.files_skipped },

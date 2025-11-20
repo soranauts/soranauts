@@ -1,4 +1,4 @@
-import { mkdirSync } from 'fs';
+import { mkdirSync, existsSync } from 'fs';
 import { dirname, join } from 'path';
 import { setTimeout as sleep } from 'timers/promises';
 import { ChromaClient, type Collection } from 'chromadb';
@@ -64,16 +64,46 @@ export async function createVectorStoreClient(env: KBEnv, opts?: { strict?: bool
     log('info', 'Initializing local DuckDB vector store', {
       persist_dir: env.INDEX_DIR,
     });
-    const duckClient = await createDuckDBClient(env);
-    log('info', 'Using store=duckdb');
-    return {
-      client: duckClient,
-      mode: 'duckdb',
-      endpoint: join(env.INDEX_DIR, 'duckdb', 'chroma.duckdb'),
-    };
+    try {
+      const duckClient = await createDuckDBClient(env);
+      log('info', 'Using store=duckdb');
+      return {
+        client: duckClient,
+        mode: 'duckdb',
+        endpoint: join(env.INDEX_DIR, 'duckdb', 'chroma.duckdb'),
+      };
+    } catch (error) {
+      log('error', 'DuckDB initialization failed', { 
+        error: error instanceof Error ? error.message : String(error) 
+      });
+      throw new Error(`DuckDB initialization failed: ${error instanceof Error ? error.message : String(error)}. Please start Chroma server with: docker-compose -f docker-compose.chroma.yml up -d`);
+    }
   }
 
   const normalizedUrl = env.CHROMA_URL.replace(/\/$/, '');
+  
+  // Check if CHROMA_URL is a local file path (not http:// or https://)
+  const isLocalPath = !normalizedUrl.startsWith('http://') && !normalizedUrl.startsWith('https://');
+  
+  if (isLocalPath) {
+    // ChromaClient can work with local paths directly
+    const localPath = normalizedUrl.startsWith('./') || normalizedUrl.startsWith('/') 
+      ? normalizedUrl 
+      : join(process.cwd(), normalizedUrl);
+    
+    log('info', 'Using ChromaClient with local path', { path: localPath });
+    mkdirSync(dirname(localPath), { recursive: true });
+    
+    const client = new ChromaClient({ path: localPath });
+    
+    return {
+      client: wrapHttpClient(client),
+      mode: 'chroma-http',
+      endpoint: localPath,
+    };
+  }
+  
+  // HTTP endpoint - check heartbeat
   const heartbeat = await waitForHeartbeat(normalizedUrl);
 
   if (!heartbeat.ok) {
@@ -103,7 +133,8 @@ async function waitForHeartbeat(url: string): Promise<HeartbeatResult> {
   for (let attempt = 1; attempt <= HEARTBEAT_RETRIES; attempt++) {
     const start = Date.now();
     try {
-      const response = await fetch(`${url}/api/v1/heartbeat`, {
+      // Use v2 API (v1 is deprecated and returns 410)
+      const response = await fetch(`${url}/api/v2/heartbeat`, {
         method: 'GET',
         headers: { 'content-type': 'application/json' },
       });
@@ -144,7 +175,8 @@ async function waitForHeartbeat(url: string): Promise<HeartbeatResult> {
 function wrapHttpClient(client: ChromaClient): VectorStoreClient {
   return {
     async getCollection(args) {
-      const collection = await client.getCollection(args);
+      // ChromaClient.getCollection may require embeddingFunction, but we handle that in our wrapper
+      const collection = await client.getCollection({ name: args.name } as any);
       return wrapHttpCollection(collection);
     },
     async createCollection(args) {
@@ -171,17 +203,47 @@ async function createDuckDBClient(env: KBEnv): Promise<VectorStoreClient> {
   const dbPath = join(duckDir, 'chroma.duckdb');
   mkdirSync(dirname(dbPath), { recursive: true });
 
+  log('info', 'Creating DuckDB database', { path: dbPath });
+  
+  // DuckDB v1.4.2: Database constructor is synchronous, but connect() is async
   const db = new duckdb.Database(dbPath);
-  await bootstrapDuckDB(db);
+  log('info', 'Database object created');
+  
+  log('info', 'Getting connection for bootstrap...');
+  const connection = await getConnection(db);
+  log('info', 'Connection obtained, bootstrapping...');
+  
+  try {
+    await bootstrapDuckDB(connection);
+    log('info', 'Bootstrap completed successfully');
+  } catch (error) {
+    log('error', 'Bootstrap failed', { error: error instanceof Error ? error.message : String(error) });
+    connection.close();
+    throw error;
+  }
 
   return {
     async getCollection({ name }) {
-      await ensureCollectionRow(db, name);
-      return new DuckDBCollection(db, name);
+      log('info', 'Getting collection', { name });
+      const conn = await getConnection(db);
+      try {
+        await ensureCollectionRow(conn, name);
+        return new DuckDBCollection(db, name);
+      } catch (error) {
+        conn.close();
+        throw error;
+      }
     },
     async createCollection({ name, metadata }) {
-      await upsertCollectionRow(db, name, metadata);
-      return new DuckDBCollection(db, name);
+      log('info', 'Creating collection', { name });
+      const conn = await getConnection(db);
+      try {
+        await upsertCollectionRow(conn, name, metadata);
+        return new DuckDBCollection(db, name);
+      } catch (error) {
+        conn.close();
+        throw error;
+      }
     },
     async close() {
       await closeDuckDB(db);
@@ -189,34 +251,84 @@ async function createDuckDBClient(env: KBEnv): Promise<VectorStoreClient> {
   };
 }
 
-async function bootstrapDuckDB(db: duckdb.Database) {
-  await run(db, `CREATE TABLE IF NOT EXISTS collections (
-    name TEXT PRIMARY KEY,
-    metadata TEXT
-  );`);
-  await run(db, `CREATE TABLE IF NOT EXISTS embeddings (
-    collection TEXT,
-    chunk_id TEXT,
-    embedding TEXT,
-    document TEXT,
-    metadata TEXT,
-    PRIMARY KEY(collection, chunk_id)
-  );`);
+function getConnection(db: duckdb.Database): Promise<duckdb.Connection> {
+  return new Promise((resolve, reject) => {
+    // Try immediate synchronous access first (some DuckDB versions support this)
+    if ((db as any).connection && typeof (db as any).connection === 'object') {
+      log('info', 'Using synchronous connection property');
+      resolve((db as any).connection);
+      return;
+    }
+    
+    const timeout = setTimeout(() => {
+      log('error', 'Connection timeout after 3 seconds');
+      reject(new Error('DuckDB connect() callback timeout - the connect() method may not be working in this version'));
+    }, 3000);
+    
+    try {
+      // DuckDB v1.4.2: Try standard connect() callback
+      // The callback signature is: (err, connection) => void
+      (db as any).connect((err: Error | null, connection: duckdb.Connection | null) => {
+        clearTimeout(timeout);
+        if (err) {
+          log('error', 'Failed to get connection', { error: err.message });
+          reject(err);
+        } else if (!connection) {
+          log('error', 'Connection is null');
+          reject(new Error('Connection is null'));
+        } else {
+          log('info', 'Connection obtained successfully via callback');
+          resolve(connection);
+        }
+      });
+    } catch (error) {
+      clearTimeout(timeout);
+      log('error', 'Exception getting connection', { error: error instanceof Error ? error.message : String(error) });
+      reject(error);
+    }
+  });
 }
 
-async function ensureCollectionRow(db: duckdb.Database, name: string) {
-  const rows = await all(db, `SELECT name FROM collections WHERE name = ?`, [name]);
-  if (!rows.length) {
-    await upsertCollectionRow(db, name);
+async function bootstrapDuckDB(conn: duckdb.Connection) {
+  log('info', 'Bootstrapping DuckDB tables...');
+  try {
+    await run(conn, `CREATE TABLE IF NOT EXISTS collections (
+      name TEXT PRIMARY KEY,
+      metadata TEXT
+    );`);
+    log('info', 'Created collections table');
+    await run(conn, `CREATE TABLE IF NOT EXISTS embeddings (
+      collection TEXT,
+      chunk_id TEXT,
+      embedding TEXT,
+      document TEXT,
+      metadata TEXT,
+      PRIMARY KEY(collection, chunk_id)
+    );`);
+    log('info', 'Created embeddings table');
+  } catch (error) {
+    log('error', 'Bootstrap failed', { error: error instanceof Error ? error.message : String(error) });
+    throw error;
+  } finally {
+    conn.close();
   }
 }
 
-async function upsertCollectionRow(db: duckdb.Database, name: string, metadata?: Record<string, unknown>) {
+async function ensureCollectionRow(conn: duckdb.Connection, name: string) {
+  const rows = await all(conn, `SELECT name FROM collections WHERE name = ?`, [name]);
+  if (!rows.length) {
+    await upsertCollectionRow(conn, name);
+  }
+  conn.close();
+}
+
+async function upsertCollectionRow(conn: duckdb.Connection, name: string, metadata?: Record<string, unknown>) {
   await run(
-    db,
+    conn,
     `INSERT OR REPLACE INTO collections (name, metadata) VALUES (?, ?)`,
     [name, metadata ? JSON.stringify(metadata) : null],
   );
+  conn.close();
 }
 
 async function closeDuckDB(db: duckdb.Database) {
@@ -241,48 +353,102 @@ class DuckDBCollection implements VectorStoreCollection {
     metadatas: Record<string, unknown>[];
   }): Promise<void> {
     const { ids, embeddings, documents, metadatas } = args;
-    for (let i = 0; i < ids.length; i++) {
-      await run(
-        this.db,
-        `INSERT OR REPLACE INTO embeddings (collection, chunk_id, embedding, document, metadata)
-         VALUES (?, ?, ?, ?, ?)`,
-        [
-          this.name,
-          ids[i],
-          JSON.stringify(embeddings[i]),
-          documents[i],
-          JSON.stringify(metadatas[i]),
-        ],
-      );
+    const conn = await getConnection(this.db);
+    try {
+      for (let i = 0; i < ids.length; i++) {
+        await run(
+          conn,
+          `INSERT OR REPLACE INTO embeddings (collection, chunk_id, embedding, document, metadata)
+           VALUES (?, ?, ?, ?, ?)`,
+          [
+            this.name,
+            ids[i],
+            JSON.stringify(embeddings[i]),
+            documents[i],
+            JSON.stringify(metadatas[i]),
+          ],
+        );
+      }
+    } finally {
+      conn.close();
     }
   }
 
   async delete(args: { ids: string[] }): Promise<void> {
-    for (const id of args.ids) {
-      await run(this.db, `DELETE FROM embeddings WHERE collection = ? AND chunk_id = ?`, [this.name, id]);
+    const conn = await getConnection(this.db);
+    try {
+      for (const id of args.ids) {
+        await run(conn, `DELETE FROM embeddings WHERE collection = ? AND chunk_id = ?`, [this.name, id]);
+      }
+    } finally {
+      conn.close();
     }
   }
 }
 
-function run(db: duckdb.Database, sql: string, params: any[] = []) {
+function run(conn: duckdb.Connection, sql: string, params: any[] = []) {
   return new Promise<void>((resolve, reject) => {
-    db.run(sql, params, (err) => {
+    // Use prepare for all queries to ensure consistent parameter handling
+    conn.prepare(sql, (err, stmt) => {
       if (err) {
         reject(err);
+        return;
+      }
+      const runCallback = (runErr: Error | null) => {
+        if (runErr) {
+          stmt.finalize(() => {});
+          reject(runErr);
+        } else {
+          stmt.finalize((finalizeErr: Error | null) => {
+            if (finalizeErr) {
+              reject(finalizeErr);
+            } else {
+              resolve();
+            }
+          });
+        }
+      };
+      
+      if (params.length === 0) {
+        // No parameters - just run the statement
+        stmt.run(runCallback);
       } else {
-        resolve();
+        // Has parameters - use apply to pass them correctly
+        (stmt.run as any).apply(stmt, [...params, runCallback]);
       }
     });
   });
 }
 
-function all<T = any>(db: duckdb.Database, sql: string, params: any[] = []) {
+function all<T = any>(conn: duckdb.Connection, sql: string, params: any[] = []) {
   return new Promise<T[]>((resolve, reject) => {
-    db.all(sql, params, (err, rows) => {
+    // Use prepare for all queries to ensure consistent parameter handling
+    conn.prepare(sql, (err, stmt) => {
       if (err) {
         reject(err);
+        return;
+      }
+      const allCallback = (allErr: Error | null, rows: T[]) => {
+        if (allErr) {
+          stmt.finalize(() => {});
+          reject(allErr);
+        } else {
+          stmt.finalize((finalizeErr: Error | null) => {
+            if (finalizeErr) {
+              reject(finalizeErr);
+            } else {
+              resolve(rows || []);
+            }
+          });
+        }
+      };
+      
+      if (params.length === 0) {
+        // No parameters - just run the query
+        stmt.all(allCallback);
       } else {
-        resolve(rows as T[]);
+        // Has parameters - use apply to pass them correctly
+        (stmt.all as any).apply(stmt, [...params, allCallback]);
       }
     });
   });

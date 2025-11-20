@@ -78,3 +78,5 @@ apps/web/src/pages/changelog.astro
 
 # Prevent improvements.md from being created (redirects to /changelog, use changelog.md instead)
 apps/web/src/pages/improvements.md
+test-results/
+.last-run*.json
