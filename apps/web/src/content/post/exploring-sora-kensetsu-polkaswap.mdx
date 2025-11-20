@@ -1,33 +1,26 @@
 ---
 publishDate: 2024-01-03T00:00:00Z
-updateDate: 2025-10-24T00:00:00Z
+updateDate: 2025-11-20T00:00:00Z
 title: "SORA Kensetsu Explained: Stablecoins and DeFi on Polkaswap"
-excerpt: Learn how SORA Kensetsu powers KUSD — a decentralized stablecoin system strengthening the SORA and Polkaswap economy.
+excerpt: SORA Kensetsu lets users mint KUSD, an over-collateralized stablecoin, using crypto collateral to support liquidity and risk-managed DeFi on Polkaswap.
 image: ~/assets/images/exploring-sora-kensetsu-polkaswap.jpg
 category: "SORA Ecosystem"
 canonicalURL: https://soranauts.com/exploring-sora-kensetsu-polkaswap
 tags:
-  - Kensetsu
-  - KUSD
-  - KEN
-  - TBCD
-  - XOR
-  - Polkaswap
-  - SORA
+  - sora
+  - xor
+  - kensetsu
+  - kusd
+  - tbcd
   - stablecoin
-  - vaults
-  - collateral
+  - polkaswap
+  - defi
   - governance
-  - DeFi
   - liquidity
+  - tokenomics
 ---
 
-> **TL;DR:**  
-> **SORA Kensetsu** is an over-collateralized vault system that lets users mint **KUSD**, a stablecoin backed by assets such as XOR, VAL, PSWAP, TBCD, ETH, and DAI.  
-> Governed by XOR holders, Kensetsu maintains solvency through vault collateralization, liquidation safeguards, and a 1% borrow tax.  
-> Alongside the **KEN reward token**, it strengthens SORA’s economy by locking XOR, deepening Polkaswap liquidity, and paving the way for multi-stablecoin swaps under **SORA v3**.
-
----
+import FaqSection from '~/components/blog/FaqSection.astro';
 
 Stablecoins have transformed DeFi by providing price stability in volatile crypto markets. Unlike fiat-backed models, **SORA Kensetsu** introduces a decentralized, over-collateralized approach that puts users fully in control of issuance and risk.
 
@@ -35,29 +28,34 @@ Imagine minting a digital dollar backed entirely by your own crypto assets — s
 
 Kensetsu is SORA’s native **over-collateralized stablecoin system**, letting users lock assets like [XOR, VAL, PSWAP](/deep-dive-into-xor-val-and-pswap), ETH, DAI, or [TBCD](/soras-token-bonding-curve-dollar-tbcd-explained) to mint **KUSD (Kensetsu USD)** — a blockchain-based stablecoin pegged to the U.S. dollar and governed collectively by the SORA community.
 
+> **TL;DR:**
+> As of **November 2025**, SORA Kensetsu is an over-collateralized vault system that lets users mint **KUSD**, a stablecoin backed by approved collateral such as XOR, VAL, PSWAP, TBCD, ETH, and DAI.
+> Governed by XOR holders, Kensetsu maintains solvency through collateralization rules, liquidation safeguards, and parameters like a 1% borrow tax.
+> Alongside the **KEN** reward token and Polkaswap liquidity, it helps lock XOR, deepen SORA’s liquidity, and support future multi-stablecoin swaps under **SORA v3**.
+
 ---
 
 ## What Is SORA Kensetsu?
 
-**SORA Kensetsu (建設)** means *construction* — an apt metaphor for a system that builds financial stability on top of SORA’s decentralized economy.  
-Modeled after [MakerDAO’s collateralized debt position system](https://docs.makerdao.com/) but tailored to SORA’s unique tokenomics, Kensetsu introduces **vaults**, **liquidation mechanics**, and **stability fees** that maintain a strong USD peg and minimize volatility in daily DeFi use.
+Before looking at the detailed parameters, it helps to understand how Kensetsu fits into SORA’s broader architecture.
 
-Kensetsu's architecture is among the first components of **[SORA v3 (Nexus)](/sora-v3-revolutionizing-tokenomics-and-defi-on-polkadot)**, which is being developed on **[Hyperledger Iroha 3](https://iroha.readthedocs.io/)** — a next-generation version introducing enhanced modularity, performance, and consensus mechanisms. This bridges open-source transparency with compliant, enterprise-grade security. SORA v2, based on Iroha 2, provides the foundation for this transition.
+**SORA Kensetsu (建設)** means *construction* — an apt metaphor for a system that builds financial stability on top of SORA’s decentralized economy.
+Modeled after MakerDAO’s collateralized debt position design but tailored to SORA’s unique tokenomics, Kensetsu introduces **vaults**, **liquidation mechanics**, and **stability fees** that maintain a strong USD peg and aim to reduce volatility in daily DeFi use.
+
+As of **November 2025**, Kensetsu's architecture is among the first components planned for **[SORA v3 (Nexus)](/sora-v3-revolutionizing-tokenomics-and-defi-on-polkadot)**, which is being developed on <a href="https://iroha.readthedocs.io/" target="_blank" rel="noopener noreferrer">Hyperledger Iroha 3</a> — a next-generation version introducing enhanced modularity, performance, and consensus mechanisms. This bridges open-source transparency with compliant, enterprise-grade security. SORA v2, based on Iroha 2, provides the foundation for this transition.
 
 ---
 
 ## How the KUSD Stablecoin Works
 
-[KUSD](https://wiki.sora.org/kusd.html) — *Kensetsu USD* — is an **[over-collateralized stablecoin](https://www.investopedia.com/terms/o/overcollateralization.asp)** minted through Kensetsu vaults.  
+<a href="https://wiki.sora.org/kusd.html" target="_blank" rel="noopener noreferrer">KUSD</a> — *Kensetsu USD* — is an over-collateralized stablecoin minted through Kensetsu vaults.
 Each KUSD is backed by more than $1 worth of collateral, ensuring every token remains solvent and redeemable.
 
-
-
 **Core principles of KUSD**
-- 1 KUSD = 1 USD peg  
-- Always over-collateralized  
-- Fully transparent and redeemable  
-- Interoperable across SORA, [Polkaswap](/sora-ecosystem-explained), and other networks  
+- 1 KUSD = 1 USD peg
+- Always over-collateralized
+- Fully transparent and redeemable
+- Interoperable across SORA, [Polkaswap](/sora-ecosystem-explained), and other networks
 
 Minting KUSD transforms idle assets into productive collateral, generating liquidity while supporting SORA’s economic base.
 
@@ -67,13 +65,13 @@ Minting KUSD transforms idle assets into productive collateral, generating liqui
 
 SORA Kensetsu brings together three key pillars of decentralized finance:
 
-1. **Collateral-backed stability** — Each stablecoin is fully over-collateralized.  
-2. **Community governance** — XOR holders determine monetary parameters.  
+1. **Collateral-backed stability** — Each stablecoin is fully over-collateralized.
+2. **Community governance** — XOR holders determine monetary parameters.
 3. **Deflationary alignment** — Reduced circulating XOR increases network stability.
 
 Locking XOR and other assets as collateral naturally **reduces supply**, reinforcing scarcity and long-term price support. This mechanism aligns with [SORA’s elastic-supply model](/sora-xor-token-supply-explained) and Polkaswap’s liquidity logic, fostering stability without inflation.
 
-Using **TBCD instead of minting new XOR** for KUSD creation prevents supply expansion, keeping the system balanced.
+Using **TBCD instead of minting new XOR** for KUSD creation prevents supply expansion, helping keep the system balanced.
 
 Together these design choices create a sustainable, permissionless global economy built on transparency and real-world value.
 
@@ -81,20 +79,20 @@ Together these design choices create a sustainable, permissionless global econom
 
 ## Kensetsu Vaults: How to Mint KUSD
 
-[Kensetsu Vaults](https://wiki.sora.org/kensetsu-vaults.html) are at the core of the protocol — smart vaults that hold collateral and track outstanding KUSD debt.
+<a href="https://wiki.sora.org/kensetsu-vaults.html" target="_blank" rel="noopener noreferrer">Kensetsu Vaults</a> are at the core of the protocol — smart vaults that hold collateral and track outstanding KUSD debt.
 
 **Five simple steps to mint KUSD**
-1. **Deposit collateral:** Lock XOR, VAL, TBCD, PSWAP, ETH, or DAI into your vault.  
-2. **Borrow KUSD:** Mint stablecoins up to your loan-to-value (LTV) limit.  
-3. **Monitor your vault:** Add collateral or repay KUSD if market prices fall.  
-4. **Automatic protection:** If your ratio drops too low, the system liquidates a portion via [Polkaswap](/sora-ecosystem-explained).  
+1. **Deposit collateral:** Lock XOR, VAL, TBCD, PSWAP, ETH, or DAI into your vault.
+2. **Borrow KUSD:** Mint stablecoins up to your loan-to-value (LTV) limit.
+3. **Monitor your vault:** Add collateral or repay KUSD if market prices fall.
+4. **Automatic protection:** If your ratio drops too low, the system liquidates a portion via [Polkaswap](/sora-ecosystem-explained).
 5. **Repay and unlock:** Return your KUSD to release collateral.
 
 ### Vault Mechanics & Parameters
-- **Over-Collateralization:** Each KUSD > 100% backed in crypto value.  
-- **Stability Fee:** Ongoing interest on outstanding KUSD.  
-- **Borrow Tax:** 1% when minting.  
-- **Liquidation Penalty:** Applied when vaults breach safety thresholds.  
+- **Over-Collateralization:** Each KUSD > 100% backed in crypto value.
+- **Stability Fee:** Ongoing interest on outstanding KUSD.
+- **Borrow Tax:** 1% when minting.
+- **Liquidation Penalty:** Applied when vaults breach safety thresholds.
 
 These controls maintain solvency and safeguard the peg across market cycles.
 
@@ -102,24 +100,24 @@ These controls maintain solvency and safeguard the peg across market cycles.
 
 ## The Role of the KEN Token
 
-[Kensetsu Token (KEN)](https://wiki.sora.org/ken.html) powers liquidity and incentives across the Kensetsu ecosystem.  
+<a href="https://wiki.sora.org/ken.html" target="_blank" rel="noopener noreferrer">Kensetsu Token (KEN)</a> powers liquidity and incentives across the Kensetsu ecosystem.
 Initially distributed to users who burned ≥ 1 million XOR, KEN now underpins farming and reward systems.
 
 **Key KEN mechanics**
-- 1% of all newly minted KUSD is used to **buy back and burn KEN**.  
-- 80% of burned KEN is **re-minted daily** and distributed to liquidity providers, primarily the XOR–KUSD pair.  
-- This loop sustains liquidity while introducing controlled deflation.  
+- 1% of all newly minted KUSD is used to **buy back and burn KEN**.
+- 80% of burned KEN is **re-minted daily** and distributed to liquidity providers, primarily the XOR–KUSD pair.
+- This loop sustains liquidity while introducing controlled deflation.
 
 ---
 
 ## Governance: How XOR Holders Shape Kensetsu
 
-SORA’s governance keeps Kensetsu fully decentralized and community-directed.  
+SORA’s governance keeps Kensetsu fully decentralized and community-directed.
 XOR holders can:
-- Vote on collateral ratios, fees, and liquidation penalties  
-- Approve new collateral types  
-- Propose upgrades to Kensetsu or KUSD monetary policy  
-- Guide multi-stablecoin expansion modules  
+- Vote on collateral ratios, fees, and liquidation penalties
+- Approve new collateral types
+- Propose upgrades to Kensetsu or KUSD monetary policy
+- Guide multi-stablecoin expansion modules
 
 This participatory model reinforces SORA’s vision of **["Many Worlds, One Economy"](/sora-blockchain-new-world-economic-order)**.
 
@@ -127,8 +125,8 @@ This participatory model reinforces SORA’s vision of **["Many Worlds, One Econ
 
 ## Phase 2: Expanding to Multi-Stablecoin Swaps
 
-The next phase introduces **cross-stablecoin swap modules**, similar to [MakerDAO’s Peg Stability Module (PSM)](https://mips.makerdao.com/mips/details/MIP29).  
-Users will seamlessly swap between approved stablecoins — **KUSD**, **XSTUSD**, and **TBCD** — at low slippage, enhancing liquidity and price stability.
+As of **November 2025**, Kensetsu is designed to support **cross-stablecoin swap modules**, conceptually similar to MakerDAO’s Peg Stability Module (PSM).
+These modules are intended to let users swap between approved stablecoins — **KUSD**, **XSTUSD**, and **TBCD** — at low slippage, enhancing liquidity and price stability when fully deployed.
 
 Deep integration with **Polkaswap** ensures consistent market depth, efficient arbitrage, and robust peg maintenance across the ecosystem.
 
@@ -137,71 +135,69 @@ Deep integration with **Polkaswap** ensures consistent market depth, efficient a
 ## Incentives & Participation
 
 Liquidity providers who supply **XOR–KUSD** pairs on **Polkaswap** can earn:
-- Trading fees  
-- Shared stability fees  
-- KEN reward emissions  
+- Trading fees
+- Shared stability fees
+- KEN reward emissions
 
-These incentives drive continuous liquidity and healthy markets.  
+These incentives drive continuous liquidity and healthy markets.
 For broader DeFi engagement, the [Apollo Protocol](/apollo-protocol-sora-network) adds lending and borrowing features that complement Kensetsu’s stablecoin system.
 
 ---
 
 ## Conclusion
 
-**SORA Kensetsu** is more than a DeFi module — it’s the foundation of SORA’s new monetary era.  
-Through vault-based collateralization, decentralized governance, and token-driven incentives, Kensetsu redefines stability within open finance.
+**SORA Kensetsu** is a core component of SORA’s monetary design rather than a standalone DeFi module.
+Through vault-based collateralization, decentralized governance, and token-driven incentives, Kensetsu provides a structured framework for issuing and managing KUSD within open finance.
 
-As **SORA v3** unfolds on **Hyperledger Iroha**, Kensetsu and KUSD will anchor a transparent, interoperable, and community-driven digital economy.
-
----
-
-## FAQs
-
-<details>
-<summary>What is KUSD?</summary>
-**Kensetsu USD (KUSD)** is SORA’s over-collateralized stablecoin pegged 1:1 to USD. Minted via vaults by locking assets such as XOR, TBCD, VAL, PSWAP, ETH, or DAI.
-</details>
-
-<details>
-<summary>How do Kensetsu vaults work?</summary>
-Deposit collateral, mint KUSD up to your LTV limit (≈ 75-80%), and maintain your ratio. If collateral value drops, liquidation occurs automatically through Polkaswap.
-</details>
-
-<details>
-<summary>What is the KEN token used for?</summary>
-KEN rewards liquidity providers and maintains Kensetsu’s deflationary cycle. 1% of new KUSD minting triggers KEN buy-backs; 80% of burned KEN is re-minted daily as rewards.
-</details>
-
-<details>
-<summary>Who governs Kensetsu?</summary>
-XOR holders govern through SORA’s on-chain DAO, voting on collateral types, ratios, fees, and upgrades to the protocol.
-</details>
-
-<details>
-<summary>How does Kensetsu support SORA’s economy?</summary>
-Locking XOR as collateral reduces supply and supports price stability, while TBCD-based minting avoids new XOR inflation.
-</details>
-
-<details>
-<summary>How is KUSD different from USDT or DAI?</summary>
-KUSD is multi-collateral (XOR, VAL, PSWAP, TBCD, ETH, DAI), community-governed, and deeply integrated with Polkaswap — unlike centralized USDT or Ethereum-only DAI.
-</details>
-
-<details>
-<summary>What happens if a vault is liquidated?</summary>
-If collateral falls below threshold, part is sold via Polkaswap to cover debt. A liquidation penalty applies, but you can restore health by repaying KUSD or adding collateral.
-</details>
-
-<details>
-<summary>Can I earn yield with KUSD?</summary>
-Yes — provide XOR–KUSD liquidity on Polkaswap to earn fees and KEN rewards, or participate in vaults that distribute stability fees to contributors.
-</details>
+As **SORA v3** unfolds on **Hyperledger Iroha**, Kensetsu and KUSD are positioned to support a more transparent, interoperable, and community-driven digital economy for SORA and Polkaswap users.
 
 ---
 
-> 🧠 **Learn More**  
-> • [KUSD on SORA Wiki](https://wiki.sora.org/kusd.html)  
-> • [Kensetsu Vaults Documentation](https://wiki.sora.org/kensetsu-vaults.html)  
-> • [KEN Token Mechanics](https://wiki.sora.org/ken.html)  
-> • [SORA’s Token Bonding Curve Dollar (TBCD) Explained](/soras-token-bonding-curve-dollar-tbcd-explained)  
+<FaqSection>
+  <details>
+    <summary>What is KUSD?</summary>
+    **Kensetsu USD (KUSD)** is SORA’s over-collateralized stablecoin pegged 1:1 to USD. Minted via vaults by locking assets such as XOR, TBCD, VAL, PSWAP, ETH, or DAI.
+  </details>
+
+  <details>
+    <summary>How do Kensetsu vaults work?</summary>
+    Deposit collateral, mint KUSD up to your LTV limit (≈ 75-80%), and maintain your ratio. If collateral value drops, liquidation occurs automatically through Polkaswap.
+  </details>
+
+  <details>
+    <summary>What is the KEN token used for?</summary>
+    KEN rewards liquidity providers and maintains Kensetsu’s deflationary cycle. 1% of new KUSD minting triggers KEN buy-backs; 80% of burned KEN is re-minted daily as rewards.
+  </details>
+
+  <details>
+    <summary>Who governs Kensetsu?</summary>
+    XOR holders govern through SORA’s on-chain DAO, voting on collateral types, ratios, fees, and upgrades to the protocol.
+  </details>
+
+  <details>
+    <summary>How does Kensetsu support SORA’s economy?</summary>
+    Locking XOR as collateral reduces supply and supports price stability, while TBCD-based minting avoids new XOR inflation.
+  </details>
+
+  <details>
+    <summary>How is KUSD different from USDT or DAI?</summary>
+    KUSD is multi-collateral (XOR, VAL, PSWAP, TBCD, ETH, DAI), community-governed, and deeply integrated with Polkaswap — unlike centralized USDT or Ethereum-only DAI.
+  </details>
+
+  <details>
+    <summary>What happens if a vault is liquidated?</summary>
+    If collateral falls below threshold, part is sold via Polkaswap to cover debt. A liquidation penalty applies, but you can restore health by repaying KUSD or adding collateral.
+  </details>
+
+  <details>
+    <summary>Can I earn yield with KUSD?</summary>
+    Yes — provide XOR–KUSD liquidity on Polkaswap to earn fees and KEN rewards, or participate in vaults that distribute stability fees to contributors.
+  </details>
+</FaqSection>
+
+> 🧠 **Learn More**
+> • <a href="https://wiki.sora.org/kusd.html" target="_blank" rel="noopener noreferrer">KUSD on SORA Wiki</a>
+> • <a href="https://wiki.sora.org/kensetsu-vaults.html" target="_blank" rel="noopener noreferrer">Kensetsu Vaults Documentation</a>
+> • <a href="https://wiki.sora.org/ken.html" target="_blank" rel="noopener noreferrer">KEN Token Mechanics</a>
+> • [SORA’s Token Bonding Curve Dollar (TBCD) Explained](/soras-token-bonding-curve-dollar-tbcd-explained)
 > • [Understanding SORA’s (XOR) Token Supply Explained](/sora-xor-token-supply-explained)
