@@ -5,17 +5,28 @@ on:
     - cron: "0 3 * * *" # Daily at 03:00 UTC (incremental sync is cheap ~$0.12/month)
   workflow_dispatch:
 
+env:
+  INGEST_ENABLED: ${{ vars.INGEST_ENABLED || 'false' }}
+
 concurrency:
-  group: kb-nightly
-  cancel-in-progress: false
+  group: kb-ingest-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   sync_iroha:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     env:
       RETRY_COUNT: 3
       RETRY_DELAY: 10
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
@@ -37,10 +48,18 @@ jobs:
       
   sync_soramitsu:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     env:
       RETRY_COUNT: 3
       RETRY_DELAY: 10
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
@@ -62,10 +81,18 @@ jobs:
       
   import_medium:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     env:
       RETRY_COUNT: 3
       RETRY_DELAY: 10
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
@@ -87,10 +114,18 @@ jobs:
 
   import_polkaswap:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     env:
       RETRY_COUNT: 3
       RETRY_DELAY: 10
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
@@ -112,10 +147,18 @@ jobs:
 
   import_fearless:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     env:
       RETRY_COUNT: 3
       RETRY_DELAY: 10
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
@@ -137,10 +180,18 @@ jobs:
 
   sync_fearless_github:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     env:
       RETRY_COUNT: 3
       RETRY_DELAY: 10
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
@@ -162,10 +213,18 @@ jobs:
 
   sync_wiki:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     env:
       RETRY_COUNT: 3
       RETRY_DELAY: 10
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
@@ -187,10 +246,18 @@ jobs:
 
   sync_tonswap:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     env:
       RETRY_COUNT: 3
       RETRY_DELAY: 10
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
@@ -222,10 +289,18 @@ jobs:
 
   import_tonswap_medium:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     env:
       RETRY_COUNT: 3
       RETRY_DELAY: 10
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
@@ -258,7 +333,15 @@ jobs:
   index:
     needs: [sync_iroha, sync_soramitsu, import_medium, import_polkaswap, import_fearless, sync_fearless_github, sync_wiki, sync_tonswap, import_tonswap_medium]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
