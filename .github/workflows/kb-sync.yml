@@ -1,9 +1,10 @@
 name: KB Nightly Sync
 
 on:
-  schedule:
-    - cron: "0 3 * * *" # Daily at 03:00 UTC (incremental sync is cheap ~$0.12/month)
-  workflow_dispatch:
+  # Disabled scheduled sync - manual updates only
+  # schedule:
+  #   - cron: "0 3 * * *" # Daily at 03:00 UTC (incremental sync is cheap ~$0.12/month)
+  workflow_dispatch:  # Manual trigger only
 
 concurrency:
   group: kb-nightly
