@@ -50,15 +50,8 @@
     "tsx": "^4.20.5"
   },
   "lint-staged": {
-    "{apps,packages}/**/*.{ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "{apps,packages}/**/*.astro": [
-      "prettier --write"
-    ],
-    "*.md": [
-      "prettier --write"
-    ]
+    "{apps,packages}/**/*.{ts,tsx}": [],
+    "{apps,packages}/**/*.astro": [],
+    "*.md": []
   }
 }
