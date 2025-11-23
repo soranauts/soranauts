@@ -13,12 +13,21 @@ on:
   #     - 'knowledge_base/**'
   #     - 'apps/web/src/content/post/**'
 
+env:
+  INGEST_ENABLED: ${{ vars.INGEST_ENABLED || 'false' }}
+
 jobs:
   index:
+    concurrency:
+      group: kb-ingest-${{ github.ref }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     # Don't block PR merges if indexing fails (useful if secrets aren't configured)
     continue-on-error: ${{ github.event_name == 'pull_request' }}
-    
+    permissions:
+      contents: read
+      actions: read
+
     services:
       chroma:
         image: ghcr.io/chroma-core/chroma:latest
@@ -37,6 +46,11 @@ jobs:
           --health-start-period 15s
     
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - name: Checkout code
         uses: actions/checkout@v4
         
