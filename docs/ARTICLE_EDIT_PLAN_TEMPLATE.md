@@ -29,7 +29,6 @@ When making factual corrections or recommendations, follow this authority order 
 When sources conflict: prefer higher-ranked directories and the most recent snapshot.
 
 # 2.1 Plan-Mode Execution Rules (Cursor & AI Assistants)
-
 These rules define *how* Cursor must behave when generating an Edit Plan using the standard prompt:
 
 “Use ARTICLE_EDIT_PLAN_TEMPLATE.md. Create a full Edit Plan for <link>.”
@@ -68,6 +67,9 @@ When the template calls for factual verification or expansion, Cursor must:
 ### F. Tag & Metadata Normalization
 Every Edit Plan must:
 - Propose 8–12 normalized tags.
+- All tags MUST pass `isCanonicalTag()` and come from the canonical Tag Matrix.
+- The assistant must NOT invent new tags under any circumstances.
+- Existing article tags must NOT be modified unless Section 8 explicitly calls for Tag & Metadata Optimization.
 - Provide a ≤160-character excerpt revision.
 - Confirm category alignment.
 - Confirm image path without changing it.
@@ -177,8 +179,13 @@ Dates:
 
 Tags:
 - 8–12 normalized
+- MUST pass `isCanonicalTag()`
 - lowercase, hyphenated
-- no deprecated tags (vxor, substrate)
+- no deprecated tags:
+  - vxor
+  - substrate
+  - sora-v3 (use iroha3 instead)
+  - outdated versioned tags (e.g., polkaswap-v2, kusd-v1)
 
 Image:
 - Wide aspect ratio
