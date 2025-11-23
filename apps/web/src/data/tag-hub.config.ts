@@ -27,6 +27,73 @@ export interface TagHubQuickPath {
   tags: string[];
 }
 
+export const CANONICAL_TAGS = [
+  'adoption',
+  'analytics',
+  'blockchain',
+  'bonding-curve',
+  'bridges',
+  'council',
+  'cross-chain',
+  'decentralization',
+  'defi',
+  'dex',
+  'economics',
+  'elastic-supply',
+  'explorer',
+  'fearless-wallet',
+  'governance',
+  'hashi',
+  'hyperledger',
+  'interoperability',
+  'iroha',
+  'iroha3',
+  'kensetsu',
+  'kusd',
+  'liquidity',
+  'marketplace',
+  'mobile',
+  'nft',
+  'parachain',
+  'parliament',
+  'payments',
+  'polkaswap',
+  'proposal',
+  'pswap',
+  'real-world-assets',
+  'referendum',
+  'roadmap',
+  'security',
+  'sora',
+  'sora-card',
+  'stablecoin',
+  'staking',
+  'substrate',
+  'tbcd',
+  'telegram',
+  'tokenization',
+  'tokenomics',
+  'ton',
+  'tonswap',
+  'val',
+  'validator',
+  'voting',
+  'wallet',
+  'xor',
+] as const;
+
+const CANONICAL_TAG_SET = new Set<string>(CANONICAL_TAGS);
+
+export const isCanonicalTag = (value?: string | null): boolean => {
+  if (!value) return false;
+  const normalized = value
+    .toString()
+    .toLowerCase()
+    .replace(/^tag-/, '')
+    .trim();
+  return CANONICAL_TAG_SET.has(normalized);
+};
+
 export const tagHubMetadata: Record<string, TagHubMetadataEntry> = {
   'tag-sora': {
     domain: 'ecosystem',
@@ -169,7 +236,7 @@ export const tagHubQuickPaths: TagHubQuickPath[] = [
     id: 'governance-economics',
     title: 'Governance & Economics',
     description: 'Dive into treasury mechanics, Parliament processes, and economic primitives.',
-    tags: ['tag-governance', 'tag-sora-parliament', 'tag-tokenomics', 'tag-treasury', 'tag-kusd'],
+    tags: ['tag-governance', 'tag-parliament', 'tag-tokenomics', 'tag-kusd'],
   },
   {
     id: 'defi-power-user',

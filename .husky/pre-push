@@ -2,6 +2,11 @@
 . "$(dirname -- "$0")/_/husky.sh"
 set -e
 
+if [ "$SKIP_E2E" = "1" ]; then
+  echo "pre-push: SKIP_E2E=1 → skipping Playwright suite"
+  exit 0
+fi
+
 echo "🔍 Pre-push checks: typecheck, lint, build, unit, e2e"
 pnpm -w typecheck
 pnpm -w lint

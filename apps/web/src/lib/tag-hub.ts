@@ -8,6 +8,7 @@ import {
   type TagHubTrait,
   tagHubMetadata,
   tagHubQuickPaths,
+  isCanonicalTag,
 } from '../data/tag-hub.config';
 import { normalizeTaxonomyValue, resolveAlias, toTagSlug } from './taxonomy';
 
@@ -164,7 +165,7 @@ export const getTagHubViewModel = (slug: string): TagHubViewModel | undefined =>
 
 export const getAllTagHubViewModels = (): TagHubViewModel[] =>
   Object.values(taxonomy)
-    .filter((node) => node.type === 'tag')
+    .filter((node) => node.type === 'tag' && isCanonicalTag(node.slug))
     .map((node) => toViewModel(node))
     .sort(sortByWeightAndTitle);
 
