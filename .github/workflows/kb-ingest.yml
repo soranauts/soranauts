@@ -20,12 +20,19 @@ on:
   #     - '.github/workflows/kb-ingest.yml'
   workflow_dispatch:  # Manual trigger only
 
+env:
+  INGEST_ENABLED: ${{ vars.INGEST_ENABLED || 'false' }}
+
 jobs:
   ingest:
+    concurrency:
+      group: kb-ingest-${{ github.ref }}
+      cancel-in-progress: true
     name: kb:${{ matrix.slice }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: read
     strategy:
       matrix:
         slice: [full]
@@ -48,6 +55,11 @@ jobs:
           --health-timeout 5s
           --health-retries 12
     steps:
+      - name: Abort when ingest disabled
+        if: env.INGEST_ENABLED != 'true' && github.event_name != 'workflow_dispatch'
+        run: |
+          echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
+          exit 0
       - name: Checkout
         uses: actions/checkout@v4
 
