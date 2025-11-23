@@ -88,5 +88,3 @@ export function isCanonicalGlossaryTerm(slug: string): boolean {
   if (!slug) return false;
   return CANONICAL_TERM_SLUGS.has(slug.toLowerCase());
 }
-
-

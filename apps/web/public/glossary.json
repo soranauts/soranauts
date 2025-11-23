@@ -7017,7 +7017,7 @@
     }
   },
   "totalCount": 138,
-  "lastUpdated": "2025-11-19T22:42:40.073Z",
+  "lastUpdated": "2025-11-23T19:40:50.201Z",
   "aliasIndex": [
     {
       "alias": "XOR",
@@ -10560,21 +10560,6 @@
       "type": "tag"
     },
     {
-      "alias": "Blockchain",
-      "slug": "tag-blockchain-technology",
-      "type": "tag"
-    },
-    {
-      "alias": "blockchain technology",
-      "slug": "tag-blockchain-technology",
-      "type": "tag"
-    },
-    {
-      "alias": "Blockchain Technology",
-      "slug": "tag-blockchain-technology",
-      "type": "tag"
-    },
-    {
       "alias": "Token Bonding Curve",
       "slug": "tag-bonding-curve",
       "type": "tag"
@@ -10615,6 +10600,16 @@
       "type": "tag"
     },
     {
+      "alias": "cross-chain-bridges",
+      "slug": "tag-cross-chain-bridges",
+      "type": "tag"
+    },
+    {
+      "alias": "Cross Chain Bridges",
+      "slug": "tag-cross-chain-bridges",
+      "type": "tag"
+    },
+    {
       "alias": "crypto-trends",
       "slug": "tag-crypto-trends",
       "type": "tag"
@@ -10637,6 +10632,16 @@
     {
       "alias": "Cryptocurrency Trends",
       "slug": "tag-cryptocurrency-trends",
+      "type": "tag"
+    },
+    {
+      "alias": "decentralized-exchanges",
+      "slug": "tag-decentralized-exchanges",
+      "type": "tag"
+    },
+    {
+      "alias": "Decentralized Exchanges",
+      "slug": "tag-decentralized-exchanges",
       "type": "tag"
     },
     {
@@ -10775,6 +10780,16 @@
       "type": "tag"
     },
     {
+      "alias": "liquidity-pools",
+      "slug": "tag-liquidity-pools",
+      "type": "tag"
+    },
+    {
+      "alias": "Liquidity Pools",
+      "slug": "tag-liquidity-pools",
+      "type": "tag"
+    },
+    {
       "alias": "Crypto Market Cycles",
       "slug": "tag-market-analysis",
       "type": "tag"
@@ -10787,6 +10802,16 @@
     {
       "alias": "Market Analysis",
       "slug": "tag-market-analysis",
+      "type": "tag"
+    },
+    {
+      "alias": "pacific-islands",
+      "slug": "tag-pacific-islands",
+      "type": "tag"
+    },
+    {
+      "alias": "Pacific Islands",
+      "slug": "tag-pacific-islands",
       "type": "tag"
     },
     {
@@ -10862,6 +10887,16 @@
     {
       "alias": "soshiba",
       "slug": "tag-soshiba",
+      "type": "tag"
+    },
+    {
+      "alias": "stablecoins",
+      "slug": "tag-stablecoins",
+      "type": "tag"
+    },
+    {
+      "alias": "Stablecoins",
+      "slug": "tag-stablecoins",
       "type": "tag"
     },
     {
