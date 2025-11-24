@@ -7,6 +7,7 @@ import type {
   GlossarySearchResult,
 } from '../../lib/glossary/search';
 import { createGlossarySearchEngine } from '../../lib/glossary/search';
+import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
 
 type GlossaryJsonPayload = GlossarySearchIndexInput & {
   categories: Record<string, { name: string; count: number }>;
@@ -56,6 +57,59 @@ const fetchGlossaryData = async (): Promise<GlossaryJsonPayload> => {
   return response.json();
 };
 
+const CANONICAL_SEARCH_ENABLED = FEATURE_GLOSSARY_V2025;
+let canonicalResolverPromise: Promise<((slug: string) => string) | undefined> | null = null;
+
+const getCanonicalResolver = async (): Promise<((slug: string) => string) | undefined> => {
+  if (!CANONICAL_SEARCH_ENABLED) return undefined;
+  if (!canonicalResolverPromise) {
+    canonicalResolverPromise = (async () => {
+      try {
+        const [termsResponse, aliasesResponse] = await Promise.all([
+          fetch('/glossary.v2025.json', {
+            headers: { accept: 'application/json', 'cache-control': 'no-cache' },
+          }),
+          fetch('/glossary.aliases.v2025.json', {
+            headers: { accept: 'application/json', 'cache-control': 'no-cache' },
+          }).catch(() => null),
+        ]);
+
+        if (!termsResponse.ok) {
+          throw new Error(`Failed to load glossary.v2025.json (${termsResponse.status})`);
+        }
+
+        const canonicalData = await termsResponse.json();
+        const aliasData = aliasesResponse && aliasesResponse.ok ? await aliasesResponse.json() : { aliases: [] };
+
+        const canonicalMap = new Map<string, string>();
+        canonicalData.terms.forEach((entry: any) => {
+          if (entry.status === 'alias' && entry.targetSlug) {
+            canonicalMap.set(entry.slug, entry.targetSlug);
+          } else if (entry.status === 'canonical') {
+            canonicalMap.set(entry.slug, entry.slug);
+          }
+        });
+        aliasData.aliases?.forEach((entry: any) => {
+          if (entry.alias && entry.target) {
+            canonicalMap.set(entry.alias, entry.target);
+          }
+        });
+
+        if (!canonicalMap.size) {
+          return undefined;
+        }
+
+        return (slug: string) => canonicalMap.get(slug) ?? slug;
+      } catch (error) {
+        console.warn('[glossary search] canonical resolver unavailable:', error);
+        return undefined;
+      }
+    })();
+  }
+
+  return canonicalResolverPromise;
+};
+
 import { createPortal } from 'react-dom';
 
 export default function GlossarySearchV2({
@@ -99,11 +153,17 @@ export default function GlossarySearchV2({
     if (engineRef.current || isLoading) return;
     try {
       setIsLoading(true);
-      const payload = await fetchGlossaryData();
-      const engine = createGlossarySearchEngine({
-        terms: payload.terms,
-        aliasIndex: payload.aliasIndex,
-      });
+      const [payload, canonicalResolver] = await Promise.all([
+        fetchGlossaryData(),
+        getCanonicalResolver(),
+      ]);
+      const engine = createGlossarySearchEngine(
+        {
+          terms: payload.terms,
+          aliasIndex: payload.aliasIndex,
+        },
+        canonicalResolver ? { resolveCanonicalSlug: canonicalResolver } : undefined,
+      );
       engineRef.current = engine;
 
       const categoryList: CategoryStats[] = Object.entries(payload.categories)
