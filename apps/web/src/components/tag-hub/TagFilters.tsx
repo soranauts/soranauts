@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { formatTagLabel } from '~/lib/tag-hub';
+import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
 
 type TagHubTrait =
   | 'foundational'
@@ -21,6 +22,8 @@ type Tag = {
   firstSeen?: string;
   lastSeen?: string;
   glossaryRef?: string;
+  glossaryCanonicalPath?: string;
+  canonicalGlossarySlug?: string | null;
   category?: string;
   relatedTags: string[];
   aliases: string[];
@@ -85,14 +88,21 @@ const matchesQuery = (tag: Tag, query: string) => {
   const normalizedQuery = normalize(query);
   if (!normalizedQuery) return true;
 
-  const haystack = [
+  const searchValues = [
     tag.title,
     tag.summary ?? '',
     tag.slug,
     ...(tag.aliases ?? []),
     ...(tag.relatedTags ?? []),
-  ]
-    .map((value) => normalize(value))
+  ];
+
+  if (FEATURE_GLOSSARY_V2025 && tag.canonicalGlossarySlug) {
+    searchValues.push(tag.canonicalGlossarySlug);
+  }
+
+  const haystack = searchValues
+    .filter(Boolean)
+    .map((value) => normalize(String(value)))
     .join(' ');
 
   return haystack.includes(normalizedQuery);

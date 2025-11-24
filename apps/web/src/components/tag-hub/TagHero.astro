@@ -37,11 +37,14 @@ const formattedTitle = formatTagLabel(tag.slug, tag.title);
     </div>
   </dl>
 
-  {glossaryEntry && (
+{glossaryEntry && (
     <div class="tag-detail-glossary">
       <h2>From the Glossary</h2>
       <p>{glossaryEntry.summary ?? glossaryEntry.definition}</p>
-      <a class="tag-detail-glossary__link" href={glossaryEntry.glossaryRef ?? `/glossary/${glossaryEntry.slug}`}>
+    <a
+      class="tag-detail-glossary__link"
+      href={tag.glossaryCanonicalPath ?? tag.glossaryRef ?? glossaryEntry.glossaryRef ?? `/glossary/${glossaryEntry.slug}`}
+    >
         View full glossary entry
       </a>
     </div>

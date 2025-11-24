@@ -9,27 +9,28 @@ import Header from '~/components/widgets/Header.astro';
 import Layout from '~/layouts/Layout.astro';
 import { SITE } from '~/utils/config';
 import { footerData, headerData } from '~/navigation';
-import glossary from '../../public/glossary.json';
+import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
+import { getAllTerms, getGlossaryMetadata } from '~/lib/glossary/glossary-loader';
 
 // Get initial term from URL hash for deep linking
 const initialTerm = Astro.url.hash.replace('#', '');
 const initialQuery = Astro.url.searchParams.get('q') ?? initialTerm;
 const enableSearchV2 = import.meta.env.GLOSSARY_SEARCH_V2 === 'true';
 
-const totalCount = typeof glossary.totalCount === 'number' ? glossary.totalCount : glossary.terms.length;
+const glossaryTerms = getAllTerms();
+const totalCount = glossaryTerms.length;
 const categories = new Set<string>();
 
-for (const term of glossary.terms) {
+for (const term of glossaryTerms) {
   if (typeof term.category === 'string' && term.category.trim().length) {
     categories.add(term.category.trim().toLowerCase());
   }
 }
 
-const lastUpdatedValue = typeof glossary.lastUpdated === 'string' ? glossary.lastUpdated : undefined;
-const lastUpdatedDate = lastUpdatedValue ? new Date(lastUpdatedValue) : undefined;
+const { lastUpdated } = getGlossaryMetadata();
 const formattedLastUpdated =
-  lastUpdatedDate && !Number.isNaN(lastUpdatedDate.valueOf())
-    ? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(lastUpdatedDate)
+  lastUpdated && !Number.isNaN(new Date(lastUpdated).valueOf())
+    ? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(lastUpdated))
     : '—';
 
 const heroStats = [
@@ -47,7 +48,7 @@ const toExcerpt = (value: string | undefined, length = 165): string => {
   return `${value.slice(0, length - 1).trimEnd()}…`;
 };
 
-const sortTerms = [...glossary.terms].sort((a, b) => {
+const sortTerms = [...glossaryTerms].sort((a, b) => {
   const priorityA = typeof a.priority === 'number' ? a.priority : Number.MAX_SAFE_INTEGER;
   const priorityB = typeof b.priority === 'number' ? b.priority : Number.MAX_SAFE_INTEGER;
   if (priorityA !== priorityB) return priorityA - priorityB;
@@ -83,7 +84,7 @@ const featuredTerms = [
   ...fallbackFeatured.slice(0, Math.max(0, 12 - curatedFeatured.length)),
 ];
 
-const buildMeta = (term: (typeof glossary.terms)[number]): string[] => {
+const buildMeta = (term: (typeof glossaryTerms)[number]): string[] => {
   const meta: string[] = [];
   if (Array.isArray(term.aliases) && term.aliases.length > 1) {
     const aliasCount = term.aliases.length - 1;
@@ -102,7 +103,7 @@ const definedTermSetSchema = {
   "name": "SORA Glossary",
   "description": "Complete glossary of SORA ecosystem terms, definitions, and concepts. Learn about XOR, VAL, PSWAP, governance, DeFi, and more.",
   "url": `${SITE.site}/glossary`,
-  "hasDefinedTerm": glossary.terms.map((term) => ({
+  "hasDefinedTerm": glossaryTerms.map((term) => ({
     "@type": "DefinedTerm",
     "name": term.term,
     "termCode": term.slug,
