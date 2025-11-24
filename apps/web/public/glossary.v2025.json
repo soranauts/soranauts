@@ -1,0 +1,407 @@
+{
+  "terms": [
+    {
+      "slug": "adoption",
+      "title": "Adoption",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "analytics",
+      "title": "Analytics",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "blockchain",
+      "title": "Blockchain",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "bonding-curve",
+      "title": "Bonding Curve",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "bridges",
+      "title": "Bridges",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "council",
+      "title": "Council",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "cross-chain",
+      "title": "Cross Chain",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "decentralization",
+      "title": "Decentralization",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "defi",
+      "title": "DeFi",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "dex",
+      "title": "DEX",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "economics",
+      "title": "Economics",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "elastic-supply",
+      "title": "Elastic Supply",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "explorer",
+      "title": "Explorer",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "fearless-wallet",
+      "title": "Fearless Wallet",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "governance",
+      "title": "Governance",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "hashi",
+      "title": "HASHI",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "hyperledger",
+      "title": "Hyperledger",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "hyperledger-iroha",
+      "title": "Hyperledger Iroha",
+      "summary": "TODO",
+      "status": "alias",
+      "targetSlug": "iroha"
+    },
+    {
+      "slug": "hyperledger-iroha-3",
+      "title": "Hyperledger Iroha 3",
+      "summary": "TODO",
+      "status": "alias",
+      "targetSlug": "iroha3"
+    },
+    {
+      "slug": "interoperability",
+      "title": "Interoperability",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "iroha",
+      "title": "Iroha",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "iroha3",
+      "title": "Iroha 3",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "kensetsu",
+      "title": "Kensetsu",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "kusd",
+      "title": "KUSD",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "liquidity",
+      "title": "Liquidity",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "marketplace",
+      "title": "Marketplace",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "mobile",
+      "title": "Mobile",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "nft",
+      "title": "NFT",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "parachain",
+      "title": "Parachain",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "parliament",
+      "title": "Parliament",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "payments",
+      "title": "Payments",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "polkaswap",
+      "title": "Polkaswap",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "proposal",
+      "title": "Proposal",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "pswap",
+      "title": "PSWAP",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "real-world-assets",
+      "title": "Real-World Assets",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "referendum",
+      "title": "Referendum",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "roadmap",
+      "title": "Roadmap",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "security",
+      "title": "Security",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "sora",
+      "title": "SORA",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "sora-card",
+      "title": "SORA Card",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "sora-council",
+      "title": "SORA Council",
+      "summary": "TODO",
+      "status": "alias",
+      "targetSlug": "council"
+    },
+    {
+      "slug": "sora-parliament",
+      "title": "SORA Parliament",
+      "summary": "TODO",
+      "status": "alias",
+      "targetSlug": "parliament"
+    },
+    {
+      "slug": "stablecoin",
+      "title": "Stablecoin",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "staking",
+      "title": "Staking",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "substrate",
+      "title": "Substrate",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "tbcd",
+      "title": "TBCD",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "telegram",
+      "title": "Telegram",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "token-bonding-curve",
+      "title": "Token Bonding Curve",
+      "summary": "TODO",
+      "status": "alias",
+      "targetSlug": "bonding-curve"
+    },
+    {
+      "slug": "tokenization",
+      "title": "Tokenization",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "tokenomics",
+      "title": "Tokenomics",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "ton",
+      "title": "TON",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "tonswap",
+      "title": "TONSwap",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "val",
+      "title": "VAL",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "validator",
+      "title": "Validator",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "voting",
+      "title": "Voting",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "wallet",
+      "title": "Wallet",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "xor",
+      "title": "XOR",
+      "summary": "TODO",
+      "status": "canonical",
+      "targetSlug": null
+    }
+  ],
+  "canonicalCount": 52,
+  "aliasCount": 5,
+  "deprecatedCount": 0,
+  "version": 2025
+}
