@@ -7017,7 +7017,7 @@
     }
   },
   "totalCount": 138,
-  "lastUpdated": "2025-11-23T19:40:50.201Z",
+  "lastUpdated": "2025-11-24T13:26:39.912Z",
   "aliasIndex": [
     {
       "alias": "XOR",
@@ -10762,21 +10762,6 @@
     {
       "alias": "Iroha3",
       "slug": "tag-iroha3",
-      "type": "tag"
-    },
-    {
-      "alias": "Kensetsu",
-      "slug": "tag-ken",
-      "type": "tag"
-    },
-    {
-      "alias": "KEN",
-      "slug": "tag-ken",
-      "type": "tag"
-    },
-    {
-      "alias": "ken",
-      "slug": "tag-ken",
       "type": "tag"
     },
     {
