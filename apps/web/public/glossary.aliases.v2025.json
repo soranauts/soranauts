@@ -1,0 +1,24 @@
+{
+  "aliases": [
+    {
+      "alias": "hyperledger-iroha",
+      "target": "iroha"
+    },
+    {
+      "alias": "hyperledger-iroha-3",
+      "target": "iroha3"
+    },
+    {
+      "alias": "sora-council",
+      "target": "council"
+    },
+    {
+      "alias": "sora-parliament",
+      "target": "parliament"
+    },
+    {
+      "alias": "token-bonding-curve",
+      "target": "bonding-curve"
+    }
+  ]
+}

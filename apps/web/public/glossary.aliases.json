@@ -3746,21 +3746,6 @@
       "type": "tag"
     },
     {
-      "alias": "kensetsu",
-      "slug": "tag-ken",
-      "type": "tag"
-    },
-    {
-      "alias": "ken",
-      "slug": "tag-ken",
-      "type": "tag"
-    },
-    {
-      "alias": "ken",
-      "slug": "tag-ken",
-      "type": "tag"
-    },
-    {
       "alias": "liquidity-pools",
       "slug": "tag-liquidity-pools",
       "type": "tag"

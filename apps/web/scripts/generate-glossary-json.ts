@@ -10,6 +10,11 @@ import {
   taxonomyNodes,
   normalizeTaxonomyValue,
 } from '../src/lib/taxonomy';
+import {
+  GLOSSARY_TERMS,
+  type GlossaryStatus,
+  type GlossaryTerm as ConfigGlossaryTerm,
+} from '../src/data/glossary.config';
 
 interface LegacyGlossaryTerm {
   term: string;
@@ -38,10 +43,28 @@ interface GlossaryJson {
   aliasIndex: typeof clientAliasIndex;
 }
 
+interface Glossary2025Term {
+  slug: string;
+  title: string;
+  summary: string | null;
+  status: GlossaryStatus;
+  targetSlug: string | null;
+}
+
+interface Glossary2025Payload {
+  terms: Glossary2025Term[];
+  canonicalCount: number;
+  aliasCount: number;
+  deprecatedCount: number;
+  version: number;
+}
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const OUTPUT_PATH = path.join(__dirname, '../public/glossary.json');
+const OUTPUT_PATH_V2025 = path.join(__dirname, '../public/glossary.v2025.json');
+const ALIAS_OUTPUT_PATH_V2025 = path.join(__dirname, '../public/glossary.aliases.v2025.json');
 const TAXONOMY_TAGS_PATH = path.join(__dirname, '../src/data/taxonomy-tags.json');
 const POSTS_DIR = path.join(__dirname, '../src/content/post');
 
@@ -103,6 +126,43 @@ fs.writeFileSync(
   JSON.stringify({ aliases: aliasPayload }, null, 2),
 );
 
+const to2025Term = (term: ConfigGlossaryTerm): Glossary2025Term => ({
+  slug: term.slug,
+  title: term.title,
+  summary: term.summary ?? null,
+  status: term.status,
+  targetSlug: term.status === 'canonical' ? null : term.targetSlug ?? null,
+});
+
+const sortBySlug = (a: Glossary2025Term, b: Glossary2025Term): number =>
+  a.slug.localeCompare(b.slug);
+
+const glossary2025Terms = GLOSSARY_TERMS.map(to2025Term).sort(sortBySlug);
+
+const canonicalCount2025 = glossary2025Terms.filter((term) => term.status === 'canonical').length;
+const aliasTerms2025 = glossary2025Terms.filter((term) => term.status === 'alias');
+const aliasCount2025 = aliasTerms2025.length;
+const deprecatedCount2025 = glossary2025Terms.filter((term) => term.status === 'deprecated').length;
+
+const glossary2025Payload: Glossary2025Payload = {
+  terms: glossary2025Terms,
+  canonicalCount: canonicalCount2025,
+  aliasCount: aliasCount2025,
+  deprecatedCount: deprecatedCount2025,
+  version: 2025,
+};
+
+fs.writeFileSync(OUTPUT_PATH_V2025, JSON.stringify(glossary2025Payload, null, 2));
+
+const aliasPayload2025 = aliasTerms2025
+  .map((term) => ({
+    alias: term.slug,
+    target: term.targetSlug ?? null,
+  }))
+  .sort((a, b) => a.alias.localeCompare(b.alias));
+
+fs.writeFileSync(ALIAS_OUTPUT_PATH_V2025, JSON.stringify({ aliases: aliasPayload2025 }, null, 2));
+
 const collectPostTags = (): string[] => {
   if (!fs.existsSync(POSTS_DIR)) return [];
   const tagSet = new Set<string>();
@@ -138,5 +198,7 @@ const collectPostTags = (): string[] => {
 const postTags = collectPostTags();
 fs.writeFileSync(TAXONOMY_TAGS_PATH, JSON.stringify({ tags: postTags }, null, 2));
 
-console.log('✅ Generated glossary.json, glossary.aliases.json, and taxonomy-tags.json');
+console.log(
+  '✅ Generated glossary.json (+v2025), glossary.aliases.json (+v2025), and taxonomy-tags.json',
+);
 
