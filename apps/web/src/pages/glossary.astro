@@ -10,14 +10,15 @@ import Layout from '~/layouts/Layout.astro';
 import { SITE } from '~/utils/config';
 import { footerData, headerData } from '~/navigation';
 import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
-import { getAllTerms, getGlossaryMetadata } from '~/lib/glossary/glossary-loader';
+import { getGlossaryMetadata } from '~/lib/glossary/glossary-loader';
+import { getCachedGlossaryTerms } from '~/lib/glossary/glossary-data';
 
 // Get initial term from URL hash for deep linking
 const initialTerm = Astro.url.hash.replace('#', '');
 const initialQuery = Astro.url.searchParams.get('q') ?? initialTerm;
 const enableSearchV2 = import.meta.env.GLOSSARY_SEARCH_V2 === 'true';
 
-const glossaryTerms = getAllTerms();
+const glossaryTerms = getCachedGlossaryTerms();
 const totalCount = glossaryTerms.length;
 const categories = new Set<string>();
 

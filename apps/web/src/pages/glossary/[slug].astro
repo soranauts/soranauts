@@ -13,18 +13,22 @@ import { SITE, I18N } from '~/utils/config';
 import { cleanSlug, getPermalink } from '~/utils/permalinks';
 import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
 import {
-  getAllTerms,
-  getAliasEntries,
   getCanonicalSlug as getCanonicalGlossarySlug,
   getGlossaryTerm,
 } from '~/lib/glossary/glossary-loader';
+import {
+  getCachedAliasEntries,
+  getCachedGlossaryTerms,
+} from '~/lib/glossary/glossary-data';
 
 export const prerender = true;
 
-const glossaryTerms = getAllTerms();
-const aliasEntries = getAliasEntries();
+const allGlossaryTerms = getCachedGlossaryTerms();
 
 export async function getStaticPaths() {
+  const glossaryTerms = getCachedGlossaryTerms();
+  const aliasEntries = getCachedAliasEntries();
+
   const canonicalPaths = glossaryTerms.map((term) => ({
     params: { slug: term.slug },
   }));
@@ -95,7 +99,7 @@ const breadcrumbSchema = {
 const relatedTermsWithLinks =
   term.relatedTerms
     ?.map((relatedName) => {
-      const relatedTerm = glossaryTerms.find(
+      const relatedTerm = allGlossaryTerms.find(
         (entry) =>
           entry.term === relatedName ||
           entry.term.toLowerCase() === relatedName.toLowerCase() ||
@@ -150,11 +154,11 @@ const relatedTagArticles = (() => {
 
 const versionEntries = Array.isArray(term.versions)
   ? term.versions
-      .map((slug: string) => glossaryTerms.find((entry) => entry.slug === slug))
-      .filter((entry): entry is typeof glossaryTerms[number] => Boolean(entry))
+      .map((slug: string) => allGlossaryTerms.find((entry) => entry.slug === slug))
+      .filter((entry): entry is typeof allGlossaryTerms[number] => Boolean(entry))
   : [];
 
-const parentEntity = term.entity ? glossaryTerms.find((entry) => entry.slug === term.entity) : null;
+const parentEntity = term.entity ? allGlossaryTerms.find((entry) => entry.slug === term.entity) : null;
 
 const tagSubjectEntries = relatedTagArticles.map(({ tag, tagPermalink }) => ({
   "@type": "CollectionPage",
