@@ -9,6 +9,7 @@ interface ImportMetaEnv {
   readonly GLOSSARY_SEARCH_V2?: string;
   readonly TAG_HUB_V1?: string;
   readonly NAV_LOGO_LAYERED?: string;
+  readonly FEATURE_GLOSSARY_V2025?: string;
 }
 
 interface ImportMeta {

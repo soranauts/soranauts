@@ -1,6 +1,6 @@
 import { visit } from 'unist-util-visit';
 import { visitParents } from 'unist-util-visit-parents';
-import { generateGlossarySlug } from './slugify.ts';
+import { getAllTerms, getAliasEntries } from '../lib/glossary/glossary-loader.ts';
 
 const SKIP_TYPES = new Set(['link', 'inlineCode', 'code', 'image', 'imageReference']);
 const TABLE_TYPES = new Set(['table', 'tableRow', 'tableCell', 'thead', 'tbody', 'tr', 'th', 'td']);
@@ -98,59 +98,63 @@ const MAX_LINKS_PER_ARTICLE = 15;  // Total unique terms to link per article
 const MAX_LINKS_PER_PARAGRAPH = 2; // Max links in any single paragraph
 const HIGH_PRIORITY_THRESHOLD = 90;
 
-/**
- * Creates a remark plugin that automatically links glossary terms in markdown content
- * Each term is linked only ONCE per article, with even distribution throughout
- * @param {Object} glossaryData - The glossary data with terms, aliases, and slugs
- * @returns {Function} - A remark plugin function
- */
-export function createGlossaryAutoLinkPlugin(glossaryData) {
-  // V2 mode is now default (can be disabled with GLOSSARY_V2=false)
-  const useGlossaryV2 = process.env.GLOSSARY_V2 !== 'false';
-  if (!glossaryData || !glossaryData.terms) {
+export function createGlossaryAutoLinkPlugin(glossaryTerms) {
+  const terms = Array.isArray(glossaryTerms) ? glossaryTerms : [];
+  if (!terms.length) {
     console.warn('No glossary data provided to auto-link plugin');
-    return () => {}; // Return no-op plugin
+    return () => {};
   }
 
-  // Create a map of all possible terms and aliases to their slugs, categories, priorities, and foundational status
   const termMap = new Map();
   const termPriorities = new Map();
   const termCategories = new Map();
   const termFoundational = new Set();
   const termMetadata = new Map();
 
-  glossaryData.terms.forEach(term => {
-    // Ensure we use the unified slugify function for consistency
-    const unifiedSlug = generateGlossarySlug(term.term);
-    termMetadata.set(unifiedSlug, {
+  terms.forEach((term) => {
+    const slug = term.slug;
+    termMetadata.set(slug, {
       title: term.term,
-      definition: toPlainText(term.shortDef || term.summary || term.definition || ''),
+      definition: toPlainText(term.summary || term.definition || ''),
       category: term.category || '',
     });
-    
-    // Add the main term
-    termMap.set(term.term.toLowerCase(), unifiedSlug);
-    termPriorities.set(term.term.toLowerCase(), term.priority || 0);
-    termCategories.set(term.term.toLowerCase(), term.category);
-    
+
+    const baseKeys = [term.term, slug];
+    baseKeys.forEach((key) => {
+      if (!key) return;
+      const keyLower = key.toLowerCase();
+      termMap.set(keyLower, slug);
+      termPriorities.set(keyLower, term.priority || 0);
+      termCategories.set(keyLower, term.category);
+    });
+
     if (term.foundational) {
-      termFoundational.add(unifiedSlug);
+      termFoundational.add(slug);
     }
 
-    // Add aliases with longest-alias-wins logic
-    term.aliases
-      .sort((a, b) => b.length - a.length) // Sort by length descending (longest first)
-      .forEach(alias => {
+    (term.aliases ?? [])
+      .sort((a, b) => b.length - a.length)
+      .forEach((alias) => {
         const aliasLower = alias.toLowerCase();
-        // Only add if this alias has higher priority or doesn't exist
-        if (!termPriorities.has(aliasLower) || termPriorities.get(aliasLower) < (term.priority || 0)) {
-          termMap.set(aliasLower, unifiedSlug);
+        if (
+          !termPriorities.has(aliasLower) ||
+          (term.priority || 0) >= (termPriorities.get(aliasLower) || 0)
+        ) {
+          termMap.set(aliasLower, slug);
           termPriorities.set(aliasLower, term.priority || 0);
           termCategories.set(aliasLower, term.category);
         }
       });
   });
 
+  getAliasEntries().forEach((entry) => {
+    const aliasLower = entry.alias.toLowerCase();
+    if (!aliasLower) return;
+    if (!termMap.has(aliasLower)) {
+      termMap.set(aliasLower, entry.canonicalSlug);
+      termPriorities.set(aliasLower, 0);
+    }
+  });
 
   return function () {
     return (tree, file) => {
@@ -392,6 +396,8 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
           'data-title': meta.title || matchText,
           'data-def': toPlainText(meta.definition).slice(0, 240),
           'data-link-type': linkType,
+          'data-slug': slug,
+          'data-canonical-slug': slug,
           'aria-label': `Glossary term: ${meta.title || matchText}. Click for definition.`,
         };
 
@@ -447,14 +453,13 @@ export function createGlossaryAutoLinkPlugin(glossaryData) {
 export async function loadGlossaryAutoLinkPlugin() {
   try {
     console.log('🔗 Loading glossary auto-link plugin...');
-    // Load the glossary data from the JSON file
-    const glossaryData = await import('../../public/glossary.json');
-    console.log('🔗 Glossary data loaded:', glossaryData.totalCount, 'terms');
-    const plugin = createGlossaryAutoLinkPlugin(glossaryData);
-    console.log('🔗 Auto-link plugin loaded with', glossaryData.terms.length, 'terms');
+    const glossaryTerms = getAllTerms();
+    console.log('🔗 Glossary data loaded:', glossaryTerms.length, 'terms');
+    const plugin = createGlossaryAutoLinkPlugin(glossaryTerms);
+    console.log('🔗 Auto-link plugin initialized');
     return plugin;
   } catch (error) {
     console.warn('Failed to load glossary data for auto-linking:', error);
-    return () => {}; // Return no-op plugin
+    return () => {};
   }
 }

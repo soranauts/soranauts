@@ -15,6 +15,7 @@ export interface GlossarySearchTermInput {
   summary?: string;
   seeAlso?: string[];
   relatedTags?: string[];
+  canonicalSlug?: string | null;
 }
 
 export interface GlossarySearchIndexInput {
@@ -47,6 +48,7 @@ export interface GlossarySearchResponse {
 interface SearchDocument {
   input: GlossarySearchTermInput;
   slug: string;
+  canonicalSlug: string;
   normalizedTitle: string;
   titleTokens: string[];
   aliases: string[];
@@ -105,16 +107,27 @@ const levenshtein = (a: string, b: string): number => {
   return matrix[a.length][b.length];
 };
 
-export function createGlossarySearchEngine({ terms, aliasIndex }: GlossarySearchIndexInput) {
+export interface GlossarySearchEngineOptions {
+  resolveCanonicalSlug?: (slug: string) => string;
+}
+
+export function createGlossarySearchEngine(
+  { terms, aliasIndex }: GlossarySearchIndexInput,
+  options: GlossarySearchEngineOptions = {},
+) {
+  const resolveCanonicalSlug = options.resolveCanonicalSlug ?? ((slug: string) => slug);
+
   const docs: SearchDocument[] = terms.map((term) => {
     const aliases = Array.from(new Set([term.term, ...(term.aliases ?? [])]));
     const relatedTags = new Set<string>();
     (term.tags ?? []).forEach((tag) => relatedTags.add(normalize(tag)));
     (term.relatedTags ?? []).forEach((tag) => relatedTags.add(normalize(tag)));
+    const canonicalSlug = resolveCanonicalSlug(term.slug);
 
     return {
       input: term,
       slug: term.slug,
+      canonicalSlug,
       normalizedTitle: normalize(term.term),
       titleTokens: tokenize(term.term),
       aliases,
@@ -125,7 +138,9 @@ export function createGlossarySearchEngine({ terms, aliasIndex }: GlossarySearch
     } satisfies SearchDocument;
   });
 
-  const aliasMap = buildAliasMap(aliasIndex);
+  const docsByCanonicalSlug = new Map<string, SearchDocument>();
+  docs.forEach((doc) => docsByCanonicalSlug.set(doc.canonicalSlug, doc));
+  const aliasMap = buildAliasMap(aliasIndex, resolveCanonicalSlug);
 
   const search = (queryRaw: string, options: GlossarySearchOptions = {}): GlossarySearchResponse => {
     const queryNormalized = normalize(queryRaw);
@@ -240,7 +255,8 @@ export function createGlossarySearchEngine({ terms, aliasIndex }: GlossarySearch
     const candidates = aliasMap.get(key);
     if (!candidates) return undefined;
     const [best] = candidates;
-    const doc = docs.find((candidate) => candidate.slug === best.slug);
+    const doc =
+      docsByCanonicalSlug.get(best.slug) ?? docs.find((candidate) => candidate.slug === best.slug);
     if (!doc) return undefined;
     return {
       term: doc.input,
@@ -254,12 +270,16 @@ export function createGlossarySearchEngine({ terms, aliasIndex }: GlossarySearch
   };
 }
 
-function buildAliasMap(aliasIndex: AliasIndexEntry[]): Map<string, AliasIndexEntry[]> {
+function buildAliasMap(
+  aliasIndex: AliasIndexEntry[],
+  resolveCanonicalSlug: (slug: string) => string,
+): Map<string, AliasIndexEntry[]> {
   const map = new Map<string, AliasIndexEntry[]>();
   for (const alias of aliasIndex) {
     const key = normalize(alias.alias);
     if (!map.has(key)) map.set(key, []);
-    map.get(key)!.push(alias);
+    const canonicalSlug = resolveCanonicalSlug(alias.slug);
+    map.get(key)!.push({ ...alias, slug: canonicalSlug });
   }
 
   for (const [, entries] of map) {

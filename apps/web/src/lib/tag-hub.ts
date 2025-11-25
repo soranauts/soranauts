@@ -11,6 +11,8 @@ import {
   isCanonicalTag,
 } from '../data/tag-hub.config';
 import { normalizeTaxonomyValue, resolveAlias, toTagSlug } from './taxonomy';
+import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
+import { getCanonicalSlug as getCanonicalGlossarySlug } from '~/lib/glossary/glossary-loader';
 
 const FALLBACK_DOMAIN_MAP: Record<string, TagHubDomain> = {
   token: 'economics',
@@ -95,6 +97,8 @@ export interface TagHubViewModel {
   firstSeen?: string;
   lastSeen?: string;
   glossaryRef?: string;
+  glossaryCanonicalPath?: string;
+  canonicalGlossarySlug?: string | null;
   category?: TaxonomyNode['category'];
   relatedTags: string[];
   aliases: string[];
@@ -137,8 +141,21 @@ const toRelatedTagSlugs = (node: TaxonomyNode): string[] =>
         .filter((value, index, arr) => arr.indexOf(value) === index)
     : [];
 
+const normalizeGlossaryRef = (value?: string | null): { rawPath?: string; canonicalSlug?: string | null; canonicalPath?: string } => {
+  if (!value) return {};
+  const slug = value.replace(/^\/glossary\//, '').replace(/\/$/, '');
+  const canonicalSlug =
+    FEATURE_GLOSSARY_V2025 && slug ? getCanonicalGlossarySlug(slug) || slug : slug;
+  return {
+    rawPath: `/glossary/${slug}`,
+    canonicalSlug,
+    canonicalPath: canonicalSlug ? `/glossary/${canonicalSlug}` : undefined,
+  };
+};
+
 const toViewModel = (node: TaxonomyNode): TagHubViewModel => {
   const metadata = node.hub;
+  const glossaryRefInfo = normalizeGlossaryRef(node.glossaryRef);
   return {
     slug: node.slug,
     title: node.title,
@@ -149,7 +166,9 @@ const toViewModel = (node: TaxonomyNode): TagHubViewModel => {
     usageCount: node.usageCount ?? 0,
     firstSeen: node.firstSeen,
     lastSeen: node.lastSeen,
-    glossaryRef: node.glossaryRef,
+    glossaryRef: glossaryRefInfo.rawPath,
+    glossaryCanonicalPath: glossaryRefInfo.canonicalPath ?? glossaryRefInfo.rawPath,
+    canonicalGlossarySlug: glossaryRefInfo.canonicalSlug ?? null,
     category: node.category,
     relatedTags: toRelatedTagSlugs(node),
     aliases: node.aliases ?? [],

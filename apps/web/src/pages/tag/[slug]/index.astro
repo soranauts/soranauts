@@ -18,6 +18,7 @@ import {
 } from '~/lib/tag-pages';
 import type { MetaData, Post } from '~/types';
 import TagHero from '~/components/tag-hub/TagHero.astro';
+import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
 
 export const prerender = true;
 
@@ -60,10 +61,22 @@ const paginatedPosts = posts.slice(0, TAG_POSTS_PER_PAGE);
 const totalPages = Math.ceil(totalPosts / TAG_POSTS_PER_PAGE) || 1;
 
 const glossaryEntry = getGlossaryForTag(tag.slug);
-const relatedTags = (tag.relatedTags ?? [])
-  .map((relatedSlug) => getTagHubViewModel(relatedSlug))
-  .filter((related): related is NonNullable<typeof related> => Boolean(related))
-  .slice(0, 8);
+const relatedTags = (() => {
+  const seen = new Set<string>();
+  return (tag.relatedTags ?? [])
+    .map((relatedSlug) => getTagHubViewModel(relatedSlug))
+    .filter((related): related is NonNullable<typeof related> => Boolean(related))
+    .filter((related) => {
+      const key =
+        FEATURE_GLOSSARY_V2025 && related.canonicalGlossarySlug
+          ? related.canonicalGlossarySlug
+          : related.slug;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 8);
+})();
 
 const shouldIndex = shouldIndexTagPage(totalPosts, Boolean(tag.summary), Boolean(tag.glossaryRef));
 
