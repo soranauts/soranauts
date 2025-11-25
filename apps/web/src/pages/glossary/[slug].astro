@@ -1,28 +1,50 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/widgets/Header.astro';
 import Footer from '../../components/widgets/Footer.astro';
 import GlossaryHero from '~/components/glossary/GlossaryHero.astro';
 import GlossarySectionCard from '~/components/glossary/GlossarySectionCard.astro';
-import glossary from '../../../public/glossary.json';
 import { headerData, footerData } from '../../navigation';
-import fs from 'node:fs';
-import path from 'node:path';
-import { getCollection } from 'astro:content';
 import { getRelatedTags, getTaxonomyNode } from '~/lib/taxonomy';
 import { SITE, I18N } from '~/utils/config';
 import { cleanSlug, getPermalink } from '~/utils/permalinks';
+import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
+import {
+  getCanonicalSlug as getCanonicalGlossarySlug,
+  getGlossaryTerm,
+} from '~/lib/glossary/glossary-loader';
+import {
+  getCachedAliasEntries,
+  getCachedGlossaryTerms,
+} from '~/lib/glossary/glossary-data';
 
 export const prerender = true;
 
+const allGlossaryTerms = getCachedGlossaryTerms();
+
 export async function getStaticPaths() {
-  return glossary.terms.map(term => ({
+  const glossaryTerms = getCachedGlossaryTerms();
+  const aliasEntries = getCachedAliasEntries();
+
+  const canonicalPaths = glossaryTerms.map((term) => ({
     params: { slug: term.slug },
-    props: { term }
   }));
+
+  const aliasPaths = aliasEntries
+    .filter((alias) => alias.alias !== alias.canonicalSlug)
+    .map((alias) => ({
+      params: { slug: alias.alias },
+    }));
+
+  return [...canonicalPaths, ...aliasPaths];
 }
 
-const { term } = Astro.props;
+const requestedSlug = Astro.params.slug;
+const resolvedSlug = getCanonicalGlossarySlug(requestedSlug);
+const term = getGlossaryTerm(resolvedSlug);
 
 if (!term) {
   return Astro.redirect('/glossary');
@@ -74,24 +96,30 @@ const breadcrumbSchema = {
 };
 
 // Generate related terms with proper links
-const relatedTermsWithLinks = (term.relatedTerms?.map(r => {
-  const relatedTerm = glossary.terms.find(t => {
-    // Prefer exact term matches only (not aliases)
-    return t.term === r || t.term.toLowerCase() === r.toLowerCase();
-  });
-  
-  return relatedTerm && relatedTerm.slug !== term.slug ? 
-    { term: r, slug: relatedTerm.slug } : null;
-}).filter((related): related is { term: string; slug: string } => 
-  related !== null
-)) || [];
+const relatedTermsWithLinks =
+  term.relatedTerms
+    ?.map((relatedName) => {
+      const relatedTerm = allGlossaryTerms.find(
+        (entry) =>
+          entry.term === relatedName ||
+          entry.term.toLowerCase() === relatedName.toLowerCase() ||
+          entry.slug === getCanonicalGlossarySlug(relatedName),
+      );
+      return relatedTerm && relatedTerm.slug !== term.slug
+        ? { term: relatedName, slug: relatedTerm.slug }
+        : null;
+    })
+    .filter((related): related is { term: string; slug: string } => related !== null) ?? [];
 
 const taxonomyNode = getTaxonomyNode(term.slug);
 const relatedTagNodes = taxonomyNode ? getRelatedTags(taxonomyNode.slug) : [];
 
 const posts = await getCollection('post');
 
-const relatedTagArticles = relatedTagNodes.map((tagNode) => {
+const relatedTagArticles = (() => {
+  const seen = new Set<string>();
+  return relatedTagNodes
+    .map((tagNode) => {
   const tagName = tagNode.aliases?.[0] ?? tagNode.title;
   const normalizedTag = tagName.toLowerCase();
   const tagSlug = cleanSlug(tagName);
@@ -106,23 +134,31 @@ const relatedTagArticles = relatedTagNodes.map((tagNode) => {
         })
     )
     .slice(0, 4);
-  return {
-    tag: tagNode,
-    tagName,
-    tagPermalink,
-    posts: matchedPosts,
-  };
-}).filter((entry) => entry.posts.length > 0);
+      return {
+        tag: tagNode,
+        tagName,
+        tagPermalink,
+        posts: matchedPosts,
+      };
+    })
+    .filter((entry) => entry.posts.length > 0)
+    .filter((entry) => {
+      const key = entry.tag.glossaryRef ?? entry.tag.slug;
+      if (!key) return true;
+      const normalizedKey = FEATURE_GLOSSARY_V2025 ? getCanonicalGlossarySlug(key.replace(/^\/glossary\//, '')) : key;
+      if (normalizedKey && seen.has(normalizedKey)) return false;
+      if (normalizedKey) seen.add(normalizedKey);
+      return true;
+    });
+})();
 
-type GlossaryTermEntry = (typeof glossary.terms)[number];
-
-const versionEntries: GlossaryTermEntry[] = Array.isArray(term.versions)
+const versionEntries = Array.isArray(term.versions)
   ? term.versions
-      .map((slug: string) => glossary.terms.find((entry) => entry.slug === slug))
-      .filter((entry): entry is GlossaryTermEntry => Boolean(entry))
+      .map((slug: string) => allGlossaryTerms.find((entry) => entry.slug === slug))
+      .filter((entry): entry is typeof allGlossaryTerms[number] => Boolean(entry))
   : [];
 
-const parentEntity = term.entity ? glossary.terms.find((entry) => entry.slug === term.entity) : null;
+const parentEntity = term.entity ? allGlossaryTerms.find((entry) => entry.slug === term.entity) : null;
 
 const tagSubjectEntries = relatedTagArticles.map(({ tag, tagPermalink }) => ({
   "@type": "CollectionPage",

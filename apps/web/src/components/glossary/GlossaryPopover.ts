@@ -48,11 +48,12 @@ export function mountGlossaryPopover() {
 
     const titleText = (anchor.dataset.title || anchor.textContent || '').trim();
     const def = ((anchor.dataset.def || '').trim()).slice(0, 240);
+    const canonicalSlug = anchor.dataset.canonicalSlug || anchor.dataset.slug || '';
 
     title.textContent = titleText;
     body.textContent = def || 'Tap “Open full entry” to learn more.';
 
-    const href = anchor.getAttribute('href') || '#';
+    const href = anchor.getAttribute('href') || (canonicalSlug ? `/glossary/${canonicalSlug}` : '#');
     cta.href = href;
     cta.setAttribute('aria-label', `Open full glossary entry for ${titleText || 'this term'}`);
 
