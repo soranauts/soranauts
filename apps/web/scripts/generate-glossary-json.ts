@@ -63,7 +63,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const OUTPUT_PATH = path.join(__dirname, '../public/glossary.json');
-const OUTPUT_PATH_V2025 = path.join(__dirname, '../public/glossary.v2025.json');
+const DATA_DIR = path.join(__dirname, '../public/data');
+const OUTPUT_PATH_V2025 = path.join(DATA_DIR, 'glossary.v2025.json');
 const ALIAS_OUTPUT_PATH_V2025 = path.join(__dirname, '../public/glossary.aliases.v2025.json');
 const TAXONOMY_TAGS_PATH = path.join(__dirname, '../src/data/taxonomy-tags.json');
 const POSTS_DIR = path.join(__dirname, '../src/content/post');
@@ -152,6 +153,7 @@ const glossary2025Payload: Glossary2025Payload = {
   version: 2025,
 };
 
+fs.mkdirSync(DATA_DIR, { recursive: true });
 fs.writeFileSync(OUTPUT_PATH_V2025, JSON.stringify(glossary2025Payload, null, 2));
 
 const aliasPayload2025 = aliasTerms2025

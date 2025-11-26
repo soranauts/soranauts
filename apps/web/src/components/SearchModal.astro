@@ -1,4 +1,7 @@
 ---
+import { FEATURE_GLOSSARY_V2025, FEATURE_GLOSSARY_UI_CANONICAL } from '~/config/feature-flags';
+const SEARCH_ALIAS_MICROCOPY =
+  FEATURE_GLOSSARY_V2025 && FEATURE_GLOSSARY_UI_CANONICAL;
 // SearchModal.astro - Beautiful search modal component
 ---
 
@@ -114,8 +117,10 @@
   </div>
 </div>
 
-<script>
+<script type="module" is:inline define:vars={{ aliasMicrocopy: SEARCH_ALIAS_MICROCOPY }}>
   // @ts-nocheck
+  import { emit as emitGlossaryAnalytics } from '~/lib/analytics';
+  const GLOSSARY_ALIAS_MICROCOPY = aliasMicrocopy;
   const TYPE_FILTERS = [
     { id: 'all', label: 'All' },
     { id: 'glossary', label: 'Glossary' },
@@ -540,6 +545,7 @@
       }
       
       try {
+        const normalizedQuery = query ? query.trim().toLowerCase() : '';
         const search = await this.pagefind.search(query, {
           excerptLength: 32
         });
@@ -593,6 +599,22 @@
           const categoryRaw = meta.category || '';
           const aliases = Array.isArray(meta.aliases) ? meta.aliases : [];
           const summary = meta.summary || d.excerpt || d.content?.slice(0, 200) || '';
+          const aliasMatch =
+            GLOSSARY_ALIAS_MICROCOPY && normalizedQuery
+              ? aliases.find(
+                  (alias) => alias.toLowerCase() === normalizedQuery && alias.toLowerCase() !== term.toLowerCase(),
+                ) || null
+              : null;
+          const statusRaw = typeof meta.status === 'string' ? meta.status.toLowerCase() : null;
+          const slugMeta = typeof meta.slug === 'string' ? meta.slug.toLowerCase() : '';
+          const slugFromUrl =
+            url.startsWith('/glossary/')
+              ? url.replace(/\/+$/, '').split('/').pop()?.toLowerCase() ?? ''
+              : '';
+          const recordSlug = slugMeta || slugFromUrl;
+          const targetSlugMeta =
+            typeof meta.targetSlug === 'string' ? meta.targetSlug.toLowerCase() : '';
+          const targetSlug = targetSlugMeta || (recordSlug || null);
 
           glossaryResults.push({
             url,
@@ -603,7 +625,11 @@
             categoryRaw,
             aliases,
             summary,
+            matchedAlias: aliasMatch,
             score: r.score ?? 0,
+            status: statusRaw,
+            slug: recordSlug || null,
+            targetSlug,
           });
         }
         
@@ -1134,6 +1160,10 @@
       const snippet = this.highlightText(this.trimSnippet(this.cleanSnippet(snippetSource)), this.currentQuery);
       const aliases = Array.isArray(item.aliases) ? item.aliases.filter(Boolean) : [];
       const aliasChips = aliases.slice(0, 3).map((alias) => `<span class="search-modal__meta-badge">${alias}</span>`).join('');
+      const aliasMicrocopy =
+        GLOSSARY_ALIAS_MICROCOPY && item.matchedAlias
+          ? `<div class="search-result-alias">via alias ${item.matchedAlias}</div>`
+          : '';
 
       return `
         <a
@@ -1142,9 +1172,13 @@
           data-result-type="glossary"
           data-result-rank="${index + 1}"
           data-result-category="${item.categoryRaw || ''}"
+          data-glossary-status="${item.status || ''}"
+          data-glossary-slug="${item.slug || ''}"
+          data-glossary-target="${item.targetSlug || ''}"
         >
           <div class="search-modal__result-kicker">${item.category || 'Glossary'}</div>
           <h4 class="search-modal__result-title">${this.highlightText(item.term, this.currentQuery)}</h4>
+          ${aliasMicrocopy}
           <p class="search-modal__result-body">${snippet}</p>
           ${aliasChips ? `<div class="search-modal__result-meta">${aliasChips}</div>` : ''}
         </a>
@@ -1341,7 +1375,7 @@
       this.results.querySelectorAll('[data-toggle]').forEach((button) => {
         button.addEventListener('click', () => {
           const toggleTarget = button.dataset.toggle;
-          const target: 'glossary' | 'articles' | 'tags' =
+          const target =
             toggleTarget === 'glossary' ? 'glossary' : toggleTarget === 'tags' ? 'tags' : 'articles';
           this.handleMoreToggle(target);
         });
@@ -1465,6 +1499,18 @@
         type: link.dataset.resultType || 'unknown',
         category: link.dataset.resultCategory || null,
       });
+      if ((link.dataset.resultType || '') === 'glossary') {
+        const aliasStatus = link.dataset.glossaryStatus;
+        const aliasSlug = link.dataset.glossarySlug;
+        const canonicalSlug = link.dataset.glossaryTarget;
+        if (aliasStatus === 'alias' && aliasSlug && canonicalSlug) {
+          emitGlossaryAnalytics({
+            name: 'search_alias_match',
+            alias: aliasSlug,
+            target: canonicalSlug,
+          });
+        }
+      }
     }
 
     handleKeyboardNavigation(event) {
