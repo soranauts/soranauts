@@ -1,5 +1,5 @@
 import legacyGlossary from '../../../public/glossary.json';
-import glossaryV2025 from '../../../public/glossary.v2025.json';
+import glossaryV2025 from '../../../public/data/glossary.v2025.json';
 import glossaryAliasesV2025 from '../../../public/glossary.aliases.v2025.json';
 import { FEATURE_GLOSSARY_V2025 } from '../../config/feature-flags';
 
@@ -31,6 +31,8 @@ export interface GlossaryEntry {
   entity?: string;
   versions?: string[];
   summary: string | null;
+  subtitle?: string | null;
+  tagline?: string | null;
   seeAlso?: string[];
   relatedTags?: string[];
   examples?: string[];
@@ -64,6 +66,46 @@ const legacyLookup = new Map<string, LegacyGlossaryTerm>(
   legacyGlossary.terms.map((term) => [normalizeSlug(term.slug), term]),
 );
 
+const assertGlossaryDataset = (data: Glossary2025Data): void => {
+  const counts = data.terms.reduce(
+    (acc, term) => {
+      const status = term.status as GlossaryStatus;
+      if (status === 'canonical') acc.canonical += 1;
+      else if (status === 'alias') acc.alias += 1;
+      else if (status === 'deprecated') acc.deprecated += 1;
+      else acc.unknown.add(status as string);
+      return acc;
+    },
+    { canonical: 0, alias: 0, deprecated: 0, unknown: new Set<string>() },
+  );
+
+  const mismatches: string[] = [];
+  if (counts.canonical !== data.canonicalCount) {
+    mismatches.push(`canonical=${counts.canonical} (expected ${data.canonicalCount})`);
+  }
+  if (counts.alias !== data.aliasCount) {
+    mismatches.push(`alias=${counts.alias} (expected ${data.aliasCount})`);
+  }
+  if (counts.deprecated !== data.deprecatedCount) {
+    mismatches.push(`deprecated=${counts.deprecated} (expected ${data.deprecatedCount})`);
+  }
+  if (counts.unknown.size) {
+    mismatches.push(`unknown status values: ${Array.from(counts.unknown).join(', ')}`);
+  }
+
+  if (mismatches.length) {
+    const details = mismatches.join('; ');
+    throw new Error(
+      `[glossary-loader] glossary.v2025.json structure mismatch: ${details}. Aborting build.`,
+    );
+  }
+};
+
+assertGlossaryDataset(glossaryV2025);
+
+const readOptionalString = (value: unknown): string | null =>
+  typeof value === 'string' && value.trim().length ? value : null;
+
 const buildLegacyEntry = (term: LegacyGlossaryTerm): GlossaryEntry => ({
   slug: normalizeSlug(term.slug),
   term: term.term ?? term.slug,
@@ -77,6 +119,8 @@ const buildLegacyEntry = (term: LegacyGlossaryTerm): GlossaryEntry => ({
   entity: term.entity,
   versions: term.versions,
   summary: term.summary ?? term.definition ?? null,
+  subtitle: readOptionalString((term as Record<string, unknown>).subtitle),
+  tagline: readOptionalString((term as Record<string, unknown>).tagline),
   seeAlso: term.seeAlso,
   relatedTags: term.relatedTags,
   examples: term.examples,
@@ -130,6 +174,8 @@ const mergeEntry = (
     entity: legacyEntry?.entity,
     versions: legacyEntry?.versions,
     summary: canonicalTerm.summary ?? legacyEntry?.summary ?? null,
+    subtitle: legacyEntry?.subtitle ?? null,
+    tagline: legacyEntry?.tagline ?? null,
     seeAlso: legacyEntry?.seeAlso,
     relatedTags: legacyEntry?.relatedTags,
     examples: legacyEntry?.examples,
@@ -282,6 +328,34 @@ export const getStatus = (slug: string): GlossaryStatus | null => {
   if (cache.canonical.has(normalized)) return 'canonical';
   if (cache.alias.has(normalized)) return 'alias';
   if (cache.deprecated.has(normalized)) return 'deprecated';
+  return null;
+};
+
+const sanitizeOneLiner = (value?: string | null): string | null => {
+  if (!value) return null;
+  const trimmed = value.trim();
+  if (!trimmed || trimmed.toLowerCase() === 'todo') return null;
+  return trimmed;
+};
+
+const truncateLine = (value: string, maxLength: number): string =>
+  value.length <= maxLength ? value : `${value.slice(0, maxLength - 1).trimEnd()}…`;
+
+export const getOneLiner = (entry: GlossaryEntry, maxLength = 140): string | null => {
+  const primary =
+    sanitizeOneLiner(entry.summary) ??
+    sanitizeOneLiner(entry.subtitle) ??
+    sanitizeOneLiner(entry.tagline);
+
+  if (primary) {
+    return truncateLine(primary, maxLength);
+  }
+
+  const fallback = sanitizeOneLiner(entry.definition);
+  if (fallback) {
+    return truncateLine(fallback, maxLength);
+  }
+
   return null;
 };
 

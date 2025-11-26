@@ -7,7 +7,6 @@ import type {
   GlossarySearchResult,
 } from '../../lib/glossary/search';
 import { createGlossarySearchEngine } from '../../lib/glossary/search';
-import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
 
 type GlossaryJsonPayload = GlossarySearchIndexInput & {
   categories: Record<string, { name: string; count: number }>;
@@ -25,6 +24,8 @@ interface GlossarySearchV2Props {
   initialQuery?: string;
   controlsContainerId?: string;
   resultsContainerId?: string;
+  canonicalSearchEnabled?: boolean;
+  aliasMicrocopyEnabled?: boolean;
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -57,16 +58,17 @@ const fetchGlossaryData = async (): Promise<GlossaryJsonPayload> => {
   return response.json();
 };
 
-const CANONICAL_SEARCH_ENABLED = FEATURE_GLOSSARY_V2025;
 let canonicalResolverPromise: Promise<((slug: string) => string) | undefined> | null = null;
 
-const getCanonicalResolver = async (): Promise<((slug: string) => string) | undefined> => {
-  if (!CANONICAL_SEARCH_ENABLED) return undefined;
+const getCanonicalResolver = async (
+  canonicalSearchEnabled: boolean,
+): Promise<((slug: string) => string) | undefined> => {
+  if (!canonicalSearchEnabled) return undefined;
   if (!canonicalResolverPromise) {
     canonicalResolverPromise = (async () => {
       try {
         const [termsResponse, aliasesResponse] = await Promise.all([
-          fetch('/glossary.v2025.json', {
+          fetch('/data/glossary.v2025.json', {
             headers: { accept: 'application/json', 'cache-control': 'no-cache' },
           }),
           fetch('/glossary.aliases.v2025.json', {
@@ -75,7 +77,7 @@ const getCanonicalResolver = async (): Promise<((slug: string) => string) | unde
         ]);
 
         if (!termsResponse.ok) {
-          throw new Error(`Failed to load glossary.v2025.json (${termsResponse.status})`);
+          throw new Error(`Failed to load data/glossary.v2025.json (${termsResponse.status})`);
         }
 
         const canonicalData = await termsResponse.json();
@@ -116,6 +118,8 @@ export default function GlossarySearchV2({
   initialQuery = '',
   controlsContainerId,
   resultsContainerId,
+  canonicalSearchEnabled = false,
+  aliasMicrocopyEnabled = false,
 }: GlossarySearchV2Props) {
   const [searchInput, setSearchInput] = useState(initialQuery);
   const [categoryFilter, setCategoryFilter] = useState<string>('');
@@ -155,7 +159,7 @@ export default function GlossarySearchV2({
       setIsLoading(true);
       const [payload, canonicalResolver] = await Promise.all([
         fetchGlossaryData(),
-        getCanonicalResolver(),
+        getCanonicalResolver(canonicalSearchEnabled),
       ]);
       const engine = createGlossarySearchEngine(
         {
@@ -359,6 +363,9 @@ export default function GlossarySearchV2({
     const categoryLabel = result.term.category
       ? CATEGORY_LABELS[result.term.category] ?? formatLabel(result.term.category)
       : undefined;
+    const aliasLabel =
+      aliasMicrocopyEnabled && result.matchedAlias ? result.matchedAlias : null;
+
     return (
       <a
         key={result.term.slug}
@@ -384,6 +391,8 @@ export default function GlossarySearchV2({
             </button>
           )}
         </div>
+
+        {aliasLabel && <div className="search-result-alias">via alias {aliasLabel}</div>}
 
         <p className="glossary-search__result-summary">{renderMatchHighlight(result)}</p>
 

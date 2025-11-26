@@ -32,6 +32,7 @@ export interface Props {
 
 const { metadata = {}, isBlogPost = false } = Astro.props;
 const { language, textDirection } = I18N;
+const canonicalHref = metadata.canonical ?? new URL(Astro.url.pathname, SITE.site).toString();
 ---
 
 <!doctype html>
@@ -55,7 +56,7 @@ const { language, textDirection } = I18N;
     <SchemaMarkup type="organization" data={{}} />
 
     <!-- ✅ Canonical Tag -->
-    <link rel="canonical" href={new URL(Astro.url.pathname, SITE.site).toString()} />
+    <link rel="canonical" href={canonicalHref} />
   </head>
   <body>
     <slot />

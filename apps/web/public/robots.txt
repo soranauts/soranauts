@@ -3,6 +3,8 @@ Disallow:
 
 Sitemap: https://soranauts.com/sitemap.xml
 Sitemap: https://soranauts.com/sitemap-index.xml
+Sitemap: https://soranauts.com/sitemaps/sitemap-glossary-canonical.xml
+# Sitemap: https://soranauts.com/sitemaps/sitemap-glossary-alias.xml
 
 User-agent: Twitterbot
 Allow: /
