@@ -11,6 +11,11 @@ import {
   normalizeTaxonomyValue,
 } from '../src/lib/taxonomy';
 import {
+  needsSummary,
+  synthesizeSummaryFromDefinition,
+} from '../src/lib/glossary/summary';
+import { getDefinitionForSlug } from './utils/glossary-definitions';
+import {
   GLOSSARY_TERMS,
   type GlossaryStatus,
   type GlossaryTerm as ConfigGlossaryTerm,
@@ -127,13 +132,27 @@ fs.writeFileSync(
   JSON.stringify({ aliases: aliasPayload }, null, 2),
 );
 
-const to2025Term = (term: ConfigGlossaryTerm): Glossary2025Term => ({
-  slug: term.slug,
-  title: term.title,
-  summary: term.summary ?? null,
-  status: term.status,
-  targetSlug: term.status === 'canonical' ? null : term.targetSlug ?? null,
-});
+const to2025Term = (term: ConfigGlossaryTerm): Glossary2025Term => {
+  let summary = term.summary ?? null;
+
+  if (term.status === 'canonical' && needsSummary(summary)) {
+    const synthesized = synthesizeSummaryFromDefinition(getDefinitionForSlug(term.slug));
+    if (synthesized) {
+      summary = synthesized;
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn(`[generate-glossary-json] synthesized summary for ${term.slug}`);
+      }
+    }
+  }
+
+  return {
+    slug: term.slug,
+    title: term.title,
+    summary,
+    status: term.status,
+    targetSlug: term.status === 'canonical' ? null : term.targetSlug ?? null,
+  };
+};
 
 const sortBySlug = (a: Glossary2025Term, b: Glossary2025Term): number =>
   a.slug.localeCompare(b.slug);

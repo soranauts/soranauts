@@ -3,119 +3,119 @@
     {
       "slug": "adoption",
       "title": "Adoption",
-      "summary": "TODO",
+      "summary": "Adoption describes the rate at which people, partners, and institutions begin using SORA products, liquidity, and governance tooling in real-world contexts.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "analytics",
       "title": "Analytics",
-      "summary": "TODO",
+      "summary": "Analytics covers the dashboards, telemetry, and research teams tracking SORA network health, liquidity depth, bridge flow, and ecosystem growth.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "blockchain",
       "title": "Blockchain",
-      "summary": "TODO",
+      "summary": "A distributed ledger technology that maintains a continuously growing list of records secured using cryptography.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "bonding-curve",
       "title": "Bonding Curve",
-      "summary": "TODO",
+      "summary": "A smart contract that manages the supply of XOR in a rational way without human involvement.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "bridges",
       "title": "Bridges",
-      "summary": "TODO",
+      "summary": "Bridges are interoperability protocols that move assets and data between SORA and external chains so liquidity can circulate without centralized custodians.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "council",
       "title": "Council",
-      "summary": "TODO",
+      "summary": "A governance body in SORA's current Polkadot v1 governance system that consists of elected members who can propose referenda and veto dangerous proposals.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "cross-chain",
       "title": "Cross Chain",
-      "summary": "TODO",
+      "summary": "The ability to transfer assets and data between different blockchain networks.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "decentralization",
       "title": "Decentralization",
-      "summary": "TODO",
+      "summary": "Decentralization is the principle of distributing power across validators, councils, and citizens so no single entity can control the SORA economy.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "defi",
       "title": "DeFi",
-      "summary": "TODO",
+      "summary": "Decentralized Finance - financial services built on blockchain networks that operate without traditional financial intermediaries.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "dex",
       "title": "DEX",
-      "summary": "TODO",
+      "summary": "Decentralized Exchange - a cryptocurrency exchange that operates without a central authority, allowing users to trade directly with each other through smart…",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "economics",
       "title": "Economics",
-      "summary": "TODO",
+      "summary": "Economics in the SORA context refers to monetary policy, incentives, and treasury allocation that keep XOR supply, liquidity, and funding balanced.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "elastic-supply",
       "title": "Elastic Supply",
-      "summary": "TODO",
+      "summary": "A monetary policy where token supply automatically adjusts based on economic conditions and demand.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "explorer",
       "title": "Explorer",
-      "summary": "TODO",
+      "summary": "Explorer refers to the SORA blockchain explorer experiences that let anyone browse blocks, transactions, governance queues, and validator stats in real time.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "fearless-wallet",
       "title": "Fearless Wallet",
-      "summary": "TODO",
+      "summary": "Fearless Wallet is a mobile-first application by SORAMITSU that lets users manage Polkadot, Kusama, and SORA assets with staking, swaps, and governance support.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "governance",
       "title": "Governance",
-      "summary": "TODO",
+      "summary": "The system of decision-making and rule enforcement in blockchain networks.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "hashi",
       "title": "HASHI",
-      "summary": "TODO",
+      "summary": "SORA's decentralized and trustless cross-chain bridge that enables secure asset transfers between Ethereum and SORA networks.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "hyperledger",
       "title": "Hyperledger",
-      "summary": "TODO",
+      "summary": "Hyperledger is the Linux Foundation’s family of enterprise blockchain frameworks, including Hyperledger Iroha which powers SORA’s regulated deployments.",
       "status": "canonical",
       "targetSlug": null
     },
@@ -136,147 +136,147 @@
     {
       "slug": "interoperability",
       "title": "Interoperability",
-      "summary": "TODO",
+      "summary": "Interoperability is the ability for SORA assets and smart contracts to communicate with other networks through bridges, XCM, APIs, or shared standards.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "iroha",
       "title": "Iroha",
-      "summary": "TODO",
+      "summary": "An open-source, permissioned blockchain framework developed by SORAMITSU and part of the Hyperledger Foundation.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "iroha3",
       "title": "Iroha 3",
-      "summary": "TODO",
+      "summary": "Hyperledger Iroha 3 is the next-generation blockchain framework being developed for SORA v3 (Nexus).",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "kensetsu",
       "title": "Kensetsu",
-      "summary": "TODO",
+      "summary": "The Kensetsu Platform is SORA's version of MakerDAO, a decentralized finance (DeFi) solution on the SORA network that enables over-collateralized stablecoin…",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "kusd",
       "title": "KUSD",
-      "summary": "TODO",
+      "summary": "Kensetsu USD (KUSD) is an over-collateralized, algorithmically governed stablecoin built on the SORA network, pegged to the US Dollar.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "liquidity",
       "title": "Liquidity",
-      "summary": "TODO",
+      "summary": "The availability of assets for trading without significantly affecting their price.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "marketplace",
       "title": "Marketplace",
-      "summary": "TODO",
+      "summary": "Marketplace describes curated hubs where builders showcase SORA-based products, liquidity programs, or governance proposals for community discovery.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "mobile",
       "title": "Mobile",
-      "summary": "TODO",
+      "summary": "Mobile captures SORA’s focus on delivering wallets and dApps with native iOS and Android experiences so users can onboard anywhere.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "nft",
       "title": "NFT",
-      "summary": "TODO",
+      "summary": "Non-Fungible Token - a unique digital asset that represents ownership of a specific item or piece of content on the blockchain.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "parachain",
       "title": "Parachain",
-      "summary": "TODO",
+      "summary": "A parallel blockchain in the Polkadot ecosystem that connects to the main relay chain and benefits from shared security.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "parliament",
       "title": "Parliament",
-      "summary": "TODO",
+      "summary": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "payments",
       "title": "Payments",
-      "summary": "TODO",
+      "summary": "Payments covers the QR, CBDC, and merchant integrations that let SORA technology power day-to-day transactions and cross-border settlements.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "polkaswap",
       "title": "Polkaswap",
-      "summary": "TODO",
+      "summary": "A next-generation, cross-chain liquidity aggregator DEX protocol built on SORA network.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "proposal",
       "title": "Proposal",
-      "summary": "TODO",
+      "summary": "A proposal is a formal request submitted to SORA governance for funding, parameter changes, or new initiatives that citizens can evaluate.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "pswap",
       "title": "PSWAP",
-      "summary": "TODO",
+      "summary": "A deflationary token used to reward liquidity providers on Polkaswap.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "real-world-assets",
       "title": "Real-World Assets",
-      "summary": "TODO",
+      "summary": "Real-world assets (RWAs) are tangible or regulated assets that become programmable once they are tokenized.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "referendum",
       "title": "Referendum",
-      "summary": "TODO",
+      "summary": "A Democracy Referendum in SORA's current governance system (Polkadot v1 Governance, also called Governance V1).",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "roadmap",
       "title": "Roadmap",
-      "summary": "TODO",
+      "summary": "The roadmap outlines upcoming SORA releases, TON integrations, and ecosystem milestones so contributors share the same delivery plan.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "security",
       "title": "Security",
-      "summary": "TODO",
+      "summary": "The protection of blockchain networks against attacks and malicious behavior.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "sora",
       "title": "SORA",
-      "summary": "TODO",
+      "summary": "SORA is a decentralized economic network focused on programmable finance, democratic governance, and CBDC-grade infrastructure.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "sora-card",
       "title": "SORA Card",
-      "summary": "TODO",
+      "summary": "A decentralized debit card that allows users to spend their cryptocurrency in the real world.",
       "status": "canonical",
       "targetSlug": null
     },
@@ -297,35 +297,35 @@
     {
       "slug": "stablecoin",
       "title": "Stablecoin",
-      "summary": "TODO",
+      "summary": "A stablecoin is a digital asset engineered to hold a predictable value, such as KUSD or future SORA settlement tokens used for payments.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "staking",
       "title": "Staking",
-      "summary": "TODO",
+      "summary": "The process of locking tokens to support network security and earn rewards.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "substrate",
       "title": "Substrate",
-      "summary": "TODO",
+      "summary": "A modular blockchain framework developed by Parity Technologies.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "tbcd",
       "title": "TBCD",
-      "summary": "TODO",
+      "summary": "Token Bonding Curve Dollar (TBCD) is an algorithmic, non-synthetic stablecoin whose value is maintained by the SORA token bonding curve at approximately $1 USD.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "telegram",
       "title": "Telegram",
-      "summary": "TODO",
+      "summary": "Telegram is the primary chat channel where the SORA community coordinates releases, support, validator updates, and governance calls.",
       "status": "canonical",
       "targetSlug": null
     },
@@ -339,63 +339,63 @@
     {
       "slug": "tokenization",
       "title": "Tokenization",
-      "summary": "TODO",
+      "summary": "Tokenization abstracts ownership or utility into blockchain-based tokens that can be traded, fractionally owned, or used as collateral.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "tokenomics",
       "title": "Tokenomics",
-      "summary": "TODO",
+      "summary": "Tokenomics explains how XOR, VAL, PSWAP, and related assets are minted, burned, bonded, or rewarded to align incentives with long-term growth.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "ton",
       "title": "TON",
-      "summary": "TODO",
+      "summary": "TON (The Open Network) is a Telegram-backed blockchain known for high throughput and mobile-native UX that now powers TONSwap’s SORA-linked DeFi.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "tonswap",
       "title": "TONSwap",
-      "summary": "TODO",
+      "summary": "A next-generation decentralized exchange (DEX) and launchpad built on The Open Network (TON) blockchain.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "val",
       "title": "VAL",
-      "summary": "TODO",
+      "summary": "A validator reward token for the SORA network used to reward validators and stake nominators.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "validator",
       "title": "Validator",
-      "summary": "TODO",
+      "summary": "A network participant that validates transactions and maintains the blockchain.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "voting",
       "title": "Voting",
-      "summary": "TODO",
+      "summary": "Voting is the act of citizens or stakeholders signaling support for SORA governance proposals through on-chain referenda or delegated councils.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "wallet",
       "title": "Wallet",
-      "summary": "TODO",
+      "summary": "A wallet is the software that stores keys, signs transactions, and connects users to SORA DeFi apps such as Polkaswap, Fearless Wallet, or TONSwap.",
       "status": "canonical",
       "targetSlug": null
     },
     {
       "slug": "xor",
       "title": "XOR",
-      "summary": "TODO",
+      "summary": "The network utility token used for transaction fees (gas) where 50% of fees are burned and 50% go to validators.",
       "status": "canonical",
       "targetSlug": null
     }
