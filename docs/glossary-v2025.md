@@ -7,6 +7,14 @@
   - Related canonical entries
   - Optional sources block (from `term.links`)
   - Left anchor navigation with `/`, `j`, `k`, and `Enter` keyboard support, plus mobile drawer toggle.
-
-Flag toggles can be combined with the earlier V2025 flags; disabling `FEATURE_GLOSSARY_V3_UI` reverts to the legacy UI instantly.
+- **Phase 11 (Auto-link QA & Article Pass):**
+  - Hardened markdown auto-linking so only canonical slugs are linked, aliases resolve to canonical URLs, and links are skipped in headings, code, URLs, and `data-no-glossary` regions.
+  - New front matter controls per post: `glossaryNoLink` (array), `glossaryMaxLinksPerPost` (number), `glossaryMaxLinksPerTerm` (number, default `2`).
+  - Dry-run script `pnpm --filter @soranauts/web glossary:autolink:check` summarizes proposed changes; report stored at `/tmp/phase11-autolink-report.txt`.
+  - Relations script `pnpm --filter @soranauts/web glossary:relations:build` emits `public/data/article-glossary-map.json`, powering the optional `FEATURE_GLOSSARY_RELATED_ARTICLES` section on glossary terms.
+- **Phase 12 (Explorer v2 glossary context):**
+  - `FEATURE_EXPLORER_GLOSSARY_CONTEXT` (default `false`) surfaces Explorer glossary panels using `apps/web/public/data/article-glossary-map.json`.
+  - Tag (Explorer “term”) pages render `ExplorerGlossaryContext` with co-located terms + related articles, plus a shortcut to `/glossary/{slug}#definition`.
+  - Explorer domain sections render the same component (terms-only) showing top glossary chips derived from the relations map.
+  - Rebuild / refresh relations data with `pnpm --filter @soranauts/web glossary:relations:build` whenever posts or glossary links change.
 
