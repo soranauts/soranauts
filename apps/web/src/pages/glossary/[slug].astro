@@ -11,15 +11,22 @@ import { headerData, footerData } from '../../navigation';
 import { getRelatedTags, getTaxonomyNode } from '~/lib/taxonomy';
 import { SITE, I18N } from '~/utils/config';
 import { cleanSlug, getPermalink } from '~/utils/permalinks';
-import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
+import {
+  FEATURE_GLOSSARY_V2025,
+  FEATURE_GLOSSARY_UI_CANONICAL,
+  FEATURE_GLOSSARY_ALIAS_REDIRECT,
+} from '~/config/feature-flags';
 import {
   getCanonicalSlug as getCanonicalGlossarySlug,
   getGlossaryTerm,
+  getStatus as getGlossaryStatus,
 } from '~/lib/glossary/glossary-loader';
 import {
   getCachedAliasEntries,
   getCachedGlossaryTerms,
 } from '~/lib/glossary/glossary-data';
+import { shouldApplyAliasRedirect } from '~/lib/glossary/alias-redirect';
+import glossaryDatasetV2025 from '../../../public/data/glossary.v2025.json';
 
 export const prerender = true;
 
@@ -42,17 +49,72 @@ export async function getStaticPaths() {
   return [...canonicalPaths, ...aliasPaths];
 }
 
+const normalizeSlugValue = (value?: string | null): string =>
+  typeof value === 'string' ? value.trim().toLowerCase() : '';
+
 const requestedSlug = Astro.params.slug;
-const resolvedSlug = getCanonicalGlossarySlug(requestedSlug);
-const term = getGlossaryTerm(resolvedSlug);
+const normalizedInputSlug = normalizeSlugValue(requestedSlug);
+
+const canonicalSlugFromDataset = (() => {
+  if (!normalizedInputSlug) return '';
+  const aliasEntry = glossaryDatasetV2025.terms.find(
+    (entry) =>
+      normalizeSlugValue(entry.slug) === normalizedInputSlug &&
+      entry.status === 'alias' &&
+      entry.targetSlug,
+  );
+  if (aliasEntry?.targetSlug) {
+    return normalizeSlugValue(aliasEntry.targetSlug);
+  }
+  const canonicalEntry = glossaryDatasetV2025.terms.find(
+    (entry) =>
+      normalizeSlugValue(entry.slug) === normalizedInputSlug && entry.status === 'canonical',
+  );
+  return canonicalEntry ? normalizeSlugValue(canonicalEntry.slug) : '';
+})();
+
+const resolvedSlug = canonicalSlugFromDataset || getCanonicalGlossarySlug(requestedSlug);
+let term = getGlossaryTerm(resolvedSlug);
+if (!term && normalizedInputSlug && normalizedInputSlug !== resolvedSlug) {
+  term = getGlossaryTerm(normalizedInputSlug);
+}
 
 if (!term) {
   return Astro.redirect('/glossary');
 }
 
+const canonicalSlug = canonicalSlugFromDataset || term.slug;
+const requestedStatus = getGlossaryStatus(requestedSlug ?? '');
+const canonicalStatus = getGlossaryStatus(canonicalSlug);
+const aliasSlugNormalized = normalizedInputSlug;
+const aliasDisplaySlug = typeof requestedSlug === 'string' ? requestedSlug : '';
+const isAliasRequest =
+  FEATURE_GLOSSARY_UI_CANONICAL &&
+  Boolean(aliasSlugNormalized) &&
+  aliasSlugNormalized !== term.slug;
+const showCanonicalBadge = FEATURE_GLOSSARY_UI_CANONICAL && canonicalStatus === 'canonical';
+const aliasRedirectEnabled = shouldApplyAliasRedirect({
+  featureGlossaryV2025: FEATURE_GLOSSARY_V2025,
+  featureGlossaryAliasRedirect: FEATURE_GLOSSARY_ALIAS_REDIRECT,
+  requestedSlug,
+  resolvedSlug: canonicalSlug,
+});
+
+const aliasAnalyticsPayload =
+  isAliasRequest && aliasSlugNormalized
+    ? {
+        aliasSlug: aliasSlugNormalized,
+        aliasDisplay: aliasDisplaySlug,
+        canonicalSlug,
+      }
+    : null;
+
+const fallbackSite = typeof SITE.site === 'string' && SITE.site.length ? SITE.site : 'https://soranauts.com';
+const canonicalUrlBase = Astro.site ?? new URL(fallbackSite);
+const canonicalHref = new URL(`/glossary/${canonicalSlug}`, canonicalUrlBase).toString();
 const title = `${term.term} — SORA Glossary`;
 const description = term.definition?.length > 160 ? term.definition.slice(0, 157) + '…' : term.definition;
-const canonical = `https://soranauts.com/glossary/${term.slug}`;
+const canonical = canonicalHref;
 
 // Resolve OG image using manifest system (like blog posts)
 function getOgManifest(): Record<string, string> {
@@ -237,6 +299,80 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
   <main class="glossary-detail px-4 md:px-6 lg:px-12 pt-10 md:pt-12 lg:pt-14 pb-16 md:pb-20 mx-auto max-w-5xl">
     <a class="glossary-back-link" href="/glossary">← Back to glossary</a>
 
+    {FEATURE_GLOSSARY_UI_CANONICAL && isAliasRequest && (
+      <div
+        class="glossary-alias-hint"
+        role="status"
+        data-alias-banner
+        data-alias-slug={aliasAnalyticsPayload?.aliasSlug ?? ''}
+        data-canonical-slug={term.slug}
+      >
+        <div class="glossary-alias-hint__body">
+          <p>
+            You’re viewing the alias <span>{aliasAnalyticsPayload?.aliasDisplay ?? ''}</span>.
+          </p>
+          <div class="glossary-alias-hint__chip">Alias of: {term.term}</div>
+          <p>
+            Canonical term:{' '}
+            <a href={`/glossary/${canonicalSlug}`} data-alias-canonical-link>
+              {term.term}
+            </a>
+            .
+          </p>
+        </div>
+        <a class="glossary-alias-hint__cta" href={`/glossary/${canonicalSlug}`} data-alias-cta>
+          Go to canonical
+        </a>
+      </div>
+    )}
+
+    {FEATURE_GLOSSARY_UI_CANONICAL && aliasAnalyticsPayload?.aliasSlug && (
+      <script
+        type="module"
+        is:inline
+        define:vars={{ aliasSlug: aliasAnalyticsPayload.aliasSlug, canonicalSlug: aliasAnalyticsPayload.canonicalSlug }}
+      >
+        import { emit } from '~/lib/analytics';
+        const alias = aliasSlug;
+        const target = canonicalSlug;
+        if (alias && target) {
+          queueMicrotask(() => emit({ name: 'glossary_alias_view', alias, target }));
+          const cta = document.querySelector('[data-alias-cta]');
+          if (cta) {
+            cta.addEventListener(
+              'click',
+              () => emit({ name: 'glossary_alias_redirect', alias, target }),
+              { once: true },
+            );
+          }
+        }
+      </script>
+    )}
+
+    {aliasRedirectEnabled && aliasAnalyticsPayload?.aliasSlug && (
+      <script
+        type="module"
+        is:inline
+        define:vars={{
+          aliasSlug: aliasAnalyticsPayload.aliasSlug,
+          canonicalSlug: term.slug,
+        }}
+      >
+        import { emit } from '~/lib/analytics';
+        const alias = aliasSlug;
+        const targetSlug = canonicalSlug;
+        if (typeof window !== 'undefined') {
+          window.requestAnimationFrame(() => {
+            const target = `/glossary/${targetSlug}`;
+            if (window.location.pathname !== target) {
+              window.history.replaceState({}, '', target + window.location.search + window.location.hash);
+              emit({ name: 'glossary_alias_redirect', alias, target: targetSlug });
+            }
+          });
+        }
+      </script>
+    )}
+
     <GlossaryHero title={term.term} description={heroDescription} stats={heroStats}>
       <div class="glossary-detail__chips">
         {categoryLabel && term.category && (
@@ -248,6 +384,11 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
           <a class="glossary-chip glossary-chip--muted" href={`/glossary/${parentEntity.slug}`}>
             Parent · {parentEntity.term}
           </a>
+        )}
+        {showCanonicalBadge && (
+          <span class="glossary-chip glossary-chip--neutral glossary-chip--canonical" aria-label="Canonical glossary term">
+            Canonical
+          </span>
         )}
       </div>
     </GlossaryHero>
@@ -265,6 +406,9 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
             summary: term.summary ?? term.definition.slice(0, 220),
             definition: term.definition,
             url: `/glossary/${term.slug}/`,
+            status: isAliasRequest ? 'alias' : requestedStatus ?? canonicalStatus ?? 'canonical',
+            slug: typeof requestedSlug === 'string' ? requestedSlug : term.slug,
+            targetSlug: canonicalSlug,
           })}
           class="prose"
         >

@@ -10,6 +10,10 @@ interface ImportMetaEnv {
   readonly TAG_HUB_V1?: string;
   readonly NAV_LOGO_LAYERED?: string;
   readonly FEATURE_GLOSSARY_V2025?: string;
+  readonly FEATURE_GLOSSARY_UI_CANONICAL?: string;
+  readonly FEATURE_GLOSSARY_ALIAS_REDIRECT?: string;
+  readonly GLOSSARY_CARD_SHOW_UPDATED?: string;
+  readonly SITE_ORIGIN?: string;
 }
 
 interface ImportMeta {

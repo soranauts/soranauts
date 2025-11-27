@@ -1,3 +1,20 @@
+import { describe, expect, it } from 'vitest';
+
+import glossaryV2025 from '../../../public/data/glossary.v2025.json';
+
+describe('glossary alias dataset', () => {
+  it('maps all aliases to canonical slugs', () => {
+    const aliasTerms = glossaryV2025.terms.filter((term) => term.status === 'alias');
+    expect(aliasTerms.length).toBe(glossaryV2025.aliasCount);
+
+    aliasTerms.forEach((alias) => {
+      expect(alias.targetSlug, `Alias ${alias.slug} is missing targetSlug`).toBeTruthy();
+      const canonical = glossaryV2025.terms.find((term) => term.slug === alias.targetSlug);
+      expect(canonical, `Canonical slug ${alias.targetSlug} missing for alias ${alias.slug}`).toBeDefined();
+      expect(canonical?.status).toBe('canonical');
+    });
+  });
+});
 import { describe, expect, test } from 'vitest';
 
 import { readFileSync } from 'fs';

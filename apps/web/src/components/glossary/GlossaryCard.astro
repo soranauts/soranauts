@@ -1,4 +1,6 @@
 ---
+import { GLOSSARY_CARD_SHOW_UPDATED } from '~/config/feature-flags';
+
 export interface Props {
   href: string;
   title: string;
@@ -27,6 +29,10 @@ const formatLabel = (value: string): string =>
 const { href, title, summary, category, tags = [], meta = [], badge } = Astro.props;
 const categoryLabel = category ? CATEGORY_LABELS[category] ?? formatLabel(category) : undefined;
 const tagList = tags.slice(0, 6);
+const updatedStamp =
+  GLOSSARY_CARD_SHOW_UPDATED && typeof Date !== 'undefined'
+    ? new Date().toISOString().slice(0, 10)
+    : null;
 ---
 
 <a class="glossary-card" href={href} role="group">
@@ -37,6 +43,11 @@ const tagList = tags.slice(0, 6);
     </div>
   )}
   <h3 class="glossary-card__title">{title}</h3>
+  {updatedStamp && (
+    <div class="glossary-card__updated">
+      Updated on <time datetime={updatedStamp}>{updatedStamp}</time>
+    </div>
+  )}
   {summary && <p class="glossary-card__summary">{summary}</p>}
   {meta.length ? (
     <div class="glossary-card__meta">
