@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 
 interface RelatedArticle {
   title: string;
@@ -6,7 +6,7 @@ interface RelatedArticle {
   date?: string | null;
 }
 
-interface Props {
+export interface ExplorerGlossaryContextProps {
   term?: string | null;
   category?: string | null;
   relatedTerms?: string[];
@@ -24,7 +24,7 @@ const ExplorerGlossaryContext = ({
   category,
   relatedTerms = [],
   relatedArticles = [],
-}: Props) => {
+}: ExplorerGlossaryContextProps) => {
   const hasTerms = relatedTerms.length > 0;
   const hasArticles = relatedArticles.length > 0;
 
@@ -33,7 +33,6 @@ const ExplorerGlossaryContext = ({
   }
 
   const title = term ? humanize(term) : category ?? 'Glossary context';
-
   const eyebrow: ReactNode = term ? 'Explorer term' : 'Explorer category';
 
   return (

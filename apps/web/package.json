@@ -28,6 +28,7 @@
     "test:e2e": "playwright test --reporter=line",
     "e2e": "playwright test --reporter=line",
     "test:glossary": "vitest tests/unit/glossary",
+    "test:cross": "vitest --run --config vitest.config.ts --dir tests/cross",
     "web:taxonomy:validate": "tsx scripts/validate-taxonomy.ts",
     "update:canonical-tags": "tsx scripts/update-canonical-tags.ts --write --expect 52 --include-related",
     "update:canonical-tags:dry": "tsx scripts/update-canonical-tags.ts --dry-run --expect 52 --include-related",

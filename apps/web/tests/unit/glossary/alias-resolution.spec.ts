@@ -1,8 +1,23 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, test } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import glossaryV2025 from '../../../public/data/glossary.v2025.json';
+import { createGlossarySearchEngine } from '../../../src/lib/glossary/search';
 
-describe('glossary alias dataset', () => {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const glossaryData = JSON.parse(
+  readFileSync(join(__dirname, '../../../public/glossary.json'), 'utf-8'),
+);
+
+const engine = createGlossarySearchEngine({
+  terms: glossaryData.terms,
+  aliasIndex: glossaryData.aliasIndex,
+});
+
+describe('cross: glossary alias dataset', () => {
   it('maps all aliases to canonical slugs', () => {
     const aliasTerms = glossaryV2025.terms.filter((term) => term.status === 'alias');
     expect(aliasTerms.length).toBe(glossaryV2025.aliasCount);
@@ -15,25 +30,8 @@ describe('glossary alias dataset', () => {
     });
   });
 });
-import { describe, expect, test } from 'vitest';
 
-import { readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const glossaryData = JSON.parse(
-  readFileSync(join(__dirname, '../../../public/glossary.json'), 'utf-8'),
-);
-import { createGlossarySearchEngine } from '../../../src/lib/glossary/search';
-
-const engine = createGlossarySearchEngine({
-  terms: glossaryData.terms,
-  aliasIndex: glossaryData.aliasIndex,
-});
-
-describe('Glossary alias resolution', () => {
+describe('cross: glossary alias resolution', () => {
   test.each([
     ['hyperled', 'hyperledger-iroha'],
     ['Iroha V2', 'hyperledger-iroha-2'],
