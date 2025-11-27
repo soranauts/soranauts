@@ -117,7 +117,7 @@ describe('cross: autolink legacy exclusions', () => {
     applyPlugin(tree);
     const paragraph = tree.children[0];
     const link = paragraph.children.find((child) => child.type === 'link');
-    expect(link?.url).toBe('/glossary#glossary-polkaswap');
+    expect(link?.url).toBe('/glossary/polkaswap#definition');
     expect(link?.data.hProperties.class).toBe('glossary');
     expect(link?.data.hProperties['aria-label']).toContain('Glossary term');
   });
