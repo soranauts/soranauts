@@ -2,6 +2,7 @@ type FlagName =
   | 'FEATURE_GLOSSARY_V2025'
   | 'FEATURE_GLOSSARY_UI_CANONICAL'
   | 'FEATURE_GLOSSARY_ALIAS_REDIRECT'
+  | 'FEATURE_GLOSSARY_V3_UI'
   | 'TAG_HUB_V1'
   | 'GLOSSARY_CARD_SHOW_UPDATED';
 
@@ -20,6 +21,7 @@ const asBoolean = (value: string | undefined, fallback = 'false'): boolean =>
 export const FEATURE_GLOSSARY_V2025 = asBoolean(resolveFlag('FEATURE_GLOSSARY_V2025'));
 export const FEATURE_GLOSSARY_UI_CANONICAL = asBoolean(resolveFlag('FEATURE_GLOSSARY_UI_CANONICAL'));
 export const FEATURE_GLOSSARY_ALIAS_REDIRECT = asBoolean(resolveFlag('FEATURE_GLOSSARY_ALIAS_REDIRECT'));
+export const FEATURE_GLOSSARY_V3_UI = asBoolean(resolveFlag('FEATURE_GLOSSARY_V3_UI'));
 export const TAG_HUB_V1 = asBoolean(resolveFlag('TAG_HUB_V1'));
 export const GLOSSARY_CARD_SHOW_UPDATED = asBoolean(resolveFlag('GLOSSARY_CARD_SHOW_UPDATED'));
 
