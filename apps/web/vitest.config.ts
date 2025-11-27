@@ -12,6 +12,7 @@ export default defineConfig({
   },
   test: {
     globals: true,
+    setupFiles: [path.resolve(__dirname, './vitest.setup.ts')],
     exclude: [
       '**/node_modules/**',
       '**/dist/**',

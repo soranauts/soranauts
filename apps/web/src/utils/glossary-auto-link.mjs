@@ -92,6 +92,7 @@ const createEmptyReport = (filePath) => ({
     perParagraphLimit: 0,
     perPostLimit: 0,
     urlContext: 0,
+    codeContext: 0,
   },
   linkedSlugs: new Set(),
 });
@@ -201,9 +202,18 @@ export function createGlossaryAutoLinkPlugin(glossaryTerms, options = {}) {
       });
 
       const paragraphIndices = new Map();
+      const suppressedParagraphs = new WeakSet();
       let paragraphCounter = 0;
       visit(tree, 'paragraph', (node) => {
         paragraphIndices.set(node, paragraphCounter++);
+        if (
+          Array.isArray(node.children) &&
+          node.children.some(
+            (child) => child?.type === 'inlineCode' || child?.type === 'code',
+          )
+        ) {
+          suppressedParagraphs.add(node);
+        }
       });
 
       const candidateTextNodes = [];
@@ -225,6 +235,7 @@ export function createGlossaryAutoLinkPlugin(glossaryTerms, options = {}) {
             ancestors,
             paragraphNumber,
             paragraphKey,
+            parentParagraph: paragraphAncestor ?? null,
           });
         },
       );
@@ -239,6 +250,10 @@ export function createGlossaryAutoLinkPlugin(glossaryTerms, options = {}) {
 
       for (const entry of candidateTextNodes) {
         if (isSkippable(entry.ancestors)) continue;
+        if (entry.parentParagraph && suppressedParagraphs.has(entry.parentParagraph)) {
+          report.skipped.codeContext += 1;
+          continue;
+        }
         
         const original = entry.textNode.value;
         if (!original || !original.trim()) continue;
