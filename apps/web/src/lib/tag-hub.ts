@@ -12,7 +12,11 @@ import {
 } from '../data/tag-hub.config';
 import { normalizeTaxonomyValue, resolveAlias, toTagSlug } from './taxonomy';
 import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
-import { getCanonicalSlug as getCanonicalGlossarySlug } from '~/lib/glossary/glossary-loader';
+import {
+  getCanonicalSlug as getCanonicalGlossarySlug,
+  getGlossaryTerm,
+  type GlossaryEntry,
+} from '~/lib/glossary/glossary-loader';
 
 const FALLBACK_DOMAIN_MAP: Record<string, TagHubDomain> = {
   token: 'economics',
@@ -225,6 +229,52 @@ export const getTagHubMetadata = (slug: string): TagHubMetadataEntry | undefined
   tagHubMetadata[slug];
 
 export const getTagHubQuickPathConfig = (): TagHubQuickPath[] => [...tagHubQuickPaths];
+
+const normalizeTagSlug = (slug: string): string => slug.replace(/^tag-/, '').toLowerCase();
+
+export interface TagGlossarySelectionOptions {
+  taxonomyEntry?: TaxonomyNode | null;
+  fallbackSlugs?: string[];
+}
+
+export interface TagGlossarySelectionResult {
+  entry: GlossaryEntry | null;
+  canonicalSlug: string | null;
+}
+
+export const resolveTagGlossarySelection = (
+  tag: TagHubViewModel,
+  options: TagGlossarySelectionOptions = {},
+): TagGlossarySelectionResult => {
+  const resolvedTagSlug = normalizeTagSlug(tag.slug);
+  const canonicalMatch = getGlossaryTerm(resolvedTagSlug);
+  const canonicalEntry =
+    canonicalMatch && canonicalMatch.status === 'canonical' ? canonicalMatch : null;
+
+  let entry = canonicalEntry ?? options.taxonomyEntry ?? null;
+
+  const canonicalSlugCandidate =
+    canonicalEntry?.slug ??
+    (typeof tag.canonicalGlossarySlug === 'string' && tag.canonicalGlossarySlug.length
+      ? tag.canonicalGlossarySlug
+      : options.taxonomyEntry?.slug ?? null) ??
+    null;
+
+  if (!entry && options.fallbackSlugs?.length) {
+    for (const slug of options.fallbackSlugs) {
+      const fallbackEntry = getGlossaryTerm(slug);
+      if (fallbackEntry && fallbackEntry.status === 'canonical') {
+        entry = fallbackEntry;
+        break;
+      }
+    }
+  }
+
+  return {
+    entry,
+    canonicalSlug: canonicalSlugCandidate ?? entry?.slug ?? null,
+  };
+};
 
 
 

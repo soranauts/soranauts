@@ -10,6 +10,7 @@ import {
   formatTagLabel,
   getAllTagHubViewModels,
   getTagHubViewModel,
+  resolveTagGlossarySelection,
 } from '~/lib/tag-hub';
 import {
   getPostsForTagSlug,
@@ -71,7 +72,10 @@ const totalPosts = posts.length;
 const paginatedPosts = posts.slice(0, TAG_POSTS_PER_PAGE);
 const totalPages = Math.ceil(totalPosts / TAG_POSTS_PER_PAGE) || 1;
 
-const glossaryEntry = getGlossaryForTag(tag.slug);
+const taxonomyGlossaryEntry = getGlossaryForTag(tag.slug);
+const initialSelection = resolveTagGlossarySelection(tag, { taxonomyEntry: taxonomyGlossaryEntry });
+let glossaryEntry = initialSelection.entry;
+let canonicalTermSlug = initialSelection.canonicalSlug;
 const relatedTags = (() => {
   const seen = new Set<string>();
   return (tag.relatedTags ?? [])
@@ -94,23 +98,6 @@ const shouldIndex = shouldIndexTagPage(totalPosts, Boolean(tag.summary), Boolean
 const canonicalPath = `/tag/${tag.slug.replace(/^tag-/, '')}`;
 
 const formattedLabel = formatTagLabel(tag.slug, tag.title);
-
-const metadata: MetaData = {
-  title: `${formattedLabel} — SORA Topic`,
-  description:
-    tag.summary ??
-    glossaryEntry?.summary ??
-    `Explore curated resources, glossary context, and the latest posts for ${formattedLabel} in the SORA ecosystem.`,
-  canonical: `https://soranauts.com${canonicalPath}`,
-  robots: {
-    index: shouldIndex,
-    follow: true,
-  },
-  openGraph: {
-    type: 'article',
-    url: `https://soranauts.com${canonicalPath}`,
-  },
-};
 
 const firstSeen = tag.firstSeen ? new Date(tag.firstSeen) : undefined;
 const lastSeen = tag.lastSeen ? new Date(tag.lastSeen) : undefined;
@@ -135,19 +122,6 @@ const domainLabels: Record<string, string> = {
 const domainLabel =
   domainLabels[tag.domain] ?? tag.domain.replace(/-/g, ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase());
 
-const pagefindMeta = {
-  type: 'tag',
-  title: formattedLabel,
-  description: metadata.description,
-  url: `${canonicalPath}/`,
-  domain: tag.domain,
-  domainLabel,
-  usageCount: tag.usageCount,
-  firstSeen: tag.firstSeen ?? null,
-  lastUpdated: tag.lastSeen ?? null,
-  traits: tag.traits,
-};
-
 const formatArticleDate = (value?: string | Date) => {
   if (!value) return null;
   const parsed = typeof value === 'string' ? new Date(value) : value;
@@ -158,11 +132,6 @@ const formatArticleDate = (value?: string | Date) => {
     year: 'numeric',
   }).format(parsed);
 };
-
-const canonicalTermSlug =
-  (typeof tag.canonicalGlossarySlug === 'string' && tag.canonicalGlossarySlug.length
-    ? tag.canonicalGlossarySlug
-    : glossaryEntry?.slug) ?? null;
 
 type RelatedArticleCard = { title: string; href: string; date: string | null };
 
@@ -190,6 +159,45 @@ const relatedTermsFromMap =
   FEATURE_EXPLORER_GLOSSARY_CONTEXT && canonicalTermSlug
     ? getCoLocatedTerms(canonicalTermSlug)
     : [];
+
+if (!glossaryEntry && relatedTermsFromMap.length > 0) {
+  const fallbackSelection = resolveTagGlossarySelection(tag, {
+    taxonomyEntry: taxonomyGlossaryEntry,
+    fallbackSlugs: relatedTermsFromMap,
+  });
+  glossaryEntry = fallbackSelection.entry;
+  canonicalTermSlug = canonicalTermSlug ?? fallbackSelection.canonicalSlug ?? fallbackSelection.entry?.slug ?? null;
+}
+
+const metadata: MetaData = {
+  title: `${formattedLabel} — SORA Topic`,
+  description:
+    tag.summary ??
+    glossaryEntry?.summary ??
+    `Explore curated resources, glossary context, and the latest posts for ${formattedLabel} in the SORA ecosystem.`,
+  canonical: `https://soranauts.com${canonicalPath}`,
+  robots: {
+    index: shouldIndex,
+    follow: true,
+  },
+  openGraph: {
+    type: 'article',
+    url: `https://soranauts.com${canonicalPath}`,
+  },
+};
+
+const pagefindMeta = {
+  type: 'tag',
+  title: formattedLabel,
+  description: metadata.description,
+  url: `${canonicalPath}/`,
+  domain: tag.domain,
+  domainLabel,
+  usageCount: tag.usageCount,
+  firstSeen: tag.firstSeen ?? null,
+  lastUpdated: tag.lastSeen ?? null,
+  traits: tag.traits,
+};
 ---
 
 <PageLayout metadata={metadata}>
