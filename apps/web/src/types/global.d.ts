@@ -2,7 +2,7 @@
 
 declare global {
   interface Window {
-    posthog: {
+    posthog?: {
       init: (apiKey: string, config?: any) => void;
       opt_out_capturing: () => void;
       opt_in_capturing: () => void;
@@ -10,6 +10,7 @@ declare global {
       identify: (userId: string, properties?: any) => void;
       [key: string]: any;
     };
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
