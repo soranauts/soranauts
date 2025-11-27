@@ -1,3 +1,9 @@
+const findLink = (node?: TestNode) =>
+  node?.children?.find((child: TestNode) => child.type === 'link');
+
+const filterLinks = (node?: TestNode) =>
+  node?.children?.filter((child: TestNode) => child.type === 'link') ?? [];
+
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { createGlossaryAutoLinkPlugin } from '../../src/utils/glossary-auto-link.mjs';
 
@@ -28,9 +34,15 @@ const mockGlossaryTerms = [
   },
 ];
 
-const cloneTree = (tree) => JSON.parse(JSON.stringify(tree));
+type TestNode = {
+  type: string;
+  children?: TestNode[];
+  [key: string]: any;
+};
 
-const applyPlugin = (tree) => {
+const cloneTree = (tree: TestNode): TestNode => JSON.parse(JSON.stringify(tree));
+
+const applyPlugin = (tree: TestNode): TestNode => {
   const plugin = createGlossaryAutoLinkPlugin(mockGlossaryTerms);
   const transformer = plugin();
   expect(typeof transformer).toBe('function');
@@ -38,7 +50,7 @@ const applyPlugin = (tree) => {
   return tree;
 };
 
-let previousEnv;
+let previousEnv: string | undefined;
 
 beforeEach(() => {
   previousEnv = process.env.GLOSSARY_V2;
@@ -80,8 +92,8 @@ describe('cross: autolink legacy exclusions', () => {
     });
 
     applyPlugin(tree);
-    const paragraph = tree.children[0];
-    const links = paragraph.children.filter((child) => child.type === 'link');
+    const paragraph = tree.children?.[0] as TestNode | undefined;
+    const links = filterLinks(paragraph);
     expect(links).toHaveLength(0);
   });
 
@@ -97,10 +109,11 @@ describe('cross: autolink legacy exclusions', () => {
     });
 
     applyPlugin(tree);
-    const paragraph = tree.children[0];
-    const links = paragraph.children.filter((child) => child.type === 'link');
+    const paragraph = tree.children?.[0] as TestNode | undefined;
+    const links = filterLinks(paragraph);
     expect(links).toHaveLength(1);
-    expect(links[0].children[0].value).toBe('XOR');
+    const firstLink = links[0]!;
+    expect(firstLink.children?.[0]?.value).toBe('XOR');
   });
 
   it('emits tooltip attributes in legacy mode', () => {
@@ -115,11 +128,13 @@ describe('cross: autolink legacy exclusions', () => {
     });
 
     applyPlugin(tree);
-    const paragraph = tree.children[0];
-    const link = paragraph.children.find((child) => child.type === 'link');
-    expect(link?.url).toBe('/glossary/polkaswap#definition');
-    expect(link?.data.hProperties.class).toBe('glossary');
-    expect(link?.data.hProperties['aria-label']).toContain('Glossary term');
+    const paragraph = tree.children?.[0] as TestNode | undefined;
+    const link = findLink(paragraph);
+    expect(link).toBeDefined();
+    if (!link) return;
+    expect(link.url).toBe('/glossary/polkaswap#definition');
+    expect(link.data?.hProperties?.class).toBe('glossary');
+    expect(link.data?.hProperties?.['aria-label']).toContain('Glossary term');
   });
 });
 
@@ -137,13 +152,16 @@ describe('cross: autolink v2 mode', () => {
     });
 
     applyPlugin(tree);
-    const paragraph = tree.children[0];
-    const link = paragraph.children.find((child) => child.type === 'link');
-    expect(link.data.hProperties.class).toBe('glossary');
-    expect(link.data.hProperties['data-cat']).toBe('defi');
-    expect(link.data.hProperties['data-title']).toBe('PolkaSwap');
-    expect(link.data.hProperties['data-def']).toContain('Cross-chain liquidity');
-    expect(link.data.hProperties['aria-describedby']).toBeUndefined();
+    const paragraph = tree.children?.[0] as TestNode | undefined;
+    const link = findLink(paragraph);
+    expect(link).toBeDefined();
+    if (!link) return;
+    expect(link.url).toBe('/glossary/polkaswap#definition');
+    expect(link.data?.hProperties?.class).toBe('glossary');
+    expect(link.data?.hProperties?.['data-cat']).toBe('defi');
+    expect(link.data?.hProperties?.['data-title']).toBe('PolkaSwap');
+    expect(link.data?.hProperties?.['data-def']).toContain('Cross-chain liquidity');
+    expect(link.data?.hProperties?.['aria-describedby']).toBeUndefined();
   });
 
   it('skips headings and data-no-glossary regions', () => {
@@ -175,16 +193,17 @@ describe('cross: autolink v2 mode', () => {
     });
 
     applyPlugin(tree);
-    const heading = tree.children[0];
-    const guardedParagraph = tree.children[1];
-    const linkedParagraph = tree.children[2];
+    const heading = tree.children?.[0] as TestNode | undefined;
+    const guardedParagraph = tree.children?.[1] as TestNode | undefined;
+    const linkedParagraph = tree.children?.[2] as TestNode | undefined;
 
-    expect(heading.children.find((child) => child.type === 'link')).toBeUndefined();
-    const span = guardedParagraph.children[0];
-    expect(span.children.some((child) => child.type === 'link')).toBe(false);
-    const link = linkedParagraph.children.find((child) => child.type === 'link');
+    expect(findLink(heading)).toBeUndefined();
+    const span = guardedParagraph?.children?.[0] as TestNode | undefined;
+    expect(span?.children?.some((child: TestNode) => child.type === 'link') ?? false).toBe(false);
+    const link = findLink(linkedParagraph);
     expect(link).toBeDefined();
-    expect(link.data.hProperties.class).toBe('glossary');
+    if (!link) return;
+    expect(link.data?.hProperties?.class).toBe('glossary');
   });
 
   it('is idempotent when run multiple times', () => {
@@ -202,9 +221,10 @@ describe('cross: autolink v2 mode', () => {
     applyPlugin(tree);
     applyPlugin(tree);
 
-    const paragraph = tree.children[0];
-    const links = paragraph.children.filter((child) => child.type === 'link');
+    const paragraph = tree.children?.[0] as TestNode | undefined;
+    const links = filterLinks(paragraph);
     expect(links.length).toBeGreaterThan(0);
-    expect(links[0].data.hProperties.class).toBe('glossary');
+    const firstLink = links[0]!;
+    expect(firstLink.data?.hProperties?.class).toBe('glossary');
   });
 });
