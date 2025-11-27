@@ -1,0 +1,27 @@
+import React from 'react';
+
+interface GlossaryRelatedProps {
+  items: Array<{ term: string; href: string }>;
+}
+
+const GlossaryRelated = ({ items }: GlossaryRelatedProps) => {
+  if (!items.length) return null;
+
+  return (
+    <section id="related" className="glossary-v3__section" aria-labelledby="related-heading">
+      <h3 id="related-heading">Related terms</h3>
+      <ul className="glossary-v3__related-list">
+        {items.map((item) => (
+          <li key={item.href}>
+            <a className="glossary-v3__chip" href={item.href}>
+              {item.term}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+};
+
+export default GlossaryRelated;
+

@@ -15,6 +15,7 @@ import {
   FEATURE_GLOSSARY_V2025,
   FEATURE_GLOSSARY_UI_CANONICAL,
   FEATURE_GLOSSARY_ALIAS_REDIRECT,
+  FEATURE_GLOSSARY_V3_UI,
 } from '~/config/feature-flags';
 import {
   getCanonicalSlug as getCanonicalGlossarySlug,
@@ -27,6 +28,7 @@ import {
 } from '~/lib/glossary/glossary-data';
 import { shouldApplyAliasRedirect } from '~/lib/glossary/alias-redirect';
 import glossaryDatasetV2025 from '../../../public/data/glossary.v2025.json';
+import GlossaryTermPage from '~/components/glossary/v3/GlossaryTermPage';
 
 export const prerender = true;
 
@@ -93,6 +95,7 @@ const isAliasRequest =
   Boolean(aliasSlugNormalized) &&
   aliasSlugNormalized !== term.slug;
 const showCanonicalBadge = FEATURE_GLOSSARY_UI_CANONICAL && canonicalStatus === 'canonical';
+const featureGlossaryV3Enabled = FEATURE_GLOSSARY_V3_UI && canonicalStatus === 'canonical';
 const aliasRedirectEnabled = shouldApplyAliasRedirect({
   featureGlossaryV2025: FEATURE_GLOSSARY_V2025,
   featureGlossaryAliasRedirect: FEATURE_GLOSSARY_ALIAS_REDIRECT,
@@ -108,6 +111,18 @@ const aliasAnalyticsPayload =
         canonicalSlug,
       }
     : null;
+const pagefindPayload = {
+  type: 'glossary',
+  term: term.term,
+  category: term.category,
+  aliases: term.aliases || [],
+  summary: term.summary ?? term.definition.slice(0, 220),
+  definition: term.definition,
+  url: `/glossary/${term.slug}/`,
+  status: isAliasRequest ? 'alias' : requestedStatus ?? canonicalStatus ?? 'canonical',
+  slug: typeof requestedSlug === 'string' ? requestedSlug : term.slug,
+  targetSlug: canonicalSlug,
+};
 
 const fallbackSite = typeof SITE.site === 'string' && SITE.site.length ? SITE.site : 'https://soranauts.com';
 const canonicalUrlBase = Astro.site ?? new URL(fallbackSite);
@@ -373,175 +388,198 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
       </script>
     )}
 
-    <GlossaryHero title={term.term} description={heroDescription} stats={heroStats}>
-      <div class="glossary-detail__chips">
-        {categoryLabel && term.category && (
-          <a class="glossary-chip" href={`/glossary#${encodeURIComponent(term.category)}`}>
-            {categoryLabel}
-          </a>
-        )}
-        {parentEntity && (
-          <a class="glossary-chip glossary-chip--muted" href={`/glossary/${parentEntity.slug}`}>
-            Parent · {parentEntity.term}
-          </a>
-        )}
-        {showCanonicalBadge && (
-          <span class="glossary-chip glossary-chip--neutral glossary-chip--canonical" aria-label="Canonical glossary term">
-            Canonical
-          </span>
-        )}
-      </div>
-    </GlossaryHero>
+    {featureGlossaryV3Enabled && (
+      <article
+        class="sr-only"
+        aria-hidden="true"
+        data-pagefind-body
+        data-pagefind-url={`/glossary/${term.slug}/`}
+        data-pagefind-meta={JSON.stringify(pagefindPayload)}
+      >
+        <span data-pagefind-filter="type:glossary"></span>
+        <span data-pagefind-filter={`category:${term.category}`}></span>
+        <p>{term.definition}</p>
+      </article>
+    )}
 
-    <div class="glossary-detail__stack">
+    {featureGlossaryV3Enabled ? (
+      <GlossaryTermPage
+        client:load
+        title={term.term}
+        summary={term.summary ?? null}
+        definition={term.definition ?? ''}
+        whyItMatters={term.tagline ?? term.subtitle ?? null}
+        related={relatedTermsWithLinks.map((related) => ({
+          term: related.term,
+          href: `/glossary/${related.slug}`,
+        }))}
+        sources={(term.links ?? []).map((link) => ({
+          label: link.label,
+          url: link.url,
+        }))}
+      />
+    ) : (
+      <>
+        <GlossaryHero title={term.term} description={heroDescription} stats={heroStats}>
+          <div class="glossary-detail__chips">
+            {categoryLabel && term.category && (
+              <a class="glossary-chip" href={`/glossary#${encodeURIComponent(term.category)}`}>
+                {categoryLabel}
+              </a>
+            )}
+            {parentEntity && (
+              <a class="glossary-chip glossary-chip--muted" href={`/glossary/${parentEntity.slug}`}>
+                Parent · {parentEntity.term}
+              </a>
+            )}
+            {showCanonicalBadge && (
+              <span class="glossary-chip glossary-chip--neutral glossary-chip--canonical" aria-label="Canonical glossary term">
+                Canonical
+              </span>
+            )}
+          </div>
+        </GlossaryHero>
+
+        <div class="glossary-detail__stack">
       <GlossarySectionCard kicker="Core definition" title="What it means">
         <article
           data-pagefind-body
           data-pagefind-url={`/glossary/${term.slug}/`}
-          data-pagefind-meta={JSON.stringify({
-            type: 'glossary',
-            term: term.term,
-            category: term.category,
-            aliases: term.aliases || [],
-            summary: term.summary ?? term.definition.slice(0, 220),
-            definition: term.definition,
-            url: `/glossary/${term.slug}/`,
-            status: isAliasRequest ? 'alias' : requestedStatus ?? canonicalStatus ?? 'canonical',
-            slug: typeof requestedSlug === 'string' ? requestedSlug : term.slug,
-            targetSlug: canonicalSlug,
-          })}
+          data-pagefind-meta={JSON.stringify(pagefindPayload)}
           class="prose"
         >
-          <span data-pagefind-filter="type:glossary"></span>
-          <span data-pagefind-filter={`category:${term.category}`}></span>
-          <span class="sr-only" aria-hidden="true">
-            {term.term} {term.aliases?.join(' ')} {term.category} glossary
-          </span>
-          <p>{term.definition}</p>
-        </article>
+              <span data-pagefind-filter="type:glossary"></span>
+              <span data-pagefind-filter={`category:${term.category}`}></span>
+              <span class="sr-only" aria-hidden="true">
+                {term.term} {term.aliases?.join(' ')} {term.category} glossary
+              </span>
+              <p>{term.definition}</p>
+            </article>
 
-        {parentEntity && (
-          <div class="glossary-note">
-            <span class="glossary-note__label">Parent entity</span>
-            <a class="glossary-note__link" href={`/glossary/${parentEntity.slug}`}>
-              {parentEntity.term}
-            </a>
-          </div>
-        )}
-      </GlossarySectionCard>
-
-      {versionEntries.length > 0 && (
-        <GlossarySectionCard title="Version history" description="Adjacent glossary entries that track releases and upgrades.">
-          <div class="glossary-list glossary-list--stacked">
-            {versionEntries.map((version) => (
-              <a class="glossary-related-link" href={`/glossary/${version.slug}`}>
-                <span class="glossary-related-link__title">{version.term}</span>
-                <span class="glossary-related-link__summary">{version.summary ?? version.definition}</span>
-              </a>
-            ))}
-          </div>
-        </GlossarySectionCard>
-      )}
-
-      {aliasList.length > 0 && (
-        <GlossarySectionCard title="Also known as" description="Alternate spellings and abbreviations linked to this entry.">
-          <ul class="glossary-list">
-            {aliasList.map((alias) => (
-              <li>
-                <a class="glossary-chip glossary-chip--muted" href={`/glossary#${encodeURIComponent(alias)}`}>
-                  {alias}
+            {parentEntity && (
+              <div class="glossary-note">
+                <span class="glossary-note__label">Parent entity</span>
+                <a class="glossary-note__link" href={`/glossary/${parentEntity.slug}`}>
+                  {parentEntity.term}
                 </a>
-              </li>
-            ))}
-          </ul>
-        </GlossarySectionCard>
-      )}
-
-      {glossaryTags.length > 0 && (
-        <GlossarySectionCard title="Glossary tags">
-          <ul class="glossary-list">
-            {glossaryTags.map((tag) => (
-              <li>
-                <a class="glossary-chip glossary-chip--muted" href={`/glossary#${encodeURIComponent(tag)}`}>
-                  #{formatLabel(tag)}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </GlossarySectionCard>
-      )}
-
-      {relatedTermsWithLinks.length > 0 && (
-        <GlossarySectionCard title="Related glossary entries">
-          <ul class="glossary-list">
-            {relatedTermsWithLinks.map((related) => (
-              <li>
-                <a class="glossary-chip glossary-chip--muted" href={`/glossary/${related.slug}`}>
-                  {related.term}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </GlossarySectionCard>
-      )}
-
-      {relatedTagArticles.length > 0 && (
-        <GlossarySectionCard title="Explorer coverage" description="Recent Soranauts articles tagged with this glossary concept.">
-          <div class="glossary-related">
-            {relatedTagArticles.map(({ tag, tagPermalink, posts }) => (
-              <div class="glossary-related__item">
-                <div class="glossary-related__header">
-                  <div class="glossary-related__title">#{formatLabel(tag.title)}</div>
-                  <a class="glossary-related__action" href={tagPermalink}>
-                    View Explorer tag
-                  </a>
-                </div>
-                <ul class="glossary-related__list">
-                  {posts.map((post) => {
-                    const postPermalink = getPermalink(post.slug, 'post');
-                    return (
-                      <li class="glossary-related__list-item">
-                        <a href={postPermalink}>{post.data.title}</a>
-                        {post.data.publishDate && <time>{dateFormatter.format(post.data.publishDate)}</time>}
-                      </li>
-                    );
-                  })}
-                </ul>
               </div>
-            ))}
-          </div>
-        </GlossarySectionCard>
-      )}
+            )}
+          </GlossarySectionCard>
 
-      {term.examples && term.examples.length > 0 && (
-        <GlossarySectionCard title="Examples" description="Common scenarios where this concept appears.">
-          <ul class="glossary-list glossary-list--stacked">
-            {term.examples.map((example) => (
-              <li class="glossary-list__bullet">{example}</li>
-            ))}
-          </ul>
-        </GlossarySectionCard>
-      )}
+          {versionEntries.length > 0 && (
+            <GlossarySectionCard title="Version history" description="Adjacent glossary entries that track releases and upgrades.">
+              <div class="glossary-list glossary-list--stacked">
+                {versionEntries.map((version) => (
+                  <a class="glossary-related-link" href={`/glossary/${version.slug}`}>
+                    <span class="glossary-related-link__title">{version.term}</span>
+                    <span class="glossary-related-link__summary">{version.summary ?? version.definition}</span>
+                  </a>
+                ))}
+              </div>
+            </GlossarySectionCard>
+          )}
 
-      {term.links && term.links.length > 0 && (
-        <GlossarySectionCard title="More resources">
-          <ul class="glossary-list glossary-list--stacked">
-            {term.links.map((link) => (
-              <li>
-                <a
-                  class="glossary-related-link glossary-related-link--external"
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </GlossarySectionCard>
-      )}
-    </div>
+          {aliasList.length > 0 && (
+            <GlossarySectionCard title="Also known as" description="Alternate spellings and abbreviations linked to this entry.">
+              <ul class="glossary-list">
+                {aliasList.map((alias) => (
+                  <li>
+                    <a class="glossary-chip glossary-chip--muted" href={`/glossary#${encodeURIComponent(alias)}`}>
+                      {alias}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </GlossarySectionCard>
+          )}
+
+          {glossaryTags.length > 0 && (
+            <GlossarySectionCard title="Glossary tags">
+              <ul class="glossary-list">
+                {glossaryTags.map((tag) => (
+                  <li>
+                    <a class="glossary-chip glossary-chip--muted" href={`/glossary#${encodeURIComponent(tag)}`}>
+                      #{formatLabel(tag)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </GlossarySectionCard>
+          )}
+
+          {relatedTermsWithLinks.length > 0 && (
+            <GlossarySectionCard title="Related glossary entries">
+              <ul class="glossary-list">
+                {relatedTermsWithLinks.map((related) => (
+                  <li>
+                    <a class="glossary-chip glossary-chip--muted" href={`/glossary/${related.slug}`}>
+                      {related.term}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </GlossarySectionCard>
+          )}
+
+          {relatedTagArticles.length > 0 && (
+            <GlossarySectionCard title="Explorer coverage" description="Recent Soranauts articles tagged with this glossary concept.">
+              <div class="glossary-related">
+                {relatedTagArticles.map(({ tag, tagPermalink, posts }) => (
+                  <div class="glossary-related__item">
+                    <div class="glossary-related__header">
+                      <div class="glossary-related__title">#{formatLabel(tag.title)}</div>
+                      <a class="glossary-related__action" href={tagPermalink}>
+                        View Explorer tag
+                      </a>
+                    </div>
+                    <ul class="glossary-related__list">
+                      {posts.map((post) => {
+                        const postPermalink = getPermalink(post.slug, 'post');
+                        return (
+                          <li class="glossary-related__list-item">
+                            <a href={postPermalink}>{post.data.title}</a>
+                            {post.data.publishDate && <time>{dateFormatter.format(post.data.publishDate)}</time>}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </GlossarySectionCard>
+          )}
+
+          {term.examples && term.examples.length > 0 && (
+            <GlossarySectionCard title="Examples" description="Common scenarios where this concept appears.">
+              <ul class="glossary-list glossary-list--stacked">
+                {term.examples.map((example) => (
+                  <li class="glossary-list__bullet">{example}</li>
+                ))}
+              </ul>
+            </GlossarySectionCard>
+          )}
+
+          {term.links && term.links.length > 0 && (
+            <GlossarySectionCard title="More resources">
+              <ul class="glossary-list glossary-list--stacked">
+                {term.links.map((link) => (
+                  <li>
+                    <a
+                      class="glossary-related-link glossary-related-link--external"
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </GlossarySectionCard>
+          )}
+        </div>
+      </>
+    )}
   </main>
 
   <Footer {...footerData} />
