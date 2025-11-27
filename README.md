@@ -317,6 +317,12 @@ Soranauts specializes in comprehensive coverage of:
 
 <br>
 
+## Glossary v2025 Overview
+
+- [Phase chronology & notes](docs/glossary-v2025.md)
+- [Phase 14 release checklist](docs/release/glossary-v2025-phase14.md)
+- [Feature flag reference](docs/glossary/FEATURE_FLAGS.md)
+
 ## Related Projects
 
 - [SORA Network](https://sora.org) - The official SORA blockchain network

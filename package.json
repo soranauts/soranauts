@@ -21,6 +21,7 @@
     "dev:web": "pnpm --filter ./apps/web dev",
     "dev:glossary:v3": "FEATURE_GLOSSARY_V3_UI=true pnpm --filter @soranauts/web dev",
     "pre-push": "cd apps/web && pnpm install --frozen-lockfile && pnpm build && pnpm test",
+    "release:tag:glossary": "node scripts/release-tag.js",
     "kb:ingest": "tsx knowledge_base/scripts/ingest.ts",
     "kb:ingest:ci": "CHROMA_STRICT=1 tsx knowledge_base/scripts/ingest.ts",
     "kb:ingest:local": "LOCAL_EMBED_STORE=duckdb tsx knowledge_base/scripts/ingest.ts"
