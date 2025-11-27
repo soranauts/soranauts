@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
 import BlogList from '~/components/blog/List.astro';
 import Pagination from '~/components/blog/Pagination.astro';
@@ -6,6 +7,7 @@ import { TAG_HUB_V1_ENABLED } from '~/utils/featureFlags';
 import {
   formatTagLabel,
   getAllTagHubViewModels,
+  resolveTagGlossarySelection,
 } from '~/lib/tag-hub';
 import {
   getPostsForTagSlug,
@@ -15,6 +17,10 @@ import {
 import type { MetaData, Post } from '~/types';
 import TagHero from '~/components/tag-hub/TagHero.astro';
 import { getGlossaryForTag } from '~/lib/taxonomy';
+import ExplorerGlossaryContext from '~/components/tag-hub/ExplorerGlossaryContext';
+import { FEATURE_EXPLORER_GLOSSARY_CONTEXT } from '~/config/feature-flags';
+import { getCoLocatedTerms, getRelatedArticleSlugs } from '~/lib/glossary/article-relations';
+import { getPermalink } from '~/utils/permalinks';
 
 export const prerender = true;
 
@@ -59,6 +65,10 @@ export const getStaticPaths = async (): Promise<PagePath[]> => {
 };
 
 const { tagSlug, posts, pageNumber } = Astro.props as PageStaticProps;
+const postsCollection = await getCollection('post');
+const postsBySlug = new Map<string, (typeof postsCollection)[number]>(
+  postsCollection.map((post) => [post.slug, post]),
+);
 
 const tag = getTagViewModelBySlug(tagSlug);
 
@@ -71,7 +81,11 @@ const totalPages = Math.ceil(totalPosts / TAG_POSTS_PER_PAGE) || 1;
 const currentPage = pageNumber;
 const start = (currentPage - 1) * TAG_POSTS_PER_PAGE;
 const paginatedPosts = posts.slice(start, start + TAG_POSTS_PER_PAGE);
-const glossaryEntry = getGlossaryForTag(tag.slug);
+
+const taxonomyGlossaryEntry = getGlossaryForTag(tag.slug);
+const initialSelection = resolveTagGlossarySelection(tag, { taxonomyEntry: taxonomyGlossaryEntry });
+let glossaryEntry = initialSelection.entry;
+let canonicalTermSlug = initialSelection.canonicalSlug;
 
 const formattedFirstSeen = tag.firstSeen ? new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(new Date(tag.firstSeen)) : undefined;
 const formattedLastSeen = tag.lastSeen ? new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(new Date(tag.lastSeen)) : undefined;
@@ -92,6 +106,55 @@ const domainLabel =
   domainLabels[tag.domain] ?? tag.domain.replace(/-/g, ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase());
 
 const formattedLabel = formatTagLabel(tag.slug, tag.title);
+
+const formatArticleDate = (value?: string | Date) => {
+  if (!value) return null;
+  const parsed = typeof value === 'string' ? new Date(value) : value;
+  if (Number.isNaN(parsed.valueOf())) return null;
+  return new Intl.DateTimeFormat('en', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(parsed);
+};
+
+type RelatedArticleCard = { title: string; href: string; date: string | null };
+
+const relatedArticleSlugsFromMap =
+  FEATURE_EXPLORER_GLOSSARY_CONTEXT && canonicalTermSlug
+    ? getRelatedArticleSlugs(canonicalTermSlug)
+    : [];
+
+const relatedArticlesFromMap =
+  FEATURE_EXPLORER_GLOSSARY_CONTEXT && canonicalTermSlug
+    ? relatedArticleSlugsFromMap
+        .map<RelatedArticleCard | null>((slug) => {
+          const post = postsBySlug.get(slug);
+          if (!post) return null;
+          return {
+            title: post.data.title ?? slug,
+            href: getPermalink(post.slug, 'post'),
+            date: post.data.publishDate ? formatArticleDate(post.data.publishDate) : null,
+          };
+        })
+        .filter(
+          (article): article is RelatedArticleCard => Boolean(article),
+        )
+    : [];
+
+const relatedTermsFromMap =
+  FEATURE_EXPLORER_GLOSSARY_CONTEXT && canonicalTermSlug
+    ? getCoLocatedTerms(canonicalTermSlug)
+    : [];
+
+if (!glossaryEntry && relatedTermsFromMap.length > 0) {
+  const fallbackSelection = resolveTagGlossarySelection(tag, {
+    taxonomyEntry: taxonomyGlossaryEntry,
+    fallbackSlugs: relatedTermsFromMap,
+  });
+  glossaryEntry = fallbackSelection.entry;
+  canonicalTermSlug = canonicalTermSlug ?? fallbackSelection.canonicalSlug ?? fallbackSelection.entry?.slug ?? null;
+}
 
 const metadata: MetaData = {
   title: `${formattedLabel} — Page ${currentPage}`,
@@ -128,6 +191,16 @@ const nextUrl =
       glossaryEntry={glossaryEntry}
       domainLabel={domainLabel}
     />
+
+    {FEATURE_EXPLORER_GLOSSARY_CONTEXT &&
+      (relatedArticlesFromMap.length > 0 || relatedTermsFromMap.length > 0) && (
+        <ExplorerGlossaryContext
+          term={canonicalTermSlug ?? undefined}
+          category={domainLabel}
+          relatedTerms={relatedTermsFromMap}
+          relatedArticles={relatedArticlesFromMap}
+        />
+      )}
 
     <section class="tag-detail-section">
       <div class="tag-detail-section__header">

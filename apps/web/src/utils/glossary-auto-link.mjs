@@ -1,465 +1,420 @@
 import { visit } from 'unist-util-visit';
 import { visitParents } from 'unist-util-visit-parents';
+
 import { getAllTerms, getAliasEntries } from '../lib/glossary/glossary-loader.ts';
-
-const SKIP_TYPES = new Set(['link', 'inlineCode', 'code', 'image', 'imageReference']);
+import { resolveAutoLinkConfig } from '../lib/glossary/autoLinkConfig.ts';
 const TABLE_TYPES = new Set(['table', 'tableRow', 'tableCell', 'thead', 'tbody', 'tr', 'th', 'td']);
+const URL_REGEX = /https?:\/\/[^\s)]+/gi;
+const MAX_LINKS_PER_PARAGRAPH = 2;
+const SECTION_ANCHOR = '#definition';
 
-function escapeRegExp(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-function hasNoGlossaryAttribute(node) {
-  if (!node || typeof node !== 'object') return false;
-  const attributes = node.attributes;
-  if (!Array.isArray(attributes)) return false;
-  return attributes.some((attr) => attr?.name === 'data-no-glossary');
-}
-
-function toPlainText(value = '') {
-  return String(value)
+const toPlainText = (value = '') =>
+  String(value)
     .replace(/<[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
-}
 
-function isSkippable(ancestors) {
+const normalizeKey = (value) => (typeof value === 'string' ? value.trim().toLowerCase() : '');
+
+const hasNoGlossaryAttribute = (node) => {
+  if (!node || typeof node !== 'object') return false;
+  const attributes = Array.isArray(node.attributes) ? node.attributes : [];
+  return attributes.some((attr) => attr?.name === 'data-no-glossary');
+};
+
+const isSkippable = (ancestors) => {
   if (!Array.isArray(ancestors)) return false;
   
-  for (const a of ancestors) {
-    if (a.type === 'mdxJsxFlowElement') {
-      const elementName = typeof a.name === 'string' ? a.name.toLowerCase() : '';
-      if (
-        elementName === 'faqsection' ||
-        elementName === 'details' ||
-        elementName === 'summary' ||
-        elementName === 'pre' ||
-        elementName === 'code'
-      ) {
+  for (const ancestor of ancestors) {
+    if (!ancestor) continue;
+    if (ancestor.type === 'heading') return true;
+    if (TABLE_TYPES.has(ancestor.type)) return true;
+    if (ancestor.type === 'link' || ancestor.type === 'linkReference') return true;
+    if (ancestor.type === 'inlineCode' || ancestor.type === 'code') return true;
+    if (ancestor.type === 'image' || ancestor.type === 'imageReference') return true;
+
+    if (ancestor.type === 'mdxJsxFlowElement' || ancestor.type === 'mdxJsxTextElement') {
+      const elementName = typeof ancestor.name === 'string' ? ancestor.name.toLowerCase() : '';
+      if (elementName === 'summary' || elementName === 'details' || elementName === 'faqsection' || elementName === 'pre') {
         return true;
       }
-      if (hasNoGlossaryAttribute(a)) {
-        return true;
-      }
-    }
-    if (a.type === 'heading') {
-      return true;
-    }
-    if (a.type === 'mdxJsxTextElement') {
-      const elementName = typeof a.name === 'string' ? a.name.toLowerCase() : '';
-      if (elementName === 'summary' || elementName === 'details') {
-        return true;
-      }
-      if (hasNoGlossaryAttribute(a)) {
-        return true;
-      }
-    }
-    // Skip inside tables
-    if (TABLE_TYPES.has(a.type)) {
-      return true;
-    }
-    // Skip inside links/code/images
-    if (a.type === 'link' || a.type === 'linkReference' || 
-        a.type === 'inlineCode' || a.type === 'code' || 
-        a.type === 'image' || a.type === 'imageReference') {
-      return true;
+      if (hasNoGlossaryAttribute(ancestor)) return true;
     }
   }
+
   return false;
-}
+};
 
-function walkInline(node, fn) {
-  if (!node || !node.children) return;
-  node.children.forEach((child, idx) => {
-    if (child.type === 'text') {
-      fn(child, idx, node);
-    } else if (!SKIP_TYPES.has(child.type)) {
-      // recurse into strong/emphasis/delete/sup/sub, etc.
-      walkInline(child, fn);
-    }
-  });
-}
-
-// Filter overlapping ranges assuming items are sorted by startIndex asc
-function dedupeOverlaps(ranges) {
-  const out = [];
+const dedupeOverlaps = (ranges) => {
+  const result = [];
   let cursor = -1;
-  for (const r of ranges) {
-    if (r.startIndex >= cursor) {
-      out.push(r);
-      cursor = r.endIndex;
+  for (const range of ranges) {
+    if (range.startIndex >= cursor) {
+      result.push(range);
+      cursor = range.endIndex;
     }
   }
-  return out;
-}
+  return result;
+};
 
-// Configuration constants
-const MAX_LINKS_PER_ARTICLE = 15;  // Total unique terms to link per article
-const MAX_LINKS_PER_PARAGRAPH = 2; // Max links in any single paragraph
-const HIGH_PRIORITY_THRESHOLD = 90;
+const buildUrlRanges = (text) => {
+  const ranges = [];
+  let match;
+  while ((match = URL_REGEX.exec(text)) !== null) {
+    ranges.push({ start: match.index, end: match.index + match[0].length });
+  }
+  return ranges;
+};
 
-export function createGlossaryAutoLinkPlugin(glossaryTerms) {
+const isWithinRanges = (start, end, ranges) =>
+  ranges.some((range) => start >= range.start && end <= range.end);
+
+const getFilePath = (file) => {
+  if (!file) return 'unknown';
+  return (
+    file.path ||
+    (Array.isArray(file.history) && file.history.length ? file.history[0] : undefined) ||
+    'unknown'
+  );
+};
+
+const getLinkDestination = (slug) => `/glossary/${slug}${SECTION_ANCHOR}`;
+
+const createEmptyReport = (filePath) => ({
+  filePath,
+  added: 0,
+  skipped: {
+    manual: 0,
+    noLink: 0,
+    perTermLimit: 0,
+    perParagraphLimit: 0,
+    perPostLimit: 0,
+    urlContext: 0,
+    codeContext: 0,
+  },
+  linkedSlugs: new Set(),
+});
+
+const resolveCanonicalSlug = (value, lookup) => {
+  const key = normalizeKey(value);
+  if (!key) return undefined;
+  return lookup.get(key) || undefined;
+};
+
+export function createGlossaryAutoLinkPlugin(glossaryTerms, options = {}) {
+  const {
+    mode = 'transform',
+    reporter,
+  } = options ?? {};
+
   const terms = Array.isArray(glossaryTerms) ? glossaryTerms : [];
-  if (!terms.length) {
-    console.warn('No glossary data provided to auto-link plugin');
-    return () => {};
+  const canonicalTerms = terms.filter(
+    (term) => (term.status ?? 'canonical') === 'canonical',
+  );
+
+  if (!canonicalTerms.length) {
+    console.warn('[glossary-auto-link] No canonical glossary data provided.');
+    return () => () => {};
   }
 
-  const termMap = new Map();
-  const termPriorities = new Map();
-  const termCategories = new Map();
-  const termFoundational = new Set();
+  const aliasEntries = getAliasEntries();
   const termMetadata = new Map();
+  const lookupKeys = new Map(); // normalized term -> { slug, priority, category, isAlias }
 
-  terms.forEach((term) => {
+  const registerKey = (key, slug, priority = 0, category = '', isAlias = false) => {
+    const normalized = normalizeKey(key);
+    if (!normalized) return;
+    const existing = lookupKeys.get(normalized);
+    if (!existing || existing.priority < priority) {
+      lookupKeys.set(normalized, { slug, priority, category, isAlias });
+    }
+  };
+
+  canonicalTerms.forEach((term) => {
     const slug = term.slug;
     termMetadata.set(slug, {
       title: term.term,
       definition: toPlainText(term.summary || term.definition || ''),
       category: term.category || '',
     });
-
-    const baseKeys = [term.term, slug];
-    baseKeys.forEach((key) => {
-      if (!key) return;
-      const keyLower = key.toLowerCase();
-      termMap.set(keyLower, slug);
-      termPriorities.set(keyLower, term.priority || 0);
-      termCategories.set(keyLower, term.category);
-    });
-
-    if (term.foundational) {
-      termFoundational.add(slug);
-    }
+    
+    registerKey(term.term, slug, term.priority || 0, term.category || '', false);
+    registerKey(slug, slug, term.priority || 0, term.category || '', false);
 
     (term.aliases ?? [])
       .sort((a, b) => b.length - a.length)
-      .forEach((alias) => {
-        const aliasLower = alias.toLowerCase();
-        if (
-          !termPriorities.has(aliasLower) ||
-          (term.priority || 0) >= (termPriorities.get(aliasLower) || 0)
-        ) {
-          termMap.set(aliasLower, slug);
-          termPriorities.set(aliasLower, term.priority || 0);
-          termCategories.set(aliasLower, term.category);
-        }
-      });
+      .forEach((alias) => registerKey(alias, slug, term.priority || 0, term.category || '', true));
   });
 
-  getAliasEntries().forEach((entry) => {
-    const aliasLower = entry.alias.toLowerCase();
-    if (!aliasLower) return;
-    if (!termMap.has(aliasLower)) {
-      termMap.set(aliasLower, entry.canonicalSlug);
-      termPriorities.set(aliasLower, 0);
-    }
+  aliasEntries.forEach((entry) => {
+    registerKey(entry.alias, entry.canonicalSlug, 0, '', true);
   });
 
-  return function () {
+  const patterns = Array.from(lookupKeys.entries()).map(([term, data]) => ({
+    term,
+    slug: data.slug,
+    priority: data.priority || 0,
+    category: data.category || '',
+    isAliasMatch: data.isAlias,
+    re: new RegExp(`\\b${escapeRegExp(term)}\\b`, 'gi'),
+  }));
+
+  patterns.sort((a, b) => {
+    if (a.priority !== b.priority) return b.priority - a.priority;
+    return b.term.length - a.term.length;
+  });
+
+  const canonicalLookup = new Map(
+    Array.from(lookupKeys.entries()).map(([key, value]) => [key, value.slug]),
+  );
+
+  return function glossaryAutoLinkPlugin() {
     return (tree, file) => {
-      // Check frontmatter flag
-      if (file?.data?.frontmatter?.disableGlossaryAutoLink) {
+      const report = createEmptyReport(getFilePath(file));
+      const frontmatter =
+        file?.data?.astro?.frontmatter ?? file?.data?.frontmatter ?? null;
+      const config = resolveAutoLinkConfig(frontmatter);
+
+      if (config.disabled) {
+        if (typeof reporter === 'function') {
+          reporter({ ...report, linkedSlugs: [] });
+        }
         return;
       }
 
-      // Fallback: YAML parsing
-      if (tree.children?.[0]?.type === 'yaml') {
-        const frontmatter = tree.children[0].value || '';
-        if (/disableGlossaryAutoLink:\s*true/.test(frontmatter)) {
-          return;
-        }
-      }
+      const doNotLinkSlugs = new Set(
+        config.noLink
+          .map((value) => resolveCanonicalSlug(value, canonicalLookup))
+          .filter(Boolean),
+      );
 
-      // Track manually linked terms to avoid double-linking
       const manuallyLinkedTerms = new Set();
-      
-      // First pass: scan for manually linked glossary terms
       visit(tree, 'link', (node) => {
-        if (node.url && node.url.startsWith('/glossary/')) {
-          const slug = node.url.replace('/glossary/', '');
-          manuallyLinkedTerms.add(slug);
+        if (!node?.url || typeof node.url !== 'string') return;
+        if (!node.url.startsWith('/glossary/')) return;
+        const slug = node.url.replace('/glossary/', '').split('#')[0];
+        const canonicalSlug = resolveCanonicalSlug(slug, canonicalLookup);
+        if (canonicalSlug) {
+          manuallyLinkedTerms.add(canonicalSlug);
         }
       });
 
-      // Build patterns for efficient matching
-      const patterns = [];
-      for (const [termLower, slug] of termMap.entries()) {
-        const priority = termPriorities.get(termLower) || 0;
-        const category = termCategories.get(termLower);
-        const isFoundational = termFoundational.has(slug);
-        
-        patterns.push({
-          term: termLower,
-          slug,
-          category,
-          priority,
-          isFoundational,
-          re: new RegExp(`\\b${escapeRegExp(termLower)}\\b`, 'gi')
-        });
-      }
-
-      // Sort patterns by priority (highest first) and length (longest first)
-      patterns.sort((a, b) => {
-        if (a.priority !== b.priority) return b.priority - a.priority;
-        return b.term.length - a.term.length;
+      const paragraphIndices = new Map();
+      const suppressedParagraphs = new WeakSet();
+      let paragraphCounter = 0;
+      visit(tree, 'paragraph', (node) => {
+        paragraphIndices.set(node, paragraphCounter++);
+        if (
+          Array.isArray(node.children) &&
+          node.children.some(
+            (child) => child?.type === 'inlineCode' || child?.type === 'code',
+          )
+        ) {
+          suppressedParagraphs.add(node);
+        }
       });
 
-      // Track all term occurrences across the document
-      const termOccurrences = new Map();
-      const candidateTextNodes = []; // { textNode, ancestors, paragraphIndex }
+      const candidateTextNodes = [];
+      let nonParagraphCounter = 0;
 
-      // Count paragraphs first for distribution logic
-      let paragraphCounter = -1;
-      visit(tree, 'paragraph', () => { paragraphCounter += 1; });
+      visitParents(
+        tree,
+        (node) => node.type === 'text',
+        (textNode, ancestors) => {
+          if (!textNode?.value) return;
+          const paragraphAncestor = [...ancestors].reverse().find((ancestor) => ancestor.type === 'paragraph');
+          const paragraphNumber = paragraphAncestor ? paragraphIndices.get(paragraphAncestor) : -1;
+          const paragraphKey = paragraphAncestor
+            ? `p-${paragraphNumber}`
+            : `np-${nonParagraphCounter++}`;
 
-      // Collect text nodes with ancestor context using visitParents
-      let currentParagraphIndex = -1;
-      
-      // First, collect text nodes from paragraphs
-      visitParents(tree, (node) => node.type === 'paragraph', (node, ancestors) => {
-        currentParagraphIndex += 1;
-        visitParents(node, (n) => n.type === 'text', (textNode, textAncestors) => {
           candidateTextNodes.push({
             textNode,
-            ancestors: textAncestors,
-            paragraphIndex: currentParagraphIndex
+            ancestors,
+            paragraphNumber,
+            paragraphKey,
+            parentParagraph: paragraphAncestor ?? null,
           });
-        });
-      });
-      
-      // Also collect text nodes that are direct children of details elements (for FAQs)
-      visitParents(tree, (node) => node.type === 'mdxJsxFlowElement' && node.name === 'details', (node, ancestors) => {
-        visitParents(node, (n) => n.type === 'text', (textNode, textAncestors) => {
-          candidateTextNodes.push({
-            textNode,
-            ancestors: textAncestors,
-            paragraphIndex: -1 // Mark as non-paragraph content
-          });
-        });
-      });
+        },
+      );
 
-      // Process each text node candidate
+      const paragraphLinkCounts = new Map();
+      const paragraphTermUsage = new Set();
+      const termCounts = new Map();
+      let totalLinks = 0;
+
+      const shouldRespectPostLimit =
+        Number.isFinite(config.maxLinksPerPost) && config.maxLinksPerPost > 0;
+
       for (const entry of candidateTextNodes) {
-        const { textNode, ancestors, paragraphIndex } = entry;
+        if (isSkippable(entry.ancestors)) continue;
+        if (entry.parentParagraph && suppressedParagraphs.has(entry.parentParagraph)) {
+          report.skipped.codeContext += 1;
+          continue;
+        }
         
-        // Skip if inside FAQs, tables, or other unwanted contexts
-        if (isSkippable(ancestors)) continue;
+        const original = entry.textNode.value;
+        if (!original || !original.trim()) continue;
         
-        const text = textNode.value;
-        if (!text) continue;
+        const urlRanges = buildUrlRanges(original);
+        const nodeMatches = [];
 
-        // Find matches in this text node
         for (const pattern of patterns) {
-          // Reset regex lastIndex to avoid issues with global regex
           pattern.re.lastIndex = 0;
-          
-          // iterate all matches
-          let m;
-          while ((m = pattern.re.exec(text)) !== null) {
-            const slug = pattern.slug;
-            if (!termOccurrences.has(slug)) {
-              termOccurrences.set(slug, []);
-            }
-            
-            const occurrences = termOccurrences.get(slug);
-            if (occurrences) {
-              occurrences.push({
-                paragraphIndex,
-                textNode,
-                ancestors,
-                startIndex: m.index,
-                endIndex: m.index + m[0].length,
-                matchText: m[0],
+          let match;
+          while ((match = pattern.re.exec(original)) !== null) {
+            const startIndex = match.index;
+            const endIndex = match.index + match[0].length;
+            nodeMatches.push({
+              startIndex,
+              endIndex,
+              matchText: match[0],
                 slug: pattern.slug,
                 category: pattern.category,
                 priority: pattern.priority,
-                isFoundational: pattern.isFoundational
-              });
-            }
+              isAliasMatch: pattern.isAliasMatch,
+            });
           }
         }
-      }
 
-      console.log('📊 Found', termOccurrences.size, 'unique terms across', paragraphCounter + 1, 'paragraphs');
+        if (!nodeMatches.length) continue;
 
-      // Third pass: select best occurrences for each term (one per article)
-      const selectedOccurrences = new Map();
-      
-      for (const [slug, occurrences] of termOccurrences.entries()) {
-        if (occurrences.length === 0) continue;
+        nodeMatches.sort((a, b) => a.startIndex - b.startIndex);
+        const filteredMatches = dedupeOverlaps(nodeMatches);
+        const approvedMatches = [];
 
-        // Score each occurrence based on priority, position, and context
-        const scoredOccurrences = occurrences.map((occ, index) => {
-          let score = occ.priority || 0;
-          
-          // Boost foundational terms
-          if (occ.isFoundational) {
-            score += 20;
+        for (const match of filteredMatches) {
+          if (isWithinRanges(match.startIndex, match.endIndex, urlRanges)) {
+            report.skipped.urlContext += 1;
+            continue;
           }
-          
-          // Boost early paragraphs (first 1/3 of article)
-          const totalParagraphs = paragraphCounter + 1;
-          const earlyParagraphThreshold = Math.ceil(totalParagraphs / 3);
-          if (occ.paragraphIndex < earlyParagraphThreshold) {
-            score += 10;
+
+          const slug = match.slug;
+          if (manuallyLinkedTerms.has(slug)) {
+            report.skipped.manual += 1;
+            continue;
           }
-          
-          // Boost medium paragraphs (middle 1/3)
-          const middleStart = Math.ceil(totalParagraphs / 3);
-          const middleEnd = Math.ceil(totalParagraphs * 2 / 3);
-          if (occ.paragraphIndex >= middleStart && occ.paragraphIndex < middleEnd) {
-            score += 5;
+
+          if (doNotLinkSlugs.has(slug)) {
+            report.skipped.noLink += 1;
+            continue;
           }
-          
-          return { ...occ, score, originalIndex: index };
-        });
 
-        // Sort by score (highest first), then by position
-        scoredOccurrences.sort((a, b) => {
-          if (a.score !== b.score) return b.score - a.score;
-          return a.paragraphIndex - b.paragraphIndex;
-        });
+          if (shouldRespectPostLimit && totalLinks >= config.maxLinksPerPost) {
+            report.skipped.perPostLimit += 1;
+            continue;
+          }
 
-        // Select the best occurrence
-        const bestOccurrence = scoredOccurrences[0];
-        selectedOccurrences.set(slug, bestOccurrence);
-      }
+          const currentTermCount = termCounts.get(slug) ?? 0;
+          if (currentTermCount >= config.maxLinksPerTerm) {
+            report.skipped.perTermLimit += 1;
+            continue;
+          }
 
-      // Enforce MAX_LINKS_PER_ARTICLE limit by sorting all occurrences by score
-      // and taking only the top N highest-scoring terms
-      if (selectedOccurrences.size > MAX_LINKS_PER_ARTICLE) {
-        const sortedByScore = Array.from(selectedOccurrences.entries())
-          .map(([slug, occ]) => ({ slug, ...occ }))
-          .sort((a, b) => {
-            if (a.score !== b.score) return b.score - a.score;
-            return a.paragraphIndex - b.paragraphIndex;
-          })
-          .slice(0, MAX_LINKS_PER_ARTICLE);
-        
-        selectedOccurrences.clear();
-        for (const item of sortedByScore) {
-          const { slug, ...occ } = item;
-          selectedOccurrences.set(slug, occ);
-        }
-        
-        console.log(`📊 Limited glossary links to ${MAX_LINKS_PER_ARTICLE} highest-priority terms (${termOccurrences.size} total found)`);
-      }
+          const paragraphSlugKey = `${entry.paragraphKey}:${slug}`;
+          if (paragraphTermUsage.has(paragraphSlugKey)) {
+            report.skipped.perParagraphLimit += 1;
+            continue;
+          }
 
-      // Fourth pass: apply the links directly to text nodes
-      for (const [slug, occurrence] of selectedOccurrences.entries()) {
-        const { textNode, startIndex, endIndex, matchText, category, priority, isFoundational, ancestors } = occurrence;
-        
-        // Skip if manually linked
-        if (manuallyLinkedTerms.has(slug)) continue;
-
-        const parentNode = Array.isArray(ancestors) && ancestors.length > 0 ? ancestors[ancestors.length - 1] : null;
-        if (parentNode?.type === 'link') {
-          const existingClass = parentNode.data?.hProperties?.class || '';
-          if (typeof existingClass === 'string') {
-            const classList = existingClass.split(' ');
-            if (classList.includes('glossary') || classList.includes('glossary-term')) {
+          const paragraphCount = paragraphLinkCounts.get(entry.paragraphKey) ?? 0;
+          if (paragraphCount >= MAX_LINKS_PER_PARAGRAPH) {
+            report.skipped.perParagraphLimit += 1;
               continue;
-            }
           }
+
+          approvedMatches.push(match);
+          paragraphTermUsage.add(paragraphSlugKey);
+          paragraphLinkCounts.set(entry.paragraphKey, paragraphCount + 1);
+          termCounts.set(slug, currentTermCount + 1);
+          totalLinks += 1;
+          report.added += 1;
+          report.linkedSlugs.add(slug);
         }
 
-        const original = textNode.value;
+        if (mode !== 'transform' || !approvedMatches.length) {
+          continue;
+        }
+
         const newChildren = [];
+        let cursor = 0;
 
-        // Add text before the match
-        if (startIndex > 0) {
-          newChildren.push({ type: 'text', value: original.slice(0, startIndex) });
-        }
+        for (const match of approvedMatches) {
+          if (match.startIndex > cursor) {
+            newChildren.push({
+              type: 'text',
+              value: original.slice(cursor, match.startIndex),
+            });
+          }
 
-        // Add the link
-        const url = getLinkDestination(slug, category, priority, isFoundational);
-        const meta = termMetadata.get(slug) || { title: matchText, definition: '', category: category || '' };
-        
-        // Determine link type for visual indicators
-        const isFullPageLink = (isFoundational && priority >= 30) || priority >= HIGH_PRIORITY_THRESHOLD;
-        const linkType = isFullPageLink ? 'full-page' : url.includes('#') ? 'anchor' : 'tooltip';
+          const meta =
+            termMetadata.get(match.slug) ?? {
+              title: match.matchText,
+              definition: '',
+              category: match.category ?? '',
+            };
 
         const linkNode = {
           type: 'link',
-          url,
+            url: getLinkDestination(match.slug),
           data: {
-            hProperties: {},
-          },
-          children: [{ type: 'text', value: matchText }],
-        };
-
-        // Always use V2 mode attributes (legacy mode removed)
-        linkNode.data.hProperties = {
+              hProperties: {
           class: 'glossary',
           'data-cat': meta.category || '',
-          'data-title': meta.title || matchText,
+                'data-title': meta.title || match.matchText,
           'data-def': toPlainText(meta.definition).slice(0, 240),
-          'data-link-type': linkType,
-          'data-slug': slug,
-          'data-canonical-slug': slug,
-          'aria-label': `Glossary term: ${meta.title || matchText}. Click for definition.`,
-        };
+                'data-link-type': 'anchor',
+                'data-slug': match.slug,
+                'data-canonical-slug': match.slug,
+                'aria-label': `Glossary term: ${meta.title || match.matchText}. Click for definition.`,
+              },
+            },
+            children: [{ type: 'text', value: match.matchText }],
+          };
+
+          if (match.isAliasMatch) {
+            linkNode.data.hProperties['data-alias-source'] = 'true';
+            linkNode.data.hProperties['data-alias-label'] = match.matchText;
+          }
 
         newChildren.push(linkNode);
-
-        // Add text after the match
-        if (endIndex < original.length) {
-          newChildren.push({ type: 'text', value: original.slice(endIndex) });
+          cursor = match.endIndex;
         }
 
-        // Find the parent of this text node and replace it
-        for (const entry of candidateTextNodes) {
-          if (entry.textNode === textNode) {
-            const parent = entry.ancestors[entry.ancestors.length - 1];
-            if (parent && parent.children) {
-              const textIndex = parent.children.indexOf(textNode);
-              if (textIndex !== -1) {
-                parent.children.splice(textIndex, 1, ...newChildren);
-              }
-            }
-            break;
+        if (cursor < original.length) {
+          newChildren.push({
+            type: 'text',
+            value: original.slice(cursor),
+          });
+        }
+
+        const parentNode = entry.ancestors.at(-1);
+        if (parentNode?.children) {
+          const index = parentNode.children.indexOf(entry.textNode);
+          if (index !== -1) {
+            parentNode.children.splice(index, 1, ...newChildren);
           }
         }
       }
 
+      if (typeof reporter === 'function') {
+        reporter({
+          ...report,
+          linkedSlugs: Array.from(report.linkedSlugs),
+        });
+      }
     };
   };
-
-  // Helper function to determine link destination based on priority and foundational status
-  function getLinkDestination(slug, category, priority, isFoundational) {
-    // Direct term pages for foundational terms with decent priority OR very high priority
-    if (isFoundational && priority >= 30) {
-      return `/glossary/${slug}`;  // Direct term page
-    }
-    if (priority >= HIGH_PRIORITY_THRESHOLD) { // HIGH_PRIORITY_THRESHOLD is 90
-      return `/glossary/${slug}`;  // Direct term page
-    }
-    
-    // Anchor links for medium priority
-    if (priority >= 20) {
-      return `/glossary#glossary-${slug}`;  // Anchor on main page
-    }
-    
-    // Category links for low priority
-    return `/glossary#${category}`;  // Category section
-  }
 }
 
-/**
- * Loads the glossary auto-link plugin with data from the JSON file
- * @returns {Promise<Function>} - The loaded plugin function
- */
 export async function loadGlossaryAutoLinkPlugin() {
   try {
-    console.log('🔗 Loading glossary auto-link plugin...');
     const glossaryTerms = getAllTerms();
-    console.log('🔗 Glossary data loaded:', glossaryTerms.length, 'terms');
-    const plugin = createGlossaryAutoLinkPlugin(glossaryTerms);
-    console.log('🔗 Auto-link plugin initialized');
-    return plugin;
+    return createGlossaryAutoLinkPlugin(glossaryTerms);
   } catch (error) {
     console.warn('Failed to load glossary data for auto-linking:', error);
-    return () => {};
+    return () => () => {};
   }
 }

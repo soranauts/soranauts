@@ -1,15 +1,12 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DATA_PATH = path.join(__dirname, '../public/data/glossary.v2025.json');
 const SITEMAP_DIR = path.join(__dirname, '../public/sitemaps');
-const CANONICAL_SITEMAP = path.join(SITEMAP_DIR, 'sitemap-glossary-canonical.xml');
-const ALIAS_SITEMAP = path.join(SITEMAP_DIR, 'sitemap-glossary-alias.xml');
-
 const SITE_ORIGIN =
   (process.env.SITE_ORIGIN && process.env.SITE_ORIGIN.trim()) || 'https://soranauts.com';
 
@@ -35,8 +32,21 @@ const buildUrlset = (slugs: string[], origin: string): string => {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  ${locs}\n</urlset>\n`;
 };
 
-async function main() {
-  const raw = await fs.readFile(DATA_PATH, 'utf-8');
+interface GenerateSitemapOptions {
+  dataPath?: string;
+  outputDir?: string;
+  siteOrigin?: string;
+}
+
+export async function generateGlossarySitemaps({
+  dataPath = DATA_PATH,
+  outputDir = SITEMAP_DIR,
+  siteOrigin = SITE_ORIGIN,
+}: GenerateSitemapOptions = {}) {
+  const canonicalOutput = path.join(outputDir, 'sitemap-glossary-canonical.xml');
+  const aliasOutput = path.join(outputDir, 'sitemap-glossary-alias.xml');
+
+  const raw = await fs.readFile(dataPath, 'utf-8');
   const dataset = JSON.parse(raw) as GlossaryDataset;
 
   const canonicalTerms = dataset.terms.filter((term) => term.status === 'canonical');
@@ -54,29 +64,40 @@ async function main() {
     );
   }
 
-  await fs.mkdir(SITEMAP_DIR, { recursive: true });
+  await fs.mkdir(outputDir, { recursive: true });
 
   const canonicalXml = buildUrlset(
     canonicalTerms.map((term) => term.slug),
-    SITE_ORIGIN,
+    siteOrigin,
   );
   const aliasXml = buildUrlset(
     aliasTerms.map((term) => term.slug),
-    SITE_ORIGIN,
+    siteOrigin,
   );
 
   await Promise.all([
-    fs.writeFile(CANONICAL_SITEMAP, canonicalXml, 'utf-8'),
-    fs.writeFile(ALIAS_SITEMAP, aliasXml, 'utf-8'),
+    fs.writeFile(canonicalOutput, canonicalXml, 'utf-8'),
+    fs.writeFile(aliasOutput, aliasXml, 'utf-8'),
   ]);
 
-  console.log(
-    `Generated glossary sitemaps: canonical=${canonicalTerms.length}, alias=${aliasTerms.length}`,
-  );
+  return {
+    canonicalCount: canonicalTerms.length,
+    aliasCount: aliasTerms.length,
+    canonicalPath: canonicalOutput,
+    aliasPath: aliasOutput,
+  };
 }
 
-main().catch((error) => {
-  console.error('[generate-glossary-sitemaps] failed:', error);
-  process.exitCode = 1;
-});
+if (pathToFileURL(process.argv[1] ?? '').href === import.meta.url) {
+  generateGlossarySitemaps()
+    .then((result) => {
+      console.log(
+        `Generated glossary sitemaps: canonical=${result.canonicalCount}, alias=${result.aliasCount}`,
+      );
+    })
+    .catch((error) => {
+      console.error('[generate-glossary-sitemaps] failed:', error);
+      process.exitCode = 1;
+    });
+}
 
