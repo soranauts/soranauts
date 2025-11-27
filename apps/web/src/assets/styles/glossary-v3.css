@@ -1,0 +1,200 @@
+.glossary-v3 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-top: var(--space-6);
+}
+
+.glossary-v3__layout {
+  display: grid;
+  gap: var(--space-8);
+}
+
+@media (min-width: 1024px) {
+  .glossary-v3__layout {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: var(--space-10);
+  }
+}
+
+.glossary-v3__anchors {
+  position: sticky;
+  top: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  border-radius: var(--radius-2xl);
+  border: 1px solid color-mix(in srgb, var(--color-border) 65%, transparent);
+  padding: var(--space-5);
+  background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+}
+
+.glossary-v3__anchors h2 {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.glossary-v3__anchor-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.glossary-v3__anchor-button {
+  border: none;
+  background: none;
+  text-align: left;
+  padding: var(--space-2) 0;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  cursor: pointer;
+  border-radius: var(--radius-xl);
+  transition: color var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.glossary-v3__anchor-button:hover,
+.glossary-v3__anchor-button:focus-visible {
+  color: var(--color-brand-500);
+  outline: none;
+}
+
+.glossary-v3__anchor-button.is-active {
+  color: var(--color-brand-500);
+  font-weight: 600;
+}
+
+.glossary-v3__sections-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-text);
+  gap: var(--space-2);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+  .glossary-v3__sections-toggle {
+    display: none;
+  }
+}
+
+.glossary-v3__anchors-drawer {
+  border-radius: var(--radius-2xl);
+  margin-top: var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+  display: none;
+}
+
+.glossary-v3__anchors-drawer.is-open {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .glossary-v3__anchors-drawer {
+    display: none;
+  }
+}
+
+.glossary-v3__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.glossary-v3__definition,
+.glossary-v3__section {
+  border-radius: var(--radius-3xl);
+  border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 98%, transparent);
+  padding: var(--space-6);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.glossary-v3__section h3 {
+  margin-top: 0;
+  font-size: 1.15rem;
+  color: var(--color-text);
+}
+
+.glossary-v3__related-list,
+.glossary-v3__sources-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.glossary-v3__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1-5) var(--space-3);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-bg-soft) 72%, transparent);
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.glossary-v3__source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  color: var(--color-link);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.glossary-v3__source-link:hover,
+.glossary-v3__source-link:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.glossary-v3__summary {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+
+.glossary-v3__definition p {
+  margin-top: 0;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.glossary-v3__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glossary-v3__anchor-button,
+  .glossary-v3__source-link,
+  .glossary-v3__sections-toggle {
+    transition: none;
+  }
+}
+
