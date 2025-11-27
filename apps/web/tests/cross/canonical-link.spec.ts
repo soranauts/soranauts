@@ -11,7 +11,8 @@ const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 describe('cross: canonical links', () => {
   let outDir: string;
   let canonicalHtml: string;
-  let aliasHtml: string;
+  let aliasHtmlPath: string;
+  let aliasHtml: string | null = null;
 
   beforeAll(async () => {
     outDir = await fs.mkdtemp(path.join(os.tmpdir(), 'astro-cross-'));
@@ -26,10 +27,12 @@ describe('cross: canonical links', () => {
       stdio: 'inherit',
     });
     canonicalHtml = await fs.readFile(path.join(outDir, 'glossary/xor/index.html'), 'utf-8');
-    aliasHtml = await fs.readFile(
-      path.join(outDir, 'glossary/token-bonding-curve/index.html'),
-      'utf-8',
-    );
+    aliasHtmlPath = path.join(outDir, 'glossary/token-bonding-curve/index.html');
+    try {
+      aliasHtml = await fs.readFile(aliasHtmlPath, 'utf-8');
+    } catch {
+      aliasHtml = null;
+    }
   }, 180_000);
 
   afterAll(async () => {
@@ -53,8 +56,16 @@ describe('cross: canonical links', () => {
     assertCanonical(canonicalHtml, 'xor');
   });
 
-  it('renders canonical slug for alias pages', () => {
-    assertCanonical(aliasHtml, 'bonding-curve');
+  it('does not emit static HTML for alias slugs', () => {
+    expect(aliasHtml).toBeNull();
+  });
+
+  it('still renders canonical metadata for canonical bond-curve page', async () => {
+    const bondCurveHtml = await fs.readFile(
+      path.join(outDir, 'glossary/bonding-curve/index.html'),
+      'utf-8',
+    );
+    assertCanonical(bondCurveHtml, 'bonding-curve');
   });
 });
 

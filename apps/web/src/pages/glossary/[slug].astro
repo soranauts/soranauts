@@ -22,10 +22,7 @@ import {
   getGlossaryTerm,
   getStatus as getGlossaryStatus,
 } from '~/lib/glossary/glossary-loader';
-import {
-  getCachedAliasEntries,
-  getCachedGlossaryTerms,
-} from '~/lib/glossary/glossary-data';
+import { getCachedGlossaryTerms } from '~/lib/glossary/glossary-data';
 import { shouldApplyAliasRedirect } from '~/lib/glossary/alias-redirect';
 import glossaryDatasetV2025 from '../../../public/data/glossary.v2025.json';
 import GlossaryTermPage from '~/components/glossary/v3/GlossaryTermPage';
@@ -35,20 +32,11 @@ export const prerender = true;
 const allGlossaryTerms = getCachedGlossaryTerms();
 
 export async function getStaticPaths() {
-  const glossaryTerms = getCachedGlossaryTerms();
-  const aliasEntries = getCachedAliasEntries();
-
-  const canonicalPaths = glossaryTerms.map((term) => ({
-    params: { slug: term.slug },
-  }));
-
-  const aliasPaths = aliasEntries
-    .filter((alias) => alias.alias !== alias.canonicalSlug)
-    .map((alias) => ({
-      params: { slug: alias.alias },
+  return glossaryDatasetV2025.terms
+    .filter((entry) => entry.status === 'canonical')
+    .map((entry) => ({
+      params: { slug: entry.slug },
     }));
-
-  return [...canonicalPaths, ...aliasPaths];
 }
 
 const normalizeSlugValue = (value?: string | null): string =>
