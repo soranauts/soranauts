@@ -9,12 +9,6 @@ import type { GlossaryV3Section } from './types';
 
 export type { GlossaryV3Section } from './types';
 
-export interface GlossaryRelatedArticle {
-  title: string;
-  href: string;
-  date?: string | null;
-}
-
 export interface GlossaryTermPageProps {
   title: string;
   summary?: string | null;
@@ -22,7 +16,6 @@ export interface GlossaryTermPageProps {
   whyItMatters?: string | null;
   related: Array<{ term: string; href: string }>;
   sources?: GlossarySource[];
-  relatedArticles?: GlossaryRelatedArticle[];
 }
 
 interface SectionVisibilityConfig {
@@ -56,12 +49,10 @@ const GlossaryTermPage = ({
   whyItMatters,
   related,
   sources = [],
-  relatedArticles = [],
 }: GlossaryTermPageProps) => {
   const hasWhy = Boolean(whyItMatters && whyItMatters.trim().length);
   const hasRelated = related.length > 0;
   const hasSources = sources.length > 0;
-  const hasRelatedArticles = Array.isArray(relatedArticles) && relatedArticles.length > 0;
 
   const sections = useMemo(
     () => buildSections({ hasWhy, hasRelated, hasSources }),
@@ -193,26 +184,6 @@ const GlossaryTermPage = ({
 
           <GlossaryRelated items={related} />
           <GlossarySources sources={sources} />
-
-          {hasRelatedArticles && (
-            <section
-              id="related-articles"
-              className="glossary-v3__section"
-              aria-labelledby="related-articles-heading"
-            >
-              <h3 id="related-articles-heading">Related articles</h3>
-              <ul className="glossary-v3__article-list">
-                {relatedArticles.map((article) => (
-                  <li key={article.href} className="glossary-v3__article-item">
-                    <a href={article.href}>{article.title}</a>
-                    {article.date && (
-                      <time dateTime={article.date}>{article.date}</time>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
         </div>
       </div>
 

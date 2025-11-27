@@ -13,7 +13,6 @@ interface ImportMetaEnv {
   readonly FEATURE_GLOSSARY_UI_CANONICAL?: string;
   readonly FEATURE_GLOSSARY_ALIAS_REDIRECT?: string;
   readonly FEATURE_GLOSSARY_V3_UI?: string;
-  readonly FEATURE_GLOSSARY_RELATED_ARTICLES?: string;
   readonly GLOSSARY_CARD_SHOW_UPDATED?: string;
   readonly SITE_ORIGIN?: string;
 }

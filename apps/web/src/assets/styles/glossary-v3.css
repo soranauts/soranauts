@@ -198,35 +198,3 @@
   }
 }
 
-.glossary-v3__article-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.glossary-v3__article-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.glossary-v3__article-item a {
-  font-weight: 600;
-  color: var(--color-link);
-  text-decoration: none;
-}
-
-.glossary-v3__article-item a:hover,
-.glossary-v3__article-item a:focus-visible {
-  text-decoration: underline;
-  outline: none;
-}
-
-.glossary-v3__article-item time {
-  font-size: 0.8rem;
-  color: var(--color-muted);
-}
-

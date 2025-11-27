@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { renderToString } from 'react-dom/server';
 
 import GlossaryAnchors from '../GlossaryAnchors';
-import GlossaryTermPage, { buildSections, resolveHashTarget } from '../GlossaryTermPage';
+import { buildSections, resolveHashTarget } from '../GlossaryTermPage';
 
 describe('Glossary V3 helpers', () => {
   it('buildSections omits optional entries when data missing', () => {
@@ -45,22 +45,6 @@ describe('Glossary V3 helpers', () => {
 
     expect(html).toContain('Definition');
     expect(html).toContain('Related');
-  });
-
-  it('renders related articles section when data provided', () => {
-    const html = renderToString(
-      <GlossaryTermPage
-        title="XOR"
-        summary="Summary"
-        definition="Definition text"
-        related={[]}
-        sources={[]}
-        relatedArticles={[{ title: 'Sample post', href: '/post/sample', date: '2025-01-01' }]}
-      />,
-    );
-
-    expect(html).toContain('Related articles');
-    expect(html).toContain('Sample post');
   });
 });
 
