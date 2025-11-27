@@ -271,6 +271,12 @@ importers:
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
+      remark-mdx:
+        specifier: ^3.0.1
+        version: 3.1.1
+      remark-parse:
+        specifier: ^11.0.0
+        version: 11.0.0
       sharp:
         specifier: ^0.34.4
         version: 0.34.4
@@ -280,6 +286,12 @@ importers:
       tsx:
         specifier: ^4.20.5
         version: 4.20.5
+      unified:
+        specifier: ^11.0.4
+        version: 11.0.5
+      vfile:
+        specifier: ^6.0.3
+        version: 6.0.3
       vitest:
         specifier: ^1.0.0
         version: 1.6.1(@types/node@20.19.17)
@@ -4643,6 +4655,7 @@ packages:
   sitemap@8.0.0:
     resolution: {integrity: sha512-+AbdxhM9kJsHtruUF39bwS/B0Fytw6Fr1o4ZAIAEqA6cke2xcoO2GleBw9Zw7nRzILVEgz7zBM5GiTJjie1G9A==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    deprecated: 'SECURITY: Multiple vulnerabilities fixed in 8.0.1 (XML injection, path traversal, command injection, protocol injection). Upgrade immediately: npm install sitemap@8.0.1'
     hasBin: true
 
   sitemapper@4.0.2:
@@ -9219,7 +9232,7 @@ snapshots:
   mdast-util-phrasing@4.1.0:
     dependencies:
       '@types/mdast': 4.0.4
-      unist-util-is: 6.0.0
+      unist-util-is: 6.0.1
 
   mdast-util-to-hast@13.2.0:
     dependencies:

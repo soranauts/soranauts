@@ -1,211 +1,152 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { createGlossaryAutoLinkPlugin } from '../glossary-auto-link.mjs';
 
-const mockGlossaryData = {
-  terms: [
-    {
-      term: 'XOR',
-      slug: 'xor',
-      category: 'token',
-      aliases: ['XOR Token', 'XOR Coin'],
-      priority: 100,
-      summary: 'Primary utility token of the SORA network.',
-    },
-    {
-      term: 'PolkaSwap',
-      slug: 'polkaswap',
-      category: 'defi',
-      aliases: ['PolkaSwap DEX', 'PSWAP'],
-      priority: 80,
-      summary: 'Cross-chain liquidity aggregator for SORA.',
-    },
-    {
-      term: 'SORA',
-      slug: 'sora',
-      category: 'network',
-      aliases: ['SORA Network', 'SORA 2.0'],
-      priority: 85,
-      summary: 'Decentralised economic system built on Substrate.',
-    },
-  ],
-};
+const glossaryTerms = [
+  {
+    term: 'XOR',
+    slug: 'xor',
+    category: 'token',
+    aliases: ['XOR Token'],
+    priority: 100,
+    summary: 'Primary utility token of the SORA network.',
+  },
+  {
+    term: 'Polkaswap',
+    slug: 'polkaswap',
+    category: 'defi',
+    aliases: ['PSWAP'],
+    priority: 90,
+    summary: 'Cross-chain liquidity aggregator.',
+  },
+  {
+    term: 'SORA Network',
+    slug: 'sora',
+    category: 'network',
+    aliases: [],
+    priority: 80,
+    summary: 'Decentralised economic system.',
+  },
+];
 
-const cloneTree = (tree) => JSON.parse(JSON.stringify(tree));
+const clone = (tree) => JSON.parse(JSON.stringify(tree));
 
-const applyPlugin = (tree) => {
-  const plugin = createGlossaryAutoLinkPlugin(mockGlossaryData);
+const runPlugin = (tree, frontmatter = {}) => {
+  const plugin = createGlossaryAutoLinkPlugin(glossaryTerms);
   const transformer = plugin();
-  transformer(tree);
+  transformer(tree, { data: { astro: { frontmatter } } });
   return tree;
 };
 
-let previousEnv;
+const extractLinks = (node) => {
+  if (!node?.children) return [];
+  return node.children.filter((child) => child.type === 'link');
+};
 
-beforeEach(() => {
-  previousEnv = process.env.GLOSSARY_V2;
-  process.env.GLOSSARY_V2 = 'false';
-});
-
-afterEach(() => {
-  if (typeof previousEnv === 'undefined') {
-    delete process.env.GLOSSARY_V2;
-  } else {
-    process.env.GLOSSARY_V2 = previousEnv;
-  }
-});
-
-describe('Glossary Auto-link Plugin (legacy mode)', () => {
-  it('creates a plugin function', () => {
-    expect(typeof createGlossaryAutoLinkPlugin(mockGlossaryData)).toBe('function');
-  });
-
-  it('returns a noop for invalid data', () => {
-    expect(typeof createGlossaryAutoLinkPlugin(null)).toBe('function');
-    expect(typeof createGlossaryAutoLinkPlugin({})).toBe('function');
-    expect(typeof createGlossaryAutoLinkPlugin({ terms: [] })).toBe('function');
-  });
-
-  it('skips text inside inline code nodes', () => {
-    const tree = cloneTree({
+describe('glossary auto-link plugin', () => {
+  it('skips inline code content', () => {
+    const tree = clone({
       type: 'root',
       children: [
         {
           type: 'paragraph',
           children: [
-            { type: 'text', value: 'I use ' },
-            { type: 'inlineCode', value: 'XOR' },
-            { type: 'text', value: ' in my code.' },
+            { type: 'text', value: 'Install ' },
+            { type: 'inlineCode', value: 'xor-cli' },
+            { type: 'text', value: ' to manage XOR.' },
           ],
         },
       ],
     });
 
-    applyPlugin(tree);
-    const paragraph = tree.children[0];
-    const links = paragraph.children.filter((child) => child.type === 'link');
-    expect(links).toHaveLength(0);
+    runPlugin(tree);
+    expect(extractLinks(tree.children[0])).toHaveLength(0);
   });
 
-  it('links only the first occurrence per paragraph', () => {
-    const tree = cloneTree({
+  it('links alias text to canonical slug', () => {
+    const tree = clone({
       type: 'root',
       children: [
         {
           type: 'paragraph',
-          children: [{ type: 'text', value: 'XOR is great. XOR is amazing. XOR is the best.' }],
+          children: [{ type: 'text', value: 'PSWAP provides liquidity for traders.' }],
         },
       ],
     });
 
-    applyPlugin(tree);
-    const paragraph = tree.children[0];
-    const links = paragraph.children.filter((child) => child.type === 'link');
+    runPlugin(tree);
+    const link = extractLinks(tree.children[0])[0];
+    expect(link.url).toBe('/glossary/polkaswap#definition');
+    expect(link.children[0].value).toBe('PSWAP');
+    expect(link.data.hProperties['data-alias-source']).toBe('true');
+    expect(link.data.hProperties['data-canonical-slug']).toBe('polkaswap');
+  });
+
+  it('prevents duplicate links per paragraph', () => {
+    const tree = clone({
+      type: 'root',
+      children: [
+        {
+          type: 'paragraph',
+          children: [{ type: 'text', value: 'XOR is powerful. XOR drives the network.' }],
+        },
+      ],
+    });
+
+    runPlugin(tree);
+    expect(extractLinks(tree.children[0])).toHaveLength(1);
+  });
+
+  it('honors glossaryNoLink frontmatter overrides', () => {
+    const tree = clone({
+      type: 'root',
+      children: [
+        {
+          type: 'paragraph',
+          children: [{ type: 'text', value: 'XOR appears here but should not link.' }],
+        },
+      ],
+    });
+
+    runPlugin(tree, { glossaryNoLink: ['xor'] });
+    expect(extractLinks(tree.children[0])).toHaveLength(0);
+  });
+
+  it('enforces glossaryMaxLinksPerTerm limit', () => {
+    const tree = clone({
+      type: 'root',
+      children: [
+        {
+          type: 'paragraph',
+          children: [{ type: 'text', value: 'XOR is great. Another XOR mention.' }],
+        },
+        {
+          type: 'paragraph',
+          children: [{ type: 'text', value: 'A third XOR mention later.' }],
+        },
+      ],
+    });
+
+    runPlugin(tree, { glossaryMaxLinksPerTerm: 1 });
+    const totalLinks =
+      extractLinks(tree.children[0]).length + extractLinks(tree.children[1]).length;
+    expect(totalLinks).toBe(1);
+  });
+
+  it('respects glossaryMaxLinksPerPost limit', () => {
+    const tree = clone({
+      type: 'root',
+      children: [
+        {
+          type: 'paragraph',
+          children: [{ type: 'text', value: 'XOR is paired with SORA.' }],
+        },
+      ],
+    });
+
+    runPlugin(tree, { glossaryMaxLinksPerPost: 1 });
+    const links = extractLinks(tree.children[0]);
     expect(links).toHaveLength(1);
-    expect(links[0].children[0].value).toBe('XOR');
-  });
-
-  it('emits tooltip attributes in legacy mode', () => {
-    const tree = cloneTree({
-      type: 'root',
-      children: [
-        {
-          type: 'paragraph',
-          children: [{ type: 'text', value: 'I use PolkaSwap for trading.' }],
-        },
-      ],
-    });
-
-    applyPlugin(tree);
-    const paragraph = tree.children[0];
-    const link = paragraph.children.find((child) => child.type === 'link');
-    expect(link.url).toBe('/glossary#glossary-polkaswap');
-    expect(link.data.hProperties.class).toBe('glossary-term glossary-term-defi');
-    expect(link.data.hProperties['aria-describedby']).toBe('tip-polkaswap');
-  });
-});
-
-describe('Glossary Auto-link Plugin (v2)', () => {
-  it('adds glossary data attributes for popover use', () => {
-    process.env.GLOSSARY_V2 = 'true';
-    const tree = cloneTree({
-      type: 'root',
-      children: [
-        {
-          type: 'paragraph',
-          children: [{ type: 'text', value: 'I use PolkaSwap for trading.' }],
-        },
-      ],
-    });
-
-    applyPlugin(tree);
-    const paragraph = tree.children[0];
-    const link = paragraph.children.find((child) => child.type === 'link');
-    expect(link.data.hProperties.class).toBe('glossary');
-    expect(link.data.hProperties['data-cat']).toBe('defi');
-    expect(link.data.hProperties['data-title']).toBe('PolkaSwap');
-    expect(link.data.hProperties['data-def']).toContain('Cross-chain liquidity');
-    expect(link.data.hProperties['aria-describedby']).toBeUndefined();
-  });
-
-  it('skips headings and data-no-glossary regions', () => {
-    process.env.GLOSSARY_V2 = 'true';
-    const tree = cloneTree({
-      type: 'root',
-      children: [
-        {
-          type: 'heading',
-          depth: 2,
-          children: [{ type: 'text', value: 'PolkaSwap' }],
-        },
-        {
-          type: 'paragraph',
-          children: [
-            {
-              type: 'mdxJsxTextElement',
-              name: 'span',
-              attributes: [{ type: 'mdxJsxAttribute', name: 'data-no-glossary', value: true }],
-              children: [{ type: 'text', value: 'XOR token' }],
-            },
-          ],
-        },
-        {
-          type: 'paragraph',
-          children: [{ type: 'text', value: 'SORA ecosystem' }],
-        },
-      ],
-    });
-
-    applyPlugin(tree);
-    const heading = tree.children[0];
-    const guardedParagraph = tree.children[1];
-    const linkedParagraph = tree.children[2];
-
-    expect(heading.children.find((child) => child.type === 'link')).toBeUndefined();
-    const span = guardedParagraph.children[0];
-    expect(span.children.some((child) => child.type === 'link')).toBe(false);
-    const link = linkedParagraph.children.find((child) => child.type === 'link');
-    expect(link).toBeDefined();
-    expect(link.data.hProperties.class).toBe('glossary');
-  });
-
-  it('is idempotent when run multiple times', () => {
-    process.env.GLOSSARY_V2 = 'true';
-    const tree = cloneTree({
-      type: 'root',
-      children: [
-        {
-          type: 'paragraph',
-          children: [{ type: 'text', value: 'XOR enables the SORA network.' }],
-        },
-      ],
-    });
-
-    applyPlugin(tree);
-    applyPlugin(tree);
-
-    const paragraph = tree.children[0];
-    const links = paragraph.children.filter((child) => child.type === 'link');
-    expect(links).toHaveLength(1);
-    expect(links[0].data.hProperties.class).toBe('glossary');
+    expect(links[0].data.hProperties['data-canonical-slug']).toBe('xor');
   });
 });

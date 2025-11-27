@@ -18,7 +18,6 @@ export default defineConfig({
       '**/test-results/**',
       '**/playwright-report/**',
       '**/tests/e2e/**',
-      '**/src/utils/__tests__/glossary-auto-link.test.ts', // Temporarily disable failing tests
       '**/src/server/__tests__/rate-limit.test.ts' // Temporarily disable failing tests
     ]
   }

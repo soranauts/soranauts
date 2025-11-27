@@ -16,6 +16,7 @@ import {
   FEATURE_GLOSSARY_UI_CANONICAL,
   FEATURE_GLOSSARY_ALIAS_REDIRECT,
   FEATURE_GLOSSARY_V3_UI,
+  FEATURE_GLOSSARY_RELATED_ARTICLES,
 } from '~/config/feature-flags';
 import {
   getCanonicalSlug as getCanonicalGlossarySlug,
@@ -29,6 +30,7 @@ import {
 import { shouldApplyAliasRedirect } from '~/lib/glossary/alias-redirect';
 import glossaryDatasetV2025 from '../../../public/data/glossary.v2025.json';
 import GlossaryTermPage from '~/components/glossary/v3/GlossaryTermPage';
+import articleGlossaryMap from '../../../public/data/article-glossary-map.json';
 
 export const prerender = true;
 
@@ -192,6 +194,30 @@ const taxonomyNode = getTaxonomyNode(term.slug);
 const relatedTagNodes = taxonomyNode ? getRelatedTags(taxonomyNode.slug) : [];
 
 const posts = await getCollection('post');
+const dateFormatter =
+  I18N.dateFormatter ??
+  new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
+const postsBySlug = new Map(posts.map((post) => [post.slug, post]));
+
+const articleGlossaryTerms = (articleGlossaryMap?.terms ?? {}) as Record<string, string[]>;
+const relatedArticleSlugs = Array.isArray(articleGlossaryTerms[term.slug])
+  ? articleGlossaryTerms[term.slug]
+  : [];
+const relatedArticlesFromMap = FEATURE_GLOSSARY_RELATED_ARTICLES
+  ? relatedArticleSlugs
+      .map((slug) => {
+        const post = postsBySlug.get(slug);
+        if (!post) return null;
+        return {
+          slug,
+          title: post.data.title,
+          href: getPermalink(post.slug, 'post'),
+          publishedAt: post.data.publishDate ? dateFormatter.format(post.data.publishDate) : null,
+        };
+      })
+      .filter((article): article is { slug: string; title: string; href: string; publishedAt: string | null } => Boolean(article))
+      .slice(0, 4)
+  : [];
 
 const relatedTagArticles = (() => {
   const seen = new Set<string>();
@@ -294,7 +320,6 @@ const heroStats = [
 const heroDescription = term.summary ?? term.definition;
 const aliasList = Array.isArray(term.aliases) ? term.aliases.slice(1) : [];
 const glossaryTags = Array.isArray(term.tags) ? term.tags : [];
-const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
 ---
 
 <Layout 
@@ -417,6 +442,15 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
           label: link.label,
           url: link.url,
         }))}
+        relatedArticles={
+          FEATURE_GLOSSARY_RELATED_ARTICLES
+            ? relatedArticlesFromMap.map((article) => ({
+                title: article.title,
+                href: article.href,
+                date: article.publishedAt,
+              }))
+            : undefined
+        }
       />
     ) : (
       <>
@@ -549,6 +583,21 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
             </GlossarySectionCard>
           )}
 
+      {FEATURE_GLOSSARY_RELATED_ARTICLES && relatedArticlesFromMap.length > 0 && (
+        <GlossarySectionCard title="Related articles" description="Recent Soranauts coverage mentioning this term.">
+          <div class="glossary-related">
+            <ul class="glossary-related__list">
+              {relatedArticlesFromMap.map((article) => (
+                <li class="glossary-related__list-item">
+                  <a href={article.href}>{article.title}</a>
+                  {article.publishedAt && <time>{article.publishedAt}</time>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </GlossarySectionCard>
+      )}
+
           {term.examples && term.examples.length > 0 && (
             <GlossarySectionCard title="Examples" description="Common scenarios where this concept appears.">
               <ul class="glossary-list glossary-list--stacked">
@@ -579,6 +628,26 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
           )}
         </div>
       </>
+    )}
+
+    {featureGlossaryV3Enabled && (
+      <script is:inline>
+        {`
+          if (typeof window !== 'undefined') {
+            const SECTION_IDS = new Set(['definition', 'why', 'related', 'sources']);
+            const scrollToHash = () => {
+              const hash = window.location.hash.slice(1);
+              if (!SECTION_IDS.has(hash)) return;
+              const target = document.getElementById(hash);
+              if (!target) return;
+              const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+            };
+            scrollToHash();
+            window.addEventListener('hashchange', scrollToHash);
+          }
+        `}
+      </script>
     )}
   </main>
 

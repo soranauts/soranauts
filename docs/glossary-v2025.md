@@ -10,3 +10,9 @@
 
 Flag toggles can be combined with the earlier V2025 flags; disabling `FEATURE_GLOSSARY_V3_UI` reverts to the legacy UI instantly.
 
+- **Phase 11 (Auto-link QA & Article Pass):**
+  - Hardened markdown auto-linking so only canonical slugs are linked, aliases resolve to canonical URLs, and links are skipped in headings, code, URLs, and `data-no-glossary` regions.
+  - New front matter controls per post: `glossaryNoLink` (array), `glossaryMaxLinksPerPost` (number), `glossaryMaxLinksPerTerm` (number, default `2`).
+  - Dry-run script `pnpm --filter @soranauts/web glossary:autolink:check` summarizes proposed changes; report stored at `/tmp/phase11-autolink-report.txt`.
+  - Relations script `pnpm --filter @soranauts/web glossary:relations:build` emits `public/data/article-glossary-map.json`, powering the optional `FEATURE_GLOSSARY_RELATED_ARTICLES` section on glossary terms.
+
