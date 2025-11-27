@@ -65,7 +65,9 @@ export const getStaticPaths = async (): Promise<PagePath[]> => {
 
 const { tagSlug, posts, pageNumber } = Astro.props as PageStaticProps;
 const postsCollection = await getCollection('post');
-const postsBySlug = new Map(postsCollection.map((post) => [post.slug, post]));
+const postsBySlug = new Map<string, (typeof postsCollection)[number]>(
+  postsCollection.map((post) => [post.slug, post]),
+);
 
 const tag = getTagViewModelBySlug(tagSlug);
 
@@ -117,10 +119,10 @@ const metadata: MetaData = {
   },
 };
 
-const formatArticleDate = (value?: string) => {
+const formatArticleDate = (value?: string | Date) => {
   if (!value) return null;
-  const parsed = new Date(value);
-  if (Number.isNaN(parsed.value)) return null;
+  const parsed = typeof value === 'string' ? new Date(value) : value;
+  if (Number.isNaN(parsed.valueOf())) return null;
   return new Intl.DateTimeFormat('en', {
     month: 'short',
     day: 'numeric',
@@ -133,6 +135,8 @@ const canonicalTermSlug =
     ? tag.canonicalGlossarySlug
     : glossaryEntry?.slug) ?? null;
 
+type RelatedArticleCard = { title: string; href: string; date: string | null };
+
 const relatedArticleSlugsFromMap =
   FEATURE_EXPLORER_GLOSSARY_CONTEXT && canonicalTermSlug
     ? getRelatedArticleSlugs(canonicalTermSlug)
@@ -141,7 +145,7 @@ const relatedArticleSlugsFromMap =
 const relatedArticlesFromMap =
   FEATURE_EXPLORER_GLOSSARY_CONTEXT && canonicalTermSlug
     ? relatedArticleSlugsFromMap
-        .map((slug) => {
+        .map<RelatedArticleCard | null>((slug) => {
           const post = postsBySlug.get(slug);
           if (!post) return null;
           return {
@@ -151,7 +155,7 @@ const relatedArticlesFromMap =
           };
         })
         .filter(
-          (article): article is { title: string; href: string; date?: string | null } => Boolean(article),
+          (article): article is RelatedArticleCard => Boolean(article),
         )
     : [];
 
