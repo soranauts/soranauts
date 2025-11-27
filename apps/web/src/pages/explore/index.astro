@@ -14,6 +14,9 @@ import type {
   TagHubTraitFilter,
   TagHubClientTag,
 } from '~/components/tag-hub/TagFilters.tsx';
+import ExplorerGlossaryContext from '~/components/tag-hub/ExplorerGlossaryContext';
+import { FEATURE_EXPLORER_GLOSSARY_CONTEXT } from '~/config/feature-flags';
+import { getTopTermsForDomain } from '~/lib/glossary/article-relations';
 
 export const prerender = true;
 
@@ -86,6 +89,13 @@ const domainSections = domainOrder.map((domain) => ({
 
 const heroCopy =
   'Navigate the SORA knowledge graph in one place. SORA Explorer unifies glossary terms, governance updates, DeFi strategies, and ecosystem signals so you can map and understand the network.';
+
+const glossaryContextByDomain =
+  isEnabled && FEATURE_EXPLORER_GLOSSARY_CONTEXT
+    ? Object.fromEntries(
+        domainOrder.map((domain) => [domain, getTopTermsForDomain(domain, tags)]),
+      )
+    : {};
 
 const enabledMetadata: MetaData = {
   title: 'SORA Explorer: Discover the Decentralized Economy',
@@ -300,6 +310,13 @@ const quickPathSections = quickPaths.map((path) => ({
               <div class="tag-hub-section__domain">Domain focus</div>
               <h3 class="text-2xl font-semibold tracking-tight">{section.label}</h3>
             </div>
+            {FEATURE_EXPLORER_GLOSSARY_CONTEXT &&
+              (glossaryContextByDomain[section.id]?.length ?? 0) > 0 && (
+                <ExplorerGlossaryContext
+                  category={section.label}
+                  relatedTerms={glossaryContextByDomain[section.id]}
+                />
+              )}
             <div class="tag-hub-section__grid">
               {section.tags.map((tag) => {
                 const formattedTitle = formatTagLabel(tag.slug, tag.title);
