@@ -204,9 +204,12 @@ const pagefindMeta = {
   <main
     class="tag-detail-page px-4 md:px-6 lg:px-12 py-12 md:py-16 lg:py-20 mx-auto max-w-5xl"
     data-pagefind-body={shouldIndex ? true : undefined}
-    data-pagefind-filter={shouldIndex ? `type:tag,domain:${tag.domain}` : undefined}
+    data-pagefind-filter={shouldIndex ? 'type:tag' : undefined}
     data-pagefind-meta={shouldIndex ? JSON.stringify(pagefindMeta) : undefined}
   >
+    {shouldIndex && (
+      <span class="sr-only" aria-hidden="true" data-pagefind-filter={`domain:${tag.domain}`}></span>
+    )}
     <TagHero
       tag={tag}
       totalPosts={totalPosts}
