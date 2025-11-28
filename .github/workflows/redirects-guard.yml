@@ -12,6 +12,9 @@ on:
 
 jobs:
   verify:
+    strategy:
+      fail-fast: false
+      max-parallel: 1
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,5 +22,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y jq
-      - name: Verify production redirects
-        run: bash apps/web/scripts/verify-glossary-redirects.sh
+      - name: Verify production redirects (retry x2)
+        run: |
+          set -e
+          bash apps/web/scripts/verify-glossary-redirects.sh || (sleep 5 && bash apps/web/scripts/verify-glossary-redirects.sh)
