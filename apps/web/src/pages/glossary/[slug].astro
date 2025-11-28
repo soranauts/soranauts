@@ -429,7 +429,12 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
         </GlossaryHero>
 
         <div class="glossary-detail__stack">
-      <GlossarySectionCard kicker="Core definition" title="What it means">
+      <GlossarySectionCard
+        kicker="Core definition"
+        title="What it means"
+        id="definition"
+        class="scroll-mt-28 md:scroll-mt-32"
+      >
         <article
           data-pagefind-body
           data-pagefind-url={`/glossary/${term.slug}/`}
