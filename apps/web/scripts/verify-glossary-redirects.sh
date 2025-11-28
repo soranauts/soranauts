@@ -2,6 +2,7 @@
 set -euo pipefail
 
 CACHE_BUSTER="$(date +%s)"
+ROOT="https://soranauts.com"
 
 fetch_headers() {
   curl -Is --max-time 10 --retry 5 --retry-delay 1 --retry-all-errors \
@@ -11,37 +12,38 @@ fetch_headers() {
 require_status_and_location() {
   local url="$1" expect_status="$2" expect_location="$3"
   local hdrs
-  hdrs="$(fetch_headers "$url")" || { echo "$hdrs"; exit 1; }
+  hdrs="$(fetch_headers "$url")"
   echo "$hdrs"
-  echo "$hdrs" | grep -iqE "^HTTP/(1\.1|2) +${expect_status}\\b" || exit 1
-  echo "$hdrs" | grep -iqE "^location: ${expect_location}\\b" || exit 1
+  echo "$hdrs" | grep -iqE "^HTTP/(1\.1|2) +${expect_status}\\b"
+  echo "$hdrs" | grep -iqE "^location: ${expect_location}\\b"
 }
 
 require_status() {
   local url="$1" expect_status="$2"
   local hdrs
-  hdrs="$(fetch_headers "$url")" || { echo "$hdrs"; exit 1; }
+  hdrs="$(fetch_headers "$url")"
   echo "$hdrs"
-  echo "$hdrs" | grep -iqE "^HTTP/(1\.1|2) +${expect_status}\\b" || exit 1
+  echo "$hdrs" | grep -iqE "^HTTP/(1\.1|2) +${expect_status}\\b"
 }
 
-ALIASES=(
-  "/glossary/hyperledger-iroha|/glossary/iroha"
-  "/glossary/hyperledger-iroha-3|/glossary/iroha3"
-  "/glossary/sora-council|/glossary/council"
-  "/glossary/sora-parliament|/glossary/parliament"
-  "/glossary/token-bonding-curve|/glossary/bonding-curve"
-)
+mapfile -t PAIRS < <(jq -r '
+  .redirects[]
+  | select(.source|startswith("/glossary/"))
+  | select(.destination|startswith("/glossary/"))
+  | "\(.source)|\(.destination)"' apps/web/vercel.json)
 
-for pair in "${ALIASES[@]}"; do
+echo "Found ${#PAIRS[@]} glossary redirects in vercel.json"
+test "${#PAIRS[@]}" -gt 0
+
+for pair in "${PAIRS[@]}"; do
   src="${pair%%|*}"
   dst="${pair##*|}"
-  require_status_and_location "https://soranauts.com${src}"  "308" "${dst}"
-  [[ "$src" =~ /$ ]] || require_status_and_location "https://soranauts.com${src}/" "308" "${dst}"
+  require_status_and_location "${ROOT}${src}"  "308" "${dst}"
+  [[ "$src" =~ /$ ]] || require_status_and_location "${ROOT}${src}/" "308" "${dst}"
 done
-require_status "https://soranauts.com/glossary/bonding-curve" "200"
 
-curl -s "https://soranauts.com/data/glossary.v2025.json?ci=${CACHE_BUSTER}" \
+require_status "${ROOT}/glossary/bonding-curve" "200"
+curl -s "${ROOT}/data/glossary.v2025.json?ci=${CACHE_BUSTER}" \
   | jq -e '.canonicalCount==52 and .aliasCount==5 and .deprecatedCount==0' >/dev/null
 
-echo "✅ Redirects OK"
+echo "✅ All glossary redirects verified dynamically"
