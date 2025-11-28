@@ -32,11 +32,17 @@ export const prerender = true;
 const allGlossaryTerms = getCachedGlossaryTerms();
 
 export async function getStaticPaths() {
-  return glossaryDatasetV2025.terms
-    .filter((entry) => entry.status === 'canonical')
-    .map((entry) => ({
-      params: { slug: entry.slug },
-    }));
+  if (FEATURE_GLOSSARY_V2025) {
+    return glossaryDatasetV2025.terms
+      .filter((entry) => entry.status === 'canonical')
+      .map((entry) => ({
+        params: { slug: entry.slug },
+      }));
+  }
+
+  return getCachedGlossaryTerms().map((entry) => ({
+    params: { slug: entry.slug },
+  }));
 }
 
 const normalizeSlugValue = (value?: string | null): string =>
