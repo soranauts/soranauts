@@ -13,7 +13,7 @@ const GlossarySources = ({ sources }: GlossarySourcesProps) => {
   if (!sources.length) return null;
 
   return (
-    <section id="sources" className="glossary-v3__section" aria-labelledby="sources-heading">
+    <section id="sources" className="glossary-v3__section scroll-mt-28 md:scroll-mt-32" aria-labelledby="sources-heading">
       <h3 id="sources-heading">Sources</h3>
       <ul className="glossary-v3__sources-list">
         {sources.map((source) => (

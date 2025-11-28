@@ -169,14 +169,14 @@ const GlossaryTermPage = ({
         />
 
         <div className="glossary-v3__content">
-          <section id="definition" className="glossary-v3__definition">
+          <section id="definition" className="glossary-v3__definition scroll-mt-28 md:scroll-mt-32">
             <h1>{title}</h1>
             {summary && <p className="glossary-v3__summary">{summary}</p>}
             <p>{definition}</p>
           </section>
 
           {hasWhy && (
-            <section id="why" className="glossary-v3__section" aria-labelledby="why-heading">
+            <section id="why" className="glossary-v3__section scroll-mt-28 md:scroll-mt-32" aria-labelledby="why-heading">
               <h3 id="why-heading">Why it matters</h3>
               <p>{whyItMatters}</p>
             </section>

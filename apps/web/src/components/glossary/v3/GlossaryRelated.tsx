@@ -8,7 +8,7 @@ const GlossaryRelated = ({ items }: GlossaryRelatedProps) => {
   if (!items.length) return null;
 
   return (
-    <section id="related" className="glossary-v3__section" aria-labelledby="related-heading">
+    <section id="related" className="glossary-v3__section scroll-mt-28 md:scroll-mt-32" aria-labelledby="related-heading">
       <h3 id="related-heading">Related terms</h3>
       <ul className="glossary-v3__related-list">
         {items.map((item) => (

@@ -36,6 +36,21 @@ img {
   display: block;
 }
 
+:root {
+  --header-h: 76px;
+  --header-h-sm: 64px;
+}
+
+html {
+  scroll-padding-top: var(--header-h);
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: var(--header-h-sm);
+  }
+}
+
 @layer components {
   /* Content / article links */
   .prose a,
