@@ -25,8 +25,20 @@ require_status() {
   echo "$hdrs" | grep -iqE "^HTTP/(1\.1|2) +${expect_status}\\b" || exit 1
 }
 
-require_status_and_location "https://soranauts.com/glossary/token-bonding-curve"  "308" "/glossary/bonding-curve"
-require_status_and_location "https://soranauts.com/glossary/token-bonding-curve/" "308" "/glossary/bonding-curve"
+ALIASES=(
+  "/glossary/hyperledger-iroha|/glossary/iroha"
+  "/glossary/hyperledger-iroha-3|/glossary/iroha3"
+  "/glossary/sora-council|/glossary/council"
+  "/glossary/sora-parliament|/glossary/parliament"
+  "/glossary/token-bonding-curve|/glossary/bonding-curve"
+)
+
+for pair in "${ALIASES[@]}"; do
+  src="${pair%%|*}"
+  dst="${pair##*|}"
+  require_status_and_location "https://soranauts.com${src}"  "308" "${dst}"
+  [[ "$src" =~ /$ ]] || require_status_and_location "https://soranauts.com${src}/" "308" "${dst}"
+done
 require_status "https://soranauts.com/glossary/bonding-curve" "200"
 
 curl -s "https://soranauts.com/data/glossary.v2025.json?ci=${CACHE_BUSTER}" \
