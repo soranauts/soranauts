@@ -341,16 +341,26 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
         is:inline
         define:vars={{ aliasSlug: aliasAnalyticsPayload.aliasSlug, canonicalSlug: aliasAnalyticsPayload.canonicalSlug }}
       >
-        import { emit } from '~/lib/analytics';
+        const emitGlossaryEvent = (event) => {
+          if (window.posthog?.capture) {
+            window.posthog.capture(event.name, event);
+            return;
+          }
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', event.name, event);
+            return;
+          }
+          console.debug?.('[analytics]', event);
+        };
         const alias = aliasSlug;
         const target = canonicalSlug;
         if (alias && target) {
-          queueMicrotask(() => emit({ name: 'glossary_alias_view', alias, target }));
+          queueMicrotask(() => emitGlossaryEvent({ name: 'glossary_alias_view', alias, target }));
           const cta = document.querySelector('[data-alias-cta]');
           if (cta) {
             cta.addEventListener(
               'click',
-              () => emit({ name: 'glossary_alias_redirect', alias, target }),
+              () => emitGlossaryEvent({ name: 'glossary_alias_redirect', alias, target }),
               { once: true },
             );
           }
@@ -367,7 +377,17 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
           canonicalSlug: term.slug,
         }}
       >
-        import { emit } from '~/lib/analytics';
+        const emitGlossaryEvent = (event) => {
+          if (window.posthog?.capture) {
+            window.posthog.capture(event.name, event);
+            return;
+          }
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', event.name, event);
+            return;
+          }
+          console.debug?.('[analytics]', event);
+        };
         const alias = aliasSlug;
         const targetSlug = canonicalSlug;
         if (typeof window !== 'undefined') {
@@ -375,7 +395,7 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
             const target = `/glossary/${targetSlug}`;
             if (window.location.pathname !== target) {
               window.history.replaceState({}, '', target + window.location.search + window.location.hash);
-              emit({ name: 'glossary_alias_redirect', alias, target: targetSlug });
+              emitGlossaryEvent({ name: 'glossary_alias_redirect', alias, target: targetSlug });
             }
           });
         }
