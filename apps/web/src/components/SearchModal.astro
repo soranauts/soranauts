@@ -119,7 +119,17 @@ const SEARCH_ALIAS_MICROCOPY =
 
 <script type="module" is:inline define:vars={{ aliasMicrocopy: SEARCH_ALIAS_MICROCOPY }}>
   // @ts-nocheck
-  import { emit as emitGlossaryAnalytics } from '~/lib/analytics';
+  const emitGlossaryAnalytics = (event) => {
+    if (window.posthog?.capture) {
+      window.posthog.capture(event.name, event);
+      return;
+    }
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', event.name, event);
+      return;
+    }
+    console.debug?.('[analytics]', event);
+  };
   const GLOSSARY_ALIAS_MICROCOPY = aliasMicrocopy;
   const TYPE_FILTERS = [
     { id: 'all', label: 'All' },
