@@ -1,15 +1,4 @@
 {
-  "installCommand": "corepack enable && corepack prepare pnpm@9.12.2 --activate && pnpm install --frozen-lockfile",
-  "headers": [
-    {
-      "source": "/og/(.*)\\.(jpg|jpeg|png)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800, immutable" },
-        { "key": "Accept-Ranges", "value": "bytes" },
-        { "key": "Timing-Allow-Origin", "value": "*" }
-      ]
-    }
-  ],
   "redirects": [
     {
       "source": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
@@ -23,25 +12,45 @@
     },
     {
       "source": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
-      "has": [{ "type": "host", "value": "www.soranauts.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.soranauts.com"
+        }
+      ],
       "destination": "https://soranauts.com/sora-ecosystem-explained",
       "permanent": true
     },
     {
       "source": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation/",
-      "has": [{ "type": "host", "value": "www.soranauts.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.soranauts.com"
+        }
+      ],
       "destination": "https://soranauts.com/sora-ecosystem-explained",
       "permanent": true
     },
     {
       "source": "/soramitsu-sora-polkaswap",
-      "has": [{ "type": "host", "value": "www.soranauts.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.soranauts.com"
+        }
+      ],
       "destination": "https://soranauts.com/sora-ecosystem-explained",
       "permanent": true
     },
     {
       "source": "/soramitsu-sora-polkaswap/",
-      "has": [{ "type": "host", "value": "www.soranauts.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.soranauts.com"
+        }
+      ],
       "destination": "https://soranauts.com/sora-ecosystem-explained",
       "permanent": true
     },
@@ -67,7 +76,12 @@
     },
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.soranauts.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.soranauts.com"
+        }
+      ],
       "destination": "https://soranauts.com/:path*",
       "permanent": true
     },
@@ -94,6 +108,56 @@
     {
       "source": "/understanding-parachains-kusama-polkadot-guide",
       "destination": "/polkadot-kusama-parachains",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/hyperledger-iroha",
+      "destination": "/glossary/iroha",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/hyperledger-iroha/",
+      "destination": "/glossary/iroha",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/hyperledger-iroha-3",
+      "destination": "/glossary/iroha3",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/hyperledger-iroha-3/",
+      "destination": "/glossary/iroha3",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/sora-council",
+      "destination": "/glossary/council",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/sora-council/",
+      "destination": "/glossary/council",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/sora-parliament",
+      "destination": "/glossary/parliament",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/sora-parliament/",
+      "destination": "/glossary/parliament",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/token-bonding-curve",
+      "destination": "/glossary/bonding-curve",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/token-bonding-curve/",
+      "destination": "/glossary/bonding-curve",
       "permanent": true
     }
   ]
