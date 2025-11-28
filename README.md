@@ -1,4 +1,5 @@
 # 🌟 Soranauts
+[![Redirects Guard](https://github.com/soranauts/soranauts/actions/workflows/redirects-guard.yml/badge.svg)](https://github.com/soranauts/soranauts/actions/workflows/redirects-guard.yml)
 
 <img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/lighthouse-score.png" align="right"
      alt="Soranauts Lighthouse Score" width="100" height="358">
