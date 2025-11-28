@@ -14,7 +14,7 @@ import type { MetaData } from '~/types';
 const metadata: MetaData = {
   title: 'Soranauts Platform Features & Safeguards',
   description:
-    'See how SORA Explorer, Glossary v2, and Command + K search make Soranauts fast, reliable, and transparent.',
+    'See how SORA Explorer, the Glossary v2025 canonical dataset, and Command + K search make Soranauts fast, reliable, and transparent.',
 };
 
 const featureLinks = {
@@ -32,8 +32,9 @@ const featureSignals = [
   },
   {
     icon: 'tabler:book-2',
-    title: 'Glossary v2 instant clarity',
-    description: 'Instant search, hover previews, and alias detection keep 130+ definitions aligned with Explorer tags and articles.',
+    title: 'Glossary v2025 canonical clarity',
+    description:
+      'Instant search, hover previews, alias detection, and V3 term pages keep 52 canonical definitions (plus 5 aliases) aligned with Explorer tags and articles.',
   },
   {
     icon: 'tabler:search',
@@ -82,7 +83,7 @@ const stats = [
   },
   {
     amount: '130+',
-    title: 'Glossary definitions with instant search, alias detection, and hover previews backed by taxonomy metadata',
+    title: 'Glossary entries across the v2025 canonical dataset, with alias detection and hover previews backed by taxonomy metadata',
     icon: 'tabler:book',
   },
   {
@@ -112,9 +113,9 @@ const highlightItems = [
   },
   {
     icon: 'tabler:book-2',
-    title: 'Glossary v2 instant clarity',
+    title: 'Glossary v2025 canonical clarity',
     description:
-      'Search 130+ definitions with alias detection, hover previews, and related articles that mirror the taxonomy powering Explorer cards.',
+      'Search the v2025 glossary (52 canonical terms plus 5 aliases) with alias detection, hover previews, and related articles that mirror the taxonomy powering Explorer cards.',
     callToAction: {
       href: featureLinks.glossary,
       text: 'Explore the glossary',
@@ -155,7 +156,8 @@ const searchEnhancements = [
   {
     icon: 'tabler:chart-dots',
     title: 'Synonyms & analytics',
-    description: 'Synonym expansion (SORA ↔ Soramitsu, XOR ↔ token bonding curve) pairs with self-hosted analytics to guide new content.',
+    description:
+      'Synonym expansion (SORA ↔ Soramitsu, XOR ↔ bonding curve) and alias-aware events (view, redirect, search match) feed self-hosted analytics to guide new content.',
   },
 ];
 
@@ -173,7 +175,8 @@ const searchInsights = [
   {
     icon: 'tabler:shield-check',
     title: 'Privacy-first telemetry',
-    description: 'Search runs client-side and only records opt-in analytics through self-hosted PostHog.',
+    description:
+      'Search runs client-side and only records opt-in analytics through our telemetry layer (self-hosted PostHog with optional GA4 mirroring).',
   },
 ];
 
@@ -191,9 +194,9 @@ const timelineItems = [
     icon: 'tabler:news',
   },
   {
-    title: 'September 2025 — SORA Glossary redesign',
+    title: 'September–November 2025 — SORA Glossary v2025 rollout',
     description:
-      'Glossary v2 shipped instant search, taxonomy chips, hover previews, and alias detection so terminology stays synchronized with Explorer cards.',
+      'The v2025 glossary shipped canonical datasets, instant search, taxonomy chips, alias-to-canonical redirects, and V3 term layouts so terminology stays synchronized with Explorer cards.',
     icon: 'tabler:book-2',
   },
   {
