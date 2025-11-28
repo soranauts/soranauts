@@ -1,13 +1,12 @@
 name: Redirects Guard
 
 on:
-  schedule:
-    - cron: "17 6 * * *"
+  schedule: [{ cron: "17 6 * * *" }]
   pull_request:
     paths:
-      - apps/web/vercel.json
-      - apps/web/scripts/verify-glossary-redirects.sh
-      - .github/workflows/redirects-guard.yml
+      - "apps/web/vercel.json"
+      - "apps/web/scripts/verify-glossary-redirects.sh"
+      - ".github/workflows/redirects-guard.yml"
   workflow_dispatch:
 
 jobs:
@@ -15,5 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
       - name: Verify production redirects
         run: bash apps/web/scripts/verify-glossary-redirects.sh
