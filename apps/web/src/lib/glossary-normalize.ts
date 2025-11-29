@@ -22,10 +22,13 @@ export function normalizeGlossaryFull(input: LegacyFull | Term[]): Term[] {
   if (terms) {
     return terms.map((term) => {
       const fallbackTitle = term.title ?? term.term ?? term.slug;
+      const summary = term.summary ?? term.definition ?? null;
       return {
+        ...term,
         title: fallbackTitle,
         term: term.term ?? fallbackTitle,
-        ...term,
+        definition: term.definition ?? summary ?? '',
+        summary,
       };
     });
   }

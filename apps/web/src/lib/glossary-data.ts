@@ -3,7 +3,24 @@ import { normalizeGlossaryFull, normalizeGlossaryIndex } from './glossary-normal
 export type Term = { slug: string; title?: string; [k: string]: any };
 export type IndexEntry = { slug: string; title: string };
 
+const isServer = typeof window === 'undefined';
+
+async function readServerJSON<T>(target: string): Promise<T> {
+  const [{ readFile }, { fileURLToPath }, { resolve }] = await Promise.all([
+    import('node:fs/promises'),
+    import('node:url'),
+    import('node:path'),
+  ]);
+  const filePath = fileURLToPath(new URL(`../../public${target}`, import.meta.url));
+  const absolute = resolve(filePath);
+  const payload = await readFile(absolute, 'utf-8');
+  return JSON.parse(payload) as T;
+}
+
 async function getJSON<T>(path: string): Promise<T> {
+  if (isServer) {
+    return readServerJSON<T>(path);
+  }
   const res = await fetch(path, { cache: 'force-cache' });
   if (!res.ok) {
     throw new Error(`Failed to fetch ${path}: ${res.status}`);
