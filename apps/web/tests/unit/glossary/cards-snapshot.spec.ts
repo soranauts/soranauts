@@ -24,11 +24,11 @@ describe('Glossary ranking snapshots', () => {
     const slugs = response.results.slice(0, 5).map((result) => result.term.slug);
     expect(slugs).toMatchInlineSnapshot(`
       [
-        "hyperledger",
         "hyperledger-iroha",
+        "iroha",
+        "hyperledger",
         "iroha2",
         "hyperledger-iroha-3",
-        "iroha",
       ]
     `);
   });
@@ -39,7 +39,10 @@ describe('Glossary ranking snapshots', () => {
     expect(slugs).toMatchInlineSnapshot(`
       [
         "pswap",
-        "tokenomics",
+        "polkaswap",
+        "buyback-and-burn",
+        "deflationary",
+        "rewards",
       ]
     `);
   });
