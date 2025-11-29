@@ -17,9 +17,14 @@ const ROOT = path.resolve(__dirname, '..');
 const POSTS_DIR = path.join(ROOT, 'src', 'content', 'post');
 const OUTPUT_PATH = path.join(ROOT, 'public', 'data', 'article-glossary-map.json');
 
-const collectPostFiles = async (dir) => {
+interface GlossaryAutoLinkReport {
+  filePath: string;
+  linkedSlugs?: string[];
+}
+
+const collectPostFiles = async (dir: string): Promise<string[]> => {
   const entries = await fs.readdir(dir, { withFileTypes: true });
-  const files = [];
+  const files: string[] = [];
 
   for (const entry of entries) {
     const entryPath = path.join(dir, entry.name);
@@ -37,7 +42,7 @@ const collectPostFiles = async (dir) => {
 
 const main = async () => {
   const glossaryTerms = getAllTerms();
-  const reports = new Map();
+  const reports = new Map<string, GlossaryAutoLinkReport>();
 
   const pluginFactory = createGlossaryAutoLinkPlugin(glossaryTerms, {
     mode: 'analyze',
@@ -47,8 +52,8 @@ const main = async () => {
   const processor = unified().use(remarkParse).use(remarkMdx).use(pluginFactory);
   const files = await collectPostFiles(POSTS_DIR);
 
-  const postsMap = {};
-  const termsMap = {};
+  const postsMap: Record<string, string[]> = {};
+  const termsMap: Record<string, string[]> = {};
 
   for (const filePath of files) {
     const raw = await fs.readFile(filePath, 'utf8');
@@ -65,7 +70,7 @@ const main = async () => {
     const tree = processor.parse(vfile);
     await processor.run(tree, vfile);
 
-    const report = reports.get(filePath) ?? { linkedSlugs: [] };
+    const report = reports.get(filePath) ?? { filePath, linkedSlugs: [] };
     const uniqueSlugs = Array.from(new Set(report.linkedSlugs ?? [])).sort();
     if (!uniqueSlugs.length) continue;
 
