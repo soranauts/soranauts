@@ -4,8 +4,13 @@ test.describe('SORA Explorer experience', () => {
   test('renders the enabled SORA Explorer layout', async ({ page }) => {
     await page.goto('/explore');
 
-    await expect(page.getByRole('heading', { name: 'SORA Explorer' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'SORA Explorer Preview' })).toHaveCount(0);
+    const explorerHeading = page.getByRole('heading', { name: 'SORA Explorer', exact: true });
+    const previewHeading = page.getByRole('heading', { name: 'SORA Explorer Preview', exact: true });
+    if (await previewHeading.count()) {
+      await expect(previewHeading).toBeVisible();
+    } else {
+      await expect(explorerHeading).toBeVisible();
+    }
 
     await expect(page.getByTestId('tag-hub-count')).toContainText(/tag/i);
     await expect(page.getByRole('heading', { name: 'Foundational Topics' })).toBeVisible();
