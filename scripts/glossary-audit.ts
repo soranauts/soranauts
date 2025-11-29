@@ -51,7 +51,7 @@ const LEGACY_MAP: Record<string, string> = {
   'hyperledger-iroha-2': 'iroha2',
 };
 
-const GLOSSARY_PATH = path.resolve(repoRoot, 'apps/web/public/data/glossary.v2025.json');
+const GLOSSARY_PATH = path.resolve(repoRoot, 'glossary.v2025.json');
 const VERCEL_PATH = path.resolve(repoRoot, 'apps/web/vercel.json');
 const CACHE_FILE = path.resolve(repoRoot, '.cache/glossary-audit-mtime.json');
 const COLLATOR = new Intl.Collator('en', { sensitivity: 'case', numeric: true });
@@ -167,11 +167,10 @@ async function main() {
   if (options.fix && options.addStubs && missingCanonicals.length) {
     for (const slug of missingCanonicals) {
       const stub = createStub(slug);
-      dataset.terms.push(stub);
+      dataset.push(stub);
       canonicalMap.set(slug, stub);
       stubsAdded.push(slug);
     }
-    dataset.canonicalCount = dataset.terms.filter((term) => term.status === 'canonical').length;
   }
 
   const sortedGlossary = sortGlossaryRules(glossaryRules);
@@ -359,7 +358,7 @@ function buildGlossaryMaps(dataset: GlossaryDataset) {
   const canonicalMap = new Map<string, GlossaryTerm>();
   const aliasMap = new Map<string, string>();
 
-  for (const term of dataset.terms) {
+  for (const term of dataset) {
     const slug = normalizeSlug(term.slug);
     if (term.status === 'canonical') {
       canonicalMap.set(slug, term);

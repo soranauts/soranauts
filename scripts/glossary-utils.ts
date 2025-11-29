@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const repoRoot = path.resolve(__dirname, '..');
-const GLOSSARY_DATA_PATH = path.resolve(repoRoot, 'apps/web/public/data/glossary.v2025.json');
+const GLOSSARY_DATA_PATH = path.resolve(repoRoot, 'glossary.v2025.json');
 
 export interface GlossaryTerm {
   slug: string;
@@ -18,12 +18,7 @@ export interface GlossaryTerm {
   aliases?: string[];
 }
 
-export interface GlossaryDataset {
-  terms: GlossaryTerm[];
-  canonicalCount?: number;
-  aliasCount?: number;
-  deprecatedCount?: number;
-}
+export type GlossaryDataset = GlossaryTerm[];
 
 export interface CacheEntry {
   mtime: number;

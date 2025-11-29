@@ -80,7 +80,13 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: formatUrl(baseUrl, '/terms'), lastmod: formatDate(new Date()), changefreq: 'yearly', priority: '0.4' },
   ];
 
-  if (isExplorerEnabled) {
+const glossaryTerms: Array<{ slug: string }> = Array.isArray(glossary)
+  ? glossary
+  : Array.isArray((glossary as { terms?: Array<{ slug: string }> }).terms)
+    ? (glossary as { terms: Array<{ slug: string }> }).terms
+    : [];
+
+if (isExplorerEnabled) {
     entries.push({
       loc: formatUrl(baseUrl, '/explore'),
       lastmod: formatDate(new Date()),
@@ -89,7 +95,7 @@ export const GET: APIRoute = async ({ site }) => {
     });
   }
 
-  for (const term of glossary.terms ?? []) {
+  for (const term of glossaryTerms) {
     entries.push({
       loc: formatUrl(baseUrl, `/glossary/${term.slug}`),
       lastmod: formatDate(new Date()),
