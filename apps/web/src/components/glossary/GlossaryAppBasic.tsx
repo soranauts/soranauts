@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { loadGlossaryFull, type Term as GlossaryTermPayload } from '../../lib/glossary-data';
 
 // Simple types
 interface GlossaryTerm {
@@ -29,12 +30,22 @@ export default function GlossaryAppBasic({ initialTerm }: GlossaryAppProps) {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('/glossary.json');
-        if (!response.ok) {
-          throw new Error('Failed to fetch glossary data');
-        }
-        const data = await response.json();
-        setGlossaryData(data);
+        const rawTerms = await loadGlossaryFull();
+        const terms = rawTerms.map((term) => {
+          const typed = term as GlossaryTerm;
+          const fallback = (term as GlossaryTermPayload).title ?? term.slug;
+          return {
+            term: typed.term ?? fallback,
+            slug: term.slug,
+            definition: typed.definition ?? (term as GlossaryTermPayload).summary ?? '',
+            category: typed.category ?? 'token',
+            aliases: Array.isArray(typed.aliases) ? typed.aliases : [],
+          };
+        });
+        setGlossaryData({
+          terms,
+          totalCount: terms.length,
+        });
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load glossary data');
@@ -69,10 +80,13 @@ export default function GlossaryAppBasic({ initialTerm }: GlossaryAppProps) {
   }
 
   // Filter terms based on search
-  const filteredTerms = glossaryData.terms.filter(term =>
-    term.term.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    term.definition.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredTerms = glossaryData.terms.filter((term) => {
+    const haystack = searchQuery.toLowerCase();
+    return (
+      (term.term ?? '').toLowerCase().includes(haystack) ||
+      (term.definition ?? '').toLowerCase().includes(haystack)
+    );
+  });
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -109,9 +123,9 @@ export default function GlossaryAppBasic({ initialTerm }: GlossaryAppProps) {
               <span className="px-2 py-1 rounded-full font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
                 {term.category}
               </span>
-              {term.aliases.length > 1 && (
+              {(term.aliases?.length ?? 0) > 1 && (
                 <span className="text-gray-500">
-                  Also: {term.aliases.slice(1, 4).join(', ')}
+                  Also: {(term.aliases ?? []).slice(1, 4).join(', ')}
                 </span>
               )}
             </div>

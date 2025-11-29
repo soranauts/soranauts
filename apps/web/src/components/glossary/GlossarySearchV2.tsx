@@ -7,6 +7,7 @@ import type {
   GlossarySearchResult,
 } from '../../lib/glossary/search';
 import { createGlossarySearchEngine } from '../../lib/glossary/search';
+import { normalizeGlossaryFull } from '../../lib/glossary-normalize';
 
 type GlossaryJsonPayload = GlossarySearchIndexInput & {
   categories: Record<string, { name: string; count: number }>;
@@ -55,7 +56,27 @@ const fetchGlossaryData = async (): Promise<GlossaryJsonPayload> => {
     throw new Error(`Failed to load glossary data: ${response.status}`);
   }
 
-  return response.json();
+  const payload = await response.json();
+
+  if (Array.isArray(payload)) {
+    const terms = normalizeGlossaryFull(payload);
+    return {
+      terms,
+      aliasIndex: [],
+      categories: {},
+      totalCount: terms.length,
+      lastUpdated: new Date().toISOString(),
+    };
+  }
+
+  if (!payload?.terms || !Array.isArray(payload.terms)) {
+    throw new Error('Invalid glossary payload format');
+  }
+
+  return {
+    ...payload,
+    terms: normalizeGlossaryFull(payload.terms),
+  };
 };
 
 let canonicalResolverPromise: Promise<((slug: string) => string) | undefined> | null = null;
