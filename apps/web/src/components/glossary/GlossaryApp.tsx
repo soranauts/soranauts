@@ -1,14 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import type { GlossaryData, GlossaryTerm, GlossaryFilter } from '../../types/glossary';
-
-// Fetch glossary data
-async function fetchGlossaryData(): Promise<GlossaryData> {
-  const response = await fetch('/glossary.json');
-  if (!response.ok) {
-    throw new Error('Failed to fetch glossary data');
-  }
-  return response.json();
-}
+import { loadGlossaryFull, type Term as GlossaryTermPayload } from '../../lib/glossary-data';
 
 // Search and filter terms
 function filterTerms(terms: GlossaryTerm[], filter: GlossaryFilter): GlossaryTerm[] {
@@ -21,21 +13,24 @@ function filterTerms(terms: GlossaryTerm[], filter: GlossaryFilter): GlossaryTer
 
   // Tag filter
   if (filter.tags && filter.tags.length > 0) {
-    filtered = filtered.filter(term => 
-      filter.tags!.some(tag => term.tags.includes(tag))
+    filtered = filtered.filter((term) =>
+      filter.tags!.some((tag) => (term.tags ?? []).includes(tag)),
     );
   }
 
   // Search filter
   if (filter.search) {
     const searchLower = filter.search.toLowerCase();
-    filtered = filtered.filter(term => 
-      term.term.toLowerCase().includes(searchLower) ||
-      term.definition.toLowerCase().includes(searchLower) ||
-      term.aliases.some(alias => alias.toLowerCase().includes(searchLower)) ||
-      term.tags.some(tag => tag.toLowerCase().includes(searchLower)) ||
-      term.relatedTerms.some(related => related.toLowerCase().includes(searchLower))
-    );
+    filtered = filtered.filter((term) => {
+      const termMatch = term.term?.toLowerCase().includes(searchLower);
+      const definitionMatch = term.definition?.toLowerCase().includes(searchLower);
+      const aliasMatch = (term.aliases ?? []).some((alias) => alias.toLowerCase().includes(searchLower));
+      const tagMatch = (term.tags ?? []).some((tag) => tag.toLowerCase().includes(searchLower));
+      const relatedMatch = (term.relatedTerms ?? []).some((related) =>
+        related.toLowerCase().includes(searchLower),
+      );
+      return Boolean(termMatch || definitionMatch || aliasMatch || tagMatch || relatedMatch);
+    });
   }
 
   return filtered;
@@ -77,13 +72,48 @@ export default function GlossaryApp({ initialTerm }: GlossaryAppProps) {
   const resultsRef = useRef<HTMLDivElement>(null);
   const debouncedSearch = useDebounce(searchQuery, 150);
 
+  const toGlossaryTerm = (entry: GlossaryTermPayload | GlossaryTerm): GlossaryTerm => {
+    const fallbackTitle = (entry as GlossaryTermPayload).title ?? entry.slug;
+    const typed = entry as GlossaryTerm;
+    return {
+      term: typed.term ?? fallbackTitle,
+      slug: entry.slug,
+      definition: typed.definition ?? (entry as GlossaryTermPayload).summary ?? '',
+      category: typed.category ?? 'token',
+      relatedTerms: Array.isArray(typed.relatedTerms) ? typed.relatedTerms : [],
+      aliases: Array.isArray((entry as GlossaryTermPayload).aliases)
+        ? (entry as GlossaryTermPayload).aliases
+        : [],
+      tags: Array.isArray(typed.tags) ? typed.tags : [],
+      priority: typeof typed.priority === 'number' ? typed.priority : 0,
+      examples: typed.examples ?? [],
+      links: typed.links ?? [],
+    };
+  };
+
+  const buildCategories = (terms: GlossaryTerm[]): GlossaryData['categories'] =>
+    terms.reduce<GlossaryData['categories']>((acc, term) => {
+      const key = term.category ?? 'token';
+      if (!acc[key]) {
+        acc[key] = { name: key, count: 0 };
+      }
+      acc[key].count += 1;
+      return acc;
+    }, {});
+
   // Fetch glossary data on component mount
   useEffect(() => {
     const loadGlossaryData = async () => {
       try {
         setIsLoading(true);
-        const data = await fetchGlossaryData();
-        setGlossaryData(data);
+        const rawTerms = await loadGlossaryFull();
+        const terms = rawTerms.map((term) => toGlossaryTerm(term as GlossaryTerm));
+        setGlossaryData({
+          terms,
+          categories: buildCategories(terms),
+          totalCount: terms.length,
+          lastUpdated: new Date().toISOString(),
+        });
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load glossary data');

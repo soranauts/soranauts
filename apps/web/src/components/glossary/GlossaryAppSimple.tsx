@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { loadGlossaryFull, type Term as GlossaryTermPayload } from '../../lib/glossary-data';
 
 interface GlossaryTerm {
   term: string;
@@ -44,12 +45,44 @@ export default function GlossaryAppSimple({ initialTerm }: GlossaryAppProps) {
     const loadGlossaryData = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('/glossary.json');
-        if (!response.ok) {
-          throw new Error('Failed to fetch glossary data');
-        }
-        const data = await response.json();
-        setGlossaryData(data);
+        const rawTerms = await loadGlossaryFull();
+        const terms = rawTerms.map((term) => {
+          const typed = term as GlossaryTerm;
+          const fallback = (term as GlossaryTermPayload).title ?? term.slug;
+          return {
+            term: typed.term ?? fallback,
+            slug: term.slug,
+            definition: typed.definition ?? (term as GlossaryTermPayload).summary ?? '',
+            category: typed.category ?? 'token',
+            relatedTerms: Array.isArray(typed.relatedTerms) ? typed.relatedTerms : [],
+            aliases: Array.isArray(typed.aliases) ? typed.aliases : [],
+            tags: Array.isArray(typed.tags) ? typed.tags : [],
+            examples: typed.examples ?? [],
+            links: typed.links ?? [],
+            priority: typeof typed.priority === 'number' ? typed.priority : 0,
+          };
+        });
+
+        const categories = terms.reduce<GlossaryData['categories']>((acc, term) => {
+          const key = term.category ?? 'token';
+          if (!acc[key]) {
+            acc[key] = {
+              name: key,
+              label: key,
+              count: 0,
+              description: '',
+            };
+          }
+          acc[key].count += 1;
+          return acc;
+        }, {});
+
+        setGlossaryData({
+          terms,
+          categories,
+          totalCount: terms.length,
+          lastUpdated: new Date().toISOString(),
+        });
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load glossary data');
@@ -62,16 +95,19 @@ export default function GlossaryAppSimple({ initialTerm }: GlossaryAppProps) {
   }, []);
 
   // Filter terms based on search and category
-  const filteredTerms = glossaryData?.terms.filter(term => {
-    const matchesSearch = !searchQuery || 
-      term.term.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      term.definition.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      term.aliases.some(alias => alias.toLowerCase().includes(searchQuery.toLowerCase()));
-    
-    const matchesCategory = !selectedCategory || term.category === selectedCategory;
-    
-    return matchesSearch && matchesCategory;
-  }) || [];
+  const filteredTerms =
+    glossaryData?.terms.filter((term) => {
+      const haystack = searchQuery.toLowerCase();
+      const matchesSearch =
+        !searchQuery ||
+        (term.term ?? '').toLowerCase().includes(haystack) ||
+        (term.definition ?? '').toLowerCase().includes(haystack) ||
+        (term.aliases ?? []).some((alias) => alias.toLowerCase().includes(haystack));
+
+      const matchesCategory = !selectedCategory || term.category === selectedCategory;
+
+      return matchesSearch && matchesCategory;
+    }) || [];
 
   // Handle category change
   const handleCategoryChange = (category: string) => {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { loadGlossaryFull } from '../../lib/glossary-data';
 
 export default function GlossaryDebug() {
   const [status, setStatus] = useState('Initializing...');
@@ -10,18 +11,16 @@ export default function GlossaryDebug() {
       try {
         setStatus('Fetching /glossary.json...');
         console.log('Starting fetch...');
-        
-        const response = await fetch('/glossary.json');
-        console.log('Response received:', response.status, response.statusText);
-        
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const jsonData = await response.json();
-        console.log('Data parsed successfully:', jsonData);
-        
-        setData(jsonData);
+
+        const terms = await loadGlossaryFull();
+        console.log('Data parsed successfully:', terms);
+
+        setData({
+          terms,
+          totalCount: terms.length,
+          categories: {},
+          lastUpdated: new Date().toISOString(),
+        });
         setStatus('Success! Data loaded.');
         setError(null);
       } catch (err) {

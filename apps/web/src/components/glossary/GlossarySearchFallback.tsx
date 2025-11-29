@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { scoreTerm } from './utils';
 import { createPortal } from 'react-dom';
+import { loadGlossaryFull, type Term as GlossaryTermPayload } from '../../lib/glossary-data';
 
 // Dev-only logging utility
 const __DEV__ = import.meta.env?.MODE !== 'production';
@@ -46,33 +47,54 @@ const formatLabel = (value: string): string =>
     .replace(/[-_]+/g, ' ')
     .replace(/\b\w/g, (match) => match.toUpperCase());
 
+const toGlossaryTerm = (entry: GlossaryTermPayload | GlossaryTerm): GlossaryTerm => {
+  const fallbackTitle = (entry as GlossaryTermPayload).title ?? entry.slug;
+  const typed = entry as GlossaryTerm;
+  return {
+    term: typed.term ?? fallbackTitle,
+    slug: entry.slug,
+    definition: typed.definition ?? (entry as GlossaryTermPayload).summary ?? '',
+    category: typed.category ?? 'token',
+    aliases: Array.isArray(typed.aliases) ? typed.aliases : [],
+    tags: Array.isArray(typed.tags) ? typed.tags : [],
+    relatedTerms: Array.isArray(typed.relatedTerms) ? typed.relatedTerms : [],
+    examples: typed.examples ?? [],
+    links: typed.links ?? [],
+    priority: typeof typed.priority === 'number' ? typed.priority : 0,
+  };
+};
+
+const buildCategories = (terms: GlossaryTerm[]): GlossaryData['categories'] =>
+  terms.reduce<GlossaryData['categories']>((acc, term) => {
+    const key = term.category ?? 'token';
+    if (!acc[key]) {
+      acc[key] = {
+        name: key,
+        count: 0,
+        description: '',
+        label: CATEGORY_LABELS[key] ?? formatLabel(key),
+      };
+    }
+    acc[key].count += 1;
+    return acc;
+  }, {});
+
 // Fetch glossary data
 async function fetchGlossaryData(): Promise<GlossaryData> {
   log('🔍 [fetchGlossaryData] Starting glossary fetch...');
   try {
-    const response = await fetch('/glossary.json', {
-      headers: {
-        'accept': 'application/json',
-        'cache-control': 'no-store'
-      }
-    });
-    log('🔍 [fetchGlossaryData] Response status:', response.status);
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Failed to fetch glossary data: ${response.status} ${response.statusText} - ${errorText}`);
-    }
-
-    const data = await response.json();
-    log('🔍 [fetchGlossaryData] Data received:', data?.terms?.length || 0, 'terms');
-
-    if (!data || !data.terms || !Array.isArray(data.terms)) {
-      throw new Error('Invalid glossary data format: missing or malformed "terms" array');
-    }
-    return data;
+    const rawTerms = await loadGlossaryFull();
+    const terms = rawTerms.map((term) => toGlossaryTerm(term as GlossaryTerm));
+    log('🔍 [fetchGlossaryData] Data received:', terms.length, 'terms');
+    return {
+      terms,
+      categories: buildCategories(terms),
+      totalCount: terms.length,
+      lastUpdated: new Date().toISOString(),
+    };
   } catch (err) {
     if (__DEV__) console.error('❌ [fetchGlossaryData] Error during fetch:', err);
-    throw err; // Re-throw to be caught by calling function
+    throw err;
   }
 }
 
@@ -88,13 +110,16 @@ function filterTerms(terms: GlossaryTerm[], searchQuery: string, category: strin
   // Search filter
   if (searchQuery) {
     const searchLower = searchQuery.toLowerCase();
-    filtered = filtered.filter(term => 
-      term.term.toLowerCase().includes(searchLower) ||
-      term.definition.toLowerCase().includes(searchLower) ||
-      term.aliases.some(alias => alias.toLowerCase().includes(searchLower)) ||
-      term.tags.some(tag => tag.toLowerCase().includes(searchLower)) ||
-      term.relatedTerms.some(related => related.toLowerCase().includes(searchLower))
-    );
+    filtered = filtered.filter((term) => {
+      const matchesTerm = term.term?.toLowerCase().includes(searchLower);
+      const matchesDefinition = term.definition?.toLowerCase().includes(searchLower);
+      const matchesAlias = (term.aliases ?? []).some((alias) => alias.toLowerCase().includes(searchLower));
+      const matchesTags = (term.tags ?? []).some((tag) => tag.toLowerCase().includes(searchLower));
+      const matchesRelated = (term.relatedTerms ?? []).some((related) =>
+        related.toLowerCase().includes(searchLower),
+      );
+      return Boolean(matchesTerm || matchesDefinition || matchesAlias || matchesTags || matchesRelated);
+    });
   }
 
   return filtered;
