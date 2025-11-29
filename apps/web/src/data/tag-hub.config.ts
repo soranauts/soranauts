@@ -18,6 +18,11 @@ export interface TagHubMetadataEntry {
   quickPathIds?: string[];
   featured?: boolean;
   weight?: number;
+  /**
+   * Optional canonical glossary slug to force-link tag detail pages to the right entry
+   * when legacy taxonomy data points to an alias (e.g. SORA previously pointed to TONSWAP).
+   */
+  glossarySlug?: string;
 }
 
 export interface TagHubQuickPath {
@@ -103,6 +108,7 @@ export const tagHubMetadata: Record<string, TagHubMetadataEntry> = {
     quickPathIds: ['new-to-sora'],
     featured: true,
     weight: 100,
+    glossarySlug: 'sora',
   },
   'tag-xor': {
     domain: 'economics',
