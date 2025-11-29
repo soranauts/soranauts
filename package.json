@@ -22,7 +22,13 @@
     "dev:glossary:v3": "FEATURE_GLOSSARY_V3_UI=true pnpm --filter @soranauts/web dev",
     "pre-push": "cd apps/web && pnpm install --frozen-lockfile && pnpm build && pnpm test",
     "release:tag:glossary": "node scripts/release-tag.js",
+    "taxonomy:audit": "tsx scripts/glossary-audit.ts",
+    "taxonomy:fix": "tsx scripts/glossary-audit.ts --fix",
+    "taxonomy:fix:stubs": "tsx scripts/glossary-audit.ts --fix --add-stubs",
+    "taxonomy:guard": "bash tools/guard_vercel_glossary.sh",
+    "taxonomy:test:snapshot": "tsx scripts/test-glossary-snapshot.ts",
     "glossary:redirects:build": "tsx scripts/generate-vercel-redirects.ts",
+    "verify:live": "bash tools/verify_glossary_live.sh https://soranauts.com",
     "kb:ingest": "tsx knowledge_base/scripts/ingest.ts",
     "kb:ingest:ci": "CHROMA_STRICT=1 tsx knowledge_base/scripts/ingest.ts",
     "kb:ingest:local": "LOCAL_EMBED_STORE=duckdb tsx knowledge_base/scripts/ingest.ts"
@@ -48,6 +54,8 @@
     "turndown": "^7.2.0"
   },
   "devDependencies": {
+    "diff": "^8.0.2",
+    "fast-glob": "^3.3.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "tsx": "^4.20.5"
