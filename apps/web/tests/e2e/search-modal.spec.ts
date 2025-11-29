@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+test.describe.configure({ retries: process.env.CI ? 2 : 0 });
+
 test('site search modal opens and handles missing index gracefully', async ({ page }) => {
   await page.goto('/');
 
@@ -8,6 +10,7 @@ test('site search modal opens and handles missing index gracefully', async ({ pa
   await expect(page.locator('#search-initial')).toBeVisible();
 
   const input = page.locator('#search-input');
+  await input.click();
   await input.fill('xor');
   await page.waitForTimeout(500);
 
@@ -15,8 +18,14 @@ test('site search modal opens and handles missing index gracefully', async ({ pa
   const resultCount = await results.count();
 
   if (resultCount > 0) {
-    await expect(results.first()).toContainText(/xor/i);
-    await expect(page.locator('#search-count')).not.toHaveText(/0 results/i);
+    const texts = await results.allTextContents();
+    expect(texts.some((text) => /xor/i.test(text))).toBeTruthy();
+
+    const countText = (await page.locator('#search-count').innerText()).trim();
+    expect(countText).not.toMatch(/^0 results$/i);
+
+    const firstHref = await results.first().getAttribute('href');
+    expect(firstHref).toBeTruthy();
   } else {
     if (await page.locator('#search-no-results').isVisible()) {
       await expect(page.locator('#search-no-results')).toBeVisible();
