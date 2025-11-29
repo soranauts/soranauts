@@ -1,8 +1,18 @@
 {
   "redirects": [
     {
+      "source": "/glossary/hubchain",
+      "destination": "/glossary/hub-chain",
+      "permanent": true
+    },
+    {
       "source": "/glossary/hyperledger-iroha",
       "destination": "/glossary/iroha",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/hyperledger-iroha-2",
+      "destination": "/glossary/iroha2",
       "permanent": true
     },
     {
@@ -11,6 +21,11 @@
       "permanent": true
     },
     {
+      "source": "/glossary/liquidity-pool",
+      "destination": "/glossary/liquidity",
+      "permanent": true
+    },
+    {
       "source": "/glossary/sora-council",
       "destination": "/glossary/council",
       "permanent": true
@@ -18,11 +33,6 @@
     {
       "source": "/glossary/sora-parliament",
       "destination": "/glossary/parliament",
-      "permanent": true
-    },
-    {
-      "source": "/glossary/token-bonding-curve",
-      "destination": "/glossary/bonding-curve",
       "permanent": true
     },
     {
@@ -31,18 +41,8 @@
       "permanent": true
     },
     {
-      "source": "/glossary/hubchain",
-      "destination": "/glossary/hub-chain",
-      "permanent": true
-    },
-    {
-      "source": "/glossary/sora-parliament",
-      "destination": "/glossary/parliament",
-      "permanent": true
-    },
-    {
-      "source": "/glossary/sora-council",
-      "destination": "/glossary/council",
+      "source": "/glossary/token-bonding-curve",
+      "destination": "/glossary/bonding-curve",
       "permanent": true
     }
   ]
