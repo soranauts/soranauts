@@ -6,10 +6,12 @@ import fg from 'fast-glob';
 import { createTwoFilesPatch } from 'diff';
 
 import {
+  CacheEntry,
   collectReferencedSlugs,
   GlossaryDataset,
   GlossaryTerm,
   SlugCache,
+  getGlossaryKey,
   normalizeSlug,
   readJSON,
   repoRoot,
@@ -87,8 +89,12 @@ async function main() {
   const dataset = await readJSON<GlossaryDataset>(GLOSSARY_PATH);
   const vercelConfig: VercelConfig = await readJSON(VERCEL_PATH);
 
+  const cache = await loadCache(CACHE_FILE);
+  const glossaryKey = await getGlossaryKey();
+  const cacheStale = (cache.meta?.glossKey ?? null) !== glossaryKey;
+
   const scanStart = Date.now();
-  const scanResult = await resolveFiles(options);
+  const scanResult = await resolveFiles(options, cacheStale);
   if (options.debug) {
     console.log(
       `[glossary] resolved ${scanResult.files.length} file(s) via ${scanResult.source} in ${
@@ -102,12 +108,12 @@ async function main() {
     process.exit(0);
   }
 
-  const cache = await loadCache(CACHE_FILE);
   let processed = 0;
   const { slugs: referencedSlugs, cache: nextCache, stats } = await collectReferencedSlugs(
     scanResult.files,
     {
       cache,
+      glossKey: glossaryKey,
       onFileProcessed: ({ reused }) => {
         processed += 1;
         if (options.debug && (processed % 100 === 0 || processed === scanResult.files.length)) {
@@ -267,7 +273,7 @@ function parseList(value?: string): string[] | undefined {
     .filter(Boolean);
 }
 
-async function resolveFiles(options: CliOptions): Promise<ScanResult> {
+async function resolveFiles(options: CliOptions, forceFullScan = false): Promise<ScanResult> {
   const cacheExists = await fileExists(CACHE_FILE);
   if (options.fileList) {
     try {
@@ -289,7 +295,7 @@ async function resolveFiles(options: CliOptions): Promise<ScanResult> {
     if (filtered.length) return { files: filtered, source: 'git-diff' };
   }
 
-  if ((options.changedOnly || options.since) && cacheExists) {
+  if ((options.changedOnly || options.since) && cacheExists && !forceFullScan) {
     return { files: [], source: 'git-diff (empty)' };
   }
 
@@ -528,9 +534,16 @@ function printDiff(filePath: string, before: string, after: string) {
 async function loadCache(filePath: string): Promise<SlugCache> {
   try {
     const raw = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(raw) as SlugCache;
+    const parsed = JSON.parse(raw) as SlugCache & Record<string, unknown>;
+    if (parsed && typeof parsed === 'object' && 'files' in parsed) {
+      return {
+        meta: parsed.meta,
+        files: (parsed as SlugCache).files ?? {},
+      };
+    }
+    return { files: (parsed as Record<string, CacheEntry>) ?? {} };
   } catch {
-    return {};
+    return { files: {} };
   }
 }
 

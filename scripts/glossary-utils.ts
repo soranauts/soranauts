@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6,6 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const repoRoot = path.resolve(__dirname, '..');
+const GLOSSARY_DATA_PATH = path.resolve(repoRoot, 'apps/web/public/data/glossary.v2025.json');
 
 export interface GlossaryTerm {
   slug: string;
@@ -28,7 +30,14 @@ export interface CacheEntry {
   slugs: string[];
 }
 
-export type SlugCache = Record<string, CacheEntry>;
+export interface CacheMeta {
+  glossKey?: string;
+}
+
+export interface SlugCache {
+  meta?: CacheMeta;
+  files: Record<string, CacheEntry>;
+}
 
 export async function readJSON<T>(filePath: string): Promise<T> {
   const raw = await fs.readFile(filePath, 'utf8');
@@ -63,10 +72,18 @@ export async function collectReferencedSlugs(
   options: {
     cache?: SlugCache;
     onFileProcessed?: (info: { file: string; reused: boolean }) => void;
+    glossKey?: string;
   } = {},
 ): Promise<{ slugs: Set<string>; cache: SlugCache; stats: { parsed: number; reused: number } }> {
   const slugs = new Set<string>();
-  const nextCache: SlugCache = { ...(options.cache ?? {}) };
+  const glossKey = options.glossKey ?? (await getGlossaryKey());
+  const cacheKey = options.cache?.meta?.glossKey;
+  const cacheValid = Boolean(cacheKey && cacheKey === glossKey);
+  const cachedFiles = cacheValid ? options.cache?.files ?? {} : {};
+  const nextCache: SlugCache = {
+    meta: { glossKey },
+    files: cacheValid ? { ...cachedFiles } : {},
+  };
   const stats = { parsed: 0, reused: 0 };
 
   for (const input of files) {
@@ -80,7 +97,7 @@ export async function collectReferencedSlugs(
     if (!stat.isFile()) continue;
 
     const relative = path.relative(repoRoot, absPath);
-    const cached = options.cache?.[relative];
+    const cached = cacheValid ? cachedFiles[relative] : undefined;
     let fileSlugs: string[];
     let reused = false;
 
@@ -94,7 +111,7 @@ export async function collectReferencedSlugs(
       stats.parsed += 1;
     }
 
-    nextCache[relative] = { mtime: stat.mtimeMs, slugs: fileSlugs };
+    nextCache.files[relative] = { mtime: stat.mtimeMs, slugs: fileSlugs };
     for (const slug of fileSlugs) {
       slugs.add(slug);
     }
@@ -108,4 +125,15 @@ export async function collectReferencedSlugs(
 export function slugToSources(slug: string): [string, string] {
   const base = `/glossary/${slug}`;
   return [base, `${base}/`];
+}
+
+export async function getGlossaryKey(): Promise<string> {
+  try {
+    const stat = await fs.stat(GLOSSARY_DATA_PATH);
+    const content = await fs.readFile(GLOSSARY_DATA_PATH);
+    const hash = createHash('sha1').update(content).digest('hex');
+    return `${stat.mtimeMs}:${stat.size}:${hash}`;
+  } catch {
+    return 'missing-glossary';
+  }
 }
