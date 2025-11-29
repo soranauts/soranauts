@@ -26,6 +26,8 @@ import { getCachedGlossaryTerms } from '~/lib/glossary/glossary-data';
 import { shouldApplyAliasRedirect } from '~/lib/glossary/alias-redirect';
 import glossaryDatasetV2025 from '../../../public/data/glossary.v2025.json';
 import GlossaryTermPage from '~/components/glossary/v3/GlossaryTermPage';
+import { loadGlossaryFull } from '~/lib/glossary-data';
+import { resolveGlossaryEntry } from '~/lib/glossary-resolve';
 
 export const prerender = true;
 
@@ -77,6 +79,21 @@ if (!term) {
   return Astro.redirect('/glossary');
 }
 
+const normalizedGlossaryTerms = await loadGlossaryFull();
+const runtimeTerm =
+  resolveGlossaryEntry(normalizedGlossaryTerms, requestedSlug ?? '') ??
+  resolveGlossaryEntry(normalizedGlossaryTerms, term.slug) ??
+  resolveGlossaryEntry(normalizedGlossaryTerms, canonicalSlugFromDataset);
+const displayTermTitle =
+  (runtimeTerm?.title ?? runtimeTerm?.term ?? term.term ?? term.slug ?? '').trim() || term.slug;
+const displaySummary = runtimeTerm?.summary ?? term.summary ?? null;
+const rawDisplayDefinition =
+  runtimeTerm?.definition ?? runtimeTerm?.summary ?? term.definition ?? term.summary ?? '';
+const displayDefinition =
+  typeof rawDisplayDefinition === 'string' && rawDisplayDefinition.trim().length
+    ? rawDisplayDefinition.trim()
+    : 'Definition coming soon.';
+
 const canonicalSlug = canonicalSlugFromDataset || term.slug;
 const requestedStatus = getGlossaryStatus(requestedSlug ?? '');
 const canonicalStatus = getGlossaryStatus(canonicalSlug);
@@ -105,11 +122,11 @@ const aliasAnalyticsPayload =
     : null;
 const pagefindPayload = {
   type: 'glossary',
-  term: term.term,
+  term: displayTermTitle,
   category: term.category,
   aliases: term.aliases || [],
-  summary: term.summary ?? term.definition.slice(0, 220),
-  definition: term.definition,
+  summary: (displaySummary ?? displayDefinition).slice(0, 220),
+  definition: displayDefinition,
   url: `/glossary/${term.slug}/`,
   status: isAliasRequest ? 'alias' : requestedStatus ?? canonicalStatus ?? 'canonical',
   slug: typeof requestedSlug === 'string' ? requestedSlug : term.slug,
@@ -119,8 +136,9 @@ const pagefindPayload = {
 const fallbackSite = typeof SITE.site === 'string' && SITE.site.length ? SITE.site : 'https://soranauts.com';
 const canonicalUrlBase = Astro.site ?? new URL(fallbackSite);
 const canonicalHref = new URL(`/glossary/${canonicalSlug}`, canonicalUrlBase).toString();
-const title = `${term.term} — SORA Glossary`;
-const description = term.definition?.length > 160 ? term.definition.slice(0, 157) + '…' : term.definition;
+const title = `${displayTermTitle} — SORA Glossary`;
+const description =
+  displayDefinition.length > 160 ? `${displayDefinition.slice(0, 157)}…` : displayDefinition;
 const canonical = canonicalHref;
 
 // Resolve OG image using manifest system (like blog posts)
@@ -158,7 +176,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       "position": 3,
-      "name": term.term,
+      "name": displayTermTitle,
       "item": canonical
     }
   ]
@@ -238,9 +256,9 @@ const tagSubjectEntries = relatedTagArticles.map(({ tag, tagPermalink }) => ({
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "DefinedTerm",
-  "name": term.term,
+  "name": displayTermTitle,
   "termCode": term.slug,
-  "description": term.definition,
+  "description": displayDefinition,
   "inDefinedTermSet": `${SITE.site}/glossary`,
   "url": canonical,
   "alternateName": term.aliases ?? [],
@@ -283,7 +301,7 @@ const heroStats = [
   { label: 'Tagged articles', value: tagPostCount ? tagPostCount.toString() : '—' },
 ];
 
-const heroDescription = term.summary ?? term.definition;
+const heroDescription = displaySummary ?? displayDefinition;
 const aliasList = Array.isArray(term.aliases) ? term.aliases.slice(1) : [];
 const glossaryTags = Array.isArray(term.tags) ? term.tags : [];
 const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -318,11 +336,11 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
           <p>
             You’re viewing the alias <span>{aliasAnalyticsPayload?.aliasDisplay ?? ''}</span>.
           </p>
-          <div class="glossary-alias-hint__chip">Alias of: {term.term}</div>
+          <div class="glossary-alias-hint__chip">Alias of: {displayTermTitle}</div>
           <p>
             Canonical term:{' '}
             <a href={`/glossary/${canonicalSlug}`} data-alias-canonical-link>
-              {term.term}
+              {displayTermTitle}
             </a>
             .
           </p>
@@ -410,16 +428,16 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
       >
         <span data-pagefind-filter="type:glossary"></span>
         <span data-pagefind-filter={`category:${term.category}`}></span>
-        <p>{term.definition}</p>
+      <p>{displayDefinition}</p>
       </article>
     )}
 
     {featureGlossaryV3Enabled ? (
       <GlossaryTermPage
         client:load
-        title={term.term}
-        summary={term.summary ?? null}
-        definition={term.definition ?? ''}
+        title={displayTermTitle}
+        summary={displaySummary ?? null}
+        definition={displayDefinition}
         whyItMatters={term.tagline ?? term.subtitle ?? null}
         related={relatedTermsWithLinks.map((related) => ({
           term: related.term,
@@ -432,7 +450,7 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
       />
     ) : (
       <>
-        <GlossaryHero title={term.term} description={heroDescription} stats={heroStats}>
+        <GlossaryHero title={displayTermTitle} description={heroDescription} stats={heroStats}>
           <div class="glossary-detail__chips">
             {categoryLabel && term.category && (
               <a class="glossary-chip" href={`/glossary#${encodeURIComponent(term.category)}`}>
@@ -468,9 +486,9 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
               <span data-pagefind-filter="type:glossary"></span>
               <span data-pagefind-filter={`category:${term.category}`}></span>
               <span class="sr-only" aria-hidden="true">
-                {term.term} {term.aliases?.join(' ')} {term.category} glossary
+                {displayTermTitle} {term.aliases?.join(' ')} {term.category} glossary
               </span>
-              <p>{term.definition}</p>
+              <p>{displayDefinition}</p>
             </article>
 
             {parentEntity && (

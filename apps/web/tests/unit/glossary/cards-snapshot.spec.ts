@@ -28,6 +28,7 @@ describe('Glossary ranking snapshots', () => {
         "hyperledger-iroha",
         "iroha2",
         "hyperledger-iroha-3",
+        "iroha",
       ]
     `);
   });
@@ -38,6 +39,7 @@ describe('Glossary ranking snapshots', () => {
     expect(slugs).toMatchInlineSnapshot(`
       [
         "pswap",
+        "tokenomics",
       ]
     `);
   });
