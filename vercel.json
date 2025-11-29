@@ -24,6 +24,26 @@
       "source": "/glossary/token-bonding-curve",
       "destination": "/glossary/bonding-curve",
       "permanent": true
+    },
+    {
+      "source": "/glossary/sora-v3",
+      "destination": "/glossary/iroha3",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/hubchain",
+      "destination": "/glossary/hub-chain",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/sora-parliament",
+      "destination": "/glossary/parliament",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/sora-council",
+      "destination": "/glossary/council",
+      "permanent": true
     }
   ]
 }

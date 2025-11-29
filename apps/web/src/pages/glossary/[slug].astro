@@ -32,17 +32,15 @@ export const prerender = true;
 const allGlossaryTerms = getCachedGlossaryTerms();
 
 export async function getStaticPaths() {
-  if (FEATURE_GLOSSARY_V2025) {
-    return glossaryDatasetV2025.terms
-      .filter((entry) => entry.status === 'canonical')
-      .map((entry) => ({
-        params: { slug: entry.slug },
-      }));
-  }
+  // Compute canonical slugs at build time to avoid alias routes.
+  const cached = getCachedGlossaryTerms();
+  const canonicalCached = cached.filter((t) => t.status === 'canonical');
+  const canonicalDataset = (glossaryDatasetV2025?.terms ?? []).filter(
+    (t) => t.status === 'canonical',
+  );
 
-  return getCachedGlossaryTerms().map((entry) => ({
-    params: { slug: entry.slug },
-  }));
+  const source = FEATURE_GLOSSARY_V2025 ? canonicalDataset : canonicalCached;
+  return source.map((t) => ({ params: { slug: t.slug } }));
 }
 
 const normalizeSlugValue = (value?: string | null): string =>

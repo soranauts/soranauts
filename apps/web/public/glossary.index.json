@@ -477,7 +477,7 @@
         "Price Stability",
         "Supply Management"
       ],
-      "glossaryRef": "/glossary/token-bonding-curve",
+      "glossaryRef": "/glossary/bonding-curve",
       "blob": "token bonding curve token bonding curve xor elastic supply smart contract price stability supply management xor elastic supply smart contract price stability supply management a smart contract that manages the supply of xor in a rational way without human involvement. the tbc automatically adjusts xor supply based on economic conditions to maintain price stability, expanding supply during growth and contracting during decline."
     },
     {
@@ -518,7 +518,7 @@
         "ISI",
         "SORA v3"
       ],
-      "glossaryRef": "/glossary/sora-parliament",
+      "glossaryRef": "/glossary/parliament",
       "blob": "sora parliament sora parliament xor val sortition citizenship multi-body governance supranational governance v1 iroha special instructions isi sora v3 xor val sortition citizenship multi-body governance supranational governance v1 iroha special instructions isi sora v3 the future democratic governance system of sora using multi-body sortition with clear separation of powers. the sora parliament will replace the current governance v1 system, implementing sortition-based democracy where citizens are randomly selected (not token voting) and must post xor bonds for citizenship. features multiple bodies: rules committee, agenda council, interest panels, review panel, and policy jury. main task is allocating newly minted xor to productive projects. in sora v3, the parliament will integrate with a hybrid dao framework using iroha special instructions (isis) for modular governance logic."
     },
     {
@@ -721,7 +721,7 @@
         "Supranational Platform",
         "SORA v2"
       ],
-      "glossaryRef": "/glossary/sora-v3",
+      "glossaryRef": "/glossary/iroha3",
       "blob": "sora v3 sora v3 nexus sora nexus hyperledger iroha 3 hyperledger iroha hyperledger iroha 2 hyperledger iroha 3 cbdc hub chain hubchain nexus economic sovereignty kusd fujiwara testnet supranational platform sora v2 hyperledger iroha hyperledger iroha 2 hyperledger iroha 3 cbdc hub chain hubchain nexus economic sovereignty kusd fujiwara testnet supranational platform sora v2 sora v3, also known as sora nexus, is the next generation of the sora network. it transitions from substrate-based sora v2 to hyperledger iroha 3, introducing a modular, high-performance design to support scalability and cross-chain interoperability. the sora v3 hub chain (or hubchain) enables seamless collaboration between permissioned and decentralized systems, designed for cbdcs, government integration, and economic sovereignty while maintaining borderless financial activities. it serves as a supranational platform that de-correlates cbdcs and government-issued digital assets from political and economic instability, providing a stable foundation for global transactions."
     },
     {
@@ -817,7 +817,7 @@
         "SORA v3",
         "Nexus"
       ],
-      "glossaryRef": "/glossary/hubchain",
+      "glossaryRef": "/glossary/hub-chain",
       "blob": "hubchain hubchain hub chain hub chain sora v3 nexus hub chain sora v3 nexus alternative name for the sora v3 hub chain. see hub chain for full definition."
     },
     {
@@ -2174,7 +2174,7 @@
         "Governance",
         "Democracy"
       ],
-      "glossaryRef": "/glossary/sora-council",
+      "glossaryRef": "/glossary/council",
       "blob": "sora council sora council polkadot governance referendum council motion governance democracy polkadot governance referendum council motion governance democracy a governance body in sora's current polkadot v1 governance system that consists of elected members who can propose referenda and veto dangerous proposals. the council plays a key role in the governance process before transitioning to the sora parliament."
     },
     {
@@ -4284,5 +4284,5 @@
     }
   ],
   "totalCount": 138,
-  "lastUpdated": "2025-11-27T18:28:52.652Z"
+  "lastUpdated": "2025-11-29T10:00:35.237Z"
 }
