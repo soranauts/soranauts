@@ -1,122 +1,7 @@
 {
   "redirects": [
     {
-      "source": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
-      "destination": "/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation/",
-      "destination": "/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.soranauts.com"
-        }
-      ],
-      "destination": "https://soranauts.com/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/soramitsu-sora-polkaswap-the-complete-guide-to-defi-innovation/",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.soranauts.com"
-        }
-      ],
-      "destination": "https://soranauts.com/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/soramitsu-sora-polkaswap",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.soranauts.com"
-        }
-      ],
-      "destination": "https://soranauts.com/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/soramitsu-sora-polkaswap/",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.soranauts.com"
-        }
-      ],
-      "destination": "https://soranauts.com/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/sora-defi-ecosystem",
-      "destination": "/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/sora-defi-ecosystem/",
-      "destination": "/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/sora-ecosystem",
-      "destination": "/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/sora-ecosystem/",
-      "destination": "/sora-ecosystem-explained",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.soranauts.com"
-        }
-      ],
-      "destination": "https://soranauts.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/top-decentralized-exchanges-crypto-trading",
-      "destination": "/best-decentralized-exchanges-dexs",
-      "permanent": true
-    },
-    {
-      "source": "/best-decentralized-exchanges-dexs-in-2025",
-      "destination": "/best-decentralized-exchanges-dexs",
-      "permanent": true
-    },
-    {
-      "source": "/2024-crypto-bull-run",
-      "destination": "/understanding-crypto-bull-markets-patterns-triggers-and-psychology",
-      "permanent": true
-    },
-    {
-      "source": "/bitcoin-price-prediction-2024-2025-bull-run",
-      "destination": "/bitcoin-market-cycles-explained",
-      "permanent": true
-    },
-    {
-      "source": "/understanding-parachains-kusama-polkadot-guide",
-      "destination": "/polkadot-kusama-parachains",
-      "permanent": true
-    },
-    {
       "source": "/glossary/hyperledger-iroha",
-      "destination": "/glossary/iroha",
-      "permanent": true
-    },
-    {
-      "source": "/glossary/hyperledger-iroha/",
       "destination": "/glossary/iroha",
       "permanent": true
     },
@@ -126,17 +11,7 @@
       "permanent": true
     },
     {
-      "source": "/glossary/hyperledger-iroha-3/",
-      "destination": "/glossary/iroha3",
-      "permanent": true
-    },
-    {
       "source": "/glossary/sora-council",
-      "destination": "/glossary/council",
-      "permanent": true
-    },
-    {
-      "source": "/glossary/sora-council/",
       "destination": "/glossary/council",
       "permanent": true
     },
@@ -146,18 +21,28 @@
       "permanent": true
     },
     {
-      "source": "/glossary/sora-parliament/",
-      "destination": "/glossary/parliament",
-      "permanent": true
-    },
-    {
       "source": "/glossary/token-bonding-curve",
       "destination": "/glossary/bonding-curve",
       "permanent": true
     },
     {
-      "source": "/glossary/token-bonding-curve/",
-      "destination": "/glossary/bonding-curve",
+      "source": "/glossary/sora-v3",
+      "destination": "/glossary/iroha3",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/hubchain",
+      "destination": "/glossary/hub-chain",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/sora-parliament",
+      "destination": "/glossary/parliament",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/sora-council",
+      "destination": "/glossary/council",
       "permanent": true
     }
   ]
