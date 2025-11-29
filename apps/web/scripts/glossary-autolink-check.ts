@@ -18,9 +18,19 @@ const ROOT = path.resolve(__dirname, '..');
 const POSTS_DIR = path.join(ROOT, 'src', 'content', 'post');
 const REPORT_PATH = '/tmp/phase11-autolink-report.txt';
 
-const collectPostFiles = async (dir) => {
+interface GlossaryAutoLinkReport {
+  filePath: string;
+  added: number;
+  skipped: {
+    perTermLimit: number;
+    perParagraphLimit: number;
+    perPostLimit: number;
+  };
+}
+
+const collectPostFiles = async (dir: string): Promise<string[]> => {
   const entries = await fs.readdir(dir, { withFileTypes: true });
-  const files = [];
+  const files: string[] = [];
 
   for (const entry of entries) {
     const entryPath = path.join(dir, entry.name);
@@ -38,7 +48,7 @@ const collectPostFiles = async (dir) => {
 
 const main = async () => {
   const glossaryTerms = getAllTerms();
-  const reports = [];
+  const reports: GlossaryAutoLinkReport[] = [];
 
   const pluginFactory = createGlossaryAutoLinkPlugin(glossaryTerms, {
     mode: 'analyze',

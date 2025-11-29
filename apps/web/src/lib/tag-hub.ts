@@ -18,6 +18,14 @@ import {
   type GlossaryEntry,
 } from '~/lib/glossary/glossary-loader';
 
+const isGlossaryEntry = (value: unknown): value is GlossaryEntry =>
+  Boolean(
+    value &&
+      typeof value === 'object' &&
+      'term' in (value as Record<string, unknown>) &&
+      'slug' in (value as Record<string, unknown>),
+  );
+
 const FALLBACK_DOMAIN_MAP: Record<string, TagHubDomain> = {
   token: 'economics',
   technology: 'technology',
@@ -251,7 +259,7 @@ export const resolveTagGlossarySelection = (
   const canonicalEntry =
     canonicalMatch && canonicalMatch.status === 'canonical' ? canonicalMatch : null;
 
-  let entry = canonicalEntry ?? options.taxonomyEntry ?? null;
+  let entry: GlossaryEntry | TaxonomyNode | null = canonicalEntry ?? options.taxonomyEntry ?? null;
 
   const canonicalSlugCandidate =
     canonicalEntry?.slug ??
@@ -270,9 +278,11 @@ export const resolveTagGlossarySelection = (
     }
   }
 
+  const safeEntry = isGlossaryEntry(entry) ? entry : null;
+
   return {
-    entry,
-    canonicalSlug: canonicalSlugCandidate ?? entry?.slug ?? null,
+    entry: safeEntry,
+    canonicalSlug: canonicalSlugCandidate ?? safeEntry?.slug ?? null,
   };
 };
 

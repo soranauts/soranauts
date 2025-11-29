@@ -1,13 +1,13 @@
 ---
 import { formatTagLabel, type TagHubViewModel } from '~/lib/tag-hub';
-import type { TaxonomyNode } from '~/data/taxonomy';
+import type { GlossaryEntry } from '~/lib/glossary/glossary-loader';
 
 export interface Props {
   tag: TagHubViewModel;
   totalPosts: number;
   formattedFirstSeen?: string;
   formattedLastSeen?: string;
-  glossaryEntry?: TaxonomyNode;
+  glossaryEntry?: GlossaryEntry;
   domainLabel?: string;
 }
 
