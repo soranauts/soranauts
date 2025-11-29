@@ -16,28 +16,26 @@ vi.mock('node:fs', async () => {
     ...actual,
     existsSync: vi.fn(() => true),
     readFileSync: vi.fn(() =>
-      JSON.stringify({
-        terms: [
-          {
-            term: 'XOR',
-            slug: 'xor',
-            aliases: ['XOR'],
-            tags: ['token', 'xor'],
-          },
-          {
-            term: 'Polkaswap',
-            slug: 'polkaswap',
-            aliases: ['Polkaswap', 'PSWAP'],
-            tags: ['defi', 'dex'],
-          },
-          {
-            term: 'SORA',
-            slug: 'sora',
-            aliases: ['SORA'],
-            tags: ['blockchain', 'network'],
-          },
-        ],
-      })
+      JSON.stringify([
+        {
+          term: 'XOR',
+          slug: 'xor',
+          aliases: ['XOR'],
+          tags: ['token', 'xor'],
+        },
+        {
+          term: 'Polkaswap',
+          slug: 'polkaswap',
+          aliases: ['Polkaswap', 'PSWAP'],
+          tags: ['defi', 'dex'],
+        },
+        {
+          term: 'SORA',
+          slug: 'sora',
+          aliases: ['SORA'],
+          tags: ['blockchain', 'network'],
+        },
+      ]),
     ),
   };
 });

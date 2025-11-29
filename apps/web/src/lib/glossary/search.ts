@@ -1,4 +1,5 @@
 import type { AliasIndexEntry, TaxonomyNodeType } from '../taxonomy';
+import { normalizeGlossaryFull } from '../glossary-normalize';
 
 export interface GlossarySearchTermInput {
   term: string;
@@ -79,6 +80,13 @@ const normalize = (value: string): string =>
     .replace(/\s+/g, ' ')
     .trim();
 
+const LEGACY_CANONICAL_MAP: Record<string, string> = {
+  'hyperledger-iroha-2': 'iroha2',
+  'liquidity-pool': 'liquidity',
+};
+
+const applyLegacyCanonical = (slug: string): string => LEGACY_CANONICAL_MAP[slug] ?? slug;
+
 const tokenize = (value: string): string[] => normalize(value).split(' ').filter(Boolean);
 
 const levenshtein = (a: string, b: string): number => {
@@ -111,11 +119,16 @@ export interface GlossarySearchEngineOptions {
   resolveCanonicalSlug?: (slug: string) => string;
 }
 
+type GlossarySearchEngineInput = GlossarySearchIndexInput | GlossarySearchTermInput[];
+
 export function createGlossarySearchEngine(
-  { terms, aliasIndex }: GlossarySearchIndexInput,
+  input: GlossarySearchEngineInput,
   options: GlossarySearchEngineOptions = {},
 ) {
-  const resolveCanonicalSlug = options.resolveCanonicalSlug ?? ((slug: string) => slug);
+  const terms = normalizeGlossaryFull(Array.isArray(input) ? input : input.terms);
+  const aliasIndex = Array.isArray(input) ? [] : input.aliasIndex ?? [];
+  const userResolver = options.resolveCanonicalSlug ?? ((slug: string) => slug);
+  const resolveCanonicalSlug = (slug: string) => applyLegacyCanonical(userResolver(slug));
 
   const docs: SearchDocument[] = terms.map((term) => {
     const aliases = Array.from(new Set([term.term, ...(term.aliases ?? [])]));

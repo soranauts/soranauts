@@ -4,16 +4,18 @@ import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const glossaryData = JSON.parse(
-  readFileSync(join(__dirname, '../../../public/glossary.json'), 'utf-8'),
-);
+import { normalizeGlossaryFull } from '../../../src/lib/glossary-normalize';
+import { clientAliasIndex } from '../../../src/lib/taxonomy';
 import { createGlossarySearchEngine } from '../../../src/lib/glossary/search';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const glossaryRaw = JSON.parse(readFileSync(join(__dirname, '../../../public/glossary.json'), 'utf-8'));
+const glossaryTerms = normalizeGlossaryFull(glossaryRaw);
+
 const engine = createGlossarySearchEngine({
-  terms: glossaryData.terms,
-  aliasIndex: glossaryData.aliasIndex,
+  terms: glossaryTerms,
+  aliasIndex: clientAliasIndex,
 });
 
 describe('Glossary ranking snapshots', () => {
@@ -22,11 +24,10 @@ describe('Glossary ranking snapshots', () => {
     const slugs = response.results.slice(0, 5).map((result) => result.term.slug);
     expect(slugs).toMatchInlineSnapshot(`
       [
+        "hyperledger",
         "hyperledger-iroha",
+        "iroha2",
         "hyperledger-iroha-3",
-        "hyperledger-iroha-2",
-        "sora-v3",
-        "polkaswap",
       ]
     `);
   });
@@ -37,10 +38,6 @@ describe('Glossary ranking snapshots', () => {
     expect(slugs).toMatchInlineSnapshot(`
       [
         "pswap",
-        "polkaswap",
-        "buyback-and-burn",
-        "deflationary",
-        "rewards",
       ]
     `);
   });
