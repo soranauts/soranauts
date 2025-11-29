@@ -5208,6 +5208,14 @@ const tagGlossaryOverrides: Record<string, string> = {
 
 const taxonomyWithTags: Record<string, TaxonomyNode> = { ...baseTaxonomy };
 
+const applyMetadataGlossaryOverride = (slug: string): void => {
+  const metadata = tagHubMetadata[slug];
+  if (!metadata?.glossarySlug) return;
+  const normalizedSlug = metadata.glossarySlug.replace(/^\/?glossary\//, '').trim();
+  if (!normalizedSlug || !taxonomyWithTags[slug]) return;
+  taxonomyWithTags[slug].glossaryRef = `/glossary/${normalizedSlug}`;
+};
+
 for (const node of Object.values(baseTaxonomy)) {
   const tags = new Set<string>(node.relatedTags ?? []);
   if (node.category) tags.add(node.category);
@@ -5239,8 +5247,9 @@ for (const node of Object.values(baseTaxonomy)) {
       relatedTags: [],
       seeAlso: [],
       glossaryRef: glossaryCandidate?.glossaryRef ?? node.glossaryRef,
-    hub: tagHubMetadata[slug],
+      hub: tagHubMetadata[slug],
     };
+    applyMetadataGlossaryOverride(slug);
   }
 }
 
@@ -5270,6 +5279,7 @@ for (const tag of externalTags) {
     glossaryRef: candidateNode?.glossaryRef,
     hub: tagHubMetadata[slug],
   };
+  applyMetadataGlossaryOverride(slug);
 }
 
 for (const [slug, metadata] of Object.entries(tagHubMetadata)) {
@@ -5295,8 +5305,10 @@ for (const [slug, metadata] of Object.entries(tagHubMetadata)) {
       glossaryRef: candidateNode?.glossaryRef,
       hub: metadata,
     };
+    applyMetadataGlossaryOverride(slug);
   } else {
     taxonomyWithTags[slug].hub = metadata;
+    applyMetadataGlossaryOverride(slug);
   }
 }
 

@@ -13,6 +13,11 @@ export interface Props {
 
 const { tag, totalPosts, formattedFirstSeen, formattedLastSeen, glossaryEntry, domainLabel } = Astro.props;
 const formattedTitle = formatTagLabel(tag.slug, tag.title);
+const glossaryHref =
+  (glossaryEntry ? `/glossary/${glossaryEntry.slug}` : undefined) ??
+  tag.glossaryCanonicalPath ??
+  tag.glossaryRef ??
+  undefined;
 ---
 
 <section class="tag-detail-hero">
@@ -41,10 +46,7 @@ const formattedTitle = formatTagLabel(tag.slug, tag.title);
     <div class="tag-detail-glossary">
       <h2>From the Glossary</h2>
       <p>{glossaryEntry.summary ?? glossaryEntry.definition}</p>
-    <a
-      class="tag-detail-glossary__link"
-      href={tag.glossaryCanonicalPath ?? tag.glossaryRef ?? glossaryEntry.glossaryRef ?? `/glossary/${glossaryEntry.slug}`}
-    >
+      <a class="tag-detail-glossary__link" href={glossaryHref ?? `/glossary/${glossaryEntry.slug}`}>
         View full glossary entry
       </a>
     </div>
