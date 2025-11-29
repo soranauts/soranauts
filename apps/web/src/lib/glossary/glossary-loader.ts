@@ -3,8 +3,20 @@ import glossaryV2025 from '../../../public/data/glossary.v2025.json';
 import glossaryAliasesV2025 from '../../../public/glossary.aliases.v2025.json';
 import { FEATURE_GLOSSARY_V2025 } from '../../config/feature-flags';
 
-type LegacyGlossaryData = typeof legacyGlossary;
-type LegacyGlossaryTerm = LegacyGlossaryData['terms'][number];
+type LegacyGlossaryImport = typeof legacyGlossary;
+type LegacyGlossaryTerm =
+  LegacyGlossaryImport extends readonly (infer U)[]
+    ? U
+    : LegacyGlossaryImport extends { terms: readonly (infer U)[] }
+    ? U
+    : never;
+type LegacyGlossaryData =
+  | {
+      terms: LegacyGlossaryTerm[];
+      totalCount?: number;
+      lastUpdated?: string;
+    }
+  | LegacyGlossaryTerm[];
 
 type Glossary2025Data = typeof glossaryV2025;
 type Glossary2025Term = Glossary2025Data['terms'][number];
@@ -62,8 +74,28 @@ interface GlossaryMetadata {
 
 const normalizeSlug = (value: string): string => value?.trim().toLowerCase() ?? '';
 
+const toLegacyEnvelope = (
+  data: LegacyGlossaryData,
+): { terms: LegacyGlossaryTerm[]; totalCount?: number; lastUpdated?: string } => {
+  if (Array.isArray(data)) {
+    return { terms: data };
+  }
+  return {
+    terms: Array.isArray(data.terms) ? data.terms : [],
+    totalCount: data.totalCount,
+    lastUpdated: data.lastUpdated,
+  };
+};
+
+const legacyEnvelope = toLegacyEnvelope(legacyGlossary as LegacyGlossaryData);
+const legacyTerms = legacyEnvelope.terms;
+const legacyMetadata: GlossaryMetadata = {
+  totalCount: legacyEnvelope.totalCount ?? legacyTerms.length,
+  lastUpdated: legacyEnvelope.lastUpdated,
+};
+
 const legacyLookup = new Map<string, LegacyGlossaryTerm>(
-  legacyGlossary.terms.map((term) => [normalizeSlug(term.slug), term]),
+  legacyTerms.map((term) => [normalizeSlug(term.slug), term]),
 );
 
 const assertGlossaryDataset = (data: Glossary2025Data): void => {
@@ -135,7 +167,7 @@ const buildLegacyCache = (): GlossaryCache => {
   const deprecated = new Map<string, GlossaryEntry>();
   const ordered: GlossaryEntry[] = [];
 
-  for (const term of legacyGlossary.terms) {
+  for (const term of legacyTerms) {
     const entry = buildLegacyEntry(term);
     canonical.set(entry.slug, entry);
     ordered.push(entry);
@@ -255,11 +287,6 @@ const getCache = (): GlossaryCache => {
     cachedMode = mode;
   }
   return cachedGlossary;
-};
-
-const legacyMetadata: GlossaryMetadata = {
-  totalCount: legacyGlossary.totalCount ?? legacyGlossary.terms.length,
-  lastUpdated: legacyGlossary.lastUpdated,
 };
 
 const v2025Metadata: GlossaryMetadata = {

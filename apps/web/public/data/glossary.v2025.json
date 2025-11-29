@@ -8,11 +8,123 @@
       "targetSlug": null
     },
     {
+      "slug": "agile-coretime",
+      "title": "Agile Coretime",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "algorithmic-stability",
+      "title": "Algorithmic Stability",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "alias-redirect",
+      "title": "Alias Redirect",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "amm",
+      "title": "Amm",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "analytics",
       "title": "Analytics",
       "summary": "Analytics covers the dashboards, telemetry, and research teams tracking SORA network health, liquidity depth, bridge flow, and ecosystem growth.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "apollo-protocol",
+      "title": "Apollo Protocol",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "apollo-token",
+      "title": "Apollo Token",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "asset-tokenization",
+      "title": "Asset Tokenization",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "asynchronous-backing",
+      "title": "Asynchronous Backing",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "auctions",
+      "title": "Auctions",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "autolinkconfig",
+      "title": "Autolinkconfig",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "bakong",
+      "title": "Bakong",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "bear-market",
+      "title": "Bear Market",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "bft-consensus",
+      "title": "Bft Consensus",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "bitcoin",
+      "title": "Bitcoin",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "blockchain",
@@ -22,11 +134,67 @@
       "targetSlug": null
     },
     {
+      "slug": "blockchain-architecture",
+      "title": "Blockchain Architecture",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "blockchain-culture",
+      "title": "Blockchain Culture",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "blockchain-development",
+      "title": "Blockchain Development",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "blockchain-economics",
+      "title": "Blockchain Economics",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "bokolo-cash",
+      "title": "Bokolo Cash",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "bonding-curve",
       "title": "Bonding Curve",
       "summary": "A smart contract that manages the supply of XOR in a rational way without human involvement.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "bonk",
+      "title": "Bonk",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "borrowing",
+      "title": "Borrowing",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "bridges",
@@ -36,6 +204,86 @@
       "targetSlug": null
     },
     {
+      "slug": "bull-market",
+      "title": "Bull Market",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "buyback-and-burn",
+      "title": "Buyback And Burn",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "cbdc",
+      "title": "Cbdc",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "ceres",
+      "title": "Ceres",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "chainlink",
+      "title": "Chainlink",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "citizenship",
+      "title": "Citizenship",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "collateral",
+      "title": "Collateral",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "concurrency",
+      "title": "Concurrency",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "consensus",
+      "title": "Consensus",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "coretime",
+      "title": "Coretime",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "council",
       "title": "Council",
       "summary": "A governance body in SORA's current Polkadot v1 governance system that consists of elected members who can propose referenda and veto dangerous proposals.",
@@ -43,11 +291,43 @@
       "targetSlug": null
     },
     {
+      "slug": "council-motion",
+      "title": "Council Motion",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "cross-border-payments",
+      "title": "Cross Border Payments",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "cross-chain",
       "title": "Cross Chain",
       "summary": "The ability to transfer assets and data between different blockchain networks.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "crowdloans",
+      "title": "Crowdloans",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "crypto-market-cycles",
+      "title": "Crypto Market Cycles",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "decentralization",
@@ -64,11 +344,67 @@
       "targetSlug": null
     },
     {
+      "slug": "deflationary",
+      "title": "Deflationary",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "democracy",
+      "title": "Democracy",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "dex",
       "title": "DEX",
       "summary": "Decentralized Exchange - a cryptocurrency exchange that operates without a central authority, allowing users to trade directly with each other through smart…",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "digital-ownership",
+      "title": "Digital Ownership",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "dogecoin",
+      "title": "Dogecoin",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "economic-conditions",
+      "title": "Economic Conditions",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "economic-sovereignty",
+      "title": "Economic Sovereignty",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "economic-systems",
+      "title": "Economic Systems",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "economics",
@@ -99,6 +435,30 @@
       "targetSlug": null
     },
     {
+      "slug": "financial-inclusion",
+      "title": "Financial Inclusion",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "forkless-upgrades",
+      "title": "Forkless Upgrades",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "fujiwara-testnet",
+      "title": "Fujiwara Testnet",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "governance",
       "title": "Governance",
       "summary": "The system of decision-making and rule enforcement in blockchain networks.",
@@ -106,11 +466,35 @@
       "targetSlug": null
     },
     {
+      "slug": "governance-v1",
+      "title": "Governance V1",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "halving",
+      "title": "Halving",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "hashi",
       "title": "HASHI",
       "summary": "SORA's decentralized and trustless cross-chain bridge that enables secure asset transfers between Ethereum and SORA networks.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "hub-chain",
+      "title": "Hub Chain",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "hyperledger",
@@ -134,6 +518,22 @@
       "targetSlug": "iroha3"
     },
     {
+      "slug": "impermanent-loss",
+      "title": "Impermanent Loss",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "integrated-plan",
+      "title": "Integrated Plan",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "interoperability",
       "title": "Interoperability",
       "summary": "Interoperability is the ability for SORA assets and smart contracts to communicate with other networks through bridges, XCM, APIs, or shared standards.",
@@ -141,9 +541,32 @@
       "targetSlug": null
     },
     {
+      "slug": "ipfs",
+      "title": "Ipfs",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "iroha",
       "title": "Iroha",
       "summary": "An open-source, permissioned blockchain framework developed by SORAMITSU and part of the Hyperledger Foundation.",
+      "status": "canonical",
+      "targetSlug": null
+    },
+    {
+      "slug": "iroha-special-instructions",
+      "title": "Iroha Special Instructions",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "iroha2",
+      "title": "Hyperledger Iroha 2",
+      "summary": "",
       "status": "canonical",
       "targetSlug": null
     },
@@ -162,11 +585,27 @@
       "targetSlug": null
     },
     {
+      "slug": "kusama",
+      "title": "Kusama",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "kusd",
       "title": "KUSD",
       "summary": "Kensetsu USD (KUSD) is an over-collateralized, algorithmically governed stablecoin built on the SORA network, pegged to the US Dollar.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "lending",
+      "title": "Lending",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "liquidity",
@@ -176,6 +615,30 @@
       "targetSlug": null
     },
     {
+      "slug": "liquidity-aggregation",
+      "title": "Liquidity Aggregation",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "market-psychology",
+      "title": "Market Psychology",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "market-timing",
+      "title": "Market Timing",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "marketplace",
       "title": "Marketplace",
       "summary": "Marketplace describes curated hubs where builders showcase SORA-based products, liquidity programs, or governance proposals for community discovery.",
@@ -183,11 +646,59 @@
       "targetSlug": null
     },
     {
+      "slug": "memory-safety",
+      "title": "Memory Safety",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "mining",
+      "title": "Mining",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "mobile",
       "title": "Mobile",
       "summary": "Mobile captures SORA’s focus on delivering wallets and dApps with native iOS and Android experiences so users can onboard anywhere.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "mobile-payments",
+      "title": "Mobile Payments",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "monetary-systems",
+      "title": "Monetary Systems",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "money-market",
+      "title": "Money Market",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "nexus",
+      "title": "Nexus",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "nft",
@@ -204,6 +715,22 @@
       "targetSlug": null
     },
     {
+      "slug": "parallel-processing",
+      "title": "Parallel Processing",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "parathreads",
+      "title": "Parathreads",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "parliament",
       "title": "Parliament",
       "summary": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers.",
@@ -218,11 +745,75 @@
       "targetSlug": null
     },
     {
+      "slug": "pepe",
+      "title": "Pepe",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "performance",
+      "title": "Performance",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "polkadot",
+      "title": "Polkadot",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "polkadot-governance",
+      "title": "Polkadot Governance",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "polkaswap",
       "title": "Polkaswap",
       "summary": "A next-generation, cross-chain liquidity aggregator DEX protocol built on SORA network.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "price-stability",
+      "title": "Price Stability",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "programming",
+      "title": "Programming",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "proof-of-stake",
+      "title": "Proof Of Stake",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "proof-of-work",
+      "title": "Proof Of Work",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "proposal",
@@ -239,11 +830,27 @@
       "targetSlug": null
     },
     {
+      "slug": "qr-payments",
+      "title": "Qr Payments",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "real-world-assets",
       "title": "Real-World Assets",
       "summary": "Real-world assets (RWAs) are tangible or regulated assets that become programmable once they are tokenized.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "redenomination",
+      "title": "Redenomination",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "referendum",
@@ -253,6 +860,22 @@
       "targetSlug": null
     },
     {
+      "slug": "relay-chain",
+      "title": "Relay Chain",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "rewards",
+      "title": "Rewards",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "roadmap",
       "title": "Roadmap",
       "summary": "The roadmap outlines upcoming SORA releases, TON integrations, and ecosystem milestones so contributors share the same delivery plan.",
@@ -260,11 +883,91 @@
       "targetSlug": null
     },
     {
+      "slug": "rollups",
+      "title": "Rollups",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "rust-language",
+      "title": "Rust Language",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "scarcity-economics",
+      "title": "Scarcity Economics",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "security",
       "title": "Security",
       "summary": "The protection of blockchain networks against attacks and malicious behavior.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "shared-security",
+      "title": "Shared Security",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "shiba-inu",
+      "title": "Shiba Inu",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "slot-leases",
+      "title": "Slot Leases",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "smart-contract",
+      "title": "Smart Contract",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "smart-routing",
+      "title": "Smart Routing",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "solana",
+      "title": "Solana",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "solomon-islands",
+      "title": "Solomon Islands",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "sora",
@@ -295,6 +998,38 @@
       "targetSlug": "parliament"
     },
     {
+      "slug": "sora-v2",
+      "title": "Sora V2",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "soramitsu",
+      "title": "Soramitsu",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "sortition",
+      "title": "Sortition",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "soshiba",
+      "title": "Soshiba",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "stablecoin",
       "title": "Stablecoin",
       "summary": "A stablecoin is a digital asset engineered to hold a predictable value, such as KUSD or future SORA settlement tokens used for payments.",
@@ -316,6 +1051,14 @@
       "targetSlug": null
     },
     {
+      "slug": "supranational-platform",
+      "title": "Supranational Platform",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "tbcd",
       "title": "TBCD",
       "summary": "Token Bonding Curve Dollar (TBCD) is an algorithmic, non-synthetic stablecoin whose value is maintained by the SORA token bonding curve at approximately $1 USD.",
@@ -335,6 +1078,22 @@
       "summary": "TODO",
       "status": "alias",
       "targetSlug": "bonding-curve"
+    },
+    {
+      "slug": "token-burning",
+      "title": "Token Burning",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "token-repackaging",
+      "title": "Token Repackaging",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "tokenization",
@@ -365,6 +1124,30 @@
       "targetSlug": null
     },
     {
+      "slug": "trading-fees",
+      "title": "Trading Fees",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "trading-strategy",
+      "title": "Trading Strategy",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "ts",
+      "title": "Ts",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "val",
       "title": "VAL",
       "summary": "A validator reward token for the SORA network used to reward validators and stake nominators.",
@@ -377,6 +1160,22 @@
       "summary": "A network participant that validates transactions and maintains the blockchain.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "vaults",
+      "title": "Vaults",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "volatility",
+      "title": "Volatility",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     },
     {
       "slug": "voting",
@@ -393,14 +1192,62 @@
       "targetSlug": null
     },
     {
+      "slug": "wasm",
+      "title": "Wasm",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "web3",
+      "title": "Web3",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "xcm",
+      "title": "Xcm",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "xcmp",
+      "title": "Xcmp",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
       "slug": "xor",
       "title": "XOR",
       "summary": "The network utility token used for transaction fees (gas) where 50% of fees are burned and 50% go to validators.",
       "status": "canonical",
       "targetSlug": null
+    },
+    {
+      "slug": "xyk-pools",
+      "title": "Xyk Pools",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
+    },
+    {
+      "slug": "yield-farming",
+      "title": "Yield Farming",
+      "status": "canonical",
+      "summary": "",
+      "targetSlug": null,
+      "aliases": []
     }
   ],
-  "canonicalCount": 52,
+  "canonicalCount": 158,
   "aliasCount": 5,
   "deprecatedCount": 0,
   "version": 2025
