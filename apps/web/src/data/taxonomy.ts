@@ -671,7 +671,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
       }
     ],
     "priority": 0,
-    "glossaryRef": "/glossary/token-bonding-curve"
+    "glossaryRef": "/glossary/bonding-curve"
   },
   "sora-parliament": {
     "slug": "sora-parliament",
@@ -725,7 +725,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
       }
     ],
     "priority": 0,
-    "glossaryRef": "/glossary/sora-parliament"
+    "glossaryRef": "/glossary/parliament"
   },
   "referendum": {
     "slug": "referendum",
@@ -984,7 +984,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
       }
     ],
     "priority": 85,
-    "glossaryRef": "/glossary/sora-v3"
+    "glossaryRef": "/glossary/iroha3"
   },
   "fujiwara-testnet": {
     "slug": "fujiwara-testnet",
@@ -1099,7 +1099,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
       }
     ],
     "priority": 0,
-    "glossaryRef": "/glossary/hubchain"
+    "glossaryRef": "/glossary/hub-chain"
   },
   "nexus": {
     "slug": "nexus",
@@ -2810,7 +2810,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
       }
     ],
     "priority": 0,
-    "glossaryRef": "/glossary/sora-council"
+    "glossaryRef": "/glossary/council"
   },
   "council-motion": {
     "slug": "council-motion",

@@ -22,8 +22,14 @@ const glossaryAutoLinkPlugin = await loadGlossaryAutoLinkPlugin();
 console.log('🔗 Plugin loaded successfully in config');
 
 import { ANALYTICS, SITE } from './src/utils/config.ts';
-const redirectsJsonPath = path.join(path.dirname(fileURLToPath(import.meta.url)), './src/data/redirects.glossary.json');
+const redirectsJsonPath = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  './src/data/redirects.glossary.json',
+);
 const redirectsData = JSON.parse(fs.readFileSync(redirectsJsonPath, 'utf-8'));
+
+const glossaryFlagValue = (process.env.FEATURE_GLOSSARY_V2025 ?? 'true').toLowerCase();
+const shouldIncludeGlossaryRedirects = glossaryFlagValue !== 'true';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -35,7 +41,10 @@ const whenExternalScripts = (items = []) =>
     : [];
 
 const generatedRedirects = Object.fromEntries(
-  (redirectsData?.redirects ?? []).map((entry) => [entry.from, entry.to])
+  (shouldIncludeGlossaryRedirects ? redirectsData?.redirects ?? [] : []).map((entry) => [
+    entry.from,
+    entry.to,
+  ]),
 );
 
 const siteRedirects = {

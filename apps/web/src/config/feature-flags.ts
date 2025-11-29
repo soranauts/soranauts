@@ -20,7 +20,7 @@ const resolveFlag = (name: FlagName): string | undefined => {
 const asBoolean = (value: string | undefined, fallback = 'false'): boolean =>
   String(value ?? fallback).toLowerCase() === 'true';
 
-export const FEATURE_GLOSSARY_V2025 = asBoolean(resolveFlag('FEATURE_GLOSSARY_V2025'));
+export const FEATURE_GLOSSARY_V2025 = asBoolean(resolveFlag('FEATURE_GLOSSARY_V2025'), 'true');
 export const FEATURE_GLOSSARY_UI_CANONICAL = asBoolean(resolveFlag('FEATURE_GLOSSARY_UI_CANONICAL'));
 export const FEATURE_GLOSSARY_ALIAS_REDIRECT = asBoolean(resolveFlag('FEATURE_GLOSSARY_ALIAS_REDIRECT'));
 export const FEATURE_GLOSSARY_V3_UI = asBoolean(resolveFlag('FEATURE_GLOSSARY_V3_UI'));
