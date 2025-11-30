@@ -29,7 +29,9 @@ const redirectsJsonPath = path.join(
 const redirectsData = JSON.parse(fs.readFileSync(redirectsJsonPath, 'utf-8'));
 
 const glossaryFlagValue = (process.env.FEATURE_GLOSSARY_V2025 ?? 'true').toLowerCase();
-const shouldIncludeGlossaryRedirects = glossaryFlagValue !== 'true';
+// Always include static glossary redirects so alias slugs perform server-side 308 redirects.
+// Middleware-based alias routing remains enabled via FEATURE_GLOSSARY_ALIAS_REDIRECT.
+const shouldIncludeGlossaryRedirects = true;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
