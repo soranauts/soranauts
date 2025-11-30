@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { scoreTerm } from './utils';
 import { createPortal } from 'react-dom';
 import { loadGlossaryFull, type Term as GlossaryTermPayload } from '../../lib/glossary-data';
+import { formatCategoryLabel, formatGlossaryTitle, isRenderableGlossaryEntry } from '../../lib/glossary/format';
 
 // Dev-only logging utility
 const __DEV__ = import.meta.env?.MODE !== 'production';
@@ -32,29 +33,40 @@ interface GlossarySearchFallbackProps {
   resultsContainerId?: string;
 }
 
-const CATEGORY_LABELS: Record<string, string> = {
-  token: 'Token',
-  technology: 'Technology',
-  governance: 'Governance',
-  defi: 'DeFi',
-  network: 'Network',
-  economics: 'Economics',
-  tag: 'Tag',
-};
-
 const formatLabel = (value: string): string =>
   value
     .replace(/[-_]+/g, ' ')
     .replace(/\b\w/g, (match) => match.toUpperCase());
 
-const toGlossaryTerm = (entry: GlossaryTermPayload | GlossaryTerm): GlossaryTerm => {
-  const fallbackTitle = (entry as GlossaryTermPayload).title ?? entry.slug;
+const toGlossaryTerm = (entry: GlossaryTermPayload | GlossaryTerm): GlossaryTerm | null => {
   const typed = entry as GlossaryTerm;
-  return {
-    term: typed.term ?? fallbackTitle,
+  const payload = entry as GlossaryTermPayload;
+  const baseTitle = typed.term ?? payload.title ?? entry.slug;
+  const definition = (typed.definition ?? payload.definition ?? payload.summary ?? '').trim();
+  const category = (typed.category ?? (payload as any)?.category ?? '').trim().toLowerCase();
+  const status = ((typed as any)?.status ?? (payload as any)?.status ?? 'canonical') as string;
+
+  const testData = { slug: entry.slug, status, definition: definition.substring(0, 30), category };
+  const isRenderable = isRenderableGlossaryEntry({
     slug: entry.slug,
-    definition: typed.definition ?? (entry as GlossaryTermPayload).summary ?? '',
-    category: typed.category ?? 'token',
+    status,
+    definition,
+    category,
+  });
+  
+  if (!isRenderable && __DEV__) {
+    console.log('❌ Filtered out:', testData);
+  }
+
+  if (!isRenderable) {
+    return null;
+  }
+
+  return {
+    term: formatGlossaryTitle(baseTitle),
+    slug: entry.slug,
+    definition,
+    category,
     aliases: Array.isArray(typed.aliases) ? typed.aliases : [],
     tags: Array.isArray(typed.tags) ? typed.tags : [],
     relatedTerms: Array.isArray(typed.relatedTerms) ? typed.relatedTerms : [],
@@ -72,7 +84,6 @@ const buildCategories = (terms: GlossaryTerm[]): GlossaryData['categories'] =>
         name: key,
         count: 0,
         description: '',
-        label: CATEGORY_LABELS[key] ?? formatLabel(key),
       };
     }
     acc[key].count += 1;
@@ -84,7 +95,9 @@ async function fetchGlossaryData(): Promise<GlossaryData> {
   log('🔍 [fetchGlossaryData] Starting glossary fetch...');
   try {
     const rawTerms = await loadGlossaryFull();
-    const terms = rawTerms.map((term) => toGlossaryTerm(term as GlossaryTerm));
+    const terms = rawTerms
+      .map((term) => toGlossaryTerm(term as GlossaryTerm))
+      .filter((term): term is GlossaryTerm => Boolean(term));
     log('🔍 [fetchGlossaryData] Data received:', terms.length, 'terms');
     return {
       terms,
@@ -131,7 +144,7 @@ function Hit({ hit, onAliasClick, onTagClick }: {
   onAliasClick: (alias: string) => void;
   onTagClick: (tag: string) => void;
 }) {
-  const categoryLabel = hit.category ? CATEGORY_LABELS[hit.category] ?? formatLabel(hit.category) : undefined;
+  const categoryLabel = hit.category ? formatCategoryLabel(hit.category) : undefined;
   return (
     <a
       href={`/glossary/${hit.slug}`}
@@ -837,7 +850,7 @@ export default function GlossarySearchFallback({
               onClick={() => handleTagClick(category.name)}
               className={`glossary-search__filter ${selectedCategory === category.name ? 'is-active' : ''}`}
             >
-              {category.name} ({categoryCount})
+              {formatCategoryLabel(category.name)} ({categoryCount})
             </button>
           );
         })}

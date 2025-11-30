@@ -40,6 +40,7 @@ const SRC = path.join(repoRoot, 'glossary.v2025.json');
 const OUT_FULL = path.join(repoRoot, 'apps/web/public/glossary.json');
 const OUT_IDX = path.join(repoRoot, 'apps/web/public/glossary.index.json');
 const OUT_DATA = path.join(repoRoot, 'apps/web/public/data/glossary.v2025.json');
+const OUT_ALIAS = path.join(repoRoot, 'apps/web/public/glossary.aliases.v2025.json');
 
 const parseTerms = (value: unknown): Term[] => {
   if (Array.isArray(value)) return value as Term[];
@@ -98,6 +99,8 @@ const mergeArrays = <T>(...segments: Array<T[] | undefined>): T[] => {
   return Array.from(new Set(merged));
 };
 
+const FALLBACK_CATEGORY = 'general';
+
 const enrichTerm = (term: Term): Term => {
   if (!term?.slug) return term;
   const taxonomyNode = findTaxonomyNode(term.slug);
@@ -108,6 +111,7 @@ const enrichTerm = (term: Term): Term => {
       ...term,
       definition: fallbackDefinition,
       summary: term.summary ?? fallbackDefinition,
+      category: term.category ?? FALLBACK_CATEGORY,
     };
   }
 
@@ -121,7 +125,7 @@ const enrichTerm = (term: Term): Term => {
     title: term.title ?? taxonomyNode.title ?? term.slug,
     summary,
     definition,
-    category: term.category ?? taxonomyNode.category ?? null,
+    category: term.category ?? taxonomyNode.category ?? FALLBACK_CATEGORY,
     aliases: mergeArrays(term.aliases as string[] | undefined, taxonomyNode.aliases),
     tags: mergeArrays(term.tags as string[] | undefined, taxonomyNode.relatedTags),
     relatedTerms: mergeArrays(term.relatedTerms as string[] | undefined, taxonomyNode.seeAlso),
@@ -131,20 +135,118 @@ const enrichTerm = (term: Term): Term => {
 };
 
 const raw = fs.readFileSync(SRC, 'utf8');
-const terms = parseTerms(JSON.parse(raw)).map(enrichTerm);
+const PLACEHOLDER_SLUGS = new Set(['alias-redirect']);
+const enrichedTerms = parseTerms(JSON.parse(raw)).map(enrichTerm);
 
-const seen = new Set<string>();
-for (const term of terms) {
-  if (!term?.slug || typeof term.slug !== 'string') {
-    throw new Error('Invalid glossary term: missing slug');
+const canonicalTerms: Term[] = [];
+const canonicalBySlug = new Map<string, Term>();
+const aliasMappings = new Map<string, string>();
+const aliasEntriesFromDataset: Array<{ alias: string; target: string }> = [];
+
+const validationErrors: string[] = [];
+
+for (const term of enrichedTerms) {
+  const normalizedSlug = normalizeKey(term.slug);
+  if (!normalizedSlug || PLACEHOLDER_SLUGS.has(normalizedSlug)) {
+    continue;
   }
-  if (seen.has(term.slug)) {
-    throw new Error(`Duplicate slug detected: ${term.slug}`);
+
+  const status = (term.status ?? 'canonical').toLowerCase();
+  const normalizedTarget = normalizeKey(term.targetSlug ?? '');
+
+  if (status === 'alias') {
+    if (normalizedTarget) {
+      aliasEntriesFromDataset.push({ alias: normalizedSlug, target: normalizedTarget });
+    }
+    continue;
   }
-  seen.add(term.slug);
+
+  const entry: Term = {
+    ...term,
+    slug: normalizedSlug,
+  };
+
+  if (status === 'canonical') {
+    if (!entry.definition?.trim()) {
+      validationErrors.push(`canonical term "${normalizedSlug}" is missing a definition`);
+    }
+    if (!entry.category?.trim()) {
+      validationErrors.push(`canonical term "${normalizedSlug}" is missing a category`);
+    }
+  }
+
+  canonicalBySlug.set(normalizedSlug, entry);
+  canonicalTerms.push(entry);
 }
 
-terms.sort((a, b) => cmp(a.slug, b.slug));
+if (validationErrors.length) {
+  throw new Error(
+    ['[generate-glossary-json] Data validation failed:', ...validationErrors.map((msg) => ` - ${msg}`)].join('\n'),
+  );
+}
+
+const dedupeAliasDisplayList = (aliases?: string[]): string[] => {
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const alias of aliases ?? []) {
+    if (typeof alias !== 'string') continue;
+    const trimmed = alias.trim();
+    if (!trimmed) continue;
+    const key = trimmed.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(trimmed);
+  }
+  return result;
+};
+
+const toAliasSlug = (value: string): string => {
+  const normalized = value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return normalized;
+};
+
+for (const term of canonicalTerms) {
+  const aliasDisplayValues = dedupeAliasDisplayList(term.aliases as string[] | undefined);
+  term.aliases = aliasDisplayValues;
+  for (const alias of aliasDisplayValues) {
+    const aliasSlug = toAliasSlug(alias);
+    if (aliasSlug && aliasSlug !== term.slug) {
+      aliasMappings.set(aliasSlug, term.slug);
+    }
+  }
+}
+
+for (const { alias, target } of aliasEntriesFromDataset) {
+  if (!canonicalBySlug.has(target) || alias === target) continue;
+  aliasMappings.set(alias, target);
+  const canonical = canonicalBySlug.get(target)!;
+  if (!canonical.aliases.includes(alias)) {
+    canonical.aliases.push(alias);
+  }
+}
+
+const seen = new Set<string>();
+const filteredTerms = canonicalTerms
+  .filter((term) => !PLACEHOLDER_SLUGS.has(term.slug))
+  .filter((term) => {
+    const status = (term.status ?? 'canonical').toLowerCase();
+    if (status === 'alias' || status === 'deprecated') {
+      return false;
+    }
+    return true;
+  })
+  .sort((a, b) => cmp(a.slug, b.slug))
+  .map((term) => {
+    if (seen.has(term.slug)) {
+      throw new Error(`Duplicate slug detected: ${term.slug}`);
+    }
+    seen.add(term.slug);
+    return term;
+  });
 
 const writeIfDiff = (filePath: string, content: string) => {
   try {
@@ -157,10 +259,10 @@ const writeIfDiff = (filePath: string, content: string) => {
   fs.writeFileSync(filePath, content, 'utf8');
 };
 
-const fullArray = JSON.stringify(terms, null, 2) + '\n';
+const fullArray = JSON.stringify(filteredTerms, null, 2) + '\n';
 const idxArray =
   JSON.stringify(
-    terms.map((term) => ({
+    filteredTerms.map((term) => ({
       slug: term.slug,
       title: typeof term.title === 'string' && term.title.length ? term.title : term.slug,
     })),
@@ -171,24 +273,32 @@ const idxArray =
 writeIfDiff(OUT_FULL, fullArray);
 writeIfDiff(OUT_IDX, idxArray);
 
-const canonicalCount = terms.filter((term) => term.status === 'canonical').length;
-const aliasCount = terms.filter((term) => term.status === 'alias').length;
-const deprecatedCount = terms.filter((term) => term.status === 'deprecated').length;
+const aliasPayload = Array.from(aliasMappings.entries())
+  .map(([alias, target]) => ({ alias, target }))
+  .sort((a, b) => cmp(a.alias, b.alias));
+
+writeIfDiff(OUT_ALIAS, JSON.stringify({ aliases: aliasPayload }, null, 2) + '\n');
+
+const canonicalCount = filteredTerms.filter((term) => term.status === 'canonical').length;
+const aliasCount = aliasPayload.length;
+const deprecatedCount = filteredTerms.filter((term) => term.status === 'deprecated').length;
 const payload = {
-  terms,
+  terms: filteredTerms,
   canonicalCount,
   aliasCount,
   deprecatedCount,
   version: 2025,
+  lastUpdated: new Date().toISOString(),
 };
 writeIfDiff(OUT_DATA, JSON.stringify(payload, null, 2) + '\n');
 
 console.log(
   [
     'Wrote arrays to:',
-    `- ${OUT_FULL}  (len=${terms.length})`,
-    `- ${OUT_IDX}   (len=${terms.length})`,
+    `- ${OUT_FULL}  (len=${filteredTerms.length})`,
+    `- ${OUT_IDX}   (len=${filteredTerms.length})`,
     `- ${OUT_DATA}  (object with metadata)`,
+    `- ${OUT_ALIAS} (alias map len=${aliasPayload.length})`,
   ].join('\n'),
 );
 

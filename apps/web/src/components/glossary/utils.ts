@@ -1,5 +1,5 @@
 /**
- * Utility functions for glossary search and scoring
+ * Utility functions for glossary search scoring
  */
 
 const norm = (s: string) => s.toLowerCase();
@@ -13,7 +13,7 @@ export function scoreTerm(t: any, q: string): number {
   const Q = norm(q);
   const fields = [
     ['term', 5],
-    ['slug', 4], 
+    ['slug', 4],
     ['aliases', 4],
     ['tags', 3],
     ['relatedTerms', 2],
@@ -24,14 +24,12 @@ export function scoreTerm(t: any, q: string): number {
     const values = Array.isArray((t as any)[field]) ? (t as any)[field] : [(t as any)[field]];
     for (const v of values.filter(Boolean)) {
       const V = norm(String(v));
-      if (V === Q) score += 10 * weight;           // exact
+      if (V === Q) score += 10 * weight; // exact
       else if (V.startsWith(Q)) score += 6 * weight; // prefix
-      else if (V.includes(Q)) score += 3 * weight;   // substring
+      else if (V.includes(Q)) score += 3 * weight; // substring
     }
   }
-  // small boost for category match
   if (norm(t.category) === Q) score += 5;
-  // business priority boost
   score += (t.priority ?? 0) * 0.05;
   return score;
 }

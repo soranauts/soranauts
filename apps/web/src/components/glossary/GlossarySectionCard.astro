@@ -5,16 +5,20 @@ export interface Props {
   kicker?: string;
   class?: string;
   id?: string;
+  headingLevel?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-const { title, description, kicker, class: className, id } = Astro.props;
+const { title, description, kicker, class: className, id, headingLevel = 'h2' } = Astro.props;
+const HeadingTag = headingLevel;
 ---
 
 <section class:list={['glossary-section-card', className]} {...(id ? { id } : {})}>
   <header class="glossary-section-card__header">
     {kicker && <span class="glossary-section-card__kicker">{kicker}</span>}
     <div>
-      <h2 class="glossary-section-card__title">{title}</h2>
+      <component is={HeadingTag} class="glossary-section-card__title">
+        {title}
+      </component>
       {description && <p class="glossary-section-card__description">{description}</p>}
     </div>
     {Astro.slots.has('actions') && (

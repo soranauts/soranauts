@@ -4,6 +4,7 @@ import GlossaryHero from '~/components/glossary/GlossaryHero.astro';
 import GlossarySearchFallback from '~/components/glossary/GlossarySearchFallback';
 import GlossarySearchShell from '~/components/glossary/GlossarySearchShell.astro';
 import GlossarySearchV2 from '~/components/glossary/GlossarySearchV2';
+import { formatGlossaryTitle, isRenderableGlossaryEntry } from '~/lib/glossary/format';
 import Footer from '~/components/widgets/Footer.astro';
 import Header from '~/components/widgets/Header.astro';
 import Layout from '~/layouts/Layout.astro';
@@ -18,7 +19,14 @@ const initialTerm = Astro.url.hash.replace('#', '');
 const initialQuery = Astro.url.searchParams.get('q') ?? initialTerm;
 const enableSearchV2 = import.meta.env.GLOSSARY_SEARCH_V2 === 'true';
 
-const glossaryTerms = getCachedGlossaryTerms().filter((term) => term.status === 'canonical');
+const glossaryTerms = getCachedGlossaryTerms()
+  .filter((term) => isRenderableGlossaryEntry(term))
+  .map((term) => ({
+    ...term,
+    term: formatGlossaryTitle(term.term ?? term.title ?? term.slug),
+    definition: term.definition?.trim() ?? '',
+    category: term.category?.trim().toLowerCase(),
+  }));
 const totalCount = glossaryTerms.length;
 const categories = new Set<string>();
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import type { GlossaryData, GlossaryTerm, GlossaryFilter } from '../../types/glossary';
 import { loadGlossaryFull, type Term as GlossaryTermPayload } from '../../lib/glossary-data';
+import { formatGlossaryTitle, formatCategoryLabel, isRenderableGlossaryEntry } from '../../lib/glossary/format';
 
 // Search and filter terms
 function filterTerms(terms: GlossaryTerm[], filter: GlossaryFilter): GlossaryTerm[] {
@@ -72,18 +73,32 @@ export default function GlossaryApp({ initialTerm }: GlossaryAppProps) {
   const resultsRef = useRef<HTMLDivElement>(null);
   const debouncedSearch = useDebounce(searchQuery, 150);
 
-  const toGlossaryTerm = (entry: GlossaryTermPayload | GlossaryTerm): GlossaryTerm => {
-    const fallbackTitle = (entry as GlossaryTermPayload).title ?? entry.slug;
+  const toGlossaryTerm = (entry: GlossaryTermPayload | GlossaryTerm): GlossaryTerm | null => {
     const typed = entry as GlossaryTerm;
+    const payload = entry as GlossaryTermPayload;
+    const baseTitle = typed.term ?? payload.title ?? entry.slug;
+    const definition = (typed.definition ?? payload.summary ?? '').trim();
+    const category = (typed.category ?? (payload as any)?.category ?? '').trim().toLowerCase();
+    const status = ((typed as any)?.status ?? (payload as any)?.status ?? 'canonical') as string;
+
+    if (
+      !isRenderableGlossaryEntry({
+        slug: entry.slug,
+        status,
+        definition,
+        category,
+      })
+    ) {
+      return null;
+    }
+
     return {
-      term: typed.term ?? fallbackTitle,
+      term: formatGlossaryTitle(baseTitle),
       slug: entry.slug,
-      definition: typed.definition ?? (entry as GlossaryTermPayload).summary ?? '',
-      category: typed.category ?? 'token',
+      definition,
+      category: category as GlossaryTerm['category'],
       relatedTerms: Array.isArray(typed.relatedTerms) ? typed.relatedTerms : [],
-      aliases: Array.isArray((entry as GlossaryTermPayload).aliases)
-        ? (entry as GlossaryTermPayload).aliases
-        : [],
+      aliases: Array.isArray(payload.aliases) ? payload.aliases : [],
       tags: Array.isArray(typed.tags) ? typed.tags : [],
       priority: typeof typed.priority === 'number' ? typed.priority : 0,
       examples: typed.examples ?? [],
@@ -107,7 +122,9 @@ export default function GlossaryApp({ initialTerm }: GlossaryAppProps) {
       try {
         setIsLoading(true);
         const rawTerms = await loadGlossaryFull();
-        const terms = rawTerms.map((term) => toGlossaryTerm(term as GlossaryTerm));
+        const terms = rawTerms
+          .map((term) => toGlossaryTerm(term as GlossaryTerm))
+          .filter((term): term is GlossaryTerm => Boolean(term));
         setGlossaryData({
           terms,
           categories: buildCategories(terms),
@@ -447,9 +464,9 @@ export default function GlossaryApp({ initialTerm }: GlossaryAppProps) {
                       <button
                         onClick={() => handleCategoryChange(term.category)}
                         className="px-2 py-1 rounded-full font-medium transition-colors cursor-pointer bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
-                        title={`Filter by ${term.category}`}
+                        title={`Filter by ${formatCategoryLabel(term.category) || 'category'}`}
                       >
-                        {term.category}
+                        {formatCategoryLabel(term.category)}
                       </button>
                       {term.aliases.length > 1 && (
                         <span className="text-gray-500 dark:text-gray-400">

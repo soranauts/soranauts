@@ -3,10 +3,11 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import glossaryV2025 from '../../../public/data/glossary.v2025.json';
+import glossaryAliases from '../../../public/glossary.aliases.v2025.json';
 import { normalizeGlossaryFull } from '../../../src/lib/glossary-normalize';
 import { clientAliasIndex } from '../../../src/lib/taxonomy';
 import { createGlossarySearchEngine } from '../../../src/lib/glossary/search';
+import { getAllTerms, getGlossaryTerm, getCanonicalSlug } from '../../../src/lib/glossary/glossary-loader';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,32 +16,59 @@ const glossaryRaw = JSON.parse(
 );
 const glossaryTerms = normalizeGlossaryFull(glossaryRaw);
 
-const engine = createGlossarySearchEngine({
-  terms: glossaryTerms,
-  aliasIndex: clientAliasIndex,
-});
+const engine = createGlossarySearchEngine(
+  {
+    terms: glossaryTerms,
+    aliasIndex: clientAliasIndex,
+  },
+  { resolveCanonicalSlug: getCanonicalSlug },
+);
 
 describe('cross: glossary alias dataset', () => {
-  it('maps all aliases to canonical slugs', () => {
-    const aliasTerms = glossaryV2025.terms.filter((term) => term.status === 'alias');
-    expect(aliasTerms.length).toBe(glossaryV2025.aliasCount);
-
-    aliasTerms.forEach((alias) => {
-      expect(alias.targetSlug, `Alias ${alias.slug} is missing targetSlug`).toBeTruthy();
-      const canonical = glossaryV2025.terms.find((term) => term.slug === alias.targetSlug);
-      expect(canonical, `Canonical slug ${alias.targetSlug} missing for alias ${alias.slug}`).toBeDefined();
-      expect(canonical?.status).toBe('canonical');
+  it('maps aliases to canonical slugs', () => {
+    const entries = glossaryAliases.aliases ?? [];
+    expect(entries.length).toBeGreaterThan(0);
+    entries.forEach(({ alias, target }) => {
+      const canonicalSlug = getCanonicalSlug(alias);
+      expect(canonicalSlug, `Canonical slug missing for alias ${alias}`).toBe(target);
+      const canonical = getGlossaryTerm(target);
+      expect(canonical, `Canonical slug ${target} missing for alias ${alias}`).toBeDefined();
+      const resolved = getGlossaryTerm(alias);
+      expect(resolved?.slug).toBe(canonical?.slug);
     });
+  });
+});
+
+describe('glossary data integrity', () => {
+  const terms = getAllTerms();
+
+  it('does not expose alias entries', () => {
+    expect(terms.every((term) => term.status !== 'alias')).toBe(true);
+  });
+
+  it('requires canonical terms to include definition and category', () => {
+    terms
+      .filter((term) => term.status === 'canonical')
+      .forEach((term) => {
+        expect(term.definition?.trim(), `Definition missing for ${term.slug}`).toBeTruthy();
+        expect(term.category?.trim(), `Category missing for ${term.slug}`).toBeTruthy();
+      });
+  });
+
+  it('resolves alias slugs to canonical entries', () => {
+    const aliasSlug = 'hyperledger-iroha-3';
+    const canonical = getGlossaryTerm(aliasSlug);
+    expect(canonical?.slug).toBe('iroha3');
   });
 });
 
 describe('cross: glossary alias resolution', () => {
   test.each([
-    ['hyperled', 'hyperledger-iroha'],
+    ['hyperled', 'iroha'],
     ['Iroha V2', 'iroha2'],
-    ['iroha3', 'hyperledger-iroha-3'],
-    ['  iroha v3  ', 'hyperledger-iroha-3'],
-    ['nexus', 'hyperledger-iroha-3'],
+    ['iroha3', 'iroha3'],
+    ['  iroha v3  ', 'iroha3'],
+    ['nexus', 'iroha3'],
     ['sora dex', 'polkaswap'],
     ['telegram dex', 'tonswap'],
   ])('resolves %s → %s', (query, expectedSlug) => {

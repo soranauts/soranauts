@@ -21,14 +21,17 @@ describe('cross: glossary sitemap generation', () => {
     tmpDirs.push(tempDir);
 
     const dataPath = path.join(ROOT, 'public/data/glossary.v2025.json');
+    const aliasPath = path.join(ROOT, 'public/glossary.aliases.v2025.json');
     const datasetRaw = JSON.parse(await fs.readFile(dataPath, 'utf-8'));
     const terms = normalizeGlossaryFull(datasetRaw.terms ?? datasetRaw);
+    const aliasDataset = JSON.parse(await fs.readFile(aliasPath, 'utf-8')) as { aliases: Array<{ alias: string }> };
     const expectedCanonicals = terms.filter((term) => term.status === 'canonical').length;
-    const expectedAliases = terms.filter((term) => term.status === 'alias').length;
+    const expectedAliases = aliasDataset.aliases.length;
 
     const result = await generateGlossarySitemaps({
       dataPath,
       outputDir: tempDir,
+      aliasPath,
       siteOrigin: 'https://soranauts.com',
     });
 

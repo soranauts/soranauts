@@ -19,6 +19,19 @@ test.describe('Glossary', () => {
   });
 });
 
+test.describe('Glossary alias routing', () => {
+  test('redirects alias slug to canonical term page', async ({ page }) => {
+    await page.goto('/glossary/hyperledger-iroha-3');
+    await page.waitForURL(/\/glossary\/iroha3\/?$/i);
+    await expect(page.locator('h1')).toContainText(/iroha 3/i);
+  });
+
+  test('alias slugs are not rendered in glossary list', async ({ page }) => {
+    await page.goto('/glossary');
+    await expect(page.locator('#glossary-hyperledger-iroha-3')).toHaveCount(0);
+  });
+});
+
 describeIfTypesense('Glossary (Typesense search)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/glossary');

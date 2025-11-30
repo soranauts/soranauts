@@ -16,7 +16,19 @@ export interface GlossaryTermPageProps {
   whyItMatters?: string | null;
   related: Array<{ term: string; href: string }>;
   sources?: GlossarySource[];
+  categoryLabel?: string | null;
+  chips?: Array<{ term: string; href: string }>;
+  definitionHtml?: string;
+  lastUpdate?: string;
 }
+
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 
 interface SectionVisibilityConfig {
   hasWhy: boolean;
@@ -49,6 +61,10 @@ const GlossaryTermPage = ({
   whyItMatters,
   related,
   sources = [],
+  categoryLabel,
+  chips = [],
+  definitionHtml,
+  lastUpdate,
 }: GlossaryTermPageProps) => {
   const hasWhy = Boolean(whyItMatters && whyItMatters.trim().length);
   const hasRelated = related.length > 0;
@@ -170,9 +186,40 @@ const GlossaryTermPage = ({
 
         <div className="glossary-v3__content">
           <section id="definition" className="glossary-v3__definition scroll-mt-28 md:scroll-mt-32">
-            <h1>{title}</h1>
-            {summary && <p className="glossary-v3__summary">{summary}</p>}
-            <p>{definition}</p>
+            <header className="flex flex-col gap-3 pb-4 border-b border-white/10 dark:border-slate-800/60 mb-6">
+              {lastUpdate && lastUpdate !== '—' && (
+                <div className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400 dark:text-slate-500">
+                  Last Update <span className="normal-case tracking-normal font-medium text-slate-600 dark:text-slate-300 ml-2">{lastUpdate}</span>
+                </div>
+              )}
+              <p className="text-xs font-semibold tracking-[0.3em] uppercase text-slate-400 dark:text-slate-500">
+                Definition
+              </p>
+              <h1 className="text-3xl md:text-[2.6rem] leading-tight font-semibold text-slate-900 dark:text-white">
+                {title}
+              </h1>
+              {categoryLabel && (
+                <span className="glossary-chip w-max">{categoryLabel}</span>
+              )}
+              {summary && (
+                <p className="glossary-v3__summary text-base text-slate-600 dark:text-slate-300 max-w-3xl">
+                  {summary}
+                </p>
+              )}
+              {chips.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {chips.map((chip) => (
+                    <a key={chip.href} className="glossary-v3__chip" href={chip.href}>
+                      {chip.term}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </header>
+            <div
+              className="prose prose-slate dark:prose-invert max-w-none"
+              dangerouslySetInnerHTML={{ __html: definitionHtml ?? `<p>${escapeHtml(definition)}</p>` }}
+            />
           </section>
 
           {hasWhy && (

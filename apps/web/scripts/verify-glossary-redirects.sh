@@ -44,6 +44,6 @@ done
 
 require_status "${ROOT}/glossary/bonding-curve" "200"
 curl -s "${ROOT}/data/glossary.v2025.json?ci=${CACHE_BUSTER}" \
-  | jq -e '.canonicalCount==52 and .aliasCount==5 and .deprecatedCount==0' >/dev/null
+  | jq -e '.canonicalCount==157 and .aliasCount==38 and .deprecatedCount==0' >/dev/null
 
 echo "✅ All glossary redirects verified dynamically"

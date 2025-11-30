@@ -1,24 +1,156 @@
 {
   "aliases": [
     {
+      "alias": "bitcoin-halving",
+      "target": "halving"
+    },
+    {
+      "alias": "btc",
+      "target": "bitcoin"
+    },
+    {
+      "alias": "consensus-mechanisms",
+      "target": "consensus"
+    },
+    {
+      "alias": "doge",
+      "target": "dogecoin"
+    },
+    {
+      "alias": "hyperled",
+      "target": "iroha"
+    },
+    {
       "alias": "hyperledger-iroha",
       "target": "iroha"
+    },
+    {
+      "alias": "hyperledger-iroha-2",
+      "target": "iroha2"
     },
     {
       "alias": "hyperledger-iroha-3",
       "target": "iroha3"
     },
     {
+      "alias": "interplanetary-file-system",
+      "target": "ipfs"
+    },
+    {
+      "alias": "iroha-2",
+      "target": "iroha2"
+    },
+    {
+      "alias": "iroha-3",
+      "target": "iroha3"
+    },
+    {
+      "alias": "iroha-blockchain",
+      "target": "iroha"
+    },
+    {
+      "alias": "iroha-v2",
+      "target": "iroha2"
+    },
+    {
+      "alias": "iroha-v3",
+      "target": "iroha3"
+    },
+    {
+      "alias": "isis",
+      "target": "iroha-special-instructions"
+    },
+    {
+      "alias": "monetary-system",
+      "target": "monetary-systems"
+    },
+    {
+      "alias": "nexus",
+      "target": "iroha3"
+    },
+    {
+      "alias": "nfts",
+      "target": "nft"
+    },
+    {
+      "alias": "non-fungible-token",
+      "target": "nft"
+    },
+    {
+      "alias": "non-fungible-tokens",
+      "target": "nft"
+    },
+    {
+      "alias": "parachain-auctions",
+      "target": "auctions"
+    },
+    {
+      "alias": "parachains",
+      "target": "parachain"
+    },
+    {
+      "alias": "pos",
+      "target": "proof-of-stake"
+    },
+    {
+      "alias": "pow",
+      "target": "proof-of-work"
+    },
+    {
+      "alias": "pswap-dex",
+      "target": "polkaswap"
+    },
+    {
+      "alias": "qr-payment",
+      "target": "qr-payments"
+    },
+    {
+      "alias": "rust",
+      "target": "rust-language"
+    },
+    {
+      "alias": "rwa",
+      "target": "real-world-assets"
+    },
+    {
+      "alias": "shib",
+      "target": "shiba-inu"
+    },
+    {
       "alias": "sora-council",
       "target": "council"
+    },
+    {
+      "alias": "sora-dex",
+      "target": "polkaswap"
     },
     {
       "alias": "sora-parliament",
       "target": "parliament"
     },
     {
+      "alias": "sora-v3",
+      "target": "iroha3"
+    },
+    {
+      "alias": "telegram-dex",
+      "target": "tonswap"
+    },
+    {
       "alias": "token-bonding-curve",
       "target": "bonding-curve"
+    },
+    {
+      "alias": "ton-swap",
+      "target": "tonswap"
+    },
+    {
+      "alias": "ts-dex",
+      "target": "tonswap"
+    },
+    {
+      "alias": "webassembly",
+      "target": "wasm"
     }
   ]
 }

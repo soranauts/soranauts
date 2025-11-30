@@ -1,6 +1,4 @@
 ---
-import { GLOSSARY_CARD_SHOW_UPDATED } from '~/config/feature-flags';
-
 export interface Props {
   href: string;
   title: string;
@@ -11,28 +9,11 @@ export interface Props {
   badge?: string;
 }
 
-const CATEGORY_LABELS: Record<string, string> = {
-  token: 'Token',
-  technology: 'Technology',
-  governance: 'Governance',
-  defi: 'DeFi',
-  network: 'Network',
-  economics: 'Economics',
-  tag: 'Tag',
-};
-
-const formatLabel = (value: string): string =>
-  value
-    .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (match) => match.toUpperCase());
-
 const { href, title, summary, category, tags = [], meta = [], badge } = Astro.props;
-const categoryLabel = category ? CATEGORY_LABELS[category] ?? formatLabel(category) : undefined;
+
+import { formatCategoryLabel } from '~/lib/glossary/format';
+const categoryLabel = category ? formatCategoryLabel(category) : undefined;
 const tagList = tags.slice(0, 6);
-const updatedStamp =
-  GLOSSARY_CARD_SHOW_UPDATED && typeof Date !== 'undefined'
-    ? new Date().toISOString().slice(0, 10)
-    : null;
 ---
 
 <a class="glossary-card" href={href} role="group">
@@ -43,26 +24,19 @@ const updatedStamp =
     </div>
   )}
   <h3 class="glossary-card__title">{title}</h3>
-  {updatedStamp && (
-    <div class="glossary-card__updated">
-      Updated on <time datetime={updatedStamp}>{updatedStamp}</time>
-    </div>
-  )}
   {summary && <p class="glossary-card__summary">{summary}</p>}
-  {meta.length ? (
+  {meta.length > 0 && (
     <div class="glossary-card__meta">
       {meta.map((item) => (
         <span>{item}</span>
       ))}
     </div>
-  ) : null}
-  {tagList.length ? (
+  )}
+  {tagList.length > 0 && (
     <div class="glossary-card__tags" aria-label="Related tags">
       {tagList.map((tag) => (
-        <span class="glossary-chip glossary-chip--muted">#{formatLabel(tag)}</span>
+        <span class="glossary-chip glossary-chip--muted">#{formatCategoryLabel(tag)}</span>
       ))}
     </div>
-  ) : null}
+  )}
 </a>
-
-

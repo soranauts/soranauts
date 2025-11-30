@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { formatCategoryLabel } from '../../lib/glossary/format';
 
 interface GlossaryTerm {
   term: string;
@@ -119,7 +120,7 @@ export default function GlossaryWorking() {
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
+                {formatCategoryLabel(category)}
               </button>
             ))}
           </div>
@@ -142,7 +143,7 @@ export default function GlossaryWorking() {
                 {term.term}
               </h3>
               <span className="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
-                {term.category}
+                {formatCategoryLabel(term.category)}
               </span>
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-3">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { formatCategoryLabel } from '../../lib/glossary/format';
 
 // Static data - first 20 terms from the glossary
 const staticTerms = [
@@ -283,8 +284,9 @@ export default function GlossaryStatic({ initialTerm }: GlossaryStaticProps) {
                           handleCategoryChange(term.category);
                         }}
                         className="px-2 py-1 rounded-full font-medium transition-colors cursor-pointer bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                        title={`Filter by ${formatCategoryLabel(term.category) || 'category'}`}
                       >
-                        {term.category}
+                        {formatCategoryLabel(term.category)}
                       </button>
                       {term.aliases.length > 1 && (
                         <span className="text-gray-500 dark:text-gray-400">

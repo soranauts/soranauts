@@ -28,6 +28,7 @@ import glossaryDatasetV2025 from '../../../public/data/glossary.v2025.json';
 import GlossaryTermPage from '~/components/glossary/v3/GlossaryTermPage';
 import { loadGlossaryFull } from '~/lib/glossary-data';
 import { resolveGlossaryEntry } from '~/lib/glossary-resolve';
+import { formatGlossaryTitle, formatCategoryLabel, truncateOneLiner, ACRONYM_TOKENS, formatGlossaryDate } from '~/lib/glossary/format';
 
 export const prerender = true;
 
@@ -84,8 +85,8 @@ const runtimeTerm =
   resolveGlossaryEntry(normalizedGlossaryTerms, requestedSlug ?? '') ??
   resolveGlossaryEntry(normalizedGlossaryTerms, term.slug) ??
   resolveGlossaryEntry(normalizedGlossaryTerms, canonicalSlugFromDataset);
-const displayTermTitle =
-  (runtimeTerm?.title ?? runtimeTerm?.term ?? term.term ?? term.slug ?? '').trim() || term.slug;
+const rawTermTitle = (runtimeTerm?.title ?? runtimeTerm?.term ?? term.term ?? term.slug ?? '').trim();
+const displayTermTitle = formatGlossaryTitle(rawTermTitle || term.slug);
 const displaySummary = runtimeTerm?.summary ?? term.summary ?? null;
 const rawDisplayDefinition =
   runtimeTerm?.definition ?? runtimeTerm?.summary ?? term.definition ?? term.summary ?? '';
@@ -268,16 +269,6 @@ const jsonLd = {
   ],
 };
 
-const CATEGORY_LABELS: Record<string, string> = {
-  token: 'Token',
-  technology: 'Technology',
-  governance: 'Governance',
-  defi: 'DeFi',
-  network: 'Network',
-  economics: 'Economics',
-  tag: 'Tag',
-};
-
 const formatLabel = (value: string): string => {
   const raw = String(value || '');
   const lower = raw.toLowerCase();
@@ -290,7 +281,7 @@ const formatLabel = (value: string): string => {
     .replace(/\b\w/g, (match) => match.toUpperCase());
 };
 
-const categoryLabel = typeof term.category === 'string' ? CATEGORY_LABELS[term.category] ?? formatLabel(term.category) : undefined;
+const categoryLabel = typeof term.category === 'string' ? formatCategoryLabel(term.category) : undefined;
 const aliasCount = Array.isArray(term.aliases) && term.aliases.length > 1 ? term.aliases.length - 1 : 0;
 const relatedTermsCount = relatedTermsWithLinks.length;
 const tagPostCount = relatedTagArticles.reduce((total, entry) => total + entry.posts.length, 0);
@@ -301,9 +292,116 @@ const heroStats = [
   { label: 'Tagged articles', value: tagPostCount ? tagPostCount.toString() : '—' },
 ];
 
-const heroDescription = displaySummary ?? displayDefinition;
 const aliasList = Array.isArray(term.aliases) ? term.aliases.slice(1) : [];
 const glossaryTags = Array.isArray(term.tags) ? term.tags : [];
+const heroSummary = truncateOneLiner(displaySummary ?? displayDefinition);
+
+const formattedLastUpdate = formatGlossaryDate(
+  (term as any)?.updateDate ?? runtimeTerm?.updateDate ?? null,
+  (term as any)?.publishDate ?? runtimeTerm?.publishDate ?? null,
+);
+
+const CORE_AUTOLINK_SLUGS = ['xor', 'val', 'pswap', 'polkaswap', 'sora-v2', 'sora-v3'];
+
+const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+const buildAutoLinkTargets = () => {
+  return CORE_AUTOLINK_SLUGS.map((slug) => {
+    const ref = allGlossaryTerms.find((entry) => entry.slug === slug);
+    if (!ref) return null;
+    const tokens = new Set<string>();
+    const pushToken = (token?: string | null) => {
+      if (!token) return;
+      const normalized = token.trim();
+      if (!normalized || /\s/.test(normalized)) return;
+      tokens.add(normalized);
+    };
+    pushToken(ref.term);
+    pushToken(ref.slug);
+    (ref.aliases ?? []).forEach(pushToken);
+    if (!tokens.size) return null;
+    const pattern = new RegExp(`\\b(${Array.from(tokens).map(escapeRegExp).join('|')})\\b`, 'gi');
+    return { slug: ref.slug, pattern };
+  }).filter((value): value is { slug: string; pattern: RegExp } => Boolean(value));
+};
+
+const autoLinkTargets = buildAutoLinkTargets();
+const definitionHasHtml = /<\/?[a-z][\s>]/i.test(displayDefinition);
+
+const linkParagraph = (paragraph: string) => {
+  if (!autoLinkTargets.length) {
+    return escapeHtml(paragraph);
+  }
+  const matches: Array<{ start: number; end: number; slug: string; text: string }> = [];
+  autoLinkTargets.forEach((target) => {
+    target.pattern.lastIndex = 0;
+    let match: RegExpExecArray | null;
+    while ((match = target.pattern.exec(paragraph)) !== null) {
+      matches.push({
+        start: match.index,
+        end: match.index + match[0].length,
+        slug: target.slug,
+        text: match[0],
+      });
+    }
+  });
+  matches.sort((a, b) => a.start - b.start);
+  const linkedSlugs = new Set<string>();
+  let cursor = 0;
+  let result = '';
+  for (const match of matches) {
+    if (match.start < cursor || linkedSlugs.has(match.slug)) {
+      continue;
+    }
+    result += escapeHtml(paragraph.slice(cursor, match.start));
+    
+    // Preserve original casing for acronyms
+    const matchUpper = match.text.toUpperCase();
+    const matchLower = match.text.toLowerCase();
+    const isAcronym = ACRONYM_TOKENS.has(matchLower);
+    const displayText = isAcronym ? matchUpper : match.text;
+    
+    result += `<a class="text-brand-500 font-semibold hover:underline" data-auto-glossary="true" href="/glossary/${match.slug}#definition">${escapeHtml(displayText)}</a>`;
+    linkedSlugs.add(match.slug);
+    cursor = match.end;
+  }
+  if (cursor < paragraph.length) {
+    result += escapeHtml(paragraph.slice(cursor));
+  }
+  return result;
+};
+
+const buildDefinitionHtml = () => {
+  if (definitionHasHtml) {
+    return displayDefinition;
+  }
+  const paragraphs = displayDefinition.split(/\n{2,}/).map((block) => block.trim()).filter(Boolean);
+  if (!paragraphs.length) {
+    return `<p>${escapeHtml(displayDefinition)}</p>`;
+  }
+  return paragraphs.map((paragraph) => `<p>${linkParagraph(paragraph)}</p>`).join('');
+};
+
+const definitionHtml = buildDefinitionHtml();
+
+const relatedTermChips = relatedTermsWithLinks.slice(0, 4).map((related) => ({
+  term: formatGlossaryTitle(related.term),
+  href: `/glossary/${related.slug}`,
+}));
+
+const relatedTagChips = glossaryTags.slice(0, 3).map((tag) => ({
+  term: `#${formatLabel(tag)}`,
+  href: `/glossary#${encodeURIComponent(tag)}`,
+}));
+
+const relatedChipLinks = [...relatedTermChips, ...relatedTagChips].slice(0, 6);
 const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
 ---
 
@@ -436,8 +534,11 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
       <GlossaryTermPage
         client:load
         title={displayTermTitle}
-        summary={displaySummary ?? null}
+        summary={heroSummary || null}
         definition={displayDefinition}
+        definitionHtml={definitionHtml}
+        categoryLabel={categoryLabel ?? null}
+        chips={relatedChipLinks}
         whyItMatters={term.tagline ?? term.subtitle ?? null}
         related={relatedTermsWithLinks.map((related) => ({
           term: related.term,
@@ -447,27 +548,34 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
           label: link.label,
           url: link.url,
         }))}
+        lastUpdate={formattedLastUpdate}
       />
     ) : (
       <>
-        <GlossaryHero title={displayTermTitle} description={heroDescription} stats={heroStats}>
-          <div class="glossary-detail__chips">
-            {categoryLabel && term.category && (
-              <a class="glossary-chip" href={`/glossary#${encodeURIComponent(term.category)}`}>
-                {categoryLabel}
-              </a>
-            )}
-            {parentEntity && (
-              <a class="glossary-chip glossary-chip--muted" href={`/glossary/${parentEntity.slug}`}>
-                Parent · {parentEntity.term}
-              </a>
-            )}
-            {showCanonicalBadge && (
-              <span class="glossary-chip glossary-chip--neutral glossary-chip--canonical" aria-label="Canonical glossary term">
-                Canonical
-              </span>
-            )}
+        <GlossaryHero title={displayTermTitle} stats={heroStats} kicker="Reference">
+          <div class="flex flex-col gap-3 text-base text-slate-700 dark:text-slate-200">
+            {categoryLabel && <span class="glossary-chip w-max">{categoryLabel}</span>}
+            {heroSummary && <p class="text-base leading-relaxed">{heroSummary}</p>}
           </div>
+          {(relatedChipLinks.length > 0 || parentEntity || showCanonicalBadge) && (
+            <div class="glossary-detail__chips">
+              {relatedChipLinks.map((chip) => (
+                <a class="glossary-chip glossary-chip--muted" href={chip.href}>
+                  {chip.term}
+                </a>
+              ))}
+              {parentEntity && (
+                <a class="glossary-chip glossary-chip--muted" href={`/glossary/${parentEntity.slug}`}>
+                  Parent · {parentEntity.term}
+                </a>
+              )}
+              {showCanonicalBadge && (
+                <span class="glossary-chip glossary-chip--neutral glossary-chip--canonical" aria-label="Canonical glossary term">
+                  Canonical
+                </span>
+              )}
+            </div>
+          )}
         </GlossaryHero>
 
         <div class="glossary-detail__stack">
@@ -488,7 +596,7 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
               <span class="sr-only" aria-hidden="true">
                 {displayTermTitle} {term.aliases?.join(' ')} {term.category} glossary
               </span>
-              <p>{displayDefinition}</p>
+              <div class="glossary-definition prose max-w-none" set:html={definitionHtml}></div>
             </article>
 
             {parentEntity && (

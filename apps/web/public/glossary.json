@@ -5,7 +5,9 @@
     "summary": "Adoption describes the rate at which people, partners, and institutions begin using SORA products, liquidity, and governance tooling in real-world contexts.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "Adoption describes the rate at which people, partners, and institutions begin using SORA products, liquidity, and governance tooling in real-world contexts."
+    "definition": "Adoption describes the rate at which people, partners, and institutions begin using SORA products, liquidity, and governance tooling in real-world contexts.",
+    "category": "general",
+    "aliases": []
   },
   {
     "slug": "agile-coretime",
@@ -68,17 +70,8 @@
     ]
   },
   {
-    "slug": "alias-redirect",
-    "title": "Alias Redirect",
-    "status": "canonical",
-    "summary": "",
-    "targetSlug": null,
-    "aliases": [],
-    "definition": "Definition coming soon."
-  },
-  {
     "slug": "amm",
-    "title": "Amm",
+    "title": "AMM",
     "status": "canonical",
     "summary": "Automated Market Maker - a protocol that uses mathematical formulas to price assets and provide liquidity automatically. Polkaswap uses AMM technology combined with liquidity ag…",
     "targetSlug": null,
@@ -119,7 +112,9 @@
     "summary": "Analytics covers the dashboards, telemetry, and research teams tracking SORA network health, liquidity depth, bridge flow, and ecosystem growth.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "Analytics covers the dashboards, telemetry, and research teams tracking SORA network health, liquidity depth, bridge flow, and ecosystem growth."
+    "definition": "Analytics covers the dashboards, telemetry, and research teams tracking SORA network health, liquidity depth, bridge flow, and ecosystem growth.",
+    "category": "general",
+    "aliases": []
   },
   {
     "slug": "apollo-protocol",
@@ -158,8 +153,7 @@
     "summary": "A community reward token used by the Apollo Protocol to incentivize research, documentation, and tooling for the SORA ecosystem.",
     "targetSlug": null,
     "aliases": [
-      "APOLLO Token",
-      "Apollo Token"
+      "APOLLO Token"
     ],
     "definition": "The APOLLO token compensates contributors who publish technical research, produce analytics, and maintain documentation that supports SORA builders. Distribution is coordinated by the Apollo Protocol collective based on measurable ecosystem contributions.",
     "category": "token",
@@ -276,15 +270,6 @@
     ]
   },
   {
-    "slug": "autolinkconfig",
-    "title": "Autolinkconfig",
-    "status": "canonical",
-    "summary": "",
-    "targetSlug": null,
-    "aliases": [],
-    "definition": "Definition coming soon."
-  },
-  {
     "slug": "bakong",
     "title": "Bakong",
     "status": "canonical",
@@ -353,7 +338,7 @@
   },
   {
     "slug": "bft-consensus",
-    "title": "Bft Consensus",
+    "title": "BFT Consensus",
     "status": "canonical",
     "summary": "Byzantine Fault Tolerance (BFT) consensus is a consensus mechanism that allows a distributed system to reach agreement even when some nodes fail or act maliciously. SORA v3 uses…",
     "targetSlug": null,
@@ -645,11 +630,12 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "A smart contract that manages the supply of XOR in a rational way without human involvement.",
-    "category": null,
+    "category": "general",
     "aliases": [
       "bonding-curve",
       "Token Bonding Curve",
-      "Bonding Curve"
+      "Bonding Curve",
+      "token-bonding-curve"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -663,8 +649,7 @@
     "summary": "A Solana-based meme token launched in 2022 that distributed a large airdrop to builders and NFT projects to revive Solana activity.",
     "targetSlug": null,
     "aliases": [
-      "Bonk",
-      "BONK"
+      "Bonk"
     ],
     "definition": "BONK runs on the Solana blockchain and uses token airdrops, liquidity incentives, and NFT partnerships to encourage ecosystem engagement. It highlights how meme assets can accelerate network usage outside of SORA.",
     "category": "economics",
@@ -730,10 +715,9 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Bridges are interoperability protocols that move assets and data between SORA and external chains so liquidity can circulate without centralized custodians.",
-    "category": null,
+    "category": "general",
     "aliases": [
-      "bridges",
-      "Bridges"
+      "bridges"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -808,7 +792,7 @@
   },
   {
     "slug": "cbdc",
-    "title": "Cbdc",
+    "title": "CBDC",
     "status": "canonical",
     "summary": "Central Bank Digital Currency - a digital form of a country's fiat currency issued by the central bank. SORAMITSU has successfully deployed multiple CBDCs including Cambodia's B…",
     "targetSlug": null,
@@ -1020,8 +1004,7 @@
     "targetSlug": null,
     "aliases": [
       "Consensus",
-      "Consensus Mechanisms",
-      "consensus mechanisms"
+      "Consensus Mechanisms"
     ],
     "definition": "The mechanism by which blockchain networks agree on the validity of transactions and maintain a consistent state. SORA v2 uses Substrate-based consensus mechanisms (NPoS - Nominated Proof of Stake). SORA v3 will use Byzantine Fault Tolerance (BFT) consensus derived from Hyperledger Iroha 3's architecture, providing high-throughput transaction processing with deterministic finality, making it suitable for enterprise applications and CBDCs.",
     "category": "network",
@@ -1098,10 +1081,10 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "A governance body in SORA's current Polkadot v1 governance system that consists of elected members who can propose referenda and veto dangerous proposals.",
-    "category": null,
+    "category": "general",
     "aliases": [
       "council",
-      "Council"
+      "sora-council"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -1284,10 +1267,9 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Decentralization is the principle of distributing power across validators, councils, and citizens so no single entity can control the SORA economy.",
-    "category": null,
+    "category": "general",
     "aliases": [
-      "decentralization",
-      "Decentralization"
+      "decentralization"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -1618,10 +1600,9 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Economics in the SORA context refers to monetary policy, incentives, and treasury allocation that keep XOR supply, liquidity, and funding balanced.",
-    "category": null,
+    "category": "general",
     "aliases": [
-      "economics",
-      "Economics"
+      "economics"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -1674,7 +1655,9 @@
     "summary": "Explorer refers to the SORA blockchain explorer experiences that let anyone browse blocks, transactions, governance queues, and validator stats in real time.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "Explorer refers to the SORA blockchain explorer experiences that let anyone browse blocks, transactions, governance queues, and validator stats in real time."
+    "definition": "Explorer refers to the SORA blockchain explorer experiences that let anyone browse blocks, transactions, governance queues, and validator stats in real time.",
+    "category": "general",
+    "aliases": []
   },
   {
     "slug": "fearless-wallet",
@@ -1682,7 +1665,9 @@
     "summary": "Fearless Wallet is a mobile-first application by SORAMITSU that lets users manage Polkadot, Kusama, and SORA assets with staking, swaps, and governance support.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "Fearless Wallet is a mobile-first application by SORAMITSU that lets users manage Polkadot, Kusama, and SORA assets with staking, swaps, and governance support."
+    "definition": "Fearless Wallet is a mobile-first application by SORAMITSU that lets users manage Polkadot, Kusama, and SORA assets with staking, swaps, and governance support.",
+    "category": "general",
+    "aliases": []
   },
   {
     "slug": "financial-inclusion",
@@ -1997,112 +1982,15 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Hyperledger is the Linux Foundation’s family of enterprise blockchain frameworks, including Hyperledger Iroha which powers SORA’s regulated deployments.",
-    "category": null,
+    "category": "general",
     "aliases": [
       "hyperledger",
-      "Hyperledger Iroha",
-      "Hyperledger"
+      "Hyperledger Iroha"
     ],
     "tags": [],
     "relatedTerms": [],
     "examples": [],
     "links": []
-  },
-  {
-    "slug": "hyperledger-iroha",
-    "title": "Hyperledger Iroha",
-    "summary": "TODO",
-    "status": "alias",
-    "targetSlug": "iroha",
-    "definition": "An open-source, permissioned blockchain framework developed by SORAMITSU and part of the Hyperledger Foundation. Designed for simplicity and fast deployment with granular permissions, built-in asset management, and Byzantine fault tolerant consensus. Hyperledger Iroha 2 (written in Rust) adds WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure.",
-    "category": "technology",
-    "aliases": [
-      "Hyperledger Iroha",
-      "hyperledger iroha",
-      "iroha",
-      "hyperled",
-      "iroha blockchain"
-    ],
-    "tags": [
-      "soramitsu",
-      "hyperledger foundation",
-      "permissioned blockchain",
-      "cbdc",
-      "enterprise",
-      "wasm",
-      "hyperledger iroha 2",
-      "hyperledger iroha 3"
-    ],
-    "relatedTerms": [
-      "SORAMITSU",
-      "Hyperledger Foundation",
-      "Permissioned Blockchain",
-      "CBDC",
-      "Enterprise",
-      "WASM",
-      "Hyperledger Iroha 2",
-      "Hyperledger Iroha 3"
-    ],
-    "examples": [
-      "SORA network",
-      "Bakong CBDC",
-      "Enterprise systems",
-      "National financial infrastructure"
-    ],
-    "links": [
-      {
-        "label": "Hyperledger Iroha",
-        "url": "https://docs.iroha.tech/"
-      }
-    ]
-  },
-  {
-    "slug": "hyperledger-iroha-3",
-    "title": "Hyperledger Iroha 3",
-    "summary": "TODO",
-    "status": "alias",
-    "targetSlug": "iroha3",
-    "definition": "Hyperledger Iroha 3 is the next-generation blockchain framework being developed for SORA v3 (Nexus). Hyperledger Iroha 3 introduces a re-engineered architecture with greater modularity, new consensus mechanisms, and enhanced security primitives. It features layered runtime for domain-specific modules, upgraded command model, query isolation for deterministic operations, and simplified validator orchestration. Hyperledger Iroha 3 will support Iroha Special Instructions (ISIs) for deterministic smart-contract logic and provide the foundation for SORA v3's high-performance, cross-chain infrastructure.",
-    "category": "technology",
-    "aliases": [
-      "Hyperledger Iroha 3",
-      "Iroha 3",
-      "iroha 3",
-      "iroha3",
-      "iroha v3",
-      "nexus",
-      "sora v3"
-    ],
-    "tags": [
-      "hyperledger iroha",
-      "hyperledger iroha 2",
-      "sora v3",
-      "iroha special instructions",
-      "isi",
-      "bft consensus",
-      "modular architecture"
-    ],
-    "relatedTerms": [
-      "Hyperledger Iroha",
-      "Hyperledger Iroha 2",
-      "SORA v3",
-      "Iroha Special Instructions",
-      "ISI",
-      "BFT Consensus",
-      "Modular Architecture"
-    ],
-    "examples": [
-      "SORA v3 network",
-      "Next-generation framework",
-      "Enterprise blockchain upgrade",
-      "Modular runtime"
-    ],
-    "links": [
-      {
-        "label": "Hyperledger Iroha Documentation",
-        "url": "https://docs.iroha.tech/"
-      }
-    ]
   },
   {
     "slug": "impermanent-loss",
@@ -2188,10 +2076,9 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Interoperability is the ability for SORA assets and smart contracts to communicate with other networks through bridges, XCM, APIs, or shared standards.",
-    "category": null,
+    "category": "general",
     "aliases": [
-      "interoperability",
-      "Interoperability"
+      "interoperability"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -2200,7 +2087,7 @@
   },
   {
     "slug": "ipfs",
-    "title": "Ipfs",
+    "title": "IPFS",
     "status": "canonical",
     "summary": "InterPlanetary File System - a peer-to-peer distributed file system that provides decentralized, content-addressed storage for digital assets. IPFS uses cryptographic hashing to…",
     "targetSlug": null,
@@ -2253,10 +2140,10 @@
     "category": "technology",
     "aliases": [
       "Hyperledger Iroha",
-      "hyperledger iroha",
       "iroha",
       "hyperled",
-      "iroha blockchain"
+      "iroha blockchain",
+      "hyperledger-iroha"
     ],
     "tags": [
       "soramitsu",
@@ -2343,7 +2230,6 @@
     "aliases": [
       "Hyperledger Iroha 2",
       "Iroha 2",
-      "iroha 2",
       "iroha2",
       "iroha v2"
     ],
@@ -2383,20 +2269,20 @@
   {
     "slug": "iroha3",
     "title": "Iroha 3",
-    "summary": "Hyperledger Iroha 3 is the next-generation blockchain framework being developed for SORA v3 (Nexus).",
+    "summary": "Hyperledger Iroha 3 powers SORA Nexus (SORA v3), delivering a modular, high-performance architecture for deterministic smart contracts, improved consensus, and cross-chain connectivity.",
     "status": "canonical",
     "targetSlug": null,
+    "aliases": [
+      "Nexus",
+      "Hyperledger Iroha 3",
+      "Iroha v3",
+      "Iroha 3",
+      "iroha3",
+      "sora v3",
+      "hyperledger-iroha-3"
+    ],
     "definition": "Hyperledger Iroha 3 is the next-generation blockchain framework being developed for SORA v3 (Nexus). Hyperledger Iroha 3 introduces a re-engineered architecture with greater modularity, new consensus mechanisms, and enhanced security primitives. It features layered runtime for domain-specific modules, upgraded command model, query isolation for deterministic operations, and simplified validator orchestration. Hyperledger Iroha 3 will support Iroha Special Instructions (ISIs) for deterministic smart-contract logic and provide the foundation for SORA v3's high-performance, cross-chain infrastructure.",
     "category": "technology",
-    "aliases": [
-      "Hyperledger Iroha 3",
-      "Iroha 3",
-      "iroha 3",
-      "iroha3",
-      "iroha v3",
-      "nexus",
-      "sora v3"
-    ],
     "tags": [
       "hyperledger iroha",
       "hyperledger iroha 2",
@@ -2734,7 +2620,9 @@
     "summary": "Marketplace describes curated hubs where builders showcase SORA-based products, liquidity programs, or governance proposals for community discovery.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "Marketplace describes curated hubs where builders showcase SORA-based products, liquidity programs, or governance proposals for community discovery."
+    "definition": "Marketplace describes curated hubs where builders showcase SORA-based products, liquidity programs, or governance proposals for community discovery.",
+    "category": "general",
+    "aliases": []
   },
   {
     "slug": "memory-safety",
@@ -2801,10 +2689,9 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Mobile captures SORA’s focus on delivering wallets and dApps with native iOS and Android experiences so users can onboard anywhere.",
-    "category": null,
+    "category": "general",
     "aliases": [
-      "mobile",
-      "Mobile"
+      "mobile"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -2852,8 +2739,7 @@
     "targetSlug": null,
     "aliases": [
       "Monetary Systems",
-      "monetary system",
-      "Monetary System"
+      "monetary system"
     ],
     "definition": "Monetary systems define how currency is issued, how value flows through an economy, and how stability is maintained. The SORA network applies a supranational monetary design in which XOR supply, lending, and spending are coordinated by on-chain governance and the token bonding curve instead of central banks, enabling borderless value exchange.",
     "category": "economics",
@@ -2915,41 +2801,6 @@
     ]
   },
   {
-    "slug": "nexus",
-    "title": "Nexus",
-    "status": "canonical",
-    "summary": "The code name for SORA v3, also referred to as SORA Nexus. Nexus represents the next-generation SORA Hub Chain designed to succeed the Substrate-based SORA v2 network, built on …",
-    "targetSlug": null,
-    "aliases": [
-      "Nexus"
-    ],
-    "definition": "The code name for SORA v3, also referred to as SORA Nexus. Nexus represents the next-generation SORA Hub Chain designed to succeed the Substrate-based SORA v2 network, built on Hyperledger Iroha 3 for improved modularity, performance, and cross-chain interoperability.",
-    "category": "technology",
-    "tags": [
-      "sora v3",
-      "hub chain",
-      "hyperledger iroha 3",
-      "sora v2"
-    ],
-    "relatedTerms": [
-      "SORA v3",
-      "Hub Chain",
-      "Hyperledger Iroha 3",
-      "SORA v2"
-    ],
-    "examples": [
-      "SORA v3 (Nexus) upgrade",
-      "Next-generation network",
-      "Hyperledger Iroha 3 migration"
-    ],
-    "links": [
-      {
-        "label": "SORA v3 Guide",
-        "url": "https://wiki.sora.org/sora-v3.html"
-      }
-    ]
-  },
-  {
     "slug": "nft",
     "title": "NFT",
     "summary": "Non-Fungible Token - a unique digital asset that represents ownership of a specific item or piece of content on the blockchain.",
@@ -3007,8 +2858,7 @@
     "category": "network",
     "aliases": [
       "Parachain",
-      "Parachains",
-      "parachains"
+      "Parachains"
     ],
     "tags": [
       "polkadot",
@@ -3111,7 +2961,11 @@
     "summary": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers."
+    "definition": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers.",
+    "category": "general",
+    "aliases": [
+      "sora-parliament"
+    ]
   },
   {
     "slug": "payments",
@@ -3119,7 +2973,9 @@
     "summary": "Payments covers the QR, CBDC, and merchant integrations that let SORA technology power day-to-day transactions and cross-border settlements.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "Payments covers the QR, CBDC, and merchant integrations that let SORA technology power day-to-day transactions and cross-border settlements."
+    "definition": "Payments covers the QR, CBDC, and merchant integrations that let SORA technology power day-to-day transactions and cross-border settlements.",
+    "category": "general",
+    "aliases": []
   },
   {
     "slug": "pepe",
@@ -3128,8 +2984,7 @@
     "summary": "An Ethereum meme token released in 2023 that demonstrates how rapidly community narratives can attract liquidity.",
     "targetSlug": null,
     "aliases": [
-      "Pepe",
-      "PEPE"
+      "Pepe"
     ],
     "definition": "PEPE is an ERC-20 token themed after the Pepe the Frog meme. It has no formal roadmap or presale and relies on community-led liquidity pools, illustrating the speculative dynamics that influence wider crypto markets.",
     "category": "economics",
@@ -3440,7 +3295,9 @@
     "summary": "A proposal is a formal request submitted to SORA governance for funding, parameter changes, or new initiatives that citizens can evaluate.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "A proposal is a formal request submitted to SORA governance for funding, parameter changes, or new initiatives that citizens can evaluate."
+    "definition": "A proposal is a formal request submitted to SORA governance for funding, parameter changes, or new initiatives that citizens can evaluate.",
+    "category": "general",
+    "aliases": []
   },
   {
     "slug": "pswap",
@@ -3489,7 +3346,7 @@
   },
   {
     "slug": "qr-payments",
-    "title": "Qr Payments",
+    "title": "QR Payments",
     "status": "canonical",
     "summary": "Payments completed by scanning a Quick Response (QR) code. QR flows are widely used in SORA Card pilots and CBDC deployments to provide low-cost merchant acceptance.",
     "targetSlug": null,
@@ -3701,7 +3558,9 @@
     "summary": "The roadmap outlines upcoming SORA releases, TON integrations, and ecosystem milestones so contributors share the same delivery plan.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The roadmap outlines upcoming SORA releases, TON integrations, and ecosystem milestones so contributors share the same delivery plan."
+    "definition": "The roadmap outlines upcoming SORA releases, TON integrations, and ecosystem milestones so contributors share the same delivery plan.",
+    "category": "general",
+    "aliases": []
   },
   {
     "slug": "rollups",
@@ -4078,10 +3937,9 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "SORA is a decentralized economic network focused on programmable finance, democratic governance, and CBDC-grade infrastructure.",
-    "category": null,
+    "category": "general",
     "aliases": [
-      "sora",
-      "Sora"
+      "sora"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -4131,98 +3989,8 @@
     ]
   },
   {
-    "slug": "sora-council",
-    "title": "SORA Council",
-    "summary": "TODO",
-    "status": "alias",
-    "targetSlug": "council",
-    "definition": "A governance body in SORA's current Polkadot v1 governance system that consists of elected members who can propose referenda and veto dangerous proposals. The council plays a key role in the governance process before transitioning to the SORA Parliament.",
-    "category": "governance",
-    "aliases": [
-      "SORA Council"
-    ],
-    "tags": [
-      "polkadot governance",
-      "referendum",
-      "council motion",
-      "governance",
-      "democracy"
-    ],
-    "relatedTerms": [
-      "Polkadot Governance",
-      "Referendum",
-      "Council Motion",
-      "Governance",
-      "Democracy"
-    ],
-    "examples": [
-      "Proposal vetting",
-      "Referendum initiation",
-      "Governance oversight"
-    ],
-    "links": [
-      {
-        "label": "SORA Governance",
-        "url": "https://wiki.sora.org/sora-governance.html"
-      }
-    ]
-  },
-  {
-    "slug": "sora-parliament",
-    "title": "SORA Parliament",
-    "summary": "TODO",
-    "status": "alias",
-    "targetSlug": "parliament",
-    "definition": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers. The SORA Parliament will replace the current Governance V1 system, implementing sortition-based democracy where citizens are randomly selected (not token voting) and must post XOR bonds for citizenship. Features multiple bodies: Rules Committee, Agenda Council, Interest Panels, Review Panel, and Policy Jury. Main task is allocating newly minted XOR to productive projects. In SORA v3, the Parliament will integrate with a hybrid DAO framework using Iroha Special Instructions (ISIs) for modular governance logic.",
-    "category": "governance",
-    "aliases": [
-      "SORA Parliament"
-    ],
-    "tags": [
-      "xor",
-      "val",
-      "sortition",
-      "citizenship",
-      "multi-body governance",
-      "supranational",
-      "governance v1",
-      "iroha special instructions",
-      "isi",
-      "sora v3"
-    ],
-    "relatedTerms": [
-      "XOR",
-      "VAL",
-      "Sortition",
-      "Citizenship",
-      "Multi-body Governance",
-      "Supranational",
-      "Governance V1",
-      "Iroha Special Instructions",
-      "ISI",
-      "SORA v3"
-    ],
-    "examples": [
-      "Random citizen selection",
-      "XOR bond posting",
-      "Project funding allocation",
-      "Rules committee proposals",
-      "Modular governance"
-    ],
-    "links": [
-      {
-        "label": "SORA Governance",
-        "url": "https://wiki.sora.org/sora-governance.html"
-      },
-      {
-        "label": "SORA Parliament Article",
-        "url": "https://medium.com/sora-xor/the-sora-parliament-af8184dae384"
-      }
-    ]
-  },
-  {
     "slug": "sora-v2",
-    "title": "Sora V2",
+    "title": "SORA V2",
     "status": "canonical",
     "summary": "The current version of the SORA network built on Substrate framework as a Polkadot parachain. SORA v2 provides DeFi services, cross-chain functionality, and serves as the founda…",
     "targetSlug": null,
@@ -4369,10 +4137,9 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "A stablecoin is a digital asset engineered to hold a predictable value, such as KUSD or future SORA settlement tokens used for payments.",
-    "category": null,
+    "category": "general",
     "aliases": [
-      "stablecoin",
-      "Stablecoin"
+      "stablecoin"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -4547,52 +4314,14 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Telegram is the primary chat channel where the SORA community coordinates releases, support, validator updates, and governance calls.",
-    "category": null,
+    "category": "general",
     "aliases": [
-      "telegram",
-      "Telegram"
+      "telegram"
     ],
     "tags": [],
     "relatedTerms": [],
     "examples": [],
     "links": []
-  },
-  {
-    "slug": "token-bonding-curve",
-    "title": "Token Bonding Curve",
-    "summary": "TODO",
-    "status": "alias",
-    "targetSlug": "bonding-curve",
-    "definition": "A smart contract that manages the supply of XOR in a rational way without human involvement. The TBC automatically adjusts XOR supply based on economic conditions to maintain price stability, expanding supply during growth and contracting during decline.",
-    "category": "economics",
-    "aliases": [
-      "Token Bonding Curve"
-    ],
-    "tags": [
-      "xor",
-      "elastic supply",
-      "smart contract",
-      "price stability",
-      "supply management"
-    ],
-    "relatedTerms": [
-      "XOR",
-      "Elastic Supply",
-      "Smart Contract",
-      "Price Stability",
-      "Supply Management"
-    ],
-    "examples": [
-      "Automated supply adjustment",
-      "Price stability maintenance",
-      "Economic condition response"
-    ],
-    "links": [
-      {
-        "label": "SORA Wiki - Token Bonding Curve",
-        "url": "https://wiki.sora.org/tbc.html"
-      }
-    ]
   },
   {
     "slug": "token-burning",
@@ -4702,10 +4431,9 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Tokenomics explains how XOR, VAL, PSWAP, and related assets are minted, burned, bonded, or rewarded to align incentives with long-term growth.",
-    "category": null,
+    "category": "general",
     "aliases": [
-      "tokenomics",
-      "Tokenomics"
+      "tokenomics"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -4719,10 +4447,9 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "TON (The Open Network) is a Telegram-backed blockchain known for high throughput and mobile-native UX that now powers TONSwap’s SORA-linked DeFi.",
-    "category": null,
+    "category": "general",
     "aliases": [
-      "ton",
-      "Ton"
+      "ton"
     ],
     "tags": [],
     "relatedTerms": [],
@@ -4866,7 +4593,7 @@
   },
   {
     "slug": "ts",
-    "title": "Ts",
+    "title": "TS",
     "status": "canonical",
     "summary": "The platform token for TONSWAP, a decentralized exchange and launchpad on The Open Network (TON).",
     "targetSlug": null,
@@ -5063,7 +4790,9 @@
     "summary": "Voting is the act of citizens or stakeholders signaling support for SORA governance proposals through on-chain referenda or delegated councils.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "Voting is the act of citizens or stakeholders signaling support for SORA governance proposals through on-chain referenda or delegated councils."
+    "definition": "Voting is the act of citizens or stakeholders signaling support for SORA governance proposals through on-chain referenda or delegated councils.",
+    "category": "general",
+    "aliases": []
   },
   {
     "slug": "wallet",
@@ -5071,11 +4800,13 @@
     "summary": "A wallet is the software that stores keys, signs transactions, and connects users to SORA DeFi apps such as Polkaswap, Fearless Wallet, or TONSwap.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "A wallet is the software that stores keys, signs transactions, and connects users to SORA DeFi apps such as Polkaswap, Fearless Wallet, or TONSwap."
+    "definition": "A wallet is the software that stores keys, signs transactions, and connects users to SORA DeFi apps such as Polkaswap, Fearless Wallet, or TONSwap.",
+    "category": "general",
+    "aliases": []
   },
   {
     "slug": "wasm",
-    "title": "Wasm",
+    "title": "WASM",
     "status": "canonical",
     "summary": "A portable binary instruction format that enables high-performance smart contracts and runtime modules.",
     "targetSlug": null,
@@ -5134,7 +4865,7 @@
   },
   {
     "slug": "xcm",
-    "title": "Xcm",
+    "title": "XCM",
     "status": "canonical",
     "summary": "Cross-Consensus Messaging - a messaging format that allows different consensus systems to communicate with each other. XCM enables interoperability between parachains in the Pol…",
     "targetSlug": null,
@@ -5171,7 +4902,7 @@
   },
   {
     "slug": "xcmp",
-    "title": "Xcmp",
+    "title": "XCMP",
     "status": "canonical",
     "summary": "Polkadot's Cross-Chain Message Passing protocol for parachain-to-parachain communication.",
     "targetSlug": null,
@@ -5248,7 +4979,7 @@
   },
   {
     "slug": "xyk-pools",
-    "title": "Xyk Pools",
+    "title": "XYK Pools",
     "status": "canonical",
     "summary": "Constant Product Market Maker (CPMM) liquidity pools where the product of two token reserves remains constant (x * y = k). These are the primary liquidity pools on Polkaswap whe…",
     "targetSlug": null,

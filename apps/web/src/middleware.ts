@@ -1,15 +1,16 @@
 import { defineMiddleware } from 'astro:middleware';
 
 import { FEATURE_GLOSSARY_ALIAS_REDIRECT, FEATURE_GLOSSARY_V2025 } from './config/feature-flags';
-import glossaryV2025 from '../public/data/glossary.v2025.json';
+import glossaryAliasesV2025 from '../public/glossary.aliases.v2025.json';
 
 const aliasMap = new Map<string, string>();
 
-glossaryV2025.terms
-  .filter((term) => term.status === 'alias' && typeof term.targetSlug === 'string')
-  .forEach((term) => {
-    aliasMap.set(term.slug.trim().toLowerCase(), term.targetSlug!.trim().toLowerCase());
-  });
+glossaryAliasesV2025.aliases?.forEach(({ alias, target }) => {
+  const normalizedAlias = alias?.trim().toLowerCase();
+  const normalizedTarget = target?.trim().toLowerCase();
+  if (!normalizedAlias || !normalizedTarget) return;
+  aliasMap.set(normalizedAlias, normalizedTarget);
+});
 
 export const onRequest = defineMiddleware(async ({ request, redirect }, next) => {
   if (!FEATURE_GLOSSARY_V2025 || !FEATURE_GLOSSARY_ALIAS_REDIRECT || aliasMap.size === 0) {
