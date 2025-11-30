@@ -26,6 +26,7 @@ import { getCachedGlossaryTerms } from '~/lib/glossary/glossary-data';
 import { shouldApplyAliasRedirect } from '~/lib/glossary/alias-redirect';
 import glossaryDatasetV2025 from '../../../public/data/glossary.v2025.json';
 import GlossaryTermPage from '~/components/glossary/v3/GlossaryTermPage';
+import GlossaryTermHero from '~/components/glossary/GlossaryTermHero';
 import { loadGlossaryFull } from '~/lib/glossary-data';
 import { resolveGlossaryEntry } from '~/lib/glossary-resolve';
 import { formatGlossaryTitle, formatCategoryLabel, truncateOneLiner, ACRONYM_TOKENS, formatGlossaryDate } from '~/lib/glossary/format';
@@ -531,25 +532,34 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
     )}
 
     {featureGlossaryV3Enabled ? (
-      <GlossaryTermPage
-        client:load
-        title={displayTermTitle}
-        summary={heroSummary || null}
-        definition={displayDefinition}
-        definitionHtml={definitionHtml}
-        categoryLabel={categoryLabel ?? null}
-        chips={relatedChipLinks}
-        whyItMatters={term.tagline ?? term.subtitle ?? null}
-        related={relatedTermsWithLinks.map((related) => ({
-          term: related.term,
-          href: `/glossary/${related.slug}`,
-        }))}
-        sources={(term.links ?? []).map((link) => ({
-          label: link.label,
-          url: link.url,
-        }))}
-        lastUpdate={formattedLastUpdate}
-      />
+      <div class="flex flex-col space-y-8 md:space-y-10">
+        <GlossaryTermHero
+          client:load
+          title={displayTermTitle}
+          category={categoryLabel ?? null}
+          summary={heroSummary || null}
+          chips={relatedChipLinks}
+        />
+        <GlossaryTermPage
+          client:load
+          title={displayTermTitle}
+          summary={heroSummary || null}
+          definition={displayDefinition}
+          definitionHtml={definitionHtml}
+          categoryLabel={categoryLabel ?? null}
+          chips={relatedChipLinks}
+          whyItMatters={term.tagline ?? term.subtitle ?? null}
+          related={relatedTermsWithLinks.map((related) => ({
+            term: related.term,
+            href: `/glossary/${related.slug}`,
+          }))}
+          sources={(term.links ?? []).map((link) => ({
+            label: link.label,
+            url: link.url,
+          }))}
+          lastUpdate={formattedLastUpdate}
+        />
+      </div>
     ) : (
       <>
         <GlossaryHero title={displayTermTitle} stats={heroStats} kicker="Reference">
@@ -558,7 +568,7 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
             {heroSummary && <p class="text-base leading-relaxed">{heroSummary}</p>}
           </div>
           {(relatedChipLinks.length > 0 || parentEntity || showCanonicalBadge) && (
-            <div class="glossary-detail__chips">
+            <div class="glossary-detail__chips mb-8 md:mb-10">
               {relatedChipLinks.map((chip) => (
                 <a class="glossary-chip glossary-chip--muted" href={chip.href}>
                   {chip.term}
