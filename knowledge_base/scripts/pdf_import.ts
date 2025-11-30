@@ -48,7 +48,7 @@ async function importPDF(pdfPath: string, outputDir: string): Promise<number> {
     const baseName = basename(pdfPath, '.pdf');
     const slug = `${baseName}-page-${i + 1}`;
     
-    const frontmatter = {
+    const frontmatter: Record<string, any> = {
       title: `${basename(pdfPath)} - Page ${i + 1}`,
       source: 'pdf',
       source_url: `file://${relative(process.cwd(), pdfPath)}`,
@@ -57,6 +57,19 @@ async function importPDF(pdfPath: string, outputDir: string): Promise<number> {
       content_sha256: contentHash,
       snapshot_id: new Date().toISOString().slice(0, 10),
     };
+    
+    // For the SORA Nexus Whitepaper PDF, tag pages so they are easy to retrieve
+    if (pdfPath.includes('knowledge_base/curated/nexus_whitepaper/sora_nexus_whitepaper.pdf')) {
+      frontmatter.tags = [
+        'sora',
+        'nexus',
+        'iroha3',
+        'ivm',
+        'fastpq',
+        'dataspaces',
+        'updates',
+      ];
+    }
     
     const mdContent = `# ${frontmatter.title}\n\n${normalized}`;
     const fileContent = matter.stringify(mdContent, frontmatter);

@@ -515,6 +515,22 @@ async function main() {
   // Process files (incremental: only process changed/new files if KB_INCREMENTAL is true)
   const filesToProcess: string[] = [];
   
+  // Optional: limit ingestion to specific KB paths (comma-separated, repo-root relative)
+  // Example: KB_INCLUDE_PATHS="knowledge_base/curated/nexus_whitepaper,knowledge_base/curated/sora_updates"
+  const includePathsEnv = process.env.KB_INCLUDE_PATHS?.trim();
+  let includePaths: string[] | null = null;
+  if (includePathsEnv && includePathsEnv.length > 0) {
+    includePaths = includePathsEnv
+      .split(',')
+      .map(p => p.trim())
+      .filter(p => p.length > 0);
+    if (includePaths.length > 0) {
+      console.log(`[kb:ingest] Limiting ingestion to KB_INCLUDE_PATHS: ${includePaths.join(', ')}`);
+    } else {
+      includePaths = null;
+    }
+  }
+  
   // If --file option is provided, only process that specific file
   if (options.file) {
     let filepath: string;
@@ -557,6 +573,7 @@ async function main() {
       { path: join(env.KB_DIR, 'curated', 'wiki'), source: 'wiki' },
       { path: join(env.KB_DIR, 'curated', 'soramitsu_site'), source: 'soramitsu' },
       { path: join(env.KB_DIR, 'curated', 'ecosystem_updates'), source: 'update' },
+      { path: join(env.KB_DIR, 'curated', 'sora_updates'), source: 'update' },
       { path: join(env.KB_DIR, 'curated', 'polkaswap_updates'), source: 'polkaswap_update' },
       { path: join(env.KB_DIR, 'curated', 'fearless_updates'), source: 'fearless_update' },
       { path: join(env.KB_DIR, 'curated', 'tonswap_site'), source: 'tonswap_site' },
@@ -564,9 +581,10 @@ async function main() {
       { path: join(env.KB_DIR, 'curated', 'articles'), source: 'article' },
       { path: join(env.KB_DIR, 'curated', 'imported'), source: 'imported' },
       { path: join(env.KB_DIR, 'curated', 'internal-research'), source: 'internal-research' },
+      { path: join(env.KB_DIR, 'curated', 'nexus_whitepaper'), source: 'internal-research' },
       { path: join(env.KB_DIR, 'curated', 'community-memos'), source: 'community-memo' },
       { path: join(env.KB_DIR, 'curated', 'transcriptions'), source: 'transcription' },
-      { path: join(env.KB_DIR, 'pdfs'), source: 'pdf' },
+      { path: join(env.KB_DIR, 'pdfs_md'), source: 'pdf' },
     ];
     
     for (const { path: sourceDir, source } of sourceDirs) {
@@ -593,7 +611,15 @@ async function main() {
           }
         }
         
-        // File is new or changed - process it
+        // File is new or changed - process it (respect KB_INCLUDE_PATHS if set)
+        if (includePaths) {
+          const relRepoPath = relative(process.cwd(), filepath);
+          const matchesInclude = includePaths.some(prefix => relRepoPath.startsWith(prefix));
+          if (!matchesInclude) {
+            metrics.files_skipped++;
+            continue;
+          }
+        }
         filesToProcess.push(filepath);
       }
     }
@@ -608,6 +634,7 @@ async function main() {
     { path: join(env.KB_DIR, 'curated', 'wiki'), source: 'wiki' },
     { path: join(env.KB_DIR, 'curated', 'soramitsu_site'), source: 'soramitsu' },
     { path: join(env.KB_DIR, 'curated', 'ecosystem_updates'), source: 'update' },
+    { path: join(env.KB_DIR, 'curated', 'sora_updates'), source: 'update' },
     { path: join(env.KB_DIR, 'curated', 'polkaswap_updates'), source: 'polkaswap_update' },
     { path: join(env.KB_DIR, 'curated', 'fearless_updates'), source: 'fearless_update' },
     { path: join(env.KB_DIR, 'curated', 'tonswap_site'), source: 'tonswap_site' },
@@ -615,9 +642,10 @@ async function main() {
     { path: join(env.KB_DIR, 'curated', 'articles'), source: 'article' },
     { path: join(env.KB_DIR, 'curated', 'imported'), source: 'imported' },
     { path: join(env.KB_DIR, 'curated', 'internal-research'), source: 'internal-research' },
+    { path: join(env.KB_DIR, 'curated', 'nexus_whitepaper'), source: 'internal-research' },
     { path: join(env.KB_DIR, 'curated', 'community-memos'), source: 'community-memo' },
     { path: join(env.KB_DIR, 'curated', 'transcriptions'), source: 'transcription' },
-    { path: join(env.KB_DIR, 'pdfs'), source: 'pdf' },
+    { path: join(env.KB_DIR, 'pdfs_md'), source: 'pdf' },
   ];
   
   // Valid source types for validation

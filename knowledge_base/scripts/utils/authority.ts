@@ -19,6 +19,14 @@ export function computeAuthority(source: string, filePath: string): number {
   const bckSources = ['bck21', 'bck22', 'bck23', 'bck24'];
   const internalResearchSources = ['internal-research'];
   
+  // Canonical SORA v3 / Nexus content and curated SORA updates are highest-priority
+  if (
+    filePath.includes('curated/nexus_whitepaper/') ||
+    filePath.includes('curated/sora_updates/')
+  ) {
+    return 1;
+  }
+  
   if (bckSources.includes(source) || internalResearchSources.includes(source)) {
     return 1;
   }
@@ -26,6 +34,24 @@ export function computeAuthority(source: string, filePath: string): number {
   // Check path for BCK research papers or internal research
   if (filePath.includes('curated/research/bck') || filePath.includes('curated/internal-research/')) {
     return 1;
+  }
+  
+  // Downweight older SORA/Substrate-era docs that conflict with SORA v3 / Iroha 3
+  // These remain available but are treated as low-authority historical references.
+  const legacySubstratePaths = [
+    'curated/wiki/src/technical-stack.md',
+    'curated/wiki/src/substrate-bridge.md',
+    'curated/wiki/src/establishing-hrmp-channel.md',
+    'curated/wiki/src/running-a-sora-testnet-node.md',
+    'curated/wiki/src/pallets.md',
+    'curated/wiki/src/palmatrix-overview.md',
+    'curated/wiki/src/palmatrix-palmabot.md',
+  ];
+  if (
+    legacySubstratePaths.some((p) => filePath.includes(p)) ||
+    filePath.includes('curated/ecosystem_updates/')
+  ) {
+    return 4;
   }
   
   // Authority 2: Official documentation

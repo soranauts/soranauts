@@ -129,7 +129,7 @@ interface IndexManifest {
 2. Ensure ChromaDB is running:
    ```bash
    # Check ChromaDB status
-   curl http://127.0.0.1:8000/api/v1/heartbeat
+   curl http://127.0.0.1:8000/api/v2/heartbeat
    ```
 
 ### Test 1: No-Change Re-Ingest → ≥95% Cache Hit, 0 New Chunks
