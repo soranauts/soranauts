@@ -25,6 +25,9 @@ export default defineConfig({
       ...process.env,
       GLOSSARY_SEARCH_V2: 'true',
       TAG_HUB_V1: 'true',
+      FEATURE_GLOSSARY_V2025: 'true',
+      FEATURE_GLOSSARY_ALIAS_REDIRECT: 'true',
+      NEXT_PUBLIC_FEATURE_GLOSSARY_ALIAS_REDIRECT: 'true',
     },
   },
 });

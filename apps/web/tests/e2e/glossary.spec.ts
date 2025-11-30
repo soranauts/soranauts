@@ -22,8 +22,19 @@ test.describe('Glossary', () => {
 test.describe('Glossary alias routing', () => {
   test('redirects alias slug to canonical term page', async ({ page }) => {
     await page.goto('/glossary/hyperledger-iroha-3');
-    await page.waitForURL(/\/glossary\/iroha3\/?$/i);
-    await expect(page.locator('h1')).toContainText(/iroha 3/i);
+    await expect(page).toHaveURL(/\/glossary\/iroha3\/?$/i);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(/iroha 3/i);
+  });
+
+  test('alias returns 308 to canonical', async ({ request }) => {
+    const res = await request.get('/glossary/hyperledger-iroha-3', { maxRedirects: 0 });
+    const status = res.status();
+    expect([200, 308]).toContain(status);
+
+    const location = res.headers()['location'];
+    if (status === 308) {
+      expect(location === '/glossary/iroha3' || location === '/glossary/iroha3/').toBe(true);
+    }
   });
 
   test('alias slugs are not rendered in glossary list', async ({ page }) => {
