@@ -241,7 +241,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "priority": 95,
     "versions": [
       "hyperledger-iroha-2",
-      "hyperledger-iroha-3"
+      "iroha3"
     ],
     "glossaryRef": "/glossary/hyperledger-iroha"
   },
@@ -295,8 +295,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "entity": "hyperledger-iroha",
     "glossaryRef": "/glossary/hyperledger-iroha-2"
   },
-  "hyperledger-iroha-3": {
-    "slug": "hyperledger-iroha-3",
+  "iroha3": {
+    "slug": "iroha3",
     "title": "Hyperledger Iroha 3",
     "type": "version",
     "category": "technology",
@@ -343,7 +343,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "priority": 94,
     "entity": "hyperledger-iroha",
-    "glossaryRef": "/glossary/hyperledger-iroha-3"
+    "glossaryRef": "/glossary/iroha3"
   },
   "substrate": {
     "slug": "substrate",
@@ -1100,42 +1100,6 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "priority": 0,
     "glossaryRef": "/glossary/hub-chain"
-  },
-  "nexus": {
-    "slug": "nexus",
-    "title": "Nexus",
-    "type": "term",
-    "category": "technology",
-    "summary": "The code name for SORA v3, also referred to as SORA Nexus. Nexus represents the next-generation SORA Hub Chain designed to succeed the Substrate-based SORA v2 network, built on …",
-    "definition": "The code name for SORA v3, also referred to as SORA Nexus. Nexus represents the next-generation SORA Hub Chain designed to succeed the Substrate-based SORA v2 network, built on Hyperledger Iroha 3 for improved modularity, performance, and cross-chain interoperability.",
-    "aliases": [
-      "Nexus"
-    ],
-    "relatedTags": [
-      "sora v3",
-      "hub chain",
-      "hyperledger iroha 3",
-      "sora v2"
-    ],
-    "seeAlso": [
-      "SORA v3",
-      "Hub Chain",
-      "Hyperledger Iroha 3",
-      "SORA v2"
-    ],
-    "examples": [
-      "SORA v3 (Nexus) upgrade",
-      "Next-generation network",
-      "Hyperledger Iroha 3 migration"
-    ],
-    "links": [
-      {
-        "label": "SORA v3 Guide",
-        "url": "https://wiki.sora.org/sora-v3.html"
-      }
-    ],
-    "priority": 0,
-    "glossaryRef": "/glossary/nexus"
   },
   "kensetsu": {
     "slug": "kensetsu",

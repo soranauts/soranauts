@@ -7,16 +7,20 @@ import { dirname, join } from 'path';
 import { normalizeGlossaryFull } from '../../../src/lib/glossary-normalize';
 import { clientAliasIndex } from '../../../src/lib/taxonomy';
 import { createGlossarySearchEngine } from '../../../src/lib/glossary/search';
+import { getCanonicalSlug } from '../../../src/lib/glossary/glossary-loader';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const glossaryRaw = JSON.parse(readFileSync(join(__dirname, '../../../public/glossary.json'), 'utf-8'));
 const glossaryTerms = normalizeGlossaryFull(glossaryRaw);
 
-const engine = createGlossarySearchEngine({
-  terms: glossaryTerms,
-  aliasIndex: clientAliasIndex,
-});
+const engine = createGlossarySearchEngine(
+  {
+    terms: glossaryTerms,
+    aliasIndex: clientAliasIndex,
+  },
+  { resolveCanonicalSlug: getCanonicalSlug },
+);
 
 describe('Glossary ranking snapshots', () => {
   test('hyperled search ordering', () => {
@@ -24,11 +28,11 @@ describe('Glossary ranking snapshots', () => {
     const slugs = response.results.slice(0, 5).map((result) => result.term.slug);
     expect(slugs).toMatchInlineSnapshot(`
       [
-        "hyperledger-iroha",
         "iroha",
         "hyperledger",
+        "iroha3",
         "iroha2",
-        "hyperledger-iroha-3",
+        "bft-consensus",
       ]
     `);
   });

@@ -8,6 +8,7 @@ import type {
 } from '../../lib/glossary/search';
 import { createGlossarySearchEngine } from '../../lib/glossary/search';
 import { normalizeGlossaryFull } from '../../lib/glossary-normalize';
+import { formatCategoryLabel } from '../../lib/glossary/format';
 
 type GlossaryJsonPayload = GlossarySearchIndexInput & {
   categories: Record<string, { name: string; count: number }>;
@@ -28,16 +29,6 @@ interface GlossarySearchV2Props {
   canonicalSearchEnabled?: boolean;
   aliasMicrocopyEnabled?: boolean;
 }
-
-const CATEGORY_LABELS: Record<string, string> = {
-  token: 'Token',
-  technology: 'Technology',
-  governance: 'Governance',
-  defi: 'DeFi',
-  network: 'Network',
-  economics: 'Economics',
-  tag: 'Tag',
-};
 
 const formatLabel = (value: string): string =>
   value
@@ -382,7 +373,7 @@ export default function GlossarySearchV2({
   const renderResult = (result: GlossarySearchResult, index: number) => {
     const isFocused = index === focusedIndex;
     const categoryLabel = result.term.category
-      ? CATEGORY_LABELS[result.term.category] ?? formatLabel(result.term.category)
+        ? formatCategoryLabel(result.term.category)
       : undefined;
     const aliasLabel =
       aliasMicrocopyEnabled && result.matchedAlias ? result.matchedAlias : null;
@@ -553,7 +544,7 @@ export default function GlossarySearchV2({
             onClick={() => handleCategoryClick(category.key)}
             className={`glossary-search__filter ${categoryFilter === category.key ? 'is-active' : ''}`}
           >
-            {category.name} ({category.count})
+            {formatCategoryLabel(category.name)} ({category.count})
           </button>
         ))}
       </div>

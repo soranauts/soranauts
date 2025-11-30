@@ -21,6 +21,10 @@
       "to": "/glossary/hyperledger-iroha"
     },
     {
+      "from": "/glossary/hyperledger-iroha-3",
+      "to": "/glossary/iroha3"
+    },
+    {
       "from": "/glossary/interplanetary-file-system",
       "to": "/glossary/ipfs"
     },
@@ -34,7 +38,7 @@
     },
     {
       "from": "/glossary/iroha-3",
-      "to": "/glossary/hyperledger-iroha-3"
+      "to": "/glossary/iroha3"
     },
     {
       "from": "/glossary/iroha-blockchain",
@@ -46,15 +50,11 @@
     },
     {
       "from": "/glossary/iroha-v3",
-      "to": "/glossary/hyperledger-iroha-3"
+      "to": "/glossary/iroha3"
     },
     {
       "from": "/glossary/iroha2",
       "to": "/glossary/hyperledger-iroha-2"
-    },
-    {
-      "from": "/glossary/iroha3",
-      "to": "/glossary/hyperledger-iroha-3"
     },
     {
       "from": "/glossary/isis",
@@ -63,6 +63,10 @@
     {
       "from": "/glossary/monetary-system",
       "to": "/glossary/monetary-systems"
+    },
+    {
+      "from": "/glossary/nexus",
+      "to": "/glossary/iroha3"
     },
     {
       "from": "/glossary/nfts",

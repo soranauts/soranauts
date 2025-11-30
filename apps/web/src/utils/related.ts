@@ -58,11 +58,12 @@ function getGlossaryTerms(): Set<string> {
     }
 
     const raw = fs.readFileSync(glossaryPath, 'utf-8');
-    const data = JSON.parse(raw) as GlossaryData;
+    const data = JSON.parse(raw) as GlossaryData | GlossaryTerm[];
+    const glossaryTermsArray = Array.isArray(data) ? data : data.terms ?? [];
     const terms = new Set<string>();
 
     // Pre-lowercase all glossary slugs and aliases for case-insensitive matching
-    for (const term of data.terms) {
+    for (const term of glossaryTermsArray) {
       // Add slug (lowercase)
       terms.add(term.slug.toLowerCase());
       // Add aliases (lowercase)

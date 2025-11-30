@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { loadGlossaryFull, type Term as GlossaryTermPayload } from '../../lib/glossary-data';
+import { formatGlossaryTitle, formatCategoryLabel, isRenderableGlossaryEntry } from '../../lib/glossary/format';
 
 // Simple types
 interface GlossaryTerm {
@@ -31,17 +32,35 @@ export default function GlossaryAppBasic({ initialTerm }: GlossaryAppProps) {
       try {
         setIsLoading(true);
         const rawTerms = await loadGlossaryFull();
-        const terms = rawTerms.map((term) => {
-          const typed = term as GlossaryTerm;
-          const fallback = (term as GlossaryTermPayload).title ?? term.slug;
-          return {
-            term: typed.term ?? fallback,
-            slug: term.slug,
-            definition: typed.definition ?? (term as GlossaryTermPayload).summary ?? '',
-            category: typed.category ?? 'token',
-            aliases: Array.isArray(typed.aliases) ? typed.aliases : [],
-          };
-        });
+        const terms = rawTerms
+          .map((term) => {
+            const typed = term as GlossaryTerm;
+            const payload = term as GlossaryTermPayload;
+            const baseTitle = typed.term ?? payload.title ?? term.slug;
+            const definition = (typed.definition ?? payload.summary ?? '').trim();
+            const category = (typed.category ?? (payload as any)?.category ?? '').trim().toLowerCase();
+            const status = ((typed as any)?.status ?? (payload as any)?.status ?? 'canonical') as string;
+
+            if (
+              !isRenderableGlossaryEntry({
+                slug: term.slug,
+                status,
+                definition,
+                category,
+              })
+            ) {
+              return null;
+            }
+
+            return {
+              term: formatGlossaryTitle(baseTitle),
+              slug: term.slug,
+              definition,
+              category,
+              aliases: Array.isArray(typed.aliases) ? typed.aliases : [],
+            };
+          })
+          .filter((term): term is GlossaryTerm => Boolean(term));
         setGlossaryData({
           terms,
           totalCount: terms.length,
@@ -121,7 +140,7 @@ export default function GlossaryAppBasic({ initialTerm }: GlossaryAppProps) {
             </p>
             <div className="flex items-center gap-2 text-xs">
               <span className="px-2 py-1 rounded-full font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
-                {term.category}
+                {formatCategoryLabel(term.category)}
               </span>
               {(term.aliases?.length ?? 0) > 1 && (
                 <span className="text-gray-500">

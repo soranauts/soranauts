@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { loadGlossaryFull, type Term as GlossaryTermPayload } from '../../lib/glossary-data';
+import { formatGlossaryTitle, formatCategoryLabel, isRenderableGlossaryEntry } from '../../lib/glossary/format';
 
 interface GlossaryTerm {
   term: string;
@@ -46,22 +47,40 @@ export default function GlossaryAppSimple({ initialTerm }: GlossaryAppProps) {
       try {
         setIsLoading(true);
         const rawTerms = await loadGlossaryFull();
-        const terms = rawTerms.map((term) => {
-          const typed = term as GlossaryTerm;
-          const fallback = (term as GlossaryTermPayload).title ?? term.slug;
-          return {
-            term: typed.term ?? fallback,
-            slug: term.slug,
-            definition: typed.definition ?? (term as GlossaryTermPayload).summary ?? '',
-            category: typed.category ?? 'token',
-            relatedTerms: Array.isArray(typed.relatedTerms) ? typed.relatedTerms : [],
-            aliases: Array.isArray(typed.aliases) ? typed.aliases : [],
-            tags: Array.isArray(typed.tags) ? typed.tags : [],
-            examples: typed.examples ?? [],
-            links: typed.links ?? [],
-            priority: typeof typed.priority === 'number' ? typed.priority : 0,
-          };
-        });
+        const terms = rawTerms
+          .map((term) => {
+            const typed = term as GlossaryTerm;
+            const payload = term as GlossaryTermPayload;
+            const baseTitle = typed.term ?? payload.title ?? term.slug;
+            const definition = (typed.definition ?? payload.summary ?? '').trim();
+            const category = (typed.category ?? (payload as any)?.category ?? '').trim().toLowerCase();
+            const status = ((typed as any)?.status ?? (payload as any)?.status ?? 'canonical') as string;
+
+            if (
+              !isRenderableGlossaryEntry({
+                slug: term.slug,
+                status,
+                definition,
+                category,
+              })
+            ) {
+              return null;
+            }
+
+            return {
+              term: formatGlossaryTitle(baseTitle),
+              slug: term.slug,
+              definition,
+              category,
+              relatedTerms: Array.isArray(typed.relatedTerms) ? typed.relatedTerms : [],
+              aliases: Array.isArray(typed.aliases) ? typed.aliases : [],
+              tags: Array.isArray(typed.tags) ? typed.tags : [],
+              examples: typed.examples ?? [],
+              links: typed.links ?? [],
+              priority: typeof typed.priority === 'number' ? typed.priority : 0,
+            };
+          })
+          .filter((term): term is GlossaryTerm => Boolean(term));
 
         const categories = terms.reduce<GlossaryData['categories']>((acc, term) => {
           const key = term.category ?? 'token';
@@ -266,8 +285,9 @@ export default function GlossaryAppSimple({ initialTerm }: GlossaryAppProps) {
                           handleCategoryChange(term.category);
                         }}
                         className="px-2 py-1 rounded-full font-medium transition-colors cursor-pointer bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                        title={`Filter by ${formatCategoryLabel(term.category) || 'category'}`}
                       >
-                        {term.category}
+                        {formatCategoryLabel(term.category)}
                       </button>
                       {term.aliases.length > 1 && (
                         <span className="text-gray-500 dark:text-gray-400">

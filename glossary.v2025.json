@@ -149,9 +149,15 @@
   {
     "slug": "iroha3",
     "title": "Iroha 3",
-    "summary": "Hyperledger Iroha 3 is the next-generation blockchain framework being developed for SORA v3 (Nexus).",
+    "summary": "Hyperledger Iroha 3 powers SORA Nexus (SORA v3), delivering a modular, high-performance architecture for deterministic smart contracts, improved consensus, and cross-chain connectivity.",
     "status": "canonical",
-    "targetSlug": null
+    "targetSlug": null,
+    "aliases": [
+      "Nexus",
+      "Hyperledger Iroha 3",
+      "Iroha v3",
+      "Iroha 3"
+    ]
   },
   {
     "slug": "kensetsu",
@@ -417,14 +423,14 @@
   {
     "slug": "alias-redirect",
     "title": "Alias Redirect",
-    "status": "canonical",
-    "summary": "",
+    "status": "deprecated",
+    "summary": "Internal placeholder - not for public display",
     "targetSlug": null,
     "aliases": []
   },
   {
     "slug": "amm",
-    "title": "Amm",
+    "title": "AMM",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,
@@ -473,8 +479,8 @@
   {
     "slug": "autolinkconfig",
     "title": "Autolinkconfig",
-    "status": "canonical",
-    "summary": "",
+    "status": "deprecated",
+    "summary": "Internal configuration entry - not for public display",
     "targetSlug": null,
     "aliases": []
   },
@@ -496,7 +502,7 @@
   },
   {
     "slug": "bft-consensus",
-    "title": "Bft Consensus",
+    "title": "BFT Consensus",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,
@@ -584,7 +590,7 @@
   },
   {
     "slug": "cbdc",
-    "title": "Cbdc",
+    "title": "CBDC",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,
@@ -800,7 +806,7 @@
   },
   {
     "slug": "ipfs",
-    "title": "Ipfs",
+    "title": "IPFS",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,
@@ -895,14 +901,6 @@
     "aliases": []
   },
   {
-    "slug": "nexus",
-    "title": "Nexus",
-    "status": "canonical",
-    "summary": "",
-    "targetSlug": null,
-    "aliases": []
-  },
-  {
     "slug": "parallel-processing",
     "title": "Parallel Processing",
     "status": "canonical",
@@ -984,7 +982,7 @@
   },
   {
     "slug": "qr-payments",
-    "title": "Qr Payments",
+    "title": "QR Payments",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,
@@ -1096,7 +1094,7 @@
   },
   {
     "slug": "sora-v2",
-    "title": "Sora V2",
+    "title": "SORA V2",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,
@@ -1168,7 +1166,7 @@
   },
   {
     "slug": "ts",
-    "title": "Ts",
+    "title": "TS",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,
@@ -1192,7 +1190,7 @@
   },
   {
     "slug": "wasm",
-    "title": "Wasm",
+    "title": "WASM",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,
@@ -1208,7 +1206,7 @@
   },
   {
     "slug": "xcm",
-    "title": "Xcm",
+    "title": "XCM",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,
@@ -1216,7 +1214,7 @@
   },
   {
     "slug": "xcmp",
-    "title": "Xcmp",
+    "title": "XCMP",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,
@@ -1224,7 +1222,7 @@
   },
   {
     "slug": "xyk-pools",
-    "title": "Xyk Pools",
+    "title": "XYK Pools",
     "status": "canonical",
     "summary": "",
     "targetSlug": null,

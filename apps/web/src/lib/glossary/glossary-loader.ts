@@ -2,6 +2,7 @@ import legacyGlossary from '../../../public/glossary.json';
 import glossaryV2025 from '../../../public/data/glossary.v2025.json';
 import glossaryAliasesV2025 from '../../../public/glossary.aliases.v2025.json';
 import { FEATURE_GLOSSARY_V2025 } from '../../config/feature-flags';
+import { formatGlossaryTitle, isRenderableGlossaryEntry } from './format';
 
 type LegacyGlossaryImport = typeof legacyGlossary;
 type LegacyGlossaryTerm =
@@ -51,6 +52,8 @@ export interface GlossaryEntry {
   links?: { label: string; url: string }[];
   status: GlossaryStatus;
   targetSlug: string | null;
+  publishDate?: string | null;
+  updateDate?: string | null;
 }
 
 interface AliasInfo {
@@ -73,6 +76,59 @@ interface GlossaryMetadata {
 }
 
 const normalizeSlug = (value: string): string => value?.trim().toLowerCase() ?? '';
+const PLACEHOLDER_SLUGS = new Set(['alias-redirect']);
+
+const uniqueStrings = (...sources: Array<string[] | undefined | null>): string[] => {
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const source of sources) {
+    if (!Array.isArray(source)) continue;
+    for (const raw of source) {
+      if (typeof raw !== 'string') continue;
+      const value = raw.trim();
+      if (!value) continue;
+      if (seen.has(value)) continue;
+      seen.add(value);
+      result.push(value);
+    }
+  }
+  return result;
+};
+
+const dedupeAliasDisplayList = (aliases?: string[]): string[] => {
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const alias of aliases ?? []) {
+    if (typeof alias !== 'string') continue;
+    const trimmed = alias.trim();
+    if (!trimmed) continue;
+    const key = trimmed.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(trimmed);
+  }
+  return result;
+};
+
+const aliasValueToSlug = (value: string): string => {
+  const normalized = value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return normalized;
+};
+
+const shouldRenderEntry = (entry: GlossaryEntry): boolean => isRenderableGlossaryEntry(entry);
+const assertCanonicalEntry = (entry: GlossaryEntry): void => {
+  if (entry.status !== 'canonical') return;
+  if (!entry.definition?.trim()) {
+    throw new Error(`[glossary-loader] canonical term "${entry.slug}" requires a definition`);
+  }
+  if (!entry.category?.trim()) {
+    throw new Error(`[glossary-loader] canonical term "${entry.slug}" requires a category`);
+  }
+};
 
 const toLegacyEnvelope = (
   data: LegacyGlossaryData,
@@ -101,7 +157,7 @@ const legacyLookup = new Map<string, LegacyGlossaryTerm>(
 const assertGlossaryDataset = (data: Glossary2025Data): void => {
   const counts = data.terms.reduce(
     (acc, term) => {
-      const status = term.status as GlossaryStatus;
+      const status = (term.status as GlossaryStatus) ?? 'canonical';
       if (status === 'canonical') acc.canonical += 1;
       else if (status === 'alias') acc.alias += 1;
       else if (status === 'deprecated') acc.deprecated += 1;
@@ -111,12 +167,16 @@ const assertGlossaryDataset = (data: Glossary2025Data): void => {
     { canonical: 0, alias: 0, deprecated: 0, unknown: new Set<string>() },
   );
 
+  const aliasDatasetCount =
+    ((glossaryAliasesV2025 as GlossaryAliasesV2025).aliases?.length ?? 0) || counts.alias;
+  const aliasCountComparison = counts.alias > 0 ? counts.alias : aliasDatasetCount;
+
   const mismatches: string[] = [];
   if (counts.canonical !== data.canonicalCount) {
     mismatches.push(`canonical=${counts.canonical} (expected ${data.canonicalCount})`);
   }
-  if (counts.alias !== data.aliasCount) {
-    mismatches.push(`alias=${counts.alias} (expected ${data.aliasCount})`);
+  if (aliasCountComparison !== data.aliasCount) {
+    mismatches.push(`alias=${aliasCountComparison} (expected ${data.aliasCount})`);
   }
   if (counts.deprecated !== data.deprecatedCount) {
     mismatches.push(`deprecated=${counts.deprecated} (expected ${data.deprecatedCount})`);
@@ -138,28 +198,34 @@ assertGlossaryDataset(glossaryV2025);
 const readOptionalString = (value: unknown): string | null =>
   typeof value === 'string' && value.trim().length ? value : null;
 
-const buildLegacyEntry = (term: LegacyGlossaryTerm): GlossaryEntry => ({
-  slug: normalizeSlug(term.slug),
-  term: term.term ?? term.slug,
-  definition: term.definition ?? '',
-  category: term.category,
-  aliases: [...(term.aliases ?? [])],
-  tags: [...(term.tags ?? [])],
-  relatedTerms: [...(term.relatedTerms ?? [])],
-  priority: typeof term.priority === 'number' ? term.priority : 0,
-  type: term.type,
-  entity: term.entity,
-  versions: term.versions,
-  summary: term.summary ?? term.definition ?? null,
-  subtitle: readOptionalString((term as Record<string, unknown>).subtitle),
-  tagline: readOptionalString((term as Record<string, unknown>).tagline),
-  seeAlso: term.seeAlso,
-  relatedTags: term.relatedTags,
-  examples: term.examples,
-  links: term.links,
-  status: 'canonical',
-  targetSlug: null,
-});
+const buildLegacyEntry = (term: LegacyGlossaryTerm): GlossaryEntry => {
+  const definition = (term.definition ?? '').trim();
+  const category = (term.category ?? '').trim().toLowerCase() || undefined;
+  return {
+    slug: normalizeSlug(term.slug),
+    term: formatGlossaryTitle(term.term ?? term.slug),
+    definition,
+    category,
+    aliases: uniqueStrings(term.aliases ?? []),
+    tags: uniqueStrings(term.tags ?? []),
+    relatedTerms: uniqueStrings(term.relatedTerms ?? []),
+    priority: typeof term.priority === 'number' ? term.priority : 0,
+    type: term.type,
+    entity: term.entity,
+    versions: term.versions,
+    summary: term.summary ?? (definition || null),
+    subtitle: readOptionalString((term as Record<string, unknown>).subtitle),
+    tagline: readOptionalString((term as Record<string, unknown>).tagline),
+    seeAlso: term.seeAlso,
+    relatedTags: term.relatedTags,
+    examples: term.examples,
+    links: term.links,
+    status: 'canonical',
+    targetSlug: null,
+    publishDate: readOptionalString((term as Record<string, unknown>).publishDate),
+    updateDate: readOptionalString((term as Record<string, unknown>).updateDate),
+  };
+};
 
 const buildLegacyCache = (): GlossaryCache => {
   const canonical = new Map<string, GlossaryEntry>();
@@ -170,7 +236,9 @@ const buildLegacyCache = (): GlossaryCache => {
   for (const term of legacyTerms) {
     const entry = buildLegacyEntry(term);
     canonical.set(entry.slug, entry);
-    ordered.push(entry);
+    if (shouldRenderEntry(entry)) {
+      ordered.push(entry);
+    }
 
     for (const aliasSlug of term.aliases ?? []) {
       const normalizedAlias = normalizeSlug(aliasSlug);
@@ -193,27 +261,59 @@ const mergeEntry = (
 ): GlossaryEntry => {
   const slug = normalizeSlug(canonicalTerm.slug);
   const legacyEntry = legacyTerm ? buildLegacyEntry(legacyTerm) : null;
+  const baseTitle =
+    canonicalTerm.term ??
+    canonicalTerm.title ??
+    legacyEntry?.term ??
+    canonicalTerm.slug ??
+    slug;
+  const definition = (canonicalTerm.definition ?? legacyEntry?.definition ?? '').trim();
+  const category = (canonicalTerm.category ?? legacyEntry?.category ?? '').trim().toLowerCase();
+  const summary = canonicalTerm.summary ?? legacyEntry?.summary ?? null;
+  const aliases = uniqueStrings(
+    Array.isArray(canonicalTerm.aliases) ? canonicalTerm.aliases : undefined,
+    legacyEntry?.aliases,
+  );
+  const tags = uniqueStrings(
+    Array.isArray(canonicalTerm.tags) ? canonicalTerm.tags : undefined,
+    legacyEntry?.tags,
+  );
+  const relatedTerms = uniqueStrings(
+    Array.isArray(canonicalTerm.relatedTerms) ? canonicalTerm.relatedTerms : undefined,
+    legacyEntry?.relatedTerms,
+  );
+
   return {
     slug,
-    term: legacyEntry?.term ?? canonicalTerm.title ?? slug,
-    definition: legacyEntry?.definition ?? '',
-    category: legacyEntry?.category,
-    aliases: legacyEntry?.aliases ?? [],
-    tags: legacyEntry?.tags ?? [],
-    relatedTerms: legacyEntry?.relatedTerms ?? [],
-    priority: legacyEntry?.priority ?? 0,
-    type: legacyEntry?.type,
-    entity: legacyEntry?.entity,
-    versions: legacyEntry?.versions,
-    summary: canonicalTerm.summary ?? legacyEntry?.summary ?? null,
+    term: formatGlossaryTitle(baseTitle),
+    definition,
+    category: category || undefined,
+    aliases,
+    tags,
+    relatedTerms,
+    priority:
+      typeof canonicalTerm.priority === 'number'
+        ? canonicalTerm.priority
+        : legacyEntry?.priority ?? 0,
+    type: canonicalTerm.type ?? legacyEntry?.type,
+    entity: canonicalTerm.entity ?? legacyEntry?.entity,
+    versions: canonicalTerm.versions ?? legacyEntry?.versions,
+    summary,
     subtitle: legacyEntry?.subtitle ?? null,
     tagline: legacyEntry?.tagline ?? null,
-    seeAlso: legacyEntry?.seeAlso,
-    relatedTags: legacyEntry?.relatedTags,
-    examples: legacyEntry?.examples,
-    links: legacyEntry?.links,
+    seeAlso:
+      Array.isArray(canonicalTerm.seeAlso) && canonicalTerm.seeAlso.length
+        ? canonicalTerm.seeAlso
+        : legacyEntry?.seeAlso,
+    relatedTags: Array.isArray(canonicalTerm.relatedTags)
+      ? canonicalTerm.relatedTags
+      : legacyEntry?.relatedTags,
+    examples: canonicalTerm.examples ?? legacyEntry?.examples,
+    links: canonicalTerm.links ?? legacyEntry?.links,
     status: canonicalTerm.status,
-    targetSlug: canonicalTerm.targetSlug,
+    targetSlug: canonicalTerm.targetSlug ? normalizeSlug(canonicalTerm.targetSlug) : null,
+    publishDate: readOptionalString((canonicalTerm as Record<string, unknown>).publishDate) ?? legacyEntry?.publishDate ?? null,
+    updateDate: readOptionalString((canonicalTerm as Record<string, unknown>).updateDate) ?? legacyEntry?.updateDate ?? null,
   };
 };
 
@@ -222,40 +322,70 @@ const buildV2025Cache = (): GlossaryCache => {
   const alias = new Map<string, AliasInfo>();
   const deprecated = new Map<string, GlossaryEntry>();
   const ordered: GlossaryEntry[] = [];
+  const aliasStubs: Array<{ alias: string; target: string }> = [];
+
+  const appendAlias = (aliasSlug: string, canonicalSlug: string, options?: { force?: boolean }) => {
+    if (!aliasSlug || !canonicalSlug || aliasSlug === canonicalSlug) return;
+    if (!options?.force && alias.has(aliasSlug)) return;
+    alias.set(aliasSlug, {
+      alias: aliasSlug,
+      canonicalSlug,
+      status: 'alias',
+      targetSlug: canonicalSlug,
+    });
+  };
 
   for (const term of glossaryV2025.terms) {
     const normalizedSlug = normalizeSlug(term.slug);
+    if (!normalizedSlug || PLACEHOLDER_SLUGS.has(normalizedSlug)) {
+      continue;
+    }
     if (term.status === 'alias') {
-      alias.set(normalizedSlug, {
-        alias: normalizedSlug,
-        canonicalSlug: normalizeSlug(term.targetSlug ?? term.slug),
-        status: 'alias',
-        targetSlug: term.targetSlug ? normalizeSlug(term.targetSlug) : null,
-      });
+      const target = normalizeSlug(term.targetSlug ?? '');
+      if (target) {
+        aliasStubs.push({ alias: normalizedSlug, target });
+      }
       continue;
     }
 
     const legacy = legacyLookup.get(normalizedSlug);
     const entry = mergeEntry(term, legacy);
+    entry.aliases = dedupeAliasDisplayList(entry.aliases);
 
     if (term.status === 'deprecated') {
       deprecated.set(normalizedSlug, entry);
     } else {
+      assertCanonicalEntry(entry);
       canonical.set(normalizedSlug, entry);
-      ordered.push(entry);
+      if (shouldRenderEntry(entry)) {
+        ordered.push(entry);
+      }
+      for (const aliasValue of entry.aliases ?? []) {
+        const normalizedAlias = aliasValueToSlug(aliasValue);
+        if (!normalizedAlias || normalizedAlias === entry.slug) continue;
+        appendAlias(normalizedAlias, entry.slug);
+      }
     }
   }
 
-  for (const aliasEntry of (glossaryAliasesV2025 as GlossaryAliasesV2025).aliases) {
-    const normalizedAlias = normalizeSlug(aliasEntry.alias);
+  for (const pending of aliasStubs) {
+    if (!canonical.has(pending.target)) continue;
+    appendAlias(pending.alias, pending.target, { force: true });
+    const targetEntry = canonical.get(pending.target);
+    if (targetEntry && !targetEntry.aliases.includes(pending.alias)) {
+      targetEntry.aliases.push(pending.alias);
+    }
+  }
+
+  for (const aliasEntry of (glossaryAliasesV2025 as GlossaryAliasesV2025).aliases ?? []) {
+    const normalizedAlias = aliasValueToSlug(aliasEntry.alias);
     const targetSlug = normalizeSlug(aliasEntry.target);
     if (!normalizedAlias || !targetSlug) continue;
-    alias.set(normalizedAlias, {
-      alias: normalizedAlias,
-      canonicalSlug: targetSlug,
-      status: 'alias',
-      targetSlug,
-    });
+    appendAlias(normalizedAlias, targetSlug, { force: true });
+    const targetEntry = canonical.get(targetSlug);
+    if (targetEntry && !targetEntry.aliases.includes(normalizedAlias)) {
+      targetEntry.aliases.push(normalizedAlias);
+    }
   }
 
   // Include legacy-only aliases for completeness
@@ -263,14 +393,12 @@ const buildV2025Cache = (): GlossaryCache => {
     const entry = canonical.get(slug);
     if (!entry) continue;
     for (const aliasSlug of legacyTerm.aliases ?? []) {
-      const normalizedAlias = normalizeSlug(aliasSlug);
+      const normalizedAlias = aliasValueToSlug(aliasSlug);
       if (!normalizedAlias || alias.has(normalizedAlias)) continue;
-      alias.set(normalizedAlias, {
-        alias: normalizedAlias,
-        canonicalSlug: entry.slug,
-        status: 'alias',
-        targetSlug: entry.slug,
-      });
+      appendAlias(normalizedAlias, entry.slug);
+      if (!entry.aliases.includes(normalizedAlias)) {
+        entry.aliases.push(normalizedAlias);
+      }
     }
   }
 
@@ -291,7 +419,7 @@ const getCache = (): GlossaryCache => {
 
 const v2025Metadata: GlossaryMetadata = {
   totalCount: glossaryV2025.terms.length,
-  lastUpdated: legacyMetadata.lastUpdated,
+  lastUpdated: (glossaryV2025 as any).lastUpdated ?? null,
 };
 
 export const getGlossaryMetadata = (): GlossaryMetadata =>
@@ -301,9 +429,9 @@ const resolveCanonicalSlug = (slug: string): string => {
   const normalized = normalizeSlug(slug);
   if (!normalized) return '';
   const cache = getCache();
-  if (cache.canonical.has(normalized)) return normalized;
   const aliasInfo = cache.alias.get(normalized);
   if (aliasInfo) return aliasInfo.canonicalSlug;
+  if (cache.canonical.has(normalized)) return normalized;
   const deprecatedEntry = cache.deprecated.get(normalized);
   if (deprecatedEntry) return deprecatedEntry.targetSlug ?? deprecatedEntry.slug;
   return normalized;
@@ -313,13 +441,13 @@ export const getGlossaryTerm = (slug: string): GlossaryEntry | null => {
   const normalized = normalizeSlug(slug);
   if (!normalized) return null;
   const cache = getCache();
-  const canonicalEntry = cache.canonical.get(normalized);
-  if (canonicalEntry) return canonicalEntry;
-
   const aliasInfo = cache.alias.get(normalized);
   if (aliasInfo) {
     return cache.canonical.get(aliasInfo.canonicalSlug) ?? null;
   }
+
+  const canonicalEntry = cache.canonical.get(normalized);
+  if (canonicalEntry) return canonicalEntry;
 
   const deprecatedEntry = cache.deprecated.get(normalized);
   if (deprecatedEntry) return deprecatedEntry;

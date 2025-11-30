@@ -6,6 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DATA_PATH = path.join(__dirname, '../public/data/glossary.v2025.json');
+const ALIAS_PATH = path.join(__dirname, '../public/glossary.aliases.v2025.json');
 const SITEMAP_DIR = path.join(__dirname, '../public/sitemaps');
 const SITE_ORIGIN =
   (process.env.SITE_ORIGIN && process.env.SITE_ORIGIN.trim()) || 'https://soranauts.com';
@@ -34,23 +35,33 @@ const buildUrlset = (slugs: string[], origin: string): string => {
 
 interface GenerateSitemapOptions {
   dataPath?: string;
+  aliasPath?: string;
   outputDir?: string;
   siteOrigin?: string;
 }
 
+interface AliasDataset {
+  aliases: Array<{ alias: string; target: string }>;
+}
+
 export async function generateGlossarySitemaps({
   dataPath = DATA_PATH,
+  aliasPath = ALIAS_PATH,
   outputDir = SITEMAP_DIR,
   siteOrigin = SITE_ORIGIN,
 }: GenerateSitemapOptions = {}) {
   const canonicalOutput = path.join(outputDir, 'sitemap-glossary-canonical.xml');
   const aliasOutput = path.join(outputDir, 'sitemap-glossary-alias.xml');
 
-  const raw = await fs.readFile(dataPath, 'utf-8');
+  const [raw, aliasRaw] = await Promise.all([
+    fs.readFile(dataPath, 'utf-8'),
+    fs.readFile(aliasPath, 'utf-8'),
+  ]);
   const dataset = JSON.parse(raw) as GlossaryDataset;
+  const aliasDataset = JSON.parse(aliasRaw) as AliasDataset;
 
   const canonicalTerms = dataset.terms.filter((term) => term.status === 'canonical');
-  const aliasTerms = dataset.terms.filter((term) => term.status === 'alias');
+  const aliasSlugs = aliasDataset.aliases?.map((entry) => entry.alias) ?? [];
 
   if (canonicalTerms.length !== dataset.canonicalCount) {
     throw new Error(
@@ -58,9 +69,9 @@ export async function generateGlossarySitemaps({
     );
   }
 
-  if (aliasTerms.length !== dataset.aliasCount) {
+  if (aliasSlugs.length !== dataset.aliasCount) {
     throw new Error(
-      `Alias term count mismatch: expected ${dataset.aliasCount}, found ${aliasTerms.length}`,
+      `Alias term count mismatch: expected ${dataset.aliasCount}, found ${aliasSlugs.length}`,
     );
   }
 
@@ -70,10 +81,7 @@ export async function generateGlossarySitemaps({
     canonicalTerms.map((term) => term.slug),
     siteOrigin,
   );
-  const aliasXml = buildUrlset(
-    aliasTerms.map((term) => term.slug),
-    siteOrigin,
-  );
+  const aliasXml = buildUrlset(aliasSlugs, siteOrigin);
 
   await Promise.all([
     fs.writeFile(canonicalOutput, canonicalXml, 'utf-8'),
@@ -82,7 +90,7 @@ export async function generateGlossarySitemaps({
 
   return {
     canonicalCount: canonicalTerms.length,
-    aliasCount: aliasTerms.length,
+    aliasCount: aliasSlugs.length,
     canonicalPath: canonicalOutput,
     aliasPath: aliasOutput,
   };
