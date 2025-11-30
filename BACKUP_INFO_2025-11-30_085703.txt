@@ -1,0 +1,31 @@
+# Production Backup Information
+Created: Sun Nov 30 08:57:03 CST 2025
+Backup Date: 2025-11-30 085657
+Description: Production backup before deployment
+
+## Backup References
+- Branch: backup/production-2025-11-30-085657
+- Tag: backup-production-2025-11-30-085657
+- Commit: b78072dcf906bcc9e8529588ed40d16f055f3e78
+- Commit Message: fix(glossary): Ensure TONSWAP always displays in uppercase
+- Commit Date: 2025-11-30 08:52:21 -0600
+
+## Revert Commands
+To revert to this backup:
+
+```bash
+# Method 1: Use backup branch
+git reset --hard backup/production-2025-11-30-085657
+
+# Method 2: Use backup tag
+git reset --hard backup-production-2025-11-30-085657
+
+# Method 3: Use commit hash
+git reset --hard b78072dcf906bcc9e8529588ed40d16f055f3e78
+```
+
+## View This Backup
+```bash
+git show backup/production-2025-11-30-085657
+git log backup/production-2025-11-30-085657 -1
+```

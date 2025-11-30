@@ -1,18 +1,26 @@
 ---
 id: sora-nexus-whitepaper-v2025-11-26
 title: "SORA Nexus Whitepaper (v2025-11-26)"
+slug: "sora-nexus-whitepaper-v2025-11-26"
 version: "2025-11-26 (Draft for Review)"
+source: internal-research
+source_url: "internal://soranauts/nexus-whitepaper/v2025-11-26"
 source_pdf: ./sora_nexus_whitepaper.pdf
-authority: highest
+publishDate: "2025-11-26T00:00:00Z"
+snapshot_id: "2025-11-26"
+lang: en
 tags:
   - sora
-  - iroha3
   - nexus
+  - iroha3
   - ivm
+  - fastpq
+  - dataspaces
   - sumeragi
   - data-availability
-  - fastpq
   - governance
+  - economics
+  - updates
   - iso20022
 summary: >
   SORA Nexus is a single logical ledger built on Hyperledger Iroha 3 that
@@ -20,6 +28,7 @@ summary: >
   parallel lanes + merge ledger finality, and modern cryptography (FASTPQ zk-STARKs, PQ signatures),
   to deliver a governed, scalable, and auditable platform capable of hosting both public and private domains
   on one network with sub-second finality.
+content_sha256: "c00c8ffde2b279e596912f5c2ab959551303c7c3434cf7088ceaae5d71aa4e2b"
 ---
 
 # Hyperledger Iroha 3: SORA Nexus  

@@ -1,0 +1,42 @@
+name: KB Sync Updates (Report Only)
+
+on:
+  schedule:
+    - cron: "0 9 * * *" # Daily at 09:00 (server time)
+  workflow_dispatch:
+
+jobs:
+  sync_updates_report:
+    if: github.repository_owner == 'dustinmatlock'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run KB sync updates report
+        run: |
+          pnpm --filter @soranauts/web kb:sync:updates:report > sync-updates-report.json
+          echo "KB sync updates report generated."
+          cat sync-updates-report.json
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kb-sync-updates-report
+          path: sync-updates-report.json
+
+
