@@ -187,6 +187,7 @@ export interface CallToAction extends HTMLAttributes<a> {
   isCardLink?: boolean;
   labelClass?: string;
   type?: 'button' | 'submit' | 'reset';
+  size?: 'sm' | 'md' | 'lg';
 }
 
 export interface ItemGrid {

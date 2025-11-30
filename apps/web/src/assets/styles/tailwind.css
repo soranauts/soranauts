@@ -35,7 +35,7 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center rounded-full border border-border-subtle bg-transparent px-6 py-3.5 text-base font-medium leading-snug text-text-main;
+    @apply inline-flex items-center justify-center border border-border-subtle bg-transparent font-medium text-text-main;
     gap: var(--space-2);
     cursor: pointer;
     transition:
@@ -62,7 +62,8 @@
   }
 
   .btn-primary {
-    @apply btn border-brand-500 bg-brand-500 text-white;
+    @apply btn;
+    @apply border-brand-500 bg-brand-500 text-white;
     box-shadow: none;
   }
 
@@ -81,7 +82,8 @@
   }
 
   .btn-secondary {
-    @apply btn bg-soft text-text-main;
+    @apply btn;
+    @apply bg-soft text-text-main;
   }
 
   .btn-secondary:hover {
@@ -95,17 +97,23 @@
   }
 
   .btn-tertiary {
-    @apply btn border-transparent bg-transparent text-text-muted shadow-none;
+    @apply btn;
+    border-color: color-mix(in srgb, var(--color-brand-500) 40%, transparent);
+    color: var(--color-brand-500);
+    background-color: transparent;
+    box-shadow: none;
   }
 
   .btn-tertiary:hover {
-    color: var(--color-text-main);
-    background-color: var(--overlay-subtle);
+    color: var(--color-brand-400);
+    border-color: color-mix(in srgb, var(--color-brand-500) 70%, transparent);
+    background-color: color-mix(in srgb, var(--color-brand-500) 8%, transparent);
   }
 
   .btn-tertiary:active {
-    color: var(--color-link);
-    background-color: var(--overlay-strong);
+    color: var(--color-brand-300);
+    border-color: var(--color-brand-500);
+    background-color: color-mix(in srgb, var(--color-brand-500) 12%, transparent);
   }
 
   #header.scroll > div:first-child {
