@@ -18,16 +18,16 @@ export interface Props extends Widget {
 }
 
 const {
-  title = await Astro.slots.render("title"),
-  linkText = "View all posts",
+  title = await Astro.slots.render('title'),
+  linkText = 'View all posts',
   linkUrl = getBlogPermalink(),
-  information = await Astro.slots.render("information"),
+  information = await Astro.slots.render('information'),
   count = 4,
 
   id,
   isDark = false,
   classes = {},
-  bg = await Astro.slots.render("bg"),
+  bg = await Astro.slots.render('bg'),
 } = Astro.props;
 
 const posts = APP_BLOG.isEnabled ? await findLatestPosts({ count }) : [];
@@ -35,24 +35,24 @@ const posts = APP_BLOG.isEnabled ? await findLatestPosts({ count }) : [];
 
 {
   APP_BLOG.isEnabled ? (
-    <WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container} bg={bg}>
-      <div class="flex flex-col lg:justify-between lg:flex-row mb-8">
+    <WidgetWrapper id={id} isDark={isDark} containerClass={`rounded-3xl border border-border-subtle bg-soft/70 p-6 sm:p-8 shadow-sm ${classes?.container ?? ''}`} bg={bg}>
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         {title && (
-          <div class="md:max-w-sm">
-            <h2
-              class="text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none group font-heading mb-2"
-              set:html={title}
-            />
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Blog updates</p>
+            <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl" set:html={title} />
             {APP_BLOG.list.isEnabled && linkText && linkUrl && (
-              <Button variant="link" href={linkUrl}> {linkText} »</Button>
+              <Button variant="link" href={linkUrl} class="mt-3 inline-flex items-center gap-1 rounded-full border border-brand-500/40 px-3 py-1 text-sm font-semibold text-brand-500 hover:border-brand-400">
+                {linkText} »
+              </Button>
             )}
           </div>
         )}
-
-        {information && <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md" set:html={information} />}
+        {information && <p class="text-sm text-text-muted lg:max-w-md" set:html={information} />}
       </div>
-
-      <Grid posts={posts} />
+      <div class="mt-8">
+        <Grid posts={posts} />
+      </div>
     </WidgetWrapper>
   ) : (
     <Fragment />

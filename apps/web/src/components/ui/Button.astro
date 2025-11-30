@@ -10,6 +10,7 @@ const {
   icon = '',
   class: className = '',
   type,
+  size = 'lg',
   ...rest
 } = Astro.props as CallToAction;
 
@@ -19,17 +20,29 @@ const variants = {
   tertiary: 'btn btn-tertiary',
   link: 'cursor-pointer hover:text-primary',
 };
+
+const sizeMap = {
+  // ~44px tall on mobile, ~40px on xl
+  lg: 'h-11 px-5 rounded-full text-base leading-none xl:h-10 xl:px-4 whitespace-nowrap',
+  // ~40px tall on mobile, ~36px on xl (compact)
+  md: 'h-10 px-4 rounded-xl text-sm leading-none xl:h-9 xl:px-3.5 xl:rounded-lg whitespace-nowrap',
+  // ~36px tall on mobile, ~32px on xl
+  sm: 'h-9 px-3 rounded-lg text-xs leading-none xl:h-8 xl:px-2.5 xl:rounded-md whitespace-nowrap',
+} as const;
+
+const sizeClass = sizeMap[size as keyof typeof sizeMap] ?? sizeMap.lg;
+const baseClasses = twMerge(variants[variant] || '', sizeClass, className);
 ---
 
 {
   type === 'button' || type === 'submit' || type === 'reset' ? (
-    <button type={type} class={twMerge(variants[variant] || '', className)} {...rest}>
+    <button type={type} class={baseClasses} {...rest}>
       <Fragment set:html={text} />
       {icon && <Icon name={icon} class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" />}
     </button>
   ) : (
     <a
-      class={twMerge(variants[variant] || '', className)}
+      class={baseClasses}
       {...(target ? { target: target, rel: 'noopener noreferrer' } : {})}
       {...rest}
     >

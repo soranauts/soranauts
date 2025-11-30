@@ -27,6 +27,12 @@ const {
 const containerClass = classes?.container ?? '';
 const cardClass = classes?.card ?? '';
 const actionsClass = classes?.actions ?? '';
+
+const actionSizeMap = {
+  lg: 'px-6 py-3 rounded-full text-base',
+  md: 'px-4 py-2.5 rounded-2xl text-sm',
+  sm: 'px-3 py-2 rounded-xl text-sm',
+} as const;
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${containerClass}`} bg={bg}>
@@ -45,13 +51,18 @@ const actionsClass = classes?.actions ?? '';
     />
     {
       actions && (
-        <div class={`max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6 ${actionsClass}`}>
+        <div class={`max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 xl:gap-3 mt-6 xl:mt-5 ${actionsClass}`}>
           {Array.isArray(actions) ? (
-            actions.map((action) => (
-              <div class="flex w-full sm:w-auto">
-                <Button {...(action || {})} class="w-full sm:mb-0" />
-              </div>
-            ))
+            actions.map((action) => {
+              const { size = 'lg', class: actionClass = '', ...actionProps } = action || {};
+              const sizeClass = actionSizeMap[size as keyof typeof actionSizeMap] ?? actionSizeMap.lg;
+
+              return (
+                <div class="flex w-full sm:w-auto">
+                  <Button {...actionProps} class={`w-full sm:mb-0 ${sizeClass} ${actionClass}`} />
+                </div>
+              );
+            })
           ) : (
             <Fragment set:html={actions} />
           )}
