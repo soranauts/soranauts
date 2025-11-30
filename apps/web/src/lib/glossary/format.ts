@@ -46,10 +46,17 @@ const formatTitleToken = (token: string): string => {
 export const formatGlossaryTitle = (value?: string | null): string => {
   const source = value?.trim();
   if (!source) return '';
-  const alreadyFormatted = /[A-Z]/.test(source) && !/[-_]/.test(source);
-  if (alreadyFormatted) return source;
   const tokens = source.split(DISPLAY_DELIMITERS).filter(Boolean);
   if (!tokens.length) return source;
+  // Check if entire string is a single acronym token (e.g., "TONSwap" -> "TONSWAP")
+  if (tokens.length === 1) {
+    const normalized = tokens[0].toLowerCase();
+    if (ACRONYM_TOKENS.has(normalized)) {
+      return normalized.toUpperCase();
+    }
+  }
+  const alreadyFormatted = /[A-Z]/.test(source) && !/[-_]/.test(source);
+  if (alreadyFormatted) return source;
   return tokens.map(formatAcronymAwareToken).join(' ');
 };
 
