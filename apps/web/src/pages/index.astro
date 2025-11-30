@@ -12,9 +12,9 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'SORA v3 DeFi Ecosystem & Polkaswap | Soranauts',
+  title: 'SORA v3 (Nexus) — DeFi Economy & Polkaswap | Soranauts',
   description:
-    'Explore how SORA v3 unites the Token Bonding Curve, Polkaswap, and governance to build a supranational DeFi economy.',
+    'As of November 2025: SORA v3 (Nexus) on Hyperledger Iroha delivers deterministic finality, predictable liquidity via the Token Bonding Curve, and accountable governance. Read the Nexus whitepaper and explore Polkaswap.',
   ignoreTitleTemplate: true,
 };
 ---
@@ -30,6 +30,11 @@ const metadata = {
         href: 'https://polkaswap.io/',
         target: '_blank',
       },
+      {
+        variant: 'secondary',
+        text: 'Read Nexus Whitepaper (PDF)',
+        href: '/documents/sora_nexus_whitepaper.pdf',
+      },
       { text: 'Explore Features', href: '#features' },
     ]}
     image={{
@@ -38,62 +43,87 @@ const metadata = {
     }}
   >
     <Fragment slot="title">
-      Build Open Finance with SORA v3
+      Build Open Finance with SORA v3 (Nexus)
     </Fragment>
 
     <Fragment slot="subtitle">
-      SORA v3 is a supranational economic system built on Hyperledger Iroha to deliver predictable liquidity, democratic
-      governance, and productive credit. Polkaswap anchors the network with non-custodial liquidity so builders and
-      institutions can transact across borders.
+      As of November 2025, Hyperledger Iroha “Nexus” lanes deliver deterministic finality across connected domains while
+      the Token Bonding Curve keeps liquidity predictable. Polkaswap anchors these non-custodial markets so builders can
+      orchestrate cross-border capital without surrendering custody.
     </Fragment>
   </Hero>
 
   <!-- Note Widget ******************* -->
 
-  <Note />
+  <section class="bg-[#20262e] dark:bg-[#222C36e6] not-prose">
+    <div
+      class="max-w-6xl mx-auto px-4 sm:px-6 py-6 text-center text-white dark:text-white space-y-4"
+      aria-live="polite"
+    >
+      <p class="text-base font-medium">
+        <span class="font-bold">As of November 2025:</span> The SORA v3 (Nexus) whitepaper is available for download so
+        teams can reference canonical definitions while aligning with current governance, execution lanes, and liquidity
+        guarantees.
+      </p>
+      <div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          class="inline-flex items-center justify-center rounded-md border border-white/40 px-4 py-2 text-sm font-semibold transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          href="/documents/sora_nexus_whitepaper.pdf"
+        >
+          Download PDF
+        </a>
+        <a
+          class="inline-flex items-center justify-center rounded-md border border-white/40 px-4 py-2 text-sm font-semibold transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          href="https://wiki.sora.org/"
+        >
+          Open SORA Wiki
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Features Widget *************** -->
 
   <Features
     id="features"
     tagline="Features"
-    title="What You Get with the SORA Economic Model"
-    subtitle="SORA v3 brings together deterministic monetary policy, accountable governance, and interoperable infrastructure for a resilient global finance stack."
+    title="Nexus Architecture & Economic Primitives"
+    subtitle="As of November 2025, SORA v3 (Nexus) pairs deterministic Iroha execution, an elastic monetary base, and accountable governance primitives so institutions can rely on transparent rules."
     items={[
       {
-        title: 'Supranational Economic System',
+        title: 'Nexus Execution & Interop',
         description:
-          'SORA coordinates a supranational economy that allocates resources to productive work instead of debt. The community blueprint, <a href="https://wiki.sora.org/sora-economy.html" class="font-medium text-link dark:text-link hover:underline">SORA: The New Economic Order</a>, documents how value flows across the network.',
-        icon: 'tabler:building-bank',
+          'Hyperledger Iroha v3 lanes synchronize deterministic finality and bridge messages so assets and logic can move consistently between Nexus hubs and connected domains.',
+        icon: 'tabler:building-monument',
       },
       {
         title: 'Token Bonding Curve',
         description:
-          'XOR supply is governed by the <a href="https://wiki.sora.org/tbc.html" class="font-medium text-link dark:text-link hover:underline">Token Bonding Curve</a>, providing continuous liquidity, transparent price discovery, and elastic issuance aligned with real demand.',
+          'The Token Bonding Curve keeps XOR liquidity continuous while revealing transparent price discovery for treasuries, liquidity desks, and institutions.',
         icon: 'tabler:chart-bar',
       },
       {
         title: 'On-chain Governance',
         description:
-          'SORA Governance V1 combines a Council, Technical Committee, and the SORA Parliament to steward upgrades and treasury allocations. Review the <a href="https://wiki.sora.org/sora-governance.html" class="font-medium text-link dark:text-link hover:underline">governance framework</a> to see how proposals reach the network.',
+          'The Parliament, Council, and Technical Committee coordinate upgrades, treasury flows, and validator accountability without centralized gatekeepers.',
         icon: 'tabler:file-invoice',
       },
       {
-        title: 'Hyperledger Iroha Infrastructure',
+        title: 'Credit for Production',
         description:
-          'SORA v3 runs on the next generation of <a href="https://wiki.sora.org/sora-v3.html" class="font-medium text-link dark:text-link hover:underline">Hyperledger Iroha</a>, gaining deterministic finality, modular interoperability, and tooling that connects permissioned and public domains.',
-        icon: 'tabler:building-monument',
-      },
-      {
-        title: 'Credit Creation',
-        description:
-          'SORA introduces production-focused credit so economies can fund new goods and services without compounding debt. Learn how this approach follows the <a href="https://wiki.sora.org/introduction.html" class="font-medium text-link dark:text-link hover:underline">disaggregated quantity theory of money</a>.',
+          'Nexus channels productive credit into new goods and services instead of legacy debt spirals, aligning issuance with measurable output.',
         icon: 'tabler:arrows-right-left',
       },
       {
-        title: 'XOR as Legal Tender',
+        title: 'Polkaswap Liquidity Hub',
         description:
-          'XOR operates as <a href="https://wiki.sora.org/xor.html" class="font-medium text-link dark:text-link hover:underline">supranational money</a>, enabling jurisdictions to finance productive projects, settle trade, and manage reserves through the bonding curve.',
+          'Polkaswap routes non-custodial liquidity across bridges so LPs and institutions can clear trades and manage reserves while retaining custody.',
+        icon: 'tabler:arrows-exchange',
+      },
+      {
+        title: 'Supranational Money',
+        description:
+          'XOR operates as supranational money so jurisdictions can settle trade, manage reserves, and finance productive projects through the predictable bonding curve.',
         icon: 'tabler:wallet',
       },
     ]}
@@ -123,10 +153,10 @@ const metadata = {
         icon: 'tabler:users',
       },
       {
-        title: 'Start Learning',
+        title: 'Read the Whitepaper',
         description:
-          'Dive deeper with the Soranauts <a href="/blog" class="font-medium text-link dark:text-link hover:underline">knowledge library</a> and expand your skills through the <a href="https://wiki.sora.org/sora-academy.html" class="font-medium text-link dark:text-link hover:underline">SORA Academy</a> guides.',
-        icon: 'tabler:book',
+          'Reference the <a href="/documents/sora_nexus_whitepaper.pdf" class="font-medium text-link dark:text-link hover:underline">SORA v3 (Nexus) whitepaper</a> for canonical definitions, then use Soranauts articles for plain-language takeaways you can share with stakeholders.',
+        icon: 'tabler:file-description',
       },
     ]}
     image={{
@@ -142,48 +172,37 @@ const metadata = {
   <!-- HighlightedPosts Widget ******* -->
 
   <BlogLatestPosts
-    title="Follow SORA v3 & Polkaswap Progress"
-    information={`Stay current with analysis of SORA v3 milestones, Polkaswap liquidity improvements, and the Token Bonding Curve's evolving role in the economy. Our guides translate technical updates into clear actions for builders, policymakers, and contributors.
-                `}
+    title="Follow SORA v3 (Nexus) & Polkaswap Progress"
+    information={`As of November 2025, we translate Nexus architecture updates, Polkaswap liquidity improvements, and bonding curve policy signals into plain next steps for builders and policymakers.`}
   />
 
   <!-- FAQs Widget ******************* -->
 
   <FAQs
-    title="Everything You Need to Know About SORA"
-    subtitle="Clarify how SORA v3, Polkaswap, and XOR work together"
+    title="SORA v3 (Nexus) — Key Questions"
+    subtitle="As of November 2025, here is how Nexus execution, liquidity, and governance fit together."
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'What makes SORA V3 different from other blockchains?',
+        title: 'What makes Nexus different?',
         description:
-          "SORA v3 transitions the network onto Hyperledger Iroha for deterministic finality, modular interoperability, and seamless coordination between public and permissioned domains. The hub chain empowers the SORA Parliament to fund productive initiatives while bridges connect ecosystems like Polkadot, TON, and Ethereum. Review the <a href='https://wiki.sora.org/sora-v3.html' class='font-medium text-link dark:text-link hover:underline'>SORA v3 documentation</a> for details.",
+          'SORA v3 (Nexus) runs on Hyperledger Iroha lanes that finalize transactions deterministically and coordinate bridges, so assets can cross permissioned and public domains without guessing finality windows.',
       },
       {
-        title: 'How does Polkaswap compare to other DEXs?',
+        title: 'How does the Bonding Curve help?',
         description:
-          "Polkaswap aggregates liquidity across connected networks, enabling non-custodial swaps between assets that live on SORA, Polkadot, Ethereum, and beyond. Smart routing and bridge integrations keep spreads competitive while you retain control of your keys. Explore the <a href='https://wiki.sora.org/polkaswap.html' class='font-medium text-link dark:text-link hover:underline'>Polkaswap wiki guide</a> to see supported features.",
+          'The Token Bonding Curve mints or burns XOR alongside demand, keeping liquidity continuous for market makers and public treasuries while signaling price in advance of major allocations.',
       },
       {
-        title: 'What are the benefits of the Token Bonding Curve?',
+        title: 'How is execution different from WASM-only chains?',
         description:
-          "The Token Bonding Curve continuously mints or burns XOR in line with demand, so the supply expands for productive activity and contracts when reserves are redeemed. This automated market maker delivers transparent pricing, guaranteed liquidity, and forward guidance for the economy. Study the mechanism in <a href='https://wiki.sora.org/tokenomics.html' class='font-medium text-link dark:text-link hover:underline'>SORA's tokenomics documentation</a>.",
+          'Nexus optimizes for predictable state machines instead of just smart-contract VMs, giving validators pre-verified instructions, native bridging, and governance-enforced upgrade paths.',
       },
       {
-        title: "How do I get started with SORA and Polkaswap?",
+        title: 'Where do I learn the details?',
         description:
-          "Download <a href='https://fearlesswallet.io' class='font-medium text-link dark:text-link hover:underline'>Fearless Wallet</a> or connect a browser wallet to Polkaswap. From there you can acquire XOR through the bonding curve, supply liquidity, or participate in governance. Track the roadmap through the <a href='https://wiki.sora.org/integrated-plan.html' class='font-medium text-link dark:text-link hover:underline'>SORA Integrated Plan</a>.",
-      },
-      {
-        title: 'What staking and yield opportunities are available?',
-        description:
-          "Community members can stake to secure the network, participate in liquidity programs on Polkaswap, or follow campaign-specific incentives published through the ecosystem updates feed. Consult the <a href='https://wiki.sora.org/sora-academy.html' class='font-medium text-link dark:text-link hover:underline'>SORA Academy</a> tutorials for the latest participation guides.",
-      },
-      {
-        title: 'Is SORA secure and decentralized?',
-        description:
-          "SORA is operated by a decentralized validator set governed through on-chain referenda. Monetary stability is enforced by the Token Bonding Curve, and upgrades are vetted through the Parliament and Council process before deployment. Follow security and governance updates in the <a href='https://wiki.sora.org/sora-governance.html' class='font-medium text-link dark:text-link hover:underline'>SORA governance documentation</a>.",
+          "Start with the <a href='/documents/sora_nexus_whitepaper.pdf' class='font-medium text-link dark:text-link hover:underline'>Nexus whitepaper</a>, then compare it with living documentation on the <a href='https://wiki.sora.org/' class='font-medium text-link dark:text-link hover:underline'>SORA Wiki</a> and Soranauts explainers for plain-language context.",
       },
     ]}
   />
@@ -197,14 +216,20 @@ const metadata = {
         target: '_blank',
         icon: 'tabler:external-link',
       },
+      {
+        variant: 'secondary',
+        text: 'Download Nexus Whitepaper',
+        href: '/documents/sora_nexus_whitepaper.pdf',
+        icon: 'tabler:file-download',
+      },
     ]}
   >
     <Fragment slot="title">
-      Engage with the SORA economy.
+      Engage with the SORA v3 (Nexus) economy.
     </Fragment>
 
     <Fragment slot="subtitle">
-      Use Polkaswap to bridge, swap, and allocate liquidity while SORA governance and the Token Bonding Curve keep the economy transparent.
+      As of November 2025, Polkaswap plus the Token Bonding Curve provide transparent markets and predictable issuance so every Nexus participant sees how liquidity and governance decisions land.
     </Fragment>
   </CallToAction>
 </Layout>
