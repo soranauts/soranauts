@@ -220,4 +220,52 @@ pnpm build
 
 Happy coding! 🚀
 
+## Glossary Alias Redirects
+
+Glossary alias routing is driven by a single source of truth:
+
+- `apps/web/src/data/glossary.aliases.v2025.json`
+
+Each `{ alias, target }` pair is expected to:
+
+- Resolve correctly when navigating to `/glossary/<alias>`, landing on `/glossary/<target>`; and
+- Return either a static 308 redirect (e.g. on Vercel) or a direct 200 (e.g. Astro preview), with 308s pointing to the canonical `/glossary/<target>` path.
+
+### Test Coverage
+
+End-to-end coverage lives in:
+
+- `apps/web/tests/e2e/glossary.aliases.spec.ts`
+
+This spec loads the aliases JSON and, for each alias:
+
+- Navigates to `/glossary/<alias>` and asserts the URL ends in `/glossary/<target>`; and
+- Issues a request for `/glossary/<alias>` with `maxRedirects: 0`, asserting a 200/308 outcome and validating the `Location` header when a 308 is present.
+
+To run the full suite locally:
+
+```bash
+pnpm -w build
+pnpm --filter @soranauts/web e2e
+```
+
+### Manual Verification Script
+
+A lightweight shell script verifies a handful of hot-path aliases (including `hyperledger-iroha-3 → iroha3`):
+
+- `tools/verify_glossary_aliases.sh`
+
+Usage examples:
+
+```bash
+# Against local dev / preview
+tools/verify_glossary_aliases.sh http://localhost:4321
+
+# Against a deployed environment
+tools/verify_glossary_aliases.sh https://soranauts.com
+```
+
+The script prints status + `Location` for each alias and exits non-zero if a 308 has an unexpected `Location` header.
+
+
 
