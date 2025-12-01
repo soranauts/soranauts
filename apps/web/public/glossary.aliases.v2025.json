@@ -57,16 +57,8 @@
       "target": "iroha3"
     },
     {
-      "alias": "iroha-virtual-machine",
-      "target": "irohavirtualmachineivm"
-    },
-    {
       "alias": "isis",
       "target": "iroha-special-instructions"
-    },
-    {
-      "alias": "ivm",
-      "target": "irohavirtualmachineivm"
     },
     {
       "alias": "monetary-system",
@@ -125,10 +117,6 @@
       "target": "shiba-inu"
     },
     {
-      "alias": "sfq",
-      "target": "starttimefairqueuingsfq"
-    },
-    {
       "alias": "sora-council",
       "target": "council"
     },
@@ -145,20 +133,8 @@
       "target": "iroha3"
     },
     {
-      "alias": "space-directory",
-      "target": "dataspacedirectory"
-    },
-    {
-      "alias": "start-time-fair-queuing",
-      "target": "starttimefairqueuingsfq"
-    },
-    {
       "alias": "telegram-dex",
       "target": "tonswap"
-    },
-    {
-      "alias": "teu",
-      "target": "transactionexecutionunitsteu"
     },
     {
       "alias": "token-bonding-curve",
@@ -169,24 +145,12 @@
       "target": "tonswap"
     },
     {
-      "alias": "transaction-execution-units",
-      "target": "transactionexecutionunitsteu"
-    },
-    {
       "alias": "ts-dex",
       "target": "tonswap"
     },
     {
       "alias": "webassembly",
       "target": "wasm"
-    },
-    {
-      "alias": "world-state-view",
-      "target": "worldstateviewwsv"
-    },
-    {
-      "alias": "wsv",
-      "target": "worldstateviewwsv"
     }
   ]
 }

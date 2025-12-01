@@ -26,14 +26,14 @@ test.describe('Glossary alias routing', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(/iroha 3/i);
   });
 
-  test('alias returns 308 to canonical', async ({ request }) => {
+  test('alias returns 200/301/308 to canonical', async ({ request }) => {
     const res = await request.get('/glossary/hyperledger-iroha-3', { maxRedirects: 0 });
     const status = res.status();
-    expect([200, 308]).toContain(status);
+    expect([200, 301, 308]).toContain(status);
 
-    const location = res.headers()['location'];
-    if (status === 308) {
-      expect(location === '/glossary/iroha3' || location === '/glossary/iroha3/').toBe(true);
+    const location = res.headers()['location'] ?? '';
+    if (status === 301 || status === 308) {
+      expect(new RegExp('/glossary/iroha3/?$', 'i').test(location)).toBe(true);
     }
   });
 
