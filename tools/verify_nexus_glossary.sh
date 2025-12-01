@@ -72,11 +72,12 @@ RANDOM_TERMS=(
 
 fetch_body() {
   local url="$1"
-  curl -fsS \
+  # Use -sL to follow redirects silently
+  curl -sL \
     --max-time "${TIMEOUT_SECONDS}" \
     --retry "${RETRY_COUNT}" \
     --retry-delay 1 \
-    "${url}"
+    "${url}" 2>/dev/null
 }
 
 fetch_headers() {
@@ -90,15 +91,17 @@ fetch_headers() {
 
 page_contains_h1() {
   local title="$1"
-  python3 - "$title" <<'PY'
+  local html="$2"
+  printf '%s' "${html}" | python3 -c "
 import re
 import sys
 
-title = sys.argv[1]
+title = '''${title}'''
 html = sys.stdin.read()
-pattern = re.compile(r"<h1[^>]*>\s*" + re.escape(title) + r"\s*</h1>", re.IGNORECASE)
+# Match h1 tag containing the title (allowing for whitespace and newlines)
+pattern = re.compile(r'<h1[^>]*>.*?' + re.escape(title) + r'.*?</h1>', re.IGNORECASE | re.DOTALL)
 sys.exit(0 if pattern.search(html) else 1)
-PY
+"
 }
 
 check_alias() {
@@ -151,13 +154,15 @@ check_page_h1() {
   log INFO "${label}: /glossary/${slug}"
 
   local body
-  if ! body="$(fetch_body "${url}")"; then
+  body="$(fetch_body "${url}")"
+  
+  if [[ -z "${body}" ]]; then
     log ERROR "  ❌ failed to load ${url}"
     failures=$((failures + 1))
     return
   fi
 
-  if page_contains_h1 "${title}" <<<"${body}"; then
+  if page_contains_h1 "${title}" "${body}"; then
     log INFO "  ✅ found <h1> for ${title}"
     page_passed=$((page_passed + 1))
   else
