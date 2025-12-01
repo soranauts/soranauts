@@ -24,7 +24,7 @@ const dedupedTags = tags.filter((tag) => {
 const tagList = dedupedTags.slice(0, 6);
 ---
 
-<a class="glossary-card" href={href} role="group">
+<a class="glossary-card" href={href}>
   {(categoryLabel || badge) && (
     <div class="glossary-card__header">
       {categoryLabel && <span class="chip chip--sm chip--neutral">{categoryLabel}</span>}
