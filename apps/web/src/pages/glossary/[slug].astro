@@ -30,6 +30,7 @@ import GlossaryTermHero from '~/components/glossary/GlossaryTermHero';
 import { loadGlossaryFull } from '~/lib/glossary-data';
 import { resolveGlossaryEntry } from '~/lib/glossary-resolve';
 import { formatGlossaryTitle, formatCategoryLabel, truncateOneLiner, ACRONYM_TOKENS, formatGlossaryDate } from '~/lib/glossary/format';
+import { getTermSubgroup } from '~/data/nexus-explorer.config';
 
 export const prerender = true;
 
@@ -404,6 +405,10 @@ const relatedTagChips = glossaryTags.slice(0, 3).map((tag) => ({
 
 const relatedChipLinks = [...relatedTermChips, ...relatedTagChips].slice(0, 6);
 const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
+
+// Check if this term is part of Nexus Architecture for "View in Explorer" link
+const isNexusTerm = glossaryTags.includes('Nexus Architecture');
+const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefined;
 ---
 
 <Layout 
@@ -421,7 +426,16 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
   <Header {...headerData} isSticky showRssFeed showToggleTheme />
   
   <main class="glossary-detail px-4 md:px-6 lg:px-12 pt-10 md:pt-12 lg:pt-14 pb-16 md:pb-20 mx-auto max-w-5xl">
-    <a class="glossary-back-link" href="/glossary">← Back to glossary</a>
+    <div class="glossary-nav-links">
+      <a class="glossary-back-link" href="/glossary">← Back to glossary</a>
+      {isNexusTerm && (
+        <a class="glossary-explorer-link" href={`/explore#nexus-architecture`}>
+          <span class="glossary-explorer-link__icon">🔷</span>
+          <span>View in Explorer</span>
+          {nexusSubgroup && <span class="glossary-explorer-link__subgroup">· {nexusSubgroup.title}</span>}
+        </a>
+      )}
+    </div>
 
     {FEATURE_GLOSSARY_UI_CANONICAL && isAliasRequest && (
       <div

@@ -17,6 +17,8 @@ import type {
 import ExplorerGlossaryContext from '~/components/tag-hub/ExplorerGlossaryContext';
 import { FEATURE_EXPLORER_GLOSSARY_CONTEXT } from '~/config/feature-flags';
 import { getTopTermsForDomain } from '~/lib/glossary/article-relations';
+import NexusExplorerSection from '~/components/explore/NexusExplorerSection.astro';
+import { NEXUS_SUBGROUPS } from '~/data/nexus-explorer.config';
 
 export const prerender = true;
 
@@ -89,6 +91,9 @@ const domainSections = domainOrder.map((domain) => ({
 
 const heroCopy =
   'Navigate the SORA knowledge graph in one place. SORA Explorer unifies glossary terms, governance updates, DeFi strategies, and ecosystem signals so you can map and understand the network.';
+
+// Calculate total Nexus terms for stats
+const nexusTermCount = NEXUS_SUBGROUPS.reduce((acc, s) => acc + s.terms.length, 0);
 
 const glossaryContextByDomain =
   isEnabled && FEATURE_EXPLORER_GLOSSARY_CONTEXT
@@ -261,6 +266,9 @@ const quickPathSections = quickPaths.map((path) => ({
         })}
       </div>
     </section>
+
+    <!-- Nexus Architecture Section -->
+    <NexusExplorerSection />
 
     <section class="tag-hub-section" id="quick-paths">
       <div class="tag-hub-section__header">

@@ -1,0 +1,368 @@
+---
+/**
+ * Nexus Explorer Section
+ * 
+ * Renders the Nexus Architecture topic with subgroups and quick journeys
+ * as a first-class section in the SORA Explorer.
+ */
+import { NEXUS_TOPIC, NEXUS_SUBGROUPS, NEXUS_QUICK_JOURNEYS, titleToSlug } from '~/data/nexus-explorer.config';
+
+interface Props {
+  collapsed?: boolean;
+}
+
+const { collapsed = false } = Astro.props;
+---
+
+<section class="nexus-explorer-section" id="nexus-architecture" data-collapsed={collapsed}>
+  <div class="nexus-explorer-section__header">
+    <div class="nexus-explorer-section__icon">{NEXUS_TOPIC.icon}</div>
+    <div class="nexus-explorer-section__meta">
+      <span class="nexus-explorer-section__kicker">Architecture Deep Dive</span>
+      <h2 class="nexus-explorer-section__title">{NEXUS_TOPIC.title}</h2>
+    </div>
+  </div>
+  
+  <p class="nexus-explorer-section__description">{NEXUS_TOPIC.description}</p>
+  
+  <!-- Quick Journeys -->
+  <div class="nexus-explorer-journeys">
+    <h3 class="nexus-explorer-journeys__title">Quick Journeys</h3>
+    <div class="nexus-explorer-journeys__grid">
+      {NEXUS_QUICK_JOURNEYS.map((journey) => (
+        <article class="nexus-journey-card">
+          <h4 class="nexus-journey-card__title">{journey.title}</h4>
+          <p class="nexus-journey-card__description">{journey.description}</p>
+          <div class="nexus-journey-card__steps">
+            {journey.steps.map((step, index) => (
+              <a 
+                href={`/glossary/${step.slug}`} 
+                class="nexus-journey-card__step"
+                title={step.summary}
+              >
+                <span class="nexus-journey-card__step-number">{index + 1}</span>
+                <span class="nexus-journey-card__step-title">{step.title}</span>
+              </a>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+  
+  <!-- Subgroups -->
+  <div class="nexus-explorer-subgroups">
+    <h3 class="nexus-explorer-subgroups__title">Explore by Topic</h3>
+    <div class="nexus-explorer-subgroups__grid">
+      {NEXUS_SUBGROUPS.map((subgroup) => (
+        <details class="nexus-subgroup" open>
+          <summary class="nexus-subgroup__header">
+            <h4 class="nexus-subgroup__title">{subgroup.title}</h4>
+            <span class="nexus-subgroup__count">{subgroup.terms.length} terms</span>
+          </summary>
+          <p class="nexus-subgroup__description">{subgroup.description}</p>
+          <div class="nexus-subgroup__terms">
+            {subgroup.terms.slice(0, 8).map((term) => (
+              <a 
+                href={`/glossary/${titleToSlug(term)}`} 
+                class="nexus-subgroup__term"
+              >
+                {term}
+              </a>
+            ))}
+            {subgroup.terms.length > 8 && (
+              <span class="nexus-subgroup__more">
+                +{subgroup.terms.length - 8} more
+              </span>
+            )}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+  
+  <!-- View All Link -->
+  <div class="nexus-explorer-section__footer">
+    <a href="/glossary?tag=Nexus+Architecture" class="nexus-explorer-section__cta">
+      View all {NEXUS_SUBGROUPS.reduce((acc, s) => acc + s.terms.length, 0)} Nexus terms in Glossary →
+    </a>
+  </div>
+</section>
+
+<style>
+  .nexus-explorer-section {
+    margin-top: var(--space-12);
+    padding: var(--space-8);
+    background: linear-gradient(135deg, var(--color-surface-elevated) 0%, var(--color-surface) 100%);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+  
+  .nexus-explorer-section__header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+  
+  .nexus-explorer-section__icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+  
+  .nexus-explorer-section__kicker {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-1);
+  }
+  
+  .nexus-explorer-section__title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-text);
+  }
+  
+  .nexus-explorer-section__description {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    max-width: 80ch;
+    margin-bottom: var(--space-8);
+    line-height: 1.6;
+  }
+  
+  /* Quick Journeys */
+  .nexus-explorer-journeys {
+    margin-bottom: var(--space-10);
+  }
+  
+  .nexus-explorer-journeys__title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+    color: var(--color-text);
+  }
+  
+  .nexus-explorer-journeys__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-6);
+  }
+  
+  .nexus-journey-card {
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .nexus-journey-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nexus-journey-card__title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin: 0 0 var(--space-2);
+    color: var(--color-text);
+  }
+  
+  .nexus-journey-card__description {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    line-height: 1.5;
+  }
+  
+  .nexus-journey-card__steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  
+  .nexus-journey-card__step {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--text-xs);
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+  
+  .nexus-journey-card__step:hover {
+    background: var(--color-accent-subtle);
+    border-color: var(--color-accent);
+  }
+  
+  .nexus-journey-card__step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    background: var(--color-accent);
+    color: var(--color-text-on-accent);
+    border-radius: 50%;
+  }
+  
+  .nexus-journey-card__step-title {
+    font-weight: 500;
+  }
+  
+  /* Subgroups */
+  .nexus-explorer-subgroups__title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+    color: var(--color-text);
+  }
+  
+  .nexus-explorer-subgroups__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-4);
+  }
+  
+  .nexus-subgroup {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  
+  .nexus-subgroup__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    cursor: pointer;
+    user-select: none;
+    background: var(--color-surface-elevated);
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.15s ease;
+  }
+  
+  .nexus-subgroup__header:hover {
+    background: var(--color-surface-hover);
+  }
+  
+  .nexus-subgroup[open] .nexus-subgroup__header {
+    border-bottom-color: var(--color-accent);
+  }
+  
+  .nexus-subgroup__title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-text);
+  }
+  
+  .nexus-subgroup__count {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+  }
+  
+  .nexus-subgroup__description {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    padding: var(--space-3) var(--space-4);
+    margin: 0;
+    border-bottom: 1px solid var(--color-border);
+    line-height: 1.5;
+  }
+  
+  .nexus-subgroup__terms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: var(--space-4);
+  }
+  
+  .nexus-subgroup__term {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  
+  .nexus-subgroup__term:hover {
+    background: var(--color-accent-subtle);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  
+  .nexus-subgroup__more {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+  
+  /* Footer */
+  .nexus-explorer-section__footer {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+  }
+  
+  .nexus-explorer-section__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    background: var(--color-accent);
+    color: var(--color-text-on-accent);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+  }
+  
+  .nexus-explorer-section__cta:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-1px);
+  }
+  
+  /* Responsive */
+  @media (max-width: 640px) {
+    .nexus-explorer-section {
+      padding: var(--space-5);
+    }
+    
+    .nexus-explorer-section__header {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    
+    .nexus-explorer-journeys__grid,
+    .nexus-explorer-subgroups__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

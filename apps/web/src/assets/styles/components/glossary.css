@@ -765,6 +765,57 @@
   outline: none;
 }
 
+/* Navigation links container */
+.glossary-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+/* View in Explorer link for Nexus terms */
+.glossary-explorer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: linear-gradient(135deg, var(--color-surface-elevated) 0%, var(--color-surface) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: all var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.glossary-explorer-link:hover,
+.glossary-explorer-link:focus-visible {
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  outline: none;
+}
+
+.glossary-explorer-link__icon {
+  font-size: 1rem;
+}
+
+.glossary-explorer-link__subgroup {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .glossary-nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .glossary-note {
   margin-top: var(--space-4);
   display: flex;
