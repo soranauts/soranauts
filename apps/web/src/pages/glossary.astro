@@ -14,6 +14,7 @@ import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
 import { getGlossaryMetadata } from '~/lib/glossary/glossary-loader';
 import { getCachedGlossaryTerms } from '~/lib/glossary/glossary-data';
 import { FEATURED_GLOSSARY_SLUGS } from '~/content/glossary/glossary.featured';
+import { GLOSSARY_STATS } from '~/lib/glossary/stats';
 
 // Get initial term from URL hash for deep linking
 const initialTerm = Astro.url.hash.replace('#', '');
@@ -43,9 +44,10 @@ const formattedLastUpdated =
     ? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(lastUpdated))
     : '—';
 
+// Use live stats from the stats module for accurate counts
 const heroStats = [
-  { label: 'Glossary terms', value: totalCount.toLocaleString('en-US') },
-  { label: 'Categories tracked', value: categories.size ? categories.size.toString() : '—' },
+  { label: 'Glossary terms', value: GLOSSARY_STATS.totalTerms.toLocaleString('en-US') },
+  { label: 'Categories', value: GLOSSARY_STATS.totalCategories.toString() },
   { label: 'Last update', value: formattedLastUpdated },
 ];
 
@@ -173,24 +175,27 @@ const breadcrumbSchema = {
     
     <Header {...headerData} isSticky showRssFeed showToggleTheme />
   
-  <main class="glossary-page px-4 md:px-6 lg:px-12 pt-8 md:pt-10 lg:pt-12 pb-12 md:pb-16 lg:pb-20 mx-auto max-w-7xl">
+  <main id="main-content" class="glossary-page px-4 md:px-6 lg:px-12 pt-8 md:pt-10 lg:pt-12 pb-12 md:pb-16 lg:pb-20 mx-auto max-w-7xl">
     <GlossaryHero kicker="Reference" title="SORA Glossary" description={heroCopy} stats={heroStats} />
 
     <GlossarySearchShell title="Search the SORA glossary" description="Look up tokens, governance models, DeFi concepts, and cross-chain primitives. Filters and shortcuts keep research quick.">
       <div id="glossary-search-controls" class="glossary-search glossary-search--controls" />
     </GlossarySearchShell>
 
-    <section class="glossary-section" id="glossary-featured-terms">
+    <section class="glossary-section" id="glossary-featured-terms" aria-labelledby="featured-terms-heading">
       <div class="glossary-section__header">
         <div>
-          <h2 class="glossary-section__title">Featured glossary terms</h2>
+          <h2 id="featured-terms-heading" class="glossary-section__title">Featured glossary terms</h2>
           <p class="glossary-section__description">
             Start with the most-referenced SORA vocabulary—from elastic tokenomics through governance and cross-chain infrastructure.
           </p>
         </div>
+        <a href="#glossary-search-controls" class="glossary-section__cta">
+          View all {GLOSSARY_STATS.totalTerms} terms →
+        </a>
       </div>
-      <div class="glossary-grid">
-        {featuredTerms.map((term) => {
+      <div class="glossary-grid" role="list">
+        {featuredTerms.slice(0, 16).map((term) => {
           const summary = toExcerpt(term.summary ?? term.definition);
           const tags = Array.isArray(term.relatedTags) && term.relatedTags.length
             ? term.relatedTags

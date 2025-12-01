@@ -92,9 +92,6 @@ const domainSections = domainOrder.map((domain) => ({
 const heroCopy =
   'Navigate the SORA knowledge graph in one place. SORA Explorer unifies glossary terms, governance updates, DeFi strategies, and ecosystem signals so you can map and understand the network.';
 
-// Calculate total Nexus terms for stats
-const nexusTermCount = NEXUS_SUBGROUPS.reduce((acc, s) => acc + s.terms.length, 0);
-
 const glossaryContextByDomain =
   isEnabled && FEATURE_EXPLORER_GLOSSARY_CONTEXT
     ? Object.fromEntries(
@@ -169,6 +166,7 @@ const quickPathSections = quickPaths.map((path) => ({
 <PageLayout metadata={metadata}>
   {collectionJsonLd && <script is:inline type="application/ld+json">{JSON.stringify(collectionJsonLd)}</script>}
   <main
+    id="main-content"
     class="tag-hub-page px-4 md:px-6 lg:px-12 pt-8 md:pt-10 lg:pt-12 pb-12 md:pb-16 lg:pb-20 mx-auto max-w-7xl"
     data-pagefind-body
     data-pagefind-meta={pagefindMeta ? JSON.stringify(pagefindMeta) : undefined}

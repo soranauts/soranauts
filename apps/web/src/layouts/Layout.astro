@@ -59,6 +59,10 @@ const canonicalHref = metadata.canonical ?? new URL(Astro.url.pathname, SITE.sit
     <link rel="canonical" href={canonicalHref} />
   </head>
   <body>
+    <!-- Skip to main content link for keyboard/screen reader users -->
+    <a href="#main-content" class="skip-to-content">
+      Skip to main content
+    </a>
     <slot />
     <CustomStyles />
     <BasicScripts />
