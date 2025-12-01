@@ -13,6 +13,7 @@ import { footerData, headerData } from '~/navigation';
 import { FEATURE_GLOSSARY_V2025 } from '~/config/feature-flags';
 import { getGlossaryMetadata } from '~/lib/glossary/glossary-loader';
 import { getCachedGlossaryTerms } from '~/lib/glossary/glossary-data';
+import { FEATURED_GLOSSARY_SLUGS } from '~/content/glossary/glossary.featured';
 
 // Get initial term from URL hash for deep linking
 const initialTerm = Astro.url.hash.replace('#', '');
@@ -64,33 +65,38 @@ const sortTerms = [...glossaryTerms].sort((a, b) => {
   return a.term.localeCompare(b.term, 'en');
 });
 
-const FEATURED_SORA_SLUGS = [
+// Use the curated featured slugs from the central module
+// This includes both legacy SORA terms and new Nexus Architecture terms
+const LEGACY_FEATURED_SLUGS = [
   'xor',
   'val',
   'pswap',
   'polkaswap',
-  'token-bonding-curve',
-  'elastic-supply',
-  'sora-parliament',
-  'sora-council',
   'sora-v3',
-  'sora-v2',
-  'sora-card',
-  'iroha-special-instructions',
 ] as const;
 
-const featuredSlugSet = new Set(FEATURED_SORA_SLUGS);
+// Combine legacy and Nexus featured terms
+const allFeaturedSlugs = [...LEGACY_FEATURED_SLUGS, ...FEATURED_GLOSSARY_SLUGS];
+const featuredSlugSet = new Set(allFeaturedSlugs);
 
-const curatedFeatured = FEATURED_SORA_SLUGS.flatMap((slug) => {
+const curatedFeatured = allFeaturedSlugs.flatMap((slug) => {
   const match = sortTerms.find((term) => term.slug === slug);
   return match ? [match] : [];
+});
+
+// Remove duplicates (in case a term appears in both lists)
+const seenSlugs = new Set<string>();
+const dedupedFeatured = curatedFeatured.filter((term) => {
+  if (seenSlugs.has(term.slug)) return false;
+  seenSlugs.add(term.slug);
+  return true;
 });
 
 const fallbackFeatured = sortTerms.filter((term) => !featuredSlugSet.has(term.slug));
 
 const featuredTerms = [
-  ...curatedFeatured,
-  ...fallbackFeatured.slice(0, Math.max(0, 12 - curatedFeatured.length)),
+  ...dedupedFeatured,
+  ...fallbackFeatured.slice(0, Math.max(0, 16 - dedupedFeatured.length)),
 ];
 
 const buildMeta = (term: (typeof glossaryTerms)[number]): string[] => {
