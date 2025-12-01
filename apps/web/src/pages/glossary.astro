@@ -194,7 +194,7 @@ const breadcrumbSchema = {
           View all {GLOSSARY_STATS.totalTerms} terms →
         </a>
       </div>
-      <div class="glossary-grid" role="list">
+      <div class="glossary-grid">
         {featuredTerms.slice(0, 16).map((term) => {
           const summary = toExcerpt(term.summary ?? term.definition);
           const tags = Array.isArray(term.relatedTags) && term.relatedTags.length
