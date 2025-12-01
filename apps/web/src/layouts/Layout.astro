@@ -13,7 +13,7 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
-import SimpleCookieConsent from '~/components/SimpleCookieConsent.astro';
+// import SimpleCookieConsent from '~/components/SimpleCookieConsent.astro';
 import SearchModal from '~/components/SearchModal.astro';
 import SchemaMarkup from '~/components/SEO/SchemaMarkup.astro';
 import CustomStyles from '~/components/CustomStyles.astro';
@@ -62,7 +62,7 @@ const canonicalHref = metadata.canonical ?? new URL(Astro.url.pathname, SITE.sit
     <slot />
     <CustomStyles />
     <BasicScripts />
-    <SimpleCookieConsent />
+    {/* <SimpleCookieConsent /> */}
     <SearchModal />
     <SpeedInsights />
     {/* <VercelAnalytics /> */}
