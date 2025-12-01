@@ -22,6 +22,13 @@ export const ACRONYM_TOKENS = new Set([
   'api',
   // Payment types
   'qr',
+  // Nexus-specific acronyms
+  'ivm',
+  'wsv',
+  'sfq',
+  'teu',
+  'da',
+  'zk',
 ]);
 
 export const HIDDEN_RENDER_SLUGS = new Set(['alias-redirect', 'autolinkconfig']);
@@ -46,6 +53,14 @@ const formatTitleToken = (token: string): string => {
 export const formatGlossaryTitle = (value?: string | null): string => {
   const source = value?.trim();
   if (!source) return '';
+  
+  // If the title contains uppercase letters (indicating it's already formatted),
+  // preserve it as-is. This handles titles like "Start-Time Fair Queuing (SFQ)"
+  // or "Iroha Virtual Machine (IVM)" that should not be reformatted.
+  if (/[A-Z]/.test(source)) {
+    return source;
+  }
+  
   const tokens = source.split(DISPLAY_DELIMITERS).filter(Boolean);
   if (!tokens.length) return source;
   // Check if entire string is a single acronym token (e.g., "TONSwap" -> "TONSWAP")
@@ -55,8 +70,6 @@ export const formatGlossaryTitle = (value?: string | null): string => {
       return normalized.toUpperCase();
     }
   }
-  const alreadyFormatted = /[A-Z]/.test(source) && !/[-_]/.test(source);
-  if (alreadyFormatted) return source;
   return tokens.map(formatAcronymAwareToken).join(' ');
 };
 
