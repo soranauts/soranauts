@@ -37,6 +37,11 @@ const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '..');
 const SRC = path.join(repoRoot, 'glossary.v2025.json');
 
+if (process.env.SKIP_GLOSSARY_GENERATOR === 'true') {
+  console.log('[generate-glossary-json] SKIP_GLOSSARY_GENERATOR=true → using committed JSON payloads.');
+  process.exit(0);
+}
+
 const OUT_FULL = path.join(repoRoot, 'apps/web/public/glossary.json');
 const OUT_IDX = path.join(repoRoot, 'apps/web/public/glossary.index.json');
 const OUT_DATA = path.join(repoRoot, 'apps/web/public/data/glossary.v2025.json');
