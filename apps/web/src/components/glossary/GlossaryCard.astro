@@ -13,14 +13,22 @@ const { href, title, summary, category, tags = [], meta = [], badge } = Astro.pr
 
 import { formatCategoryLabel } from '~/lib/glossary/format';
 const categoryLabel = category ? formatCategoryLabel(category) : undefined;
-const tagList = tags.slice(0, 6);
+
+const seenTags = new Set<string>();
+const dedupedTags = tags.filter((tag) => {
+  const key = tag.toLowerCase();
+  if (seenTags.has(key)) return false;
+  seenTags.add(key);
+  return Boolean(tag);
+});
+const tagList = dedupedTags.slice(0, 6);
 ---
 
 <a class="glossary-card" href={href} role="group">
   {(categoryLabel || badge) && (
     <div class="glossary-card__header">
-      {categoryLabel && <span class="glossary-chip">{categoryLabel}</span>}
-      {badge && <span class="glossary-chip glossary-chip--neutral">{badge}</span>}
+      {categoryLabel && <span class="chip chip--sm chip--neutral">{categoryLabel}</span>}
+      {badge && <span class="chip chip--sm chip--accent">{badge}</span>}
     </div>
   )}
   <h3 class="glossary-card__title">{title}</h3>
@@ -35,7 +43,7 @@ const tagList = tags.slice(0, 6);
   {tagList.length > 0 && (
     <div class="glossary-card__tags" aria-label="Related tags">
       {tagList.map((tag) => (
-        <span class="glossary-chip glossary-chip--muted">#{formatCategoryLabel(tag)}</span>
+        <span class="chip chip--sm chip--muted">#{formatCategoryLabel(tag)}</span>
       ))}
     </div>
   )}

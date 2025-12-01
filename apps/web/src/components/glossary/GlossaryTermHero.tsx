@@ -44,7 +44,7 @@ export function GlossaryTermHero({
             {title}
           </h1>
           {category && (
-            <span className="glossary-chip w-max">
+            <span className="chip chip--md chip--neutral">
               {category}
             </span>
           )}
@@ -61,7 +61,7 @@ export function GlossaryTermHero({
             {normalizedChips.map((chip) => (
               <a
                 key={chip.href}
-                className="glossary-chip glossary-chip--muted"
+                className="chip chip--sm chip--muted"
                 href={chip.href}
               >
                 {chip.term}

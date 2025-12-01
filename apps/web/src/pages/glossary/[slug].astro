@@ -589,23 +589,23 @@ const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefine
       <>
         <GlossaryHero title={displayTermTitle} stats={heroStats} kicker="Reference">
           <div class="flex flex-col gap-3 text-base text-slate-700 dark:text-slate-200">
-            {categoryLabel && <span class="glossary-chip w-max">{categoryLabel}</span>}
+            {categoryLabel && <span class="chip chip--md chip--neutral">{categoryLabel}</span>}
             {heroSummary && <p class="text-base leading-relaxed">{heroSummary}</p>}
           </div>
           {(relatedChipLinks.length > 0 || parentEntity || showCanonicalBadge) && (
             <div class="glossary-detail__chips mb-8 md:mb-10">
-              {relatedChipLinks.map((chip) => (
-                <a class="glossary-chip glossary-chip--muted" href={chip.href}>
+            {relatedChipLinks.map((chip) => (
+              <a class="chip chip--sm chip--muted" href={chip.href}>
                   {chip.term}
                 </a>
               ))}
               {parentEntity && (
-                <a class="glossary-chip glossary-chip--muted" href={`/glossary/${parentEntity.slug}`}>
+                <a class="chip chip--sm chip--muted" href={`/glossary/${parentEntity.slug}`}>
                   Parent · {parentEntity.term}
                 </a>
               )}
               {showCanonicalBadge && (
-                <span class="glossary-chip glossary-chip--neutral glossary-chip--canonical" aria-label="Canonical glossary term">
+                <span class="chip chip--sm chip--neutral chip--canonical" aria-label="Canonical glossary term">
                   Canonical
                 </span>
               )}
@@ -662,7 +662,7 @@ const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefine
               <ul class="glossary-list">
                 {aliasList.map((alias) => (
                   <li>
-                    <a class="glossary-chip glossary-chip--muted" href={`/glossary#${encodeURIComponent(alias)}`}>
+                    <a class="chip chip--sm chip--muted" href={`/glossary#${encodeURIComponent(alias)}`}>
                       {alias}
                     </a>
                   </li>
@@ -676,7 +676,7 @@ const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefine
               <ul class="glossary-list">
                 {glossaryTags.map((tag) => (
                   <li>
-                    <a class="glossary-chip glossary-chip--muted" href={`/glossary#${encodeURIComponent(tag)}`}>
+                    <a class="chip chip--sm chip--muted" href={`/glossary#${encodeURIComponent(tag)}`}>
                       #{formatLabel(tag)}
                     </a>
                   </li>
@@ -690,7 +690,7 @@ const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefine
               <ul class="glossary-list">
                 {relatedTermsWithLinks.map((related) => (
                   <li>
-                    <a class="glossary-chip glossary-chip--muted" href={`/glossary/${related.slug}`}>
+                    <a class="chip chip--sm chip--muted" href={`/glossary/${related.slug}`}>
                       {related.term}
                     </a>
                   </li>
