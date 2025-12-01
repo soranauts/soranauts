@@ -17,6 +17,8 @@
     "prebuild": "pnpm generate:glossary && pnpm web:glossary:redirects && pnpm web:tags:build && tsx scripts/validate-taxonomy.ts && tsx scripts/indexGlossaryV2.ts && pnpm og:build && pnpm og:manifest && (node -e \"if(process.env.SKIP_OG_VALIDATION) process.exit(0)\" || true) && pnpm og:validate",
     "sitemap:glossary": "tsx scripts/generate-glossary-sitemaps.ts",
     "verify:og": "tsx scripts/validate-og.ts",
+    "verify:nexus": "bash tools/verify_nexus_glossary.sh https://soranauts.com",
+    "verify:nexus:preview": "bash tools/verify_nexus_glossary.sh $PREVIEW_URL",
     "og:build": "tsx scripts/build-og.ts",
     "og:build-glossary": "tsx scripts/build-og-glossary.ts",
     "og:manifest": "tsx scripts/build-og-manifest.ts",
