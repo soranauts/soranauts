@@ -4,77 +4,111 @@
  * 
  * Renders the Nexus Architecture topic with subgroups and quick journeys
  * as a first-class section in the SORA Explorer.
+ * 
+ * Accessibility:
+ * - Proper heading hierarchy (h2 → h3 → h4)
+ * - ARIA labels for collapsible sections
+ * - Focus states for keyboard navigation
+ * - Reduced motion support
  */
 import { NEXUS_TOPIC, NEXUS_SUBGROUPS, NEXUS_QUICK_JOURNEYS, titleToSlug } from '~/data/nexus-explorer.config';
+import { GLOSSARY_STATS } from '~/lib/glossary/stats';
 
 interface Props {
   collapsed?: boolean;
 }
 
 const { collapsed = false } = Astro.props;
+const totalNexusTerms = GLOSSARY_STATS.totalTerms;
 ---
 
-<section class="nexus-explorer-section" id="nexus-architecture" data-collapsed={collapsed}>
+<section 
+  class="nexus-explorer-section" 
+  id="nexus-architecture" 
+  aria-labelledby="nexus-section-title"
+  data-collapsed={collapsed}
+>
   <div class="nexus-explorer-section__header">
-    <div class="nexus-explorer-section__icon">{NEXUS_TOPIC.icon}</div>
+    <div class="nexus-explorer-section__icon" aria-hidden="true">{NEXUS_TOPIC.icon}</div>
     <div class="nexus-explorer-section__meta">
       <span class="nexus-explorer-section__kicker">Architecture Deep Dive</span>
-      <h2 class="nexus-explorer-section__title">{NEXUS_TOPIC.title}</h2>
+      <h2 id="nexus-section-title" class="nexus-explorer-section__title">{NEXUS_TOPIC.title}</h2>
+    </div>
+    <div class="nexus-explorer-section__stat">
+      <span class="nexus-explorer-section__stat-value">{totalNexusTerms}</span>
+      <span class="nexus-explorer-section__stat-label">Nexus Terms</span>
     </div>
   </div>
   
   <p class="nexus-explorer-section__description">{NEXUS_TOPIC.description}</p>
   
   <!-- Quick Journeys -->
-  <div class="nexus-explorer-journeys">
-    <h3 class="nexus-explorer-journeys__title">Quick Journeys</h3>
+  <div class="nexus-explorer-journeys" role="region" aria-labelledby="journeys-heading">
+    <h3 id="journeys-heading" class="nexus-explorer-journeys__title">Quick Journeys</h3>
     <div class="nexus-explorer-journeys__grid">
       {NEXUS_QUICK_JOURNEYS.map((journey) => (
-        <article class="nexus-journey-card">
-          <h4 class="nexus-journey-card__title">{journey.title}</h4>
+        <article class="nexus-journey-card" aria-labelledby={`journey-${journey.id}`}>
+          <h4 id={`journey-${journey.id}`} class="nexus-journey-card__title">{journey.title}</h4>
           <p class="nexus-journey-card__description">{journey.description}</p>
-          <div class="nexus-journey-card__steps">
+          <nav class="nexus-journey-card__steps" aria-label={`${journey.title} steps`}>
             {journey.steps.map((step, index) => (
               <a 
                 href={`/glossary/${step.slug}`} 
                 class="nexus-journey-card__step"
-                title={step.summary}
+                aria-label={`Step ${index + 1}: ${step.title}${step.summary ? ` - ${step.summary}` : ''}`}
               >
-                <span class="nexus-journey-card__step-number">{index + 1}</span>
+                <span class="nexus-journey-card__step-number" aria-hidden="true">{index + 1}</span>
                 <span class="nexus-journey-card__step-title">{step.title}</span>
               </a>
             ))}
-          </div>
+          </nav>
         </article>
       ))}
     </div>
   </div>
   
   <!-- Subgroups -->
-  <div class="nexus-explorer-subgroups">
-    <h3 class="nexus-explorer-subgroups__title">Explore by Topic</h3>
+  <div class="nexus-explorer-subgroups" role="region" aria-labelledby="subgroups-heading">
+    <h3 id="subgroups-heading" class="nexus-explorer-subgroups__title">Explore by Topic</h3>
     <div class="nexus-explorer-subgroups__grid">
-      {NEXUS_SUBGROUPS.map((subgroup) => (
-        <details class="nexus-subgroup" open>
-          <summary class="nexus-subgroup__header">
+      {NEXUS_SUBGROUPS.map((subgroup, idx) => (
+        <details 
+          class="nexus-subgroup" 
+          open={idx < 3}
+          id={`subgroup-${subgroup.id}`}
+        >
+          <summary 
+            class="nexus-subgroup__header"
+            aria-controls={`subgroup-content-${subgroup.id}`}
+          >
             <h4 class="nexus-subgroup__title">{subgroup.title}</h4>
-            <span class="nexus-subgroup__count">{subgroup.terms.length} terms</span>
+            <span class="nexus-subgroup__count" aria-label={`${subgroup.terms.length} terms`}>
+              {subgroup.terms.length} terms
+            </span>
+            <span class="nexus-subgroup__chevron" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
           </summary>
-          <p class="nexus-subgroup__description">{subgroup.description}</p>
-          <div class="nexus-subgroup__terms">
-            {subgroup.terms.slice(0, 8).map((term) => (
-              <a 
-                href={`/glossary/${titleToSlug(term)}`} 
-                class="nexus-subgroup__term"
-              >
-                {term}
-              </a>
-            ))}
-            {subgroup.terms.length > 8 && (
-              <span class="nexus-subgroup__more">
-                +{subgroup.terms.length - 8} more
-              </span>
-            )}
+          <div id={`subgroup-content-${subgroup.id}`} class="nexus-subgroup__content">
+            <p class="nexus-subgroup__description">{subgroup.description}</p>
+            <div class="nexus-subgroup__terms" role="list">
+              {subgroup.terms.slice(0, 8).map((term) => (
+                <a 
+                  href={`/glossary/${titleToSlug(term)}`} 
+                  class="nexus-subgroup__term"
+                  role="listitem"
+                >
+                  {term}
+                </a>
+              ))}
+              {subgroup.terms.length > 8 && (
+                <span class="nexus-subgroup__more" aria-label={`${subgroup.terms.length - 8} more terms available`}>
+                  +{subgroup.terms.length - 8} more
+                </span>
+              )}
+            </div>
           </div>
         </details>
       ))}
@@ -84,7 +118,10 @@ const { collapsed = false } = Astro.props;
   <!-- View All Link -->
   <div class="nexus-explorer-section__footer">
     <a href="/glossary?tag=Nexus+Architecture" class="nexus-explorer-section__cta">
-      View all {NEXUS_SUBGROUPS.reduce((acc, s) => acc + s.terms.length, 0)} Nexus terms in Glossary →
+      <span>View all {totalNexusTerms} Nexus terms in Glossary</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </a>
   </div>
 </section>
@@ -96,11 +133,13 @@ const { collapsed = false } = Astro.props;
     background: linear-gradient(135deg, var(--color-surface-elevated) 0%, var(--color-surface) 100%);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
+    scroll-margin-top: 6rem; /* Offset for sticky header */
   }
   
   .nexus-explorer-section__header {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
     gap: var(--space-4);
     margin-bottom: var(--space-4);
   }
@@ -108,6 +147,11 @@ const { collapsed = false } = Astro.props;
   .nexus-explorer-section__icon {
     font-size: 2.5rem;
     line-height: 1;
+  }
+  
+  .nexus-explorer-section__meta {
+    flex: 1;
+    min-width: 200px;
   }
   
   .nexus-explorer-section__kicker {
@@ -125,6 +169,31 @@ const { collapsed = false } = Astro.props;
     font-weight: 700;
     margin: 0;
     color: var(--color-text);
+  }
+  
+  .nexus-explorer-section__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-3) var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+  
+  .nexus-explorer-section__stat-value {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+  
+  .nexus-explorer-section__stat-label {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: var(--space-1);
   }
   
   .nexus-explorer-section__description {
@@ -166,6 +235,11 @@ const { collapsed = false } = Astro.props;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   
+  .nexus-journey-card:focus-within {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  
   .nexus-journey-card__title {
     font-size: var(--text-base);
     font-weight: 600;
@@ -200,9 +274,16 @@ const { collapsed = false } = Astro.props;
     transition: background-color 0.15s ease, border-color 0.15s ease;
   }
   
-  .nexus-journey-card__step:hover {
+  .nexus-journey-card__step:hover,
+  .nexus-journey-card__step:focus {
     background: var(--color-accent-subtle);
     border-color: var(--color-accent);
+    outline: none;
+  }
+  
+  .nexus-journey-card__step:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
   }
   
   .nexus-journey-card__step-number {
@@ -241,29 +322,45 @@ const { collapsed = false } = Astro.props;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     overflow: hidden;
+    scroll-margin-top: 6rem;
   }
   
   .nexus-subgroup__header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: var(--space-3);
     padding: var(--space-4);
     cursor: pointer;
     user-select: none;
     background: var(--color-surface-elevated);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid transparent;
     transition: background-color 0.15s ease;
+    list-style: none;
+  }
+  
+  .nexus-subgroup__header::-webkit-details-marker {
+    display: none;
   }
   
   .nexus-subgroup__header:hover {
     background: var(--color-surface-hover);
   }
   
+  .nexus-subgroup__header:focus {
+    outline: none;
+  }
+  
+  .nexus-subgroup__header:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+  }
+  
   .nexus-subgroup[open] .nexus-subgroup__header {
-    border-bottom-color: var(--color-accent);
+    border-bottom-color: var(--color-border);
   }
   
   .nexus-subgroup__title {
+    flex: 1;
     font-size: var(--text-sm);
     font-weight: 600;
     margin: 0;
@@ -276,6 +373,33 @@ const { collapsed = false } = Astro.props;
     background: var(--color-surface);
     padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-sm);
+  }
+  
+  .nexus-subgroup__chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    transition: transform 0.2s ease;
+  }
+  
+  .nexus-subgroup[open] .nexus-subgroup__chevron {
+    transform: rotate(180deg);
+  }
+  
+  .nexus-subgroup__content {
+    animation: slideDown 0.2s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   .nexus-subgroup__description {
@@ -307,10 +431,17 @@ const { collapsed = false } = Astro.props;
     transition: all 0.15s ease;
   }
   
-  .nexus-subgroup__term:hover {
+  .nexus-subgroup__term:hover,
+  .nexus-subgroup__term:focus {
     background: var(--color-accent-subtle);
     border-color: var(--color-accent);
     color: var(--color-accent);
+    outline: none;
+  }
+  
+  .nexus-subgroup__term:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
   }
   
   .nexus-subgroup__more {
@@ -348,6 +479,35 @@ const { collapsed = false } = Astro.props;
     transform: translateY(-1px);
   }
   
+  .nexus-explorer-section__cta:focus-visible {
+    outline: 2px solid var(--color-text-on-accent);
+    outline-offset: 2px;
+  }
+  
+  .nexus-explorer-section__cta svg {
+    flex-shrink: 0;
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .nexus-journey-card,
+    .nexus-journey-card__step,
+    .nexus-subgroup__header,
+    .nexus-subgroup__chevron,
+    .nexus-subgroup__term,
+    .nexus-explorer-section__cta {
+      transition: none;
+    }
+    
+    .nexus-subgroup__content {
+      animation: none;
+    }
+    
+    .nexus-explorer-section__cta:hover {
+      transform: none;
+    }
+  }
+  
   /* Responsive */
   @media (max-width: 640px) {
     .nexus-explorer-section {
@@ -356,12 +516,31 @@ const { collapsed = false } = Astro.props;
     
     .nexus-explorer-section__header {
       flex-direction: column;
+      gap: var(--space-3);
+    }
+    
+    .nexus-explorer-section__stat {
+      align-self: flex-start;
+      flex-direction: row;
       gap: var(--space-2);
+    }
+    
+    .nexus-explorer-section__stat-label {
+      margin-top: 0;
     }
     
     .nexus-explorer-journeys__grid,
     .nexus-explorer-subgroups__grid {
       grid-template-columns: 1fr;
+    }
+    
+    .nexus-journey-card__steps {
+      gap: var(--space-1);
+    }
+    
+    .nexus-journey-card__step {
+      flex: 1 1 auto;
+      justify-content: center;
     }
   }
 </style>

@@ -425,12 +425,23 @@ const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefine
 >
   <Header {...headerData} isSticky showRssFeed showToggleTheme />
   
-  <main class="glossary-detail px-4 md:px-6 lg:px-12 pt-10 md:pt-12 lg:pt-14 pb-16 md:pb-20 mx-auto max-w-5xl">
+  <main id="main-content" class="glossary-detail px-4 md:px-6 lg:px-12 pt-10 md:pt-12 lg:pt-14 pb-16 md:pb-20 mx-auto max-w-5xl">
     <div class="glossary-nav-links">
-      <a class="glossary-back-link" href="/glossary">← Back to glossary</a>
+      <a class="glossary-back-link" href="/glossary" aria-label="Back to glossary index">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Back to glossary</span>
+      </a>
       {isNexusTerm && (
-        <a class="glossary-explorer-link" href={`/explore#nexus-architecture`}>
-          <span class="glossary-explorer-link__icon">🔷</span>
+        <a 
+          class="glossary-explorer-link" 
+          href="/explore#nexus-architecture"
+          aria-label={`View ${displayTermTitle} in SORA Explorer${nexusSubgroup ? ` under ${nexusSubgroup.title}` : ''}`}
+        >
+          <svg class="glossary-explorer-link__icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M9 1L11.5 6.5L17 9L11.5 11.5L9 17L6.5 11.5L1 9L6.5 6.5L9 1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <span>View in Explorer</span>
           {nexusSubgroup && <span class="glossary-explorer-link__subgroup">· {nexusSubgroup.title}</span>}
         </a>
