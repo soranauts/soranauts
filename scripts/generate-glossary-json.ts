@@ -37,7 +37,14 @@ const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '..');
 const SRC = path.join(repoRoot, 'glossary.v2025.json');
 
-if (process.env.SKIP_GLOSSARY_GENERATOR === 'true') {
+const shouldSkipGenerator = (() => {
+  const raw = process.env.SKIP_GLOSSARY_GENERATOR;
+  if (!raw) return false;
+  const normalized = raw.trim().toLowerCase();
+  return normalized === 'true' || normalized === '1' || normalized === 'yes' || normalized === 'on';
+})();
+
+if (shouldSkipGenerator) {
   console.log('[generate-glossary-json] SKIP_GLOSSARY_GENERATOR=true → using committed JSON payloads.');
   process.exit(0);
 }
