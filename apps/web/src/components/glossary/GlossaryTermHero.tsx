@@ -8,6 +8,22 @@ export interface GlossaryTermHeroProps {
 }
 
 /**
+ * Dedupe and sort chips alphabetically.
+ * Ensures unique chips per term and stable ordering.
+ */
+function normalizeChips(chips: Array<{ term: string; href: string }>): Array<{ term: string; href: string }> {
+  const seen = new Set<string>();
+  return chips
+    .filter((chip) => {
+      const key = chip.href.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .sort((a, b) => a.term.localeCompare(b.term, 'en'));
+}
+
+/**
  * Rich gradient hero header for glossary term pages.
  * Uses the .glossary-hero class with branded gradient background.
  * Displays title, category badge, summary, and canonical chips only.
@@ -19,6 +35,7 @@ export function GlossaryTermHero({
   summary,
   chips = [],
 }: GlossaryTermHeroProps) {
+  const normalizedChips = normalizeChips(chips);
   return (
     <section className="glossary-hero">
       <div className="flex flex-col space-y-4 md:space-y-6">
@@ -39,9 +56,9 @@ export function GlossaryTermHero({
           </p>
         )}
         
-        {chips.length > 0 && (
+        {normalizedChips.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            {chips.map((chip) => (
+            {normalizedChips.map((chip) => (
               <a
                 key={chip.href}
                 className="glossary-chip glossary-chip--muted"
