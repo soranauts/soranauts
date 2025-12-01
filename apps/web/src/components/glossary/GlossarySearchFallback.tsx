@@ -145,6 +145,8 @@ function Hit({ hit, onAliasClick, onTagClick }: {
   onTagClick: (tag: string) => void;
 }) {
   const categoryLabel = hit.category ? formatCategoryLabel(hit.category) : undefined;
+  const tagOptions = Array.from(new Set(hit.tags ?? []));
+  const relatedOptions = Array.from(new Set(hit.relatedTerms ?? []));
   return (
     <a
       href={`/glossary/${hit.slug}`}
@@ -157,7 +159,7 @@ function Hit({ hit, onAliasClick, onTagClick }: {
         {categoryLabel && (
           <button
             type="button"
-            className="glossary-chip glossary-search__chip"
+            className="chip chip--sm chip--neutral glossary-search__chip"
             onClick={(event) => {
               event.preventDefault();
               event.stopPropagation();
@@ -174,7 +176,7 @@ function Hit({ hit, onAliasClick, onTagClick }: {
       
       {hit.aliases && hit.aliases.length > 1 && (
         <div className="glossary-search__chips">
-          <span className="glossary-chip glossary-chip--muted glossary-search__chip" style={{ pointerEvents: 'none' }}>
+          <span className="chip chip--sm chip--muted glossary-search__chip" style={{ pointerEvents: 'none' }}>
             Also
           </span>
           {hit.aliases.slice(1).map((alias: string) => (
@@ -186,7 +188,7 @@ function Hit({ hit, onAliasClick, onTagClick }: {
                 event.stopPropagation();
                 onAliasClick(alias);
               }}
-              className="glossary-chip glossary-chip--muted glossary-search__chip"
+              className="chip chip--sm chip--muted glossary-search__chip"
               title={`Jump to ${alias}`}
             >
               {alias}
@@ -195,9 +197,9 @@ function Hit({ hit, onAliasClick, onTagClick }: {
         </div>
       )}
       
-      {hit.tags && hit.tags.length > 0 && (
+      {tagOptions.length > 0 && (
         <div className="glossary-search__chips">
-          {hit.tags.slice(0, 5).map((tag: string) => (
+          {tagOptions.slice(0, 5).map((tag: string) => (
               <button
               key={tag}
               type="button"
@@ -206,7 +208,7 @@ function Hit({ hit, onAliasClick, onTagClick }: {
                 event.stopPropagation();
                 onTagClick(tag);
               }}
-              className="glossary-chip glossary-chip--muted glossary-search__chip"
+              className="chip chip--sm chip--muted glossary-search__chip"
               title={`Filter by ${tag} tag`}
             >
               #{formatLabel(tag)}
@@ -215,10 +217,10 @@ function Hit({ hit, onAliasClick, onTagClick }: {
         </div>
       )}
 
-      {hit.relatedTerms && hit.relatedTerms.length > 0 && (
+      {relatedOptions.length > 0 && (
         <div className="glossary-search__chips">
-          {hit.relatedTerms.slice(0, 6).map((related) => (
-            <span key={related} className="glossary-chip glossary-chip--muted">
+          {relatedOptions.slice(0, 6).map((related) => (
+            <span key={related} className="chip chip--sm chip--muted">
               #{related.toLowerCase()}
             </span>
           ))}

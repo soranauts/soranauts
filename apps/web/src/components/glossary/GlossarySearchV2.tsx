@@ -375,6 +375,7 @@ export default function GlossarySearchV2({
     const categoryLabel = result.term.category
         ? formatCategoryLabel(result.term.category)
       : undefined;
+    const relatedOptions = Array.from(new Set(result.term.relatedTerms ?? []));
     const aliasLabel =
       aliasMicrocopyEnabled && result.matchedAlias ? result.matchedAlias : null;
 
@@ -391,7 +392,7 @@ export default function GlossarySearchV2({
           {categoryLabel && (
             <button
               type="button"
-              className="glossary-chip glossary-search__chip"
+              className="chip chip--sm chip--neutral glossary-search__chip"
               onClick={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
@@ -409,15 +410,15 @@ export default function GlossarySearchV2({
         <p className="glossary-search__result-summary">{renderMatchHighlight(result)}</p>
 
         {result.term.aliases?.length > 1 && (
-          <div className="glossary-search__chips">
-            <span className="glossary-chip glossary-chip--muted glossary-search__chip" style={{ pointerEvents: 'none' }}>
+        <div className="glossary-search__chips">
+          <span className="chip chip--sm chip--muted glossary-search__chip" style={{ pointerEvents: 'none' }}>
               Also
             </span>
             {result.term.aliases.slice(1, 5).map((alias) => (
               <button
                 key={alias}
                 type="button"
-                className="glossary-chip glossary-chip--muted glossary-search__chip"
+              className="chip chip--sm chip--muted glossary-search__chip"
                 onClick={(event) => {
                   event.preventDefault();
                   event.stopPropagation();
@@ -431,10 +432,10 @@ export default function GlossarySearchV2({
           </div>
         )}
 
-        {result.term.relatedTerms?.length > 0 && (
+        {relatedOptions.length > 0 && (
           <div className="glossary-search__chips">
-            {result.term.relatedTerms.slice(0, 6).map((related) => (
-              <span key={related} className="glossary-chip glossary-chip--muted">
+            {relatedOptions.slice(0, 6).map((related) => (
+              <span key={related} className="chip chip--sm chip--muted">
                 #{related.toLowerCase()}
               </span>
             ))}
@@ -455,7 +456,7 @@ export default function GlossarySearchV2({
           </p>
         </div>
         <div className="glossary-search__featured-actions">
-          <a href={`/glossary/${featured.entity.term.slug}`} className="glossary-chip">
+          <a href={`/glossary/${featured.entity.term.slug}`} className="chip chip--md chip--accent">
             View entity
           </a>
         </div>
