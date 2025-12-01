@@ -44,6 +44,51 @@
       "source": "/glossary/token-bonding-curve",
       "destination": "/glossary/bonding-curve",
       "permanent": true
+    },
+    {
+      "source": "/glossary/ivm",
+      "destination": "/glossary/irohavirtualmachineivm",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/iroha-virtual-machine",
+      "destination": "/glossary/irohavirtualmachineivm",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/wsv",
+      "destination": "/glossary/worldstateviewwsv",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/world-state-view",
+      "destination": "/glossary/worldstateviewwsv",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/space-directory",
+      "destination": "/glossary/dataspacedirectory",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/teu",
+      "destination": "/glossary/transactionexecutionunitsteu",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/transaction-execution-units",
+      "destination": "/glossary/transactionexecutionunitsteu",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/sfq",
+      "destination": "/glossary/starttimefairqueuingsfq",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/start-time-fair-queuing",
+      "destination": "/glossary/starttimefairqueuingsfq",
+      "permanent": true
     }
   ]
 }
