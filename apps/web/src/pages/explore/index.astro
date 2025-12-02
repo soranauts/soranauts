@@ -18,6 +18,7 @@ import ExplorerGlossaryContext from '~/components/tag-hub/ExplorerGlossaryContex
 import { FEATURE_EXPLORER_GLOSSARY_CONTEXT } from '~/config/feature-flags';
 import { getTopTermsForDomain } from '~/lib/glossary/article-relations';
 import NexusExplorerSection from '~/components/explore/NexusExplorerSection.astro';
+import { getNexusTermCount } from '~/lib/glossary/stats';
 
 export const prerender = true;
 
@@ -38,6 +39,9 @@ const isEnabled = TAG_HUB_V1;
 const tags = isEnabled ? getAllTagHubViewModels() : [];
 const quickPaths = isEnabled ? getTagHubQuickPaths() : [];
 const domainOrder = isEnabled ? getTagHubDomains() : [];
+
+// Get live Nexus term count from glossary stats
+const nexusTermCount = getNexusTermCount();
 
 const domainLabels: Record<string, string> = {
   ecosystem: 'Ecosystem & Adoption',
@@ -186,6 +190,12 @@ const quickPathSections = quickPaths.map((path) => ({
               <dt>Quick journeys</dt>
               <dd>{quickPathSections.length}</dd>
             </div>
+            {nexusTermCount > 0 && (
+              <div class="tag-hub-hero__stat">
+                <dt>Nexus terms</dt>
+                <dd>{nexusTermCount}</dd>
+              </div>
+            )}
             <div class="tag-hub-hero__stat">
               <dt>Latest update</dt>
               <dd>

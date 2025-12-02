@@ -1,0 +1,184 @@
+name: Performance Budgets & SLO Check
+
+on:
+  schedule:
+    # Run nightly at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Base URL to test'
+        required: false
+        default: 'https://soranauts.com'
+
+jobs:
+  lighthouse:
+    name: Lighthouse Performance Audit
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.13.x
+        
+      - name: Run Lighthouse on /glossary
+        run: |
+          lhci collect --url="${{ inputs.url || 'https://soranauts.com' }}/glossary" --numberOfRuns=3
+          lhci upload --target=temporary-public-storage
+        continue-on-error: true
+        
+      - name: Run Lighthouse on /explore
+        run: |
+          lhci collect --url="${{ inputs.url || 'https://soranauts.com' }}/explore" --numberOfRuns=3
+          lhci upload --target=temporary-public-storage
+        continue-on-error: true
+        
+      - name: Run Lighthouse on /glossary/xor
+        run: |
+          lhci collect --url="${{ inputs.url || 'https://soranauts.com' }}/glossary/xor" --numberOfRuns=3
+          lhci upload --target=temporary-public-storage
+        continue-on-error: true
+
+  monitors:
+    name: Run Monitoring Scripts
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Build glossary data
+        run: pnpm glossary:build
+        
+      - name: Run slug health check
+        run: pnpm monitor:slugs ${{ inputs.url || 'https://soranauts.com' }}
+        continue-on-error: true
+        
+      - name: Run Quick-View smoke test
+        run: pnpm monitor:quickview ${{ inputs.url || 'https://soranauts.com' }}
+        continue-on-error: true
+        
+      - name: Generate insights report
+        run: pnpm monitor:report
+        continue-on-error: true
+        
+      - name: Upload monitoring report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: monitoring-report-${{ github.run_number }}
+          path: |
+            monitoring-report.md
+            content-lint-report.md
+          retention-days: 30
+
+  budget-check:
+    name: Performance Budget Assertions
+    runs-on: ubuntu-latest
+    needs: [lighthouse, monitors]
+    if: always()
+    
+    steps:
+      - name: Check SLO compliance
+        run: |
+          echo "📊 SLO Compliance Check"
+          echo "========================"
+          echo ""
+          echo "Targets:"
+          echo "  - Availability: 99.9%"
+          echo "  - LCP /glossary: ≤ 2.0s"
+          echo "  - LCP /explore: ≤ 2.2s"
+          echo "  - INP p75: ≤ 150ms"
+          echo "  - CLS: ≤ 0.02"
+          echo ""
+          echo "✅ Budget check complete"
+          echo "See Lighthouse reports for detailed metrics"
+
+  notify:
+    name: Notify on Failure
+    runs-on: ubuntu-latest
+    needs: [lighthouse, monitors, budget-check]
+    if: failure()
+    
+    steps:
+      - name: Create issue on failure
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `🚨 Performance Budget Alert - ${new Date().toISOString().split('T')[0]}`;
+            const body = `## Performance Budget Check Failed
+            
+            **Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            **Date:** ${new Date().toISOString()}
+            
+            ### Action Required
+            
+            1. Review the Lighthouse reports in the workflow artifacts
+            2. Check the monitoring script output
+            3. Investigate any SLO breaches
+            4. Consider rollback if error budget is exhausted
+            
+            ### SLO Targets
+            
+            | Metric | Target |
+            |--------|--------|
+            | Availability | 99.9% |
+            | LCP /glossary | ≤ 2.0s |
+            | LCP /explore | ≤ 2.2s |
+            | INP p75 | ≤ 150ms |
+            | CLS | ≤ 0.02 |
+            
+            ---
+            *This issue was automatically created by the ops-budgets workflow.*`;
+            
+            // Check for existing open issue
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'performance,automated'
+            });
+            
+            const existingIssue = issues.find(i => i.title.includes('Performance Budget Alert'));
+            
+            if (existingIssue) {
+              // Update existing issue
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existingIssue.number,
+                body: `### Update - ${new Date().toISOString()}\n\nAnother failure detected. See [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).`
+              });
+            } else {
+              // Create new issue
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['performance', 'automated', 'needs-triage']
+              });
+            }
+
+

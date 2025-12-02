@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { scoreTerm } from './utils';
 import { createPortal } from 'react-dom';
 import { loadGlossaryFull, type Term as GlossaryTermPayload } from '../../lib/glossary-data';
-import { formatCategoryLabel, formatGlossaryTitle, isRenderableGlossaryEntry } from '../../lib/glossary/format';
+import { formatCategoryLabel, formatGlossaryTitle, formatHashtag, isRenderableGlossaryEntry } from '../../lib/glossary/format';
 
 // Dev-only logging utility
 const __DEV__ = import.meta.env?.MODE !== 'production';
@@ -62,16 +62,24 @@ const toGlossaryTerm = (entry: GlossaryTermPayload | GlossaryTerm): GlossaryTerm
     return null;
   }
 
+  // Extract tags and relatedTerms from either typed or payload format
+  const tags = Array.isArray(typed.tags) ? typed.tags 
+    : Array.isArray((payload as any).tags) ? (payload as any).tags 
+    : [];
+  const relatedTerms = Array.isArray(typed.relatedTerms) ? typed.relatedTerms 
+    : Array.isArray((payload as any).relatedTerms) ? (payload as any).relatedTerms 
+    : [];
+
   return {
     term: formatGlossaryTitle(baseTitle),
     slug: entry.slug,
     definition,
     category,
-    aliases: Array.isArray(typed.aliases) ? typed.aliases : [],
-    tags: Array.isArray(typed.tags) ? typed.tags : [],
-    relatedTerms: Array.isArray(typed.relatedTerms) ? typed.relatedTerms : [],
-    examples: typed.examples ?? [],
-    links: typed.links ?? [],
+    aliases: Array.isArray(typed.aliases) ? typed.aliases : Array.isArray((payload as any).aliases) ? (payload as any).aliases : [],
+    tags,
+    relatedTerms,
+    examples: typed.examples ?? (payload as any).examples ?? [],
+    links: typed.links ?? (payload as any).links ?? [],
     priority: typeof typed.priority === 'number' ? typed.priority : 0,
   };
 };
@@ -115,9 +123,10 @@ async function fetchGlossaryData(): Promise<GlossaryData> {
 function filterTerms(terms: GlossaryTerm[], searchQuery: string, category: string): GlossaryTerm[] {
   let filtered = terms;
 
-  // Category filter
+  // Category filter (case-insensitive)
   if (category) {
-    filtered = filtered.filter(term => term.category === category);
+    const categoryLower = category.toLowerCase();
+    filtered = filtered.filter(term => term.category.toLowerCase() === categoryLower);
   }
 
   // Search filter
@@ -145,8 +154,23 @@ function Hit({ hit, onAliasClick, onTagClick }: {
   onTagClick: (tag: string) => void;
 }) {
   const categoryLabel = hit.category ? formatCategoryLabel(hit.category) : undefined;
-  const tagOptions = Array.from(new Set(hit.tags ?? []));
-  const relatedOptions = Array.from(new Set(hit.relatedTerms ?? []));
+  
+  // Merge tags and relatedTerms, deduplicate by normalized (lowercase) form
+  // This prevents showing both "#Polkaswap" and "#polkaswap" as separate chips
+  const allChips = [...(hit.tags ?? []), ...(hit.relatedTerms ?? [])];
+  const seenNormalized = new Set<string>();
+  const uniqueChips: string[] = [];
+  
+  for (const chip of allChips) {
+    const normalized = chip.toLowerCase().replace(/[\s_-]+/g, '');
+    if (!seenNormalized.has(normalized)) {
+      seenNormalized.add(normalized);
+      uniqueChips.push(chip);
+    }
+  }
+  
+  // Take first 6 unique chips for display
+  const displayChips = uniqueChips.slice(0, 6);
   return (
     <a
       href={`/glossary/${hit.slug}`}
@@ -197,39 +221,47 @@ function Hit({ hit, onAliasClick, onTagClick }: {
         </div>
       )}
       
-      {tagOptions.length > 0 && (
+      {displayChips.length > 0 && (
         <div className="glossary-search__chips">
-          {tagOptions.slice(0, 5).map((tag: string) => (
-              <button
-              key={tag}
-              type="button"
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                onTagClick(tag);
-              }}
-              className="chip chip--sm chip--muted glossary-search__chip"
-              title={`Filter by ${tag} tag`}
-            >
-              #{formatLabel(tag)}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {relatedOptions.length > 0 && (
-        <div className="glossary-search__chips">
-          {relatedOptions.slice(0, 6).map((related) => (
-            <span key={related} className="chip chip--sm chip--muted">
-              #{related.toLowerCase()}
-            </span>
-          ))}
+          {displayChips.map((chip: string) => {
+            // Normalize chip to create a slug for linking
+            const chipSlug = chip.toLowerCase().replace(/[\s_-]+/g, '');
+            return (
+              <a
+                key={chip}
+                href={`/glossary/${chipSlug}`}
+                className="chip chip--sm chip--muted glossary-search__chip"
+                title={`View ${formatHashtag(chip)} term`}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  // Let the link navigate naturally
+                }}
+              >
+                #{formatHashtag(chip)}
+              </a>
+            );
+          })}
         </div>
       )}
     </a>
   );
 }
 
+
+// Priority categories to show by default (most user-relevant)
+// These are ordered by importance/popularity for typical users
+const PRIORITY_CATEGORIES = new Set([
+  'defi',
+  'token',
+  'economics',
+  'governance',
+  'technology',
+  'network',
+  'general',
+]);
+
+// Number of categories to show before collapsing
+const VISIBLE_CATEGORY_COUNT = 7;
 
 // Main search component
 export default function GlossarySearchFallback({
@@ -244,6 +276,7 @@ export default function GlossarySearchFallback({
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [focusedTermSlug, setFocusedTermSlug] = useState<string | null>(null);
+  const [showAllCategories, setShowAllCategories] = useState(false);
   
   const numberFormatter = useMemo(
     () =>
@@ -293,7 +326,7 @@ export default function GlossarySearchFallback({
         const filteredCount = (() => {
           if (!glossaryData?.terms) return 0;
           return glossaryData.terms.filter(term => {
-            if (selectedCategory && term.category !== selectedCategory) return false;
+            if (selectedCategory && term.category.toLowerCase() !== selectedCategory.toLowerCase()) return false;
             if (newQuery) {
               const searchLower = newQuery.toLowerCase();
               return term.term.toLowerCase().includes(searchLower) ||
@@ -362,7 +395,10 @@ export default function GlossarySearchFallback({
       console.log('🔍 [handleTagClick] clicked tag:', tag);
     }
     
-    const isCategory = ['token', 'technology', 'governance', 'defi', 'network', 'economics'].includes(tag);
+    // Check if this tag matches any known category (case-insensitive)
+    const isCategory = glossaryData?.categories 
+      ? Object.values(glossaryData.categories).some(cat => cat.name.toLowerCase() === tag.toLowerCase())
+      : ['token', 'technology', 'governance', 'defi', 'network', 'economics', 'general', 'ecosystem'].includes(tag.toLowerCase());
     
     if (isCategory) {
       // Toggle category; always clear search on category interactions
@@ -464,6 +500,33 @@ export default function GlossarySearchFallback({
             setIsLoading(false);
             log('✅ [useEffect] Glossary data loaded successfully.');
 
+            // Handle URL query parameters (e.g., ?category=token)
+            const handleUrlParams = () => {
+              const urlParams = new URLSearchParams(window.location.search);
+              const categoryParam = urlParams.get('category');
+              
+              if (categoryParam) {
+                // Find matching category (case-insensitive)
+                const matchingCategory = Object.values(data.categories).find(cat =>
+                  cat.name.toLowerCase() === categoryParam.toLowerCase() ||
+                  cat.name.toLowerCase().replace(/\s+/g, '-') === categoryParam.toLowerCase()
+                );
+                
+                if (matchingCategory) {
+                  log('🔍 [handleUrlParams] Setting category from URL:', matchingCategory.name);
+                  setSelectedCategory(matchingCategory.name);
+                  setSearchInput('');
+                  setSearchQuery('');
+                  setFocusedTermSlug(null);
+                  return true; // Handled
+                }
+              }
+              return false; // Not handled
+            };
+
+            // Try URL params first, then fall back to hash handling
+            const handledByParams = handleUrlParams();
+
             // Handle hash-based deep linking after data is loaded
             const handleHashChange = () => {
               const hash = window.location.hash.slice(1);
@@ -521,11 +584,21 @@ export default function GlossarySearchFallback({
               }
             };
 
-            handleHashChange();
+            // Only handle hash if URL params weren't handled
+            if (!handledByParams) {
+              handleHashChange();
+            }
             window.addEventListener('hashchange', handleHashChange);
+            
+            // Also listen for popstate to handle browser back/forward with query params
+            const handlePopState = () => {
+              handleUrlParams();
+            };
+            window.addEventListener('popstate', handlePopState);
 
             return () => {
               window.removeEventListener('hashchange', handleHashChange);
+              window.removeEventListener('popstate', handlePopState);
             };
           } catch (err) {
             if (!cancelled) {
@@ -600,11 +673,17 @@ export default function GlossarySearchFallback({
     const hasActiveSearch = Boolean(searchQuery.trim() || selectedCategory);
     const featuredSection = document.getElementById('glossary-featured-terms');
     
+    if (__DEV__) {
+      console.log('🔍 [hide-featured] hasActiveSearch:', hasActiveSearch, 'selectedCategory:', selectedCategory, 'featuredSection:', !!featuredSection);
+    }
+    
     if (featuredSection) {
       if (hasActiveSearch) {
-        featuredSection.classList.add('is-hidden');
+        featuredSection.style.display = 'none';
+        if (__DEV__) console.log('🔍 [hide-featured] Hiding featured section');
       } else {
-        featuredSection.classList.remove('is-hidden');
+        featuredSection.style.display = '';
+        if (__DEV__) console.log('🔍 [hide-featured] Showing featured section');
       }
     }
 
@@ -728,9 +807,10 @@ export default function GlossarySearchFallback({
     
     const base = glossaryData.terms;
 
-    // 1) Category filter first (takes precedence over search)
+    // 1) Category filter first (takes precedence over search, case-insensitive)
+    const selectedCategoryLower = selectedCategory.toLowerCase();
     const byCategory = selectedCategory
-      ? base.filter(t => t.category === selectedCategory)
+      ? base.filter(t => t.category.toLowerCase() === selectedCategoryLower)
       : base;
 
     // 2) If no search query, return category results
@@ -842,20 +922,58 @@ export default function GlossarySearchFallback({
         >
           All ({glossaryData?.terms.length || 0})
         </button>
-        {categories.map((category) => {
-          const categoryCount = selectedCategory === category.name ? filteredTerms.length : category.count;
-
+        {(() => {
+          // Sort categories: priority ones first (by count desc), then others (by count desc)
+          const sortedCategories = [...categories].sort((a, b) => {
+            const aIsPriority = PRIORITY_CATEGORIES.has(a.name.toLowerCase());
+            const bIsPriority = PRIORITY_CATEGORIES.has(b.name.toLowerCase());
+            if (aIsPriority && !bIsPriority) return -1;
+            if (!aIsPriority && bIsPriority) return 1;
+            return b.count - a.count; // Higher count first within each group
+          });
+          
+          const visibleCategories = showAllCategories 
+            ? sortedCategories 
+            : sortedCategories.slice(0, VISIBLE_CATEGORY_COUNT);
+          const hiddenCount = sortedCategories.length - VISIBLE_CATEGORY_COUNT;
+          
           return (
-            <button
-              key={category.name}
-              type="button"
-              onClick={() => handleTagClick(category.name)}
-              className={`glossary-search__filter ${selectedCategory === category.name ? 'is-active' : ''}`}
-            >
-              {formatCategoryLabel(category.name)} ({categoryCount})
-            </button>
+            <>
+              {visibleCategories.map((category) => {
+                const isActive = selectedCategory.toLowerCase() === category.name.toLowerCase();
+                const categoryCount = isActive ? filteredTerms.length : category.count;
+                return (
+                  <button
+                    key={category.name}
+                    type="button"
+                    onClick={() => handleTagClick(category.name)}
+                    className={`glossary-search__filter ${isActive ? 'is-active' : ''}`}
+                  >
+                    {formatCategoryLabel(category.name)} ({categoryCount})
+                  </button>
+                );
+              })}
+              {hiddenCount > 0 && !showAllCategories && (
+                <button
+                  type="button"
+                  onClick={() => setShowAllCategories(true)}
+                  className="glossary-search__filter glossary-search__filter--more"
+                >
+                  +{hiddenCount} more
+                </button>
+              )}
+              {showAllCategories && hiddenCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setShowAllCategories(false)}
+                  className="glossary-search__filter glossary-search__filter--less"
+                >
+                  Show less
+                </button>
+              )}
+            </>
           );
-        })}
+        })()}
       </div>
 
       <div className="glossary-search__meta" role="status" aria-live="polite">

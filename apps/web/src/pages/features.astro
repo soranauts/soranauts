@@ -10,308 +10,282 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import { Icon } from 'astro-icon/components';
 import type { MetaData } from '~/types';
 
-// Checklist: tighten hero/metadata, refresh feature signals + deployment snapshot, align stats/highlights/search/timeline/resources/CTA copy.
 const metadata: MetaData = {
-  title: 'Soranauts Platform Features & Safeguards',
+  title: 'Soranauts Platform Features',
   description:
-    'See how SORA Explorer, the Glossary v2025 canonical dataset, and Command + K search make Soranauts fast, reliable, and transparent.',
+    'Explore how the SORA Glossary, Explorer, and unified search work together to make SORA ecosystem knowledge accessible and verifiable.',
 };
 
 const featureLinks = {
   glossary: '/glossary',
-  changelog: '/changelog',
   explore: '/explore',
-  latestBlog: '/sora-v3-vision-defi-milestones-and-polkaswap-news-update-88',
+  about: '/about',
 };
 
 const featureSignals = [
   {
-    icon: 'tabler:compass',
-    title: 'Explorer Tag Hub journeys',
-    description: 'Six Explorer domains, quick paths, and trait filters surface governance, DeFi, and network context in one view.',
+    icon: 'tabler:vocabulary',
+    title: 'Unified Glossary with 338 terms',
+    description: 'MDX-based Nexus terms, SORA ecosystem taxonomy, and canonical tags merged into one searchable, categorized reference.',
   },
   {
-    icon: 'tabler:book-2',
-    title: 'Glossary v2025 canonical clarity',
-    description:
-      'Instant search, hover previews, alias detection, and V3 term pages keep 155 canonical definitions (plus 38 aliases) aligned with Explorer tags and articles.',
+    icon: 'tabler:compass',
+    title: 'Explorer Tag Hub',
+    description: 'Six domain dashboards with quick journeys and trait filters that connect articles to glossary definitions.',
   },
   {
     icon: 'tabler:search',
-    title: 'Unified Command+K overlay',
-    description: 'Search glossary terms, deep dives, and Explorer entries from one modal with filter chips and keyboard-first navigation.',
+    title: 'Command+K unified search',
+    description: 'Search glossary terms, articles, and Explorer entries from one keyboard-first modal with category filters.',
   },
   {
-    icon: 'tabler:device-analytics',
-    title: 'Automated knowledge base',
-    description: 'Nightly syncs, provenance snapshots, and SARIF QA keep wiki, Soramitsu, Medium, Iroha, and GitHub sources verifiable.',
+    icon: 'tabler:tags',
+    title: '19 taxonomy categories',
+    description: 'From DeFi and Governance to Cryptography and Consensus — terms organized by domain for faster discovery.',
   },
 ];
 
-const deploymentFocus = [
+const glossaryFeatures = [
   {
-    icon: 'tabler:layout-grid',
-    title: 'Explorer quick journeys',
-    description:
-      'Tag Hub domains, curated quick paths, and trait filters guide contributors from onboarding to advanced governance research.',
+    icon: 'tabler:database',
+    title: 'Multi-source data merge',
+    description: 'Nexus MDX content, SORA taxonomy terms, and canonical tags with fallback definitions combined into a single JSON index.',
   },
   {
-    icon: 'tabler:bookmarks',
-    title: 'Glossary freshness checks',
-    description:
-      'Taxonomy-driven definitions rebuild nightly so hover previews, alias detection, and related articles stay aligned with production sources.',
+    icon: 'tabler:category',
+    title: 'Smart categorization',
+    description: 'Each term assigned to one of 19 categories (Economics, Technology, DeFi, Governance, etc.) for filtered browsing.',
   },
   {
-    icon: 'tabler:palette',
-    title: 'Design system guardrails',
-    description:
-      'Token-driven colors, Tailwind guardrails, and layered CSS keep every layout aligned without ad-hoc overrides.',
+    icon: 'tabler:link',
+    title: 'Related terms & hashtags',
+    description: 'Clickable hashtag chips link to related definitions, with proper formatting for tokens (XOR, VAL) and products (Polkaswap).',
   },
   {
-    icon: 'tabler:clock',
-    title: 'Nightly automation cadence',
-    description:
-      'Automated ingestion merges SORA wiki, Soramitsu docs, Medium updates, GitHub repos, and Iroha references with auditable provenance.',
+    icon: 'tabler:star',
+    title: 'Featured terms',
+    description: 'Curated selection of popular ecosystem terms (XOR, Polkaswap, TONSWAP, Kensetsu) highlighted on the glossary landing.',
+  },
+];
+
+const explorerFeatures = [
+  {
+    icon: 'tabler:layout-dashboard',
+    title: 'Domain dashboards',
+    description: 'Six Explorer domains (Ecosystem, DeFi, Economics, Governance, Technology, Network) organize content by theme.',
+  },
+  {
+    icon: 'tabler:route',
+    title: 'Quick journeys',
+    description: 'Curated paths guide users from onboarding to advanced topics without getting lost in the full content library.',
+  },
+  {
+    icon: 'tabler:filter',
+    title: 'Trait filters',
+    description: 'Filter by foundational, beginner, advanced, trending, or builder-focused content to match your experience level.',
+  },
+  {
+    icon: 'tabler:arrows-join',
+    title: 'Glossary integration',
+    description: 'Explorer cards link directly to glossary definitions, keeping terminology consistent across the site.',
   },
 ];
 
 const stats = [
   {
+    amount: '338',
+    title: 'Glossary terms from Nexus MDX, SORA taxonomy, and canonical tags with verified definitions',
+    icon: 'tabler:vocabulary',
+  },
+  {
+    amount: '19',
+    title: 'Taxonomy categories spanning Economics, Technology, DeFi, Governance, Cryptography, and more',
+    icon: 'tabler:category',
+  },
+  {
     amount: '6',
-    title: 'Explorer domains spanning ecosystem, DeFi, economics, governance, technology, and network coverage',
-    icon: 'tabler:hexagon',
+    title: 'Explorer domains organizing content by Ecosystem, DeFi, Economics, Governance, Technology, and Network',
+    icon: 'tabler:compass',
   },
   {
-    amount: '155+',
-    title: 'Glossary entries across the v2025 canonical dataset, with alias detection and hover previews backed by taxonomy metadata',
-    icon: 'tabler:book',
-  },
-  {
-    amount: '6',
-    title: 'Explorer trait filters highlighting foundational, glossary-linked, beginner, advanced, trending, and builder guides',
-    icon: 'tabler:adjustments-horizontal',
-  },
-  {
-    amount: '10+',
-    title: 'Automated pipelines syncing wiki docs, GitHub repos, partner sites, and Medium digests',
-    icon: 'tabler:git-branch',
+    amount: '52',
+    title: 'Economics terms covering XOR, VAL, PSWAP, Token Bonding Curve, and monetary policy',
+    icon: 'tabler:chart-line',
   },
 ];
 
 const highlightItems = [
   {
-    icon: 'tabler:compass',
-    title: 'SORA Explorer Tag Hub',
+    icon: 'tabler:vocabulary',
+    title: 'SORA Glossary',
     description:
-      'Browse six domain dashboards, curated quick journeys, and trait filters that surface governance, DeFi, and technology stories together.',
-    callToAction: {
-      href: featureLinks.explore,
-      text: 'Navigate SORA Explorer',
-      icon: 'tabler:arrow-up-right',
-      isCardLink: true,
-    },
-  },
-  {
-    icon: 'tabler:book-2',
-    title: 'Glossary v2025 canonical clarity',
-    description:
-      'Search the v2025 glossary (155 canonical terms plus 38 aliases) with instant search, alias detection, hover previews, and related articles that mirror the taxonomy powering Explorer cards.',
+      'Browse 338 terms across 19 categories with instant search, category filters, clickable hashtags, and featured terms for quick access to XOR, Polkaswap, TONSWAP, and Kensetsu.',
     callToAction: {
       href: featureLinks.glossary,
-      text: 'Explore the glossary',
+      text: 'Explore the Glossary',
       icon: 'tabler:arrow-up-right',
       isCardLink: true,
     },
   },
   {
-    icon: 'tabler:clipboard-data',
-    title: 'Command+K & release cadence',
+    icon: 'tabler:compass',
+    title: 'SORA Explorer',
     description:
-      'Follow weekly release notes, Command+K enhancements, and provenance-backed search updates that document every deployment.',
+      'Navigate six domain dashboards with curated quick journeys and trait filters that connect articles to glossary definitions and governance context.',
     callToAction: {
-      href: featureLinks.changelog,
-      text: 'Review recent releases',
-      icon: 'tabler:external-link',
+      href: featureLinks.explore,
+      text: 'Open the Explorer',
+      icon: 'tabler:arrow-up-right',
+      isCardLink: true,
+    },
+  },
+  {
+    icon: 'tabler:search',
+    title: 'Unified Search',
+    description:
+      'Press ⌘K to search glossary terms, articles, and Explorer entries from one modal with type filters, metadata cards, and keyboard navigation.',
+    callToAction: {
+      href: featureLinks.about,
+      text: 'Learn more',
+      icon: 'tabler:arrow-up-right',
       isCardLink: true,
     },
   },
 ];
 
-const searchEnhancements = [
+const searchFeatures = [
   {
     icon: 'tabler:filter',
-    title: 'Type-aware filters',
-    description: 'Pivot between glossary entries, long-form guides, and tag results with chips and counts that stay in sync.',
+    title: 'Category filters',
+    description: 'Filter glossary results by any of 19 categories, with counts that update as you type.',
   },
   {
-    icon: 'tabler:layout',
-    title: 'Metadata-rich cards',
-    description: 'See publish dates, reading time, aliases, and tags before you click so you always know what you are opening.',
+    icon: 'tabler:layout-cards',
+    title: 'Rich result cards',
+    description: 'See term definitions, categories, and related hashtags before clicking.',
   },
   {
     icon: 'tabler:keyboard',
-    title: 'Keyboard-first navigation',
-    description: 'Arrow through results, press Enter to open, and rely on global ⌘K / Ctrl+K shortcuts anywhere on the site.',
+    title: 'Keyboard navigation',
+    description: 'Arrow through results, press Enter to open — no mouse required.',
   },
   {
-    icon: 'tabler:chart-dots',
-    title: 'Synonyms & analytics',
-    description:
-      'Synonym expansion (SORA ↔ Soramitsu, XOR ↔ bonding curve) and alias-aware events (view, redirect, search match) feed self-hosted analytics to guide new content.',
-  },
-];
-
-const searchInsights = [
-  {
-    icon: 'tabler:app-window',
-    title: 'Unified overlay',
-    description: 'The modal preloads Pagefind assets, caches responses, and respects feature flags so searches stay fast on repeat queries.',
-  },
-  {
-    icon: 'tabler:sparkles',
-    title: 'Smart highlighting',
-    description: 'Highlights expand synonyms, collapse duplicates, and emphasize glossary matches for easier scanning.',
-  },
-  {
-    icon: 'tabler:shield-check',
-    title: 'Privacy-first telemetry',
-    description:
-      'Search runs client-side and only records opt-in analytics through our telemetry layer (self-hosted PostHog with optional GA4 mirroring).',
+    icon: 'tabler:hash',
+    title: 'Hashtag linking',
+    description: 'Click any hashtag to jump to that term, with proper casing for tokens (XOR, PSWAP) and products (Polkaswap).',
   },
 ];
 
 const timelineItems = [
   {
-    title: 'November 2025 — SORA Explorer preview ships',
+    title: 'December 2025 — Glossary expansion to 338 terms',
     description:
-      'Tag Hub V1 launched with domain filters, quick journeys, and usage signals that map governance, DeFi, and technology coverage in minutes.',
+      'Merged Nexus MDX content, SORA ecosystem taxonomy, and canonical tags into a unified glossary with 19 categories, clickable hashtags, and collapsible category filters.',
+    icon: 'tabler:vocabulary',
+  },
+  {
+    title: 'November 2025 — SORA Explorer preview',
+    description:
+      'Tag Hub V1 launched with six domain dashboards, quick journeys, and trait filters connecting articles to glossary definitions.',
     icon: 'tabler:compass',
   },
   {
-    title: 'October 2025 — Article modernization wave',
+    title: 'October 2025 — Article modernization',
     description:
-      '26+ long-form guides gained TL;DRs, comparison tables, structured tags, and collapsible FAQs so readers can audit releases faster.',
+      '26+ long-form guides gained TL;DRs, comparison tables, structured tags, and collapsible FAQs.',
     icon: 'tabler:news',
   },
   {
-    title: 'September–November 2025 — SORA Glossary v2025 rollout',
+    title: 'September 2025 — About page redesign',
     description:
-      'The v2025 glossary shipped 155+ canonical terms with instant search, taxonomy chips, alias-to-canonical redirects, proper acronym capitalization (SORA, XOR, VAL, AMM, etc.), and V3 term layouts so terminology stays synchronized with Explorer cards.',
-    icon: 'tabler:book-2',
-  },
-  {
-    title: 'June 2025 — Release cadence reboot',
-    description:
-      'The release log, navigation order, and performance guardrails were rebuilt so every deployment documents what changed and why.',
-    icon: 'tabler:rocket',
+      'Mission-driven narrative page with principles, methodology, and non-goals replacing the old features-style layout.',
+    icon: 'tabler:info-circle',
   },
 ];
 
 const resourceLinks = [
   {
-    icon: 'tabler:clipboard-check',
-    title: 'SORA Network Changelog',
-    description:
-      'Public record of mainnet releases, bridge upgrades, and validator tooling milestones maintained by the core network team.',
-    href: 'https://wiki.sora.org/changelog.html',
-    external: true,
+    icon: 'tabler:vocabulary',
+    title: 'SORA Glossary',
+    description: '338 terms across 19 categories with instant search, category filters, and clickable hashtags.',
+    href: featureLinks.glossary,
   },
   {
     icon: 'tabler:compass',
-    title: 'Explore SORA Explorer',
-    description:
-      'Navigate curated domains, quick journeys, and trait filters that connect glossary definitions to governance and DeFi context.',
+    title: 'SORA Explorer',
+    description: 'Six domain dashboards with quick journeys and trait filters for navigating the ecosystem.',
     href: featureLinks.explore,
   },
   {
-    icon: 'tabler:planet',
-    title: 'Soranauts Release Log',
-    description:
-      'Read weekly Soranauts release notes that catalog Command+K, Explorer, and knowledge base improvements.',
-    href: featureLinks.changelog,
+    icon: 'tabler:info-circle',
+    title: 'About Soranauts',
+    description: 'Our mission, principles, and methodology for building a trustworthy SORA reference.',
+    href: featureLinks.about,
   },
   {
-    icon: 'tabler:route',
-    title: 'SORA Integrated Plan Insights',
-    description:
-      'Reference the official integrated plan to see how business, backend, web, and mobile tracks align with community goals.',
-    href: 'https://wiki.sora.org/integrated-plan.html',
+    icon: 'tabler:external-link',
+    title: 'SORA Wiki',
+    description: 'Official documentation maintained by the SORA network team.',
+    href: 'https://wiki.sora.org/',
     external: true,
   },
 ];
 ---
 
 <PageLayout metadata={metadata}>
+  <!-- Hero Section -->
   <section class="relative overflow-hidden bg-page">
-    <div class="absolute inset-0 -z-[1] bg-gradient-to-br from-brand-soft/60 via-transparent to-transparent" aria-hidden="true" />
-    <div class="mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-20 pt-24 md:px-6 lg:flex-row lg:items-start">
-      <div class="max-w-3xl">
+    <div class="absolute inset-0 -z-[1] bg-gradient-to-br from-brand-soft/50 via-transparent to-transparent" aria-hidden="true" />
+    <div class="mx-auto max-w-6xl px-4 pb-16 pt-24 md:px-6">
+      <div class="mx-auto max-w-4xl text-center">
         <span class="inline-flex items-center gap-2 rounded-full border border-brand-soft bg-surface/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-brand-600 shadow-sm">
-          Platform Highlights
+          Platform Features
         </span>
-        <h1 class="mt-6 text-4xl font-bold leading-tight text-text-main md:text-5xl lg:text-6xl">
-          Inside the systems that keep Soranauts credible, fast, and easy to navigate.
+        <h1 class="mt-6 text-4xl font-bold leading-tight text-text-main md:text-5xl">
+          Everything you need to understand the SORA ecosystem
         </h1>
-        <p class="mt-6 text-lg text-text-muted">
-          This overview documents how Explorer journeys, Glossary v2, Command+K search, and knowledge base automation work together so you can verify how Soranauts stays trusted and current.
+        <p class="mx-auto mt-6 max-w-2xl text-lg text-text-muted">
+          The SORA Glossary, Explorer, and unified search work together to make complex blockchain concepts accessible. 338 terms, 19 categories, and growing.
         </p>
-        <div class="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:gap-4">
-          <Button variant="primary" href="#highlights" text="Jump to highlights" icon="tabler:sparkles" class="w-full justify-center sm:w-auto sm:min-w-[220px]" />
-          <Button variant="secondary" href="https://t.me/Soranauts" target="_blank" text="Share feedback in Telegram" icon="tabler:send" class="w-full justify-center sm:w-auto sm:min-w-[220px]" />
-          <Button variant="tertiary" href={featureLinks.changelog} text="Browse the changelog" icon="tabler:arrow-up-right" class="w-full justify-center border-border-subtle text-text-muted hover:border-brand-500 hover:text-link sm:w-auto sm:min-w-[220px]" />
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <Button variant="primary" href={featureLinks.glossary} text="Browse the Glossary" icon="tabler:vocabulary" />
+          <Button variant="secondary" href={featureLinks.explore} text="Open the Explorer" icon="tabler:compass" />
+          <Button variant="tertiary" href={featureLinks.about} text="About Soranauts" icon="tabler:info-circle" class="border-border-subtle text-text-muted hover:border-brand-500 hover:text-link" />
         </div>
-        <ul class="mt-10 grid gap-4 text-base text-text-muted sm:grid-cols-2">
-          {featureSignals.map(({ icon, title, description }) => (
-            <li class="flex items-start gap-3 rounded-xl border border-border-subtle bg-surface/90 p-4 shadow-sm">
-              <Icon name={icon} class="mt-0.5 h-6 w-6 text-brand-500" />
-              <div>
-                <p class="text-sm font-semibold text-text-main">{title}</p>
-                <p class="mt-1 text-sm text-text-muted">{description}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
       </div>
-      <div class="relative flex-1 overflow-hidden rounded-3xl border border-border-subtle bg-surface/90 p-8 shadow-elevated backdrop-blur">
-        <div class="space-y-6">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-text-soft">Deployment Snapshot</p>
-            <h2 class="mt-3 text-2xl font-semibold text-text-main">How the platform earns trust.</h2>
-            <p class="mt-4 text-sm text-text-muted">
-              These pillars show how Explorer journeys, glossary freshness, design guardrails, and nightly automation reinforce each other to earn trust.
-            </p>
+      
+      <!-- Feature signals grid -->
+      <div class="mx-auto mt-16 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {featureSignals.map(({ icon, title, description }) => (
+          <div class="flex flex-col gap-3 rounded-xl border border-border-subtle bg-surface/90 p-5 shadow-sm">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-soft text-brand-500">
+              <Icon name={icon} class="h-5 w-5" />
+            </div>
+            <h3 class="font-semibold text-text-main">{title}</h3>
+            <p class="text-sm text-text-muted">{description}</p>
           </div>
-          <div class="grid gap-4">
-            {deploymentFocus.map(({ title, description, icon }) => (
-              <div class="flex items-start gap-3 rounded-xl border border-border-subtle/80 bg-page/70 p-4">
-                <Icon name={icon} class="mt-0.5 h-5 w-5 text-brand-500" />
-                <div>
-                  <p class="text-sm font-semibold text-text-main">{title}</p>
-                  <p class="mt-1 text-sm text-text-muted">{description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
+  <!-- Stats Section -->
   <Stats
     id="metrics"
-    tagline="Feature Metrics"
-    title="The data behind the Soranauts experience"
-    subtitle="Each enhancement blends UX polish with knowledge base safeguards so contributors can rely on the platform daily."
+    tagline="By the Numbers"
+    title="The scope of the Soranauts knowledge base"
+    subtitle="A comprehensive reference built from official sources, community contributions, and verified definitions."
     stats={stats}
     classes={{ container: 'mt-0' }}
   />
 
+  <!-- Highlights Section -->
   <WidgetWrapper id="highlights" containerClass="max-w-6xl">
     <div class="mx-auto max-w-3xl text-center">
       <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Highlights</p>
-      <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">What stands out right now.</h2>
+      <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Three ways to explore</h2>
       <p class="mt-4 text-lg text-text-muted">
-        Discoverability, accuracy, and contributor friendliness drive every release. These highlights capture the capabilities users feel most.
+        Whether you need a quick definition, want to browse by topic, or are researching a specific domain — there's a path for you.
       </p>
     </div>
     <div class="mt-12">
@@ -319,10 +293,10 @@ const resourceLinks = [
         columns={3}
         items={highlightItems}
         classes={{
-          container: 'gap-10',
+          container: 'gap-8',
           panel: 'flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-elevated hover:border-brand-500 h-full',
           icon: 'w-10 h-10 text-brand-500',
-          title: 'text-2xl text-text-main',
+          title: 'text-xl text-text-main',
           description: 'text-base text-text-muted',
           action: 'mt-4 flex-grow flex items-end',
         }}
@@ -330,64 +304,158 @@ const resourceLinks = [
     </div>
   </WidgetWrapper>
 
-  <WidgetWrapper id="search-showcase" containerClass="max-w-6xl">
-    <div class="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+  <!-- Glossary Deep Dive -->
+  <WidgetWrapper containerClass="max-w-6xl">
+    <div class="grid gap-12 lg:grid-cols-2">
       <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Search & Navigation</p>
+        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Glossary</p>
         <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">
-          Command+K searches the entire Soranauts knowledge base from one overlay.
+          338 terms. 19 categories. One unified reference.
         </h2>
         <p class="mt-4 text-lg text-text-muted">
-          The unified search modal blends glossary precision with release notes and Explorer tags. Filters, metadata-rich cards, and synonym-aware highlighting
-          make it easy to jump from terminology to implementation without leaving the keyboard.
+          The SORA Glossary merges Nexus technical documentation, ecosystem taxonomy terms, and canonical tags into a searchable, categorized knowledge base.
         </p>
-        <ul class="mt-8 space-y-4">
-          {searchEnhancements.map(({ icon, title, description }) => (
-            <li class="flex items-start gap-3 rounded-2xl border border-border-subtle bg-surface/90 p-4 shadow-sm">
-              <span class="mt-0.5 flex h-9 w-9 items-center justify-center rounded-xl bg-brand-soft/60 text-brand-600">
+        <div class="mt-8 space-y-4">
+          {glossaryFeatures.map(({ icon, title, description }) => (
+            <div class="flex items-start gap-4 rounded-xl border border-border-subtle bg-surface/90 p-4">
+              <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand-soft text-brand-500">
                 <Icon name={icon} class="h-5 w-5" />
-              </span>
+              </div>
               <div>
-                <p class="text-sm font-semibold text-text-main">{title}</p>
+                <h3 class="font-semibold text-text-main">{title}</h3>
                 <p class="mt-1 text-sm text-text-muted">{description}</p>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
-        <div class="mt-8 rounded-2xl border border-dashed border-brand-soft bg-brand-soft/20 px-4 py-3 text-sm text-text-muted sm:text-base">
-          Tip: Press <span class="mx-1 inline-flex rounded bg-soft px-2 py-0.5 font-mono text-sm">⌘K</span> (macOS) or
-          <span class="mx-1 inline-flex rounded bg-soft px-2 py-0.5 font-mono text-sm">Ctrl+K</span> (Windows/Linux) to open the modal anywhere on the site.
+        </div>
+        <div class="mt-8">
+          <Button variant="primary" href={featureLinks.glossary} text="Browse the Glossary" icon="tabler:arrow-up-right" />
         </div>
       </div>
       <div class="flex flex-col gap-4">
-        {searchInsights.map(({ icon, title, description }) => (
-          <div class="rounded-2xl border border-border-subtle bg-page/80 p-5 shadow-sm">
-            <div class="flex items-center gap-3">
-              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-soft text-brand-600">
-                <Icon name={icon} class="h-5 w-5" />
-              </span>
-              <p class="text-base font-semibold text-text-main">{title}</p>
-            </div>
-            <p class="mt-3 text-sm text-text-muted">{description}</p>
+        <div class="rounded-2xl border border-border-subtle bg-surface/50 p-6">
+          <h3 class="font-semibold text-text-main">Top categories by term count</h3>
+          <div class="mt-4 space-y-3">
+            {[
+              { name: 'Economics', count: 52, desc: 'XOR, VAL, PSWAP, Token Bonding Curve' },
+              { name: 'Technology', count: 43, desc: 'Substrate, Iroha, smart contracts' },
+              { name: 'Cryptography', count: 38, desc: 'BLAKE2b, Merkle trees, signatures' },
+              { name: 'Execution', count: 34, desc: 'Triggers, ISI, Kotodama' },
+              { name: 'Governance', count: 34, desc: 'Proposals, voting, councils' },
+              { name: 'DeFi', count: 25, desc: 'AMM, liquidity, Polkaswap' },
+            ].map(({ name, count, desc }) => (
+              <div class="flex items-center justify-between rounded-lg bg-page/50 px-4 py-3">
+                <div>
+                  <p class="font-medium text-text-main">{name}</p>
+                  <p class="text-xs text-text-muted">{desc}</p>
+                </div>
+                <span class="rounded-full bg-brand-soft px-3 py-1 text-sm font-semibold text-brand-600">{count}</span>
+              </div>
+            ))}
           </div>
-        ))}
-        <div class="mt-auto rounded-2xl border border-border-subtle bg-surface/90 p-5 shadow-sm">
-          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-brand-500">Why it matters</p>
-          <p class="mt-3 text-sm text-text-muted">
-            Search analytics stay self-hosted, and every result links back to provenance-tracked docs sourced from nightly knowledge base automation. It is a faster path
-            to verifiable answers, whether you need a definition or a governance citation.
+        </div>
+        <div class="rounded-2xl border border-dashed border-brand-soft bg-brand-soft/10 p-5">
+          <p class="text-sm text-text-muted">
+            <strong class="text-text-main">Featured terms:</strong> XOR, VAL, PSWAP, Polkaswap, TONSWAP, Kensetsu, Token Bonding Curve, and more are highlighted on the glossary landing page.
           </p>
         </div>
       </div>
     </div>
   </WidgetWrapper>
 
+  <!-- Explorer Deep Dive -->
+  <WidgetWrapper containerClass="max-w-6xl">
+    <div class="grid gap-12 lg:grid-cols-2">
+      <div class="order-2 lg:order-1">
+        <div class="rounded-2xl border border-border-subtle bg-surface/50 p-6">
+          <h3 class="font-semibold text-text-main">Explorer domains</h3>
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            {[
+              { name: 'Ecosystem', icon: 'tabler:world', desc: 'SORA, Polkaswap, wallets' },
+              { name: 'DeFi', icon: 'tabler:chart-pie', desc: 'AMM, liquidity, yield' },
+              { name: 'Economics', icon: 'tabler:coin', desc: 'Tokens, TBC, monetary' },
+              { name: 'Governance', icon: 'tabler:gavel', desc: 'Proposals, voting, DAO' },
+              { name: 'Technology', icon: 'tabler:cpu', desc: 'Substrate, Iroha, bridges' },
+              { name: 'Network', icon: 'tabler:network', desc: 'Validators, consensus' },
+            ].map(({ name, icon, desc }) => (
+              <div class="flex items-center gap-3 rounded-lg bg-page/50 px-4 py-3">
+                <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-soft text-brand-500">
+                  <Icon name={icon} class="h-4 w-4" />
+                </div>
+                <div>
+                  <p class="font-medium text-text-main">{name}</p>
+                  <p class="text-xs text-text-muted">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Explorer</p>
+        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">
+          Navigate by domain, not by guesswork
+        </h2>
+        <p class="mt-4 text-lg text-text-muted">
+          The SORA Explorer organizes articles and guides into six thematic domains with quick journeys and trait filters.
+        </p>
+        <div class="mt-8 space-y-4">
+          {explorerFeatures.map(({ icon, title, description }) => (
+            <div class="flex items-start gap-4">
+              <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand-soft text-brand-500">
+                <Icon name={icon} class="h-5 w-5" />
+              </div>
+              <div>
+                <h3 class="font-semibold text-text-main">{title}</h3>
+                <p class="mt-1 text-sm text-text-muted">{description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="mt-8">
+          <Button variant="primary" href={featureLinks.explore} text="Open the Explorer" icon="tabler:arrow-up-right" />
+        </div>
+      </div>
+    </div>
+  </WidgetWrapper>
+
+  <!-- Search Section -->
+  <WidgetWrapper containerClass="max-w-6xl">
+    <div class="rounded-2xl border border-border-subtle bg-surface/50 p-8 md:p-10">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Unified Search</p>
+        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">
+          Press ⌘K to search everything
+        </h2>
+        <p class="mt-4 text-lg text-text-muted">
+          One modal to search glossary terms, articles, and Explorer entries with category filters and keyboard navigation.
+        </p>
+      </div>
+      <div class="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {searchFeatures.map(({ icon, title, description }) => (
+          <div class="flex flex-col items-center gap-3 text-center">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-brand-500">
+              <Icon name={icon} class="h-6 w-6" />
+            </div>
+            <h3 class="font-semibold text-text-main">{title}</h3>
+            <p class="text-sm text-text-muted">{description}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mx-auto mt-8 max-w-md rounded-xl border border-dashed border-brand-soft bg-brand-soft/20 px-4 py-3 text-center text-sm text-text-muted">
+        Press <span class="mx-1 inline-flex rounded bg-soft px-2 py-0.5 font-mono text-sm">⌘K</span> (macOS) or
+        <span class="mx-1 inline-flex rounded bg-soft px-2 py-0.5 font-mono text-sm">Ctrl+K</span> (Windows/Linux)
+      </div>
+    </div>
+  </WidgetWrapper>
+
+  <!-- Timeline Section -->
   <WidgetWrapper containerClass="max-w-6xl" isDark bg={`<div class="absolute inset-0 bg-gradient-to-br from-brand-soft/20 via-transparent to-brand-soft/10"></div>`}>
     <div class="mx-auto max-w-3xl text-center">
-      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-200">Evolution Timeline</p>
-      <h2 class="mt-4 text-3xl font-bold text-white md:text-4xl">How the Soranauts feature set matured in 2025.</h2>
+      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-200">Recent Updates</p>
+      <h2 class="mt-4 text-3xl font-bold text-white md:text-4xl">What we shipped in 2025</h2>
       <p class="mt-4 text-lg text-text-soft">
-        From design tokens to knowledge base hardening, every milestone brings the community closer to a transparent, well-documented SORA ecosystem.
+        From glossary expansion to Explorer launch — the platform keeps evolving.
       </p>
     </div>
     <div class="mt-12">
@@ -399,7 +467,7 @@ const resourceLinks = [
           icon,
           classes: {
             panel: 'bg-surface/95 border border-border-subtle rounded-2xl p-6 shadow-sm',
-            title: 'text-2xl text-text-main',
+            title: 'text-xl text-text-main',
             description: 'text-base text-text-muted',
             icon: 'text-brand-500 border-brand-500/60 bg-page/80',
           },
@@ -414,49 +482,42 @@ const resourceLinks = [
     </div>
   </WidgetWrapper>
 
-  <section class="px-4 md:px-6">
-    <div class="mx-auto max-w-6xl">
-      <div class="rounded-3xl border border-border-subtle bg-surface p-6 shadow-sm md:p-10">
-        <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div class="max-w-2xl">
-            <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Helpful Resources</p>
-            <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Dig deeper into our documentation.</h2>
-            <p class="mt-4 text-lg text-text-muted">
-              Transparency matters. These resources provide network-level release notes, Soranauts-specific improvements, and roadmap context for what ships next.
-            </p>
-          </div>
-        </div>
-        <div class="mt-8 grid gap-4 md:grid-cols-3">
-          {resourceLinks.map(({ title, description, href, icon, external }) => (
-            <a
-              class="group flex h-full flex-col gap-3 rounded-2xl border border-border-subtle bg-page/80 p-5 transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
-              href={href}
-              target={external ? '_blank' : undefined}
-              rel={external ? 'noopener noreferrer' : undefined}
-            >
-              <div class="flex items-center gap-3">
-                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-soft text-brand-600 transition group-hover:bg-brand-500 group-hover:text-white">
-                  <Icon name={icon} class="h-5 w-5" />
-                </span>
-                <p class="text-lg font-semibold text-text-main">{title}</p>
-              </div>
-              <p class="text-sm text-text-muted">{description}</p>
-              <span class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-link group-hover:text-link-hover">
-                View resource
-                <Icon name="tabler:arrow-up-right" class="h-4 w-4" />
-              </span>
-            </a>
-          ))}
-        </div>
+  <!-- Resources Section -->
+  <section class="px-4 py-16 md:px-6">
+    <div class="mx-auto max-w-5xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Quick Links</p>
+        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Start exploring</h2>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {resourceLinks.map(({ title, description, href, icon, external }) => (
+          <a
+            class="group flex flex-col gap-3 rounded-xl border border-border-subtle bg-surface p-5 transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-elevated"
+            href={href}
+            target={external ? '_blank' : undefined}
+            rel={external ? 'noopener noreferrer' : undefined}
+          >
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-soft text-brand-600 transition group-hover:bg-brand-500 group-hover:text-white">
+              <Icon name={icon} class="h-5 w-5" />
+            </div>
+            <h3 class="font-semibold text-text-main">{title}</h3>
+            <p class="text-sm text-text-muted">{description}</p>
+            <span class="mt-auto inline-flex items-center gap-1 text-sm font-medium text-link group-hover:text-link-hover">
+              {external ? 'Visit' : 'Open'}
+              <Icon name="tabler:arrow-up-right" class="h-4 w-4" />
+            </span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
+  <!-- CTA Section -->
   <CallToAction
     isDark
     classes={{
       container: 'max-w-4xl',
-      actions: 'gap-3 sm:gap-4 lg:gap-3 xl:gap-2.5 lg:max-w-xl xl:max-w-lg',
+      actions: 'gap-3 sm:gap-4',
     }}
     actions={[
       {
@@ -464,26 +525,21 @@ const resourceLinks = [
         href: '/donate',
         text: 'Support Soranauts',
         icon: 'tabler:heart',
-        class: 'md:px-5 md:py-2 lg:px-4 lg:py-1.5 lg:text-base lg:rounded-3xl xl:px-3.5 xl:py-1.5 xl:rounded-3xl',
       },
       {
         variant: 'secondary',
         href: 'https://t.me/Soranauts',
         target: '_blank',
         text: 'Join the community',
-        icon: 'tabler:send',
-        class: 'md:px-5 md:py-2 lg:px-4 lg:py-1.5 lg:text-base lg:rounded-3xl xl:px-3.5 xl:py-1.5 xl:rounded-3xl',
+        icon: 'tabler:brand-telegram',
       },
     ]}
   >
     <Fragment slot="title">
-      Help keep Soranauts coverage independent and well-documented.
+      Help keep this resource independent
     </Fragment>
     <Fragment slot="subtitle">
-      Your support funds the research, glossary updates, release cadence, and knowledge base automation that keep SORA Explorer and our docs neutral and current.
+      Your support funds glossary expansion, Explorer improvements, and the infrastructure that keeps Soranauts accurate and up-to-date.
     </Fragment>
   </CallToAction>
-  <!-- Copy refresh aligns metadata, hero, signals, stats, search, timeline, resources, and CTA with current Soranauts capabilities and safeguards. -->
 </PageLayout>
-
-

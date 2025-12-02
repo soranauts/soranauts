@@ -2,6 +2,33 @@
 
 Welcome to the Soranauts monorepo! This guide will help you get started with development.
 
+---
+
+## 🔒 Release Lock Notice — Nexus Glossary V2025
+
+**Status:** LOCKED (December 2025)
+
+The Nexus Glossary V2025 release is now frozen. The following restrictions apply:
+
+### ✅ Allowed Changes
+- MDX content edits (summaries, definitions, examples)
+- New glossary terms (following schema)
+- Typo fixes and documentation updates
+- Non-breaking CSS tweaks
+- Bug fixes
+
+### ❌ Requires Unlock Approval
+- Routing changes
+- Schema changes
+- Generator modifications
+- Design token changes
+- Layout changes
+- Feature flag changes
+
+See `docs/RELEASE_LOCK_V2025.md` for unlock procedure.
+
+---
+
 ## Protected Paths
 
 ⚠️ **IMPORTANT**: The following paths are protected and should **NEVER** be modified unless you are explicitly working on content or feature updates:

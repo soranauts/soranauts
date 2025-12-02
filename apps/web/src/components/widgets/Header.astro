@@ -54,11 +54,8 @@ const secondaryLinks = links.filter(({ text }) => !text || !primaryLinkLabels.ha
 const showLayeredLogo = import.meta.env.NAV_LOGO_LAYERED === 'true';
 
 const linkMap = new Map<string, MenuLink>(links.map((link) => [link.text ?? '', link]));
-if (!linkMap.has('Changelog')) {
-  linkMap.set('Changelog', { text: 'Changelog', href: '/changelog' });
-}
 
-const desktopNavOrder = ['Explore', 'Blog', 'Glossary', 'Features', 'About', 'Changelog', 'Donate'];
+const desktopNavOrder = ['Explore', 'Blog', 'Glossary', 'Features', 'About', 'Donate'];
 const desktopNavLinks = desktopNavOrder
   .map((label) => linkMap.get(label))
   .filter((link): link is MenuLink => Boolean(link));

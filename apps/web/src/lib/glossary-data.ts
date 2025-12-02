@@ -21,7 +21,9 @@ async function getJSON<T>(path: string): Promise<T> {
   if (isServer) {
     return readServerJSON<T>(path);
   }
-  const res = await fetch(path, { cache: 'force-cache' });
+  // Use no-store in development to avoid stale data, force-cache in production
+  const isDev = import.meta.env?.DEV ?? false;
+  const res = await fetch(path, { cache: isDev ? 'no-store' : 'force-cache' });
   if (!res.ok) {
     throw new Error(`Failed to fetch ${path}: ${res.status}`);
   }

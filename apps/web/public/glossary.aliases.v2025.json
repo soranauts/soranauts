@@ -1,7 +1,7 @@
 {
   "aliases": [
     {
-      "alias": "bitcoin-halving",
+      "alias": "bitcoinhalving",
       "target": "halving"
     },
     {
@@ -9,52 +9,28 @@
       "target": "bitcoin"
     },
     {
-      "alias": "consensus-mechanisms",
+      "alias": "consensusmechanisms",
       "target": "consensus"
+    },
+    {
+      "alias": "da",
+      "target": "dataavailability"
+    },
+    {
+      "alias": "data-availability",
+      "target": "dataavailability"
     },
     {
       "alias": "doge",
       "target": "dogecoin"
     },
     {
-      "alias": "hyperled",
-      "target": "iroha"
+      "alias": "hyperledgeriroha3",
+      "target": "sorav3"
     },
     {
-      "alias": "hyperledger-iroha",
-      "target": "iroha"
-    },
-    {
-      "alias": "hyperledger-iroha-2",
-      "target": "iroha2"
-    },
-    {
-      "alias": "hyperledger-iroha-3",
-      "target": "iroha3"
-    },
-    {
-      "alias": "interplanetary-file-system",
+      "alias": "interplanetaryfilesystem",
       "target": "ipfs"
-    },
-    {
-      "alias": "iroha-2",
-      "target": "iroha2"
-    },
-    {
-      "alias": "iroha-3",
-      "target": "iroha3"
-    },
-    {
-      "alias": "iroha-blockchain",
-      "target": "iroha"
-    },
-    {
-      "alias": "iroha-v2",
-      "target": "iroha2"
-    },
-    {
-      "alias": "iroha-v3",
-      "target": "iroha3"
     },
     {
       "alias": "iroha-virtual-machine",
@@ -62,34 +38,34 @@
     },
     {
       "alias": "isis",
-      "target": "iroha-special-instructions"
+      "target": "irohaspecialinstructions"
     },
     {
       "alias": "ivm",
       "target": "irohavirtualmachineivm"
     },
     {
-      "alias": "monetary-system",
-      "target": "monetary-systems"
+      "alias": "monetarysystem",
+      "target": "monetarysystems"
     },
     {
       "alias": "nexus",
-      "target": "iroha3"
+      "target": "sorav3"
     },
     {
       "alias": "nfts",
       "target": "nft"
     },
     {
-      "alias": "non-fungible-token",
+      "alias": "nonfungibletoken",
       "target": "nft"
     },
     {
-      "alias": "non-fungible-tokens",
+      "alias": "nonfungibletokens",
       "target": "nft"
     },
     {
-      "alias": "parachain-auctions",
+      "alias": "parachainauctions",
       "target": "auctions"
     },
     {
@@ -98,27 +74,35 @@
     },
     {
       "alias": "pos",
-      "target": "proof-of-stake"
+      "target": "proofofstake"
     },
     {
       "alias": "pow",
-      "target": "proof-of-work"
+      "target": "proofofwork"
     },
     {
-      "alias": "pswap-dex",
+      "alias": "pswapdex",
       "target": "polkaswap"
     },
     {
-      "alias": "qr-payment",
-      "target": "qr-payments"
+      "alias": "qc",
+      "target": "quorumcertificate"
+    },
+    {
+      "alias": "qrpayment",
+      "target": "qrpayments"
+    },
+    {
+      "alias": "quorum-certificate",
+      "target": "quorumcertificate"
     },
     {
       "alias": "rust",
-      "target": "rust-language"
+      "target": "rustlanguage"
     },
     {
       "alias": "rwa",
-      "target": "real-world-assets"
+      "target": "realworldassets"
     },
     {
       "alias": "sfq",
@@ -126,23 +110,15 @@
     },
     {
       "alias": "shib",
-      "target": "shiba-inu"
+      "target": "shibainu"
     },
     {
-      "alias": "sora-council",
-      "target": "council"
-    },
-    {
-      "alias": "sora-dex",
+      "alias": "soradex",
       "target": "polkaswap"
     },
     {
-      "alias": "sora-parliament",
-      "target": "parliament"
-    },
-    {
-      "alias": "sora-v3",
-      "target": "iroha3"
+      "alias": "soranexus",
+      "target": "sorav3"
     },
     {
       "alias": "space-directory",
@@ -153,7 +129,7 @@
       "target": "starttimefairqueuingsfq"
     },
     {
-      "alias": "telegram-dex",
+      "alias": "telegramdex",
       "target": "tonswap"
     },
     {
@@ -161,19 +137,11 @@
       "target": "transactionexecutionunitsteu"
     },
     {
-      "alias": "token-bonding-curve",
-      "target": "bonding-curve"
-    },
-    {
-      "alias": "ton-swap",
-      "target": "tonswap"
-    },
-    {
       "alias": "transaction-execution-units",
       "target": "transactionexecutionunitsteu"
     },
     {
-      "alias": "ts-dex",
+      "alias": "tsdex",
       "target": "tonswap"
     },
     {

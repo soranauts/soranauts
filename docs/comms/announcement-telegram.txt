@@ -1,0 +1,55 @@
+🚀 **SORA Nexus Glossary V2025 is LIVE!**
+
+The biggest update to how you learn about the SORA ecosystem is here.
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 **Quick-View Panel**
+Preview any term instantly! Hover over glossary chips to see definitions, taglines, and related concepts without leaving your page.
+
+🧭 **Explorer V3**
+Curated learning journeys guide you through:
+• DeFi Basics
+• Governance 101
+• Token Economics
+• Developer Onboarding
+
+⚡ **Performance**
+• 62% smaller initial load
+• Instant prefetching
+• Deterministic builds
+
+♿ **Accessibility**
+• Full keyboard navigation
+• Screen reader support
+• Reduced motion options
+• WCAG AA+ compliant
+
+🛠️ **For Contributors**
+New authoring tools make adding terms dead simple:
+• Content linting
+• Schema validation
+• VS Code snippets
+• One-command previews
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+📊 **By the Numbers**
+• 179 glossary terms
+• 13+ aliases
+• 10 domains
+• 4 learning journeys
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+👉 **Explore now:**
+https://soranauts.com/glossary
+
+👉 **Learning journeys:**
+https://soranauts.com/explore
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+#SORA #XOR #DeFi #Polkaswap #Web3
+
+

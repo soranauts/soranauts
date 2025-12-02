@@ -5,6 +5,7 @@
 
 import glossaryData from '../../../public/data/glossary.v2025.json';
 import aliasData from '../../../public/glossary.aliases.v2025.json';
+import { NEXUS_SUBGROUPS } from '~/data/nexus-explorer.config';
 
 export interface GlossaryStats {
   totalTerms: number;
@@ -12,6 +13,7 @@ export interface GlossaryStats {
   totalCategories: number;
   categories: string[];
   categoryDistribution: Record<string, number>;
+  nexusTermCount: number;
 }
 
 /**
@@ -34,12 +36,16 @@ export function getGlossaryStats(): GlossaryStats {
     }
   }
 
+  // Count Nexus Architecture terms from config
+  const nexusTermCount = getNexusTermCount();
+
   return {
     totalTerms: terms.length,
     totalAliases: aliases.length,
     totalCategories: categorySet.size,
     categories: Array.from(categorySet).sort(),
     categoryDistribution,
+    nexusTermCount,
   };
 }
 
@@ -82,6 +88,20 @@ export function getCategoryDistribution(): Record<string, number> {
     }
   }
   return distribution;
+}
+
+/**
+ * Get the count of Nexus Architecture terms.
+ * Counts unique terms from the Nexus Explorer config subgroups.
+ */
+export function getNexusTermCount(): number {
+  const terms = new Set<string>();
+  for (const subgroup of NEXUS_SUBGROUPS) {
+    for (const term of subgroup.terms) {
+      terms.add(term);
+    }
+  }
+  return terms.size;
 }
 
 // Pre-computed stats for static imports

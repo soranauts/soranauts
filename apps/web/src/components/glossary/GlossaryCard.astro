@@ -11,40 +11,63 @@ export interface Props {
 
 const { href, title, summary, category, tags = [], meta = [], badge } = Astro.props;
 
-import { formatCategoryLabel } from '~/lib/glossary/format';
+import { formatCategoryLabel, formatHashtag } from '~/lib/glossary/format';
 const categoryLabel = category ? formatCategoryLabel(category) : undefined;
 
+// Generate category slug for filtering (lowercase, spaces to hyphens)
+const categorySlug = category ? category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') : '';
+
+// Deduplicate tags by normalized lowercase form
 const seenTags = new Set<string>();
 const dedupedTags = tags.filter((tag) => {
-  const key = tag.toLowerCase();
+  const key = tag.toLowerCase().replace(/[\s_-]+/g, '');
   if (seenTags.has(key)) return false;
   seenTags.add(key);
   return Boolean(tag);
 });
 const tagList = dedupedTags.slice(0, 6);
+
+// Generate slug for linking to related term
+const toSlug = (tag: string) => tag.toLowerCase().replace(/[\s_-]+/g, '');
 ---
 
-<a class="glossary-card" href={href}>
+<div class="glossary-card-container">
   {(categoryLabel || badge) && (
     <div class="glossary-card__header">
-      {categoryLabel && <span class="chip chip--sm chip--neutral">{categoryLabel}</span>}
+      {categoryLabel && (
+        <a 
+          class="chip chip--sm chip--neutral glossary-card__category-link" 
+          href={`/glossary?category=${categorySlug}`}
+          title={`View all ${categoryLabel} terms`}
+        >
+          {categoryLabel}
+        </a>
+      )}
       {badge && <span class="chip chip--sm chip--accent">{badge}</span>}
     </div>
   )}
-  <h3 class="glossary-card__title">{title}</h3>
-  {summary && <p class="glossary-card__summary">{summary}</p>}
-  {meta.length > 0 && (
-    <div class="glossary-card__meta">
-      {meta.map((item) => (
-        <span>{item}</span>
-      ))}
-    </div>
-  )}
+  <a class="glossary-card" href={href}>
+    <h3 class="glossary-card__title">{title}</h3>
+    {summary && <p class="glossary-card__summary">{summary}</p>}
+    {meta.length > 0 && (
+      <div class="glossary-card__meta">
+        {meta.map((item) => (
+          <span>{item}</span>
+        ))}
+      </div>
+    )}
+  </a>
   {tagList.length > 0 && (
     <div class="glossary-card__tags" aria-label="Related tags">
       {tagList.map((tag) => (
-        <span class="chip chip--sm chip--muted">#{formatCategoryLabel(tag)}</span>
+        <a 
+          class="chip chip--sm chip--muted glossary-card__tag-link" 
+          href={`/glossary/${toSlug(tag)}`}
+          title={`View ${formatHashtag(tag)} term`}
+        >
+          #{formatHashtag(tag)}
+        </a>
       ))}
     </div>
   )}
-</a>
+</div>

@@ -13,10 +13,14 @@ interface ImportMetaEnv {
   readonly FEATURE_GLOSSARY_UI_CANONICAL?: string;
   readonly FEATURE_GLOSSARY_ALIAS_REDIRECT?: string;
   readonly FEATURE_GLOSSARY_V3_UI?: string;
+  readonly FEATURE_GLOSSARY_QUICKVIEW?: string;
   readonly FEATURE_GLOSSARY_RELATED_ARTICLES?: string;
+  readonly FEATURE_EXPLORER_V3?: string;
   readonly FEATURE_EXPLORER_GLOSSARY_CONTEXT?: string;
   readonly GLOSSARY_CARD_SHOW_UPDATED?: string;
   readonly SITE_ORIGIN?: string;
+  readonly VERCEL_TOKEN?: string;
+  readonly VERCEL_TEAM_ID?: string;
 }
 
 interface ImportMeta {

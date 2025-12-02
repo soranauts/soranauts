@@ -110,6 +110,8 @@ function processGlossaryTerm(term: string, data: any): GlossaryTerm {
   return {
     term,
     slug,
+    title: data.title || term,
+    summary: data.summary || data.definition || '',
     definition: data.definition,
     category: data.category,
     relatedTerms: data.relatedTerms || [],

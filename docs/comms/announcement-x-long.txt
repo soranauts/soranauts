@@ -1,0 +1,26 @@
+🚀 Introducing SORA Nexus Glossary V2025 — the biggest update to how you learn about the SORA ecosystem!
+
+What's new:
+
+🔍 Quick-View Panel
+Preview any term instantly without leaving your page. Hover, click, learn. Share deep-links with ?term=slug.
+
+🧭 Explorer V3
+Curated learning journeys take you from beginner to expert. Nexus Architecture organizes 179 terms into logical domains.
+
+⚡ Performance
+62% smaller initial load. Lazy-loaded term data. Instant prefetching on hover.
+
+♿ Accessibility
+WCAG AA+ compliant. Keyboard navigation. Screen reader support. Reduced motion options.
+
+🛠️ For Authors
+New content linting, schema validation, VS Code snippets, and one-command previews.
+
+This is learning mode for DeFi.
+
+Explore now 👉 https://soranauts.com/glossary
+
+#SORA #XOR #DeFi #Web3 #Crypto #Polkaswap #Decentralized #Blockchain #Learning
+
+

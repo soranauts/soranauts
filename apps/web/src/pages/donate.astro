@@ -3,6 +3,8 @@ import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 import { headerData, footerData } from '~/navigation';
+// @ts-expect-error astro-icon ships runtime-only component typings
+import { Icon } from 'astro-icon/components';
 
 const metadata = {
   title: 'Donate to Soranauts | Fuel SORA Research & Education',
@@ -10,192 +12,259 @@ const metadata = {
   image: '/soranauts-social-share.jpg',
   url: '/donate'
 };
+
+const donationOptions = [
+  {
+    name: 'SORA Ecosystem',
+    icon: '/sora-xor-logo.svg',
+    iconType: 'image',
+    description: 'XOR, VAL, PSWAP, and other SORA tokens sustain governance tracking and living documentation.',
+    label: 'SORA Network Address',
+    address: 'cnVcjvUEVGbK4LGLB9K382EEKm57dxtmGYdiFfnjEWWg9vr72',
+    accent: 'brand',
+  },
+  {
+    name: 'Bitcoin',
+    icon: '/bitcoin-btc-logo.svg',
+    iconType: 'image',
+    description: 'Bitcoin contributions keep infrastructure, audits, and analytics tooling online.',
+    label: 'BTC Address',
+    address: 'BC1QHEN7QMF32E0NNEUSTXH4FUS5KG7KSAS94YT3NT',
+    accent: 'warning',
+  },
+  {
+    name: 'Ethereum',
+    icon: 'tabler:currency-ethereum',
+    iconType: 'icon',
+    description: 'ETH and ERC-20 support community tooling and translations across our resources.',
+    label: 'ETH Address',
+    address: '0xfdF182784C748439F20645eE74932960f17d7f98',
+    accent: 'info',
+  },
+];
+
+const impactItems = [
+  {
+    icon: 'tabler:book-2',
+    title: 'Deep-dive Explainers',
+    description: 'Neutral walkthroughs of SORA mechanics, Polkaswap flows, and policy context.',
+  },
+  {
+    icon: 'tabler:vocabulary',
+    title: 'Glossary Verification',
+    description: 'Continuous review of terminology, risk disclosures, and protocol updates.',
+  },
+  {
+    icon: 'tabler:bolt',
+    title: 'Faster Search & Tooling',
+    description: 'Performance tuning, infrastructure, and data pipelines for reliable discovery.',
+  },
+  {
+    icon: 'tabler:heart-handshake',
+    title: 'Community Research',
+    description: 'Collaborations that surface governance insights and multilingual resources.',
+  },
+];
+
+const supportLinks = [
+  {
+    href: 'https://t.me/Soranauts',
+    icon: 'tabler:brand-telegram',
+    label: 'Join Telegram',
+    sublabel: 'Community & Feedback',
+    external: true,
+    primary: true,
+  },
+  {
+    href: 'https://twitter.com/soranauts',
+    icon: 'tabler:brand-x',
+    label: 'Follow on X',
+    sublabel: 'Boost Updates',
+    external: true,
+  },
+  {
+    href: '/blog',
+    icon: 'tabler:news',
+    label: 'Read the Blog',
+    sublabel: 'Learn & Share',
+  },
+  {
+    href: 'https://wiki.sora.org/',
+    icon: 'tabler:external-link',
+    label: 'SORA Wiki',
+    sublabel: 'Official Docs',
+    external: true,
+  },
+];
 ---
 
 <Layout metadata={metadata}>
   <Header {...headerData} isSticky showRssFeed showToggleTheme />
-  <main class="min-h-screen bg-page text-text-main">
-    <div class="container mx-auto px-4 py-16 space-y-16">
-      <!-- Hero Section -->
-      <div class="text-center space-y-4">
-        <h1 class="text-4xl md:text-5xl font-bold text-text-main">
-          Fuel Soranauts' Independent SORA Research
+  <main id="main-content" class="min-h-screen bg-page text-text-main">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-[1] bg-gradient-to-br from-brand-soft/50 via-transparent to-transparent" aria-hidden="true" />
+      <div class="mx-auto max-w-4xl px-4 py-20 text-center md:px-6">
+        <span class="inline-flex items-center gap-2 rounded-full border border-brand-soft bg-surface/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-brand-600 shadow-sm">
+          Support
+        </span>
+        <h1 class="mt-6 text-4xl font-bold leading-tight text-text-main md:text-5xl">
+          Fuel independent SORA research
         </h1>
-        <p class="text-xl text-text-muted max-w-3xl mx-auto">
-          Soranauts documents the SORA, Soramitsu, and Polkaswap ecosystem with neutral analysis and open documentation. Your donation powers original research, governance tracking, infrastructure, tooling, and explainers for the community.
+        <p class="mx-auto mt-6 max-w-2xl text-lg text-text-muted">
+          Soranauts documents the SORA ecosystem with neutral analysis and open documentation. Your donation powers original research, governance tracking, and community resources.
         </p>
       </div>
+    </section>
 
-      <!-- Donation Options -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-        <!-- SORA Ecosystem Donations -->
-        <div class="bg-surface border border-border-subtle rounded-xl shadow-elevated p-8 flex flex-col">
-          <div class="flex flex-col gap-6 flex-1 w-full items-center text-center">
-            <div class="w-16 h-16 rounded-full flex items-center justify-center bg-brand-soft text-brand-500 mx-auto">
-              <img src="/sora-xor-logo.svg" alt="SORA Logo" class="w-8 h-8" />
+    <!-- Donation Options -->
+    <section class="px-4 pb-16 md:px-6">
+      <div class="mx-auto max-w-5xl">
+        <div class="grid gap-6 md:grid-cols-3">
+          {donationOptions.map((option) => (
+            <div class="group relative flex flex-col overflow-hidden rounded-2xl border border-border-subtle bg-surface shadow-sm transition hover:border-brand-500/50 hover:shadow-elevated">
+              <div class="flex flex-col items-center gap-4 p-6 text-center">
+                <div class:list={[
+                  "flex h-14 w-14 items-center justify-center rounded-full transition group-hover:scale-110",
+                  option.accent === 'brand' && "bg-brand-soft text-brand-500",
+                  option.accent === 'warning' && "bg-status-warning/10 text-status-warning",
+                  option.accent === 'info' && "bg-status-info/10 text-status-info",
+                ]}>
+                  {option.iconType === 'image' ? (
+                    <img src={option.icon} alt={`${option.name} logo`} class="h-7 w-7" />
+                  ) : (
+                    <Icon name={option.icon} class="h-7 w-7" />
+                  )}
+                </div>
+                <h3 class="text-lg font-semibold text-text-main">{option.name}</h3>
+                <p class="text-sm text-text-muted">{option.description}</p>
+              </div>
+              <div class="mt-auto border-t border-border-subtle bg-soft/50 p-4">
+                <p class="mb-2 text-xs font-medium uppercase tracking-wide text-text-soft">{option.label}</p>
+                <div class="group/copy relative">
+                  <code class="block break-all rounded-lg bg-page/80 px-3 py-2 text-xs text-text-muted font-mono">
+                    {option.address}
+                  </code>
+                  <button 
+                    type="button"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-text-soft opacity-0 transition hover:bg-surface hover:text-brand-500 group-hover/copy:opacity-100"
+                    data-copy={option.address}
+                    aria-label={`Copy ${option.name} address`}
+                  >
+                    <Icon name="tabler:copy" class="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold text-text-main">SORA Ecosystem</h3>
-            <p class="text-text-muted">
-              SORA ecosystem tokens sustain governance tracking, research explainers, and living documentation for SORA and Polkaswap.
-            </p>
-            <div class="mt-auto w-full rounded-lg border border-border-subtle bg-soft p-3 text-left space-y-2">
-              <p class="text-sm font-medium text-text-main">SORA Network Address</p>
-              <p class="text-sm text-text-muted font-mono break-all">
-                cnVcjvUEVGbK4LGLB9K382EEKm57dxtmGYdiFfnjEWWg9vr72
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
+      </div>
+    </section>
 
-        <!-- Bitcoin Donations -->
-        <div class="bg-surface border border-border-subtle rounded-xl shadow-elevated p-8 flex flex-col">
-          <div class="flex flex-col gap-6 flex-1 w-full items-center text-center">
-            <div class="w-16 h-16 rounded-full flex items-center justify-center bg-soft text-status-warning mx-auto">
-              <img src="/bitcoin-btc-logo.svg" alt="Bitcoin Logo" class="w-8 h-8" />
-            </div>
-            <h3 class="text-xl font-semibold text-text-main">Bitcoin</h3>
-            <p class="text-text-muted">
-              Bitcoin contributions keep shared infrastructure, audits, and analytics tooling online for Soranauts.org.
-            </p>
-            <div class="mt-auto w-full rounded-lg border border-border-subtle bg-soft p-3 text-left space-y-2">
-              <p class="text-sm font-medium text-text-main">BTC Address</p>
-              <p class="text-sm text-text-muted font-mono break-all">
-                BC1QHEN7QMF32E0NNEUSTXH4FUS5KG7KSAS94YT3NT
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Ethereum Donations -->
-        <div class="bg-surface border border-border-subtle rounded-xl shadow-elevated p-8 flex flex-col">
-          <div class="flex flex-col gap-6 flex-1 w-full items-center text-center">
-            <div class="w-16 h-16 rounded-full flex items-center justify-center bg-soft text-status-info mx-auto">
-              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold text-text-main">Ethereum</h3>
-            <p class="text-text-muted">
-              ETH and ERC-20 support community tooling, interface experiments, and translations across our open resources.
-            </p>
-            <div class="mt-auto w-full rounded-lg border border-border-subtle bg-soft p-3 text-left space-y-2">
-              <p class="text-sm font-medium text-text-main">ETH Address</p>
-              <p class="text-sm text-text-muted font-mono break-all">
-                0xfdF182784C748439F20645eE74932960f17d7f98
-              </p>
-            </div>
+    <!-- What Your Support Enables -->
+    <section class="px-4 py-16 md:px-6">
+      <div class="mx-auto max-w-5xl">
+        <div class="rounded-2xl border border-border-subtle bg-surface/50 p-8 md:p-10">
+          <h2 class="mb-8 text-center text-2xl font-bold text-text-main">
+            What your support enables
+          </h2>
+          <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {impactItems.map((item) => (
+              <div class="flex flex-col items-center gap-3 text-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-brand-500">
+                  <Icon name={item.icon} class="h-6 w-6" />
+                </div>
+                <h3 class="font-semibold text-text-main">{item.title}</h3>
+                <p class="text-sm text-text-muted leading-relaxed">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- What Your Support Enables -->
-      <div class="bg-surface border border-border-subtle rounded-xl shadow-elevated p-8 space-y-8">
-        <h2 class="text-2xl font-bold text-text-main text-center">
-          What Your Support Enables
+    <!-- Other Ways to Support -->
+    <section class="px-4 py-16 md:px-6">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="mb-8 text-2xl font-bold text-text-main">
+          Other ways to support
         </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-          <div class="space-y-4 text-center">
-            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center bg-soft text-status-success">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
-            <h3 class="font-semibold text-text-main">Deep-dive Explainers</h3>
-            <p class="text-sm text-text-muted leading-relaxed">Neutral walkthroughs of SORA mechanics, Polkaswap flows, and policy context.</p>
-          </div>
-          <div class="space-y-4 text-center">
-            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center bg-soft text-brand-500">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-            <h3 class="font-semibold text-text-main">Glossary Verification</h3>
-            <p class="text-sm text-text-muted leading-relaxed">Continuous review of terminology, risk disclosures, and protocol updates.</p>
-          </div>
-          <div class="space-y-4 text-center">
-            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center bg-soft text-status-info">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 class="font-semibold text-text-main">Faster Search & Tooling</h3>
-            <p class="text-sm text-text-muted leading-relaxed">Performance tuning, infrastructure, and data pipelines for reliable discovery.</p>
-          </div>
-          <div class="space-y-4 text-center">
-            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center bg-brand-soft text-brand-500">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-            <h3 class="font-semibold text-text-main">Community Research & Translations</h3>
-            <p class="text-sm text-text-muted leading-relaxed">Collaborations that surface governance insights, regional perspectives, and multilingual resources.</p>
-          </div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          {supportLinks.map((link) => (
+            <a
+              href={link.href}
+              target={link.external ? '_blank' : undefined}
+              rel={link.external ? 'noopener noreferrer' : undefined}
+              class:list={[
+                "group flex items-center gap-4 rounded-xl border p-4 transition",
+                link.primary 
+                  ? "border-brand-500/30 bg-brand-soft/20 hover:border-brand-500 hover:bg-brand-soft/40" 
+                  : "border-border-subtle bg-surface hover:border-brand-500/50 hover:bg-surface/80",
+              ]}
+            >
+              <div class:list={[
+                "flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full transition",
+                link.primary 
+                  ? "bg-brand-500 text-white group-hover:scale-110" 
+                  : "bg-soft text-text-muted group-hover:bg-brand-soft group-hover:text-brand-500",
+              ]}>
+                <Icon name={link.icon} class="h-5 w-5" />
+              </div>
+              <div class="text-left">
+                <p class:list={[
+                  "font-semibold",
+                  link.primary ? "text-brand-500" : "text-text-main",
+                ]}>{link.label}</p>
+                <p class="text-sm text-text-muted">{link.sublabel}</p>
+              </div>
+              {link.external && (
+                <Icon name="tabler:external-link" class="ml-auto h-4 w-4 text-text-soft" />
+              )}
+            </a>
+          ))}
         </div>
       </div>
+    </section>
 
-      <!-- Alternative Support Methods -->
-      <div class="text-center space-y-6">
-        <h2 class="text-2xl font-bold text-text-main">
-          Other Ways to Support
-        </h2>
-        <div class="flex flex-col items-stretch gap-3 max-w-3xl mx-auto md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-4">
-          <a
-            href="https://t.me/Soranauts"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-primary gap-3 w-full justify-center px-5 py-3 text-sm md:text-base md:w-64 md:px-4 md:py-2.5 md:scale-105 md:shadow-elevated transition-transform"
-          >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M22 2.01c-.5-.02-1 .04-1.43.27l-16.17 7c-1.11.43-1.09 1.07-.21 1.34l4.28 1.34 9.97-6.29c.47-.3.9-.14.55.2l-7.63 7.4-.26 4.14c.37.01.53-.17.73-.37l1.75-1.7 4.13 2.96c.76.41 1.24.2 1.41-.69l2.56-15.51c.23-1.28-.6-1.82-1.57-1.84z"/>
-            </svg>
-            Join Telegram: Community & Feedback
-          </a>
-          <a
-            href="https://twitter.com/soranauts"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-secondary gap-3 w-full justify-center px-5 py-3 text-sm md:text-base md:w-64 md:px-4 md:py-2.5"
-          >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-            </svg>
-            Boost Updates on X/Twitter
-          </a>
-          <a
-            href="/blog"
-            class="btn gap-2 w-full justify-center px-5 py-3 text-sm md:text-base md:w-64 md:px-4 md:py-2.5 border border-border-subtle bg-soft text-text-main hover:text-link focus-visible:text-link"
-          >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-            Learn & Share via the Blog
-          </a>
-          <a
-            href="https://github.com/soranauts"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn gap-2 w-full justify-center px-5 py-3 text-sm md:text-base md:w-64 md:px-4 md:py-2.5 border border-border-subtle bg-soft text-text-main hover:text-link focus-visible:text-link"
-          >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-.189-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            <span>Follow on GitHub (Public Releases Soon)</span>
-          </a>
+    <!-- Thank You Message -->
+    <section class="px-4 pb-20 md:px-6">
+      <div class="mx-auto max-w-3xl">
+        <div class="relative overflow-hidden rounded-2xl border border-brand-500/30 bg-gradient-to-br from-brand-soft/40 via-brand-soft/20 to-transparent p-8 text-center md:p-10">
+          <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-brand-500/10 blur-3xl" aria-hidden="true" />
+          <div class="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-brand-500/10 blur-3xl" aria-hidden="true" />
+          <div class="relative">
+            <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-brand-500">
+              <Icon name="tabler:heart" class="h-7 w-7" />
+            </div>
+            <h3 class="text-2xl font-bold text-text-main">
+              Thank you for backing independent SORA knowledge
+            </h3>
+            <p class="mx-auto mt-4 max-w-xl text-text-muted">
+              Your contribution keeps Soranauts transparent, independent, and focused on education. Donations fund research, documentation, and community tooling — not speculation.
+            </p>
+          </div>
         </div>
       </div>
-
-      <!-- Thank You Message -->
-      <div class="text-center">
-        <div class="rounded-xl border border-brand-soft bg-brand-soft p-8 space-y-4">
-          <h3 class="text-2xl font-bold text-text-main">
-            Thank you for backing independent SORA knowledge 🙏
-          </h3>
-          <p class="text-text-muted max-w-2xl mx-auto">
-            Your contribution keeps Soranauts transparent, independent, and focused on education. Donations fund research explainers, documentation, infrastructure, and community tooling—not speculation.
-          </p>
-        </div>
-      </div>
-    </div>
+    </section>
   </main>
   <Footer {...footerData} />
 </Layout>
+
+<script>
+  // Copy to clipboard functionality
+  document.querySelectorAll('[data-copy]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const text = button.getAttribute('data-copy');
+      if (text) {
+        await navigator.clipboard.writeText(text);
+        const icon = button.querySelector('svg');
+        if (icon) {
+          icon.style.color = 'var(--color-status-success)';
+          setTimeout(() => {
+            icon.style.color = '';
+          }, 1500);
+        }
+      }
+    });
+  });
+</script>
