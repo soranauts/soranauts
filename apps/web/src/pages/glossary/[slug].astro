@@ -27,9 +27,10 @@ import { shouldApplyAliasRedirect } from '~/lib/glossary/alias-redirect';
 import glossaryDatasetV2025 from '../../../public/data/glossary.v2025.json';
 import GlossaryTermPage from '~/components/glossary/v3/GlossaryTermPage';
 import GlossaryTermHero from '~/components/glossary/GlossaryTermHero';
+import GlossaryQuickView from '~/components/glossary/GlossaryQuickView';
 import { loadGlossaryFull } from '~/lib/glossary-data';
 import { resolveGlossaryEntry } from '~/lib/glossary-resolve';
-import { formatGlossaryTitle, formatCategoryLabel, truncateOneLiner, ACRONYM_TOKENS, formatGlossaryDate } from '~/lib/glossary/format';
+import { formatGlossaryTitle, formatCategoryLabel, formatHashtag, truncateOneLiner, ACRONYM_TOKENS, formatGlossaryDate } from '~/lib/glossary/format';
 import { getTermSubgroup } from '~/data/nexus-explorer.config';
 
 export const prerender = true;
@@ -271,17 +272,8 @@ const jsonLd = {
   ],
 };
 
-const formatLabel = (value: string): string => {
-  const raw = String(value || '');
-  const lower = raw.toLowerCase();
-  // Force specific brand/style acronyms to uppercase
-  if (lower === 'sora' || lower === 'ton') {
-    return lower.toUpperCase();
-  }
-  return raw
-    .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (match) => match.toUpperCase());
-};
+// Use the centralized hashtag formatting function for consistent casing
+const formatLabel = (value: string): string => formatHashtag(value);
 
 const categoryLabel = typeof term.category === 'string' ? formatCategoryLabel(term.category) : undefined;
 const aliasCount = Array.isArray(term.aliases) && term.aliases.length > 1 ? term.aliases.length - 1 : 0;
@@ -409,6 +401,25 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
 // Check if this term is part of Nexus Architecture for "View in Explorer" link
 const isNexusTerm = glossaryTags.includes('Nexus Architecture');
 const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefined;
+
+// Prepare terms data for Quick-View panel (lightweight payload)
+const quickViewTerms = allGlossaryTerms
+  .filter((t) => t.status === 'canonical')
+  .map((t) => ({
+    slug: t.slug,
+    term: t.term,
+    title: t.term,
+    definition: t.definition,
+    summary: t.summary,
+    category: t.category,
+    tags: t.tags,
+    relatedTerms: t.relatedTerms,
+    tagline: t.tagline,
+    subtitle: t.subtitle,
+  }));
+
+// Get initial term slug from URL if present (SSR)
+const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
 ---
 
 <Layout 
@@ -594,13 +605,25 @@ const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefine
           </div>
           {(relatedChipLinks.length > 0 || parentEntity || showCanonicalBadge) && (
             <div class="glossary-detail__chips mb-8 md:mb-10">
-            {relatedChipLinks.map((chip) => (
-              <a class="chip chip--sm chip--muted" href={chip.href}>
+            {relatedChipLinks.map((chip) => {
+              const isGlossaryLink = chip.href.startsWith('/glossary/');
+              const slug = isGlossaryLink ? chip.href.replace('/glossary/', '').replace(/\/$/, '') : null;
+              return (
+                <a 
+                  class="chip chip--sm chip--muted" 
+                  href={chip.href}
+                  {...(slug ? { 'data-qv-trigger': slug } : {})}
+                >
                   {chip.term}
                 </a>
-              ))}
+              );
+            })}
               {parentEntity && (
-                <a class="chip chip--sm chip--muted" href={`/glossary/${parentEntity.slug}`}>
+                <a 
+                  class="chip chip--sm chip--muted" 
+                  href={`/glossary/${parentEntity.slug}`}
+                  data-qv-trigger={parentEntity.slug}
+                >
                   Parent · {parentEntity.term}
                 </a>
               )}
@@ -690,7 +713,11 @@ const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefine
               <ul class="glossary-list">
                 {relatedTermsWithLinks.map((related) => (
                   <li>
-                    <a class="chip chip--sm chip--muted" href={`/glossary/${related.slug}`}>
+                    <a 
+                      class="chip chip--sm chip--muted" 
+                      href={`/glossary/${related.slug}`}
+                      data-qv-trigger={related.slug}
+                    >
                       {related.term}
                     </a>
                   </li>
@@ -761,6 +788,13 @@ const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefine
   </main>
 
   <Footer {...footerData} />
+  
+  <!-- Quick-View Panel (Progressive Enhancement) -->
+  <GlossaryQuickView 
+    client:load
+    terms={quickViewTerms}
+    initialSlug={initialQuickViewSlug}
+  />
 </Layout>
 
 <!-- Structured Data for SEO -->

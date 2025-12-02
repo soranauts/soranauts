@@ -1,9 +1,6 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import ItemGrid from '~/components/ui/ItemGrid.astro';
-import Timeline from '~/components/ui/Timeline.astro';
 import Button from '~/components/ui/Button.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 // @ts-expect-error astro-icon ships runtime-only component typings
@@ -13,392 +10,225 @@ import type { MetaData } from '~/types';
 const metadata: MetaData = {
   title: 'About Soranauts',
   description:
-    'Soranauts brings the SORA and Polkaswap roadmap to life — explore our mission, knowledge base, and how to get involved.',
+    'Soranauts is a public-good reference for the SORA ecosystem — clear, evidence-backed, and built for long-term stewardship.',
 };
 
-const articleLinks = {
-  deepDive: '/exploring-sora-kensetsu-polkaswap',
-  roadmap: '/sora-roadmap-token-repackaging-hub-chain-defi-upgrades',
-  latest: '/sora-v3-blockchain-innovations-at-the-sora-economic-forum-2024',
-};
-
-const missionPillars = [
+const principles = [
   {
-    icon: 'tabler:compass',
-    title: 'Actionable builder guides',
-    description:
-      "We translate SORA's supranational economy, Polkaswap flows, and the Token Bonding Curve into operations-ready walkthroughs for wallets, staking, and liquidity.",
-    callToAction: {
-      href: articleLinks.deepDive,
-      text: 'Read the SORA + Polkaswap guide',
-      icon: 'tabler:external-link',
-      isCardLink: true,
-    },
+    icon: 'tabler:eye',
+    title: 'Clarity over hype',
+    description: 'We explain what things are and how they work — no marketing spin, no breathless announcements.',
   },
   {
-    icon: 'tabler:shield-check',
-    title: 'Production-grade intelligence',
-    description:
-      'Our knowledge base is hardened with provenance tracking, nightly syncs, BM25 + vector retrieval, and SARIF-backed QA — giving contributors vetted context on every governance and production milestone.',
-    callToAction: {
-      href: articleLinks.roadmap,
-      text: 'Review the roadmap brief',
-      icon: 'tabler:timeline-event',
-      isCardLink: true,
-    },
+    icon: 'tabler:file-certificate',
+    title: 'Evidence before claims',
+    description: 'Every statement traces back to official sources, code, or verifiable on-chain data.',
   },
   {
-    icon: 'tabler:users',
-    title: 'Community-first storytelling',
-    description:
-      "We amplify ecosystem voices with Medium imports, contributor spotlights, and tutorials so anyone can follow SORA's rapid iteration without chasing scattered channels.",
-    callToAction: {
-      href: 'https://t.me/Soranauts',
-      target: '_blank',
-      text: 'Join the discussion',
-      icon: 'tabler:send',
-      isCardLink: true,
-    },
-  },
-];
-
-const kbFocusPoints = [
-  {
-    icon: 'tabler:clock',
-    title: 'Nightly syncs',
-    description:
-      'Automated 03:00 UTC workflows refresh the SORA wiki, Soramitsu, Hyperledger Iroha, Medium, and partner docs so contributors always pull current data.',
+    icon: 'tabler:scale',
+    title: 'Neutral reference',
+    description: 'We document the ecosystem as it is, not as anyone wishes it to be.',
   },
   {
-    icon: 'tabler:chart-dots-3',
-    title: 'Auditable retrieval',
-    description:
-      'Hybrid BM25 + vector search with Reciprocal Rank Fusion returns answers with citations, making it fast to validate claims before publishing.',
+    icon: 'tabler:clock-hour-4',
+    title: 'Long-term stewardship',
+    description: 'This resource is built to last — maintained, updated, and improved over years, not weeks.',
   },
   {
-    icon: 'tabler:certificate',
-    title: 'Traceable provenance',
-    description:
-      'Checksums, snapshot IDs, and run logs follow every ingest so reviewers can inspect when knowledge landed and who approved it.',
+    icon: 'tabler:world',
+    title: 'Public-good mindset',
+    description: 'Soranauts exists to serve the community, not to extract from it.',
   },
   {
-    icon: 'tabler:shield-check',
-    title: 'QA guardrails',
-    description:
-      'Determinism checks, regression backtests, and SARIF alerts protect the knowledge base so contributors trust every update.',
+    icon: 'tabler:users-group',
+    title: 'Open collaboration',
+    description: 'Corrections, additions, and improvements from the community are welcomed and credited.',
+  },
+  {
+    icon: 'tabler:adjustments-horizontal',
+    title: 'Pragmatic transparency',
+    description: 'We share how we work and why — without performative complexity.',
+  },
+  {
+    icon: 'tabler:refresh',
+    title: 'Continuous improvement',
+    description: 'We iterate based on feedback and new information — nothing is set in stone.',
+  },
+  {
+    icon: 'tabler:accessible',
+    title: 'Accessible to all',
+    description: 'Complex topics explained simply, so anyone can learn regardless of technical background.',
   },
 ];
 
-const stats = [
-  { amount: '1,000+', title: 'Curated knowledge assets from the SORA wiki, Polkaswap docs, Fearless Wallet, TONSWAP, and community GitHub repos', icon: 'tabler:layers-union' },
-  { amount: '10+', title: 'Active sync pipelines keeping wiki docs, GitHub repos, partner sites, and Medium feeds aligned with release cadence', icon: 'tabler:network' },
-  { amount: '930 MB', title: 'Verified ChromaDB and BM25 indices refreshed each ingest so search stays current without sacrificing precision', icon: 'tabler:database' },
-  { amount: 'Nightly', title: 'Nightly validation across sync jobs, provenance snapshots, and CI guardrails so regressions surface before publication', icon: 'tabler:shield-lock' },
-];
-
-const timelineItems = [
+const nonGoals = [
   {
-    title: '2022 — Foundations for SORA participation',
-    description:
-      'Demeter rewards, SORA parachain tooling, and XSTUSD laid the groundwork. Soranauts documented these steps so the community could onboard without deciphering raw Substrate references.',
-    icon: 'tabler:flag',
+    icon: 'tabler:chart-line',
+    text: 'Soranauts is not a trading signal service — we do not offer investment advice or price predictions.',
   },
   {
-    title: '2023 — Ecosystem momentum',
-    description:
-      'SORA DAO, trustless bridges, Polkaswap analytics, and validator tooling shipped. We expanded coverage with tutorials that help contributors stake, bridge, and trade with confidence.',
-    icon: 'tabler:rocket',
+    icon: 'tabler:speakerphone',
+    text: 'Soranauts is not a hype engine — we do not amplify unverified rumors or speculative narratives.',
   },
   {
-    title: '2024 — Kensetsu era in progress',
-    description:
-      'Kensetsu settlement rails, dynamic fees, KUSD, cross-chain bridges, and governance upgrades are actively progressing. Our knowledge base tracks each milestone so contributors see what’s shipping next.',
-    icon: 'tabler:timeline-event',
+    icon: 'tabler:building-store',
+    text: 'Soranauts is not vendor PR — we do not publish sponsored content or promotional material.',
   },
   {
-    title: '2025 — Nexus launch horizon',
-    description:
-      'SORA v3 on Hyperledger Iroha, SORAacles, Bitcoin bridge support, Nexus, and the SORA Societas initiative are being built. Soranauts keeps the roadmap legible so collaborators know where help is needed.',
-    icon: 'tabler:planet',
-  },
-];
-
-const supportItems = [
-  {
-    icon: 'tabler:heart-handshake',
-    title: 'Back the mission',
-    description:
-      'Help fund independent research, audits, tutorials, and retrieval infrastructure that keep the ecosystem verifiable.',
-    callToAction: {
-      href: '/donate',
-      text: 'Donate to Soranauts',
-      icon: 'tabler:heart',
-      isCardLink: true,
-    },
-  },
-  {
-    icon: 'tabler:message-circle-2',
-    title: 'Stay close to the pulse',
-    description:
-      'Join the Soranauts Telegram to trade notes, surface blockers, and collaborate with builders advancing SORA v3 and Polkaswap upgrades.',
-    callToAction: {
-      href: 'https://t.me/Soranauts',
-      target: '_blank',
-      text: 'Jump into Telegram',
-      icon: 'tabler:send',
-      isCardLink: true,
-    },
-  },
-  {
-    icon: 'tabler:book',
-    title: 'Go deeper with research',
-    description:
-      'Explore integrated plan breakdowns, safety guides, and research digests curated from our knowledge base.',
-    callToAction: {
-      href: '/blog',
-      text: 'Browse latest posts',
-      icon: 'tabler:external-link',
-      isCardLink: true,
-    },
-  },
-];
-
-const resourceLinks = [
-  {
-    icon: 'tabler:clipboard-check',
-    title: 'SORA Network Changelog',
-    description:
-      'Track validator tooling, bridge upgrades, and runtime releases documented by the core team in the public changelog.',
-    href: 'https://wiki.sora.org/changelog.html',
-    external: true,
-  },
-  {
-    icon: 'tabler:shield-checkered',
-    title: 'Polkaswap Ecosystem Updates',
-    description:
-      'Follow liquidity campaigns, Kensetsu integration notes, and Polkaswap feature drops as they are published to the ecosystem update feed.',
-    href: 'https://medium.com/polkaswap',
-    external: true,
-  },
-  {
-    icon: 'tabler:route',
-    title: 'SORA Integrated Plan Insights',
-    description:
-      'Read the official Integrated Plan to understand what’s live, what’s in flight, and how upcoming releases fit together.',
-    href: 'https://wiki.sora.org/integrated-plan.html',
-    external: true,
+    icon: 'tabler:shield-x',
+    text: 'Soranauts is not a place for unverifiable claims — if it cannot be sourced, it does not belong here.',
   },
 ];
 ---
 
 <PageLayout metadata={metadata}>
-  <section class="relative overflow-hidden bg-page">
+  <!-- SECTION 1: Mission Hero -->
+  <section id="mission" class="relative overflow-hidden bg-page">
     <div class="absolute inset-0 -z-[1] bg-gradient-to-br from-brand-soft/70 via-transparent to-transparent" aria-hidden="true" />
-        <div class="mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-20 pt-24 md:px-6 lg:flex-row lg:items-start">
-      <div class="max-w-3xl">
+    <div class="mx-auto flex max-w-4xl flex-col items-center gap-8 px-4 pb-16 pt-24 text-center md:px-6">
         <span class="inline-flex items-center gap-2 rounded-full border border-brand-soft bg-surface/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-brand-600 shadow-sm">
-          Mission Update
+        About
         </span>
-        <h1 class="mt-6 text-4xl font-bold leading-tight text-text-main md:text-5xl lg:text-6xl">
-          Soranauts is the neutral, verified knowledge hub for SORA v3, Polkaswap, Kensetsu, and the Token Bonding Curve.
+      <h1 class="text-4xl font-bold leading-tight text-text-main md:text-5xl lg:text-6xl">
+        A trustworthy reference for the SORA ecosystem.
         </h1>
-        <p class="mt-6 text-lg text-text-muted">
-          We keep SORA’s supranational economy — the borderless monetary system behind SORA v3, Polkaswap, Kensetsu, and the Token Bonding Curve — legible for everyone. Soranauts turns roadmap signals into vetted, actionable guidance grounded in a production-hardened knowledge base so builders, validators, and contributors can act with confidence.
+      <p class="max-w-2xl text-lg text-text-muted md:text-xl">
+        Soranauts exists to make SORA v3, Polkaswap, Kensetsu, and the Token Bonding Curve understandable for everyone — builders, researchers, and curious newcomers alike. We gather scattered information into one clear, verified, and enduring resource.
         </p>
-        <div class="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:gap-4">
+      <div class="mt-4 grid gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-4">
           <Button
             variant="primary"
-            href="/donate"
-            text="Support Soranauts"
-            icon="tabler:heart"
-            class="w-full justify-center sm:w-auto sm:min-w-[220px]"
+          href="/explore"
+          text="Explore the Knowledge Base"
+          icon="tabler:compass"
+          class="w-full justify-center sm:w-auto sm:min-w-[240px]"
           />
           <Button
             variant="secondary"
             href="https://t.me/Soranauts"
             target="_blank"
-            text="Join the Telegram community"
-            icon="tabler:send"
-            class="w-full justify-center sm:w-auto sm:min-w-[220px]"
-          />
-          <Button
-            variant="tertiary"
-            href={articleLinks.latest}
-            text="Review flagship research"
-            icon="tabler:arrow-up-right"
-            class="w-full justify-center border-border-subtle text-text-muted hover:border-brand-500 hover:text-link sm:w-auto sm:min-w-[220px]"
-          />
-        </div>
-        <ul class="mt-10 grid gap-4 text-base text-text-muted sm:grid-cols-2">
-          <li class="flex items-start gap-3 rounded-xl border border-border-subtle bg-surface/90 p-4 shadow-sm">
-            <Icon name="tabler:compass" class="mt-0.5 h-6 w-6 text-brand-500" />
-            <span>Step-by-step guides for wallets, staking, liquidity, and validator safety so you can execute with confidence.</span>
-          </li>
-          <li class="flex items-start gap-3 rounded-xl border border-border-subtle bg-surface/90 p-4 shadow-sm">
-            <Icon name="tabler:scan" class="mt-0.5 h-6 w-6 text-brand-500" />
-            <span>Evidence-backed research from a hardened knowledge base where provenance, nightly syncs, and automated QA keep every claim traceable.</span>
-          </li>
-          <li class="flex items-start gap-3 rounded-xl border border-border-subtle bg-surface/90 p-4 shadow-sm">
-            <Icon name="tabler:world" class="mt-0.5 h-6 w-6 text-brand-500" />
-            <span>Context that links SORA, Hyperledger Iroha, Polkaswap, bridges, and tooling so you understand the ecosystem in one view.</span>
-          </li>
-          <li class="flex items-start gap-3 rounded-xl border border-border-subtle bg-surface/90 p-4 shadow-sm">
-            <Icon name="tabler:arrows-right-left" class="mt-0.5 h-6 w-6 text-brand-500" />
-            <span>Open collaboration with community leads, auditors, and protocol teams to keep decisions and trade-offs transparent.</span>
-          </li>
-        </ul>
-      </div>
-      <div class="relative flex-1 overflow-hidden rounded-3xl border border-border-subtle bg-surface/90 p-8 shadow-elevated backdrop-blur">
-        <div class="space-y-6">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-text-soft">Knowledge Base</p>
-            <h2 class="mt-3 text-2xl font-semibold text-text-main">Production-hardened knowledge you can audit.</h2>
-            <p class="mt-4 text-sm text-text-muted">
-              The Soranauts knowledge base ingests authoritative sources, captures provenance, and fuses search results so contributors can cite evidence instantly. Hardening completed on <time datetime="2025-11-02">November 2, 2025</time> as a stability milestone — provenance checks, nightly syncs, and automated QA now run as part of daily operations.
-            </p>
-          </div>
-          <div class="grid gap-4">
-            {kbFocusPoints.map(({ title, description, icon }) => (
-              <div class="flex items-start gap-3 rounded-xl border border-border-subtle/80 bg-page/70 p-4">
-                <Icon name={icon} class="mt-0.5 h-5 w-5 text-brand-500" />
-                <div>
-                  <p class="text-sm font-semibold text-text-main">{title}</p>
-                  <p class="mt-1 text-sm text-text-muted">{description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+          text="Join the Community"
+          icon="tabler:users"
+          class="w-full justify-center sm:w-auto sm:min-w-[200px]"
+        />
       </div>
     </div>
   </section>
 
-  <Stats
-    id="impact"
-    tagline="Impact Metrics"
-    title="Where the Soranauts platform stands today"
-    subtitle="A knowledge hub powered by real data, nightly automation, and the community’s curiosity."
-    stats={stats}
-    classes={{ container: 'mt-0' }}
-  />
-
-  <WidgetWrapper containerClass="max-w-6xl">
+  <!-- SECTION 2: Principles -->
+  <WidgetWrapper id="principles" containerClass="max-w-5xl">
     <div class="mx-auto max-w-3xl text-center">
-      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">What Drives Us</p>
-      <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Mission pillars that keep Soranauts aligned with SORA’s vision.</h2>
+      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Our Principles</p>
+      <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">What guides us</h2>
       <p class="mt-4 text-lg text-text-muted">
-        We focus on clarity, credibility, and community stewardship so the SORA ecosystem can scale with integrity.
+        These values shape every decision we make about what to publish and how to present it.
       </p>
     </div>
-    <div class="mt-12">
-      <ItemGrid
-        columns={3}
-        items={missionPillars}
-        classes={{
-          container: 'gap-10',
-          panel: 'flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-elevated h-full cursor-pointer',
-          body: 'flex-1 flex flex-col',
-          icon: 'w-10 h-10 text-brand-500',
-          title: 'text-2xl text-text-main',
-          description: 'text-base text-text-muted flex-1',
-          action: 'mt-4',
-        }}
-      />
-    </div>
-  </WidgetWrapper>
-
-  <section class="px-4 md:px-6">
-    <div class="mx-auto max-w-6xl">
-      <div class="rounded-3xl border border-border-subtle bg-surface p-6 shadow-sm md:p-10">
-        <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div class="max-w-2xl">
-            <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Helpful Resources</p>
-            <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Stay aligned with the latest documentation.</h2>
-            <p class="mt-4 text-lg text-text-muted">
-              Transparency matters. These reports are regenerated as the knowledge base evolves, so you can audit progress and provenance anytime.
-            </p>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {principles.map(({ icon, title, description }) => (
+        <div class="flex items-start gap-4 rounded-xl border border-border-subtle bg-surface/90 p-5">
+          <Icon name={icon} class="mt-0.5 h-6 w-6 flex-shrink-0 text-brand-500" />
+          <div>
+            <p class="font-semibold text-text-main">{title}</p>
+            <p class="mt-1 text-sm text-text-muted">{description}</p>
           </div>
         </div>
-        <div class="mt-8 grid gap-4 md:grid-cols-3">
-          {resourceLinks.map(({ title, description, href, icon, external }) => (
-            <a
-              class="group flex h-full flex-col gap-3 rounded-2xl border border-border-subtle bg-page/80 p-5 transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
-              href={href}
-              target={external ? '_blank' : undefined}
-              rel={external ? 'noopener noreferrer' : undefined}
-            >
-              <div class="flex items-center gap-3">
-                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-soft text-brand-600 transition group-hover:bg-brand-500 group-hover:text-white">
-                  <Icon name={icon} class="h-5 w-5" />
-                </span>
-                <p class="text-lg font-semibold text-text-main">{title}</p>
-              </div>
-              <p class="text-sm text-text-muted">{description}</p>
-              <span class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-link group-hover:text-link-hover">
-                View resource
-                <Icon name="tabler:arrow-up-right" class="h-4 w-4" />
-              </span>
-            </a>
           ))}
         </div>
+  </WidgetWrapper>
+
+  <!-- SECTION 3: Why Soranauts Exists -->
+  <section id="why" class="px-4 py-16 md:px-6 md:py-20">
+    <div class="mx-auto max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">The Problem</p>
+      <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Why Soranauts exists</h2>
+      <div class="mt-8 space-y-6 text-lg text-text-muted">
+        <p>
+          The SORA ecosystem is ambitious and fast-moving. SORA v3, Polkaswap, Kensetsu, the Token Bonding Curve, bridges, governance — each piece has its own documentation scattered across wikis, GitHub repos, Medium posts, and Telegram channels. Finding accurate, current information often means piecing together fragments from a dozen sources.
+        </p>
+        <p>
+          Meanwhile, the broader crypto space is noisy. Hype cycles, speculation, and marketing blur the line between what's real and what's wishful thinking. For someone trying to understand how SORA actually works — or whether it's worth their time — separating signal from noise is exhausting.
+        </p>
+        <p>
+          Soranauts is a response to both problems. We consolidate authoritative information into a single reference that's verified, kept current, and written for clarity. No hype, no spin — just a durable resource you can trust to still be accurate next month and next year.
+        </p>
       </div>
     </div>
   </section>
 
-  <WidgetWrapper containerClass="max-w-6xl" isDark bg={`<div class="absolute inset-0 bg-gradient-to-br from-brand-soft/20 via-transparent to-brand-soft/10"></div>`}>
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-200">Roadmap Alignment</p>
-      <h2 class="mt-4 text-3xl font-bold text-white md:text-4xl">Tracking the SORA Integrated Plan</h2>
-      <p class="mt-4 text-lg text-text-soft">
-        Soranauts monitors progress against the official Integrated Plan so contributors always know what’s live, what’s in flight, and what needs support.
+  <!-- SECTION 4: Methodology -->
+  <WidgetWrapper id="methodology" containerClass="max-w-5xl" isDark bg={`<div class="absolute inset-0 bg-gradient-to-br from-brand-soft/20 via-transparent to-brand-soft/10"></div>`}>
+    <div class="mx-auto max-w-3xl">
+      <p class="text-center text-sm font-semibold uppercase tracking-[0.35em] text-brand-200">How We Work</p>
+      <h2 class="mt-4 text-center text-3xl font-bold text-white md:text-4xl">How truth stays sturdy</h2>
+      <div class="mt-10 space-y-6 text-lg text-text-soft">
+        <p>
+          Everything published on Soranauts traces back to official sources: the SORA wiki, Polkaswap documentation, Hyperledger Iroha specs, GitHub repositories, and on-chain data. When we cite something, you can verify it yourself.
+        </p>
+        <p>
+          Our knowledge base runs nightly synchronization jobs that pull updates from upstream sources. Each sync is logged with timestamps and checksums so we can audit exactly when information arrived and whether it changed. Deterministic builds mean the same inputs always produce the same outputs — no hidden drift.
+        </p>
+        <p>
+          Before anything goes live, automated checks catch broken links, outdated references, and formatting issues. Human review adds context and judgment. The result is a reference that earns trust through consistency, not claims.
       </p>
     </div>
-    <div class="mt-12">
-      <Timeline
-        defaultIcon="tabler:circle-dotted"
-        items={timelineItems.map(({ title, description, icon }) => ({
-          title,
-          description,
-          icon,
-          classes: {
-            panel: 'bg-surface/95 border border-border-subtle rounded-2xl p-6 shadow-sm',
-            title: 'text-2xl text-text-main',
-            description: 'text-base text-text-muted',
-            icon: 'text-brand-500 border-brand-500/60 bg-page/80',
-          },
-        }))}
-        classes={{
-          container: 'relative mx-auto max-w-4xl',
-          panel: 'flex-col',
-          icon: 'border-brand-500',
-          description: 'text-base text-text-muted',
-        }}
-      />
     </div>
   </WidgetWrapper>
 
-  <WidgetWrapper containerClass="max-w-6xl">
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Stay Involved</p>
-      <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Keep the momentum going.</h2>
-      <p class="mt-4 text-lg text-text-muted">
-        Soranauts is funded by the community it serves. Whether you contribute capital, knowledge, or your voice, you can help accelerate SORA’s path to a fair global economy.
-      </p>
+  <!-- SECTION 5: What Soranauts Is Not -->
+  <section id="not" class="px-4 py-16 md:px-6 md:py-20">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Non-Goals</p>
+        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">What Soranauts is not</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-text-muted">
+          Clarity about what we don't do is as important as clarity about what we do.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2">
+        {nonGoals.map(({ icon, text }) => (
+          <div class="flex items-start gap-4 rounded-xl border border-border-subtle bg-surface/90 p-5">
+            <Icon name={icon} class="mt-0.5 h-6 w-6 flex-shrink-0 text-text-soft" />
+            <p class="text-text-muted">{text}</p>
+          </div>
+        ))}
+      </div>
     </div>
-    <div class="mt-12">
-      <ItemGrid
-        columns={3}
-        items={supportItems}
-        classes={{
-          container: 'gap-8',
-          panel: 'flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-elevated h-full cursor-pointer',
-          body: 'flex-1 flex flex-col',
-          icon: 'w-10 h-10 text-brand-500',
-          title: 'text-2xl text-text-main',
-          description: 'text-base text-text-muted flex-1',
-          action: 'mt-4',
-        }}
-      />
+  </section>
+
+  <!-- SECTION 6: Get Involved -->
+  <WidgetWrapper id="involve" containerClass="max-w-4xl">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Contribute</p>
+      <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Get involved</h2>
+      <p class="mt-6 text-lg text-text-muted">
+        Soranauts improves through community input. If you spot an error, know of a missing term, or have research that should be included, we want to hear from you. Suggestions, corrections, and pull requests are all welcome — every contribution makes the resource better for everyone.
+      </p>
+      <div class="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-4">
+        <Button
+          variant="primary"
+          href="/glossary"
+          text="Browse the Glossary"
+          icon="tabler:vocabulary"
+          class="w-full justify-center sm:w-auto"
+        />
+        <Button
+          variant="secondary"
+          href="https://wiki.sora.org/"
+          target="_blank"
+          text="SORA Wiki"
+          icon="tabler:external-link"
+          class="w-full justify-center sm:w-auto"
+        />
+        <Button
+          variant="tertiary"
+          href="https://t.me/Soranauts"
+          target="_blank"
+          text="Join the Community"
+          icon="tabler:send"
+          class="w-full justify-center border-border-subtle text-text-muted hover:border-brand-500 hover:text-link sm:w-auto"
+        />
+    </div>
     </div>
   </WidgetWrapper>
 
@@ -411,27 +241,26 @@ const resourceLinks = [
     actions={[
       {
         variant: 'primary',
-        href: '/donate',
-        text: 'Support Soranauts',
-        icon: 'tabler:heart',
+        href: '/explore',
+        text: 'Explore the Knowledge Base',
+        icon: 'tabler:compass',
         class: 'md:px-5 md:py-2 lg:px-4 lg:py-1.5 lg:text-base lg:rounded-3xl xl:px-3.5 xl:py-1.5 xl:rounded-3xl',
       },
       {
         variant: 'secondary',
         href: 'https://t.me/Soranauts',
         target: '_blank',
-        text: 'Join the community',
-        icon: 'tabler:send',
+        text: 'Join the Community',
+        icon: 'tabler:users',
         class: 'md:px-5 md:py-2 lg:px-4 lg:py-1.5 lg:text-base lg:rounded-3xl xl:px-3.5 xl:py-1.5 xl:rounded-3xl',
       },
     ]}
   >
     <Fragment slot="title">
-      Help us keep SORA’s roadmap verifiable.
+      A reference you can rely on.
     </Fragment>
     <Fragment slot="subtitle">
-      Your support funds independent audits, new guides, infrastructure maintenance, and retrieval tooling so the community can rely on trusted, up-to-date intelligence.
+      Clear documentation, verified sources, and long-term maintenance — because the SORA ecosystem deserves a trustworthy guide.
     </Fragment>
   </CallToAction>
 </PageLayout>
-

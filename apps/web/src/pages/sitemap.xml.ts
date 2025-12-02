@@ -75,7 +75,6 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: formatUrl(baseUrl, '/glossary'), lastmod: formatDate(new Date()), changefreq: 'weekly', priority: '0.9' },
     { loc: formatUrl(baseUrl, '/donate'), lastmod: formatDate(new Date()), changefreq: 'monthly', priority: '0.6' },
     { loc: formatUrl(baseUrl, '/features'), lastmod: formatDate(new Date()), changefreq: 'monthly', priority: '0.6' },
-    { loc: formatUrl(baseUrl, '/changelog'), lastmod: formatDate(new Date()), changefreq: 'monthly', priority: '0.5' },
     { loc: formatUrl(baseUrl, '/privacy'), lastmod: formatDate(new Date()), changefreq: 'yearly', priority: '0.4' },
     { loc: formatUrl(baseUrl, '/terms'), lastmod: formatDate(new Date()), changefreq: 'yearly', priority: '0.4' },
   ];

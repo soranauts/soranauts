@@ -1,0 +1,99 @@
+{
+  "Glossary Term": {
+    "prefix": ["glossary", "term", "mdx-term"],
+    "body": [
+      "---",
+      "title: \"${1:Term Title}\"",
+      "slug: ${2:termslug}",
+      "category: \"${3|Technology,Governance,Economics,Tokens,DeFi,Infrastructure,Community,Security,Interoperability,Development|}\"",
+      "summary: \"${4:A concise one or two sentence summary of the term (max 300 chars).}\"",
+      "tagline: \"${5:Why this term matters - the key value proposition.}\"",
+      "tags:",
+      "  - \"${6:Primary Tag}\"",
+      "related:",
+      "  - ${7:relatedslug}",
+      "---",
+      "",
+      "## Overview",
+      "",
+      "${8:Detailed explanation of the term and its significance in the SORA ecosystem.}",
+      "",
+      "## Key Features",
+      "",
+      "- ${9:Feature 1}",
+      "- ${10:Feature 2}",
+      "- ${11:Feature 3}",
+      "",
+      "## How It Works",
+      "",
+      "${12:Technical explanation of the mechanism or process.}",
+      "",
+      "## Use Cases",
+      "",
+      "${13:Practical applications and examples.}",
+      ""
+    ],
+    "description": "Create a new glossary term MDX file with all required front-matter fields"
+  },
+  "Glossary Front-matter": {
+    "prefix": ["frontmatter", "fm"],
+    "body": [
+      "---",
+      "title: \"${1:Term Title}\"",
+      "slug: ${2:termslug}",
+      "category: \"${3|Technology,Governance,Economics,Tokens,DeFi,Infrastructure,Community,Security,Interoperability,Development|}\"",
+      "summary: \"${4:Summary}\"",
+      "tagline: \"${5:Why it matters}\"",
+      "tags:",
+      "  - \"${6:Tag}\"",
+      "related:",
+      "  - ${7:relatedslug}",
+      "---"
+    ],
+    "description": "Insert glossary front-matter block"
+  },
+  "Add Tagline": {
+    "prefix": ["tagline", "why"],
+    "body": [
+      "tagline: \"${1:Why this term matters - the key insight or value.}\""
+    ],
+    "description": "Add a tagline field to front-matter"
+  },
+  "Add Related Terms": {
+    "prefix": ["related", "rel"],
+    "body": [
+      "related:",
+      "  - ${1:slug1}",
+      "  - ${2:slug2}",
+      "  - ${3:slug3}"
+    ],
+    "description": "Add related terms array"
+  },
+  "Add Tags": {
+    "prefix": ["tags"],
+    "body": [
+      "tags:",
+      "  - \"${1:Tag 1}\"",
+      "  - \"${2:Tag 2}\""
+    ],
+    "description": "Add tags array"
+  },
+  "Callout Box": {
+    "prefix": ["callout", "note"],
+    "body": [
+      "<aside className=\"callout callout--${1|info,warning,tip,important|}\">",
+      "  ${2:Callout content here.}",
+      "</aside>"
+    ],
+    "description": "Insert a styled callout box"
+  },
+  "Internal Link": {
+    "prefix": ["link", "internal"],
+    "body": [
+      "[${1:Link Text}](/glossary/${2:slug})"
+    ],
+    "description": "Insert an internal glossary link"
+  }
+}
+
+

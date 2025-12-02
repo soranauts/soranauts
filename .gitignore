@@ -2,6 +2,21 @@
 dist/
 .output/
 
+# Content lint reports (generated)
+content-lint-report.md
+
+# Generated OG images (regenerated on demand)
+apps/web/public/og/glossary/
+
+# Glossary backups (managed by ops:snapshot)
+backups/
+
+# Generated reports
+monitoring-report.md
+content-gaps-report.md
+content-gaps-report.csv
+glossary-link-fixes.md
+
 # dependencies
 node_modules/
 

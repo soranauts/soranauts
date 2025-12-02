@@ -1,46 +1,27 @@
 /**
- * Featured Glossary Terms
+ * Featured Glossary Terms (Nexus Architecture)
  * 
- * A curated list of ~16 canonical slugs representing the best high-level
- * introduction to the SORA Nexus architecture. These terms are displayed
- * prominently on the glossary landing page.
+ * A curated list of accessible Nexus terms for users who want to go deeper.
+ * These appear AFTER the user-facing terms (XOR, Polkaswap, etc.) on the
+ * glossary landing page.
  * 
  * Selection criteria:
- * - Core concepts that define Nexus architecture
- * - Terms that help newcomers understand the system
- * - Balanced coverage across major categories
+ * - Accessible concepts that bridge user experience to architecture
+ * - Terms newcomers can understand without deep technical background
+ * - Entry points to deeper exploration
  */
 
 export const FEATURED_GLOSSARY_SLUGS = [
-  // Accounts & Identity - Foundation of user interaction
-  'accountid',
-  'accountlifecycle',
+  // Most accessible Nexus concepts
+  'soranet',           // The network itself
+  'xorutility',        // XOR's role in Nexus
+  'dataspaces',        // Logical data organization
+  'assembly',          // Governance entry point
   
-  // Execution - How transactions are processed
-  'irohavirtualmachineivm',
-  'kotodama',
-  'transactionexecutionunitsteu',
-  'action',
-  
-  // Data Availability - State management
-  'worldstateviewwsv',
-  'dataavailability',
-  'lanes',
-  
-  // Consensus - How agreement is reached
-  'sumeragi',
-  'quorumcertificate',
-  
-  // Governance - Decision making
-  'assembly',
-  'dataspaces',
-  'governedsurfaces',
-  
-  // Economics - Value and incentives
-  'xorutility',
-  
-  // Networking - Communication layer
-  'soranet',
+  // Core architecture (slightly more technical)
+  'sumeragi',          // Consensus - users may have heard of this
+  'lanes',             // Parallel processing concept
+  'dataavailability',  // Important for understanding reliability
 ] as const;
 
 export type FeaturedGlossarySlug = typeof FEATURED_GLOSSARY_SLUGS[number];

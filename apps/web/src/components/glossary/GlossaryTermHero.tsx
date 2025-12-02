@@ -58,15 +58,24 @@ export function GlossaryTermHero({
         
         {normalizedChips.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            {normalizedChips.map((chip) => (
-              <a
-                key={chip.href}
-                className="chip chip--sm chip--muted"
-                href={chip.href}
-              >
-                {chip.term}
-              </a>
-            ))}
+            {normalizedChips.map((chip) => {
+              // Extract slug from href for Quick-View trigger
+              const isGlossaryLink = chip.href.startsWith('/glossary/');
+              const slug = isGlossaryLink 
+                ? chip.href.replace('/glossary/', '').replace(/\/$/, '')
+                : null;
+              
+              return (
+                <a
+                  key={chip.href}
+                  className="chip chip--sm chip--muted"
+                  href={chip.href}
+                  {...(slug ? { 'data-qv-trigger': slug } : {})}
+                >
+                  {chip.term}
+                </a>
+              );
+            })}
           </div>
         )}
       </div>

@@ -9,6 +9,28 @@
     --font-heading: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
+    /* Typography scale */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    
+    /* Heading weights */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Letter spacing */
+    --tracking-tight: -0.02em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.08em;
+
     /* Brand */
     --red-500: #e23a3a;
     --red-600: #c92f2f;
@@ -110,6 +132,10 @@
     --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
     --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px rgba(0, 0, 0, 0.35);
     --shadow-elevated: var(--shadow-card);
+    --shadow-soft: 0 16px 36px rgba(15, 23, 42, 0.1);
+    --shadow-hero: 0 45px 90px rgba(6, 12, 20, 0.12);
+    --shadow-cta: 0 6px 24px rgba(15, 23, 42, 0.12);
+    --shadow-brand-glow: 0 18px 40px color-mix(in srgb, var(--red-600) 28%, transparent);
 
     /* Breakpoints */
     --bp-sm: 640px;
@@ -133,6 +159,12 @@
     --chip-text: var(--color-text);
     --chip-accent-border: color-mix(in srgb, var(--red-600) 35%, transparent);
     --focus-ring: rgba(226, 58, 58, 0.55);
+
+    /* Chip count badge (numeric counts on pills) */
+    --chip-count-bg: var(--red-600);
+    --chip-count-fg: white;
+    --chip-count-size: 1.125rem;
+    --chip-count-font: 0.6875rem;
   }
 
   :root.dark {
@@ -159,6 +191,10 @@
     --chip-text: var(--color-text);
     --chip-accent-border: color-mix(in srgb, var(--red-500) 45%, transparent);
     --focus-ring: rgba(226, 58, 58, 0.55);
+
+    /* Chip count badge (dark mode) */
+    --chip-count-bg: var(--red-500);
+    --chip-count-fg: white;
 
     --color-bg-page: var(--color-bg);
     --color-bg-surface: var(--color-surface);

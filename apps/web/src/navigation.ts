@@ -36,7 +36,6 @@ const learnLinks: NavigationLink[] = [
   { text: 'Staking', href: 'https://wiki.sora.org/nominating-validators.html' },
   { text: 'Polkaswap', href: 'https://wiki.sora.org/polkaswap.html' },
   { text: 'Integrated Plan', href: 'https://wiki.sora.org/integrated-plan.html' },
-  { text: 'Changelog', href: '/changelog' },
 ];
 
 if (TAG_HUB_V1_ENABLED) {

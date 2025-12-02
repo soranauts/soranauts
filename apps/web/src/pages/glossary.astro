@@ -68,13 +68,30 @@ const sortTerms = [...glossaryTerms].sort((a, b) => {
 });
 
 // Use the curated featured slugs from the central module
-// This includes both legacy SORA terms and new Nexus Architecture terms
+// Priority: User-facing tokens and products first, then key concepts
 const LEGACY_FEATURED_SLUGS = [
+  // Core tokens users care about
   'xor',
   'val',
   'pswap',
+  
+  // Products users interact with
   'polkaswap',
-  'sora-v3',
+  'tonswap',
+  'fearless-wallet',
+  'hashi',
+  
+  // Key concepts for newcomers
+  'liquidity-pool',
+  'staking',
+  'defi',
+  'dex',
+  
+  // Network fundamentals
+  'sora',
+  'sora-parliament',
+  'substrate',
+  'parachain',
 ] as const;
 
 // Combine legacy and Nexus featured terms

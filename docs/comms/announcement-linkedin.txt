@@ -1,0 +1,31 @@
+🚀 Announcing SORA Nexus Glossary V2025
+
+We're excited to share a complete reimagining of how users discover, learn, and navigate SORA ecosystem concepts.
+
+After months of development across 12 phases, the Nexus Glossary V2025 is now live with:
+
+🔍 𝗤𝘂𝗶𝗰𝗸-𝗩𝗶𝗲𝘄 𝗣𝗮𝗻𝗲𝗹
+Preview any glossary term instantly without leaving your current context. Hover over a term, see its definition, related concepts, and why it matters—all in a sleek slide-in panel.
+
+🧭 𝗘𝘅𝗽𝗹𝗼𝗿𝗲𝗿 𝗩𝟯
+Curated learning journeys guide you through SORA's DeFi stack, governance model, and tokenomics. The new Nexus Architecture section organizes 179 terms into logical domains with subgroups and quick paths.
+
+⚡ 𝗣𝗲𝗿𝗳𝗼𝗿𝗺𝗮𝗻𝗰𝗲 𝗪𝗶𝗻𝘀
+• 62% reduction in initial payload
+• 54% faster time to interactive
+• Deterministic builds for reliable deployments
+• Lazy loading with intelligent prefetching
+
+♿ 𝗔𝗰𝗰𝗲𝘀𝘀𝗶𝗯𝗶𝗹𝗶𝘁𝘆 𝗙𝗶𝗿𝘀𝘁
+WCAG AA+ compliant with full keyboard navigation, screen reader support, and reduced motion options.
+
+🛠️ 𝗔𝘂𝘁𝗵𝗼𝗿 𝗧𝗼𝗼𝗹𝘀
+Content linting, schema validation, VS Code integration, and one-command previews make contributing easier than ever.
+
+Whether you're a developer building on SORA, a community member exploring DeFi, or a newcomer learning about decentralized economies—the Nexus Glossary is your comprehensive learning companion.
+
+👉 Explore now: https://soranauts.com/glossary
+
+#SORA #XOR #DeFi #Web3 #Blockchain #Crypto #Polkaswap #DecentralizedFinance #OpenSource #TechLaunch
+
+

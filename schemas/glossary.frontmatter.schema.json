@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://soranauts.com/schemas/glossary.frontmatter.schema.json",
+  "title": "Glossary Term Front-matter",
+  "description": "Schema for SORA Glossary MDX front-matter validation",
+  "type": "object",
+  "required": ["title", "slug", "category", "summary"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Term title in Title Case (acronyms UPPER)",
+      "minLength": 2,
+      "maxLength": 100,
+      "examples": ["Token Bonding Curve", "XOR", "SORA Parliament"]
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe lowercase identifier (no spaces or hyphens)",
+      "pattern": "^[a-z0-9]+$",
+      "minLength": 2,
+      "maxLength": 60,
+      "examples": ["tokenbondingcurve", "xor", "soraparliament"]
+    },
+    "category": {
+      "type": "string",
+      "description": "Primary category in Title Case",
+      "enum": [
+        "Technology",
+        "Governance",
+        "Economics",
+        "Tokens",
+        "DeFi",
+        "Infrastructure",
+        "Community",
+        "Security",
+        "Interoperability",
+        "Development"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "description": "One or two sentence summary (max 300 chars)",
+      "minLength": 20,
+      "maxLength": 300
+    },
+    "tagline": {
+      "type": "string",
+      "description": "Why it matters - concise value proposition",
+      "minLength": 10,
+      "maxLength": 150
+    },
+    "tags": {
+      "type": "array",
+      "description": "Sorted array of unique tags",
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 50
+      },
+      "uniqueItems": true,
+      "maxItems": 10
+    },
+    "related": {
+      "type": "array",
+      "description": "Array of canonical slugs for related terms",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+$"
+      },
+      "uniqueItems": true,
+      "maxItems": 8
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Alternative names/slugs that redirect to this term",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "deprecated": {
+      "type": "boolean",
+      "description": "Mark term as deprecated (still accessible but de-emphasized)"
+    },
+    "deprecatedReason": {
+      "type": "string",
+      "description": "Explanation for deprecation"
+    },
+    "seeAlso": {
+      "type": "string",
+      "description": "Slug of preferred term when deprecated"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "ISO date of last content update",
+      "format": "date"
+    }
+  },
+  "additionalProperties": false,
+  "if": {
+    "properties": {
+      "deprecated": { "const": true }
+    },
+    "required": ["deprecated"]
+  },
+  "then": {
+    "required": ["deprecatedReason"]
+  }
+}
+
+

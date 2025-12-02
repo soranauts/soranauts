@@ -37,17 +37,9 @@ const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '..');
 const SRC = path.join(repoRoot, 'glossary.v2025.json');
 
-const shouldSkipGenerator = (() => {
-  const raw = process.env.SKIP_GLOSSARY_GENERATOR;
-  if (!raw) return false;
-  const normalized = raw.trim().toLowerCase();
-  return normalized === 'true' || normalized === '1' || normalized === 'yes' || normalized === 'on';
-})();
-
-if (shouldSkipGenerator) {
-  console.log('[generate-glossary-json] SKIP_GLOSSARY_GENERATOR=true → using committed JSON payloads.');
-  process.exit(0);
-}
+// Note: SKIP_GLOSSARY_GENERATOR has been removed.
+// The unified generator (build-nexus-glossary-json.ts) is now the default.
+// This script is kept for legacy compatibility and taxonomy enrichment.
 
 const OUT_FULL = path.join(repoRoot, 'apps/web/public/glossary.json');
 const OUT_IDX = path.join(repoRoot, 'apps/web/public/glossary.index.json');

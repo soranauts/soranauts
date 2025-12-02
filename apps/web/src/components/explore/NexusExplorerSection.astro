@@ -80,10 +80,12 @@ const totalNexusTerms = GLOSSARY_STATS.totalTerms;
             class="nexus-subgroup__header"
             aria-controls={`subgroup-content-${subgroup.id}`}
           >
-            <h4 class="nexus-subgroup__title">{subgroup.title}</h4>
-            <span class="nexus-subgroup__count" aria-label={`${subgroup.terms.length} terms`}>
-              {subgroup.terms.length} terms
-            </span>
+            <div class="nexus-subgroup__header-text">
+              <h4 class="nexus-subgroup__title">{subgroup.title}</h4>
+              <span class="nexus-subgroup__count" aria-label={`${subgroup.terms.length} terms`}>
+                {subgroup.terms.length} terms
+              </span>
+            </div>
             <span class="nexus-subgroup__chevron" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -264,17 +266,17 @@ const totalNexusTerms = GLOSSARY_STATS.totalTerms;
   }
   
   .nexus-journey-card__step-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.25rem;
-    height: 1.25rem;
-    font-size: var(--text-xs);
+    display: inline-grid;
+    place-items: center;
+    min-width: var(--chip-count-size);
+    height: var(--chip-count-size);
+    padding-inline: 0.25rem;
+    font-size: var(--chip-count-font);
     font-weight: 600;
-    background: var(--color-accent);
-    color: var(--color-text-on-accent);
-    border-radius: 999px;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    background: var(--red-600);
+    color: white;
+    border-radius: var(--radius-full);
+    line-height: 1;
   }
   
   .nexus-journey-card__step-title {
@@ -291,7 +293,7 @@ const totalNexusTerms = GLOSSARY_STATS.totalTerms;
   
   .nexus-explorer-subgroups__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: var(--space-4);
   }
   
@@ -307,6 +309,7 @@ const totalNexusTerms = GLOSSARY_STATS.totalTerms;
   .nexus-subgroup__header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: var(--space-3);
     padding: var(--space-4);
     cursor: pointer;
@@ -338,23 +341,30 @@ const totalNexusTerms = GLOSSARY_STATS.totalTerms;
     border-bottom-color: var(--color-border);
   }
   
-  .nexus-subgroup__title {
+  .nexus-subgroup__header-text {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
     flex: 1;
+    min-width: 0;
+  }
+  
+  .nexus-subgroup__title {
     font-size: var(--text-sm);
     font-weight: 600;
     margin: 0;
     color: var(--color-text);
+    white-space: nowrap;
   }
   
   .nexus-subgroup__count {
     font-size: var(--text-xs);
     color: var(--color-text-muted);
-    background: var(--color-surface);
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius-sm);
+    white-space: nowrap;
   }
   
   .nexus-subgroup__chevron {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -418,10 +428,10 @@ const totalNexusTerms = GLOSSARY_STATS.totalTerms;
     font-size: var(--text-sm);
     font-weight: 600;
     background: var(--red-600);
-    color: rgba(255, 255, 255, 0.94);
+    color: white;
     border-radius: var(--radius-lg);
     text-decoration: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow-md);
     transition:
       background-color var(--motion-duration-fast) var(--motion-ease-standard),
       transform var(--motion-duration-fast) var(--motion-ease-standard);
