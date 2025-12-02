@@ -9,9 +9,42 @@ import { Icon } from 'astro-icon/components';
 const metadata = {
   title: 'SORA v3 (Nexus) — DeFi Economy & Polkaswap | Soranauts',
   description:
-    'SORA v3 (Nexus) delivers deterministic execution, predictable liquidity, and accountable governance. Download the Nexus whitepaper or launch Polkaswap.',
+    'SORA v3 (Nexus) delivers deterministic execution, predictable liquidity, and accountable governance. Explore the glossary, browse the knowledge base, or launch Polkaswap.',
   ignoreTitleTemplate: true,
 };
+
+const quickLinks = [
+  {
+    icon: 'tabler:vocabulary',
+    title: 'SORA Glossary',
+    description: '338 terms across 19 categories — from XOR tokenomics to Nexus architecture.',
+    href: '/glossary',
+    cta: 'Browse terms',
+  },
+  {
+    icon: 'tabler:compass',
+    title: 'SORA Explorer',
+    description: 'Navigate six domain dashboards with curated journeys and trait filters.',
+    href: '/explore',
+    cta: 'Start exploring',
+  },
+  {
+    icon: 'tabler:file-text',
+    title: 'Nexus Whitepaper',
+    description: 'The authoritative reference for execution lanes, governance, and liquidity.',
+    href: '/documents/sora_nexus_whitepaper.pdf',
+    cta: 'Download PDF',
+    external: true,
+  },
+  {
+    icon: 'tabler:arrows-exchange',
+    title: 'Polkaswap DEX',
+    description: 'Trade, provide liquidity, and access cross-chain assets with zero custody.',
+    href: 'https://polkaswap.io/',
+    cta: 'Launch app',
+    external: true,
+  },
+];
 
 const nexusHighlights = [
   {
@@ -76,36 +109,105 @@ const nexusHighlights = [
   },
 ];
 
+const primitives = [
+  {
+    eyebrow: 'Execution',
+    icon: 'tabler:git-merge',
+    title: 'Lanes & Merge Ledger',
+    description: 'Iroha v3 lanes finalize independently, then the merge ledger weaves those tips into one canonical order so builders never fork history.',
+    href: '/documents/sora_nexus_whitepaper.pdf',
+    cta: 'Architecture overview',
+  },
+  {
+    eyebrow: 'Monetary Policy',
+    icon: 'tabler:chart-line',
+    title: 'XOR Bonding Curve',
+    description: 'The bonding curve keeps XOR supply elastic and signals mint/burn windows so desks can dial liquidity without surprises.',
+    href: 'https://wiki.sora.org/tbc.html',
+    cta: 'Bonding curve model',
+    external: true,
+  },
+  {
+    eyebrow: 'Governance',
+    icon: 'tabler:scale',
+    title: 'SORA Parliament',
+    description: 'Council, Assembly, and Technical Committee publish Norito manifests with XOR bonds so upgrades activate deterministically.',
+    href: 'https://wiki.sora.org/sora-governance.html',
+    cta: 'Governance plan',
+    external: true,
+  },
+  {
+    eyebrow: 'Liquidity',
+    icon: 'tabler:arrows-exchange',
+    title: 'Polkaswap & HASHI',
+    description: 'Polkaswap routes liquidity across HASHI-connected domains while XOR operates as supranational money.',
+    href: 'https://wiki.sora.org/polkaswap.html',
+    cta: 'Polkaswap rails',
+    external: true,
+  },
+];
+
 const nexusFaqs = [
   {
     question: 'How do Nexus lanes reach ~1 second finality?',
     answer:
-      'Sections 6–8 of the <a href="/documents/sora_nexus_whitepaper.pdf" class="text-brand-500 hover:underline">Nexus whitepaper</a> explain how parallel lanes execute in isolation while the merge ledger orders lane tips into one canonical sequence. The Sumeragi pipeline plus Start-Time Fair Queuing (STFQ) keeps every lane deterministic, so builders never fork history even when throughput spikes.',
+      'Sections 6–8 of the <a href="/documents/sora_nexus_whitepaper.pdf" class="text-brand-500 hover:underline">Nexus whitepaper</a> explain how parallel lanes execute in isolation while the merge ledger orders lane tips into one canonical sequence. The Sumeragi pipeline plus Start-Time Fair Queuing (STFQ) keeps every lane deterministic.',
   },
   {
     question: 'What are data spaces and why do they matter?',
     answer:
-      'Nexus treats each jurisdiction or business unit as a sovereign data space with its own policy, privacy settings, and audit proofs. Governed onboarding (bonds + attestations) ensures private zones stay private while still emitting proofs to the merge ledger. Review §7 of the whitepaper or the <a href="https://wiki.sora.org/sora-v3.html" class="text-brand-500 hover:underline">SORA v3 architecture guide</a> for the latest data-space manifest format.',
+      'Nexus treats each jurisdiction or business unit as a sovereign data space with its own policy, privacy settings, and audit proofs. Governed onboarding ensures private zones stay private while still emitting proofs to the merge ledger. See §7 of the whitepaper or the <a href="/glossary/dataspaces" class="text-brand-500 hover:underline">glossary entry</a>.',
   },
   {
     question: 'How is liquidity policy enforced across SORA?',
     answer:
-      'The <a href="https://wiki.sora.org/tbc.html" class="text-brand-500 hover:underline">XOR Token Bonding Curve</a> keeps supply elastic and signals mint/burn windows so desks can schedule liquidity programs. Nexus lanes read the same bonding-curve state, meaning liquidity desks, Polkaswap LPs, and Kensetsu vaults all follow the same deterministic policy.',
+      'The <a href="/glossary/tokenbondingcurve" class="text-brand-500 hover:underline">XOR Token Bonding Curve</a> keeps supply elastic and signals mint/burn windows so desks can schedule liquidity programs. Nexus lanes read the same bonding-curve state, meaning Polkaswap LPs and Kensetsu vaults all follow the same deterministic policy.',
   },
   {
-    question: 'Where do I follow governance cadence and upgrades?',
+    question: 'Where can I learn SORA terminology?',
     answer:
-      'Nexus encodes governance manifests in Norito so Council, Assembly, and the Technical Committee enact upgrades without manual intervention. Track the plan via the <a href="https://wiki.sora.org/sora-governance.html" class="text-brand-500 hover:underline">SORA governance wiki</a> or review §16 of the whitepaper for the upcoming SORA Parliament structure.',
+      'The <a href="/glossary" class="text-brand-500 hover:underline">SORA Glossary</a> contains 338 terms across 19 categories — from XOR and VAL tokenomics to Nexus architecture concepts like lanes, data spaces, and the merge ledger. Use the search or filter by category.',
+  },
+];
+
+const onboardSteps = [
+  {
+    icon: 'tabler:vocabulary',
+    title: 'Learn the terminology',
+    copy: 'Start with the <a href="/glossary" class="text-brand-500 hover:underline">SORA Glossary</a> to understand XOR, VAL, PSWAP, the Token Bonding Curve, and Nexus architecture concepts.',
+  },
+  {
+    icon: 'tabler:wallet',
+    title: 'Connect your wallet',
+    copy: 'Use <a href="https://wiki.sora.org/polkaswap-connect-wallet.html" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">Polkaswap wallet guides</a> or install <a href="https://fearlesswallet.io" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">Fearless Wallet</a> to manage XOR, VAL, and KUSD.',
+  },
+  {
+    icon: 'tabler:compass',
+    title: 'Explore the ecosystem',
+    copy: 'Browse the <a href="/explore" class="text-brand-500 hover:underline">SORA Explorer</a> to navigate governance, DeFi, economics, and technology topics with curated journeys.',
+  },
+  {
+    icon: 'tabler:users',
+    title: 'Join the community',
+    copy: 'Jump into <a href="https://t.me/sora_xor" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">Telegram</a>, follow progress on <a href="https://x.com/sora_xor" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">X</a>, and track proposals via <a href="https://wiki.sora.org/sora-governance.html" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">governance updates</a>.',
   },
 ];
 ---
 
 <Layout metadata={metadata}>
+  <!-- Hero Section -->
   <Hero
     actions={[
       {
         variant: 'primary',
-        text: 'Open Polkaswap',
+        text: 'Browse the Glossary',
+        href: '/glossary',
+        size: 'md',
+        icon: 'tabler:vocabulary',
+      },
+      {
+        variant: 'secondary',
+        text: 'Launch Polkaswap',
         href: 'https://polkaswap.io/',
         target: '_blank',
         size: 'md',
@@ -113,20 +215,12 @@ const nexusFaqs = [
         rel: 'noopener noreferrer',
       },
       {
-        variant: 'secondary',
+        variant: 'tertiary',
         text: 'Read Whitepaper',
         href: '/documents/sora_nexus_whitepaper.pdf',
         target: '_blank',
         size: 'md',
         icon: 'tabler:file-text',
-        rel: 'noopener noreferrer',
-      },
-      {
-        variant: 'tertiary',
-        text: 'Explore Nexus Features',
-        href: '#features',
-        size: 'md',
-        icon: 'tabler:chevrons-right',
       },
     ]}
   >
@@ -135,15 +229,16 @@ const nexusFaqs = [
     </Fragment>
 
     <Fragment slot="title">
-      SORA v3 (Nexus) delivers deterministic liquidity and accountable governance.
+      Your guide to the SORA decentralized economy.
     </Fragment>
 
     <Fragment slot="subtitle">
-      As of November 2025, Hyperledger Iroha “Nexus” lanes finalize cross-domain activity with deterministic guardrails while the Token Bonding Curve keeps liquidity predictable. Polkaswap anchors
-      non-custodial markets so treasuries, desks, and builders can orchestrate capital without surrendering custody.
+      Soranauts is an independent knowledge base covering SORA v3 (Nexus), Polkaswap, and the Token Bonding Curve. 
+      Explore 338 glossary terms, browse curated learning paths, and stay current with ecosystem developments.
     </Fragment>
   </Hero>
 
+  <!-- Hero Image -->
   <figure class="mx-auto mt-10 max-w-6xl px-4 text-center sm:px-6">
     <img
       src="/nexus-spectral-seal.jpg"
@@ -154,57 +249,84 @@ const nexusFaqs = [
     />
   </figure>
 
-  <section id="features" class="mx-auto mt-8 max-w-6xl px-4 sm:px-6 lg:mt-12 lg:px-8">
+  <!-- Quick Links Section (NEW) -->
+  <section class="mx-auto mt-16 max-w-6xl px-4 sm:px-6">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {quickLinks.map(({ icon, title, description, href, cta, external }) => (
+        <a
+          href={href}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noopener noreferrer' : undefined}
+          class="group flex flex-col gap-4 rounded-2xl border border-border-subtle bg-surface p-5 shadow-sm transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-elevated"
+        >
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-soft text-brand-500 transition group-hover:bg-brand-500 group-hover:text-white">
+            <Icon name={icon} class="h-6 w-6" />
+          </div>
+          <div class="flex-1">
+            <h3 class="font-semibold text-text-main">{title}</h3>
+            <p class="mt-1 text-sm text-text-muted">{description}</p>
+          </div>
+          <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 group-hover:text-brand-400">
+            {cta}
+            <Icon name={external ? 'tabler:external-link' : 'tabler:arrow-right'} class="h-4 w-4" />
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Whitepaper Highlights Section -->
+  <section id="features" class="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
     <div class="text-center">
       <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Whitepaper Highlights</p>
-      <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">What the whitepaper emphasizes.</h2>
-      <p class="mt-3 text-base text-text-muted max-w-3xl mx-auto">
-        Nexus execution, predictable liquidity, governance cadence, and programmatic guardrails make Soranauts a reliable window into the SORA economy.
+      <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">What the Nexus whitepaper covers.</h2>
+      <p class="mx-auto mt-3 max-w-3xl text-base text-text-muted">
+        Execution lanes, predictable liquidity, governance cadence, and programmatic guardrails — the building blocks of the SORA v3 economy.
       </p>
     </div>
     <div class="mt-10 grid gap-5 md:grid-cols-2">
       {nexusHighlights.map(({ eyebrow, title, summary, points, source }) => (
-        <article class="flex h-full flex-col rounded-2xl border border-border-subtle bg-soft/80 p-6 shadow-sm">
+        <article class="flex h-full flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:border-brand-500/30">
           <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">{eyebrow}</p>
           <h3 class="mt-3 text-xl font-semibold text-text-main">{title}</h3>
           {summary && <p class="mt-3 text-sm text-text-muted">{summary}</p>}
           {points && (
-            <ul class="mt-3 space-y-2 text-sm text-text-muted">
+            <ul class="mt-4 flex-1 space-y-2 text-sm text-text-muted">
               {points.map((point) => (
                 <li class="flex gap-2">
-                  <span class="text-brand-500">•</span>
+                  <span class="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-500" />
                   <span>{point}</span>
                 </li>
               ))}
             </ul>
           )}
           {source && (
-            <p class="mt-4 text-xs text-text-muted">
+            <p class="mt-4 border-t border-border-subtle pt-4 text-xs text-text-muted">
               Source:{' '}
-              <a href={source.href} class="text-brand-500 hover:text-brand-400 underline decoration-dotted">
+              <a href={source.href} class="text-brand-500 hover:text-brand-400 underline decoration-dotted" target="_blank" rel="noopener noreferrer">
                 {source.label}
               </a>
-              . {source.description}
             </p>
           )}
         </article>
       ))}
     </div>
-
   </section>
 
-  <!-- Note Widget ******************* -->
-
-  <section class="relative mt-16 px-4 sm:px-6">
-    <div class="absolute inset-0 -z-[1] bg-gradient-to-br from-brand-soft/30 via-transparent to-brand-soft/10" aria-hidden="true"></div>
-    <div class="mx-auto max-w-5xl rounded-2xl border border-border-subtle/70 bg-[#1b2430] p-6 text-center text-white shadow-lg sm:p-8">
-      <p class="text-sm font-semibold uppercase tracking-[0.3em] text-brand-200">
-        Nexus Whitepaper Access
+  <!-- Whitepaper Access Banner -->
+  <section class="relative mt-20 px-4 sm:px-6">
+    <div class="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-brand-500/30 bg-gradient-to-br from-[#1b2430] to-[#0f1419] p-8 text-center shadow-lg sm:p-10">
+      <div class="absolute inset-0 -z-[1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-500/10 via-transparent to-transparent" />
+      <p class="text-sm font-semibold uppercase tracking-[0.3em] text-brand-400">
+        Nexus Whitepaper
       </p>
-      <p class="mt-3 text-base sm:text-lg">
-        As of November 2025, the SORA v3 (Nexus) whitepaper remains the authoritative reference for execution lanes, governance cadence, and liquidity safeguards. Grab the PDF or browse the wiki snapshot.
+      <h2 class="mt-4 text-2xl font-bold text-white sm:text-3xl">
+        The authoritative reference for SORA v3.
+      </h2>
+      <p class="mx-auto mt-3 max-w-2xl text-base text-gray-300">
+        Execution lanes, governance cadence, and liquidity safeguards — all documented in the official Nexus whitepaper. Download the PDF or browse the wiki.
       </p>
-      <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
         <Button
           variant="primary"
           size="md"
@@ -220,7 +342,7 @@ const nexusFaqs = [
           size="md"
           text="Open SORA Wiki"
           href="https://wiki.sora.org/"
-          icon="tabler:book-2"
+          icon="tabler:external-link"
           class="w-full justify-center sm:w-auto"
           target="_blank"
           rel="noopener noreferrer"
@@ -229,130 +351,57 @@ const nexusFaqs = [
     </div>
   </section>
 
-  <!-- Features Widget *************** -->
-
-  <section class="mt-16 px-4 sm:px-6">
-    <div class="mx-auto max-w-5xl">
+  <!-- Architecture & Primitives Section -->
+  <section class="mt-20 px-4 sm:px-6">
+    <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Architecture & Primitives</p>
-        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Nexus Architecture & Economic Primitives</h2>
+        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Core Primitives</p>
+        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">How SORA v3 (Nexus) works.</h2>
         <p class="mt-3 text-base text-text-muted">
-          The Nexus whitepaper frames these primitives as the backbone of execution lanes, monetary policy, governance, and liquidity. Each card summarizes the intent plus the impact on institutions.
+          Four primitives form the backbone of execution, monetary policy, governance, and liquidity.
         </p>
       </div>
-      <div class="mt-10 grid gap-5 md:grid-cols-2">
-        <article class="rounded-2xl border border-border-subtle bg-soft/70 p-6 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Execution</p>
-        <h3 class="mt-3 text-xl font-semibold text-text-main">Lanes & Merge Ledger</h3>
-        <p class="mt-3 text-sm text-text-muted">
-          Iroha v3 lanes finalize independently, then the merge ledger weaves those tips into one canonical order so builders never fork history or lose cross-domain atomicity.
-        </p>
-          <Button
-            variant="tertiary"
-            size="md"
-            text="See architecture overview"
-            href="/documents/sora_nexus_whitepaper.pdf"
-            icon="tabler:git-merge"
-            class="mt-5 justify-start text-brand-500 hover:text-brand-400"
-            target="_blank"
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {primitives.map(({ eyebrow, icon, title, description, href, cta, external }) => (
+          <a
+            href={href}
+            target={external ? '_blank' : '_blank'}
             rel="noopener noreferrer"
-          />
-      </article>
-        <article class="rounded-2xl border border-border-subtle bg-soft/70 p-6 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Monetary Policy</p>
-        <h3 class="mt-3 text-xl font-semibold text-text-main">XOR Bonding Curve & Credit</h3>
-        <p class="mt-3 text-sm text-text-muted">
-          The bonding curve keeps XOR supply elastic, signals mint/burn windows, and funds productive credit programs so desks can dial liquidity without surprises.
-        </p>
-        <Button
-          variant="tertiary"
-          size="md"
-          text="Review bonding curve model"
-          href="https://wiki.sora.org/tbc.html"
-          icon="tabler:chart-line"
-          class="mt-5 justify-start text-brand-500 hover:text-brand-400"
-          target="_blank"
-          rel="noopener noreferrer"
-        />
-      </article>
-        <article class="rounded-2xl border border-border-subtle bg-soft/70 p-6 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Governance</p>
-        <h3 class="mt-3 text-xl font-semibold text-text-main">SORA Parliament</h3>
-        <p class="mt-3 text-sm text-text-muted">
-          Council, Assembly, and Technical Committee publish Norito manifests with XOR bonds so upgrades, lane parameters, and new data spaces activate deterministically.
-        </p>
-        <Button
-          variant="tertiary"
-          size="md"
-          text="Read governance plan"
-          href="https://wiki.sora.org/sora-governance.html"
-          icon="tabler:scale"
-          class="mt-5 justify-start text-brand-500 hover:text-brand-400"
-          target="_blank"
-          rel="noopener noreferrer"
-        />
-      </article>
-        <article class="rounded-2xl border border-border-subtle bg-soft/70 p-6 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Liquidity</p>
-        <h3 class="mt-3 text-xl font-semibold text-text-main">Polkaswap & Supranational Money</h3>
-        <p class="mt-3 text-sm text-text-muted">
-          Polkaswap routes liquidity across HASHI-connected domains while XOR operates as supranational money so institutions can settle trade, manage reserves, and finance projects on one ledger.
-        </p>
-        <Button
-          variant="tertiary"
-          size="md"
-          text="Explore Polkaswap rails"
-          href="https://wiki.sora.org/polkaswap.html"
-          icon="tabler:arrows-exchange"
-          class="mt-5 justify-start text-brand-500 hover:text-brand-400"
-          target="_blank"
-          rel="noopener noreferrer"
-        />
-        </article>
+            class="group flex flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-sm transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-elevated"
+          >
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">{eyebrow}</p>
+            <div class="mt-3 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-soft text-brand-500 transition group-hover:bg-brand-500 group-hover:text-white">
+              <Icon name={icon} class="h-5 w-5" />
+            </div>
+            <h3 class="mt-4 text-lg font-semibold text-text-main">{title}</h3>
+            <p class="mt-2 flex-1 text-sm text-text-muted">{description}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-500 group-hover:text-brand-400">
+              {cta}
+              <Icon name="tabler:arrow-up-right" class="h-4 w-4" />
+            </span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Get Started Widget ****************** -->
-
-  <section class="mt-16 px-4 sm:px-6">
-    <div class="mx-auto max-w-6xl rounded-3xl border border-border-subtle bg-soft/70 p-6 sm:p-8 shadow-sm">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Getting started</p>
-        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Onboard to SORA v3 (Nexus)</h2>
+  <!-- Onboarding Section -->
+  <section class="mt-20 px-4 sm:px-6">
+    <div class="mx-auto max-w-6xl rounded-3xl border border-border-subtle bg-surface p-6 shadow-sm sm:p-10">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Getting Started</p>
+        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">New to SORA?</h2>
         <p class="mt-3 text-base text-text-muted">
-          Follow these steps to connect wallets, study the architecture, collaborate with the community, and reference canonical whitepaper guidance.
+          Four steps to understand the ecosystem, connect your wallet, and join the community.
         </p>
       </div>
-      <div class="mt-10 grid gap-5 md:grid-cols-2">
-        {[
-          {
-        icon: 'tabler:wallet',
-            title: 'Connect your wallet',
-            copy:
-              'Start with <a href="https://wiki.sora.org/polkaswap-connect-wallet.html" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">Polkaswap wallet guides</a> or install <a href="https://fearlesswallet.io" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">Fearless Wallet</a> to manage XOR, VAL, and KUSD.',
-      },
-      {
-        icon: 'tabler:building-bank',
-            title: 'Explore the ecosystem',
-            copy:
-              'Review <a href="https://wiki.sora.org/tokenomics.html" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">XOR tokenomics</a>, the <a href="https://wiki.sora.org/tbc.html" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">Token Bonding Curve</a>, and the <a href="https://wiki.sora.org/sora-v3.html" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">Nexus architecture</a> to see how components interlock.',
-      },
-      {
-        icon: 'tabler:users',
-            title: 'Join the community',
-            copy:
-              'Jump into <a href="https://t.me/sora_xor" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">Telegram</a>, follow progress on <a href="https://x.com/sora_xor" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">X</a>, and track proposals via <a href="https://wiki.sora.org/sora-governance.html" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">governance updates</a>.',
-          },
-          {
-            icon: 'tabler:file-description',
-            title: 'Read the whitepaper',
-            copy:
-              'Download the <a href="/documents/sora_nexus_whitepaper.pdf" class="text-brand-500 hover:underline" target="_blank" rel="noopener noreferrer">SORA v3 (Nexus) whitepaper</a> for canonical definitions, then rely on Soranauts articles for plain-language explainers.',
-          },
-        ].map(({ icon, title, copy }) => (
-          <div class="rounded-2xl border border-border-subtle bg-surface/70 p-4 shadow-sm">
-            <div class="flex items-center gap-3">
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {onboardSteps.map(({ icon, title, copy }, index) => (
+          <div class="relative rounded-2xl border border-border-subtle bg-page p-5 shadow-sm">
+            <div class="absolute -top-3 left-5 flex h-6 w-6 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white">
+              {index + 1}
+            </div>
+            <div class="mt-2 flex items-center gap-3">
               <span class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-subtle bg-soft">
                 <Icon name={icon} class="h-5 w-5 text-brand-500" />
               </span>
@@ -364,56 +413,59 @@ const nexusFaqs = [
       </div>
     </div>
   </section>
-  
-  <!-- Features2 Widget
-  
-  ************** -->
-  
-  <!-- HighlightedPosts Widget ******* -->
 
+  <!-- Blog Posts Section -->
   <BlogLatestPosts
     classes={{ container: 'mt-20' }}
-    title="Follow SORA v3 (Nexus) & Polkaswap Progress"
-    information={`As of November 2025, we translate Nexus architecture updates, Polkaswap liquidity improvements, and bonding curve policy signals into plain next steps for builders and policymakers.`}
+    title="Latest from the SORA ecosystem"
+    information={`Stay current with Nexus architecture updates, Polkaswap liquidity improvements, and ecosystem news — translated into plain language for builders and policymakers.`}
   />
 
-  <!-- FAQs Widget ******************* -->
-
+  <!-- FAQs Section -->
   <section class="mt-20 px-4 sm:px-6">
-    <div class="mx-auto max-w-5xl rounded-3xl border border-border-subtle bg-soft/70 p-6 sm:p-8 shadow-sm">
+    <div class="mx-auto max-w-5xl rounded-3xl border border-border-subtle bg-surface p-6 shadow-sm sm:p-10">
       <div class="mx-auto max-w-3xl text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">Nexus FAQs</p>
-        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Key questions we hear most</h2>
+        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500">FAQs</p>
+        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Common questions</h2>
         <p class="mt-3 text-base text-text-muted">
-          Answers reference the November 2025 Nexus whitepaper and live wiki sections so you always have canonical context.
+          Answers reference the Nexus whitepaper, glossary entries, and live wiki sections.
         </p>
       </div>
-      <div class="mt-8 space-y-4">
+      <div class="mt-8 space-y-3">
         {nexusFaqs.map(({ question, answer }) => (
-          <details class="group rounded-2xl border border-border-subtle bg-surface/80 p-5 text-left shadow-sm transition">
+          <details class="group rounded-2xl border border-border-subtle bg-page p-5 transition hover:border-brand-500/30">
             <summary class="flex cursor-pointer items-center justify-between text-base font-semibold text-text-main focus-visible:outline-none">
               {question}
               <Icon
                 name="tabler:chevron-down"
-                class="h-5 w-5 text-text-muted transition-transform duration-200 group-open:rotate-180"
+                class="h-5 w-5 flex-shrink-0 text-text-muted transition-transform duration-200 group-open:rotate-180"
               />
             </summary>
-            <div class="mt-3 text-sm text-text-muted leading-relaxed" set:html={answer} />
+            <div class="mt-4 text-sm text-text-muted leading-relaxed" set:html={answer} />
           </details>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="px-4 sm:px-6 mt-16 mb-20">
-    <div class="mx-auto max-w-5xl rounded-2xl border border-border-subtle bg-soft/70 p-6 sm:p-8 text-center">
-      <h2 class="text-2xl sm:text-3xl font-bold text-text-main">Engage with the SORA v3 (Nexus) economy.</h2>
-      <p class="mt-3 text-base text-text-muted">
-        As of November 2025, Polkaswap plus the Token Bonding Curve provide transparent markets and predictable issuance so every Nexus participant sees how liquidity and governance decisions land.
+  <!-- Final CTA Section -->
+  <section class="mt-20 mb-20 px-4 sm:px-6">
+    <div class="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-border-subtle bg-gradient-to-br from-surface to-page p-8 text-center shadow-sm sm:p-10">
+      <h2 class="text-2xl font-bold text-text-main sm:text-3xl">Ready to explore the SORA economy?</h2>
+      <p class="mx-auto mt-3 max-w-2xl text-base text-text-muted">
+        Start with the glossary to learn the terminology, then dive into Polkaswap to experience the Token Bonding Curve and decentralized liquidity firsthand.
       </p>
-      <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
         <Button
           variant="primary"
+          size="md"
+          text="Browse the Glossary"
+          href="/glossary"
+          icon="tabler:vocabulary"
+          class="w-full justify-center sm:w-auto"
+        />
+        <Button
+          variant="secondary"
           size="md"
           text="Launch Polkaswap"
           href="https://polkaswap.io/"
@@ -422,12 +474,12 @@ const nexusFaqs = [
           class="w-full justify-center sm:w-auto"
         />
         <Button
-          variant="secondary"
+          variant="tertiary"
           size="md"
-          text="Download Whitepaper"
-          href="/documents/sora_nexus_whitepaper.pdf"
-          icon="tabler:file-download"
-          class="w-full justify-center sm:w-auto"
+          text="Support Soranauts"
+          href="/donate"
+          icon="tabler:heart"
+          class="w-full justify-center border-border-subtle text-text-muted hover:border-brand-500 hover:text-link sm:w-auto"
         />
       </div>
     </div>
