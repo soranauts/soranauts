@@ -33,6 +33,10 @@ const glossaryTerms = getCachedGlossaryTerms()
     category: term.category?.trim().toLowerCase(),
   }));
 const totalCount = glossaryTerms.length;
+
+// Build a Set of valid slugs to filter out broken tag links
+const validSlugs = new Set(glossaryTerms.map((t) => t.slug));
+
 const categories = new Set<string>();
 
 for (const term of glossaryTerms) {
@@ -223,13 +227,18 @@ const breadcrumbSchema = {
               ? term.tags
               : [];
           const meta = buildMeta(term);
+          // Filter tags to only include those with valid glossary pages
+          const validTags = tags.filter((tag: string) => {
+            const tagSlug = tag.toLowerCase().replace(/[\s_-]+/g, '');
+            return validSlugs.has(tagSlug);
+          });
           return (
             <GlossaryCard
               href={`/glossary/${term.slug}`}
               title={term.term}
               summary={summary}
               category={term.category}
-              tags={tags}
+              tags={validTags}
               meta={meta}
             />
           );
