@@ -3,6 +3,7 @@ import React from 'react';
 export interface GlossaryTermHeroProps {
   title: string;
   category?: string | null;
+  categorySlug?: string | null;
   summary?: string | null;
 }
 
@@ -16,19 +17,27 @@ export interface GlossaryTermHeroProps {
 export function GlossaryTermHero({
   title,
   category,
+  categorySlug,
   summary,
 }: GlossaryTermHeroProps) {
+  // Derive slug from category if not provided
+  const slug = categorySlug || category?.toLowerCase().replace(/\s+/g, '-');
+  
   return (
     <section className="glossary-hero">
       <div className="flex flex-col space-y-4 md:space-y-6">
-        <div className="flex flex-col space-y-3">
+        <div className="flex flex-col items-start space-y-3">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
             {title}
           </h1>
           {category && (
-            <span className="chip chip--md chip--neutral">
+            <a 
+              href={`/glossary?category=${encodeURIComponent(slug || '')}`}
+              className="chip chip--md chip--neutral hover:bg-white/20 transition-colors"
+              title={`View all ${category} terms`}
+            >
               {category}
-            </span>
+            </a>
           )}
         </div>
         
