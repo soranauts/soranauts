@@ -199,25 +199,25 @@ function Hit({ hit, onAliasClick, onTagClick }: {
       <p className="glossary-search__result-summary">{hit.definition}</p>
       
       {hit.aliases && hit.aliases.length > 1 && (
-        <div className="glossary-search__chips">
-          <span className="chip chip--sm chip--muted glossary-search__chip" style={{ pointerEvents: 'none' }}>
-            Also
-          </span>
-          {hit.aliases.slice(1).map((alias: string) => (
-            <button
-              key={alias}
-              type="button"
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                onAliasClick(alias);
-              }}
-              className="chip chip--sm chip--muted glossary-search__chip"
-              title={`Jump to ${alias}`}
-            >
-              {alias}
-            </button>
-          ))}
+        <div className="glossary-search__aliases">
+          <span className="glossary-search__aliases-label">Also known as:</span>
+          <div className="glossary-search__chips">
+            {hit.aliases.slice(1).map((alias: string) => (
+              <button
+                key={alias}
+                type="button"
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  onAliasClick(alias);
+                }}
+                className="chip chip--sm chip--muted glossary-search__chip"
+                title={`Search for ${alias}`}
+              >
+                {alias}
+              </button>
+            ))}
+          </div>
         </div>
       )}
       
