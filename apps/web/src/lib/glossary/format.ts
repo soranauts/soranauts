@@ -52,6 +52,9 @@ export const PRODUCT_NAMES = new Set([
 
 // Compound technical terms that need splitting (camelCase/PascalCase patterns)
 export const COMPOUND_TERM_OVERRIDES: Record<string, string> = {
+  // Special case: DeFi is not a typical acronym
+  'defi': 'DeFi',
+  
   // Nexus ID types
   'assetdefinitionid': 'Asset Definition ID',
   'assetid': 'Asset ID',
