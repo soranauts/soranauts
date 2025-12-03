@@ -14,10 +14,9 @@ export interface GlossaryTermPageProps {
   summary?: string | null;
   definition: string;
   whyItMatters?: string | null;
-  related: Array<{ term: string; href: string }>;
+  related: Array<{ term: string; href: string; slug?: string }>;
   sources?: GlossarySource[];
   categoryLabel?: string | null;
-  chips?: Array<{ term: string; href: string }>;
   definitionHtml?: string;
   lastUpdate?: string;
 }
@@ -62,7 +61,6 @@ const GlossaryTermPage = ({
   related,
   sources = [],
   categoryLabel,
-  chips = [],
   definitionHtml,
   lastUpdate,
 }: GlossaryTermPageProps) => {

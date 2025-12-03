@@ -574,7 +574,6 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
           title={displayTermTitle}
           category={categoryLabel ?? null}
           summary={heroSummary || null}
-          chips={relatedChipLinks}
         />
         <GlossaryTermPage
           client:load
@@ -583,11 +582,11 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
           definition={displayDefinition}
           definitionHtml={definitionHtml}
           categoryLabel={categoryLabel ?? null}
-          chips={relatedChipLinks}
           whyItMatters={term.tagline ?? term.subtitle ?? null}
           related={relatedTermsWithLinks.map((related) => ({
             term: related.term,
             href: `/glossary/${related.slug}`,
+            slug: related.slug,
           }))}
           sources={(term.links ?? []).map((link) => ({
             label: link.label,
@@ -603,21 +602,8 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
             {categoryLabel && <span class="chip chip--md chip--neutral">{categoryLabel}</span>}
             {heroSummary && <p class="text-base leading-relaxed">{heroSummary}</p>}
           </div>
-          {(relatedChipLinks.length > 0 || parentEntity || showCanonicalBadge) && (
+          {(parentEntity || showCanonicalBadge) && (
             <div class="glossary-detail__chips mb-8 md:mb-10">
-            {relatedChipLinks.map((chip) => {
-              const isGlossaryLink = chip.href.startsWith('/glossary/');
-              const slug = isGlossaryLink ? chip.href.replace('/glossary/', '').replace(/\/$/, '') : null;
-              return (
-                <a 
-                  class="chip chip--sm chip--muted" 
-                  href={chip.href}
-                  {...(slug ? { 'data-qv-trigger': slug } : {})}
-                >
-                  {chip.term}
-                </a>
-              );
-            })}
               {parentEntity && (
                 <a 
                   class="chip chip--sm chip--muted" 
