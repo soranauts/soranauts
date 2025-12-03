@@ -17,7 +17,10 @@ import { FEATURED_GLOSSARY_SLUGS } from '~/content/glossary/glossary.featured';
 import { GLOSSARY_STATS } from '~/lib/glossary/stats';
 
 // Get initial term from URL hash for deep linking
-const initialTerm = Astro.url.hash.replace('#', '');
+// Exclude page anchor IDs (like 'glossary-search-controls', 'glossary-featured-terms') from being used as search terms
+const hashValue = Astro.url.hash.replace('#', '');
+const pageAnchorIds = ['glossary-search-controls', 'glossary-search-results', 'glossary-featured-terms', 'main-content'];
+const initialTerm = pageAnchorIds.includes(hashValue) ? '' : hashValue;
 const initialQuery = Astro.url.searchParams.get('q') ?? initialTerm;
 const enableSearchV2 = import.meta.env.GLOSSARY_SEARCH_V2 === 'true';
 
@@ -196,7 +199,7 @@ const breadcrumbSchema = {
     <GlossaryHero kicker="Reference" title="SORA Glossary" description={heroCopy} stats={heroStats} />
 
     <GlossarySearchShell title="Search the SORA glossary" description="Look up tokens, governance models, DeFi concepts, and cross-chain primitives. Filters and shortcuts keep research quick.">
-      <div id="glossary-search-controls" class="glossary-search glossary-search--controls" />
+      <div id="glossary-search-controls" class="glossary-search glossary-search--controls"></div>
     </GlossarySearchShell>
 
     <section class="glossary-section" id="glossary-featured-terms" aria-labelledby="featured-terms-heading">
@@ -234,7 +237,7 @@ const breadcrumbSchema = {
       </div>
     </section>
 
-    <div id="glossary-search-results" class="glossary-search glossary-search--results" />
+    <div id="glossary-search-results" class="glossary-search glossary-search--results"></div>
 
     {enableSearchV2 ? (
       <GlossarySearchV2

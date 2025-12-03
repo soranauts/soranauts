@@ -440,7 +440,9 @@ export default function GlossarySearchFallback({
 
       // Handle initial hash after data is loaded
       const hash = window.location.hash.slice(1);
-      if (hash) {
+      // Exclude page anchor IDs from being treated as search terms
+      const pageAnchorIds = ['glossary-search-controls', 'glossary-search-results', 'glossary-featured-terms', 'main-content'];
+      if (hash && !pageAnchorIds.includes(hash)) {
         const slug = hash.replace(/^glossary-/, '');
         let term = data.terms.find(t => t.slug === slug);
         
@@ -531,6 +533,10 @@ export default function GlossarySearchFallback({
             const handleHashChange = () => {
               const hash = window.location.hash.slice(1);
               if (!hash) return;
+
+              // Exclude page anchor IDs from being treated as search terms
+              const pageAnchorIds = ['glossary-search-controls', 'glossary-search-results', 'glossary-featured-terms', 'main-content'];
+              if (pageAnchorIds.includes(hash)) return;
 
               // Check if it's a glossary slug
               const slug = hash.replace(/^glossary-/, '');
