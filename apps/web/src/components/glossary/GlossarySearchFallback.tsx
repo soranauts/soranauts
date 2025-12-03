@@ -148,10 +148,11 @@ function filterTerms(terms: GlossaryTerm[], searchQuery: string, category: strin
 }
 
 // Hit component for displaying search results
-function Hit({ hit, onAliasClick, onTagClick }: { 
+function Hit({ hit, onAliasClick, onTagClick, existingSlugs }: { 
   hit: GlossaryTerm; 
   onAliasClick: (alias: string) => void;
   onTagClick: (tag: string) => void;
+  existingSlugs: Set<string>;
 }) {
   const categoryLabel = hit.category ? formatCategoryLabel(hit.category) : undefined;
   
@@ -226,20 +227,41 @@ function Hit({ hit, onAliasClick, onTagClick }: {
           {displayChips.map((chip: string) => {
             // Normalize chip to create a slug for linking
             const chipSlug = chip.toLowerCase().replace(/[\s_-]+/g, '');
-            return (
-              <a
-                key={chip}
-                href={`/glossary/${chipSlug}`}
-                className="chip chip--sm chip--muted glossary-search__chip"
-                title={`View ${formatHashtag(chip)} term`}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  // Let the link navigate naturally
-                }}
-              >
-                #{formatHashtag(chip)}
-              </a>
-            );
+            const pageExists = existingSlugs.has(chipSlug);
+            
+            if (pageExists) {
+              // Term has a page - link directly
+              return (
+                <a
+                  key={chip}
+                  href={`/glossary/${chipSlug}`}
+                  className="chip chip--sm chip--muted glossary-search__chip"
+                  title={`View ${formatHashtag(chip)} term`}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                  }}
+                >
+                  #{formatHashtag(chip)}
+                </a>
+              );
+            } else {
+              // No page exists - search for the term instead
+              return (
+                <button
+                  key={chip}
+                  type="button"
+                  className="chip chip--sm chip--muted glossary-search__chip"
+                  title={`Search for ${formatHashtag(chip)}`}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    onTagClick(chip);
+                  }}
+                >
+                  #{formatHashtag(chip)}
+                </button>
+              );
+            }
           })}
         </div>
       )}
@@ -285,6 +307,14 @@ export default function GlossarySearchFallback({
       }),
     [],
   );
+
+  // Build a Set of existing slugs for link validation
+  // This prevents 404s when clicking tags that don't have glossary pages
+  // Must be defined here (before any conditional returns) to satisfy React hooks rules
+  const existingSlugs = useMemo(() => {
+    if (!glossaryData?.terms) return new Set<string>();
+    return new Set(glossaryData.terms.map(t => t.slug));
+  }, [glossaryData]);
 
   const [controlsContainer, setControlsContainer] = useState<HTMLElement | null>(null);
   const [resultsContainer, setResultsContainer] = useState<HTMLElement | null>(null);
@@ -997,6 +1027,7 @@ export default function GlossarySearchFallback({
             hit={term}
             onAliasClick={handleAliasClick}
             onTagClick={handleTagClick}
+            existingSlugs={existingSlugs}
           />
         ))
       ) : (
