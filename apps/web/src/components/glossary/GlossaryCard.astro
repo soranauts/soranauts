@@ -37,7 +37,7 @@ const toSlug = (tag: string) => tag.toLowerCase().replace(/[\s_-]+/g, '');
       {categoryLabel && (
         <a 
           class="chip chip--sm chip--neutral glossary-card__category-link" 
-          href={`/glossary?category=${categorySlug}`}
+          href={`/glossary?category=${categorySlug}#glossary-search-results`}
           title={`View all ${categoryLabel} terms`}
         >
           {categoryLabel}

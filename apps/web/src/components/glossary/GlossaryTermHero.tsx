@@ -32,7 +32,7 @@ export function GlossaryTermHero({
           </h1>
           {category && (
             <a 
-              href={`/glossary?category=${encodeURIComponent(slug || '')}`}
+              href={`/glossary?category=${encodeURIComponent(slug || '')}#glossary-search-results`}
               className="chip chip--md chip--neutral hover:bg-white/20 transition-colors"
               title={`View all ${category} terms`}
             >

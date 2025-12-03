@@ -602,7 +602,7 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
           <div class="flex flex-col items-start gap-3 text-base text-slate-700 dark:text-slate-200">
             {categoryLabel && (
               <a 
-                href={`/glossary?category=${encodeURIComponent(term.category ?? '')}`}
+                href={`/glossary?category=${encodeURIComponent(term.category ?? '')}#glossary-search-results`}
                 class="chip chip--md chip--neutral hover:bg-white/20 transition-colors"
                 title={`View all ${categoryLabel} terms`}
               >
