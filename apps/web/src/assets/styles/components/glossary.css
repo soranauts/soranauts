@@ -358,6 +358,20 @@
   color: var(--color-muted);
 }
 
+.glossary-search__aliases {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.glossary-search__aliases-label {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-style: italic;
+  white-space: nowrap;
+}
+
 .glossary-search__chips {
   display: flex;
   flex-wrap: wrap;
