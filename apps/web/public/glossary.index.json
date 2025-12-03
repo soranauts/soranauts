@@ -3540,7 +3540,7 @@
       "slug": "iroha",
       "title": "Iroha",
       "type": "term",
-      "category": "General",
+      "category": "Technology",
       "priority": 0,
       "aliases": [],
       "tags": [],
@@ -5209,7 +5209,7 @@
       "slug": "parliament",
       "title": "Parliament",
       "type": "term",
-      "category": "General",
+      "category": "Governance",
       "priority": 0,
       "aliases": [],
       "tags": [],
@@ -8677,5 +8677,5 @@
     }
   ],
   "totalCount": 338,
-  "lastUpdated": "2025-12-02T14:23:03.556Z"
+  "lastUpdated": "2025-12-03T12:20:12.605Z"
 }

@@ -858,7 +858,7 @@
     {
       "slug": "iroha",
       "title": "Iroha",
-      "category": "General",
+      "category": "Technology",
       "summary": "An open-source, permissioned blockchain framework developed by SORAMITSU and part of the Hyperledger Foundation. Designed for simplicity and fast deployment with granular permissions, built-in asset management, and Byzantine fault tolerant consensus. Hyperledger Iroha 2 (written in Rust) adds WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure."
     },
     {
@@ -1261,7 +1261,7 @@
     {
       "slug": "parliament",
       "title": "Parliament",
-      "category": "General",
+      "category": "Governance",
       "summary": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers. The SORA Parliament will replace the current Governance V1 system, implementing sortition-based democracy where citizens are randomly selected (not token voting) and must post XOR bonds for citizenship. Features multiple bodies: Rules Committee, Agenda Council, Interest Panels, Review Panel, and Policy Jury. Main task is allocating newly minted XOR to productive projects. In SORA v3, the Parliament will integrate with a hybrid DAO framework using Iroha Special Instructions (ISIs) for modular governance logic."
     },
     {
@@ -2076,5 +2076,5 @@
   "canonicalCount": 338,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-02T14:23:03.587Z"
+  "lastUpdated": "2025-12-03T12:20:12.641Z"
 }
