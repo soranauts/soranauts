@@ -573,6 +573,7 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
           client:load
           title={displayTermTitle}
           category={categoryLabel ?? null}
+          categorySlug={term.category ?? null}
           summary={heroSummary || null}
         />
         <GlossaryTermPage
@@ -598,8 +599,16 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
     ) : (
       <>
         <GlossaryHero title={displayTermTitle} stats={heroStats} kicker="Reference">
-          <div class="flex flex-col gap-3 text-base text-slate-700 dark:text-slate-200">
-            {categoryLabel && <span class="chip chip--md chip--neutral">{categoryLabel}</span>}
+          <div class="flex flex-col items-start gap-3 text-base text-slate-700 dark:text-slate-200">
+            {categoryLabel && (
+              <a 
+                href={`/glossary?category=${encodeURIComponent(term.category ?? '')}`}
+                class="chip chip--md chip--neutral hover:bg-white/20 transition-colors"
+                title={`View all ${categoryLabel} terms`}
+              >
+                {categoryLabel}
+              </a>
+            )}
             {heroSummary && <p class="text-base leading-relaxed">{heroSummary}</p>}
           </div>
           {(parentEntity || showCanonicalBadge) && (
