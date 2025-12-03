@@ -1,8 +1,8 @@
 ---
 publishDate: 2023-10-04T00:00:00Z
-updateDate: 2025-12-02T00:00:00Z
-title: "SORA Ecosystem Explained: Complete DeFi & Tokenomics Guide"
-excerpt: "A comprehensive guide to SORA's decentralized economy — XOR, Polkaswap, Kensetsu, TONSWAP, and Nexus governance explained for beginners and builders."
+updateDate: 2025-11-30T00:00:00Z
+title: "SORA Ecosystem: Complete DeFi & Tokenomics Playbook"
+excerpt: "How SORA coordinates XOR, Polkaswap, Kensetsu, TONSWAP, and Nexus governance across DeFi rails and real-world pilots."
 image: ~/assets/images/sora-ecosystem-explained.jpg
 category: "Blockchain Technology"
 tags:
@@ -13,360 +13,155 @@ tags:
   - polkaswap
   - kensetsu
   - kusd
+  - iroha3
   - tonswap
   - defi
   - tokenomics
   - governance
-  - token-bonding-curve
-  - nexus
 canonicalURL: https://soranauts.com/sora-ecosystem-explained
 customSlug: sora-ecosystem-explained
-metadata:
-  title: "SORA Ecosystem Explained: XOR, Polkaswap, Kensetsu & Nexus Guide"
-  description: "Learn how SORA coordinates XOR, VAL, PSWAP, Polkaswap, Kensetsu, TONSWAP, and Nexus governance. Complete guide to SORA's decentralized economy."
 ---
 
 import FaqSection from '~/components/blog/FaqSection.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 
 ## Introduction
+The <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer">SORA ecosystem</a>, stewarded by <a href="https://soramitsu.co.jp" target="_blank" rel="noopener noreferrer">SORAMITSU</a>, pairs the XOR monetary base, Polkaswap liquidity, Kensetsu stablecoins, and Hyperledger Iroha governance to build a supranational economy. Rather than a single chain, SORA coordinates public DeFi rails with permissioned partners so bridges, CBDCs, and consumer apps run on shared rules.
 
-The [SORA](/glossary/sora) ecosystem is a decentralized economic network that coordinates multiple components — [XOR](/glossary/xor) as the monetary base, [Polkaswap](/glossary/polkaswap) for liquidity, [Kensetsu](/glossary/kensetsu) for stablecoins, and [TONSWAP](/glossary/tonswap) for Telegram-native DeFi. Rather than a single blockchain, SORA operates as a coordinated economy where public DeFi rails connect with permissioned partners through shared rules.
-
-This guide explains how those building blocks work today and how **SORA Nexus (v3)** expands them into a multi-lane Hub Chain built on [Hyperledger Iroha](https://iroha.tech).
-
-> **New to SORA?** Start with the [SORA Glossary](/glossary) to learn key terms, or explore the [SORA Explorer](/explore) for curated learning paths.
-
----
+This guide explains how those building blocks work today and how SORA Nexus (v3) expands them into a multi-lane Hub Chain.
 
 ## TL;DR
-
-| Component | Purpose | Status |
-|-----------|---------|--------|
-| [XOR](/glossary/xor) | Elastic monetary base | Production |
-| [VAL](/glossary/val) | Validator rewards (deflationary) | Production |
-| [PSWAP](/glossary/pswap) | Liquidity incentives | Production |
-| [Polkaswap](/glossary/polkaswap) | Cross-chain DEX | Production |
-| [Kensetsu](/glossary/kensetsu) | Over-collateralized stablecoins | Production |
-| [KUSD](/glossary/kusd) | Dollar-pegged stablecoin | Production |
-| [TONSWAP](/glossary/tonswap) | TON/Telegram DeFi | Production |
-| Nexus (v3) | Multi-lane Hub Chain | Testnet (Fujiwara) |
-
-As of December 2025, Nexus modules operate on the **Fujiwara testnet** while Gov1 [governance](/glossary/governance), Polkaswap [liquidity](/glossary/liquidity), and Kensetsu vaults run production usage.
+SORA is an elastic economy coordinated by XOR, Polkaswap, Kensetsu (KUSD), TONSWAP, and a Nexus hub chain built on Hyperledger Iroha 3.  
+As of November 2025, Nexus modules operate on the Fujiwara testnet while Gov1 governance, Polkaswap liquidity, and Kensetsu vaults run production usage.  
+Together these layers connect cross-chain DeFi with real-world rails such as Bakong, Bokolo Cash, and the SORA Card program.
 
 ---
 
-## SORA's Economic Blueprint
-
-SORA applies the monetary research of economists like [Professor Richard Werner](/richard-werner-exposes-central-banks-and-the-sora-alternative) to a decentralized setting. Instead of minting tokens through mining or fixed emissions, XOR supply flexes with demand through the [Token Bonding Curve](/glossary/tokenbondingcurve), allowing the network to fund productive projects while maintaining predictable liquidity.
-
-The ecosystem components work like specialized departments:
-
-- **[XOR](/glossary/xor)** — Mints elastic currency
-- **[Polkaswap](/glossary/polkaswap)** — Routes liquidity
-- **[Kensetsu](/glossary/kensetsu)** — Maintains a dollar-denominated unit of account
-- **Nexus** — Coordinates the rules that bind them
+## SORA’s Economic Blueprint
+SORA applies the monetary research of economists like [Professor Richard Werner](/richard-werner-exposes-central-banks-and-the-sora-alternative) to a decentralized setting. Instead of minting tokens through mining or fixed emissions, XOR supply flexes with demand, allowing the network to fund productive projects while maintaining predictable liquidity. Polkaswap, Kensetsu, TONSWAP, and Nexus then act like specialized departments of the same economy: one mints elastic currency, another routes liquidity, another maintains a dollar-denominated unit of account, and Nexus coordinates the rules that bind them.
 
 ---
 
 ## Key Tokens of the SORA Ecosystem
 
-### XOR — The Monetary Base
+| Token | Role | Key Use Cases |
+|-------|------|---------------|
+| **XOR** | Utility & monetary base | Pays network fees, collateralizes Kensetsu, and expands/ contracts via the token bonding curve (20% of bonding-curve intake routes to an XOR burn). |
+| **VAL** | Validator reward (deflationary) | 50% of on-chain fees buy back and burn VAL before staking rewards are reminted, aligning security with usage. |
+| **PSWAP** | Liquidity reward token | Every Polkaswap swap pays a 0.3% fee that buys and burns PSWAP; 90% of the burned amount was reminted for LPs at launch and linearly tapers to 35% after five years. |
+| **KUSD** | Over-collateralized stablecoin | Minted via Kensetsu vaults using XOR, VAL, PSWAP, TBCD, ETH, or DAI; 19.5% of network fees buy back and burn KUSD to reinforce the $1 target. |
+| **TBCD** | Algorithmic reserve asset | Governance-minted reserve asset that remains tradable and collateralizable even though new issuance is suspended under the v3 tokenomics iteration. |
 
-[XOR](/glossary/xor) is SORA's primary utility token and monetary base. Key characteristics:
-
-- **Elastic supply** via the [Token Bonding Curve](/glossary/tokenbondingcurve)
-- **Network fees** paid in XOR
-- **Collateral** for [Kensetsu](/glossary/kensetsu) vaults
-- **20% of bonding-curve intake** routes to XOR burn
-
-### VAL — Validator Rewards
-
-[VAL](/glossary/val) is a deflationary token that rewards [validators](/glossary/validator):
-
-- **50% of on-chain fees** buy back and burn VAL
-- Rewards are then reminted for [staking](/glossary/staking)
-- Aligns security incentives with network usage
-
-### PSWAP — Liquidity Incentives
-
-[PSWAP](/glossary/pswap) powers liquidity rewards on [Polkaswap](/glossary/polkaswap):
-
-- **0.3% swap fee** buys and burns PSWAP
-- 90% of burned amount was reminted for LPs at launch
-- Linearly tapers to 35% after five years
-
-### KUSD — Over-Collateralized Stablecoin
-
-[KUSD](/glossary/kusd) is SORA's dollar-pegged stablecoin:
-
-- Minted via [Kensetsu](/glossary/kensetsu) vaults
-- Accepts XOR, VAL, PSWAP, [TBCD](/glossary/tbcd), ETH, or DAI as collateral
-- **19.5% of network fees** buy back and burn KUSD
-
-### TBCD — Algorithmic Reserve Asset
-
-[TBCD](/glossary/tbcd) (Token Bonding Curve Dollar) is a governance-minted reserve asset:
-
-- Tradable and collateralizable
-- New issuance suspended under v3 tokenomics
-- 0.5% of fees go to TBCD buyback
-
-> **Deep dive:** Read ["How XOR, VAL, and PSWAP Power the SORA Ecosystem"](/deep-dive-into-xor-val-and-pswap) for token-by-token analysis.
+For a token-by-token deep dive, read [“How XOR, VAL, and PSWAP Power the SORA Ecosystem”](/deep-dive-into-xor-val-and-pswap).
 
 ---
 
 ## Polkaswap: SORA's Decentralized Exchange
+Polkaswap is SORA’s cross-chain liquidity router. It aggregates pools across HASHI-connected networks (Ethereum, Polkadot, Kusama, and beyond) so users can swap assets without leaving self-custody. The 0.3% swap fee buys and burns PSWAP before reminting a shrinking share to liquidity providers, so trading volume automatically fuels deflation. Polkaswap also pipes liquidity to the SORA Card, letting users top up fiat rails directly from on-chain balances.
 
-[Polkaswap](/glossary/polkaswap) is SORA's cross-chain [liquidity](/glossary/liquidity) router. It aggregates pools across [HASHI](/glossary/hashi)-connected networks (Ethereum, Polkadot, Kusama) so users can swap assets without leaving self-custody.
-
-**Key features:**
-
-- **Cross-chain swaps** via HASHI bridges
-- **[AMM](/glossary/amm) liquidity pools** with fee sharing
-- **0.3% swap fee** funds PSWAP buyback-and-burn
-- **SORA Card integration** for fiat on/off-ramps
-
-> **Related:** ["How Polkaswap and TONSWAP Work Together on SORA"](/how-polkaswap-and-tonswap-work-together-on-sora)
+For a closer look at how Polkaswap and TONSWAP complement each other, see [“How Polkaswap and TONSWAP Work Together on SORA”](/how-polkaswap-and-tonswap-work-together-on-sora).
 
 ---
 
-## TONSWAP: Expanding SORA to Telegram
-
-[TONSWAP](/glossary/tonswap) extends SORA liquidity into The Open Network (TON) and Telegram-native wallets:
-
-- **10% of trading fees** buy back and burn XOR
-- Native Telegram integration for 800M+ users
-- CLMM swaps, perps, and options
-- XOR-burn automation is live
-
-> **Getting started:** ["TONSWAP: Telegram DeFi Hub on TON (Complete Guide)"](/introducing-tonswap-the-dex-for-mass-adoption-on-ton)
+## TONSWAP: Expanding the SORA Ecosystem to TON
+TONSWAP extends SORA liquidity into The Open Network (TON) and Telegram-native wallets. Ten percent of TONSWAP trading fees are routed to buy back and burn XOR, creating a recurring demand sink that links TON activity to SORA tokenomics. As of November 2025, the XOR-burn automation is live and transparency improvements for public accounting remain in progress.
 
 ---
 
-## How the Token Bonding Curve Works
-
-The [Token Bonding Curve](/glossary/tokenbondingcurve) (TBC) is SORA's algorithmic monetary policy — like an always-open central bank counter:
-
-| Action | What Happens |
-|--------|--------------|
-| **Buy XOR** | Contract mints new tokens on a predictable slope |
-| **Sell XOR** | Supply shrinks, reserves pay out immediately |
-| **20% of intake** | Routes to XOR burn |
-| **Remainder** | Adds to multi-asset reserves |
-
-The curve also anchors [TBCD](/glossary/tbcd), an algorithmic stable asset used for governance-directed funding.
-
-> **Learn more:** [Token Bonding Curve glossary entry](/glossary/tokenbondingcurve) or the [SORA Wiki TBC guide](https://wiki.sora.org/tbc.html)
+## How the Bonding Curve Powers the SORA Economy
+SORA's <a href="https://wiki.sora.org/tbc.html" target="_blank" rel="noopener noreferrer"><strong>token bonding curve (TBC)</strong></a> is like an always-open central bank counter. When users buy XOR from the curve, the contract mints new tokens on a predictable slope, routes 20% of the intake to an XOR burn, and adds the remainder to multi-asset reserves. Selling back does the reverse, shrinking supply while immediately paying out reserves. The curve also anchors **TBCD** (Token Bonding Curve Dollar), an algorithmic stable asset used for governance-directed funding. Although new TBCD minting is paused under the v3 tokenomics iteration, the asset remains tradable and can collateralize Kensetsu vaults.
 
 ---
 
-## Kensetsu: Over-Collateralized Stablecoins
+## Kensetsu: SORA's Over-Collateralized Stablecoin Platform
+The <a href="https://wiki.sora.org/kensetsu-vaults.html" target="_blank" rel="noopener noreferrer"><strong>Kensetsu platform</strong></a> functions like SORA’s MakerDAO. Users create vaults, deposit accepted collateral (XOR, VAL, PSWAP, TBCD, ETH, or DAI), and mint **KUSD** against that collateral with conservative loan-to-value ratios. Borrowers monitor their vault health, repay debt plus the stability fee, and reclaim collateral when finished. KUSD is also earmarked for “builder payments” under the v3 tokenomics iteration so development can be funded in a dollar-denominated unit without inflating XOR.
 
-[Kensetsu](/glossary/kensetsu) functions like SORA's MakerDAO:
-
-1. **Create a vault** with accepted collateral
-2. **Mint [KUSD](/glossary/kusd)** against that collateral
-3. **Monitor vault health** and maintain collateralization
-4. **Repay debt + stability fee** to reclaim collateral
-
-**Accepted collateral:** XOR, VAL, PSWAP, TBCD, ETH, DAI
-
-KUSD is also earmarked for "builder payments" under v3 tokenomics, so development can be funded in a dollar-denominated unit without inflating XOR.
-
-> **Vault walkthrough:** ["SORA Kensetsu Explained: Stablecoins and DeFi on Polkaswap"](/exploring-sora-kensetsu-polkaswap)
+For a vault walkthrough and peg maintenance details, read [“SORA Kensetsu Explained: Stablecoins and DeFi on Polkaswap”](/exploring-sora-kensetsu-polkaswap).
 
 ---
 
-## Network Fee Distribution
+## Network Fee Distribution (Overview)
+SORA’s v3 fee routing is deterministic, so every transaction contributes to multiple sinks:
 
-SORA's v3 fee routing is deterministic — every transaction contributes to multiple sinks:
-
-| Allocation | Purpose |
-|------------|---------|
-| **50%** | VAL buyback-and-burn → validator rewards |
-| **20%** | Direct XOR burn |
-| **19.5%** | KUSD buyback-and-burn (peg support) |
-| **10%** | Referral rewards |
-| **0.5%** | TBCD buyback |
-
-This design creates automatic deflationary pressure across all major tokens.
+- **50%** → VAL buyback and burn before validator rewards are reminted.  
+- **20%** → Direct XOR burn to reinforce the monetary base.  
+- **19.5%** → KUSD buyback-and-burn to uphold the Kensetsu peg.  
+- **10%** → Referral rewards that grow the network graph.  
+- **0.5%** → TBCD buyback to retire legacy reserves.
 
 ---
 
 ## Governance in SORA
-
-As of December 2025, SORA uses the **Substrate Gov1 pallet**:
-
-- Council and referenda system
-- Conviction voting with XOR
-- [VAL](/glossary/val) aligns [validator](/glossary/validator) incentives via NPoS [staking](/glossary/staking)
-
-### SORA Parliament (Coming with Nexus)
-
-Nexus is designing a multi-body governance structure:
-
-- **Isonomia** — Equal participation rights
-- **Sortition** — Random committee selection
-- **XOR bonds** — Skin-in-the-game for proposals
-- **ISI execution** — Deterministic on-chain outcomes
-
-> **Related:** ["SORA and Polkadot Governance Model"](/polkadot-sora-governance-model)
+As of November 2025, SORA uses the Substrate Gov1 pallet (council, referenda, conviction voting) rather than OpenGov. XOR holders vote on treasury spends, runtime upgrades, and Polkaswap changes, while VAL aligns validator incentives through NPoS staking. SORA Nexus is designing the future **SORA Parliament**: a multi-body structure inspired by isonomia and sortition where participants post XOR bonds, deliberative committees vet proposals, and Iroha 3 **Special Instructions (ISI)** enact deterministic outcomes once measures pass.
 
 ---
 
 ## Why SORA is Building on Hyperledger Iroha 3 (Nexus)
-
-SORA v2 runs on [Hyperledger Iroha](https://iroha.tech), but **Nexus (v3)** pushes the architecture further:
-
-### Multi-Lane Architecture
-
-Think of Nexus as a multi-lane highway:
-
-- Each **lane** finalizes transactions independently
-- A **merge ledger** weaves lane tips into a single timeline
-- **~1 second finality** per lane
-
-### Key Nexus Components
-
-| Component | Purpose |
-|-----------|---------|
-| **IVM** | Iroha Virtual Machine for deterministic contracts |
-| **[Sumeragi](/glossary/sumeragi)** | BFT consensus with leader rotation |
-| **FASTPQ** | zk-STARK proofs for lane receipts |
-| **DA Sampling** | Data availability without exposing payloads |
-
-> **Technical deep dive:** Download the [SORA Nexus Whitepaper](/documents/sora_nexus_whitepaper.pdf)
+SORA v2 already runs on <a href="https://iroha.tech" target="_blank" rel="noopener noreferrer">Hyperledger Iroha</a>, but Nexus (v3) pushes the architecture further. Think of Nexus as a multi-lane highway where each “lane” finalizes transactions independently, then a merge ledger weaves those lane tips into a single, globally ordered timeline. The custom **Iroha Virtual Machine (IVM)** enforces deterministic smart contracts with pointer-based ABIs, while **Sumeragi** consensus rotates leaders in a BFT pipeline. **FASTPQ** proofs and data-availability sampling add cryptographic receipts so every lane stays provable without exposing private payloads. As of November 2025, these modules remain under active development and are documented in the SORA Nexus Whitepaper.
 
 ---
 
 ## Fujiwara Testnet Progress
-
-The [Fujiwara testnet](https://wiki.sora.org/running-a-sora-testnet-node.html) is Nexus's proving ground:
-
-- Multi-lane scheduling tests
-- ISI governance flows
-- Bridge logic validation
-- Performance budgets (≤1s lane finality)
-
-> **Field report:** ["The Fujiwara Testnet: Pioneering SORA v3's Decentralized Future"](/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future)
+The <a href="https://wiki.sora.org/running-a-sora-testnet-node.html" target="_blank" rel="noopener noreferrer">Fujiwara testnet</a> is Nexus’s proving ground. Validators, provers, and gateway teams rehearse multi-lane scheduling, ISI governance flows, and bridge logic on Fujiwara before mainnet activation. The testnet also informs performance budgets (≤1 s lane finality, TEU quotas, DA sampling) and ensures migration from Iroha 2 stays deterministic. For a field report, read [“The Fujiwara Testnet: Pioneering SORA v3’s Decentralized Future”](/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future).
 
 ---
 
-## Real-World Deployments
+## Real-World Impact: From Bakong to Bokolo Cash
+SORA’s architecture is grounded in real deployments:
 
-SORA's architecture is grounded in production deployments:
+- **Bakong (Cambodia):** A live retail CBDC built on Hyperledger Iroha, delivering mobile-first payments, ISO 20022 messaging, and delegated key recovery.  
+- **Bokolo Cash (Solomon Islands):** A CBDC pilot that bridges permissioned infrastructure to SORA via a controlled gateway, showcasing interoperability with public DeFi. See [“Solomon Islands and Soramitsu Launch CBDC Pilot”](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc).  
+- **Digital Kina (Bank of Papua New Guinea):** Research documented in the SORA knowledge base describes how an Iroha-powered hub can connect national settlement systems to the broader SORA economy.
 
-### Bakong (Cambodia)
-A live retail CBDC built on Hyperledger Iroha:
-- Mobile-first payments
-- ISO 20022 messaging
-- Delegated key recovery
-
-### Bokolo Cash (Solomon Islands)
-A CBDC pilot bridging permissioned infrastructure to SORA:
-- Controlled gateway to public DeFi
-- Cross-border interoperability testing
-
-> **Case study:** ["Solomon Islands and Soramitsu Launch CBDC Pilot"](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc)
-
-### Digital Kina (Papua New Guinea)
-Research on connecting national settlement systems to the SORA economy via an Iroha-powered hub.
+These deployments validate the same primitives (Sumeragi, ISI, bridges) that Nexus will expose to public builders.
 
 ---
 
-## The SORA Card: Crypto Meets Everyday Spending
-
-The [SORA Card](https://wiki.sora.org/sora-card) bundles:
-
-- **Self-custodial wallet** — Your keys, your crypto
-- **Polkaswap access** — Swap directly from the card
-- **IBAN-connected debit card** — Spend at standard merchants
-- **Apple Pay / Google Pay** — Contactless payments
-- **SEPA rails** — European bank transfers
-
-KYC happens with regulated partners, but crypto balances stay self-custodied.
+## The SORA Card: Bridging Crypto and Everyday Spending
+The <a href="https://wiki.sora.org/sora-card" target="_blank" rel="noopener noreferrer">SORA Card</a> bundles a self-custodial wallet, Polkaswap access, and an IBAN-connected debit card. Users keep their keys, top up via on-chain assets inside the SORA Wallet, and spend at standard merchants through SEPA rails, Apple Pay/Google Pay, or cash withdrawals. KYC happens with regulated partners, but crypto balances stay self-custodied, keeping TradFi and DeFi domains cleanly separated.
 
 ---
 
 <FaqSection>
   <details>
     <summary>What is the main token of the SORA network?</summary>
-    The primary tokens are <a href="/glossary/xor">XOR</a> (utility/monetary base), <a href="/glossary/val">VAL</a> (validator rewards), and <a href="/glossary/kusd">KUSD</a> (stablecoin). Each serves a distinct role in the economy.
+    The primary tokens are **XOR** (utility/governance), **VAL** (security), and **KUSD** (stability).
   </details>
 
   <details>
     <summary>What is the difference between XOR, VAL, and KUSD?</summary>
-    <ul>
-      <li><strong><a href="/glossary/xor">XOR</a></strong> — Powers transactions and governance with elastic supply via the <a href="/glossary/tokenbondingcurve">Token Bonding Curve</a></li>
-      <li><strong><a href="/glossary/val">VAL</a></strong> — Secures the network; fee-funded buybacks make it structurally deflationary</li>
-      <li><strong><a href="/glossary/kusd">KUSD</a></strong> — Over-collateralized stablecoin from <a href="/glossary/kensetsu">Kensetsu</a> with fee-funded buybacks</li>
-      <li><strong><a href="/glossary/tbcd">TBCD</a></strong> — Algorithmic reserve asset; minting suspended but remains tradable</li>
-    </ul>
+    - **XOR** powers transactions and governance with elastic supply via the token bonding curve (see fee distribution below).<br/>
+    - **VAL** secures the network; fee-funded buybacks make it structurally deflationary.<br/>
+    - **KUSD** is an over-collateralized stablecoin from Kensetsu with protocol mechanisms to support a $1 target and fee-funded buybacks.<br/>
+    - **TBCD** is an algorithmic reserve asset; minting is suspended for v3 tokenomics but it remains tradable and usable as collateral.
   </details>
 
   <details>
     <summary>Is Polkaswap only for SORA tokens?</summary>
-    No. <a href="/glossary/polkaswap">Polkaswap</a> supports cross-chain swaps across multiple networks via <a href="/glossary/hashi">HASHI</a> bridges, including Ethereum and Polkadot assets.
+    No. Polkaswap supports cross-chain swaps across multiple networks via HASHI and other bridges.
   </details>
 
   <details>
     <summary>How does SORA governance work?</summary>
-    Today SORA uses Polkadot v1-style council/referendum <a href="/glossary/governance">governance</a>. <strong>SORA v3</strong> will introduce a <strong>Parliament</strong> with isonomia, isegoria, and sortition principles, using Iroha 3 ISI for deterministic governance logic.
+    Today SORA uses Polkadot v1-style council/referendum governance. **SORA v3** is expected to introduce a **Parliament** with isonomia, isegoria, and sortition principles, leveraging Iroha 3 ISI for modular, deterministic governance logic.
   </details>
 
   <details>
     <summary>Why did SORA migrate from Substrate to Hyperledger Iroha?</summary>
-    Early Substrate work enabled Polkadot interoperability. <strong>SORA v2</strong> on <a href="/glossary/iroha">Iroha</a> 2 and <strong>SORA v3 (Nexus)</strong> on Iroha 3 advance a sovereign Hub Chain model with BFT consensus and deterministic ISI contracts.
+    Early Substrate work enabled Polkadot interoperability. **SORA v2** on Iroha 2 and **SORA v3 (Nexus)** on Iroha 3 advance a sovereign Hub Chain model with BFT consensus, modular runtime, and deterministic ISI contracts for governance.
   </details>
 
   <details>
-    <summary>What is the Token Bonding Curve?</summary>
-    The <a href="/glossary/tokenbondingcurve">Token Bonding Curve</a> is SORA's algorithmic monetary policy. It mints XOR when users buy and burns XOR when they sell, keeping supply elastic and predictable. 20% of all purchases route to a permanent XOR burn.
-  </details>
-
-  <details>
-    <summary>How do I get started with SORA?</summary>
-    <ol>
-      <li>Learn the terminology in the <a href="/glossary">SORA Glossary</a></li>
-      <li>Install <a href="https://fearlesswallet.io" target="_blank" rel="noopener noreferrer">Fearless Wallet</a> or use <a href="https://polkaswap.io" target="_blank" rel="noopener noreferrer">Polkaswap</a></li>
-      <li>Explore the <a href="/explore">SORA Explorer</a> for curated learning paths</li>
-      <li>Join the community on <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer">Telegram</a></li>
-    </ol>
+    <summary>Can I use the SORA Card anywhere?</summary>
+    The card works at most merchants that accept standard debit payments, but onboarding regions, spending limits, and KYC tiers depend on regulated partners. Check the <a href="https://wiki.sora.org/sora-card" target="_blank" rel="noopener noreferrer">SORA Card guide</a> for the latest availability notes.
   </details>
 </FaqSection>
 
----
-
 ## Further Reading
-
-### On Soranauts
-- [SORA Glossary](/glossary) — 338 terms explained
-- [SORA Explorer](/explore) — Curated learning paths
-- [How XOR, VAL, and PSWAP Power the SORA Ecosystem](/deep-dive-into-xor-val-and-pswap)
-- [SORA Kensetsu Explained](/exploring-sora-kensetsu-polkaswap)
-- [How Polkaswap and TONSWAP Work Together](/how-polkaswap-and-tonswap-work-together-on-sora)
-- [The Fujiwara Testnet: Pioneering SORA v3](/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future)
-- [SORA v3 Vision & Polkaswap News](/sora-v3-vision-defi-milestones-and-polkaswap-news-update-88)
-
-### Official Resources
-- [SORA Wiki](https://wiki.sora.org) — Canonical documentation
-- [Hyperledger Iroha Docs](https://iroha.tech) — Iroha 2/3 architecture
-- [Polkaswap](https://polkaswap.io) — Launch the DEX
-- [TONSWAP](https://tonswap.io) — TON/Telegram DeFi
-- [Nexus Whitepaper](/documents/sora_nexus_whitepaper.pdf) — Technical specification
-
----
+- <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer">SORA Wiki</a> — canonical docs for SORA, Polkaswap, Kensetsu, governance  
+- <a href="https://iroha.tech" target="_blank" rel="noopener noreferrer">Hyperledger Iroha Docs</a> — Iroha 2/3 architecture, ISI, Sumeragi  
+- [The Fujiwara Testnet: Pioneering SORA v3’s Decentralized Future](/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future)  
+- [SORA Kensetsu Explained: Stablecoins and DeFi on Polkaswap](/exploring-sora-kensetsu-polkaswap)  
+- [How Polkaswap and TONSWAP Work Together on SORA](/how-polkaswap-and-tonswap-work-together-on-sora)
 
 ## Conclusion
-
-SORA aligns tokenomics, liquidity, governance, and real-world deployments under one coordinated economy:
-
-- **[XOR](/glossary/xor)'s bonding curve** supplies predictable liquidity
-- **[VAL](/glossary/val) and [PSWAP](/glossary/pswap)** enforce deflationary incentives
-- **[KUSD](/glossary/kusd)** anchors a stable unit of account
-- **[TONSWAP](/glossary/tonswap) and the SORA Card** export that design to new audiences
-
-As Nexus matures on Hyperledger Iroha 3, those same rules gain multi-lane scalability while continuing to learn from production pilots like Bakong and Bokolo Cash.
-
-**Ready to explore?** Start with the [SORA Glossary](/glossary) or [launch Polkaswap](https://polkaswap.io).
+SORA aligns tokenomics, liquidity, governance, and real-world deployments under one coordinated economy. XOR’s bonding curve supplies predictable liquidity, VAL and PSWAP enforce deflationary incentives, KUSD anchors a stable unit of account, and TONSWAP plus the SORA Card export that design to new audiences. As Nexus matures on Hyperledger Iroha 3, those same rules gain multi-lane scalability while continuing to learn from production pilots. For ongoing updates, follow the <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer">SORA Wiki</a>.
