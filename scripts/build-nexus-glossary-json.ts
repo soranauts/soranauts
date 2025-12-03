@@ -114,8 +114,9 @@ const CRYPTO_ALGORITHMS: Record<string, string> = {
   'rsa': 'RSA',
 };
 
-// Compound technical terms that need splitting
+// Compound technical terms that need special handling
 const COMPOUND_TERM_OVERRIDES: Record<string, string> = {
+  'defi': 'DeFi',
   'assetdefinitionid': 'Asset Definition ID',
   'assetid': 'Asset ID',
   'accountid': 'Account ID',

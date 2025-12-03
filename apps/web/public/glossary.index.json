@@ -2070,7 +2070,7 @@
     },
     {
       "slug": "defi",
-      "title": "De Fi",
+      "title": "DeFi",
       "type": "term",
       "category": "DeFi",
       "priority": 0,
@@ -2096,7 +2096,7 @@
         "smartcontracts"
       ],
       "glossaryRef": "/glossary/defi",
-      "blob": "de fi decentralized finance - financial services built on blockchain networks that operate without traditional financial intermediaries. sora provides defi services through polkaswap … polkaswap yield farming liquidity pool dex smart contracts polkaswap yieldfarming liquiditypool dex smartcontracts"
+      "blob": "defi decentralized finance - financial services built on blockchain networks that operate without traditional financial intermediaries. sora provides defi services through polkaswap … polkaswap yield farming liquidity pool dex smart contracts polkaswap yieldfarming liquiditypool dex smartcontracts"
     },
     {
       "slug": "deflationary",
@@ -9157,5 +9157,5 @@
     }
   ],
   "totalCount": 368,
-  "lastUpdated": "2025-12-03T13:54:20.950Z"
+  "lastUpdated": "2025-12-03T14:07:22.797Z"
 }
