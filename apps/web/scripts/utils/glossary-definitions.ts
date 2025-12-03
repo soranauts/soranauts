@@ -11,6 +11,147 @@ interface FallbackEntry {
 }
 
 const FALLBACK_ENTRIES: Record<string, FallbackEntry> = {
+  // === HIGH-FREQUENCY TAGS (used on 4+ terms) ===
+  nexusarchitecture: {
+    definition: 'Nexus Architecture is the core technical framework of SORA v3, encompassing accounts, transactions, execution, consensus, cryptography, and data availability primitives. It defines how the network processes state transitions, validates blocks, and maintains distributed consensus across all participants.',
+    category: 'technology',
+  },
+  'cross-chain': {
+    definition: 'Cross-chain refers to protocols and mechanisms that enable assets, data, and messages to move between different blockchain networks. SORA uses bridges, XCM, and the HASHI protocol to achieve interoperability with Polkadot, Ethereum, TON, and other ecosystems.',
+    category: 'technology',
+  },
+  hyperledgeriroha: {
+    definition: 'Hyperledger Iroha is an open-source, permissioned blockchain framework developed by SORAMITSU and maintained under the Linux Foundation. It provides enterprise-grade features including granular permissions, built-in asset management, and Byzantine fault tolerant consensus.',
+    category: 'technology',
+  },
+  memecoins: {
+    definition: 'Meme coins are cryptocurrency tokens that originate from internet memes or cultural phenomena. On SORA, projects like Soshiba explore lightweight community incentives through airdrops, social quests, and liquidity rewards separate from core network assets.',
+    category: 'token',
+  },
+  rust: {
+    definition: 'Rust is a systems programming language known for memory safety and performance. SORA and Hyperledger Iroha 2 are built with Rust, enabling secure, high-throughput blockchain execution with compile-time guarantees against common vulnerabilities.',
+    category: 'technology',
+  },
+  parachains: {
+    definition: 'Parachains are independent blockchains that connect to the Polkadot or Kusama relay chain for shared security and cross-chain messaging. SORA operates as a parachain, benefiting from Polkadot consensus while maintaining its own specialized runtime.',
+    category: 'network',
+  },
+  trading: {
+    definition: 'Trading on SORA encompasses swapping tokens on Polkaswap, providing liquidity to pools, and participating in price discovery through the DEX. The network supports multiple liquidity sources and algorithmic pricing for efficient markets.',
+    category: 'defi',
+  },
+  hyperledgeriroha3: {
+    definition: 'Hyperledger Iroha 3 is the next-generation version of the Iroha framework, featuring enhanced performance, WASM smart contracts, and improved developer tooling. SORA v3 architecture draws from Iroha 3 innovations for enterprise-grade blockchain infrastructure.',
+    category: 'technology',
+  },
+  community: {
+    definition: 'The SORA community comprises developers, validators, liquidity providers, governance participants, and users who collectively shape the network direction through proposals, discussions, and on-chain voting.',
+    category: 'ecosystem',
+  },
+  'buyback-and-burn': {
+    definition: 'Buyback-and-burn is a deflationary mechanism where a portion of network fees or revenues is used to purchase tokens from the market and permanently remove them from circulation. SORA uses this for PSWAP and other strategic supply management.',
+    category: 'economics',
+  },
+  
+  // === MEDIUM-FREQUENCY TAGS (used on 2-3 terms) ===
+  supplyreduction: {
+    definition: 'Supply reduction refers to mechanisms that decrease the circulating supply of tokens over time, including burns, lockups, and deflationary tokenomics. SORA implements supply reduction through transaction fee burns and buyback programs.',
+    category: 'economics',
+  },
+  soraecosystem: {
+    definition: 'The SORA Ecosystem encompasses all applications, protocols, and communities built on or integrated with the SORA network, including Polkaswap, Fearless Wallet, TONSwap, CBDC implementations, and governance infrastructure.',
+    category: 'ecosystem',
+  },
+  'real-worldassets': {
+    definition: 'Real-world assets (RWAs) are physical or traditional financial assets represented as tokens on blockchain. SORA infrastructure supports tokenization of commodities, securities, and fiat-backed instruments for DeFi integration.',
+    category: 'defi',
+  },
+  opengov: {
+    definition: 'OpenGov is the advanced governance framework used by Polkadot and Kusama parachains, featuring multiple referendum tracks, delegation, and conviction voting. SORA governance draws from these democratic primitives.',
+    category: 'governance',
+  },
+  digitalcurrency: {
+    definition: 'Digital currency refers to any currency existing in electronic form, including cryptocurrencies like XOR and central bank digital currencies (CBDCs). SORA provides infrastructure for both decentralized and regulated digital money.',
+    category: 'economics',
+  },
+  vault: {
+    definition: 'A vault is a smart contract that securely holds collateral for minting synthetic assets or stablecoins. On SORA, Kensetsu vaults allow users to deposit XOR, VAL, or other assets to borrow KUSD.',
+    category: 'defi',
+  },
+  validators: {
+    definition: 'Validators are network operators who stake tokens to produce blocks, validate transactions, and maintain consensus. SORA validators earn VAL rewards for securing the network and processing state transitions.',
+    category: 'network',
+  },
+  supplymanagement: {
+    definition: 'Supply management encompasses all mechanisms controlling token issuance, burning, and circulation. SORA uses the Token Bonding Curve, fee burns, and strategic reserves to maintain healthy token economics.',
+    category: 'economics',
+  },
+  stableasset: {
+    definition: 'A stable asset is any token designed to maintain a consistent value, typically pegged to fiat currency. KUSD is SORA primary stable asset, backed by over-collateralized vaults and stability mechanisms.',
+    category: 'token',
+  },
+  soranetwork: {
+    definition: 'SORA Network is the decentralized blockchain infrastructure powering XOR, Polkaswap, and the broader SORA ecosystem. It provides programmable finance, democratic governance, and interoperability with multiple chains.',
+    category: 'network',
+  },
+  smartcontracts: {
+    definition: 'Smart contracts are self-executing programs stored on blockchain that automatically enforce agreement terms. SORA supports smart contracts through Ink! (Rust-based) and future WASM execution environments.',
+    category: 'technology',
+  },
+  scarcity: {
+    definition: 'Scarcity in tokenomics refers to limited supply that can drive value. SORA manages scarcity through the Token Bonding Curve, which algorithmically controls XOR minting based on economic conditions.',
+    category: 'economics',
+  },
+  scalability: {
+    definition: 'Scalability is the ability of a blockchain to handle increasing transaction volume without degrading performance. SORA achieves scalability through parachain architecture, efficient consensus, and optimized runtime.',
+    category: 'technology',
+  },
+  priceoptimization: {
+    definition: 'Price optimization refers to mechanisms that improve trade execution and reduce slippage. Polkaswap aggregates multiple liquidity sources and uses smart order routing for optimal swap prices.',
+    category: 'defi',
+  },
+  'over-collateralized': {
+    definition: 'Over-collateralized means providing more collateral value than the borrowed amount, creating a safety buffer. Kensetsu requires over-collateralization to mint KUSD, protecting against liquidation risk.',
+    category: 'defi',
+  },
+  nexus: {
+    definition: 'Nexus refers to the SORA v3 technical specification and whitepaper defining the next-generation network architecture, including new consensus, execution, and data availability layers.',
+    category: 'technology',
+  },
+  marketcycles: {
+    definition: 'Market cycles are recurring patterns of bull and bear phases in cryptocurrency markets. SORA tokenomics, particularly the Token Bonding Curve, is designed to provide stability across market cycles.',
+    category: 'economics',
+  },
+  makerdao: {
+    definition: 'MakerDAO is the Ethereum protocol behind DAI stablecoin. Kensetsu draws inspiration from Maker vault model while adapting it for SORA multi-collateral and KUSD minting system.',
+    category: 'defi',
+  },
+  energy: {
+    definition: 'Energy in SORA context refers to sustainability considerations and the network efficient Proof of Stake consensus, which uses minimal energy compared to Proof of Work systems.',
+    category: 'technology',
+  },
+  decentralizedexchange: {
+    definition: 'A decentralized exchange (DEX) enables peer-to-peer trading without intermediaries. Polkaswap is SORA DEX, offering multi-source liquidity, low fees, and permissionless token swaps.',
+    category: 'defi',
+  },
+  cryptography: {
+    definition: 'Cryptography in blockchain provides security through digital signatures, hash functions, and encryption. SORA uses Ed25519, BLAKE2b, and other primitives to secure accounts and transactions.',
+    category: 'technology',
+  },
+  'cross-borderpayments': {
+    definition: 'Cross-border payments are international money transfers. SORA CBDC infrastructure and stablecoin rails enable fast, low-cost cross-border settlements without traditional banking intermediaries.',
+    category: 'defi',
+  },
+  byzantinefaulttolerance: {
+    definition: 'Byzantine Fault Tolerance (BFT) is a consensus property ensuring network operation even when some nodes act maliciously. SORA uses BFT-based SUMERAGI consensus for deterministic finality.',
+    category: 'technology',
+  },
+  borderlessfinance: {
+    definition: 'Borderless finance refers to financial services accessible globally without geographic restrictions. SORA enables borderless DeFi through permissionless access to Polkaswap, staking, and governance.',
+    category: 'defi',
+  },
+  
+  // === ORIGINAL ENTRIES ===
   adoption: {
     definition: 'Adoption describes the rate at which people, partners, and institutions begin using SORA products, liquidity, and governance tooling in real-world contexts.',
     category: 'ecosystem',
