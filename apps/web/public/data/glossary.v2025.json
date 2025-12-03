@@ -996,6 +996,20 @@
       ]
     },
     {
+      "slug": "borderlessfinance",
+      "title": "Borderless Finance",
+      "summary": "Borderless finance refers to financial services accessible globally without geographic restrictions. SORA enables borderless DeFi through permissionless access to Polkaswap, staking, and governance.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Borderless finance refers to financial services accessible globally without geographic restrictions. SORA enables borderless DeFi through permissionless access to Polkaswap, staking, and governance.",
+      "category": "DeFi",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "borrowing",
       "title": "Borrowing",
       "summary": "Taking on debt against posted collateral using smart contracts that enforce repayment and liquidation rules.",
@@ -1128,6 +1142,20 @@
           "url": "https://wiki.sora.org/pswap.html"
         }
       ]
+    },
+    {
+      "slug": "byzantinefaulttolerance",
+      "title": "Byzantine Fault Tolerance",
+      "summary": "Byzantine Fault Tolerance (BFT) is a consensus property ensuring network operation even when some nodes act maliciously. SORA uses BFT-based SUMERAGI consensus for deterministic finality.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Byzantine Fault Tolerance (BFT) is a consensus property ensuring network operation even when some nodes act maliciously. SORA uses BFT-based SUMERAGI consensus for deterministic finality.",
+      "category": "Technology",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
     },
     {
       "slug": "canonicalprimitives",
@@ -1437,6 +1465,20 @@
         "newview",
         "proposevalidatevotecommit"
       ],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "community",
+      "title": "Community",
+      "summary": "The SORA community comprises developers, validators, liquidity providers, governance participants, and users who collectively shape the network direction through proposals, discussions, and on-chain voting.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "The SORA community comprises developers, validators, liquidity providers, governance participants, and users who collectively shape the network direction through proposals, discussions, and on-chain voting.",
+      "category": "Ecosystem",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
       "examples": [],
       "links": []
     },
@@ -1788,6 +1830,20 @@
       ]
     },
     {
+      "slug": "cryptography",
+      "title": "Cryptography",
+      "summary": "Cryptography in blockchain provides security through digital signatures, hash functions, and encryption. SORA uses Ed25519, BLAKE2b, and other primitives to secure accounts and transactions.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Cryptography in blockchain provides security through digital signatures, hash functions, and encryption. SORA uses Ed25519, BLAKE2b, and other primitives to secure accounts and transactions.",
+      "category": "Technology",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "cryptomarketcycles",
       "title": "Crypto Market Cycles",
       "summary": "Recurring bull and bear phases observed in cryptocurrency markets. Understanding cycles informs staking, liquidity, and treasury decisions in the SORA ecosystem.",
@@ -2079,6 +2135,20 @@
       "links": []
     },
     {
+      "slug": "decentralizedexchange",
+      "title": "Decentralized Exchange",
+      "summary": "A decentralized exchange (DEX) enables peer-to-peer trading without intermediaries. Polkaswap is SORA DEX, offering multi-source liquidity, low fees, and permissionless token swaps.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "A decentralized exchange (DEX) enables peer-to-peer trading without intermediaries. Polkaswap is SORA DEX, offering multi-source liquidity, low fees, and permissionless token swaps.",
+      "category": "DeFi",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "deepfri",
       "title": "Deep-fri",
       "summary": "The low-degree testing protocol inside FASTPQ STARK proofs that lets verifiers check massive execution traces with logarithmic work.",
@@ -2316,6 +2386,20 @@
           "url": "https://polkaswap.io"
         }
       ]
+    },
+    {
+      "slug": "digitalcurrency",
+      "title": "Digital Currency",
+      "summary": "Digital currency refers to any currency existing in electronic form, including cryptocurrencies like XOR and central bank digital currencies (CBDCs). SORA provides infrastructure for both decentralized and regulated digital money.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Digital currency refers to any currency existing in electronic form, including cryptocurrencies like XOR and central bank digital currencies (CBDCs). SORA provides infrastructure for both decentralized and regulated digital money.",
+      "category": "Economics",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
     },
     {
       "slug": "digitalownership",
@@ -2626,6 +2710,20 @@
           "url": "https://wiki.sora.org/tokenomics.html"
         }
       ]
+    },
+    {
+      "slug": "energy",
+      "title": "Energy",
+      "summary": "Energy in SORA context refers to sustainability considerations and the network efficient Proof of Stake consensus, which uses minimal energy compared to Proof of Work systems.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Energy in SORA context refers to sustainability considerations and the network efficient Proof of Stake consensus, which uses minimal energy compared to Proof of Work systems.",
+      "category": "Technology",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
     },
     {
       "slug": "epochbeacon",
@@ -3547,6 +3645,34 @@
       "status": "canonical",
       "targetSlug": null,
       "definition": "Hyperledger is the Linux Foundation's family of enterprise blockchain frameworks, including Hyperledger Iroha which powers SORA's regulated deployments.",
+      "category": "Technology",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "hyperledgeriroha",
+      "title": "Hyperledger Iroha",
+      "summary": "Hyperledger Iroha is an open-source, permissioned blockchain framework developed by SORAMITSU and maintained under the Linux Foundation. It provides enterprise-grade features including granular permissions, built-in asset management, and Byzantine fault tolerant consensus.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Hyperledger Iroha is an open-source, permissioned blockchain framework developed by SORAMITSU and maintained under the Linux Foundation. It provides enterprise-grade features including granular permissions, built-in asset management, and Byzantine fault tolerant consensus.",
+      "category": "Technology",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "hyperledgeriroha3",
+      "title": "Hyperledger Iroha3",
+      "summary": "Hyperledger Iroha 3 is the next-generation version of the Iroha framework, featuring enhanced performance, WASM smart contracts, and improved developer tooling. SORA v3 architecture draws from Iroha 3 innovations for enterprise-grade blockchain infrastructure.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Hyperledger Iroha 3 is the next-generation version of the Iroha framework, featuring enhanced performance, WASM smart contracts, and improved developer tooling. SORA v3 architecture draws from Iroha 3 innovations for enterprise-grade blockchain infrastructure.",
       "category": "Technology",
       "aliases": [],
       "tags": [],
@@ -4610,6 +4736,34 @@
       "links": []
     },
     {
+      "slug": "makerdao",
+      "title": "Makerdao",
+      "summary": "MakerDAO is the Ethereum protocol behind DAI stablecoin. Kensetsu draws inspiration from Maker vault model while adapting it for SORA multi-collateral and KUSD minting system.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "MakerDAO is the Ethereum protocol behind DAI stablecoin. Kensetsu draws inspiration from Maker vault model while adapting it for SORA multi-collateral and KUSD minting system.",
+      "category": "DeFi",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "marketcycles",
+      "title": "Market Cycles",
+      "summary": "Market cycles are recurring patterns of bull and bear phases in cryptocurrency markets. SORA tokenomics, particularly the Token Bonding Curve, is designed to provide stability across market cycles.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Market cycles are recurring patterns of bull and bear phases in cryptocurrency markets. SORA tokenomics, particularly the Token Bonding Curve, is designed to provide stability across market cycles.",
+      "category": "Economics",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "marketplace",
       "title": "Marketplace",
       "summary": "Marketplace describes curated hubs where builders showcase SORA-based products, liquidity programs, or governance proposals for community discovery.",
@@ -4684,6 +4838,20 @@
           "url": "https://soranauts.com/timing-the-crypto-market-insights-into-bull-cycles"
         }
       ]
+    },
+    {
+      "slug": "memecoins",
+      "title": "Meme Coins",
+      "summary": "Meme coins are cryptocurrency tokens that originate from internet memes or cultural phenomena. On SORA, projects like Soshiba explore lightweight community incentives through airdrops, social quests, and liquidity rewards separate from core network assets.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Meme coins are cryptocurrency tokens that originate from internet memes or cultural phenomena. On SORA, projects like Soshiba explore lightweight community incentives through airdrops, social quests, and liquidity rewards separate from core network assets.",
+      "category": "Token",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
     },
     {
       "slug": "memorymodel",
@@ -5014,6 +5182,20 @@
       "links": []
     },
     {
+      "slug": "nexus",
+      "title": "Nexus",
+      "summary": "Nexus refers to the SORA v3 technical specification and whitepaper defining the next-generation network architecture, including new consensus, execution, and data availability layers.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Nexus refers to the SORA v3 technical specification and whitepaper defining the next-generation network architecture, including new consensus, execution, and data availability layers.",
+      "category": "Technology",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "nexusaccountstructure",
       "title": "Nexus Account Structure",
       "summary": "The canonical binary layout of account identifiers, including network flags, DSID, domain, name, multisig metadata, and checksum.",
@@ -5032,6 +5214,20 @@
         "bech32format",
         "soranexus"
       ],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "nexusarchitecture",
+      "title": "Nexus Architecture",
+      "summary": "Nexus Architecture is the core technical framework of SORA v3, encompassing accounts, transactions, execution, consensus, cryptography, and data availability primitives. It defines how the network processes state transitions, validates blocks, and maintains distributed consensus across all participants.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Nexus Architecture is the core technical framework of SORA v3, encompassing accounts, transactions, execution, consensus, cryptography, and data availability primitives. It defines how the network processes state transitions, validates blocks, and maintains distributed consensus across all participants.",
+      "category": "Technology",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
       "examples": [],
       "links": []
     },
@@ -5282,6 +5478,34 @@
       "links": []
     },
     {
+      "slug": "opengov",
+      "title": "Opengov",
+      "summary": "OpenGov is the advanced governance framework used by Polkadot and Kusama parachains, featuring multiple referendum tracks, delegation, and conviction voting. SORA governance draws from these democratic primitives.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "OpenGov is the advanced governance framework used by Polkadot and Kusama parachains, featuring multiple referendum tracks, delegation, and conviction voting. SORA governance draws from these democratic primitives.",
+      "category": "Governance",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "overcollateralized",
+      "title": "Over Collateralized",
+      "summary": "Over-collateralized means providing more collateral value than the borrowed amount, creating a safety buffer. Kensetsu requires over-collateralization to mint KUSD, protecting against liquidation risk.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Over-collateralized means providing more collateral value than the borrowed amount, creating a safety buffer. Kensetsu requires over-collateralization to mint KUSD, protecting against liquidation risk.",
+      "category": "DeFi",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "parachain",
       "title": "Parachain",
       "summary": "A parallel blockchain in the Polkadot ecosystem that connects to the main relay chain and benefits from shared security. Parachains can specialize in specific use cases (DeFi, p…",
@@ -5322,6 +5546,20 @@
           "url": "https://wiki.polkadot.com/learn/learn-parachains/"
         }
       ]
+    },
+    {
+      "slug": "parachains",
+      "title": "Parachains",
+      "summary": "Parachains are independent blockchains that connect to the Polkadot or Kusama relay chain for shared security and cross-chain messaging. SORA operates as a parachain, benefiting from Polkadot consensus while maintaining its own specialized runtime.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Parachains are independent blockchains that connect to the Polkadot or Kusama relay chain for shared security and cross-chain messaging. SORA operates as a parachain, benefiting from Polkadot consensus while maintaining its own specialized runtime.",
+      "category": "Network",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
     },
     {
       "slug": "parallellanes",
@@ -5758,6 +5996,20 @@
         "bech32format",
         "dualsig"
       ],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "priceoptimization",
+      "title": "Price Optimization",
+      "summary": "Price optimization refers to mechanisms that improve trade execution and reduce slippage. Polkaswap aggregates multiple liquidity sources and uses smart order routing for optimal swap prices.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Price optimization refers to mechanisms that improve trade execution and reduce slippage. Polkaswap aggregates multiple liquidity sources and uses smart order routing for optimal swap prices.",
+      "category": "DeFi",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
       "examples": [],
       "links": []
     },
@@ -6506,6 +6758,20 @@
       "tagline": "Allows the network to evolve without disruptive hard forks."
     },
     {
+      "slug": "rust",
+      "title": "Rust",
+      "summary": "Rust is a systems programming language known for memory safety and performance. SORA and Hyperledger Iroha 2 are built with Rust, enabling secure, high-throughput blockchain execution with compile-time guarantees against common vulnerabilities.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Rust is a systems programming language known for memory safety and performance. SORA and Hyperledger Iroha 2 are built with Rust, enabling secure, high-throughput blockchain execution with compile-time guarantees against common vulnerabilities.",
+      "category": "Technology",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "rustlanguage",
       "title": "Rust",
       "summary": "A systems programming language focused on memory safety, concurrency, and performance.",
@@ -6541,6 +6807,20 @@
       ]
     },
     {
+      "slug": "scalability",
+      "title": "Scalability",
+      "summary": "Scalability is the ability of a blockchain to handle increasing transaction volume without degrading performance. SORA achieves scalability through parachain architecture, efficient consensus, and optimized runtime.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Scalability is the ability of a blockchain to handle increasing transaction volume without degrading performance. SORA achieves scalability through parachain architecture, efficient consensus, and optimized runtime.",
+      "category": "Technology",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "scale",
       "title": "Scale",
       "summary": "Parity's serialization format mentioned as explicitly excluded from production Nexus paths to avoid ambiguity.",
@@ -6559,6 +6839,20 @@
         "noritocodec",
         "noritoreceipts"
       ],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "scarcity",
+      "title": "Scarcity",
+      "summary": "Scarcity in tokenomics refers to limited supply that can drive value. SORA manages scarcity through the Token Bonding Curve, which algorithmically controls XOR minting based on economic conditions.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Scarcity in tokenomics refers to limited supply that can drive value. SORA manages scarcity through the Token Bonding Curve, which algorithmically controls XOR minting based on economic conditions.",
+      "category": "Economics",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
       "examples": [],
       "links": []
     },
@@ -7028,6 +7322,20 @@
       "links": []
     },
     {
+      "slug": "smartcontracts",
+      "title": "Smart Contracts",
+      "summary": "Smart contracts are self-executing programs stored on blockchain that automatically enforce agreement terms. SORA supports smart contracts through Ink! (Rust-based) and future WASM execution environments.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Smart contracts are self-executing programs stored on blockchain that automatically enforce agreement terms. SORA supports smart contracts through Ink! (Rust-based) and future WASM execution environments.",
+      "category": "Technology",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "smartrouting",
       "title": "Smart Routing",
       "summary": "An algorithm that automatically finds the optimal path for trading to minimize slippage and maximize returns. Polkaswap's smart routing analyzes multiple liquidity sources and a…",
@@ -7251,6 +7559,20 @@
       ]
     },
     {
+      "slug": "soraecosystem",
+      "title": "SORA Ecosystem",
+      "summary": "The SORA Ecosystem encompasses all applications, protocols, and communities built on or integrated with the SORA network, including Polkaswap, Fearless Wallet, TONSwap, CBDC implementations, and governance infrastructure.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "The SORA Ecosystem encompasses all applications, protocols, and communities built on or integrated with the SORA network, including Polkaswap, Fearless Wallet, TONSwap, CBDC implementations, and governance infrastructure.",
+      "category": "Ecosystem",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "sorafs",
       "title": "SORA Fs",
       "summary": "The decentralized storage and erasure-coding layer that handles lane envelopes, DA proofs, and retry policies.",
@@ -7328,6 +7650,20 @@
       "examples": [],
       "links": [],
       "tagline": "Protects user privacy while delivering content with predictable latency."
+    },
+    {
+      "slug": "soranetwork",
+      "title": "SORA Network",
+      "summary": "SORA Network is the decentralized blockchain infrastructure powering XOR, Polkaswap, and the broader SORA ecosystem. It provides programmable finance, democratic governance, and interoperability with multiple chains.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "SORA Network is the decentralized blockchain infrastructure powering XOR, Polkaswap, and the broader SORA ecosystem. It provides programmable finance, democratic governance, and interoperability with multiple chains.",
+      "category": "Network",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
     },
     {
       "slug": "soranexus",
@@ -7584,6 +7920,20 @@
         "privatedataspaces",
         "publicdataspaces"
       ],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "stableasset",
+      "title": "Stable Asset",
+      "summary": "A stable asset is any token designed to maintain a consistent value, typically pegged to fiat currency. KUSD is SORA primary stable asset, backed by over-collateralized vaults and stability mechanisms.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "A stable asset is any token designed to maintain a consistent value, typically pegged to fiat currency. KUSD is SORA primary stable asset, backed by over-collateralized vaults and stability mechanisms.",
+      "category": "Token",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
       "examples": [],
       "links": []
     },
@@ -7852,6 +8202,34 @@
         "sumeragi",
         "sumeragiconsensus"
       ],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "supplymanagement",
+      "title": "Supply Management",
+      "summary": "Supply management encompasses all mechanisms controlling token issuance, burning, and circulation. SORA uses the Token Bonding Curve, fee burns, and strategic reserves to maintain healthy token economics.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Supply management encompasses all mechanisms controlling token issuance, burning, and circulation. SORA uses the Token Bonding Curve, fee burns, and strategic reserves to maintain healthy token economics.",
+      "category": "Economics",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "supplyreduction",
+      "title": "Supply Reduction",
+      "summary": "Supply reduction refers to mechanisms that decrease the circulating supply of tokens over time, including burns, lockups, and deflationary tokenomics. SORA implements supply reduction through transaction fee burns and buyback programs.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Supply reduction refers to mechanisms that decrease the circulating supply of tokens over time, including burns, lockups, and deflationary tokenomics. SORA implements supply reduction through transaction fee burns and buyback programs.",
+      "category": "Economics",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
       "examples": [],
       "links": []
     },
@@ -8322,6 +8700,20 @@
       "tagline": "Provides real-time updates to applications without polling."
     },
     {
+      "slug": "trading",
+      "title": "Trading",
+      "summary": "Trading on SORA encompasses swapping tokens on Polkaswap, providing liquidity to pools, and participating in price discovery through the DEX. The network supports multiple liquidity sources and algorithmic pricing for efficient markets.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Trading on SORA encompasses swapping tokens on Polkaswap, providing liquidity to pools, and participating in price discovery through the DEX. The network supports multiple liquidity sources and algorithmic pricing for efficient markets.",
+      "category": "DeFi",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
       "slug": "tradingfees",
       "title": "Trading Fees",
       "summary": "Charges applied to trading transactions on decentralized exchanges. In SORA, trading fees on Polkaswap are used for various purposes including PSWAP buyback-and-burn (0.3%), val…",
@@ -8609,6 +9001,34 @@
           "url": "https://wiki.sora.org/nominating-validators.html"
         }
       ]
+    },
+    {
+      "slug": "validators",
+      "title": "Validators",
+      "summary": "Validators are network operators who stake tokens to produce blocks, validate transactions, and maintain consensus. SORA validators earn VAL rewards for securing the network and processing state transitions.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "Validators are network operators who stake tokens to produce blocks, validate transactions, and maintain consensus. SORA validators earn VAL rewards for securing the network and processing state transitions.",
+      "category": "Network",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
+    },
+    {
+      "slug": "vault",
+      "title": "Vault",
+      "summary": "A vault is a smart contract that securely holds collateral for minting synthetic assets or stablecoins. On SORA, Kensetsu vaults allow users to deposit XOR, VAL, or other assets to borrow KUSD.",
+      "status": "canonical",
+      "targetSlug": null,
+      "definition": "A vault is a smart contract that securely holds collateral for minting synthetic assets or stablecoins. On SORA, Kensetsu vaults allow users to deposit XOR, VAL, or other assets to borrow KUSD.",
+      "category": "DeFi",
+      "aliases": [],
+      "tags": [],
+      "relatedTerms": [],
+      "examples": [],
+      "links": []
     },
     {
       "slug": "vaults",
@@ -9150,9 +9570,9 @@
       "links": []
     }
   ],
-  "canonicalCount": 338,
+  "canonicalCount": 368,
   "aliasCount": 39,
   "deprecatedCount": 0,
   "version": 2025,
-  "lastUpdated": "2025-12-03T12:57:09.402Z"
+  "lastUpdated": "2025-12-03T13:54:20.949Z"
 }

@@ -511,6 +511,60 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
       }
     }
 
+    // Process FALLBACK_ENTRIES directly for tags that don't have pages yet
+    // This ensures tags used on terms have dedicated glossary pages
+    const fallbackEntries = glossaryDefsModule.FALLBACK_ENTRIES || {};
+    for (const [entrySlug, entry] of Object.entries(fallbackEntries)) {
+      const slug = normalizeSlug(entrySlug);
+      if (processedSlugs.has(slug)) continue;
+      
+      const entryData = entry as { definition: string; category: string };
+      if (!entryData.definition) continue;
+      
+      processedSlugs.add(slug);
+      const category = categoryMap[entryData.category] || normalizeCategory(entryData.category) || 'General';
+      
+      terms.push({
+        slug,
+        title: normalizeTitle(
+          entrySlug
+            .replace(/-/g, ' ')
+            .replace(/([a-z])([A-Z])/g, '$1 $2')
+            .replace(/nexusarchitecture/i, 'Nexus Architecture')
+            .replace(/hyperledgeriroha/i, 'Hyperledger Iroha')
+            .replace(/soraecosystem/i, 'SORA Ecosystem')
+            .replace(/soranetwork/i, 'SORA Network')
+            .replace(/smartcontracts/i, 'Smart Contracts')
+            .replace(/buybackandburn/i, 'Buyback and Burn')
+            .replace(/crosschain/i, 'Cross-Chain')
+            .replace(/crossborderpayments/i, 'Cross-Border Payments')
+            .replace(/realworldassets/i, 'Real-World Assets')
+            .replace(/byzantinefaulttolerance/i, 'Byzantine Fault Tolerance')
+            .replace(/borderlessfinance/i, 'Borderless Finance')
+            .replace(/decentralizedexchange/i, 'Decentralized Exchange')
+            .replace(/overcollateralized/i, 'Over-Collateralized')
+            .replace(/supplyreduction/i, 'Supply Reduction')
+            .replace(/supplymanagement/i, 'Supply Management')
+            .replace(/priceoptimization/i, 'Price Optimization')
+            .replace(/marketcycles/i, 'Market Cycles')
+            .replace(/digitalcurrency/i, 'Digital Currency')
+            .replace(/stableasset/i, 'Stable Asset')
+            .replace(/memecoins/i, 'Meme Coins')
+        ),
+        summary: entryData.definition,
+        status: 'canonical',
+        targetSlug: null,
+        definition: entryData.definition,
+        category,
+        aliases: [],
+        tags: [],
+        relatedTerms: [],
+        examples: [],
+        links: [],
+        tagline: undefined,
+      });
+    }
+
     console.log(`📚 Loaded ${terms.length} taxonomy terms`);
     return terms;
   } catch (err) {
