@@ -55,6 +55,10 @@ const FALLBACK_ENTRIES: Record<string, FallbackEntry> = {
     definition: 'Interoperability is the ability for SORA assets and smart contracts to communicate with other networks through bridges, XCM, APIs, or shared standards.',
     category: 'technology',
   },
+  iroha: {
+    definition: 'An open-source, permissioned blockchain framework developed by SORAMITSU and part of the Hyperledger Foundation. Designed for simplicity and fast deployment with granular permissions, built-in asset management, and Byzantine fault tolerant consensus.',
+    category: 'technology',
+  },
   marketplace: {
     definition: 'Marketplace describes curated hubs where builders showcase SORA-based products, liquidity programs, or governance proposals for community discovery.',
     category: 'ecosystem',
@@ -66,6 +70,10 @@ const FALLBACK_ENTRIES: Record<string, FallbackEntry> = {
   payments: {
     definition: 'Payments covers the QR, CBDC, and merchant integrations that let SORA technology power day-to-day transactions and cross-border settlements.',
     category: 'defi',
+  },
+  parliament: {
+    definition: 'The future democratic governance system of SORA using multi-body sortition with clear separation of powers. The SORA Parliament will replace the current Governance V1 system, implementing sortition-based democracy.',
+    category: 'governance',
   },
   proposal: {
     definition: 'A proposal is a formal request submitted to SORA governance for funding, parameter changes, or new initiatives that citizens can evaluate.',
