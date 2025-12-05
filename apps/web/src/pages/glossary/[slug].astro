@@ -32,6 +32,7 @@ import { loadGlossaryFull } from '~/lib/glossary-data';
 import { resolveGlossaryEntry } from '~/lib/glossary-resolve';
 import { formatGlossaryTitle, formatCategoryLabel, formatHashtag, truncateOneLiner, ACRONYM_TOKENS, formatGlossaryDate } from '~/lib/glossary/format';
 import { getTermSubgroup } from '~/data/nexus-explorer.config';
+import { getExplorerUrlForCategory, getExplorerDomainForCategory, getExplorerDomainLabel } from '~/lib/glossary/explorer-mapping';
 
 export const prerender = true;
 
@@ -402,6 +403,11 @@ const dateFormatter = I18N.dateFormatter ?? new Intl.DateTimeFormat('en', { mont
 const isNexusTerm = glossaryTags.includes('Nexus Architecture');
 const nexusSubgroup = isNexusTerm ? getTermSubgroup(displayTermTitle) : undefined;
 
+// Compute Explorer integration values (server-side for client hydration)
+const explorerDomain = term.category ? getExplorerDomainForCategory(term.category) : null;
+const explorerUrl = term.category ? getExplorerUrlForCategory(term.category) : null;
+const explorerDomainLabel = explorerDomain ? getExplorerDomainLabel(explorerDomain) : null;
+
 // Prepare terms data for Quick-View panel (lightweight payload)
 const quickViewTerms = allGlossaryTerms
   .filter((t) => t.status === 'canonical')
@@ -583,8 +589,9 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
           definition={displayDefinition}
           definitionHtml={definitionHtml}
           categoryLabel={categoryLabel ?? null}
-          category={term.category ?? null}
           whyItMatters={term.tagline ?? term.subtitle ?? null}
+          explorerUrl={explorerUrl}
+          explorerDomainLabel={explorerDomainLabel}
           related={relatedTermsWithLinks.map((related) => ({
             term: related.term,
             href: `/glossary/${related.slug}`,

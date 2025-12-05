@@ -6,7 +6,6 @@ import GlossaryAnchors from './GlossaryAnchors';
 import GlossaryRelated from './GlossaryRelated';
 import GlossarySources, { type GlossarySource } from './GlossarySources';
 import type { GlossaryV3Section } from './types';
-import { getExplorerUrlForCategory, getExplorerDomainLabel, getExplorerDomainForCategory } from '~/lib/glossary/explorer-mapping';
 
 export type { GlossaryV3Section } from './types';
 
@@ -18,7 +17,8 @@ export interface GlossaryTermPageProps {
   related: Array<{ term: string; href: string; slug?: string }>;
   sources?: GlossarySource[];
   categoryLabel?: string | null;
-  category?: string | null;
+  explorerUrl?: string | null;
+  explorerDomainLabel?: string | null;
   definitionHtml?: string;
   lastUpdate?: string;
 }
@@ -65,13 +65,12 @@ const GlossaryTermPage = ({
   related,
   sources = [],
   categoryLabel,
-  category,
+  explorerUrl,
+  explorerDomainLabel,
   definitionHtml,
   lastUpdate,
 }: GlossaryTermPageProps) => {
   const hasWhy = Boolean(whyItMatters && whyItMatters.trim().length);
-  const explorerDomain = category ? getExplorerDomainForCategory(category) : null;
-  const explorerUrl = category ? getExplorerUrlForCategory(category) : null;
   const hasExplore = Boolean(explorerUrl);
   const hasRelated = related.length > 0;
   const hasSources = sources.length > 0;
@@ -215,13 +214,13 @@ const GlossaryTermPage = ({
             </section>
           )}
 
-          {hasExplore && explorerUrl && explorerDomain && (
+          {hasExplore && explorerUrl && explorerDomainLabel && (
             <section id="explore" className="glossary-v3__section scroll-mt-28 md:scroll-mt-32" aria-labelledby="explore-heading">
               <h3 id="explore-heading">Explore More</h3>
               <ul className="glossary-v3__related-list">
                 <li>
                   <a className="glossary-v3__chip" href={explorerUrl}>
-                    {getExplorerDomainLabel(explorerDomain)} in Explorer
+                    {explorerDomainLabel} in Explorer
                   </a>
                 </li>
                 <li>
