@@ -4,11 +4,15 @@ slug: mergeledger
 category: "Execution"
 tags:
   - "Nexus Architecture"
-summary: "The lightweight ordering layer that sequences finalized lane tips into a single global history."
+summary: "The lightweight ordering layer that sequences finalized lane tips into a single global history. Multiple lanes process transactions in parallel for throughput, and the merge ledger orders these lane tips into one canonical sequence without re-ordering finalized lane history, preserving both parallelism and consistency."
+tagline: "Provides a single source of truth while enabling parallel transaction processing."
 related:
   - "ML-DSA-87"
   - "Action"
   - "Activation Slot"
   - "Admission"
   - "Aggregation"
+links:
+  - label: "Nexus Whitepaper"
+    url: "/documents/sora_nexus_whitepaper.pdf"
 ---

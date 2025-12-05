@@ -583,6 +583,7 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
           definition={displayDefinition}
           definitionHtml={definitionHtml}
           categoryLabel={categoryLabel ?? null}
+          category={term.category ?? null}
           whyItMatters={term.tagline ?? term.subtitle ?? null}
           related={relatedTermsWithLinks.map((related) => ({
             term: related.term,

@@ -4,11 +4,15 @@ slug: lambdafloor
 category: "Execution"
 tags:
   - "Nexus Architecture"
-summary: "The lower-load threshold that allows lanes to fuse, reducing overhead when traffic drops."
+summary: "The lower-load threshold that triggers lane fusion when aggregate load drops below this value for two consecutive slots. When the sum of lane loads falls below lambda floor, lanes merge to reduce overhead and improve latency during low-traffic periods."
+tagline: "Automatically reduces infrastructure overhead when network demand is low."
 related:
   - "Lambda Exit"
   - "Lane Finality"
   - "Lane Fusion"
   - "Action"
   - "Activation Slot"
+links:
+  - label: "Nexus Whitepaper"
+    url: "/documents/sora_nexus_whitepaper.pdf"
 ---

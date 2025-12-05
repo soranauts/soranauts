@@ -4,11 +4,15 @@ slug: lanescopedrecovery
 category: "Observability & Operations"
 tags:
   - "Nexus Architecture"
-summary: "SoraNet mechanisms that rebuild state for a single lane without halting the entire network."
+summary: "SoraNet mechanisms that rebuild state for a single lane without halting the entire network. When a lane experiences issues, the system can recover that lane's WSV and Kura state independently while other lanes continue processing transactions normally, maintaining overall network availability."
+tagline: "Enables fault isolation so one lane's problems don't affect the entire network."
 related:
   - "Lane-Scoped State"
   - "Compute Lane"
   - "Lane Finality"
   - "Lane Fusion"
   - "Lane Proofs"
+links:
+  - label: "Nexus Whitepaper"
+    url: "/documents/sora_nexus_whitepaper.pdf"
 ---

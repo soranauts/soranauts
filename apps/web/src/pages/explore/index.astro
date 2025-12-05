@@ -320,7 +320,7 @@ const quickPathSections = quickPaths.map((path) => ({
       </div>
       <div class="space-y-12">
         {domainSections.map((section) => (
-          <div class="space-y-5">
+          <div class="space-y-5" id={`domain-${section.id}`}>
             <div>
               <div class="tag-hub-section__domain">Domain focus</div>
               <h3 class="text-2xl font-semibold tracking-tight">{section.label}</h3>

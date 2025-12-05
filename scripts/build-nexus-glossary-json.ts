@@ -451,6 +451,10 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
       processedSlugs.add(slug);
 
       const category = categoryMap[term.category || 'general'] || 'General';
+      
+      // Get whyItMatters from fallback entries if available
+      const fallbackEntry = glossaryDefsModule.FALLBACK_ENTRIES?.[slug];
+      const tagline = fallbackEntry?.whyItMatters || undefined;
 
       terms.push({
         slug,
@@ -465,7 +469,7 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
         relatedTerms: (term.seeAlso || []).map((s) => normalizeSlug(s.toLowerCase().replace(/\s+/g, ''))),
         examples: term.examples || [],
         links: term.links || [],
-        tagline: undefined,
+        tagline,
       });
     }
 
