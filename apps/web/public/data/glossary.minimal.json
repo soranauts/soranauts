@@ -39,7 +39,8 @@
       "slug": "adoption",
       "title": "Adoption",
       "category": "Ecosystem",
-      "summary": "Adoption describes the rate at which people, partners, and institutions begin using SORA products, liquidity, and governance tooling in real-world contexts."
+      "summary": "Adoption describes the rate at which people, partners, and institutions begin using SORA products, liquidity, and governance tooling in real-world contexts.",
+      "tagline": "Drives network effects and increases utility for all participants."
     },
     {
       "slug": "aggregation",
@@ -70,7 +71,8 @@
       "slug": "analytics",
       "title": "Analytics",
       "category": "Technology",
-      "summary": "Analytics covers the dashboards, telemetry, and research teams tracking SORA network health, liquidity depth, bridge flow, and ecosystem growth."
+      "summary": "Analytics covers the dashboards, telemetry, and research teams tracking SORA network health, liquidity depth, bridge flow, and ecosystem growth.",
+      "tagline": "Enables data-driven decisions for network optimization."
     },
     {
       "slug": "apolloprotocol",
@@ -246,7 +248,8 @@
       "slug": "bridges",
       "title": "Bridges",
       "category": "Technology",
-      "summary": "Bridges are interoperability protocols that move assets and data between SORA and external chains so liquidity can circulate without centralized custodians."
+      "summary": "Bridges are interoperability protocols that move assets and data between SORA and external chains so liquidity can circulate without centralized custodians.",
+      "tagline": "Connects SORA to the broader blockchain ecosystem."
     },
     {
       "slug": "budget",
@@ -395,7 +398,8 @@
       "slug": "council",
       "title": "Council",
       "category": "Governance",
-      "summary": "A governance body in SORA's current Polkadot v1 governance system that consists of elected members who can propose referenda and veto dangerous proposals. The council plays a key role in the governance process before transitioning to the SORA Parliament."
+      "summary": "A governance body in SORA's current Polkadot v1 governance system that consists of elected members who can propose referenda and veto dangerous proposals. The council plays a key role in the governance process before transitioning to the SORA Parliament.",
+      "tagline": "Ensures community oversight of network development."
     },
     {
       "slug": "councilmotion",
@@ -521,7 +525,8 @@
       "slug": "decentralization",
       "title": "Decentralization",
       "category": "Governance",
-      "summary": "Decentralization is the principle of distributing power across validators, councils, and citizens so no single entity can control the SORA economy."
+      "summary": "Decentralization is the principle of distributing power across validators, councils, and citizens so no single entity can control the SORA economy.",
+      "tagline": "Prevents censorship and ensures permissionless access."
     },
     {
       "slug": "decentralizedexchange",
@@ -636,7 +641,8 @@
       "slug": "economics",
       "title": "Economics",
       "category": "Economics",
-      "summary": "Economics in the SORA context refers to monetary policy, incentives, and treasury allocation that keep XOR supply, liquidity, and funding balanced."
+      "summary": "Economics in the SORA context refers to monetary policy, incentives, and treasury allocation that keep XOR supply, liquidity, and funding balanced.",
+      "tagline": "Creates sustainable incentives for long-term network growth."
     },
     {
       "slug": "economicsovereignty",
@@ -709,7 +715,8 @@
       "slug": "explorer",
       "title": "Explorer",
       "category": "Technology",
-      "summary": "Explorer refers to the SORA blockchain explorer experiences that let anyone browse blocks, transactions, governance queues, and validator stats in real time."
+      "summary": "Explorer refers to the SORA blockchain explorer experiences that let anyone browse blocks, transactions, governance queues, and validator stats in real time.",
+      "tagline": "Provides transparency and accountability for all network activity."
     },
     {
       "slug": "exposure",
@@ -764,7 +771,8 @@
       "slug": "fearlesswallet",
       "title": "Fearless Wallet",
       "category": "Ecosystem",
-      "summary": "Fearless Wallet is a mobile-first application by SORAMITSU that lets users manage Polkadot, Kusama, and SORA assets with staking, swaps, and governance support."
+      "summary": "Fearless Wallet is a mobile-first application by SORAMITSU that lets users manage Polkadot, Kusama, and SORA assets with staking, swaps, and governance support.",
+      "tagline": "Provides secure, user-friendly access to SORA DeFi on mobile devices."
     },
     {
       "slug": "fiatshamirtranscript",
@@ -917,7 +925,8 @@
       "slug": "hyperledger",
       "title": "Hyperledger",
       "category": "Technology",
-      "summary": "Hyperledger is the Linux Foundation's family of enterprise blockchain frameworks, including Hyperledger Iroha which powers SORA's regulated deployments."
+      "summary": "Hyperledger is the Linux Foundation's family of enterprise blockchain frameworks, including Hyperledger Iroha which powers SORA's regulated deployments.",
+      "tagline": "Provides enterprise-grade credibility and interoperability."
     },
     {
       "slug": "hyperledgeriroha",
@@ -954,7 +963,8 @@
       "slug": "interoperability",
       "title": "Interoperability",
       "category": "Technology",
-      "summary": "Interoperability is the ability for SORA assets and smart contracts to communicate with other networks through bridges, XCM, APIs, or shared standards."
+      "summary": "Interoperability is the ability for SORA assets and smart contracts to communicate with other networks through bridges, XCM, APIs, or shared standards.",
+      "tagline": "Enables seamless asset movement across ecosystems."
     },
     {
       "slug": "ipacommitments",
@@ -973,7 +983,8 @@
       "slug": "iroha",
       "title": "Iroha",
       "category": "Technology",
-      "summary": "An open-source, permissioned blockchain framework developed by SORAMITSU and part of the Hyperledger Foundation. Designed for simplicity and fast deployment with granular permissions, built-in asset management, and Byzantine fault tolerant consensus. Hyperledger Iroha 2 (written in Rust) adds WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure."
+      "summary": "An open-source, permissioned blockchain framework developed by SORAMITSU and part of the Hyperledger Foundation. Designed for simplicity and fast deployment with granular permissions, built-in asset management, and Byzantine fault tolerant consensus. Hyperledger Iroha 2 (written in Rust) adds WASM smart contracts and improved performance, making it suitable for enterprise systems, CBDCs, and national-level financial infrastructure.",
+      "tagline": "Powers enterprise blockchain with production-proven reliability."
     },
     {
       "slug": "iroha3",
@@ -1215,7 +1226,8 @@
       "slug": "marketplace",
       "title": "Marketplace",
       "category": "Ecosystem",
-      "summary": "Marketplace describes curated hubs where builders showcase SORA-based products, liquidity programs, or governance proposals for community discovery."
+      "summary": "Marketplace describes curated hubs where builders showcase SORA-based products, liquidity programs, or governance proposals for community discovery.",
+      "tagline": "Connects builders with users to grow the ecosystem."
     },
     {
       "slug": "marketpsychology",
@@ -1279,7 +1291,8 @@
       "slug": "mobile",
       "title": "Mobile",
       "category": "Technology",
-      "summary": "Mobile captures SORA's focus on delivering wallets and dApps with native iOS and Android experiences so users can onboard anywhere."
+      "summary": "Mobile captures SORA's focus on delivering wallets and dApps with native iOS and Android experiences so users can onboard anywhere.",
+      "tagline": "Brings blockchain to billions of smartphone users."
     },
     {
       "slug": "mobilepayments",
@@ -1462,13 +1475,15 @@
       "slug": "parliament",
       "title": "Parliament",
       "category": "Governance",
-      "summary": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers. The SORA Parliament will replace the current Governance V1 system, implementing sortition-based democracy where citizens are randomly selected (not token voting) and must post XOR bonds for citizenship. Features multiple bodies: Rules Committee, Agenda Council, Interest Panels, Review Panel, and Policy Jury. Main task is allocating newly minted XOR to productive projects. In SORA v3, the Parliament will integrate with a hybrid DAO framework using Iroha Special Instructions (ISIs) for modular governance logic."
+      "summary": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers. The SORA Parliament will replace the current Governance V1 system, implementing sortition-based democracy where citizens are randomly selected (not token voting) and must post XOR bonds for citizenship. Features multiple bodies: Rules Committee, Agenda Council, Interest Panels, Review Panel, and Policy Jury. Main task is allocating newly minted XOR to productive projects. In SORA v3, the Parliament will integrate with a hybrid DAO framework using Iroha Special Instructions (ISIs) for modular governance logic.",
+      "tagline": "Enables fair representation through democratic lottery selection."
     },
     {
       "slug": "payments",
       "title": "Payments",
       "category": "DeFi",
-      "summary": "Payments covers the QR, CBDC, and merchant integrations that let SORA technology power day-to-day transactions and cross-border settlements."
+      "summary": "Payments covers the QR, CBDC, and merchant integrations that let SORA technology power day-to-day transactions and cross-border settlements.",
+      "tagline": "Enables real-world commerce with digital assets."
     },
     {
       "slug": "pepe",
@@ -1598,7 +1613,8 @@
       "slug": "proposal",
       "title": "Proposal",
       "category": "Governance",
-      "summary": "A proposal is a formal request submitted to SORA governance for funding, parameter changes, or new initiatives that citizens can evaluate."
+      "summary": "A proposal is a formal request submitted to SORA governance for funding, parameter changes, or new initiatives that citizens can evaluate.",
+      "tagline": "Gives every community member a voice in network decisions."
     },
     {
       "slug": "proposevalidatevotecommit",
@@ -1696,7 +1712,8 @@
       "slug": "roadmap",
       "title": "Roadmap",
       "category": "Ecosystem",
-      "summary": "The roadmap outlines upcoming SORA releases, TON integrations, and ecosystem milestones so contributors share the same delivery plan."
+      "summary": "The roadmap outlines upcoming SORA releases, TON integrations, and ecosystem milestones so contributors share the same delivery plan.",
+      "tagline": "Aligns community expectations with development priorities."
     },
     {
       "slug": "rollingupgrades",
@@ -1904,7 +1921,8 @@
       "slug": "sora",
       "title": "SORA",
       "category": "Ecosystem",
-      "summary": "SORA is a decentralized economic system for coordinating global projects, cross-chain liquidity, and identity across the Polkaswap ecosystem."
+      "summary": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament.",
+      "tagline": "Foundation for a new decentralized world economy with programmable finance and democratic governance."
     },
     {
       "slug": "soracard",
@@ -2013,7 +2031,8 @@
       "slug": "stablecoin",
       "title": "Stablecoin",
       "category": "Token",
-      "summary": "A stablecoin is a digital asset engineered to hold a predictable value, such as KUSD or future SORA settlement tokens used for payments."
+      "summary": "A stablecoin is a digital asset engineered to hold a predictable value, such as KUSD or future SORA settlement tokens used for payments.",
+      "tagline": "Enables everyday transactions without price volatility."
     },
     {
       "slug": "staking",
@@ -2126,7 +2145,8 @@
       "slug": "telegram",
       "title": "Telegram",
       "category": "Ecosystem",
-      "summary": "Telegram is the primary chat channel where the SORA community coordinates releases, support, validator updates, and governance calls."
+      "summary": "Telegram is the primary chat channel where the SORA community coordinates releases, support, validator updates, and governance calls.",
+      "tagline": "Central hub for community coordination and support."
     },
     {
       "slug": "telemetry",
@@ -2172,7 +2192,8 @@
       "slug": "tokenomics",
       "title": "Tokenomics",
       "category": "Economics",
-      "summary": "Tokenomics explores supply design, burn models, and incentive loops that guide SORA’s economic roadmap."
+      "summary": "Tokenomics explores supply design, burn models, and incentive loops that guide SORA’s economic roadmap.",
+      "tagline": "Creates sustainable value through aligned incentives."
     },
     {
       "slug": "tokenrepackaging",
@@ -2184,7 +2205,8 @@
       "slug": "ton",
       "title": "TON",
       "category": "Network",
-      "summary": "TON (The Open Network) is a Telegram-backed blockchain known for high throughput and mobile-native UX that now powers TONSwap's SORA-linked DeFi."
+      "summary": "TON (The Open Network) is a Telegram-backed blockchain known for high throughput and mobile-native UX that now powers TONSwap's SORA-linked DeFi.",
+      "tagline": "Opens SORA to Telegram massive user base."
     },
     {
       "slug": "tonswap",
@@ -2293,7 +2315,8 @@
       "slug": "voting",
       "title": "Voting",
       "category": "Governance",
-      "summary": "Voting is the act of citizens or stakeholders signaling support for SORA governance proposals through on-chain referenda or delegated councils."
+      "summary": "Voting is the act of citizens or stakeholders signaling support for SORA governance proposals through on-chain referenda or delegated councils.",
+      "tagline": "Ensures democratic control over network evolution."
     },
     {
       "slug": "vrfaggregate",
@@ -2313,7 +2336,8 @@
       "slug": "wallet",
       "title": "Wallet",
       "category": "Technology",
-      "summary": "A wallet is the software that stores keys, signs transactions, and connects users to SORA DeFi apps such as Polkaswap, Fearless Wallet, or TONSwap."
+      "summary": "A wallet is the software that stores keys, signs transactions, and connects users to SORA DeFi apps such as Polkaswap, Fearless Wallet, or TONSwap.",
+      "tagline": "Gateway to all SORA services and assets."
     },
     {
       "slug": "wasm",
@@ -2411,5 +2435,5 @@
   "canonicalCount": 369,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-05T02:59:38.086Z"
+  "lastUpdated": "2025-12-05T03:06:22.948Z"
 }

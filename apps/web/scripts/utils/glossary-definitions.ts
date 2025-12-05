@@ -360,9 +360,9 @@ const FALLBACK_ENTRIES: Record<string, FallbackEntry> = {
     whyItMatters: 'Aligns community expectations with development priorities.',
   },
   sora: {
-    definition: 'SORA is a decentralized economic network focused on programmable finance, democratic governance, and CBDC-grade infrastructure.',
-    category: 'network',
-    whyItMatters: 'Foundation for a new decentralized world economy.',
+    definition: 'SORA is a decentralized economic network focused on programmable finance, democratic governance, and CBDC-grade infrastructure. The network features elastic supply tokenomics with XOR, cross-chain interoperability via HASHI, and a suite of DeFi applications including Polkaswap DEX.',
+    category: 'ecosystem',
+    whyItMatters: 'Foundation for a new decentralized world economy with programmable finance and democratic governance.',
   },
   stablecoin: {
     definition: 'A stablecoin is a digital asset engineered to hold a predictable value, such as KUSD or future SORA settlement tokens used for payments.',

@@ -7202,13 +7202,22 @@
         "glossary-linked",
         "beginner-friendly"
       ],
-      "summary": "SORA is a decentralized economic system for coordinating global projects, cross-chain liquidity, and identity across the Polkaswap ecosystem.",
-      "definition": "SORA is a decentralized economic system for coordinating global projects, cross-chain liquidity, and identity across the Polkaswap ecosystem.",
+      "summary": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament.",
+      "definition": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament.",
       "entity": null,
       "versions": [],
-      "relatedTerms": [],
+      "relatedTerms": [
+        "xor",
+        "val",
+        "pswap",
+        "polkaswap",
+        "hashi",
+        "soraparliament",
+        "kensetsu",
+        "fearlesswallet"
+      ],
       "glossaryRef": "/glossary/sora",
-      "blob": "sora sora is a decentralized economic system for coordinating global projects, cross-chain liquidity, and identity across the polkaswap ecosystem. foundational glossary-linked beginner-friendly"
+      "blob": "sora sora is a decentralized economic network featuring xor elastic supply tokenomics, polkaswap dex, hashi cross-chain bridge, and democratic governance through sora parliament. foundational glossary-linked beginner-friendly xor val pswap polkaswap hashi soraparliament kensetsu fearlesswallet"
     },
     {
       "slug": "soracard",
@@ -9173,5 +9182,5 @@
     }
   ],
   "totalCount": 369,
-  "lastUpdated": "2025-12-05T02:59:38.057Z"
+  "lastUpdated": "2025-12-05T03:06:22.919Z"
 }
