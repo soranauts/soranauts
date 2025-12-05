@@ -96,3 +96,7 @@ apps/web/src/pages/improvements.md
 test-results/
 .last-run*.json
 .tmp_taxonomy_snapshot/
+
+# AI assistant configuration files
+.cursorrules
+.claude/
