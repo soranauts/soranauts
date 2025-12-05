@@ -10,7 +10,7 @@ export const ACRONYM_TOKENS = new Set([
   // Token symbols (also acronyms)
   'xor', 'val', 'pswap', 'tbcd', 'kusd',
   // Network/Platform acronyms
-  'sora', 'ipfs', 'ton',
+  'sora', 'ipfs', 'ton', 'tonswap', 'hashi',
   // DeFi/Crypto acronyms
   'dex', 'amm', 'dao', 'nft', 'cbdc', 'evm', 'lp', 'kpi', 'apy', 'apr', 'tvl',
   // Technical acronyms

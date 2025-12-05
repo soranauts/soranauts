@@ -3593,7 +3593,7 @@
   },
   {
     "slug": "hashi",
-    "title": "Hashi",
+    "title": "HASHI",
     "summary": "SORA's decentralized and trustless cross-chain bridge that enables secure asset transfers between Ethereum and SORA networks. HASHI uses cryptographic proofs to validate transac…",
     "status": "canonical",
     "targetSlug": null,
@@ -4328,7 +4328,7 @@
   },
   {
     "slug": "kusd",
-    "title": "Kusd",
+    "title": "KUSD",
     "summary": "Kensetsu USD (KUSD) is an over-collateralized, algorithmically governed stablecoin built on the SORA network, pegged to the US Dollar. Built on the Kensetsu Platform (SORA's ver…",
     "status": "canonical",
     "targetSlug": null,
@@ -8762,7 +8762,7 @@
   },
   {
     "slug": "tonswap",
-    "title": "Tonswap",
+    "title": "TONSWAP",
     "summary": "A next-generation decentralized exchange (DEX) and launchpad built on The Open Network (TON) blockchain. TONSWAP combines cutting-edge concentrated liquidity technology with a u…",
     "status": "canonical",
     "targetSlug": null,
