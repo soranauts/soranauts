@@ -103,12 +103,13 @@ export const tagHubMetadata: Record<string, TagHubMetadataEntry> = {
   'tag-sora': {
     domain: 'ecosystem',
     summary:
-      'SORA is a decentralized economic system for coordinating global projects, cross-chain liquidity, and identity across the Polkaswap ecosystem.',
+      'SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament.',
     traits: ['foundational', 'glossary-linked', 'beginner-friendly'],
     quickPathIds: ['new-to-sora'],
     featured: true,
     weight: 100,
     glossarySlug: 'sora',
+    relatedSlugs: ['xor', 'val', 'pswap', 'polkaswap', 'hashi', 'soraparliament', 'kensetsu', 'fearlesswallet'],
   },
   'tag-xor': {
     domain: 'economics',

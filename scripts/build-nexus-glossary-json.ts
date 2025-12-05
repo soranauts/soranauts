@@ -499,6 +499,13 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
         }
         const category = categoryMap[categoryKey] || 'General';
         
+        // Get whyItMatters from fallback entries if available
+        const fallbackEntry = glossaryDefsModule.FALLBACK_ENTRIES?.[slug];
+        const tagline = fallbackEntry?.whyItMatters || undefined;
+        
+        // Get related terms from tag hub metadata
+        const relatedTerms = (metadata as { relatedSlugs?: string[] })?.relatedSlugs || [];
+        
         terms.push({
           slug,
           title: normalizeTitle(tagSlug.replace(/-/g, ' ')),
@@ -509,10 +516,10 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
           category,
           aliases: [],
           tags: metadata?.traits || [],
-          relatedTerms: [],
+          relatedTerms,
           examples: [],
           links: [],
-          tagline: undefined,
+          tagline,
         });
       }
     }

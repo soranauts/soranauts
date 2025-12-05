@@ -126,7 +126,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Drives network effects and increases utility for all participants."
   },
   {
     "slug": "aggregation",
@@ -260,7 +261,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Enables data-driven decisions for network optimization."
   },
   {
     "slug": "apolloprotocol",
@@ -1061,7 +1063,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Connects SORA to the broader blockchain ecosystem."
   },
   {
     "slug": "budget",
@@ -1685,7 +1688,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Ensures community oversight of network development."
   },
   {
     "slug": "councilmotion",
@@ -2156,7 +2160,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Prevents censorship and ensures permissionless access."
   },
   {
     "slug": "decentralizedexchange",
@@ -2623,7 +2628,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Creates sustainable incentives for long-term network growth."
   },
   {
     "slug": "economicsovereignty",
@@ -2897,7 +2903,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Provides transparency and accountability for all network activity."
   },
   {
     "slug": "exposure",
@@ -3072,7 +3079,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Provides secure, user-friendly access to SORA DeFi on mobile devices."
   },
   {
     "slug": "fiatshamirtranscript",
@@ -3715,7 +3723,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Provides enterprise-grade credibility and interoperability."
   },
   {
     "slug": "hyperledgeriroha",
@@ -3855,7 +3864,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Enables seamless asset movement across ecosystems."
   },
   {
     "slug": "ipacommitments",
@@ -3937,7 +3947,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Powers enterprise blockchain with production-proven reliability."
   },
   {
     "slug": "iroha3",
@@ -4863,7 +4874,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Connects builders with users to grow the ecosystem."
   },
   {
     "slug": "marketpsychology",
@@ -5101,7 +5113,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Brings blockchain to billions of smartphone users."
   },
   {
     "slug": "mobilepayments",
@@ -5789,7 +5802,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Enables fair representation through democratic lottery selection."
   },
   {
     "slug": "payments",
@@ -5803,7 +5817,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Enables real-world commerce with digital assets."
   },
   {
     "slug": "pepe",
@@ -6352,7 +6367,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Gives every community member a voice in network decisions."
   },
   {
     "slug": "proposevalidatevotecommit",
@@ -6781,7 +6797,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Aligns community expectations with development priorities."
   },
   {
     "slug": "rollingupgrades",
@@ -7576,10 +7593,10 @@
   {
     "slug": "sora",
     "title": "SORA",
-    "summary": "SORA is a decentralized economic system for coordinating global projects, cross-chain liquidity, and identity across the Polkaswap ecosystem.",
+    "summary": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "SORA is a decentralized economic system for coordinating global projects, cross-chain liquidity, and identity across the Polkaswap ecosystem.",
+    "definition": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament.",
     "category": "Ecosystem",
     "aliases": [],
     "tags": [
@@ -7587,9 +7604,19 @@
       "glossary-linked",
       "beginner-friendly"
     ],
-    "relatedTerms": [],
+    "relatedTerms": [
+      "xor",
+      "val",
+      "pswap",
+      "polkaswap",
+      "hashi",
+      "soraparliament",
+      "kensetsu",
+      "fearlesswallet"
+    ],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Foundation for a new decentralized world economy with programmable finance and democratic governance."
   },
   {
     "slug": "soracard",
@@ -8089,7 +8116,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Enables everyday transactions without price volatility."
   },
   {
     "slug": "staking",
@@ -8522,7 +8550,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Central hub for community coordination and support."
   },
   {
     "slug": "telemetry",
@@ -8711,7 +8740,8 @@
     ],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Creates sustainable value through aligned incentives."
   },
   {
     "slug": "tokenrepackaging",
@@ -8758,7 +8788,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Opens SORA to Telegram massive user base."
   },
   {
     "slug": "tonswap",
@@ -9259,7 +9290,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Ensures democratic control over network evolution."
   },
   {
     "slug": "vrfaggregate",
@@ -9319,7 +9351,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "tagline": "Gateway to all SORA services and assets."
   },
   {
     "slug": "wasm",
