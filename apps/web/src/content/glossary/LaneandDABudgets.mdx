@@ -4,11 +4,15 @@ slug: laneanddabudgets
 category: "Observability & Operations"
 tags:
   - "Nexus Architecture"
-summary: "The combined constraints governing how much transaction work and DA sampling a slot may perform."
+summary: "The combined constraints governing how much transaction work and DA sampling a slot may perform. Lane TEU budgets default to ~20,000 TEU/s per lane, while DA budgets limit signatures per public data space (6-16 range) with a total cap of 2,048 samples. These budgets ensure predictable performance with DA verification under 300ms and lane proof verification under 200ms."
+tagline: "Prevents any single lane from starving others of compute resources."
 related:
   - "Compute Lane"
   - "DA Certificates"
   - "DA Sampling"
   - "DA Sampling Budget"
   - "DA Sampling Confidence"
+links:
+  - label: "Nexus Whitepaper"
+    url: "/documents/sora_nexus_whitepaper.pdf"
 ---

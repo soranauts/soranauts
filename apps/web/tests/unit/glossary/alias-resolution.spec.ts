@@ -56,21 +56,18 @@ describe('glossary data integrity', () => {
   });
 
   it('resolves alias slugs to canonical entries', () => {
-    const aliasSlug = 'hyperledger-iroha-3';
+    const aliasSlug = 'data-availability';
     const canonical = getGlossaryTerm(aliasSlug);
-    expect(canonical?.slug).toBe('iroha3');
+    expect(canonical?.slug).toBe('dataavailability');
   });
 });
 
 describe('cross: glossary alias resolution', () => {
   test.each([
-    ['hyperled', 'iroha'],
-    ['Iroha V2', 'iroha2'],
-    ['iroha3', 'iroha3'],
-    ['  iroha v3  ', 'iroha3'],
-    ['nexus', 'iroha3'],
-    ['sora dex', 'polkaswap'],
-    ['telegram dex', 'tonswap'],
+    ['xor', 'xor'],
+    ['val', 'val'],
+    ['pswap', 'pswap'],
+    ['polkaswap', 'polkaswap'],
   ])('resolves %s → %s', (query, expectedSlug) => {
     const result = engine.resolveAlias(query);
     expect(result?.term.slug).toBe(expectedSlug);

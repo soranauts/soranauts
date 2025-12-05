@@ -60,12 +60,12 @@ describe('cross: canonical links', () => {
     expect(aliasHtml).toBeNull();
   });
 
-  it('still renders canonical metadata for canonical bond-curve page', async () => {
+  it('still renders canonical metadata for canonical tokenbondingcurve page', async () => {
     const bondCurveHtml = await fs.readFile(
-      path.join(outDir, 'glossary/bonding-curve/index.html'),
+      path.join(outDir, 'glossary/tokenbondingcurve/index.html'),
       'utf-8',
     );
-    assertCanonical(bondCurveHtml, 'bonding-curve');
+    assertCanonical(bondCurveHtml, 'tokenbondingcurve');
   });
 });
 

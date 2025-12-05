@@ -5,22 +5,25 @@ beforeAll(() => {
 });
 
 describe('glossary-loader (v2025 flag)', () => {
-  test('getCanonicalSlug normalizes alias slugs', async () => {
+  test('getCanonicalSlug normalizes slugs', async () => {
     const { getCanonicalSlug } = await import('../glossary-loader');
-    expect(getCanonicalSlug('token-bonding-curve')).toBe('bonding-curve');
-    expect(getCanonicalSlug('SORA-PARLIAMENT')).toBe('parliament');
+    // Canonical terms return their own slug
+    expect(getCanonicalSlug('tokenbondingcurve')).toBe('tokenbondingcurve');
+    expect(getCanonicalSlug('parliament')).toBe('parliament');
+    // Aliases resolve to canonical
+    expect(getCanonicalSlug('data-availability')).toBe('dataavailability');
   });
 
-  test('resolveAlias returns canonical entry', async () => {
+  test('resolveAlias returns canonical entry for alias', async () => {
     const { resolveAlias } = await import('../glossary-loader');
-    const entry = resolveAlias('sora-parliament');
-    expect(entry?.slug).toBe('parliament');
+    const entry = resolveAlias('data-availability');
+    expect(entry?.slug).toBe('dataavailability');
   });
 
   test('getStatus reports alias vs canonical', async () => {
     const { getStatus } = await import('../glossary-loader');
-    expect(getStatus('adoption')).toBe('canonical');
-    expect(getStatus('hyperledger-iroha')).toBe('alias');
+    expect(getStatus('xor')).toBe('canonical');
+    expect(getStatus('data-availability')).toBe('alias');
   });
 });
 

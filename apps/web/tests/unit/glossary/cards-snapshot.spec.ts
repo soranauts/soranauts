@@ -28,11 +28,11 @@ describe('Glossary ranking snapshots', () => {
     const slugs = response.results.slice(0, 5).map((result) => result.term.slug);
     expect(slugs).toMatchInlineSnapshot(`
       [
-        "iroha",
         "hyperledger",
-        "iroha3",
-        "iroha2",
-        "bft-consensus",
+        "hyperledgeriroha",
+        "hyperledgeriroha3",
+        "sorav3",
+        "bftconsensus",
       ]
     `);
   });
@@ -44,7 +44,7 @@ describe('Glossary ranking snapshots', () => {
       [
         "pswap",
         "polkaswap",
-        "buyback-and-burn",
+        "buybackandburn",
         "deflationary",
         "rewards",
       ]

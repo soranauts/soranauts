@@ -6,6 +6,7 @@ import GlossaryAnchors from './GlossaryAnchors';
 import GlossaryRelated from './GlossaryRelated';
 import GlossarySources, { type GlossarySource } from './GlossarySources';
 import type { GlossaryV3Section } from './types';
+import { getExplorerUrlForCategory, getExplorerDomainLabel, getExplorerDomainForCategory } from '~/lib/glossary/explorer-mapping';
 
 export type { GlossaryV3Section } from './types';
 
@@ -17,6 +18,7 @@ export interface GlossaryTermPageProps {
   related: Array<{ term: string; href: string; slug?: string }>;
   sources?: GlossarySource[];
   categoryLabel?: string | null;
+  category?: string | null;
   definitionHtml?: string;
   lastUpdate?: string;
 }
@@ -31,14 +33,16 @@ const escapeHtml = (value: string) =>
 
 interface SectionVisibilityConfig {
   hasWhy: boolean;
+  hasExplore: boolean;
   hasRelated: boolean;
   hasSources: boolean;
 }
 
-export function buildSections({ hasWhy, hasRelated, hasSources }: SectionVisibilityConfig): GlossaryV3Section[] {
+export function buildSections({ hasWhy, hasExplore, hasRelated, hasSources }: SectionVisibilityConfig): GlossaryV3Section[] {
   const base: GlossaryV3Section[] = [
     { id: 'definition', label: 'Definition', visible: true },
     { id: 'why', label: 'Why it matters', visible: hasWhy },
+    { id: 'explore', label: 'Explore', visible: hasExplore },
     { id: 'related', label: 'Related', visible: hasRelated },
     { id: 'sources', label: 'Sources', visible: hasSources },
   ];
@@ -61,16 +65,20 @@ const GlossaryTermPage = ({
   related,
   sources = [],
   categoryLabel,
+  category,
   definitionHtml,
   lastUpdate,
 }: GlossaryTermPageProps) => {
   const hasWhy = Boolean(whyItMatters && whyItMatters.trim().length);
+  const explorerDomain = category ? getExplorerDomainForCategory(category) : null;
+  const explorerUrl = category ? getExplorerUrlForCategory(category) : null;
+  const hasExplore = Boolean(explorerUrl);
   const hasRelated = related.length > 0;
   const hasSources = sources.length > 0;
 
   const sections = useMemo(
-    () => buildSections({ hasWhy, hasRelated, hasSources }),
-    [hasWhy, hasRelated, hasSources],
+    () => buildSections({ hasWhy, hasExplore, hasRelated, hasSources }),
+    [hasWhy, hasExplore, hasRelated, hasSources],
   );
 
   const [activeSection, setActiveSection] = useState<string>('definition');
@@ -204,6 +212,24 @@ const GlossaryTermPage = ({
             <section id="why" className="glossary-v3__section scroll-mt-28 md:scroll-mt-32" aria-labelledby="why-heading">
               <h3 id="why-heading">Why it matters</h3>
               <p>{whyItMatters}</p>
+            </section>
+          )}
+
+          {hasExplore && explorerUrl && explorerDomain && (
+            <section id="explore" className="glossary-v3__section scroll-mt-28 md:scroll-mt-32" aria-labelledby="explore-heading">
+              <h3 id="explore-heading">Explore More</h3>
+              <ul className="glossary-v3__related-list">
+                <li>
+                  <a className="glossary-v3__chip" href={explorerUrl}>
+                    {getExplorerDomainLabel(explorerDomain)} in Explorer
+                  </a>
+                </li>
+                <li>
+                  <a className="glossary-v3__chip" href="/explore">
+                    All Topics
+                  </a>
+                </li>
+              </ul>
             </section>
           )}
 

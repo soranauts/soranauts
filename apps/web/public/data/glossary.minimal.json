@@ -11,7 +11,8 @@
       "slug": "accountlifecycle",
       "title": "Account Lifecycle",
       "category": "Accounts & Identity",
-      "summary": "The governed process that creates, updates, and retires Nexus accounts, ensuring every change is validated by the Iroha Virtual Machine and the hosting data space's policy."
+      "summary": "The governed process that creates, updates, and retires Nexus accounts, ensuring every change is validated by the Iroha Virtual Machine and the hosting data space's policy.",
+      "tagline": "Creates."
     },
     {
       "slug": "action",
@@ -24,13 +25,15 @@
       "slug": "activationslot",
       "title": "Activation Slot",
       "category": "Execution",
-      "summary": "The ledger slot pre-scheduled in a governed manifest where an approved runtime upgrade or configuration change becomes active across all lanes."
+      "summary": "The ledger slot pre-scheduled in a governed manifest where an approved runtime upgrade or configuration change becomes active across all lanes.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "admission",
       "title": "Admission",
       "category": "Execution",
-      "summary": "The transaction intake stage where gateways and validators enforce roles, quotas, fees, and Start-Time Fair Queuing so only policy-compliant work enters execution."
+      "summary": "The transaction intake stage where gateways and validators enforce roles, quotas, fees, and Start-Time Fair Queuing so only policy-compliant work enters execution.",
+      "tagline": "Provides seamless access to SORA Nexus services."
     },
     {
       "slug": "adoption",
@@ -92,7 +95,8 @@
       "slug": "assetdefinitionid",
       "title": "Asset Definition ID",
       "category": "Accounts & Identity",
-      "summary": "A typed handle that points to an asset schema within a data space, allowing contracts to reference assets without ambiguous string parsing."
+      "summary": "A typed handle that points to an asset schema within a data space, allowing contracts to reference assets without ambiguous string parsing.",
+      "tagline": "Points to an asset schema within a data space."
     },
     {
       "slug": "assettokenization",
@@ -110,13 +114,15 @@
       "slug": "attestations",
       "title": "Attestations",
       "category": "Governance",
-      "summary": "Signed statements - typically using ML-DSA-87 - that certify new data spaces, DA proofs, or governance actions before the network accepts them."
+      "summary": "Signed statements - typically using ML-DSA-87 - that certify new data spaces, DA proofs, or governance actions before the network accepts them.",
+      "tagline": "Empowers the community to shape the network's evolution."
     },
     {
       "slug": "attesters",
       "title": "Attesters",
       "category": "Data & Availability",
-      "summary": "Specialized actors who verify erasure-coded shards and proofs, then issue DA certificates so validators can rely on the data without downloading everything."
+      "summary": "Specialized actors who verify erasure-coded shards and proofs, then issue DA certificates so validators can rely on the data without downloading everything.",
+      "tagline": "Guarantees that transaction data remains accessible and verifiable."
     },
     {
       "slug": "auctions",
@@ -128,7 +134,8 @@
       "slug": "automation",
       "title": "Automation",
       "category": "Execution",
-      "summary": "Deterministic, on-ledger workflows composed of conditions, actions, and budgets that let operators schedule recurring payments or policy checks without off-chain bots."
+      "summary": "Deterministic, on-ledger workflows composed of conditions, actions, and budgets that let operators schedule recurring payments or policy checks without off-chain bots.",
+      "tagline": "Ensures fair resource allocation across the network."
     },
     {
       "slug": "bakong",
@@ -146,7 +153,8 @@
       "slug": "bech32format",
       "title": "Bech32 Format",
       "category": "Accounts & Identity",
-      "summary": "The human-readable string encoding used for Nexus account addresses, derived from the canonical binary layout and protected with a Blake2b checksum."
+      "summary": "The human-readable string encoding used for Nexus account addresses, derived from the canonical binary layout and protected with a Blake2b checksum.",
+      "tagline": "Enables Nexus account addresses."
     },
     {
       "slug": "bftconsensus",
@@ -164,13 +172,15 @@
       "slug": "blake2b",
       "title": "BLAKE2b",
       "category": "Cryptography",
-      "summary": "The fast hash function used for tasks like leader selection, account checksums, and pseudo-randomness inside the SUMERAGI pipeline."
+      "summary": "The fast hash function used for tasks like leader selection, account checksums, and pseudo-randomness inside the SUMERAGI pipeline.",
+      "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
       "slug": "blindedcids",
       "title": "Blinded CIDs",
       "category": "Networking",
-      "summary": "Obfuscated content identifiers within SoraNet that preserve privacy by hiding the underlying data reference while still allowing routing and settlement."
+      "summary": "Obfuscated content identifiers within SoraNet that preserve privacy by hiding the underlying data reference while still allowing routing and settlement.",
+      "tagline": "Preserve privacy by hiding the underlying data reference while still allowing routing and settlement."
     },
     {
       "slug": "blockchain",
@@ -267,7 +277,8 @@
       "slug": "canonicalprimitives",
       "title": "Canonical Primitives",
       "category": "Cryptography",
-      "summary": "The curated list of cryptographic algorithms (Poseidon2, DEEP-FRI, ML-DSA-87, etc.) that SORA Nexus mandates to keep security assumptions consistent across data spaces."
+      "summary": "The curated list of cryptographic algorithms (Poseidon2, DEEP-FRI, ML-DSA-87, etc.) that SORA Nexus mandates to keep security assumptions consistent across data spaces.",
+      "tagline": "SORA Nexus mandates to keep security assumptions consistent across data spaces."
     },
     {
       "slug": "cbdc",
@@ -279,7 +290,8 @@
       "slug": "ceres",
       "title": "Ceres",
       "category": "DeFi",
-      "summary": "A SORA-based DeFi suite providing launchpad services, stablecoins, and liquidity tools that complement Polkaswap."
+      "summary": "A SORA-based DeFi suite providing launchpad services, stablecoins, and liquidity tools that complement Polkaswap.",
+      "tagline": "Provides essential DeFi infrastructure for projects building on SORA."
     },
     {
       "slug": "chainlink",
@@ -291,13 +303,15 @@
       "slug": "circuitbreakers",
       "title": "Circuit Breakers",
       "category": "Observability & Operations",
-      "summary": "Automated controls that throttle lane admission, message sizes, or DA limits when the system detects stress, preventing resource exhaustion."
+      "summary": "Automated controls that throttle lane admission, message sizes, or DA limits when the system detects stress, preventing resource exhaustion.",
+      "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
     },
     {
       "slug": "circuitbreakerstate",
       "title": "Circuit-Breaker State",
       "category": "Observability & Operations",
-      "summary": "The telemetry surface exposing which circuit breakers are engaged, letting operators observe throttling events and recovery in real time."
+      "summary": "The telemetry surface exposing which circuit breakers are engaged, letting operators observe throttling events and recovery in real time.",
+      "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
     },
     {
       "slug": "citizenship",
@@ -329,7 +343,8 @@
       "slug": "commitwindow",
       "title": "Commit Window",
       "category": "Consensus",
-      "summary": "The bounded number of slots (Delta <= 2) within which SUMERAGI must finalize a proposal, ensuring predictable finality even under adversarial network conditions."
+      "summary": "The bounded number of slots (Delta <= 2) within which SUMERAGI must finalize a proposal, ensuring predictable finality even under adversarial network conditions.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "community",
@@ -348,7 +363,8 @@
       "slug": "computemanifest",
       "title": "Compute Manifest",
       "category": "Execution",
-      "summary": "The on-chain specification describing which workloads a compute lane accepts, how they're routed, and which data spaces they can access."
+      "summary": "The on-chain specification describing which workloads a compute lane accepts, how they're routed, and which data spaces they can access.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "concurrency",
@@ -360,7 +376,8 @@
       "slug": "condition",
       "title": "Condition",
       "category": "Execution",
-      "summary": "The predicate part of a trigger (time-based, event-based, or receipt-based) that must evaluate true before its actions consume TEU budget."
+      "summary": "The predicate part of a trigger (time-based, event-based, or receipt-based) that must evaluate true before its actions consume TEU budget.",
+      "tagline": "Ensures fair resource allocation across the network."
     },
     {
       "slug": "consensus",
@@ -390,7 +407,8 @@
       "slug": "crossbordercorridors",
       "title": "Cross-Border Corridors",
       "category": "Use & Cases",
-      "summary": "A highlighted use case where Nexus hosts multi-jurisdiction payment networks with deterministic policy enforcement and shared liquidity."
+      "summary": "A highlighted use case where Nexus hosts multi-jurisdiction payment networks with deterministic policy enforcement and shared liquidity.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "crossborderpayments",
@@ -426,13 +444,15 @@
       "slug": "curve25519",
       "title": "Curve25519",
       "category": "Cryptography",
-      "summary": "The elliptic-curve key exchange primitive paired with Kyber768 in SoraNet's hybrid post-quantum handshake."
+      "summary": "The elliptic-curve key exchange primitive paired with Kyber768 in SoraNet's hybrid post-quantum handshake.",
+      "tagline": "Foundation for secure key exchange and digital signatures."
     },
     {
       "slug": "dacertificates",
       "title": "DA Certificates",
       "category": "Data & Availability",
-      "summary": "Signed attestations from validators or attesters confirming that required data-availability samples were checked and can be reconstructed."
+      "summary": "Signed attestations from validators or attesters confirming that required data-availability samples were checked and can be reconstructed.",
+      "tagline": "Guarantees that transaction data remains accessible and verifiable."
     },
     {
       "slug": "dasampling",
@@ -445,13 +465,15 @@
       "slug": "dasamplingbudget",
       "title": "DA Sampling Budget",
       "category": "Data & Availability",
-      "summary": "The governance cap (e.g., q_total <= 2048) on how many DA samples can be performed per slot so verification stays within hardware limits."
+      "summary": "The governance cap (e.g., q_total <= 2048) on how many DA samples can be performed per slot so verification stays within hardware limits.",
+      "tagline": "Ensures fair resource allocation across the network."
     },
     {
       "slug": "dasamplingconfidence",
       "title": "DA Sampling Confidence",
       "category": "Data & Availability",
-      "summary": "The probability, computed via combinatorics, that malicious withholding will be detected given the chosen sample count and committee size."
+      "summary": "The probability, computed via combinatorics, that malicious withholding will be detected given the chosen sample count and committee size.",
+      "tagline": "Guarantees that transaction data remains accessible and verifiable."
     },
     {
       "slug": "dataavailability",
@@ -471,19 +493,22 @@
       "slug": "dataenvelope",
       "title": "Data Envelope",
       "category": "Data & Availability",
-      "summary": "The serialized bundle of transactions, proofs, and metadata that a data space contributes to a lane block before erasure coding."
+      "summary": "The serialized bundle of transactions, proofs, and metadata that a data space contributes to a lane block before erasure coding.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "dataspacedirectory",
       "title": "Data Space Directory",
       "category": "Governance",
-      "summary": "The on-chain registry mapping DSIDs to owners, routing endpoints, and policy metadata so gateways know how to handle each space."
+      "summary": "The on-chain registry mapping DSIDs to owners, routing endpoints, and policy metadata so gateways know how to handle each space.",
+      "tagline": "Provides seamless access to SORA Nexus services."
     },
     {
       "slug": "dataspaceid",
       "title": "Data Space ID",
       "category": "Governance",
-      "summary": "A typed pointer that identifies which data space an account, asset, or instruction belongs to, enabling cross-space safety checks."
+      "summary": "A typed pointer that identifies which data space an account, asset, or instruction belongs to, enabling cross-space safety checks.",
+      "tagline": "Identifies which data space an account."
     },
     {
       "slug": "dataspaces",
@@ -508,7 +533,8 @@
       "slug": "deepfri",
       "title": "Deep-fri",
       "category": "Cryptography",
-      "summary": "The low-degree testing protocol inside FASTPQ STARK proofs that lets verifiers check massive execution traces with logarithmic work."
+      "summary": "The low-degree testing protocol inside FASTPQ STARK proofs that lets verifiers check massive execution traces with logarithmic work.",
+      "tagline": "Lets verifiers check massive execution traces with logarithmic work."
     },
     {
       "slug": "defi",
@@ -523,6 +549,12 @@
       "summary": "A tokenomic model where the total supply of tokens decreases over time. In SORA, both VAL and PSWAP are deflationary tokens - VAL tokens are burned on every network transaction,…"
     },
     {
+      "slug": "demeter",
+      "title": "Demeter",
+      "category": "DeFi",
+      "summary": "A farming platform on Polkaswap offering yield opportunities through liquidity provision."
+    },
+    {
       "slug": "democracy",
       "title": "Democracy",
       "category": "Governance",
@@ -532,7 +564,8 @@
       "slug": "deterministicbudgets",
       "title": "Deterministic Budgets",
       "category": "Execution",
-      "summary": "Governed resource ceilings - like TEU per lane or DA sample counts - that avoid nondeterministic scheduling and make performance predictable."
+      "summary": "Governed resource ceilings - like TEU per lane or DA sample counts - that avoid nondeterministic scheduling and make performance predictable.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "deterministicruntime",
@@ -545,7 +578,8 @@
       "slug": "developerexperience",
       "title": "Developer Experience",
       "category": "Developer & Experience",
-      "summary": "The suite of Norito-first SDKs, REST/gRPC gateways, and deterministic builders that let teams integrate without learning low-level ledger internals."
+      "summary": "The suite of Norito-first SDKs, REST/gRPC gateways, and deterministic builders that let teams integrate without learning low-level ledger internals.",
+      "tagline": "Provides seamless access to SORA Nexus services."
     },
     {
       "slug": "dex",
@@ -575,13 +609,15 @@
       "slug": "dsid",
       "title": "DSID",
       "category": "Governance",
-      "summary": "A UUID-style identifier assigned to every data space, used for routing, policy lookup, and cross-space access control."
+      "summary": "A UUID-style identifier assigned to every data space, used for routing, policy lookup, and cross-space access control.",
+      "tagline": "Enables routing."
     },
     {
       "slug": "dualsig",
       "title": "Dual-sig",
       "category": "Accounts & Identity",
-      "summary": "A policy pattern requiring two distinct signatures - often offline plus online or regulator plus operator - to authorize sensitive transactions."
+      "summary": "A policy pattern requiring two distinct signatures - often offline plus online or regulator plus operator - to authorize sensitive transactions.",
+      "tagline": "Provides cryptographic authentication for transactions and attestations."
     },
     {
       "slug": "economicconditions",
@@ -618,13 +654,15 @@
       "slug": "ed25519",
       "title": "Ed25519",
       "category": "Cryptography",
-      "summary": "The default signature scheme for end users and public DA samples, chosen for speed and wide tooling support."
+      "summary": "The default signature scheme for end users and public DA samples, chosen for speed and wide tooling support.",
+      "tagline": "Provides cryptographic authentication for transactions and attestations."
     },
     {
       "slug": "elasticsupply",
       "title": "Elastic Supply",
       "category": "Economics",
-      "summary": "A monetary policy where token supply automatically adjusts based on economic conditions and demand. Unlike conventional tokenomics with limited supply, SORA's XOR uses elastic s…"
+      "summary": "A monetary policy where token supply automatically adjusts based on economic conditions and demand. Unlike conventional tokenomics with limited supply, SORA's XOR uses elastic s…",
+      "tagline": "Enables sustainable economic policy that adapts to real network usage."
     },
     {
       "slug": "energy",
@@ -643,7 +681,8 @@
       "slug": "erasurecodedkura",
       "title": "Erasure-Coded Kura",
       "category": "Data & Availability",
-      "summary": "The historical storage (Kura) extended with Reed - Solomon coding so archived blocks stay recoverable even with partial failures."
+      "summary": "The historical storage (Kura) extended with Reed - Solomon coding so archived blocks stay recoverable even with partial failures.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "erasurecodedwsv",
@@ -656,13 +695,15 @@
       "slug": "execution",
       "title": "Execution",
       "category": "Execution",
-      "summary": "The IVM phase where admitted instructions mutate the World State View under deterministic gas and syscall rules."
+      "summary": "The IVM phase where admitted instructions mutate the World State View under deterministic gas and syscall rules.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "exitcaches",
       "title": "Exit Caches",
       "category": "Networking",
-      "summary": "SoraNet components that hold recent ciphertexts near egress points, smoothing traffic and hiding timing correlations."
+      "summary": "SoraNet components that hold recent ciphertexts near egress points, smoothing traffic and hiding timing correlations.",
+      "tagline": "Enables secure symmetric encryption for sensitive data."
     },
     {
       "slug": "explorer",
@@ -674,43 +715,50 @@
       "slug": "exposure",
       "title": "Exposure",
       "category": "Execution",
-      "summary": "The final lifecycle step where receipts, Merkle proofs, and ISO-aligned outputs are delivered back to users and connectors."
+      "summary": "The final lifecycle step where receipts, Merkle proofs, and ISO-aligned outputs are delivered back to users and connectors.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "fastpq",
       "title": "Fastpq",
       "category": "Cryptography",
-      "summary": "SORA Nexus's zk-STARK proof system that captures Iroha Special Instructions with high throughput and post-quantum security."
+      "summary": "SORA Nexus's zk-STARK proof system that captures Iroha Special Instructions with high throughput and post-quantum security.",
+      "tagline": "Captures Iroha Special Instructions with high throughput and post-quantum security."
     },
     {
       "slug": "fastpqconstraintsystem",
       "title": "FASTPQ Constraint System",
       "category": "Cryptography",
-      "summary": "The AIR describing how ledger state transitions, Merkle paths, and balance updates must satisfy algebraic constraints before proving."
+      "summary": "The AIR describing how ledger state transitions, Merkle paths, and balance updates must satisfy algebraic constraints before proving.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "fastpqendtoendexample",
       "title": "FASTPQ End-to-End Example",
       "category": "Cryptography",
-      "summary": "The reference workflow showing how transfers, SMT updates, and proofs compose from trace commitment to verifier checks."
+      "summary": "The reference workflow showing how transfers, SMT updates, and proofs compose from trace commitment to verifier checks.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "fastpqisiproofs",
       "title": "FASTPQ-ISI Proofs",
       "category": "Cryptography",
-      "summary": "Proof bundles scoped to specific Iroha Special Instructions, allowing granular verification and aggregation per lane."
+      "summary": "Proof bundles scoped to specific Iroha Special Instructions, allowing granular verification and aggregation per lane.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "fastpqproofcomposition",
       "title": "FASTPQ Proof Composition",
       "category": "Cryptography",
-      "summary": "The ordered phases - trace commitment, challenge derivation, DEEP-FRI folding, and Merkle openings - that create a FASTPQ proof."
+      "summary": "The ordered phases - trace commitment, challenge derivation, DEEP-FRI folding, and Merkle openings - that create a FASTPQ proof.",
+      "tagline": "Create a FASTPQ proof."
     },
     {
       "slug": "fastpqzkstarkproofs",
       "title": "FASTPQ zk-STARK Proofs",
       "category": "Cryptography",
-      "summary": "Zero-knowledge proofs produced per data space or lane to attest to execution correctness without revealing private payloads."
+      "summary": "Zero-knowledge proofs produced per data space or lane to attest to execution correctness without revealing private payloads.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "fearlesswallet",
@@ -722,13 +770,15 @@
       "slug": "fiatshamirtranscript",
       "title": "Fiat-Shamir Transcript",
       "category": "Cryptography",
-      "summary": "The hashed conversation log that records each commitment and challenge during proof generation, keeping the prover honest."
+      "summary": "The hashed conversation log that records each commitment and challenge during proof generation, keeping the prover honest.",
+      "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
       "slug": "fiatshamirtransform",
       "title": "Fiat-Shamir Transform",
       "category": "Cryptography",
-      "summary": "The process of converting FASTPQ's interactive protocol into a non-interactive one by hashing prior messages for randomness."
+      "summary": "The process of converting FASTPQ's interactive protocol into a non-interactive one by hashing prior messages for randomness.",
+      "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
       "slug": "financialinclusion",
@@ -740,7 +790,8 @@
       "slug": "fixedsizecells",
       "title": "Fixed-Size Cells",
       "category": "Networking",
-      "summary": "Uniform packet sizes in SoraNet that equalize traffic fingerprints and resist traffic analysis."
+      "summary": "Uniform packet sizes in SoraNet that equalize traffic fingerprints and resist traffic analysis. All data transmitted through SoraNet's three-hop QUIC circuits uses identical cell sizes, preventing observers from identifying transaction types or participants based on packet characteristics.",
+      "tagline": "Protects user privacy by making all network traffic look identical to outside observers."
     },
     {
       "slug": "forklessupgrades",
@@ -772,19 +823,22 @@
       "slug": "georedundancy",
       "title": "Geo-redundancy",
       "category": "Observability & Operations",
-      "summary": "Operational guidance for running validators, provers, and storage nodes across multiple regions to survive localized outages."
+      "summary": "Operational guidance for running validators, provers, and storage nodes across multiple regions to survive localized outages.",
+      "tagline": "Enables running validators."
     },
     {
       "slug": "goldilocksfield",
       "title": "Goldilocks Field",
       "category": "Cryptography",
-      "summary": "The prime field used by Poseidon2 and FASTPQ's AIR so constraints map efficiently onto modern hardware."
+      "summary": "The prime field used by Poseidon2 and FASTPQ's AIR so constraints map efficiently onto modern hardware.",
+      "tagline": "Improves network performance and efficiency."
     },
     {
       "slug": "gostsuites",
       "title": "GOST Suites",
       "category": "Cryptography",
-      "summary": "Governance-selectable Russian cryptographic algorithms (SM2/3/4 equivalents) for jurisdictions that require national standards."
+      "summary": "Governance-selectable Russian cryptographic algorithms (SM2/3/4 equivalents) for jurisdictions that require national standards.",
+      "tagline": "Empowers the community to shape the network's evolution."
     },
     {
       "slug": "governance",
@@ -816,19 +870,22 @@
       "slug": "grpcgateways",
       "title": "gRPC Gateways",
       "category": "Developer & Experience",
-      "summary": "Binary RPC interfaces exposing Norito-first semantics for high-performance integrations that prefer typed protobuf APIs."
+      "summary": "Binary RPC interfaces exposing Norito-first semantics for high-performance integrations that prefer typed protobuf APIs.",
+      "tagline": "Provides seamless access to SORA Nexus services."
     },
     {
       "slug": "halo2circuits",
       "title": "Halo2 Circuits",
       "category": "Cryptography",
-      "summary": "Zero-knowledge circuits (PLONKish flavor) used for privacy transactions, offering succinct proofs for shielded asset flows."
+      "summary": "Zero-knowledge circuits (PLONKish flavor) used for privacy transactions, offering succinct proofs for shielded asset flows.",
+      "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
     },
     {
       "slug": "halo2ipaproofs",
       "title": "Halo2-IPA Proofs",
       "category": "Cryptography",
-      "summary": "Halo2 circuits paired with inner product argument commitments to keep verification costs logarithmic for shielded flows."
+      "summary": "Halo2 circuits paired with inner product argument commitments to keep verification costs logarithmic for shielded flows.",
+      "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
     },
     {
       "slug": "halving",
@@ -840,7 +897,8 @@
       "slug": "hashi",
       "title": "Hashi",
       "category": "Technology",
-      "summary": "SORA's decentralized and trustless cross-chain bridge that enables secure asset transfers between Ethereum and SORA networks. HASHI uses cryptographic proofs to validate transac…"
+      "summary": "SORA's decentralized and trustless cross-chain bridge that enables secure asset transfers between Ethereum and SORA networks. HASHI uses cryptographic proofs to validate transac…",
+      "tagline": "Enables secure asset transfers without trusted intermediaries."
     },
     {
       "slug": "hubchain",
@@ -889,7 +947,8 @@
       "slug": "interbanksettlement",
       "title": "Interbank Settlement",
       "category": "Use & Cases",
-      "summary": "A Nexus use case where regulated data spaces host RTGS-style payment flows with deterministic finality and auditability."
+      "summary": "A Nexus use case where regulated data spaces host RTGS-style payment flows with deterministic finality and auditability.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "interoperability",
@@ -901,7 +960,8 @@
       "slug": "ipacommitments",
       "title": "IPA Commitments",
       "category": "Cryptography",
-      "summary": "Polynomial commitments based on inner product arguments, employed in Halo2 privacy proofs to verify tables efficiently."
+      "summary": "Polynomial commitments based on inner product arguments, employed in Halo2 privacy proofs to verify tables efficiently.",
+      "tagline": "Improves network performance and efficiency."
     },
     {
       "slug": "ipfs",
@@ -925,7 +985,8 @@
       "slug": "irohaconfig",
       "title": "Iroha Config",
       "category": "Governance",
-      "summary": "The canonical configuration file (`iroha_config`) that holds lane counts, cryptography switches, and other network parameters."
+      "summary": "The canonical configuration file (`iroha_config`) that holds lane counts, cryptography switches, and other network parameters.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "irohaspecialinstructions",
@@ -944,37 +1005,43 @@
       "slug": "iso20022",
       "title": "ISO 20022",
       "category": "Serialization & Encoding",
-      "summary": "The global financial messaging standard that Nexus aligns with for payment, securities, and FX data models."
+      "summary": "The global financial messaging standard that Nexus aligns with for payment, securities, and FX data models.",
+      "tagline": "Nexus aligns with for payment."
     },
     {
       "slug": "iso20022alignment",
       "title": "ISO 20022 Alignment",
       "category": "Serialization & Encoding",
-      "summary": "The deterministic mapping of ISO 20022 message fields to Norito structures so banks can integrate without custom adapters."
+      "summary": "The deterministic mapping of ISO 20022 message fields to Norito structures so banks can integrate without custom adapters.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "iso20022connectors",
       "title": "ISO 20022 Connectors",
       "category": "Developer & Experience",
-      "summary": "Gateway components that translate ISO 20022 payloads into Nexus transactions and return receipts back into banking flows."
+      "summary": "Gateway components that translate ISO 20022 payloads into Nexus transactions and return receipts back into banking flows.",
+      "tagline": "Provides seamless access to SORA Nexus services."
     },
     {
       "slug": "ivmbytecode",
       "title": "IVM Bytecode",
       "category": "Execution",
-      "summary": "The compiled Kotodama program format (.to files) containing headers, ABI versions, and vector tables for IVM execution."
+      "summary": "The compiled Kotodama program format (.to files) containing headers, ABI versions, and vector tables for IVM execution.",
+      "tagline": "Enables IVM execution."
     },
     {
       "slug": "kaigi",
       "title": "Kaigi",
       "category": "Networking",
-      "summary": "The real-time conferencing product managed on-ledger, with governance for rooms, relays, and usage accounting."
+      "summary": "The real-time conferencing product managed on-ledger, with governance for rooms, relays, and usage accounting.",
+      "tagline": "Empowers the community to shape the network's evolution."
     },
     {
       "slug": "kensetsu",
       "title": "Kensetsu",
       "category": "DeFi",
-      "summary": "The Kensetsu Platform is SORA's version of MakerDAO, a decentralized finance (DeFi) solution on the SORA network that enables over-collateralized stablecoin creation and borrowi…"
+      "summary": "The Kensetsu Platform is SORA's version of MakerDAO, a decentralized finance (DeFi) solution on the SORA network that enables over-collateralized stablecoin creation and borrowi…",
+      "tagline": "Unlocks liquidity from existing holdings without selling your assets."
     },
     {
       "slug": "kotodama",
@@ -987,19 +1054,22 @@
       "slug": "kotodamabytecode",
       "title": "Kotodama Bytecode",
       "category": "Execution",
-      "summary": "The low-level output of Kotodama compilers, packing opcodes, pointer tables, and gas ceilings enforced by the IVM."
+      "summary": "The low-level output of Kotodama compilers, packing opcodes, pointer tables, and gas ceilings enforced by the IVM.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "kotodamaruntime",
       "title": "Kotodama Runtime",
       "category": "Execution",
-      "summary": "The toolchain that validates Kotodama contracts, ensuring pointer ABIs and gas tables are compatible before deployment."
+      "summary": "The toolchain that validates Kotodama contracts, ensuring pointer ABIs and gas tables are compatible before deployment.",
+      "tagline": "Validates Kotodama contracts."
     },
     {
       "slug": "kura",
       "title": "Kura",
       "category": "Storage",
-      "summary": "The append-only history store in Iroha 3 that records every committed block alongside erasure-coded redundancy."
+      "summary": "The append-only history store in Iroha 3 that records every committed block alongside erasure-coded redundancy.",
+      "tagline": "Records every committed block alongside erasure-coded redundancy."
     },
     {
       "slug": "kusama",
@@ -1011,31 +1081,36 @@
       "slug": "kusd",
       "title": "Kusd",
       "category": "Token",
-      "summary": "Kensetsu USD (KUSD) is an over-collateralized, algorithmically governed stablecoin built on the SORA network, pegged to the US Dollar. Built on the Kensetsu Platform (SORA's ver…"
+      "summary": "Kensetsu USD (KUSD) is an over-collateralized, algorithmically governed stablecoin built on the SORA network, pegged to the US Dollar. Built on the Kensetsu Platform (SORA's ver…",
+      "tagline": "Provides stable value for trading, payments, and DeFi without relying on centralized custodians."
     },
     {
       "slug": "kyber768",
       "title": "Kyber768",
       "category": "Cryptography",
-      "summary": "The lattice-based KEM used in SoraNet's hybrid handshake to future-proof against quantum adversaries."
+      "summary": "The lattice-based KEM used in SoraNet's hybrid handshake to future-proof against quantum adversaries.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "lambdaexit",
       "title": "Lambda Exit",
       "category": "Execution",
-      "summary": "The throughput threshold that triggers deterministic lane splits when demand exceeds configured capacity."
+      "summary": "The throughput threshold that triggers deterministic lane splits when demand exceeds configured capacity.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "lambdafloor",
       "title": "Lambda Floor",
       "category": "Execution",
-      "summary": "The lower-load threshold that allows lanes to fuse, reducing overhead when traffic drops."
+      "summary": "The lower-load threshold that triggers lane fusion when aggregate load drops below this value for two consecutive slots. When the sum of lane loads falls below lambda floor, lanes merge to reduce overhead and improve latency during low-traffic periods.",
+      "tagline": "Automatically reduces infrastructure overhead when network demand is low."
     },
     {
       "slug": "laneanddabudgets",
       "title": "Lane and DA Budgets",
       "category": "Observability & Operations",
-      "summary": "The combined constraints governing how much transaction work and DA sampling a slot may perform."
+      "summary": "The combined constraints governing how much transaction work and DA sampling a slot may perform. Lane TEU budgets default to ~20,000 TEU/s per lane, while DA budgets limit signatures per public data space (6-16 range) with a total cap of 2,048 samples. These budgets ensure predictable performance with DA verification under 300ms and lane proof verification under 200ms.",
+      "tagline": "Prevents any single lane from starving others of compute resources."
     },
     {
       "slug": "lanefinality",
@@ -1048,13 +1123,15 @@
       "slug": "lanefusion",
       "title": "Lane Fusion",
       "category": "Execution",
-      "summary": "The deterministic process of collapsing multiple lanes when aggregate load falls below lambda_floor, preserving history."
+      "summary": "The deterministic process of collapsing multiple lanes when aggregate load falls below lambda_floor, preserving history.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "laneproofs",
       "title": "Lane Proofs",
       "category": "Data & Availability",
-      "summary": "Aggregated FASTPQ or DA proofs scoped per lane, allowing committees to verify execution efficiently."
+      "summary": "Aggregated FASTPQ or DA proofs scoped per lane, allowing committees to verify execution efficiently.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "lanes",
@@ -1067,25 +1144,28 @@
       "slug": "lanescopedrecovery",
       "title": "Lane-Scoped Recovery",
       "category": "Observability & Operations",
-      "summary": "SoraNet mechanisms that rebuild state for a single lane without halting the entire network."
+      "summary": "SoraNet mechanisms that rebuild state for a single lane without halting the entire network. When a lane experiences issues, the system can recover that lane's WSV and Kura state independently while other lanes continue processing transactions normally, maintaining overall network availability.",
+      "tagline": "Enables fault isolation so one lane's problems don't affect the entire network."
     },
     {
       "slug": "lanescopedstate",
       "title": "Lane-Scoped State",
       "category": "Observability & Operations",
-      "summary": "State shards maintained per lane (especially in SoraNet) to localize failures and simplify recovery."
+      "summary": "State shards maintained per lane (especially in SoraNet) to localize failures and simplify recovery.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "lanesplit",
       "title": "Lane Split",
       "category": "Execution",
-      "summary": "The act of doubling lanes once lambda_exit is exceeded, enabling horizontal scaling without rewriting history."
+      "summary": "The act of doubling lanes once lambda_exit is exceeded, enabling horizontal scaling without rewriting history.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "laneteubudget",
       "title": "Lane TEU Budget",
       "category": "Economics",
-      "summary": "The per-lane compute allowance (~20,000 TEU/s default) keeping resource usage predictable and fair.",
+      "summary": "The per-lane compute allowance (~20,000 TEU/s default) keeping resource usage predictable and fair. TEU budgets work with SFQ scheduling to ensure every data space receives a minimum service level while preventing any single user or application from monopolizing lane capacity.",
       "tagline": "Prevents any single lane from starving others of compute resources."
     },
     {
@@ -1116,7 +1196,8 @@
       "slug": "lockedqc",
       "title": "Locked QC",
       "category": "Consensus",
-      "summary": "The highest quorum certificate a validator is currently locked on, enforcing HotStuff-style safety rules."
+      "summary": "The highest quorum certificate a validator is currently locked on, enforcing HotStuff-style safety rules.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "makerdao",
@@ -1171,13 +1252,15 @@
       "slug": "mergeledger",
       "title": "Merge Ledger",
       "category": "Execution",
-      "summary": "The lightweight ordering layer that sequences finalized lane tips into a single global history."
+      "summary": "The lightweight ordering layer that sequences finalized lane tips into a single global history. Multiple lanes process transactions in parallel for throughput, and the merge ledger orders these lane tips into one canonical sequence without re-ordering finalized lane history, preserving both parallelism and consistency.",
+      "tagline": "Provides a single source of truth while enabling parallel transaction processing."
     },
     {
       "slug": "merklecommitments",
       "title": "Merkle Commitments",
       "category": "Cryptography",
-      "summary": "Poseidon2-based Merkle roots over memory, registers, or storage that allow succinct verification of state changes."
+      "summary": "Poseidon2-based Merkle roots over memory, registers, or storage that allow succinct verification of state changes.",
+      "tagline": "Allow succinct verification of state changes."
     },
     {
       "slug": "mining",
@@ -1189,7 +1272,8 @@
       "slug": "mldsa87",
       "title": "Ml-dsa-87",
       "category": "Cryptography",
-      "summary": "The post-quantum signature suite used for consensus votes, data-space attestations, and private-domain proofs."
+      "summary": "The post-quantum signature suite used for consensus votes, data-space attestations, and private-domain proofs.",
+      "tagline": "Provides cryptographic authentication for transactions and attestations."
     },
     {
       "slug": "mobile",
@@ -1219,19 +1303,22 @@
       "slug": "multisig",
       "title": "Multi-Sig",
       "category": "Accounts & Identity",
-      "summary": "Nexus's flexible signing model where different schemes (Ed25519, ML-DSA-87, etc.) can be mixed in m-of-n policies."
+      "summary": "Nexus's flexible signing model where different schemes (Ed25519, ML-DSA-87, etc.) can be mixed in m-of-n policies.",
+      "tagline": "Nexus's flexible signing model where different schemes (Ed25519, ML-DSA-87, etc."
     },
     {
       "slug": "mustserveslice",
       "title": "Must-Serve Slice",
       "category": "Execution",
-      "summary": "The fairness rule requiring any data space with pending work to get scheduled within a bounded number of slots."
+      "summary": "The fairness rule requiring any data space with pending work to get scheduled within a bounded number of slots.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "newview",
       "title": "New_view",
       "category": "Consensus",
-      "summary": "The SUMERAGI message that proves a validator has seen sufficient votes to advance to the next proposal round."
+      "summary": "The SUMERAGI message that proves a validator has seen sufficient votes to advance to the next proposal round.",
+      "tagline": "Proves a validator has seen sufficient votes to advance to the next proposal round."
     },
     {
       "slug": "nexus",
@@ -1243,7 +1330,8 @@
       "slug": "nexusaccountstructure",
       "title": "Nexus Account Structure",
       "category": "Accounts & Identity",
-      "summary": "The canonical binary layout of account identifiers, including network flags, DSID, domain, name, multisig metadata, and checksum."
+      "summary": "The canonical binary layout of account identifiers, including network flags, DSID, domain, name, multisig metadata, and checksum.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "nexusarchitecture",
@@ -1261,55 +1349,64 @@
       "slug": "norito",
       "title": "Norito",
       "category": "Serialization & Encoding",
-      "summary": "The canonical serialization language for commands, receipts, and state, ensuring all tooling speaks a single schema."
+      "summary": "The canonical serialization language for commands, receipts, and state, ensuring all tooling speaks a single schema.",
+      "tagline": "Enables commands."
     },
     {
       "slug": "noritocodec",
       "title": "Norito Codec",
       "category": "Serialization & Encoding",
-      "summary": "The implementation that encodes/decodes Norito TLV structures and streams data for storage or networking layers."
+      "summary": "The implementation that encodes/decodes Norito TLV structures and streams data for storage or networking layers.",
+      "tagline": "Encodes/decodes Norito TLV structures and streams data for storage or networking layers."
     },
     {
       "slug": "noritofirstapis",
       "title": "Norito-First APIs",
       "category": "Developer & Experience",
-      "summary": "Developer interfaces that expose ledger functionality directly in Norito semantics, reducing translation bugs."
+      "summary": "Developer interfaces that expose ledger functionality directly in Norito semantics, reducing translation bugs.",
+      "tagline": "Enables programmatic access to network functionality."
     },
     {
       "slug": "noritoreceipts",
       "title": "Norito Receipts",
       "category": "Serialization & Encoding",
-      "summary": "Structured execution receipts generated by Norito, containing hashes, proofs, and state deltas for auditing."
+      "summary": "Structured execution receipts generated by Norito, containing hashes, proofs, and state deltas for auditing.",
+      "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
       "slug": "noritostreaming",
       "title": "Norito Streaming",
       "category": "Serialization & Encoding",
-      "summary": "The process of chunking Norito payloads for SoraFS/SoraNet transport with deterministic framing."
+      "summary": "The process of chunking Norito payloads for SoraFS/SoraNet transport with deterministic framing. Norito/Kaigi streams chunk payloads with deterministic framing, enabling relays to spool data to disk and refresh manifests on governance updates while maintaining consistency across the network.",
+      "tagline": "Enables efficient data transfer across the network while maintaining deterministic ordering."
     },
     {
       "slug": "noritotlv",
       "title": "Norito TLV",
       "category": "Serialization & Encoding",
-      "summary": "The typed-length-value format underlying Norito messages, enabling unambiguous parsing inside the IVM."
+      "summary": "The typed-length-value format underlying Norito messages, enabling unambiguous parsing inside the IVM.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "nposvariant",
       "title": "NPoS Variant",
       "category": "Consensus",
-      "summary": "A committee selection option where validators are chosen via Nominated Proof of Stake with VRF sortition."
+      "summary": "A committee selection option where validators are chosen via Nominated Proof of Stake with VRF sortition.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "nullifiers",
       "title": "Nullifiers",
       "category": "Cryptography",
-      "summary": "Hash-derived tags in shielded transfers that prevent double-spending by marking commitments as spent once revealed."
+      "summary": "Hash-derived tags in shielded transfers that prevent double-spending by marking commitments as spent once revealed.",
+      "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
       "slug": "offlineofflinetransactions",
       "title": "Offline-Offline Transactions",
       "category": "Execution",
-      "summary": "Voucher-based transfers signed while disconnected, later reconciled through gateways with circuit breakers and revocation windows."
+      "summary": "Voucher-based transfers signed while disconnected, later reconciled through gateways with circuit breakers and revocation windows.",
+      "tagline": "Provides seamless access to SORA Nexus services."
     },
     {
       "slug": "opengov",
@@ -1339,7 +1436,8 @@
       "slug": "parallellanes",
       "title": "Parallel Lanes",
       "category": "Execution",
-      "summary": "The architectural pattern of running multiple lanes simultaneously to boost throughput without spawning new chains."
+      "summary": "The architectural pattern of running multiple lanes simultaneously to boost throughput without spawning new chains.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "parallelprocessing",
@@ -1388,19 +1486,22 @@
       "slug": "performancetargets",
       "title": "Performance Targets",
       "category": "Observability & Operations",
-      "summary": "The published defaults (<=1 s lane finality, <=32 MB envelopes, etc.) guiding deployments toward predictable behavior."
+      "summary": "The published defaults (<=1 s lane finality, <=32 MB envelopes, etc.) guiding deployments toward predictable behavior.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "plonkish",
       "title": "Plon Kish",
       "category": "Cryptography",
-      "summary": "A descriptor for the Halo2 circuit style that supports lookups and flexible gates, enabling efficient privacy proofs."
+      "summary": "A descriptor for the Halo2 circuit style that supports lookups and flexible gates, enabling efficient privacy proofs.",
+      "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
     },
     {
       "slug": "pointerabi",
       "title": "Pointer ABI",
       "category": "Serialization & Encoding",
-      "summary": "The typed handle interface that prevents contracts from misusing identifiers by encoding domain-specific types into pointers."
+      "summary": "The typed handle interface that prevents contracts from misusing identifiers by encoding domain-specific types into pointers.",
+      "tagline": "Prevents contracts from misusing identifiers by encoding domain-specific types into pointers."
     },
     {
       "slug": "polkadot",
@@ -1418,19 +1519,22 @@
       "slug": "polkaswap",
       "title": "Polkaswap",
       "category": "DeFi",
-      "summary": "A next-generation, cross-chain liquidity aggregator DEX protocol built on SORA network. Polkaswap aggregates liquidity from multiple sources (AMM DEXs, order books, algorithms) …"
+      "summary": "A next-generation, cross-chain liquidity aggregator DEX protocol built on SORA network. Polkaswap aggregates liquidity from multiple sources (AMM DEXs, order books, algorithms) …",
+      "tagline": "Enables permissionless trading with best-price routing across multiple liquidity sources."
     },
     {
       "slug": "poseidon2",
       "title": "Poseidon2",
       "category": "Cryptography",
-      "summary": "The hash function optimized for zero-knowledge circuits, used extensively in FASTPQ commitments and SMTs."
+      "summary": "The hash function optimized for zero-knowledge circuits, used extensively in FASTPQ commitments and SMTs.",
+      "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
       "slug": "preauthorizedvouchers",
       "title": "Pre-Authorized Vouchers",
       "category": "Accounts & Identity",
-      "summary": "Signed value chits bound to a snapshot and revocation window, enabling offline-offline payments with later reconciliation."
+      "summary": "Signed value chits bound to a snapshot and revocation window, enabling offline-offline payments with later reconciliation.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "priceoptimization",
@@ -1448,13 +1552,15 @@
       "slug": "privacytransactions",
       "title": "Privacy Transactions",
       "category": "Cryptography",
-      "summary": "Shielded flows that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers."
+      "summary": "Shielded flows that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers.",
+      "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
     },
     {
       "slug": "privatedataspaces",
       "title": "Private Data Spaces",
       "category": "Governance",
-      "summary": "Permissioned domains where data and proofs remain within the operator's trust boundary, using ML-DSA attestations for DA."
+      "summary": "Permissioned domains where data and proofs remain within the operator's trust boundary, using ML-DSA attestations for DA.",
+      "tagline": "Enables DA."
     },
     {
       "slug": "programming",
@@ -1478,13 +1584,15 @@
       "slug": "proofsystems",
       "title": "Proof Systems",
       "category": "Cryptography",
-      "summary": "The combination of FASTPQ STARKs, Halo2 circuits, and supporting protocols that provide verifiable execution and privacy."
+      "summary": "The combination of FASTPQ STARKs, Halo2 circuits, and supporting protocols that provide verifiable execution and privacy.",
+      "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
     },
     {
       "slug": "proofverificationbudget",
       "title": "Proof Verification Budget",
       "category": "Data & Availability",
-      "summary": "The per-slot time allocation (100 - 200 ms typical) reserved for lane committees to check proofs without falling behind."
+      "summary": "The per-slot time allocation (100 - 200 ms typical) reserved for lane committees to check proofs without falling behind.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "proposal",
@@ -1496,25 +1604,29 @@
       "slug": "proposevalidatevotecommit",
       "title": "Propose-validate-vote-commit",
       "category": "Consensus",
-      "summary": "The SUMERAGI pipeline stages that drive HotStuff-style consensus with deterministic leader rotation and locking."
+      "summary": "The SUMERAGI pipeline stages that drive HotStuff-style consensus with deterministic leader rotation and locking.",
+      "tagline": "Drive HotStuff-style consensus with deterministic leader rotation and locking."
     },
     {
       "slug": "provers",
       "title": "Provers",
       "category": "Data & Availability",
-      "summary": "Actors (often GPU-accelerated) that generate FASTPQ or DA proofs and deliver them within the configured latency budget."
+      "summary": "Actors (often GPU-accelerated) that generate FASTPQ or DA proofs and deliver them within the configured latency budget.",
+      "tagline": "Ensures fair resource allocation across the network."
     },
     {
       "slug": "pswap",
       "title": "PSWAP",
       "category": "Token",
-      "summary": "A deflationary token used to reward liquidity providers on Polkaswap. PSWAP has a 10 billion max supply that decreases over time, with 0.3% trading fees used for buyback-and-bur…"
+      "summary": "A deflationary token used to reward liquidity providers on Polkaswap. PSWAP has a 10 billion max supply that decreases over time, with 0.3% trading fees used for buyback-and-bur…",
+      "tagline": "Rewards users who provide liquidity, creating sustainable DeFi incentives."
     },
     {
       "slug": "publicdataspaces",
       "title": "Public Data Spaces",
       "category": "Governance",
-      "summary": "Open participation domains where DA sampling is performed publicly and Ed25519 signatures attest to availability."
+      "summary": "Open participation domains where DA sampling is performed publicly and Ed25519 signatures attest to availability.",
+      "tagline": "Provides cryptographic authentication for transactions and attestations."
     },
     {
       "slug": "qrpayments",
@@ -1564,13 +1676,15 @@
       "slug": "restgateways",
       "title": "REST Gateways",
       "category": "Developer & Experience",
-      "summary": "HTTP interfaces that expose Norito-first APIs for developers who prefer REST semantics over gRPC."
+      "summary": "HTTP interfaces that expose Norito-first APIs for developers who prefer REST semantics over gRPC. These gateways provide deterministic transaction builders, ISO 20022 helpers, and offline flow support, with receipts and proofs aligned to protocol primitives for web and mobile SDK integration.",
+      "tagline": "Enables familiar HTTP access to SORA Nexus for web and mobile developers."
     },
     {
       "slug": "revocationwindows",
       "title": "Revocation Windows",
       "category": "Accounts & Identity",
-      "summary": "Bounded time intervals during which off-chain vouchers can be canceled if reconciliation uncovers fraud."
+      "summary": "Bounded time intervals during which off-chain vouchers can be canceled if reconciliation uncovers fraud.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "rewards",
@@ -1588,7 +1702,8 @@
       "slug": "rollingupgrades",
       "title": "Rolling Upgrades",
       "category": "Observability & Operations",
-      "summary": "Operational practice of upgrading validators and provers in waves while keeping lanes live, aided by manifests and telemetry."
+      "summary": "Operational practice of upgrading validators and provers in waves while keeping lanes live, aided by manifests and telemetry.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "rollups",
@@ -1600,7 +1715,8 @@
       "slug": "rtgsmodernization",
       "title": "RTGS Modernization",
       "category": "Use & Cases",
-      "summary": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls."
+      "summary": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "runtimeupgrades",
@@ -1631,7 +1747,8 @@
       "slug": "scale",
       "title": "Scale",
       "category": "Serialization & Encoding",
-      "summary": "Parity's serialization format mentioned as explicitly excluded from production Nexus paths to avoid ambiguity."
+      "summary": "Parity's serialization format mentioned as explicitly excluded from production Nexus paths to avoid ambiguity.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "scarcity",
@@ -1649,13 +1766,15 @@
       "slug": "sdks",
       "title": "Sd Ks",
       "category": "Developer & Experience",
-      "summary": "Language toolkits (mobile, web, server) that wrap Norito schemas, ISO helpers, and offline flows for application builders."
+      "summary": "Language toolkits (mobile, web, server) that wrap Norito schemas, ISO helpers, and offline flows for application builders.",
+      "tagline": "Simplifies building applications on SORA Nexus."
     },
     {
       "slug": "secp256k1",
       "title": "secp256k1",
       "category": "Cryptography",
-      "summary": "The legacy signature scheme kept for interoperability with ecosystems that still rely on it."
+      "summary": "The elliptic curve digital signature algorithm used by Bitcoin and Ethereum, supported in SORA Nexus for legacy interoperability. While Ed25519 is the default signature scheme, secp256k1 support enables compatibility with existing blockchain wallets and applications that depend on this standard.",
+      "tagline": "Enables compatibility with Bitcoin, Ethereum, and other legacy blockchain ecosystems."
     },
     {
       "slug": "security",
@@ -1667,19 +1786,22 @@
       "slug": "seedbeacon",
       "title": "Seed Beacon",
       "category": "Consensus",
-      "summary": "The randomness derivation combining previous epoch entropy and BLAKE2b hashing to select leaders fairly."
+      "summary": "The randomness derivation combining previous epoch entropy and BLAKE2b hashing to select leaders fairly.",
+      "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
       "slug": "sha2",
       "title": "Sha-2",
       "category": "Cryptography",
-      "summary": "A legacy hash suite retained for interoperability with existing systems and regulatory requirements."
+      "summary": "A legacy hash suite retained for interoperability with existing systems and regulatory requirements.",
+      "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
       "slug": "sha3",
       "title": "Sha-3",
       "category": "Cryptography",
-      "summary": "A Keccak-based hash option for domains needing standardization beyond Poseidon2."
+      "summary": "A Keccak-based cryptographic hash function available in SORA Nexus for domains requiring NIST-standardized hashing. While Poseidon2 over Goldilocks is used for internal traces and sparse Merkle trees, SHA-3 provides compatibility with external systems and regulatory requirements that mandate NIST-approved algorithms.",
+      "tagline": "Provides NIST-standardized hashing for regulatory compliance and external interoperability."
     },
     {
       "slug": "sharedsecurity",
@@ -1697,19 +1819,22 @@
       "slug": "shieldedroots",
       "title": "Shielded Roots",
       "category": "Cryptography",
-      "summary": "Merkle roots of the shielded commitment trees that prove privacy balances updated correctly."
+      "summary": "Merkle roots of the shielded commitment trees that prove privacy balances updated correctly. Shielded transfers use commitments of the form c_m=H(tag||payload) with nullifiers n_f=H(sk||c_m||salt) to update these roots while hiding transaction amounts and participants from public view.",
+      "tagline": "Allows privacy-preserving transactions while maintaining network auditability."
     },
     {
       "slug": "shieldedtransfers",
       "title": "Shielded Transfers",
       "category": "Cryptography",
-      "summary": "Privacy-preserving asset moves that use commitments, nullifiers, and Halo2 proofs to hide values while keeping auditability."
+      "summary": "Privacy-preserving asset moves that use commitments, nullifiers, and Halo2 proofs to hide values while keeping auditability.",
+      "tagline": "Use commitments."
     },
     {
       "slug": "signedblockwire",
       "title": "Signed Block Wire",
       "category": "Serialization & Encoding",
-      "summary": "The versioned wire format for distributing and persisting blocks, including headers, signatures, and Norito payload references."
+      "summary": "The versioned wire format for distributing and persisting blocks, including headers, signatures, and Norito payload references.",
+      "tagline": "Provides cryptographic authentication for transactions and attestations."
     },
     {
       "slug": "slashing",
@@ -1728,19 +1853,22 @@
       "slug": "sm2",
       "title": "Sm2",
       "category": "Cryptography",
-      "summary": "The Chinese national elliptic-curve signature suite available via governance for compliant deployments."
+      "summary": "The Chinese national elliptic-curve signature suite available via governance for compliant deployments.",
+      "tagline": "Provides cryptographic authentication for transactions and attestations."
     },
     {
       "slug": "sm3",
       "title": "Sm3",
       "category": "Cryptography",
-      "summary": "The companion hash function from the Chinese SM cryptographic family."
+      "summary": "The cryptographic hash function from China's SM (ShangMi) national standard suite, available in SORA Nexus alongside GOST suites when governed. SM3 provides 256-bit output and is mandated for financial and government applications in China, enabling SORA to serve these regulated markets.",
+      "tagline": "Enables SORA Nexus to operate in markets requiring Chinese national cryptographic standards."
     },
     {
       "slug": "sm4",
       "title": "Sm4",
       "category": "Cryptography",
-      "summary": "The Chinese block cipher offered for national deployments needing SM2/3 compatibility."
+      "summary": "The symmetric block cipher from China's SM (ShangMi) national standard suite, providing 128-bit encryption. Available in SORA Nexus alongside SM2 (asymmetric) and SM3 (hash) for deployments requiring full compliance with Chinese cryptographic regulations in financial and government sectors.",
+      "tagline": "Completes the SM cryptographic suite for regulated Chinese market deployments."
     },
     {
       "slug": "smartcontract",
@@ -1782,7 +1910,8 @@
       "slug": "soracard",
       "title": "SORA Card",
       "category": "DeFi",
-      "summary": "A decentralized debit card that allows users to spend their cryptocurrency in the real world. The SORA Card bridges the gap between digital assets and traditional commerce, enab…"
+      "summary": "A decentralized debit card that allows users to spend their cryptocurrency in the real world. The SORA Card bridges the gap between digital assets and traditional commerce, enab…",
+      "tagline": "Bridges crypto and traditional payments for everyday spending."
     },
     {
       "slug": "soracles",
@@ -1807,7 +1936,8 @@
       "slug": "sorafs",
       "title": "SORA Fs",
       "category": "Storage",
-      "summary": "The decentralized storage and erasure-coding layer that handles lane envelopes, DA proofs, and retry policies."
+      "summary": "The decentralized storage and erasure-coding layer that handles lane envelopes, DA proofs, and retry policies.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "soramitsu",
@@ -1832,13 +1962,15 @@
       "slug": "soranexus",
       "title": "SORA Nexus",
       "category": "Governance",
-      "summary": "The single logical ledger built on Hyperledger Iroha 3 that unifies private data spaces, public domains, and modern cryptography."
+      "summary": "The single logical ledger built on Hyperledger Iroha 3 that unifies private data spaces, public domains, and modern cryptography.",
+      "tagline": "Unifies private data spaces."
     },
     {
       "slug": "soraparliament",
       "title": "SORA Parliament",
       "category": "Governance",
-      "summary": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers. The SORA Parliament will replace the current Governance V1 system, im…"
+      "summary": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers. The SORA Parliament will replace the current Governance V1 system, im…",
+      "tagline": "Gives the community direct control over network upgrades and treasury spending."
     },
     {
       "slug": "sorav2",
@@ -1868,7 +2000,8 @@
       "slug": "sovereigndataspaces",
       "title": "Sovereign Data Spaces",
       "category": "Governance",
-      "summary": "Data spaces that let entities maintain jurisdictional control over privacy, routing, and compliance while sharing the global ledger."
+      "summary": "Data spaces that let entities maintain jurisdictional control over privacy, routing, and compliance while sharing the global ledger.",
+      "tagline": "Let entities maintain jurisdictional control over privacy."
     },
     {
       "slug": "stableasset",
@@ -1892,31 +2025,36 @@
       "slug": "stark",
       "title": "Stark",
       "category": "Cryptography",
-      "summary": "The transparent proof system underpinning FASTPQ, providing post-quantum security without trusted setup."
+      "summary": "The transparent proof system underpinning FASTPQ, providing post-quantum security without trusted setup.",
+      "tagline": "Enhances network security and protects user data."
     },
     {
       "slug": "starksecuritybudget",
       "title": "STARK Security Budget",
       "category": "Cryptography",
-      "summary": "The parameter sizing (blow-up factors, query counts, grinding) that keeps FASTPQ proofs at >=128-bit soundness."
+      "summary": "The parameter sizing (blow-up factors, query counts, grinding) that keeps FASTPQ proofs at >=128-bit soundness.",
+      "tagline": "Ensures fair resource allocation across the network."
     },
     {
       "slug": "starttimefairqueuingsfq",
       "title": "Start-Time Fair Queuing (SFQ)",
       "category": "Execution",
-      "summary": "Start-Time Fair Queuing, the scheduler that orders work by virtual finish times while enforcing TEU and age constraints."
+      "summary": "Start-Time Fair Queuing, the scheduler that orders work by virtual finish times while enforcing TEU and age constraints.",
+      "tagline": "Orders work by virtual finish times while enforcing TEU and age constraints."
     },
     {
       "slug": "stateapplication",
       "title": "State Application",
       "category": "Execution",
-      "summary": "The deterministic process of applying validated instructions to the World State View after consensus confirms a block."
+      "summary": "The deterministic process of applying validated instructions to the World State View after consensus confirms a block.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "submission",
       "title": "Submission",
       "category": "Execution",
-      "summary": "The first step of the transaction lifecycle where signed Norito instructions enter the network through gateways."
+      "summary": "The first step of the transaction lifecycle where signed Norito instructions enter the network through gateways.",
+      "tagline": "Provides seamless access to SORA Nexus services."
     },
     {
       "slug": "substrate",
@@ -1942,7 +2080,8 @@
       "slug": "sumeragipipeline",
       "title": "SUMERAGI Pipeline",
       "category": "Consensus",
-      "summary": "The multi-stage HotStuff-like process in Iroha 3 that sequences proposals, votes, and commits per lane."
+      "summary": "The multi-stage HotStuff-like process in Iroha 3 that sequences proposals, votes, and commits per lane.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "supplymanagement",
@@ -1973,13 +2112,15 @@
       "slug": "taikai",
       "title": "Taikai",
       "category": "Networking",
-      "summary": "The streaming and data pipeline platform governed on-ledger, supporting Norito streaming, telemetry, and slashing for misbehavior."
+      "summary": "The streaming and data pipeline platform governed on-ledger, supporting Norito streaming, telemetry, and slashing for misbehavior.",
+      "tagline": "Enables misbehavior."
     },
     {
       "slug": "tbcd",
       "title": "TBCD",
       "category": "Token",
-      "summary": "Token Bonding Curve Dollar (TBCD) is an algorithmic, non-synthetic stablecoin whose value is maintained by the SORA token bonding curve at approximately $1 USD. TBCD is converti…"
+      "summary": "Token Bonding Curve Dollar (TBCD) is an algorithmic, non-synthetic stablecoin whose value is maintained by the SORA token bonding curve at approximately $1 USD. TBCD is converti…",
+      "tagline": "Offers algorithmic stability through the token bonding curve mechanism."
     },
     {
       "slug": "telegram",
@@ -1991,7 +2132,8 @@
       "slug": "telemetry",
       "title": "Telemetry",
       "category": "Observability & Operations",
-      "summary": "The observability feeds - lane latency, DA failures, breaker status - that operators monitor to keep Nexus healthy."
+      "summary": "The observability feeds - lane latency, DA failures, breaker status - that operators monitor to keep Nexus healthy.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "threehopquiccircuits",
@@ -2004,7 +2146,8 @@
       "slug": "tokenbondingcurve",
       "title": "Token Bonding Curve",
       "category": "Economics",
-      "summary": "A smart contract that manages the supply of XOR in a rational way without human involvement. The TBC automatically adjusts XOR supply based on economic conditions to maintain pr…"
+      "summary": "A smart contract that manages the supply of XOR in a rational way without human involvement. The TBC automatically adjusts XOR supply based on economic conditions to maintain pr…",
+      "tagline": "Creates predictable pricing and built-in liquidity for XOR without requiring external market makers."
     },
     {
       "slug": "tokenburning",
@@ -2022,7 +2165,8 @@
       "slug": "tokenizedassets",
       "title": "Tokenized Assets",
       "category": "Use & Cases",
-      "summary": "A use case where real-world assets are issued in data spaces with deterministic policy, proofs, and ISO-aligned connectors."
+      "summary": "A use case where real-world assets are issued in data spaces with deterministic policy, proofs, and ISO-aligned connectors.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "tokenomics",
@@ -2046,7 +2190,8 @@
       "slug": "tonswap",
       "title": "Tonswap",
       "category": "DeFi",
-      "summary": "A next-generation decentralized exchange (DEX) and launchpad built on The Open Network (TON) blockchain. TONSWAP combines cutting-edge concentrated liquidity technology with a u…"
+      "summary": "A next-generation decentralized exchange (DEX) and launchpad built on The Open Network (TON) blockchain. TONSWAP combines cutting-edge concentrated liquidity technology with a u…",
+      "tagline": "Expands SORA DeFi reach to Telegram users through TON integration."
     },
     {
       "slug": "torii",
@@ -2084,7 +2229,8 @@
       "slug": "transactionlifecycle",
       "title": "Transaction Lifecycle",
       "category": "Execution",
-      "summary": "The six-stage flow - submission, admission, execution, aggregation, consensus, exposure - that every Nexus transaction follows."
+      "summary": "The six-stage flow - submission, admission, execution, aggregation, consensus, exposure - that every Nexus transaction follows.",
+      "tagline": "Every Nexus transaction follows."
     },
     {
       "slug": "triggers",
@@ -2103,13 +2249,15 @@
       "slug": "twodimensionalerasurecoding",
       "title": "Two-Dimensional Erasure Coding",
       "category": "Data & Availability",
-      "summary": "The matrix-style Reed - Solomon scheme (rows and columns) SoraFS uses to ensure any subset of shards can rebuild the original data."
+      "summary": "The matrix-style Reed - Solomon scheme (rows and columns) SoraFS uses to ensure any subset of shards can rebuild the original data.",
+      "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "val",
       "title": "VAL",
       "category": "Token",
-      "summary": "A validator reward token for the SORA network used to reward validators and stake nominators. VAL has deflationary tokenomics with tokens burned on every transaction, and elasti…"
+      "summary": "A validator reward token for the SORA network used to reward validators and stake nominators. VAL has deflationary tokenomics with tokens burned on every transaction, and elasti…",
+      "tagline": "Incentivizes network security through deflationary rewards to validators and nominators."
     },
     {
       "slug": "validator",
@@ -2151,7 +2299,8 @@
       "slug": "vrfaggregate",
       "title": "VRF Aggregate",
       "category": "Consensus",
-      "summary": "The combined verifiable random function output from committees, feeding epoch beacons and lane-specific randomness."
+      "summary": "The combined verifiable random function output from committees, feeding epoch beacons and lane-specific randomness.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "vrfsortition",
@@ -2201,19 +2350,22 @@
       "slug": "xor",
       "title": "XOR",
       "category": "Token",
-      "summary": "The network utility token used for transaction fees (gas) where 50% of fees are burned and 50% go to validators. XOR has elastic supply managed by a token bonding curve and can …"
+      "summary": "The network utility token used for transaction fees (gas) where 50% of fees are burned and 50% go to validators. XOR has elastic supply managed by a token bonding curve and can …",
+      "tagline": "Powers every transaction on SORA and gives holders governance rights in the network."
     },
     {
       "slug": "xorbonds",
       "title": "XOR Bonds",
       "category": "Economics",
-      "summary": "Stake deposits in XOR that governance proposals or data-space onboardings must lock to align incentives."
+      "summary": "Stake deposits in XOR that governance proposals or data-space onboardings must lock to align incentives.",
+      "tagline": "Empowers the community to shape the network's evolution."
     },
     {
       "slug": "xorfeeequilibrium",
       "title": "XOR Fee Equilibrium",
       "category": "Economics",
-      "summary": "The economic model that balances lane demand, TEU costs, and fee floors so XOR rewards stay predictable."
+      "summary": "The economic model that balances lane demand, TEU costs, and fee floors so XOR rewards stay predictable.",
+      "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "xorutility",
@@ -2238,23 +2390,26 @@
       "slug": "zkbackedaccesstickets",
       "title": "ZK-Backed Access Tickets",
       "category": "Networking",
-      "summary": "Proof-carrying credentials in SoraNet that grant network access while obscuring user identity or route."
+      "summary": "Proof-carrying credentials in SoraNet that grant network access while obscuring user identity or route.",
+      "tagline": "Grant network access while obscuring user identity or route."
     },
     {
       "slug": "zkdaproofs",
       "title": "ZK DA Proofs",
       "category": "Data & Availability",
-      "summary": "Zero-knowledge proofs that bind erasure-coded shards to block commitments, proving availability without revealing private data."
+      "summary": "Zero-knowledge proofs that bind erasure-coded shards to block commitments, proving availability without revealing private data.",
+      "tagline": "Guarantees that transaction data remains accessible and verifiable."
     },
     {
       "slug": "zkstarkvsstark",
       "title": "ZK-STARK vs. STARK",
       "category": "Cryptography",
-      "summary": "The Nexus clarification that FASTPQ can run in audit (non-zk) or privacy (zk) modes while sharing the same verifier logic."
+      "summary": "The Nexus clarification that FASTPQ can run in audit (non-zk) or privacy (zk) modes while sharing the same verifier logic.",
+      "tagline": "FASTPQ can run in audit (non-zk) or privacy (zk) modes while sharing the same verifier logic."
     }
   ],
-  "canonicalCount": 368,
+  "canonicalCount": 369,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-03T14:12:37.334Z"
+  "lastUpdated": "2025-12-05T02:33:35.946Z"
 }
