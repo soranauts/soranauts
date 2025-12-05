@@ -92,6 +92,7 @@ const ACRONYMS = new Set([
   'SORA', 'DSID', 'CID', 'SSE', 'gRPC', 'REST', 'CBDC', 'NPoS', 'PoS', 'ID',
   'JSON', 'HTTP', 'HTTPS', 'TCP', 'UDP', 'TLS', 'SSL', 'DNS', 'URL', 'URI',
   'UUID', 'GUID', 'RPC', 'ZK', 'TVL', 'APY', 'APR', 'TON', 'ETH', 'BTC',
+  'TONSWAP', 'HASHI', 'KUSD',
 ]);
 
 // Crypto algorithms with special casing
