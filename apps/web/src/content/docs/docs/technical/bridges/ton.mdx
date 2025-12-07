@@ -223,29 +223,29 @@ The XOR buyback creates sustainable demand for XOR tokens from TON ecosystem act
 
 The bridge contract on TON (FunC):
 
-```func
-;; Simplified bridge contract structure
-() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
-    ;; Parse message
-    int op = in_msg_body~load_uint(32);
+```c
+// Simplified bridge contract structure (FunC syntax)
+void recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) {
+    // Parse message
+    int op = load_uint(in_msg_body, 32);
     
-    if (op == op::bridge_deposit) {
-        ;; User deposits TON assets to bridge
+    if (op == OP_BRIDGE_DEPOSIT) {
+        // User deposits TON assets to bridge
         handle_deposit(in_msg_body);
-        return ();
+        return;
     }
     
-    if (op == op::validator_release) {
-        ;; Validators authorize release
+    if (op == OP_VALIDATOR_RELEASE) {
+        // Validators authorize release
         verify_signatures(in_msg_body);
         mint_wrapped_tokens(in_msg_body);
-        return ();
+        return;
     }
     
-    if (op == op::burn_for_bridge) {
-        ;; User burns wrapped tokens to exit
+    if (op == OP_BURN_FOR_BRIDGE) {
+        // User burns wrapped tokens to exit
         handle_burn(in_msg_body);
-        return ();
+        return;
     }
 }
 ```

@@ -15,6 +15,7 @@ import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
 <div class="header sl-flex">
   <div class="header-left sl-flex">
     <SiteTitle {...Astro.props} />
+    <span class="codex-subtitle">Community-curated documentation</span>
   </div>
   
   <div class="header-center sl-flex">
@@ -66,6 +67,23 @@ import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
   .header-right {
     align-items: center;
     gap: 0.5rem;
+  }
+
+  .codex-subtitle {
+    font-size: 0.7rem;
+    color: rgb(var(--sl-color-gray-3));
+    font-weight: 400;
+    opacity: 0.8;
+    white-space: nowrap;
+    padding-left: 0.5rem;
+    border-left: 1px solid rgb(var(--sl-color-gray-5));
+    margin-left: 0.5rem;
+  }
+
+  @media (max-width: 50rem) {
+    .codex-subtitle {
+      display: none;
+    }
   }
 
   .header-right {

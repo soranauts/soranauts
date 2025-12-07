@@ -104,7 +104,7 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title: 'Soranauts Docs',
+      title: 'SORA Codex',
       // Disable Starlight's built-in Pagefind - we use our own unified search
       pagefind: false,
       // Custom CSS with Soranauts design tokens

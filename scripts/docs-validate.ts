@@ -16,9 +16,14 @@
  */
 
 import { readFileSync, readdirSync, statSync } from 'fs';
-import { join, relative } from 'path';
+import { join, relative, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const DOCS_DIR = 'apps/web/src/content/docs/docs';
+// Get the project root (script is in /scripts/)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const PROJECT_ROOT = join(__dirname, '..');
+const DOCS_DIR = join(PROJECT_ROOT, 'apps/web/src/content/docs/docs');
 
 interface ValidationError {
   file: string;
