@@ -2,22 +2,22 @@
 /**
  * Custom Starlight Search Component
  * 
- * Placeholder that triggers Cmd+K for unified search.
- * Will be connected to UnifiedSearchModal in Week 4.
- * 
- * For now, this provides a visual search trigger that:
- * 1. Shows a search button in the header
- * 2. Responds to Cmd+K / Ctrl+K keyboard shortcut
- * 3. Will eventually open the unified search modal
+ * Integrates the unified SearchModal into Starlight pages.
+ * The SearchModal component handles:
+ * - Cmd+K / Ctrl+K keyboard shortcut
+ * - Pagefind search across all content types
+ * - Docs, Glossary, Articles, Tags filters
  */
+import SearchModal from '~/components/SearchModal.astro';
 ---
 
+<!-- Search trigger button in header -->
 <div class="search-trigger-wrapper">
   <button
     class="unified-search-trigger"
     type="button"
     aria-label="Search (⌘K)"
-    data-search-modal-trigger
+    data-aw-search-trigger
   >
     <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"></circle>
@@ -30,48 +30,8 @@
   </button>
 </div>
 
-<script>
-  // Keyboard shortcut handler for Cmd+K / Ctrl+K
-  document.addEventListener('keydown', (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-      e.preventDefault();
-      
-      // TODO: Week 4 - Connect to UnifiedSearchModal
-      // For now, try to use existing search or show placeholder
-      const existingSearchButton = document.querySelector('[data-pagefind-ui]') as HTMLElement;
-      if (existingSearchButton) {
-        existingSearchButton.click();
-        return;
-      }
-      
-      // Fallback: alert placeholder message
-      console.log('[Search] Unified search modal will be implemented in Week 4');
-      
-      // Try to find any existing search input and focus it
-      const searchInput = document.querySelector('input[type="search"]') as HTMLInputElement;
-      if (searchInput) {
-        searchInput.focus();
-      }
-    }
-  });
-
-  // Click handler for the search button
-  document.addEventListener('DOMContentLoaded', () => {
-    const trigger = document.querySelector('.unified-search-trigger');
-    if (trigger) {
-      trigger.addEventListener('click', () => {
-        // TODO: Week 4 - Open UnifiedSearchModal
-        // For now, dispatch the keyboard shortcut event
-        const event = new KeyboardEvent('keydown', {
-          key: 'k',
-          metaKey: true,
-          bubbles: true
-        });
-        document.dispatchEvent(event);
-      });
-    }
-  });
-</script>
+<!-- Include the unified search modal -->
+<SearchModal />
 
 <style>
   .search-trigger-wrapper {
