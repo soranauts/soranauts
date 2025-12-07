@@ -1,0 +1,119 @@
+---
+/**
+ * Custom Starlight Search Component
+ * 
+ * Search trigger button for the unified SearchModal.
+ * The SearchModal itself is rendered via Head.astro at document level
+ * to ensure proper overlay behavior.
+ */
+---
+
+<!-- Search trigger button in header -->
+<div class="search-trigger-wrapper">
+  <button
+    class="unified-search-trigger"
+    type="button"
+    aria-label="Search (⌘K)"
+    data-aw-search-trigger
+  >
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </svg>
+    <span class="search-text">Search...</span>
+    <kbd class="search-kbd">
+      <span class="search-kbd-meta">⌘</span>K
+    </kbd>
+  </button>
+</div>
+
+<style>
+  .search-trigger-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .unified-search-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    background-color: rgba(var(--sl-color-gray-6), 0.8);
+    border: 1px solid rgb(var(--sl-color-gray-5));
+    border-radius: 0.5rem;
+    color: rgb(var(--sl-color-gray-3));
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 150ms ease;
+    min-width: 10rem;
+  }
+
+  .unified-search-trigger:hover {
+    background-color: rgba(var(--sl-color-gray-5), 0.8);
+    border-color: rgb(var(--sl-color-gray-4));
+    color: rgb(var(--sl-color-gray-2));
+  }
+
+  .unified-search-trigger:focus-visible {
+    outline: 2px solid rgb(227, 36, 45);
+    outline-offset: 2px;
+  }
+
+  .search-icon {
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .search-text {
+    flex-grow: 1;
+    text-align: left;
+  }
+
+  .search-kbd {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    padding: 0.15rem 0.35rem;
+    background-color: rgba(var(--sl-color-gray-5), 0.6);
+    border: 1px solid rgb(var(--sl-color-gray-5));
+    border-radius: 0.25rem;
+    font-family: var(--sl-font-mono);
+    font-size: 0.7rem;
+    color: rgb(var(--sl-color-gray-3));
+  }
+
+  .search-kbd-meta {
+    font-size: 0.8rem;
+  }
+
+  /* Light mode */
+  :root[data-theme='light'] .unified-search-trigger {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: rgb(var(--sl-color-gray-2));
+  }
+
+  :root[data-theme='light'] .unified-search-trigger:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+
+  :root[data-theme='light'] .search-kbd {
+    background-color: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Responsive */
+  @media (max-width: 50rem) {
+    .unified-search-trigger {
+      min-width: auto;
+      padding: 0.5rem;
+    }
+
+    .search-text,
+    .search-kbd {
+      display: none;
+    }
+  }
+</style>
+

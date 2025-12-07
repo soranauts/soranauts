@@ -11,6 +11,7 @@ import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
+import starlight from '@astrojs/starlight';
 import tasks from './src/utils/tasks';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter.mjs';
@@ -100,11 +101,121 @@ export default defineConfig({
   redirects,
 
   output: 'static',
-  legacy: {
-    collections: true
-  },
 
   integrations: [
+    starlight({
+      title: 'SORA Codex',
+      // Pagefind handled by Starlight - main site pages use data-pagefind-ignore
+      // Custom CSS with Soranauts design tokens
+      customCss: ['./src/styles/starlight-custom.css'],
+      // Custom components for Soranauts integration
+      components: {
+        // Custom header with glossary/blog navigation links
+        Header: './src/components/starlight/Header.astro',
+        // Custom site title that links to /docs instead of /
+        SiteTitle: './src/components/starlight/SiteTitle.astro',
+        // ContentPanel removed - let Starlight handle Pagefind indexing natively
+      },
+      // Minimal sidebar for initial setup - will expand in Week 2
+      sidebar: [
+        {
+          label: 'Fundamentals',
+          items: [
+            { label: 'SORA Overview', slug: 'docs/fundamentals' },
+            { label: 'Tokenomics', slug: 'docs/fundamentals/tokenomics' },
+            { label: 'Governance', slug: 'docs/fundamentals/governance' },
+            { label: 'SORA Nexus', slug: 'docs/fundamentals/sora-nexus' },
+          ],
+        },
+        {
+          label: 'Products',
+          items: [
+            { label: 'Polkaswap', slug: 'docs/products/polkaswap' },
+            { label: 'Fearless Wallet', slug: 'docs/products/fearless-wallet' },
+            { label: 'SORA Card', slug: 'docs/products/sora-card' },
+            {
+              label: 'TONSWAP',
+              items: [
+                { label: 'Overview', slug: 'docs/products/tonswap' },
+                { label: 'Features', slug: 'docs/products/tonswap/features' },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Technical',
+          collapsed: true,
+          items: [
+            {
+              label: 'Iroha',
+              items: [
+                { label: 'Overview', slug: 'docs/technical/iroha' },
+                { label: 'Sumeragi Consensus', slug: 'docs/technical/iroha/consensus' },
+                { label: 'Smart Contracts', slug: 'docs/technical/iroha/smart-contracts' },
+              ],
+            },
+            {
+              label: 'Bridges',
+              items: [
+                { label: 'Ethereum (HASHI)', slug: 'docs/technical/bridges/ethereum' },
+                { label: 'Polkadot (XCM)', slug: 'docs/technical/bridges/polkadot' },
+                { label: 'TON Bridge', slug: 'docs/technical/bridges/ton' },
+              ],
+            },
+            {
+              label: 'Integration',
+              items: [
+                { label: 'Getting Started', slug: 'docs/technical/integration/getting-started' },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Guides',
+          collapsed: true,
+          autogenerate: { directory: 'docs/guides' },
+        },
+        {
+          label: 'Archive',
+          collapsed: true,
+          badge: { text: 'Historical', variant: 'caution' },
+          items: [
+            { label: 'Timeline', slug: 'docs/archive' },
+            {
+              label: '2025',
+              items: [
+                { label: 'Nexus Announcement', slug: 'docs/archive/2025/sora-nexus-launch' },
+              ],
+            },
+            {
+              label: '2024',
+              items: [
+                { label: 'SORA Card Launch', slug: 'docs/archive/2024/sora-card-launch' },
+                { label: 'Year in Review', slug: 'docs/archive/2024/year-review' },
+              ],
+            },
+            {
+              label: '2023',
+              items: [
+                { label: 'Polkaswap 2.0', slug: 'docs/archive/2023/polkaswap-v2' },
+              ],
+            },
+            {
+              label: '2022',
+              items: [
+                { label: 'Kusama Parachain', slug: 'docs/archive/2022/kusama-parachain' },
+              ],
+            },
+            {
+              label: '2021',
+              items: [
+                { label: 'SORA v2 Launch', slug: 'docs/archive/2021/sora-v2-launch' },
+              ],
+            },
+          ],
+        },
+      ],
+    }),
     tailwind({
       applyBaseStyles: false,
     }),
@@ -116,7 +227,8 @@ export default defineConfig({
         tabler: () => import('@iconify-json/tabler/icons.json'),
       },
     }),
-    pagefindIntegration,
+    // pagefindIntegration disabled - Starlight handles Pagefind for /docs
+    // The main site search uses its own SearchModal with glossary JSON
 
     // ...whenExternalScripts(() =>
     //   partytown({

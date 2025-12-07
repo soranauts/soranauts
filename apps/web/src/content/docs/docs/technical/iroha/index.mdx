@@ -1,0 +1,346 @@
+---
+title: "Hyperledger Iroha Overview"
+description: "Understanding the blockchain framework powering SORA's infrastructure"
+source: iroha_docs
+lastVerified: 2025-12-07
+sidebar:
+  label: Iroha Overview
+  order: 1
+  badge:
+    text: Technical
+    variant: note
+---
+
+import { Card, CardGrid, LinkCard, Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::note[Technical Documentation]
+This documentation covers Hyperledger Iroha as used in the SORA ecosystem.
+[Iroha Documentation](https://docs.iroha.tech/) | [GitHub Repository](https://github.com/hyperledger/iroha)
+:::
+
+# Hyperledger Iroha
+
+[Hyperledger Iroha](/glossary/hyperledger-iroha) is an open-source, permissioned blockchain framework developed by [SORAMITSU](/glossary/soramitsu) and maintained under the Hyperledger Foundation. It provides the technological foundation for SORA's network infrastructure, enabling secure, high-performance blockchain operations for enterprise and decentralized applications.
+
+## What is Hyperledger Iroha?
+
+Hyperledger Iroha is designed with simplicity and fast deployment in mind. Unlike general-purpose blockchain frameworks that require extensive configuration, Iroha provides:
+
+- **Built-in asset management** — Native support for creating and managing digital assets
+- **Granular permissions** — Fine-grained access control for enterprise use cases
+- **Byzantine Fault Tolerant consensus** — Secure finality without energy-intensive mining
+- **Simple API** — Clean interfaces for application development
+
+<CardGrid>
+  <Card title="Enterprise Ready" icon="document">
+    Designed for real-world business applications with robust security and compliance features.
+  </Card>
+  <Card title="High Performance" icon="rocket">
+    Optimized for throughput with deterministic finality and low latency.
+  </Card>
+  <Card title="Developer Friendly" icon="seti:code">
+    Clean APIs and comprehensive SDKs for multiple programming languages.
+  </Card>
+  <Card title="Production Proven" icon="approve-check">
+    Powers national-level infrastructure including CBDCs and financial systems.
+  </Card>
+</CardGrid>
+
+---
+
+## Iroha in the SORA Ecosystem
+
+### SORA v2: Substrate + Iroha Heritage
+
+The current SORA v2 network runs on [Substrate](/glossary/substrate), integrating with the [Polkadot](/glossary/polkadot) ecosystem. However, SORA's development has deep roots in Iroha technology:
+
+- SORAMITSU developed both Iroha and SORA
+- Shared architectural principles and security models
+- Common development team and expertise
+- Cross-pollination of features and improvements
+
+### SORA v3: Full Iroha Integration
+
+[SORA v3 (Nexus)](/glossary/sora-v3) represents a strategic transition to [Hyperledger Iroha 3](/glossary/iroha3):
+
+| Aspect | SORA v2 | SORA v3 |
+|--------|---------|---------|
+| Framework | Substrate | Hyperledger Iroha 3 |
+| Ecosystem | Polkadot | Multi-chain hub |
+| Consensus | BABE/GRANDPA | Sumeragi BFT |
+| Smart Contracts | Ink! (WASM) | ISI + WASM |
+| Target Use Cases | DeFi | DeFi + CBDC + Enterprise |
+
+---
+
+## Iroha Versions
+
+### Iroha 1 (Legacy)
+
+The original Iroha implementation focused on:
+
+- Simple asset management
+- Basic permission system
+- C++ implementation
+- Suitable for straightforward enterprise use cases
+
+### Iroha 2
+
+[Hyperledger Iroha 2](/glossary/hyperledger-iroha-2) introduced significant improvements:
+
+- **Rust implementation** — Memory safety and performance
+- **WASM smart contracts** — Programmable business logic
+- **Improved consensus** — Enhanced Sumeragi algorithm
+- **Triggers** — Event-driven automation
+
+Key features in Iroha 2:
+
+```rust
+// Example: Registering an asset in Iroha 2
+let asset_definition = AssetDefinition::quantity(
+    "xor#sora".parse()?,
+).build();
+
+let register_asset = Register::asset_definition(asset_definition);
+client.submit(register_asset)?;
+```
+
+### Iroha 3 (SORA v3)
+
+[Hyperledger Iroha 3](/glossary/iroha3) represents the next evolution:
+
+<Tabs>
+  <TabItem label="Architecture">
+    - Re-engineered modular design
+    - Layered runtime for domain-specific modules
+    - Upgraded command model
+    - Query isolation for deterministic operations
+  </TabItem>
+  <TabItem label="Consensus">
+    - Enhanced Sumeragi BFT
+    - Improved validator orchestration
+    - Multi-domain deployment support
+    - Sub-second finality
+  </TabItem>
+  <TabItem label="Smart Contracts">
+    - Iroha Special Instructions (ISI)
+    - Deterministic execution model
+    - Domain-oriented command sets
+    - WASM support
+  </TabItem>
+</Tabs>
+
+---
+
+## Core Concepts
+
+### Domains
+
+Domains are organizational units in Iroha that group accounts and assets:
+
+```
+┌─────────────────────────────────────┐
+│           SORA Domain               │
+│  ┌─────────┐  ┌─────────────────┐  │
+│  │ Account │  │ Assets (XOR,    │  │
+│  │  alice@ │  │ VAL, PSWAP)     │  │
+│  │  sora   │  └─────────────────┘  │
+│  └─────────┘                        │
+└─────────────────────────────────────┘
+```
+
+### Accounts
+
+Accounts are identified by `name@domain` format:
+
+- Hold assets and permissions
+- Can execute transactions
+- Have associated metadata
+
+### Assets
+
+Iroha provides native asset management:
+
+| Asset Type | Description | Example |
+|------------|-------------|---------|
+| Quantity | Fungible, countable | XOR, VAL tokens |
+| BigQuantity | Large numbers | High-precision values |
+| Fixed | Decimal precision | Stablecoin balances |
+| Store | Key-value data | NFT metadata |
+
+### Permissions
+
+Granular access control:
+
+```
+CanRegisterAsset
+CanTransferAsset
+CanMintAsset
+CanBurnAsset
+CanSetKeyValue
+CanRemoveKeyValue
+```
+
+---
+
+## Technical Architecture
+
+### Peer-to-Peer Network
+
+Iroha operates as a distributed P2P network:
+
+```
+    ┌──────┐     ┌──────┐
+    │Peer 1│◄───►│Peer 2│
+    └──┬───┘     └───┬──┘
+       │             │
+       ▼             ▼
+    ┌──────┐     ┌──────┐
+    │Peer 3│◄───►│Peer 4│
+    └──────┘     └──────┘
+```
+
+### Consensus Layer
+
+The [Sumeragi](/glossary/sumeragi) consensus algorithm provides:
+
+- **Byzantine Fault Tolerance** — Operates correctly with up to 1/3 malicious nodes
+- **Deterministic finality** — No block reorganizations
+- **Leader rotation** — Fair participation across validators
+- **View change** — Recovery from failed leaders
+
+[Learn more about Sumeragi consensus →](/docs/technical/iroha/consensus)
+
+### Transaction Pipeline
+
+1. **Client submits** transaction to peer
+2. **Validation** checks permissions and signatures
+3. **Consensus** orders transaction across network
+4. **Execution** applies changes to world state
+5. **Commitment** finalizes block
+
+---
+
+## Smart Contracts
+
+Iroha supports two smart contract paradigms:
+
+### Iroha Special Instructions (ISI)
+
+Domain-oriented commands for common operations:
+
+```rust
+// ISI examples
+Register::domain(domain);
+Register::account(account);
+Transfer::asset_quantity(from, to, amount);
+Mint::asset_quantity(asset, amount);
+Burn::asset_quantity(asset, amount);
+```
+
+### WASM Contracts
+
+Custom business logic in WebAssembly:
+
+```rust
+#[iroha_wasm::main]
+fn main(host: Iroha) {
+    // Custom smart contract logic
+    let caller = host.query_single(FindAccountById::new(
+        host.context().authority().clone()
+    )).unwrap();
+    
+    // Execute operations
+    host.submit(instruction).unwrap();
+}
+```
+
+[Learn more about smart contracts →](/docs/technical/iroha/smart-contracts)
+
+---
+
+## Production Deployments
+
+### Bakong (Cambodia CBDC)
+
+The National Bank of Cambodia uses Iroha for Bakong:
+
+- National retail payment system
+- Millions of active users
+- Real-time settlement
+- Cross-bank interoperability
+
+### Solomon Islands CBDC
+
+SORAMITSU is piloting a CBDC with the Central Bank of Solomon Islands:
+
+- Financial inclusion for remote islands
+- Integration with local banking infrastructure
+- Mobile-first design
+
+### SORA Network
+
+SORA v3 will be the largest public deployment of Iroha 3:
+
+- Decentralized economic system
+- Cross-chain hub connecting multiple blockchains
+- SORA Parliament governance
+- [DeFi](/glossary/defi) infrastructure
+
+---
+
+## Developer Resources
+
+### SDKs and Libraries
+
+| Language | Library | Status |
+|----------|---------|--------|
+| Rust | iroha_client | Official |
+| JavaScript | @iroha2/client | Official |
+| Python | iroha-python | Community |
+| Java | iroha-java | Official |
+
+### Getting Started
+
+```bash
+# Clone Iroha repository
+git clone https://github.com/hyperledger/iroha.git
+cd iroha
+
+# Build from source
+cargo build --release
+
+# Run a single peer for testing
+cargo run --release -- --config config.json
+```
+
+<Aside type="tip">
+For SORA-specific development, see the [Getting Started guide](/docs/technical/integration/getting-started).
+</Aside>
+
+---
+
+## Learn More
+
+<CardGrid>
+  <LinkCard
+    title="Sumeragi Consensus"
+    description="Deep dive into Byzantine Fault Tolerant consensus"
+    href="/docs/technical/iroha/consensus"
+  />
+  <LinkCard
+    title="Smart Contracts"
+    description="WASM contracts and Iroha Special Instructions"
+    href="/docs/technical/iroha/smart-contracts"
+  />
+  <LinkCard
+    title="SORA v3 / Nexus"
+    description="The next generation SORA network"
+    href="/docs/fundamentals/sora-nexus"
+  />
+  <LinkCard
+    title="Official Docs"
+    description="Hyperledger Iroha documentation"
+    href="https://docs.iroha.tech/"
+  />
+</CardGrid>

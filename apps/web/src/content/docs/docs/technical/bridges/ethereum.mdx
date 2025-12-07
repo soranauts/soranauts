@@ -1,0 +1,348 @@
+---
+title: "HASHI Bridge (Ethereum)"
+description: "Trustless cross-chain bridge connecting SORA and Ethereum networks"
+source: iroha_docs
+lastVerified: 2025-12-07
+sidebar:
+  label: Ethereum (HASHI)
+  order: 1
+  badge:
+    text: Technical
+    variant: note
+---
+
+import { Card, CardGrid, Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::note[Technical Documentation]
+This documentation covers the HASHI bridge connecting SORA and Ethereum.
+[Adding Tokens to HASHI](https://wiki.sora.org/adding-tokens-to-hashi-bridge.html)
+:::
+
+# HASHI Bridge
+
+[HASHI](/glossary/hashi) is SORA's decentralized and trustless cross-chain bridge that enables secure asset transfers between Ethereum and the SORA network. Unlike centralized bridges, HASHI uses cryptographic proofs to validate transactions across chains without relying on trusted intermediaries.
+
+## Key Features
+
+<CardGrid>
+  <Card title="Trustless" icon="approve-check">
+    No centralized custodians or multisigs holding your assets.
+  </Card>
+  <Card title="Decentralized" icon="random">
+    Secured by SORA validators, not a single party.
+  </Card>
+  <Card title="ERC-20 Support" icon="document">
+    Bridge any ERC-20 token between networks.
+  </Card>
+  <Card title="Polkaswap Integrated" icon="rocket">
+    Trade bridged assets directly on Polkaswap.
+  </Card>
+</CardGrid>
+
+---
+
+## How HASHI Works
+
+### Architecture Overview
+
+```
+┌─────────────────┐                    ┌─────────────────┐
+│    Ethereum     │                    │      SORA       │
+│    Network      │                    │     Network     │
+│                 │                    │                 │
+│  ┌───────────┐  │    Validators     │  ┌───────────┐  │
+│  │  Bridge   │◄─┼─── Sign & Relay ──┼─►│  Bridge   │  │
+│  │ Contract  │  │    Proofs         │  │  Pallet   │  │
+│  └───────────┘  │                    │  └───────────┘  │
+│        │        │                    │        │        │
+│  ┌─────▼─────┐  │                    │  ┌─────▼─────┐  │
+│  │   ERC-20  │  │                    │  │   Asset   │  │
+│  │   Tokens  │  │                    │  │  (Wrapped)│  │
+│  └───────────┘  │                    │  └───────────┘  │
+└─────────────────┘                    └─────────────────┘
+```
+
+### Bridge Flow: Ethereum → SORA
+
+<Tabs>
+  <TabItem label="Step 1: Lock">
+    User deposits tokens into the Ethereum bridge contract:
+    
+    ```solidity
+    // Approve tokens
+    token.approve(bridgeAddress, amount);
+    
+    // Deposit to bridge
+    bridge.deposit(tokenAddress, amount, soraRecipient);
+    ```
+  </TabItem>
+  <TabItem label="Step 2: Relay">
+    SORA validators observe the Ethereum transaction:
+    
+    1. Wait for sufficient confirmations
+    2. Generate cryptographic proof
+    3. Submit proof to SORA network
+    4. Reach consensus on validity
+  </TabItem>
+  <TabItem label="Step 3: Mint">
+    SORA network mints wrapped tokens:
+    
+    ```
+    // On SORA
+    Mint wrapped_DAI to user_account
+    Amount: deposited_amount - bridge_fee
+    ```
+  </TabItem>
+</Tabs>
+
+### Bridge Flow: SORA → Ethereum
+
+<Tabs>
+  <TabItem label="Step 1: Burn">
+    User burns wrapped tokens on SORA:
+    
+    ```
+    // Submit withdrawal request
+    bridge.withdraw(
+        asset_id: "DAI",
+        amount: 1000,
+        eth_recipient: "0x..."
+    )
+    ```
+  </TabItem>
+  <TabItem label="Step 2: Aggregate">
+    Validators aggregate signatures:
+    
+    1. Validators sign withdrawal request
+    2. Threshold signatures collected
+    3. Proof constructed
+  </TabItem>
+  <TabItem label="Step 3: Release">
+    Tokens released on Ethereum:
+    
+    ```solidity
+    // User or relayer submits proof
+    bridge.withdraw(
+        tokenAddress,
+        amount,
+        recipient,
+        validatorSignatures
+    );
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## Supported Assets
+
+### Native Support
+
+| Token | Contract | Status |
+|-------|----------|--------|
+| ETH | Native | ✅ Supported |
+| DAI | 0x6B17... | ✅ Supported |
+| USDC | 0xA0b8... | ✅ Supported |
+| USDT | 0xdAC1... | ✅ Supported |
+| WBTC | 0x2260... | ✅ Supported |
+
+### Adding New Tokens
+
+Any ERC-20 can be added through governance:
+
+1. **Proposal** — Submit governance request
+2. **Review** — Technical committee evaluates
+3. **Vote** — Parliament approves
+4. **Deploy** — Bridge configuration updated
+
+<Aside type="tip">
+See the [official guide](https://wiki.sora.org/adding-tokens-to-hashi-bridge.html) for detailed token addition instructions.
+</Aside>
+
+---
+
+## Security Model
+
+### Validator Security
+
+HASHI relies on SORA's validator set:
+
+| Layer | Mechanism |
+|-------|-----------|
+| Economic | Validators stake [VAL](/glossary/val) as collateral |
+| Consensus | BFT requires 2/3+ honest validators |
+| Slashing | Malicious behavior penalized |
+| Rotation | Validator set changes over time |
+
+### Cryptographic Proofs
+
+Bridge transfers are secured by:
+
+- **Merkle proofs** — Verify transaction inclusion
+- **Threshold signatures** — Multiple validators must sign
+- **Finality guarantees** — Wait for sufficient confirmations
+
+### No Single Point of Failure
+
+```
+Traditional Bridge:          HASHI:
+                            
+    ┌─────────┐             ┌───┐ ┌───┐ ┌───┐
+    │Multisig │             │ V │ │ V │ │ V │
+    │  3/5    │             └─┬─┘ └─┬─┘ └─┬─┘
+    └────┬────┘               │     │     │
+         │                  ┌─▼─────▼─────▼─┐
+    Single Point            │   Consensus   │
+    of Failure              │   Required    │
+                            └───────────────┘
+```
+
+---
+
+## Fees
+
+### Fee Structure
+
+| Component | Fee | Recipient |
+|-----------|-----|-----------|
+| Bridge Fee | ~0.1% | SORA Treasury |
+| Ethereum Gas | Variable | Ethereum Miners |
+| SORA Fee | Minimal | Validators |
+
+### Gas Optimization
+
+HASHI batches operations to reduce costs:
+
+- Multiple withdrawals aggregated
+- Signature aggregation reduces calldata
+- Off-peak submission for lower gas
+
+---
+
+## Using HASHI
+
+### Via Polkaswap UI
+
+The easiest way to use HASHI:
+
+1. Go to [polkaswap.io](https://polkaswap.io)
+2. Select "Bridge" tab
+3. Connect Ethereum wallet (MetaMask)
+4. Connect SORA wallet (Fearless/Polkadot.js)
+5. Select token and amount
+6. Confirm transactions
+
+### Via Code
+
+For programmatic access:
+
+```typescript
+import { ethers } from 'ethers';
+
+// Connect to Ethereum
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+const signer = provider.getSigner();
+
+// Bridge contract
+const bridge = new ethers.Contract(BRIDGE_ADDRESS, BRIDGE_ABI, signer);
+
+// Approve tokens
+const token = new ethers.Contract(TOKEN_ADDRESS, ERC20_ABI, signer);
+await token.approve(BRIDGE_ADDRESS, amount);
+
+// Deposit to bridge
+const tx = await bridge.deposit(
+    TOKEN_ADDRESS,
+    amount,
+    soraAccountBytes32  // SORA recipient
+);
+
+await tx.wait();
+```
+
+---
+
+## Monitoring
+
+### Transaction Status
+
+Track bridge transfers:
+
+```typescript
+// Check if transfer is complete on SORA
+const events = await api.query.ethereumBridge.requests(requestId);
+console.log('Status:', events.status);
+```
+
+### Bridge Health
+
+Monitor bridge status:
+
+| Metric | Healthy Value |
+|--------|---------------|
+| Pending transfers | < 100 |
+| Average delay | < 15 min |
+| Validator participation | > 66% |
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+<Tabs>
+  <TabItem label="Slow Transfer">
+    **Causes:**
+    - Ethereum congestion
+    - Insufficient confirmations
+    - Validator sync issues
+    
+    **Solution:**
+    - Wait for more confirmations
+    - Check bridge status page
+    - Contact support if > 1 hour
+  </TabItem>
+  <TabItem label="Failed Transaction">
+    **Causes:**
+    - Insufficient gas
+    - Token not approved
+    - Bridge paused
+    
+    **Solution:**
+    - Increase gas limit
+    - Re-approve token
+    - Check announcements
+  </TabItem>
+  <TabItem label="Wrong Amount">
+    **Causes:**
+    - Fee deducted
+    - Decimal mismatch
+    
+    **Solution:**
+    - Verify fee structure
+    - Check token decimals
+  </TabItem>
+</Tabs>
+
+<Aside type="caution">
+Never send tokens directly to the bridge contract address. Always use the official UI or SDK methods.
+</Aside>
+
+---
+
+## Learn More
+
+<CardGrid>
+  <Card title="Polkadot Bridge" icon="random">
+    [XCM and parachain connectivity](/docs/technical/bridges/polkadot)
+  </Card>
+  <Card title="TON Bridge" icon="rocket">
+    [TONSWAP integration](/docs/technical/bridges/ton)
+  </Card>
+  <Card title="Polkaswap" icon="star">
+    [Trade bridged assets](/docs/products/polkaswap)
+  </Card>
+  <Card title="Security" icon="approve-check">
+    [Bridge security model](/glossary/hashi)
+  </Card>
+</CardGrid>

@@ -1,0 +1,357 @@
+---
+title: "SORA Tokenomics"
+description: "Understanding XOR, the Token Bonding Curve, VAL, PSWAP, and the economic model powering the SORA ecosystem"
+source: wiki
+lastVerified: 2025-12-06
+sidebar:
+  label: Tokenomics
+  order: 2
+  badge:
+    text: Official
+    variant: success
+---
+
+import { Aside, Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::tip[Official Documentation]
+This content reflects the current SORA tokenomics as of December 2025.
+[View SORA Wiki - Tokenomics](https://wiki.sora.org/tokenomics.html)
+:::
+
+# SORA Tokenomics
+
+SORA's economic model is fundamentally different from most cryptocurrency projects. Rather than relying on fixed supply and speculative demand, SORA implements an **elastic monetary policy** managed by smart contracts—creating a self-regulating economy designed for real-world utility.
+
+This guide covers the three primary tokens of the SORA ecosystem and the innovative mechanisms that govern their supply and distribution.
+
+## The Token Trinity: XOR, VAL, and PSWAP
+
+The SORA ecosystem operates with three interconnected tokens, each serving a distinct purpose:
+
+| Token | Purpose | Supply Model |
+|-------|---------|--------------|
+| [XOR](/glossary/xor) | Network utility & governance | Elastic (TBC-managed) |
+| [VAL](/glossary/val) | Validator rewards & security | Deflationary |
+| [PSWAP](/glossary/pswap) | Liquidity provider rewards | Deflationary |
+
+This multi-token architecture separates concerns—network operations, security, and exchange liquidity—creating a more robust and specialized economic system.
+
+---
+
+## XOR: The Network Token
+
+[XOR](/glossary/xor) is the native utility token of the SORA network, functioning as the lifeblood of the ecosystem. Unlike Bitcoin's capped 21 million supply or Ethereum's post-merge deflationary model, XOR uses an **elastic supply** that expands and contracts based on economic demand.
+
+### XOR Utility
+
+XOR serves multiple critical functions across the SORA ecosystem:
+
+<CardGrid>
+  <Card title="Transaction Fees" icon="rocket">
+    All network operations require XOR for gas fees. 50% of fees are burned, and 50% go to validators.
+  </Card>
+  <Card title="Governance" icon="setting">
+    XOR holders can participate in SORA Parliament decisions and post bonds for citizenship.
+  </Card>
+  <Card title="Liquidity" icon="random">
+    XOR is the primary trading pair on Polkaswap and other SORA-based exchanges.
+  </Card>
+  <Card title="Staking" icon="star">
+    Users can stake XOR to secure the network and earn rewards through nominators.
+  </Card>
+</CardGrid>
+
+### XOR Fee Mechanics
+
+When you pay transaction fees in XOR:
+
+1. **50% is burned** — Permanently removed from circulation, creating deflationary pressure during high activity
+2. **50% goes to validators** — Compensating those who secure the network
+
+This burn mechanism ensures that network usage creates genuine demand for XOR while rewarding those who maintain the infrastructure.
+
+### XOR Supply Management
+
+Rather than a fixed or algorithmically inflating supply, XOR's circulation is managed by the [Token Bonding Curve](/glossary/tokenbondingcurve) (TBC), which we'll explore in detail below.
+
+---
+
+## The Token Bonding Curve (TBC)
+
+The [Token Bonding Curve](/glossary/tokenbondingcurve) is SORA's most innovative economic mechanism—a smart contract that manages XOR supply without human intervention.
+
+### What is a Token Bonding Curve?
+
+A bonding curve is a mathematical function that defines the relationship between a token's price and its supply. In traditional markets, supply and price are determined by human actors making individual decisions. The TBC automates this process:
+
+```
+Price = f(Supply)
+```
+
+As more XOR is purchased, the price increases along a predetermined curve. As XOR is sold back to the curve, the price decreases. This creates:
+
+- **Predictable pricing** — No sudden whale dumps or manipulation
+- **Always-available liquidity** — The curve itself is always a counterparty
+- **Reserve backing** — Purchases build reserves that back the token's value
+
+### How the TBC Works
+
+<Tabs>
+  <TabItem label="Buying XOR">
+    When you buy XOR from the TBC:
+    1. You send reserve assets (e.g., DAI, ETH) to the curve
+    2. The TBC calculates how much XOR to mint based on the curve
+    3. New XOR is created and sent to your wallet
+    4. The reserve assets remain in the curve's treasury
+    5. The price adjusts upward for the next buyer
+  </TabItem>
+  <TabItem label="Selling XOR">
+    When you sell XOR back to the TBC:
+    1. You send XOR to the curve
+    2. The TBC burns the XOR permanently
+    3. The curve calculates and sends you reserve assets
+    4. The price adjusts downward for the next transaction
+  </TabItem>
+</Tabs>
+
+### Primary vs. Secondary Markets
+
+An important distinction in SORA's economy:
+
+- **Primary Market (TBC)** — Buying/selling directly with the bonding curve, which mints or burns XOR
+- **Secondary Market (Polkaswap)** — Trading between users without affecting total supply
+
+The TBC ensures there's always a floor price for XOR, as users can always sell back to the curve at the mathematically determined rate.
+
+### TBCD: The Stablecoin
+
+[TBCD](/glossary/tbcd) (Token Bonding Curve Dollar) is a stablecoin pegged to the US dollar that can be used as a reserve asset in the TBC. This provides:
+
+- **Stability** — A dollar-denominated option within the SORA ecosystem
+- **On-ramp/Off-ramp** — Easier conversion between crypto and fiat-equivalent value
+- **TBC Reserve** — Can be used to purchase XOR from the bonding curve
+
+---
+
+## VAL: The Validator Token
+
+[VAL](/glossary/val) is the second major token in the SORA ecosystem, specifically designed for network security and validator rewards.
+
+### VAL Purpose
+
+While XOR handles network utility, VAL focuses on security:
+
+- **Validator Compensation** — VAL is distributed to validators who produce blocks
+- **Nominator Staking** — Users can nominate validators and receive a share of VAL rewards
+- **Network Security** — Creates economic incentives for honest validation
+
+### Deflationary Mechanics
+
+Unlike XOR's elastic supply, VAL is **deflationary**:
+
+- VAL tokens are burned on every network transaction
+- This continuous burning reduces total supply over time
+- Scarcity increases as network usage grows
+
+The deflationary model creates a positive feedback loop: more network activity → more burning → reduced supply → potential value appreciation for long-term holders.
+
+### VAL Distribution
+
+VAL rewards are distributed as a percentage of daily burned tokens:
+
+1. Network transactions burn VAL
+2. The burned amount is tracked
+3. A percentage of the burned amount is reminted and distributed to validators
+4. Validators share with their nominators based on stake
+
+This creates an elastic reward system that scales with network activity.
+
+---
+
+## PSWAP: The Liquidity Token
+
+[PSWAP](/glossary/pswap) powers the liquidity incentives on [Polkaswap](/glossary/polkaswap), the SORA ecosystem's decentralized exchange.
+
+### PSWAP Purpose
+
+PSWAP exists to incentivize liquidity provision:
+
+- **LP Rewards** — Liquidity providers earn PSWAP for providing trading liquidity
+- **Strategic Incentives** — Aligns liquidity with ecosystem needs
+- **Exchange Utility** — Powers the Polkaswap reward system
+
+### Supply Mechanics
+
+PSWAP has a capped maximum supply of **10 billion tokens** that decreases over time through two mechanisms:
+
+#### 1. Buyback-and-Burn
+
+Every trade on Polkaswap generates a 0.3% fee:
+- Fees are used to buy PSWAP from the market
+- Purchased PSWAP is burned permanently
+- This creates constant buy pressure and reduces supply
+
+#### 2. Reward Decay
+
+PSWAP rewards for liquidity providers are designed to decrease over time:
+- Initially, 90% of burned tokens are reminted for LP rewards
+- This rate decreases to 35% after 5 years
+- Creates early-adopter advantage while ensuring long-term sustainability
+
+### Vesting Schedule
+
+PSWAP rewards typically have a vesting period, meaning:
+- Rewards are earned immediately
+- Full access to rewards is delayed (vesting period)
+- Encourages long-term participation
+
+---
+
+## Economic Model Deep Dive
+
+### The SORA Economic Philosophy
+
+SORA's tokenomics are built on several key principles:
+
+<Aside type="note" title="Core Principles">
+1. **Utility-Driven Demand** — Token value comes from actual use, not speculation
+2. **Algorithmic Fairness** — Smart contracts manage supply, not humans
+3. **Sustainable Incentives** — Rewards decrease over time, preventing hyperinflation
+4. **Multi-Token Specialization** — Each token serves a specific purpose
+</Aside>
+
+### Fee Distribution
+
+Understanding where fees go helps clarify the ecosystem's economics:
+
+| Fee Source | Distribution |
+|------------|--------------|
+| XOR Transaction Fees | 50% burned, 50% to validators |
+| Polkaswap Trading Fees | Used for PSWAP buyback-and-burn |
+| Bridge Fees | Network maintenance and security |
+| Staking Rewards | VAL distributed to validators/nominators |
+
+### Inflation vs. Deflation
+
+SORA's economic model balances inflationary and deflationary pressures:
+
+**Inflationary Forces:**
+- TBC mints new XOR when demand is high
+- Validator rewards create new VAL
+- LP rewards create new PSWAP
+
+**Deflationary Forces:**
+- 50% of XOR transaction fees burned
+- VAL burned on every transaction
+- PSWAP buyback-and-burn from trading fees
+- TBC burns XOR when sold back to curve
+
+The result is a dynamic equilibrium where supply adjusts to actual economic activity.
+
+---
+
+## XOR in SORA Nexus
+
+With the upcoming [SORA Nexus](/glossary/soranexus) upgrade, XOR's role expands:
+
+### Universal Settlement Asset
+
+In SORA v3, XOR becomes the universal fee, settlement, reward, and bond asset across all public and private data spaces. This means:
+
+- Cross-data-space transactions settle in XOR
+- Governance bonds are posted in XOR
+- Validator rewards paid in XOR
+- All network fees denominated in XOR
+
+### XOR Fee Equilibrium
+
+SORA Nexus introduces sophisticated fee markets:
+- Each data space can have custom fee structures
+- XOR remains the underlying settlement layer
+- Equilibrium mechanisms balance fee markets across data spaces
+
+### Enhanced Utility
+
+The transition to Iroha 3 infrastructure adds:
+- [Collateralized Locks](/glossary/collateralizedlocks) using XOR
+- Enhanced governance participation
+- Cross-chain bridge settlements
+- ISO 20022 compliance for institutional integration
+
+---
+
+## Practical Implications
+
+### For Users
+
+Understanding tokenomics helps you make informed decisions:
+
+- **When to buy XOR** — Consider the TBC price vs. secondary market prices
+- **Staking choices** — VAL rewards depend on validator performance and network activity
+- **Liquidity provision** — PSWAP rewards are highest early, decrease over time
+
+### For Developers
+
+Building on SORA means understanding:
+
+- **Gas estimation** — XOR fees affect transaction costs
+- **Token integration** — Which token suits your use case
+- **Economic incentives** — How to align your application with ecosystem economics
+
+### For Validators
+
+Operating a validator involves:
+
+- **VAL rewards** — Primary compensation for block production
+- **Nominator management** — Attracting stake to increase rewards
+- **Economic security** — Understanding slashing conditions
+
+---
+
+## Summary
+
+SORA's tokenomics represent a paradigm shift in cryptocurrency economics:
+
+| Traditional Model | SORA Model |
+|-------------------|------------|
+| Fixed supply | Elastic supply (XOR) |
+| Speculation-driven | Utility-driven |
+| Single token | Multi-token specialization |
+| Human-managed | Algorithmically managed |
+| Inflation or deflation | Dynamic equilibrium |
+
+The combination of the Token Bonding Curve, deflationary secondary tokens, and utility-focused design creates an economic system that can grow sustainably with actual adoption.
+
+---
+
+## Learn More
+
+<CardGrid>
+  <LinkCard
+    title="XOR Token"
+    description="Deep dive into XOR utility and mechanics"
+    href="/glossary/xor"
+  />
+  <LinkCard
+    title="Token Bonding Curve"
+    description="Technical details of the TBC"
+    href="/glossary/tokenbondingcurve"
+  />
+  <LinkCard
+    title="VAL Token"
+    description="Validator rewards and staking"
+    href="/glossary/val"
+  />
+  <LinkCard
+    title="PSWAP Token"
+    description="Liquidity incentives on Polkaswap"
+    href="/glossary/pswap"
+  />
+</CardGrid>
+
+---
+
+## Next Steps
+
+- [Governance](/docs/fundamentals/governance) — How SORA Parliament governs the economy
+- [SORA Nexus](/docs/fundamentals/sora-nexus) — The next evolution of SORA tokenomics

@@ -1,0 +1,369 @@
+---
+title: "Polkadot Bridge (XCM)"
+description: "Cross-chain messaging and parachain connectivity with Polkadot"
+source: iroha_docs
+lastVerified: 2025-12-07
+sidebar:
+  label: Polkadot (XCM)
+  order: 2
+  badge:
+    text: Technical
+    variant: note
+---
+
+import { Card, CardGrid, Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::note[Technical Documentation]
+This documentation covers SORA's integration with the Polkadot ecosystem through XCM.
+[Polkadot XCM Documentation](https://wiki.polkadot.network/docs/learn-crosschain)
+:::
+
+# Polkadot Bridge (XCM)
+
+SORA v2 operates as a [parachain](/glossary/parachain) in the [Polkadot](/glossary/polkadot) ecosystem, enabling native cross-chain communication through [XCM (Cross-Consensus Messaging)](/glossary/xcm). This integration provides shared security, interoperability with other parachains, and access to the broader Polkadot DeFi ecosystem.
+
+## Key Features
+
+<CardGrid>
+  <Card title="Shared Security" icon="approve-check">
+    Secured by Polkadot's relay chain validators.
+  </Card>
+  <Card title="Native XCM" icon="random">
+    Direct messaging with other parachains.
+  </Card>
+  <Card title="Asset Transfers" icon="document">
+    Move tokens between Polkadot chains.
+  </Card>
+  <Card title="Remote Execution" icon="rocket">
+    Execute transactions on other chains.
+  </Card>
+</CardGrid>
+
+---
+
+## SORA as a Parachain
+
+### Parachain Architecture
+
+```
+┌───────────────────────────────────────────────────────┐
+│                  Polkadot Relay Chain                  │
+│                   (Shared Security)                    │
+└───────────┬───────────────┬───────────────┬───────────┘
+            │               │               │
+    ┌───────▼───────┐ ┌─────▼─────┐ ┌───────▼───────┐
+    │    SORA       │ │   Acala   │ │   Moonbeam    │
+    │  Parachain    │ │ Parachain │ │   Parachain   │
+    │               │ │           │ │               │
+    │ ┌───────────┐ │ │           │ │               │
+    │ │ Polkaswap │ │ │           │ │               │
+    │ │   DEX     │ │ │           │ │               │
+    │ └───────────┘ │ │           │ │               │
+    └───────────────┘ └───────────┘ └───────────────┘
+```
+
+### Benefits of Parachain Status
+
+| Benefit | Description |
+|---------|-------------|
+| **Security** | Validators shared with relay chain |
+| **Finality** | Blocks finalized by relay chain |
+| **Interop** | Native XCM with all parachains |
+| **Upgrades** | Forkless runtime upgrades |
+
+---
+
+## XCM Overview
+
+### What is XCM?
+
+XCM is a messaging format that allows different consensus systems to communicate:
+
+- **Cross-Consensus** — Works across different blockchains
+- **Messaging** — Structured instruction format
+- **Versioned** — Backward compatible upgrades
+
+### XCM Instruction Types
+
+<Tabs>
+  <TabItem label="Asset Transfer">
+    Move assets between chains:
+    
+    ```rust
+    Xcm(vec![
+        // Withdraw from origin
+        WithdrawAsset(assets.clone()),
+        
+        // Buy execution on destination
+        BuyExecution { 
+            fees: fee_asset,
+            weight_limit: Unlimited 
+        },
+        
+        // Deposit to recipient
+        DepositAsset {
+            assets: Wild(All),
+            beneficiary: destination_account,
+        },
+    ])
+    ```
+  </TabItem>
+  <TabItem label="Remote Call">
+    Execute logic on another chain:
+    
+    ```rust
+    Xcm(vec![
+        WithdrawAsset(fees.clone()),
+        BuyExecution { fees, weight_limit: Unlimited },
+        
+        // Execute call on remote chain
+        Transact {
+            origin_kind: OriginKind::SovereignAccount,
+            require_weight_at_most: Weight::MAX,
+            call: encoded_call.into(),
+        },
+    ])
+    ```
+  </TabItem>
+  <TabItem label="Query Response">
+    Request information from another chain:
+    
+    ```rust
+    Xcm(vec![
+        // Query account balance on remote chain
+        QueryHolding {
+            query_id: 42,
+            dest: destination,
+            assets: Wild(All),
+            max_response_weight: Weight::MAX,
+        },
+    ])
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## Asset Transfers
+
+### Transferring to SORA
+
+From another parachain to SORA:
+
+```rust
+// On source parachain
+let xcm_message = Xcm(vec![
+    WithdrawAsset(MultiAssets::from(vec![
+        (GeneralIndex(asset_id), amount).into()
+    ])),
+    InitiateReserveWithdraw {
+        assets: Wild(All),
+        reserve: SORA_PARACHAIN_LOCATION,
+        xcm: Xcm(vec![
+            BuyExecution { 
+                fees: (GeneralIndex(XOR_ID), fee).into(),
+                weight_limit: Unlimited,
+            },
+            DepositAsset {
+                assets: Wild(All),
+                beneficiary: sora_account,
+            },
+        ]),
+    },
+]);
+
+pallet_xcm::send(origin, dest, xcm_message)?;
+```
+
+### Transferring from SORA
+
+From SORA to another parachain:
+
+```rust
+// On SORA
+let xcm_message = Xcm(vec![
+    WithdrawAsset(MultiAssets::from(vec![
+        (GeneralIndex(ASSET_ID), amount).into()
+    ])),
+    InitiateTeleport {
+        assets: Wild(All),
+        dest: DESTINATION_PARACHAIN,
+        xcm: Xcm(vec![
+            BuyExecution { fees, weight_limit: Unlimited },
+            DepositAsset {
+                assets: Wild(All),
+                beneficiary: recipient,
+            },
+        ]),
+    },
+]);
+```
+
+---
+
+## Supported Chains
+
+### Direct XCM Channels
+
+| Chain | Direction | Assets |
+|-------|-----------|--------|
+| Polkadot Relay | Bidirectional | DOT |
+| Acala | Bidirectional | ACA, aUSD, XOR |
+| Moonbeam | Bidirectional | GLMR, XOR |
+| Astar | Bidirectional | ASTR, XOR |
+
+### Asset Registry
+
+SORA maintains a registry of foreign assets:
+
+```rust
+// Query registered foreign assets
+let foreign_assets = api.query.xcmPallet.foreignAssets.entries();
+
+// Each asset maps to a MultiLocation
+// Example: DOT from relay chain
+MultiLocation {
+    parents: 1,
+    interior: Here,
+}
+```
+
+---
+
+## Technical Details
+
+### MultiLocation
+
+Assets and accounts are identified by MultiLocation:
+
+```rust
+// SORA on Polkadot
+MultiLocation {
+    parents: 0,
+    interior: X1(Parachain(SORA_PARA_ID)),
+}
+
+// XOR on SORA
+MultiLocation {
+    parents: 0,
+    interior: X2(
+        Parachain(SORA_PARA_ID),
+        GeneralKey(XOR_ASSET_ID),
+    ),
+}
+
+// Account on SORA
+MultiLocation {
+    parents: 0,
+    interior: X2(
+        Parachain(SORA_PARA_ID),
+        AccountId32 { network: None, id: account_bytes },
+    ),
+}
+```
+
+### Weight and Fees
+
+XCM operations consume weight:
+
+| Operation | Approximate Weight |
+|-----------|-------------------|
+| WithdrawAsset | 1,000,000 |
+| DepositAsset | 1,000,000 |
+| BuyExecution | 500,000 |
+| Transact | Variable |
+
+<Aside type="tip">
+Always include sufficient fees in `BuyExecution` to ensure your message is processed.
+</Aside>
+
+---
+
+## Polkaswap XCM Integration
+
+### Trading Cross-Chain Assets
+
+[Polkaswap](/glossary/polkaswap) can trade assets from any connected parachain:
+
+1. **Receive via XCM** — Assets bridged to SORA
+2. **Wrap if needed** — Foreign assets wrapped
+3. **Trade on DEX** — Swap for any listed pair
+4. **Send via XCM** — Transfer results to destination
+
+### Liquidity Aggregation
+
+Polkaswap aggregates liquidity across:
+
+- Native SORA pools
+- XCM-bridged assets
+- Ethereum-bridged assets (via HASHI)
+
+---
+
+## SORA v3 Transition
+
+### Current State (v2)
+
+SORA v2 is a Substrate-based parachain on Polkadot.
+
+### Future State (v3)
+
+[SORA v3](/glossary/sora-v3) transitions to Hyperledger Iroha 3:
+
+| Aspect | v2 (Current) | v3 (Planned) |
+|--------|--------------|--------------|
+| Framework | Substrate | Iroha 3 |
+| XCM | Native | Via bridge |
+| Polkadot | Parachain | Bridge connection |
+
+<Aside type="note">
+SORA v3 will maintain Polkadot connectivity through dedicated bridge infrastructure, ensuring continued interoperability.
+</Aside>
+
+---
+
+## Development
+
+### Testing XCM
+
+Use local relay chain for testing:
+
+```bash
+# Start local Polkadot relay
+zombienet spawn config.toml
+
+# Deploy SORA parachain
+./target/release/sora-parachain \
+    --collator \
+    --chain sora-local
+```
+
+### Debugging
+
+Common XCM issues:
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `TooExpensive` | Insufficient fees | Increase BuyExecution amount |
+| `AssetNotFound` | Unregistered asset | Register asset first |
+| `LocationNotFound` | Wrong destination | Check MultiLocation format |
+| `Barrier` | Security filter | Verify allowed origins |
+
+---
+
+## Learn More
+
+<CardGrid>
+  <Card title="HASHI Bridge" icon="random">
+    [Ethereum connectivity](/docs/technical/bridges/ethereum)
+  </Card>
+  <Card title="TON Bridge" icon="rocket">
+    [TON ecosystem integration](/docs/technical/bridges/ton)
+  </Card>
+  <Card title="Polkaswap" icon="star">
+    [Cross-chain DEX](/docs/products/polkaswap)
+  </Card>
+  <Card title="XCM Docs" icon="external">
+    [Polkadot XCM documentation](https://wiki.polkadot.network/docs/learn-crosschain)
+  </Card>
+</CardGrid>

@@ -18,7 +18,7 @@ import BasicScripts from '~/components/common/BasicScripts.astro';
 import SearchModal from '~/components/SearchModal.astro';
 import SchemaMarkup from '~/components/SEO/SchemaMarkup.astro';
 import CustomStyles from '~/components/CustomStyles.astro';
-import SpeedInsights from '@vercel/speed-insights/astro';
+// import SpeedInsights from '@vercel/speed-insights/astro'; // Disabled - causes 404 locally
 // import { Analytics as VercelAnalytics } from '@vercel/analytics/astro';
 
 // Default to V2 mode unless explicitly disabled
@@ -69,7 +69,7 @@ const canonicalHref = metadata.canonical ?? new URL(Astro.url.pathname, SITE.sit
     <BasicScripts />
     {/* <SimpleCookieConsent /> */}
     <SearchModal />
-    <SpeedInsights />
+    {/* <SpeedInsights /> */}
     {/* <VercelAnalytics /> */}
   </body>
 </html>

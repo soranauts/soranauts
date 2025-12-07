@@ -1,0 +1,29 @@
+---
+/**
+ * Custom Starlight SiteTitle Component
+ * 
+ * Links to /docs (docs home) instead of / (site root).
+ */
+---
+
+<a href="/docs" class="site-title sl-flex">
+  <span translate="no">
+    SORA Codex
+  </span>
+</a>
+
+<style>
+  .site-title {
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--sl-color-text-accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  .site-title:hover {
+    opacity: 0.8;
+  }
+</style>

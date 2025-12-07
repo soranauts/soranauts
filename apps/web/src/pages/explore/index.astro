@@ -112,7 +112,7 @@ const enabledMetadata: MetaData = {
     url: 'https://soranauts.com/explore',
     images: [
       {
-        url: 'https://soranauts.com/og/og-sora-explorer.jpg',
+        url: 'https://soranauts.com/og/sora-explorer.jpg',
         width: 1200,
         height: 630,
       },
@@ -171,9 +171,7 @@ const quickPathSections = quickPaths.map((path) => ({
   <main
     id="main-content"
     class="tag-hub-page px-4 md:px-6 lg:px-12 pt-8 md:pt-10 lg:pt-12 pb-12 md:pb-16 lg:pb-20 mx-auto max-w-7xl"
-    data-pagefind-body
-    data-pagefind-meta={pagefindMeta ? JSON.stringify(pagefindMeta) : undefined}
-    data-pagefind-filter={isEnabled ? 'type:tag-collection' : undefined}
+    data-pagefind-ignore="all"
   >
     <section class="tag-hub-hero">
       <span class="tag-hub-hero__kicker">SORA Explorer</span>
