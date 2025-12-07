@@ -105,20 +105,16 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'SORA Codex',
-      // Disable Starlight's built-in Pagefind - we use our own unified search
-      pagefind: false,
+      // Pagefind handled by Starlight - main site pages use data-pagefind-ignore
       // Custom CSS with Soranauts design tokens
       customCss: ['./src/styles/starlight-custom.css'],
       // Custom components for Soranauts integration
       components: {
         // Custom header with glossary/blog navigation links
         Header: './src/components/starlight/Header.astro',
-        // Custom search trigger button
-        Search: './src/components/starlight/Search.astro',
-        // Custom head to include SearchModal at document level
-        Head: './src/components/starlight/Head.astro',
-        // Custom content panel with Pagefind metadata for unified search
-        ContentPanel: './src/components/starlight/ContentPanel.astro',
+        // Custom site title that links to /docs instead of /
+        SiteTitle: './src/components/starlight/SiteTitle.astro',
+        // ContentPanel removed - let Starlight handle Pagefind indexing natively
       },
       // Minimal sidebar for initial setup - will expand in Week 2
       sidebar: [
@@ -231,7 +227,8 @@ export default defineConfig({
         tabler: () => import('@iconify-json/tabler/icons.json'),
       },
     }),
-    pagefindIntegration,
+    // pagefindIntegration disabled - Starlight handles Pagefind for /docs
+    // The main site search uses its own SearchModal with glossary JSON
 
     // ...whenExternalScripts(() =>
     //   partytown({

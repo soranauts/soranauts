@@ -281,7 +281,96 @@
 }
 
 /* ==========================================================================
-   9. Hero/Splash pages
+   9. Search Modal - Match official Starlight styling
+   ========================================================================== */
+
+/* Make search modal background solid, not blurred */
+[data-pagefind-ui] {
+  --pagefind-ui-background: rgb(var(--sl-color-black)) !important;
+}
+
+site-search dialog {
+  background: rgb(var(--sl-color-black)) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+site-search dialog::backdrop {
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* Search results container */
+.pagefind-ui__results-area {
+  background: rgb(var(--sl-color-black)) !important;
+}
+
+/* Result grouping - parent pages */
+.pagefind-ui__result {
+  background: rgb(var(--sl-color-gray-6)) !important;
+  border-radius: 0.5rem !important;
+  margin-bottom: 0.75rem !important;
+  padding: 1rem !important;
+  border: 1px solid rgb(var(--sl-color-gray-5)) !important;
+}
+
+/* Sub-results - tree structure */
+.pagefind-ui__result-nested {
+  margin-left: 1.5rem !important;
+  padding-left: 1rem !important;
+  border-left: 2px solid rgb(var(--sl-color-gray-4)) !important;
+  margin-top: 0.5rem !important;
+}
+
+/* Tree line before sub-results */
+.pagefind-ui__result-nested::before {
+  content: "├─" !important;
+  position: absolute !important;
+  left: -1.25rem !important;
+  color: rgb(var(--sl-color-gray-4)) !important;
+  font-family: monospace !important;
+}
+
+.pagefind-ui__result-nested:last-child::before {
+  content: "└─" !important;
+}
+
+/* Page title styling */
+.pagefind-ui__result-title {
+  font-weight: 600 !important;
+  color: rgb(var(--sl-color-white)) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+/* Add document icon before page titles */
+.pagefind-ui__result-link::before {
+  content: "📄" !important;
+  margin-right: 0.5rem !important;
+}
+
+/* Sub-result titles - smaller, no icon */
+.pagefind-ui__result-nested .pagefind-ui__result-link::before {
+  content: "" !important;
+}
+
+/* Light mode adjustments */
+:root[data-theme='light'] site-search dialog {
+  background: rgb(255, 255, 255) !important;
+}
+
+:root[data-theme='light'] .pagefind-ui__result {
+  background: rgb(var(--sl-color-gray-6)) !important;
+  border-color: rgb(var(--sl-color-gray-4)) !important;
+}
+
+:root[data-theme='light'] .pagefind-ui__result-nested {
+  border-left-color: rgb(var(--sl-color-gray-4)) !important;
+}
+
+/* ==========================================================================
+   10. Hero/Splash pages
    ========================================================================== */
 
 .hero {

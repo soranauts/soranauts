@@ -48,14 +48,14 @@ const {
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
 
-const primaryLinkLabels = new Set(['Blog', 'Explore', 'SORA Explorer', 'Glossary']);
+const primaryLinkLabels = new Set(['Blog', 'Explore', 'SORA Explorer', 'Glossary', 'Docs']);
 const primaryLinks = links.filter(({ text }) => text && primaryLinkLabels.has(text));
 const secondaryLinks = links.filter(({ text }) => !text || !primaryLinkLabels.has(text));
 const showLayeredLogo = import.meta.env.NAV_LOGO_LAYERED === 'true';
 
 const linkMap = new Map<string, MenuLink>(links.map((link) => [link.text ?? '', link]));
 
-const desktopNavOrder = ['Explore', 'Blog', 'Glossary', 'Features', 'About', 'Donate'];
+const desktopNavOrder = ['Explore', 'Docs', 'Blog', 'Glossary', 'Features', 'About', 'Donate'];
 const desktopNavLinks = desktopNavOrder
   .map((label) => linkMap.get(label))
   .filter((link): link is MenuLink => Boolean(link));
