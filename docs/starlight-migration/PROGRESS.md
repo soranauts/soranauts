@@ -2,7 +2,7 @@
 
 > **Started:** December 7, 2025  
 > **Target Completion:** 5-6 weeks  
-> **Current Phase:** Week 1 - Foundation
+> **Current Phase:** Week 2 - Level 1 Content
 
 ---
 
@@ -10,8 +10,8 @@
 
 | Week | Phase | Status | Notes |
 |------|-------|--------|-------|
-| 1 | Foundation | 🔄 In Progress | Day 1-2 complete |
-| 2 | Level 1 Content | ⬜ Not Started | |
+| 1 | Foundation | ✅ Complete | All items done |
+| 2 | Level 1 Content | 🔄 In Progress | Fundamentals complete, Products next |
 | 3 | Level 2 + Archive | ⬜ Not Started | |
 | 4 | Search + Automation | ⬜ Not Started | |
 | 5 | Testing + Polish | ⬜ Not Started | |
@@ -30,16 +30,16 @@
 - [x] Test basic `/docs` route works
 
 ### Day 3-4: Design Token Integration
-- [ ] Create `starlight-custom.css`
-- [ ] Map Soranauts colors to Starlight variables
-- [ ] Verify dark mode works
-- [ ] Test badge colors
+- [x] Create `starlight-custom.css`
+- [x] Map Soranauts colors to Starlight variables
+- [x] Verify dark mode works
+- [x] Test badge colors
 
 ### Day 5: Route Configuration
-- [ ] Verify no conflicts with `/glossary/*`
-- [ ] Verify no conflicts with `/blog/*`
-- [ ] Create custom Header component
-- [ ] Create custom Search component (placeholder)
+- [x] Verify no conflicts with `/glossary/*`
+- [x] Verify no conflicts with `/blog/*`
+- [x] Create custom Header component
+- [x] Create custom Search component (placeholder)
 
 ### Week 1 Blockers
 - None currently
