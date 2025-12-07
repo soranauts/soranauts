@@ -1,0 +1,334 @@
+/**
+ * Starlight Custom Styles - Soranauts Design Tokens
+ * 
+ * Maps Soranauts design system to Starlight CSS custom properties.
+ * Reference: DESIGN-TOKENS.md
+ * 
+ * Starlight variables reference:
+ * https://starlight.astro.build/guides/css-and-tailwind/#theming
+ */
+
+/* ==========================================================================
+   1. Color Tokens - Light Mode (Default)
+   ========================================================================== */
+
+:root {
+  /* Brand Colors */
+  --sl-color-accent: 227, 36, 45;           /* #E3242D - SORA Red */
+  --sl-color-accent-low: 45, 7, 9;          /* Dark red for backgrounds */
+  --sl-color-accent-high: 255, 200, 203;    /* Light red for text on dark */
+
+  /* Text Colors */
+  --sl-color-white: 229, 231, 235;          /* #E5E7EB - Main text (dark mode) */
+  --sl-color-gray-1: 229, 231, 235;         /* Headings */
+  --sl-color-gray-2: 156, 163, 175;         /* #9CA3AF - Muted text */
+  --sl-color-gray-3: 107, 114, 128;         /* #6B7280 - Soft text */
+  --sl-color-gray-4: 55, 65, 81;            /* Borders */
+  --sl-color-gray-5: 35, 39, 51;            /* #232733 - Subtle borders */
+  --sl-color-gray-6: 20, 24, 33;            /* #141821 - Soft backgrounds */
+  --sl-color-black: 12, 15, 20;             /* #0C0F14 - Surface */
+
+  /* Background */
+  --sl-color-bg: var(--sl-color-black);
+  --sl-color-bg-nav: rgba(12, 15, 20, 0.95);
+  --sl-color-bg-sidebar: var(--sl-color-black);
+  --sl-color-bg-inline-code: var(--sl-color-gray-6);
+
+  /* Hairline/Borders */
+  --sl-color-hairline: var(--sl-color-gray-5);
+  --sl-color-hairline-light: var(--sl-color-gray-6);
+
+  /* Typography */
+  --sl-font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --sl-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Sizing */
+  --sl-nav-height: 4rem;
+  --sl-sidebar-width: 18rem;
+  --sl-content-width: 50rem;
+
+  /* Badge Colors - Category mapping from taxonomy */
+  --sl-badge-default-bg: var(--sl-color-gray-6);
+  --sl-badge-default-text: var(--sl-color-gray-1);
+  --sl-badge-default-border: var(--sl-color-gray-5);
+}
+
+/* ==========================================================================
+   2. Light Mode Override
+   ========================================================================== */
+
+:root[data-theme='light'] {
+  /* Accent stays the same */
+  --sl-color-accent: 227, 36, 45;           /* #E3242D - SORA Red */
+  --sl-color-accent-low: 255, 235, 236;     /* Light red background */
+  --sl-color-accent-high: 150, 20, 27;      /* Dark red for text */
+
+  /* Text Colors - Inverted for light mode */
+  --sl-color-white: 17, 24, 39;             /* #111827 - Main text */
+  --sl-color-gray-1: 17, 24, 39;            /* Headings */
+  --sl-color-gray-2: 75, 85, 99;            /* #4B5563 - Muted */
+  --sl-color-gray-3: 107, 114, 128;         /* #6B7280 - Soft */
+  --sl-color-gray-4: 209, 213, 219;         /* #D1D5DB - Borders */
+  --sl-color-gray-5: 229, 231, 235;         /* #E5E7EB - Subtle */
+  --sl-color-gray-6: 243, 244, 246;         /* Light backgrounds */
+  --sl-color-black: 255, 255, 255;          /* #FFFFFF - Surface */
+
+  /* Background */
+  --sl-color-bg: 244, 245, 247;             /* #F4F5F7 - Page bg */
+  --sl-color-bg-nav: rgba(255, 255, 255, 0.95);
+  --sl-color-bg-sidebar: 255, 255, 255;
+}
+
+/* ==========================================================================
+   3. Starlight Component Overrides
+   ========================================================================== */
+
+/* Header/Nav - Match main site */
+.header {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Sidebar - Refined styling */
+.sidebar-content {
+  padding-top: 1rem;
+}
+
+/* Badge variants - Starlight sidebar badges */
+.sl-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+/* Success badge (Official) - Green */
+.sl-badge.success,
+[data-badge-variant="success"] {
+  --sl-color-bg-badge: 34, 197, 94;         /* #22C55E */
+  background-color: rgba(34, 197, 94, 0.15);
+  color: rgb(34, 197, 94);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* Note badge (Technical) - Blue */
+.sl-badge.note,
+[data-badge-variant="note"] {
+  --sl-color-bg-badge: 56, 189, 248;        /* #38BDF8 */
+  background-color: rgba(56, 189, 248, 0.15);
+  color: rgb(56, 189, 248);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+/* Caution badge (Archive/Historical) - Yellow/Orange */
+.sl-badge.caution,
+[data-badge-variant="caution"] {
+  --sl-color-bg-badge: 251, 191, 36;        /* #FBBF24 */
+  background-color: rgba(251, 191, 36, 0.15);
+  color: rgb(251, 191, 36);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+/* Danger badge - Red (for deprecation, etc.) */
+.sl-badge.danger,
+[data-badge-variant="danger"] {
+  --sl-color-bg-badge: 227, 36, 45;         /* #E3242D - SORA Red */
+  background-color: rgba(227, 36, 45, 0.15);
+  color: rgb(227, 36, 45);
+  border: 1px solid rgba(227, 36, 45, 0.3);
+}
+
+/* Tip badge - Purple */
+.sl-badge.tip,
+[data-badge-variant="tip"] {
+  --sl-color-bg-badge: 124, 58, 237;        /* #7C3AED */
+  background-color: rgba(124, 58, 237, 0.15);
+  color: rgb(168, 130, 255);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+/* ==========================================================================
+   4. Asides/Callouts - Match Soranauts style
+   ========================================================================== */
+
+.starlight-aside {
+  border-radius: 0.5rem;
+  border-left-width: 4px;
+}
+
+.starlight-aside--tip {
+  --sl-color-asides-text-accent: rgb(124, 58, 237);
+  border-left-color: rgb(124, 58, 237);
+  background-color: rgba(124, 58, 237, 0.08);
+}
+
+.starlight-aside--note {
+  --sl-color-asides-text-accent: rgb(56, 189, 248);
+  border-left-color: rgb(56, 189, 248);
+  background-color: rgba(56, 189, 248, 0.08);
+}
+
+.starlight-aside--caution {
+  --sl-color-asides-text-accent: rgb(251, 191, 36);
+  border-left-color: rgb(251, 191, 36);
+  background-color: rgba(251, 191, 36, 0.08);
+}
+
+.starlight-aside--danger {
+  --sl-color-asides-text-accent: rgb(227, 36, 45);
+  border-left-color: rgb(227, 36, 45);
+  background-color: rgba(227, 36, 45, 0.08);
+}
+
+/* ==========================================================================
+   5. Links - Match Soranauts link behavior
+   ========================================================================== */
+
+/* Content links */
+.sl-markdown-content a:not(.sl-badge):not([class*="card"]) {
+  color: rgb(227, 36, 45);                  /* SORA Red */
+  text-decoration: underline;
+  text-decoration-color: rgba(227, 36, 45, 0.4);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+}
+
+.sl-markdown-content a:not(.sl-badge):not([class*="card"]):hover {
+  color: rgb(241, 61, 70);                  /* #F13D46 - hover */
+  text-decoration-color: rgb(241, 61, 70);
+}
+
+/* Light mode links */
+:root[data-theme='light'] .sl-markdown-content a:not(.sl-badge):not([class*="card"]) {
+  color: rgb(227, 36, 45);
+  text-decoration-color: rgba(227, 36, 45, 0.5);
+}
+
+/* Glossary links - dotted underline, muted until hover */
+.sl-markdown-content a.glossary,
+.sl-markdown-content a[href^="/glossary/"] {
+  color: rgb(156, 163, 175);                /* Muted */
+  text-decoration: underline dotted;
+  text-decoration-color: rgba(156, 163, 175, 0.4);
+  cursor: help;
+}
+
+.sl-markdown-content a.glossary:hover,
+.sl-markdown-content a[href^="/glossary/"]:hover {
+  color: rgb(227, 36, 45);                  /* SORA Red on hover */
+  text-decoration-color: rgb(227, 36, 45);
+  text-decoration-style: solid;
+}
+
+/* ==========================================================================
+   6. Cards - LinkCard and Card components
+   ========================================================================== */
+
+.card {
+  border-radius: 0.75rem;
+  border: 1px solid rgb(var(--sl-color-gray-5));
+  background: rgb(var(--sl-color-gray-6));
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.card:hover {
+  border-color: rgba(227, 36, 45, 0.5);
+  background: rgba(227, 36, 45, 0.05);
+}
+
+/* ==========================================================================
+   7. Code Blocks
+   ========================================================================== */
+
+.expressive-code {
+  --ec-codeBg: rgb(20, 24, 33);             /* Dark surface */
+  --ec-codeFont: var(--sl-font-mono);
+  border-radius: 0.5rem;
+}
+
+:root[data-theme='light'] .expressive-code {
+  --ec-codeBg: rgb(243, 244, 246);
+}
+
+/* ==========================================================================
+   8. Tables
+   ========================================================================== */
+
+.sl-markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.sl-markdown-content th {
+  background-color: rgb(var(--sl-color-gray-6));
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid rgb(var(--sl-color-gray-5));
+}
+
+.sl-markdown-content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgb(var(--sl-color-gray-5));
+}
+
+.sl-markdown-content tr:hover td {
+  background-color: rgba(var(--sl-color-gray-6), 0.5);
+}
+
+/* ==========================================================================
+   9. Hero/Splash pages
+   ========================================================================== */
+
+.hero {
+  --sl-color-text-accent: rgb(227, 36, 45);
+}
+
+.hero .action.primary {
+  background: rgb(227, 36, 45);
+  border-color: rgb(227, 36, 45);
+  color: white;
+}
+
+.hero .action.primary:hover {
+  background: rgb(241, 61, 70);
+  border-color: rgb(241, 61, 70);
+}
+
+/* ==========================================================================
+   10. Category Badge Colors (for future use in docs)
+   ========================================================================== */
+
+/* Token category - Orange */
+[data-category="token"] {
+  --category-color: 249, 115, 22;           /* #F97316 */
+}
+
+/* Technology category - SORA Red */
+[data-category="technology"] {
+  --category-color: 227, 36, 45;            /* #E3242D */
+}
+
+/* Governance category - Purple */
+[data-category="governance"] {
+  --category-color: 124, 58, 237;           /* #7C3AED */
+}
+
+/* DeFi category - Green */
+[data-category="defi"] {
+  --category-color: 21, 128, 61;            /* #15803D */
+}
+
+/* Network category - Blue */
+[data-category="network"] {
+  --category-color: 37, 99, 235;            /* #2563EB */
+}
+
+/* Economics category - Pink */
+[data-category="economics"] {
+  --category-color: 190, 24, 93;            /* #BE185D */
+}
