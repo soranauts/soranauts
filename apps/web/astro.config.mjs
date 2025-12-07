@@ -109,6 +109,13 @@ export default defineConfig({
       pagefind: false,
       // Custom CSS with Soranauts design tokens
       customCss: ['./src/styles/starlight-custom.css'],
+      // Custom components for Soranauts integration
+      components: {
+        // Custom header with glossary/blog navigation links
+        Header: './src/components/starlight/Header.astro',
+        // Custom search trigger (unified modal in Week 4)
+        Search: './src/components/starlight/Search.astro',
+      },
       // Minimal sidebar for initial setup - will expand in Week 2
       sidebar: [
         {
