@@ -126,17 +126,7 @@ const enhancedMetadata = {
     <article 
       class:list={{ 'article-content': GLOSSARY_V2 }}
       data-pagefind-body
-      data-pagefind-filter={`type:article,category:${post.category || 'uncategorized'}`}
-      data-pagefind-meta={JSON.stringify({
-        type: 'article',
-        title: post.title,
-        date: post.publishDate.toISOString(),
-        category: post.category || '',
-        tags: post.tags || [],
-        readingTime: actualReadingTime ?? null,
-        description: post.excerpt || '',
-        url: `/blog/${post.slug}/`
-      })}
+      data-pagefind-meta="type:article"
     >
       <slot />
     </article>

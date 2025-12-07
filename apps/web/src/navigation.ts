@@ -13,6 +13,7 @@ type NavigationSection = {
 };
 
 const headerLinks: NavigationLink[] = [
+  { text: 'Docs', href: '/docs' },
   { text: 'Blog', href: getBlogPermalink() },
   { text: 'Glossary', href: '/glossary' },
   { text: 'Features', href: '/features' },
@@ -30,6 +31,7 @@ export const headerData = {
 };
 
 const learnLinks: NavigationLink[] = [
+  { text: 'SORA Codex', href: '/docs' },
   { text: 'SORA Glossary', href: '/glossary' },
   { text: 'Tokenomics', href: 'https://wiki.sora.org/tokenomics.html' },
   { text: 'Governance', href: 'https://wiki.sora.org/sora-governance.html' },

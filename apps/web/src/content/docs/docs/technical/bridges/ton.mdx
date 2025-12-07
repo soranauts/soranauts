@@ -1,0 +1,395 @@
+---
+title: "TON Bridge"
+description: "Connecting SORA and The Open Network ecosystems"
+source: iroha_docs
+lastVerified: 2025-12-07
+sidebar:
+  label: TON Bridge
+  order: 3
+  badge:
+    text: Technical
+    variant: note
+---
+
+import { Card, CardGrid, Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::note[Technical Documentation]
+This documentation covers the bridge connecting SORA and TON networks via TONSWAP.
+[TONSWAP](https://tonswap.org) | [TON Documentation](https://docs.ton.org)
+:::
+
+# TON Bridge
+
+The TON Bridge connects the SORA ecosystem with [The Open Network (TON)](https://ton.org), enabling asset transfers and bringing SORA's DeFi infrastructure to TON's 800+ million Telegram users. This bridge is integral to [TONSWAP](/glossary/tonswap) and creates a unified liquidity layer across ecosystems.
+
+## Key Features
+
+<CardGrid>
+  <Card title="Telegram Integration" icon="open-book">
+    Access SORA assets directly from Telegram wallets.
+  </Card>
+  <Card title="XOR Buyback" icon="star">
+    10% of bridge fees buy and burn XOR.
+  </Card>
+  <Card title="Bidirectional" icon="random">
+    Move assets freely between SORA and TON.
+  </Card>
+  <Card title="High Speed" icon="rocket">
+    Leverage TON's fast finality for quick transfers.
+  </Card>
+</CardGrid>
+
+---
+
+## Architecture
+
+### Bridge Overview
+
+```
+┌─────────────────┐                    ┌─────────────────┐
+│      SORA       │                    │       TON       │
+│    Network      │                    │     Network     │
+│                 │                    │                 │
+│  ┌───────────┐  │   Bridge Layer    │  ┌───────────┐  │
+│  │  Bridge   │◄─┼───────────────────┼─►│  Bridge   │  │
+│  │  Pallet   │  │   Validators      │  │ Contract  │  │
+│  └───────────┘  │                    │  └───────────┘  │
+│        │        │                    │        │        │
+│  ┌─────▼─────┐  │                    │  ┌─────▼─────┐  │
+│  │ XOR, VAL  │  │                    │  │  Jettons  │  │
+│  │  PSWAP    │  │                    │  │ (Wrapped) │  │
+│  └───────────┘  │                    │  └───────────┘  │
+└─────────────────┘                    └─────────────────┘
+```
+
+### Bridge Components
+
+| Component | Network | Function |
+|-----------|---------|----------|
+| Bridge Pallet | SORA | Lock/unlock SORA assets |
+| Smart Contract | TON | Mint/burn wrapped assets |
+| Validator Set | Cross-chain | Sign and relay proofs |
+| Relayer | Off-chain | Submit transactions |
+
+---
+
+## Supported Assets
+
+### SORA → TON
+
+| SORA Asset | TON Representation |
+|------------|-------------------|
+| [XOR](/glossary/xor) | wXOR (Jetton) |
+| [VAL](/glossary/val) | wVAL (Jetton) |
+| [PSWAP](/glossary/pswap) | wPSWAP (Jetton) |
+| [TBCD](/glossary/tbcd) | wTBCD (Jetton) |
+
+### TON → SORA
+
+| TON Asset | SORA Representation |
+|-----------|---------------------|
+| TON | wTON (Wrapped) |
+| USDT (TON) | wUSDT-TON |
+| Other Jettons | Governance approved |
+
+<Aside type="note">
+Wrapped tokens maintain a 1:1 peg with their underlying assets through the bridge's lock-and-mint mechanism.
+</Aside>
+
+---
+
+## Bridge Flow
+
+### SORA to TON
+
+<Tabs>
+  <TabItem label="1. Lock">
+    User locks tokens on SORA:
+    
+    ```rust
+    // Lock XOR on SORA
+    ton_bridge::lock(
+        asset: XOR,
+        amount: 1000,
+        ton_recipient: "EQ...",  // TON address
+    )
+    ```
+  </TabItem>
+  <TabItem label="2. Verify">
+    Validators observe and verify:
+    
+    1. Transaction confirmed on SORA
+    2. Validators sign attestation
+    3. Threshold signatures collected
+    4. Proof constructed
+  </TabItem>
+  <TabItem label="3. Mint">
+    Wrapped tokens minted on TON:
+    
+    ```
+    // TON contract mints wXOR
+    mint_jetton(
+        amount: 1000 - fee,
+        to: user_ton_address
+    )
+    ```
+  </TabItem>
+</Tabs>
+
+### TON to SORA
+
+<Tabs>
+  <TabItem label="1. Burn">
+    User burns wrapped tokens on TON:
+    
+    ```
+    // Burn wXOR on TON
+    burn_jetton(
+        amount: 1000,
+        sora_recipient: "cnVk..."
+    )
+    ```
+  </TabItem>
+  <TabItem label="2. Relay">
+    Bridge relays the burn event:
+    
+    1. Monitor TON for burn events
+    2. Collect validator signatures
+    3. Submit unlock request to SORA
+  </TabItem>
+  <TabItem label="3. Unlock">
+    SORA releases locked tokens:
+    
+    ```rust
+    // Automatic unlock on SORA
+    unlock(
+        asset: XOR,
+        amount: 1000 - fee,
+        recipient: user_sora_address
+    )
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## XOR Buyback Mechanism
+
+A unique feature of the TON bridge is the automatic XOR buyback:
+
+### How It Works
+
+```
+Trading Fees
+    │
+    ▼
+┌───────────────┐
+│  Fee Split    │
+│  90% / 10%    │
+└───┬───────┬───┘
+    │       │
+    ▼       ▼
+┌───────┐ ┌───────────┐
+│ LPs   │ │ XOR       │
+│ 90%   │ │ Buyback   │
+└───────┘ │ 10%       │
+          └─────┬─────┘
+                │
+                ▼
+          ┌───────────┐
+          │  Burn     │
+          │  XOR      │
+          └───────────┘
+```
+
+### Impact
+
+| Metric | Effect |
+|--------|--------|
+| XOR Supply | Deflationary pressure |
+| XOR Demand | Continuous buy orders |
+| Ecosystem | Connected economies |
+| Transparency | On-chain tracking |
+
+<Aside type="tip">
+The XOR buyback creates sustainable demand for XOR tokens from TON ecosystem activity.
+</Aside>
+
+---
+
+## Technical Details
+
+### TON Smart Contract
+
+The bridge contract on TON (FunC):
+
+```c
+// Simplified bridge contract structure (FunC syntax)
+void recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) {
+    // Parse message
+    int op = load_uint(in_msg_body, 32);
+    
+    if (op == OP_BRIDGE_DEPOSIT) {
+        // User deposits TON assets to bridge
+        handle_deposit(in_msg_body);
+        return;
+    }
+    
+    if (op == OP_VALIDATOR_RELEASE) {
+        // Validators authorize release
+        verify_signatures(in_msg_body);
+        mint_wrapped_tokens(in_msg_body);
+        return;
+    }
+    
+    if (op == OP_BURN_FOR_BRIDGE) {
+        // User burns wrapped tokens to exit
+        handle_burn(in_msg_body);
+        return;
+    }
+}
+```
+
+### Validator Consensus
+
+Bridge security relies on validator consensus:
+
+| Requirement | Value |
+|-------------|-------|
+| Threshold | 2/3 + 1 validators |
+| Signature Scheme | Ed25519 multisig |
+| Finality Wait | 10+ TON blocks |
+
+### Message Format
+
+Cross-chain messages follow a standard format:
+
+```rust
+struct BridgeMessage {
+    nonce: u64,
+    source_chain: ChainId,
+    dest_chain: ChainId,
+    sender: Address,
+    recipient: Address,
+    asset: AssetId,
+    amount: u128,
+    timestamp: u64,
+}
+```
+
+---
+
+## Integration with TONSWAP
+
+### Unified Trading
+
+[TONSWAP](/glossary/tonswap) leverages the bridge for cross-ecosystem trading:
+
+1. **Bridge assets** — Move XOR/VAL/PSWAP to TON
+2. **Trade on TONSWAP** — Access TON liquidity
+3. **Earn rewards** — LP incentives + XOR buyback
+4. **Bridge back** — Return to SORA when needed
+
+### Telegram Access
+
+The bridge enables Telegram-native DeFi:
+
+- **Telegram wallets** — Native TON wallet integration
+- **Bot interfaces** — Trade via Telegram bots
+- **Social sharing** — Share trades with friends
+- **Mobile-first** — Designed for smartphone users
+
+---
+
+## Fees
+
+### Fee Structure
+
+| Fee Type | Amount | Recipient |
+|----------|--------|-----------|
+| Bridge Fee | 0.1-0.5% | Treasury/Validators |
+| TON Gas | Variable | TON validators |
+| SORA Fee | Minimal | SORA network |
+
+### Fee Optimization
+
+Tips for minimizing fees:
+
+- Batch smaller transfers
+- Bridge during low-activity periods
+- Use appropriate gas settings
+
+---
+
+## Security
+
+### Trust Model
+
+| Layer | Security |
+|-------|----------|
+| Validators | Staked collateral |
+| Contracts | Audited code |
+| Consensus | BFT threshold |
+| Monitoring | 24/7 observation |
+
+### Best Practices
+
+<Aside type="caution">
+Always verify bridge contract addresses before sending tokens. Use official interfaces (TONSWAP, Polkaswap) for transfers.
+</Aside>
+
+- ✅ Use official bridge interfaces
+- ✅ Verify addresses carefully
+- ✅ Start with small test amounts
+- ✅ Monitor transaction status
+- ❌ Don't send tokens directly to contract
+- ❌ Don't share private keys
+
+---
+
+## SORA v3 Integration
+
+### Hub Chain Connectivity
+
+[SORA v3](/glossary/sora-v3) positions the TON bridge as a core component:
+
+```
+                    ┌─────────────┐
+                    │  SORA v3    │
+                    │  Hub Chain  │
+                    └──────┬──────┘
+           ┌───────────────┼───────────────┐
+           │               │               │
+    ┌──────▼──────┐ ┌──────▼──────┐ ┌──────▼──────┐
+    │  Ethereum   │ │   Polkadot  │ │     TON     │
+    │   Bridge    │ │    Bridge   │ │   Bridge    │
+    └─────────────┘ └─────────────┘ └─────────────┘
+```
+
+### Future Enhancements
+
+Planned improvements for v3:
+
+- **Faster finality** — Sub-second transfers
+- **Lower fees** — Optimized relay costs
+- **More assets** — Extended jetton support
+- **Direct CBDC** — Government asset access
+
+---
+
+## Learn More
+
+<CardGrid>
+  <Card title="TONSWAP" icon="rocket">
+    [Trade on TON](/docs/products/tonswap)
+  </Card>
+  <Card title="HASHI Bridge" icon="random">
+    [Ethereum connectivity](/docs/technical/bridges/ethereum)
+  </Card>
+  <Card title="Polkadot Bridge" icon="star">
+    [XCM integration](/docs/technical/bridges/polkadot)
+  </Card>
+  <Card title="XOR Token" icon="document">
+    [Buyback beneficiary](/glossary/xor)
+  </Card>
+</CardGrid>

@@ -559,18 +559,16 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
       </script>
     )}
 
+    {/* Hidden content for Pagefind indexing - no aria-hidden so Pagefind can index */}
     {featureGlossaryV3Enabled && (
-      <article
+      <div
         class="sr-only"
-        aria-hidden="true"
         data-pagefind-body
-        data-pagefind-url={`/glossary/${term.slug}/`}
-        data-pagefind-meta={JSON.stringify(pagefindPayload)}
+        data-pagefind-meta={`type:glossary,term:${displayTermTitle},category:${term.category || ''}`}
       >
-        <span data-pagefind-filter="type:glossary"></span>
-        <span data-pagefind-filter={`category:${term.category}`}></span>
-      <p>{displayDefinition}</p>
-      </article>
+        <p>{displayTermTitle}</p>
+        <p>{displayDefinition}</p>
+      </div>
     )}
 
     {featureGlossaryV3Enabled ? (
@@ -648,13 +646,10 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
       >
         <article
           data-pagefind-body
-          data-pagefind-url={`/glossary/${term.slug}/`}
-          data-pagefind-meta={JSON.stringify(pagefindPayload)}
+          data-pagefind-meta={`type:glossary,term:${displayTermTitle},category:${term.category || ''}`}
           class="prose"
         >
-              <span data-pagefind-filter="type:glossary"></span>
-              <span data-pagefind-filter={`category:${term.category}`}></span>
-              <span class="sr-only" aria-hidden="true">
+              <span class="sr-only">
                 {displayTermTitle} {term.aliases?.join(' ')} {term.category} glossary
               </span>
               <div class="glossary-definition prose max-w-none" set:html={definitionHtml}></div>

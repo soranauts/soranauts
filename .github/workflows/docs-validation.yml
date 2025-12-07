@@ -1,0 +1,148 @@
+# Docs Validation Workflow
+#
+# Validates Starlight documentation on PRs that modify docs content.
+# Checks:
+# - Required frontmatter (title, source)
+# - Archive docs have :::caution callouts
+# - Official docs have success badges
+# - Technical docs have note badges
+# - Build succeeds
+
+name: Docs Validation
+
+on:
+  pull_request:
+    paths:
+      - 'apps/web/src/content/docs/**'
+      - 'scripts/docs-validate.ts'
+      - '.github/workflows/docs-validation.yml'
+  push:
+    branches:
+      - main
+      - 'feature/starlight-*'
+    paths:
+      - 'apps/web/src/content/docs/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run docs validation
+        run: npx tsx scripts/docs-validate.ts
+
+      - name: Build site
+        run: pnpm build
+        env:
+          DISABLE_PAGEFIND: true
+        working-directory: apps/web
+
+  lint-docs:
+    name: Lint Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for broken internal links
+        run: |
+          echo "🔗 Checking for broken internal links..."
+          
+          # Find all MDX files in docs
+          files=$(find apps/web/src/content/docs -name "*.mdx" 2>/dev/null || true)
+          
+          if [ -z "$files" ]; then
+            echo "No MDX files found"
+            exit 0
+          fi
+          
+          # Check for common link issues
+          errors=0
+          
+          # Check for links with #definition anchors (should be removed)
+          if grep -r '#definition' apps/web/src/content/docs --include="*.mdx" 2>/dev/null; then
+            echo "❌ Found links with #definition anchors - these should be removed"
+            errors=$((errors + 1))
+          fi
+          
+          # Check for hardcoded localhost URLs
+          if grep -r 'localhost' apps/web/src/content/docs --include="*.mdx" 2>/dev/null; then
+            echo "❌ Found localhost URLs in docs"
+            errors=$((errors + 1))
+          fi
+          
+          # Check for TODO/FIXME comments
+          if grep -rE '(TODO|FIXME|XXX):' apps/web/src/content/docs --include="*.mdx" 2>/dev/null; then
+            echo "⚠️ Found TODO/FIXME comments in docs (warning only)"
+          fi
+          
+          if [ $errors -gt 0 ]; then
+            echo "❌ Link checks failed with $errors error(s)"
+            exit 1
+          fi
+          
+          echo "✅ All link checks passed"
+
+  report:
+    name: Report Results
+    runs-on: ubuntu-latest
+    needs: [validate, lint-docs]
+    if: always()
+    
+    steps:
+      - name: Check job results
+        run: |
+          echo "## 📚 Documentation Validation Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ needs.validate.result }}" == "success" ]; then
+            echo "✅ **Validation**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Validation**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ needs.lint-docs.result }}" == "success" ]; then
+            echo "✅ **Lint Checks**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Lint Checks**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "For details, check the workflow logs above." >> $GITHUB_STEP_SUMMARY

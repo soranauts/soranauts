@@ -1,0 +1,16 @@
+---
+/**
+ * Custom Starlight Head Component
+ * 
+ * Extends default Starlight head to include the SearchModal at document level.
+ * This ensures the modal can overlay the entire page properly.
+ */
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/Head.astro';
+import SearchModal from '~/components/SearchModal.astro';
+---
+
+<Default {...Astro.props}><slot /></Default>
+
+<!-- SearchModal at document level for proper overlay -->
+<SearchModal />

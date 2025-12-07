@@ -25,7 +25,7 @@ const featureLinks = {
 const featureSignals = [
   {
     icon: 'tabler:vocabulary',
-    title: 'Unified Glossary with 338 terms',
+    title: 'Unified Glossary with 369 terms',
     description: 'MDX-based Nexus terms, SORA ecosystem taxonomy, and canonical tags merged into one searchable, categorized reference.',
   },
   {
@@ -34,14 +34,14 @@ const featureSignals = [
     description: 'Six domain dashboards with quick journeys and trait filters that connect articles to glossary definitions.',
   },
   {
-    icon: 'tabler:search',
-    title: 'Command+K unified search',
-    description: 'Search glossary terms, articles, and Explorer entries from one keyboard-first modal with category filters.',
+    icon: 'tabler:book-2',
+    title: 'SORA Codex Documentation',
+    description: '24 curated pages covering SORA fundamentals, products, technical specs, and historical archive — powered by Starlight.',
   },
   {
-    icon: 'tabler:tags',
-    title: '19 taxonomy categories',
-    description: 'From DeFi and Governance to Cryptography and Consensus — terms organized by domain for faster discovery.',
+    icon: 'tabler:search',
+    title: 'Command+K unified search',
+    description: 'Search glossary terms, articles, docs, and Explorer entries from one keyboard-first modal with category filters.',
   },
 ];
 
@@ -54,7 +54,7 @@ const glossaryFeatures = [
   {
     icon: 'tabler:category',
     title: 'Smart categorization',
-    description: 'Each term assigned to one of 19 categories (Economics, Technology, DeFi, Governance, etc.) for filtered browsing.',
+    description: 'Each term assigned to one of 18 categories (Economics, Technology, DeFi, Governance, etc.) for filtered browsing.',
   },
   {
     icon: 'tabler:link',
@@ -93,14 +93,14 @@ const explorerFeatures = [
 
 const stats = [
   {
-    amount: '338',
+    amount: '369',
     title: 'Glossary terms from Nexus MDX, SORA taxonomy, and canonical tags with verified definitions',
     icon: 'tabler:vocabulary',
   },
   {
-    amount: '19',
-    title: 'Taxonomy categories spanning Economics, Technology, DeFi, Governance, Cryptography, and more',
-    icon: 'tabler:category',
+    amount: '24',
+    title: 'SORA Codex documentation pages covering fundamentals, products, technical specs, and archive',
+    icon: 'tabler:book-2',
   },
   {
     amount: '6',
@@ -108,9 +108,9 @@ const stats = [
     icon: 'tabler:compass',
   },
   {
-    amount: '52',
-    title: 'Economics terms covering XOR, VAL, PSWAP, Token Bonding Curve, and monetary policy',
-    icon: 'tabler:chart-line',
+    amount: '18',
+    title: 'Taxonomy categories spanning Economics, Technology, DeFi, Governance, Cryptography, and more',
+    icon: 'tabler:category',
   },
 ];
 
@@ -119,10 +119,22 @@ const highlightItems = [
     icon: 'tabler:vocabulary',
     title: 'SORA Glossary',
     description:
-      'Browse 338 terms across 19 categories with instant search, category filters, clickable hashtags, and featured terms for quick access to XOR, Polkaswap, TONSWAP, and Kensetsu.',
+      'Browse 369 terms across 18 categories with instant search, category filters, clickable hashtags, and featured terms for quick access to XOR, Polkaswap, TONSWAP, and Kensetsu.',
     callToAction: {
       href: featureLinks.glossary,
       text: 'Explore the Glossary',
+      icon: 'tabler:arrow-up-right',
+      isCardLink: true,
+    },
+  },
+  {
+    icon: 'tabler:book-2',
+    title: 'SORA Codex',
+    description:
+      '24 curated documentation pages covering SORA fundamentals, products, technical specs, and historical archive — searchable and Starlight-powered.',
+    callToAction: {
+      href: '/docs',
+      text: 'Read the Docs',
       icon: 'tabler:arrow-up-right',
       isCardLink: true,
     },
@@ -139,25 +151,13 @@ const highlightItems = [
       isCardLink: true,
     },
   },
-  {
-    icon: 'tabler:search',
-    title: 'Unified Search',
-    description:
-      'Press ⌘K to search glossary terms, articles, and Explorer entries from one modal with type filters, metadata cards, and keyboard navigation.',
-    callToAction: {
-      href: featureLinks.about,
-      text: 'Learn more',
-      icon: 'tabler:arrow-up-right',
-      isCardLink: true,
-    },
-  },
 ];
 
 const searchFeatures = [
   {
     icon: 'tabler:filter',
     title: 'Category filters',
-    description: 'Filter glossary results by any of 19 categories, with counts that update as you type.',
+    description: 'Filter glossary results by any of 18 categories, with counts that update as you type.',
   },
   {
     icon: 'tabler:layout-cards',
@@ -178,9 +178,15 @@ const searchFeatures = [
 
 const timelineItems = [
   {
-    title: 'December 2025 — Glossary expansion to 338 terms',
+    title: 'December 2025 — SORA Codex launch',
     description:
-      'Merged Nexus MDX content, SORA ecosystem taxonomy, and canonical tags into a unified glossary with 19 categories, clickable hashtags, and collapsible category filters.',
+      '24 curated documentation pages powered by Starlight, covering SORA fundamentals, products, technical specs, and historical archive with searchable content.',
+    icon: 'tabler:book-2',
+  },
+  {
+    title: 'December 2025 — Glossary expansion to 369 terms',
+    description:
+      'Merged Nexus MDX content, SORA ecosystem taxonomy, and canonical tags into a unified glossary with 18 categories, clickable hashtags, and collapsible category filters.',
     icon: 'tabler:vocabulary',
   },
   {
@@ -207,7 +213,7 @@ const resourceLinks = [
   {
     icon: 'tabler:vocabulary',
     title: 'SORA Glossary',
-    description: '338 terms across 19 categories with instant search, category filters, and clickable hashtags.',
+    description: '369 terms across 18 categories with instant search, category filters, and clickable hashtags.',
     href: featureLinks.glossary,
   },
   {
@@ -245,7 +251,7 @@ const resourceLinks = [
           Everything you need to understand the SORA ecosystem
         </h1>
         <p class="mx-auto mt-6 max-w-2xl text-lg text-text-muted">
-          The SORA Glossary, Explorer, and unified search work together to make complex blockchain concepts accessible. 338 terms, 19 categories, and growing.
+          The SORA Glossary, Explorer, Codex, and unified search work together to make complex blockchain concepts accessible. 369 terms, 24 docs pages, and growing.
         </p>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
           <Button variant="primary" href={featureLinks.glossary} text="Browse the Glossary" icon="tabler:vocabulary" />
@@ -310,7 +316,7 @@ const resourceLinks = [
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Glossary</p>
         <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">
-          338 terms. 19 categories. One unified reference.
+          369 terms. 18 categories. One unified reference.
         </h2>
         <p class="mt-4 text-lg text-text-muted">
           The SORA Glossary merges Nexus technical documentation, ecosystem taxonomy terms, and canonical tags into a searchable, categorized knowledge base.

@@ -1,0 +1,268 @@
+---
+title: "Polkaswap"
+description: "A next-generation cross-chain liquidity aggregator DEX built on SORA Network"
+source: wiki
+lastVerified: 2025-12-06
+sidebar:
+  label: Polkaswap
+  order: 1
+  badge:
+    text: Official
+    variant: success
+---
+
+import { Card, CardGrid, LinkCard, Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::tip[Official Documentation]
+This content reflects the current Polkaswap as of December 2025.
+[View SORA Wiki - Polkaswap](https://wiki.sora.org/polkaswap.html) | [Launch App](https://polkaswap.io)
+:::
+
+# Polkaswap
+
+[Polkaswap](/glossary/polkaswap) is a next-generation, cross-chain liquidity aggregator decentralized exchange (DEX) built on the [SORA Network](/glossary/sora). Unlike traditional DEXs that rely on a single liquidity source, Polkaswap aggregates liquidity from multiple sources to provide users with the best possible prices.
+
+## Key Features
+
+<CardGrid>
+  <Card title="Liquidity Aggregation" icon="random">
+    Combines liquidity from AMM DEXs, order books, and algorithmic sources for optimal pricing.
+  </Card>
+  <Card title="Cross-Chain Trading" icon="rocket">
+    Trade assets from Ethereum, Polkadot, Kusama, and other networks seamlessly.
+  </Card>
+  <Card title="Smart Routing" icon="setting">
+    Automatically finds the best path for trades to minimize slippage and maximize returns.
+  </Card>
+  <Card title="Reduced Impermanent Loss" icon="star">
+    Multi-source liquidity infrastructure reduces the impact of impermanent loss.
+  </Card>
+</CardGrid>
+
+---
+
+## How Polkaswap Works
+
+### Liquidity Sources
+
+Polkaswap doesn't rely on a single liquidity pool. Instead, it aggregates from multiple sources:
+
+| Source | Description |
+|--------|-------------|
+| **XYK Pools** | Traditional constant-product (x*y=k) liquidity pools |
+| **Token Bonding Curve** | SORA's algorithmic market maker for XOR |
+| **Order Books** | Limit orders from advanced traders |
+| **External DEXs** | Cross-chain liquidity from partner exchanges |
+
+### Smart Routing Algorithm
+
+When you make a trade on Polkaswap:
+
+1. **Query All Sources** — The algorithm checks available liquidity across all sources
+2. **Calculate Optimal Path** — Determines the best route considering fees and slippage
+3. **Split Orders** — May split large orders across multiple sources
+4. **Execute Atomically** — All parts of the trade complete or none do
+
+This approach consistently delivers better prices than single-source DEXs.
+
+---
+
+## Trading on Polkaswap
+
+### Supported Assets
+
+Polkaswap supports a wide range of assets:
+
+- **Native SORA Tokens** — [XOR](/glossary/xor), [VAL](/glossary/val), [PSWAP](/glossary/pswap)
+- **Ethereum Assets** — ETH, ERC-20 tokens via HASHI bridge
+- **Polkadot/Kusama** — DOT, KSM, and parachain tokens
+- **Stablecoins** — [TBCD](/glossary/tbcd), DAI, USDT, and more
+- **NFTs** — Create, trade, and pool NFTs
+
+### Trading Interface
+
+<Tabs>
+  <TabItem label="Swap">
+    The Swap interface is the simplest way to trade:
+    1. Select the token you want to sell
+    2. Select the token you want to buy
+    3. Enter the amount
+    4. Review the quote and slippage
+    5. Confirm the transaction
+  </TabItem>
+  <TabItem label="Limit Orders">
+    For more control, use limit orders:
+    1. Set your desired price
+    2. Specify the amount
+    3. Choose order duration
+    4. Submit and wait for execution
+  </TabItem>
+  <TabItem label="Pool">
+    Provide liquidity to earn PSWAP rewards:
+    1. Select a trading pair
+    2. Add balanced amounts of both tokens
+    3. Receive LP tokens representing your share
+    4. Earn trading fees and PSWAP rewards
+  </TabItem>
+</Tabs>
+
+---
+
+## Liquidity Provision
+
+### Why Provide Liquidity?
+
+Liquidity providers (LPs) earn rewards from multiple sources:
+
+- **Trading Fees** — 0.3% of every swap goes to LPs
+- **PSWAP Rewards** — Additional [PSWAP](/glossary/pswap) token incentives
+- **VAL Rewards** — [VAL](/glossary/val) from network transaction fees
+
+### XYK Pools
+
+[XYK pools](/glossary/xykpools) are constant-product market maker pools where:
+
+```
+x * y = k
+```
+
+Where `x` and `y` are the reserves of two tokens, and `k` is a constant. This formula ensures there's always liquidity available, with prices adjusting based on supply and demand.
+
+### Impermanent Loss Protection
+
+Polkaswap's multi-source liquidity aggregation helps reduce impermanent loss:
+
+- Trades are routed optimally across sources
+- Less reliance on any single pool
+- More stable pricing from diverse liquidity
+
+---
+
+## PSWAP Token
+
+[PSWAP](/glossary/pswap) is the reward token for Polkaswap liquidity providers.
+
+### Tokenomics
+
+| Property | Value |
+|----------|-------|
+| Max Supply | 10 billion PSWAP |
+| Model | Deflationary (decreasing over time) |
+| Fee Allocation | 0.3% of trades → buyback-and-burn |
+| LP Rewards | Initially 90%, decreasing to 35% over 5 years |
+
+### Reward Mechanics
+
+Every trade on Polkaswap contributes to PSWAP distribution:
+
+1. **Trading fees** are collected (0.3% per swap)
+2. **Buyback** — Fees are used to buy PSWAP from the market
+3. **Burn** — Purchased PSWAP is permanently burned
+4. **Remint** — A percentage of burned tokens is reminted for LP rewards
+5. **Distribute** — Rewards are distributed to liquidity providers
+
+<Aside type="note">
+PSWAP rewards follow a vesting schedule. Earned rewards are released over time to encourage long-term participation.
+</Aside>
+
+---
+
+## Cross-Chain Bridges
+
+Polkaswap connects to external blockchains through bridges:
+
+### HASHI Bridge (Ethereum)
+
+The [HASHI bridge](/glossary/hashi) enables trustless transfers between Ethereum and SORA:
+
+- Move ETH and ERC-20 tokens to SORA
+- Trade on Polkaswap with low fees
+- Bridge back to Ethereum when needed
+
+### Polkadot/Kusama
+
+Direct integration with the Polkadot ecosystem:
+
+- Access parachain tokens
+- Benefit from shared security
+- Cross-chain message passing
+
+### TON Bridge
+
+Connection to [TONSWAP](/glossary/tonswap) and the TON ecosystem:
+
+- Trade TON-native assets
+- XOR buyback mechanism
+- Telegram integration
+
+---
+
+## Advanced Features
+
+### NFT Support
+
+Polkaswap supports Non-Fungible Tokens:
+
+- **Mint NFTs** — Create unique tokens with IPFS storage
+- **Trade NFTs** — Buy and sell in the marketplace
+- **Pool NFTs** — Add NFTs to liquidity pools
+- **Divisible NFTs** — Split ownership of high-value items
+
+### Referral Program
+
+Earn rewards by referring new users:
+
+- Get a unique referral link
+- Earn a percentage of referred users' trading fees
+- Track your referrals in the dashboard
+
+---
+
+## Getting Started
+
+<CardGrid>
+  <LinkCard
+    title="Launch Polkaswap"
+    description="Start trading at polkaswap.io"
+    href="https://polkaswap.io"
+  />
+  <LinkCard
+    title="Get XOR"
+    description="Learn about the XOR token"
+    href="/glossary/xor"
+  />
+  <LinkCard
+    title="Fearless Wallet"
+    description="Mobile access to Polkaswap"
+    href="/docs/products/fearless-wallet"
+  />
+  <LinkCard
+    title="PSWAP Rewards"
+    description="Understand liquidity incentives"
+    href="/glossary/pswap"
+  />
+</CardGrid>
+
+---
+
+## Summary
+
+Polkaswap represents the next evolution in decentralized exchanges:
+
+| Traditional DEX | Polkaswap |
+|-----------------|-----------|
+| Single liquidity source | Multi-source aggregation |
+| Higher slippage | Smart routing for better prices |
+| Limited assets | Cross-chain support |
+| Basic swaps only | Swaps, limits, pools, NFTs |
+
+By combining liquidity aggregation, cross-chain bridges, and innovative tokenomics, Polkaswap delivers a trading experience that rivals centralized exchanges while maintaining full decentralization.
+
+---
+
+## Learn More
+
+- [Liquidity Aggregation](/glossary/liquidityaggregation)
+- [Smart Routing](/glossary/smartrouting)
+- [XYK Pools](/glossary/xykpools)
+- [HASHI Bridge](/glossary/hashi)
