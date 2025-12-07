@@ -1,27 +1,54 @@
 ---
 title: Welcome to Soranauts Docs
 description: Documentation for the SORA blockchain ecosystem
+template: splash
+hero:
+  title: Soranauts Documentation
+  tagline: Your comprehensive guide to the SORA decentralized economic system
+  actions:
+    - text: Get Started
+      link: /docs/fundamentals
+      icon: right-arrow
+    - text: Explore Glossary
+      link: /glossary
+      variant: minimal
+      icon: open-book
 ---
 
-# Welcome to Soranauts Docs
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-This is the new Starlight-powered documentation section for Soranauts.
+## Explore the Docs
 
-## What's Here
+<CardGrid>
+  <LinkCard
+    title="Fundamentals"
+    description="Core concepts about SORA, XOR, and the ecosystem"
+    href="/docs/fundamentals"
+  />
+  <LinkCard
+    title="Glossary"
+    description="369 terms explained — from XOR to Sumeragi"
+    href="/glossary"
+  />
+</CardGrid>
 
-This documentation site will contain:
+## Coming Soon
 
-- **Fundamentals** — Core concepts about SORA, XOR, and the ecosystem
-- **Products** — Guides for Polkaswap, Fearless Wallet, SORA Card, and more
-- **Technical** — Developer documentation and integration guides
-- **Archive** — Historical ecosystem updates and announcements
-
-## Getting Started
-
-For the main glossary of SORA terms, visit the [Glossary](/glossary).
-
----
+<CardGrid stagger>
+  <Card title="Products" icon="puzzle">
+    Guides for Polkaswap, Fearless Wallet, SORA Card, and more
+  </Card>
+  <Card title="Technical" icon="setting">
+    Developer documentation and integration guides
+  </Card>
+  <Card title="Guides" icon="document">
+    Step-by-step tutorials for using SORA products
+  </Card>
+  <Card title="Archive" icon="open-book">
+    Historical ecosystem updates and announcements
+  </Card>
+</CardGrid>
 
 :::note[Under Construction]
-This documentation section is currently being built. More content coming soon!
+This documentation section is actively being built. New content is added regularly.
 :::
