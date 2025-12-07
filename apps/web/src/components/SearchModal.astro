@@ -501,11 +501,17 @@ const SEARCH_ALIAS_MICROCOPY =
 
           const t = typeFromFilters || meta.type || null;
 
-          if (t === 'glossary') {
+          // Skip non-article types
+          if (t === 'glossary' || t === 'docs' || t === 'tag') {
             continue;
           }
 
           let url = r.url || d.url || meta.url || r.id || '#';
+          
+          // Also skip by URL pattern if no type metadata
+          if (url.startsWith('/glossary/') || url.startsWith('/docs/') || url.startsWith('/tag/')) {
+            continue;
+          }
               if (url.endsWith('.html')) {
                 url = url.replace('.html', '');
               }
@@ -574,6 +580,16 @@ const SEARCH_ALIAS_MICROCOPY =
 
         const glossaryResults = [];
 
+        // Debug: log first few results
+        console.log('[searchGlossary] Total results from Pagefind:', withData.length);
+        if (withData.length > 0) {
+          console.log('[searchGlossary] Sample result:', {
+            url: withData[0].d?.url || withData[0].r?.url,
+            meta: withData[0].d?.meta,
+            filters: withData[0].d?.filters
+          });
+        }
+
         for (const { r, d } of withData) {
           const filters = d.filters || {};
           const meta = d.meta || {};
@@ -583,13 +599,22 @@ const SEARCH_ALIAS_MICROCOPY =
                                 : types.includes('article') ? 'article'
                                 : null;
 
-          const t = typeFromFilters || meta.type || null;
+          let url = d.url || r.url || meta.url || '#';
+          
+          // Normalize URL for matching
+          const normalizedUrl = url.replace(/\/index\.html$/, '').replace(/\.html$/, '');
+          
+          // Determine type from metadata or URL pattern (check both /glossary/ and glossary/)
+          const isGlossaryUrl = normalizedUrl.includes('/glossary/') || normalizedUrl.startsWith('glossary/');
+          const t = typeFromFilters || meta.type || (isGlossaryUrl ? 'glossary' : null);
+          
+          // Debug: log all URLs to see what Pagefind returns
+          console.log('[searchGlossary] URL:', url, 'normalized:', normalizedUrl, 'isGlossaryUrl:', isGlossaryUrl, 'type:', t, 'meta.type:', meta.type);
 
           if (t !== 'glossary') {
             continue;
           }
 
-          let url = d.url || r.url || meta.url || '#';
               if (url.endsWith('.html')) {
                 url = url.replace('.html', '');
               }
@@ -687,13 +712,15 @@ const SEARCH_ALIAS_MICROCOPY =
             ? 'article'
             : null;
 
-          const t = typeFromFilters || meta.type || null;
+          let url = d.url || r.url || meta.url || '#';
+          
+          // Determine type from metadata or URL pattern
+          const t = typeFromFilters || meta.type || (url.startsWith('/tag/') ? 'tag' : null);
 
           if (t !== 'tag') {
             continue;
           }
 
-          let url = d.url || r.url || meta.url || '#';
           if (url.endsWith('.html')) {
             url = url.replace('.html', '');
           }
@@ -771,12 +798,6 @@ const SEARCH_ALIAS_MICROCOPY =
             ? 'tag'
             : null;
 
-          const t = typeFromFilters || meta.type || null;
-
-          if (t !== 'docs') {
-            continue;
-          }
-
           let url = d.url || r.url || meta.url || '#';
           if (url.endsWith('.html')) {
             url = url.replace('.html', '');
@@ -786,6 +807,13 @@ const SEARCH_ALIAS_MICROCOPY =
           }
           if (url.endsWith('/') && url !== '/') {
             url = url.slice(0, -1);
+          }
+          
+          // Determine type from metadata or URL pattern
+          const t = typeFromFilters || meta.type || (url.startsWith('/docs') ? 'docs' : null);
+
+          if (t !== 'docs') {
+            continue;
           }
           if (!url.startsWith('http') && !url.startsWith('/')) {
             url = '/' + url;
