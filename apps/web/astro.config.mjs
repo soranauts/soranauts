@@ -179,7 +179,40 @@ export default defineConfig({
           label: 'Archive',
           collapsed: true,
           badge: { text: 'Historical', variant: 'caution' },
-          autogenerate: { directory: 'docs/archive' },
+          items: [
+            { label: 'Timeline', slug: 'docs/archive' },
+            {
+              label: '2025',
+              items: [
+                { label: 'Nexus Announcement', slug: 'docs/archive/2025/sora-nexus-launch' },
+              ],
+            },
+            {
+              label: '2024',
+              items: [
+                { label: 'SORA Card Launch', slug: 'docs/archive/2024/sora-card-launch' },
+                { label: 'Year in Review', slug: 'docs/archive/2024/year-review' },
+              ],
+            },
+            {
+              label: '2023',
+              items: [
+                { label: 'Polkaswap 2.0', slug: 'docs/archive/2023/polkaswap-v2' },
+              ],
+            },
+            {
+              label: '2022',
+              items: [
+                { label: 'Kusama Parachain', slug: 'docs/archive/2022/kusama-parachain' },
+              ],
+            },
+            {
+              label: '2021',
+              items: [
+                { label: 'SORA v2 Launch', slug: 'docs/archive/2021/sora-v2-launch' },
+              ],
+            },
+          ],
         },
       ],
     }),
