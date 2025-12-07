@@ -11,6 +11,7 @@ import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
+import starlight from '@astrojs/starlight';
 import tasks from './src/utils/tasks';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter.mjs';
@@ -100,11 +101,16 @@ export default defineConfig({
   redirects,
 
   output: 'static',
-  legacy: {
-    collections: true
-  },
 
   integrations: [
+    starlight({
+      title: 'Soranauts Docs',
+      // Disable Starlight's built-in Pagefind - we use our own unified search
+      pagefind: false,
+      // Minimal sidebar for initial setup - will expand in Week 2
+      // Let Starlight auto-generate sidebar from docs directory
+      sidebar: [],
+    }),
     tailwind({
       applyBaseStyles: false,
     }),

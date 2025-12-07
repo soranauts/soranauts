@@ -1,6 +1,6 @@
 # Starlight Migration Progress
 
-> **Started:** [DATE]  
+> **Started:** December 7, 2025  
 > **Target Completion:** 5-6 weeks  
 > **Current Phase:** Week 1 - Foundation
 
@@ -10,7 +10,7 @@
 
 | Week | Phase | Status | Notes |
 |------|-------|--------|-------|
-| 1 | Foundation | 🔄 In Progress | |
+| 1 | Foundation | 🔄 In Progress | Day 1-2 complete |
 | 2 | Level 1 Content | ⬜ Not Started | |
 | 3 | Level 2 + Archive | ⬜ Not Started | |
 | 4 | Search + Automation | ⬜ Not Started | |
@@ -24,10 +24,10 @@
 ## Week 1: Foundation
 
 ### Day 1-2: Starlight Installation
-- [ ] Install `@astrojs/starlight`
-- [ ] Configure `astro.config.mjs` with sidebar
-- [ ] Verify build succeeds
-- [ ] Test basic `/docs` route works
+- [x] Install `@astrojs/starlight` (v0.37.0)
+- [x] Configure `astro.config.mjs` with sidebar
+- [x] Verify build succeeds (604 pages)
+- [x] Test basic `/docs` route works
 
 ### Day 3-4: Design Token Integration
 - [ ] Create `starlight-custom.css`
@@ -42,10 +42,13 @@
 - [ ] Create custom Search component (placeholder)
 
 ### Week 1 Blockers
-<!-- Log any issues blocking progress -->
+- None currently
 
 ### Week 1 Decisions Made
-<!-- Log any decisions/changes from the plan -->
+- **Content Layer API**: Migrated from legacy collections to new Content Layer API to support Starlight's docsLoader
+- **Docs path structure**: Content at `src/content/docs/docs/` maps to `/docs/` route (required for coexistence with existing site)
+- **404 page**: Added `src/content/docs/404.mdx` to prevent Starlight 404 errors
+- **Blog utility update**: Updated `src/utils/blog.ts` to use `render(post)` instead of `post.render()` for new API compatibility
 
 ---
 
@@ -167,17 +170,20 @@
 
 ## Completed Items Log
 
-<!-- Move completed items here with dates -->
-
 ### Week 1
-- [DATE] Item completed
+- [2025-12-07] Installed @astrojs/starlight v0.37.0
+- [2025-12-07] Configured astro.config.mjs with Starlight integration (pagefind: false)
+- [2025-12-07] Created content.config.ts with docsLoader and postCollection
+- [2025-12-07] Created test page at src/content/docs/docs/index.mdx
+- [2025-12-07] Verified /docs route works with Starlight UI
+- [2025-12-07] Verified /glossary route still works (no conflicts)
 
 ---
 
 ## Change Log
 
-<!-- Document any changes to the plan -->
-
 | Date | Change | Reason |
 |------|--------|--------|
-| | | |
+| 2025-12-07 | Migrated to Content Layer API | Required for Starlight docsLoader to work |
+| 2025-12-07 | Updated blog.ts render() call | New API uses `render(post)` instead of `post.render()` |
+| 2025-12-07 | Created docs/docs/ subdirectory | Maps to /docs/ route (Starlight routes from content path) |
