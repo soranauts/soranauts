@@ -113,10 +113,9 @@ export default defineConfig({
           label: 'Fundamentals',
           items: [
             { label: 'SORA Overview', slug: 'docs/fundamentals' },
-            // Week 2: Add these pages
-            // { label: 'Tokenomics', slug: 'docs/fundamentals/tokenomics' },
-            // { label: 'Governance', slug: 'docs/fundamentals/governance' },
-            // { label: 'SORA Nexus', slug: 'docs/fundamentals/sora-nexus' },
+            { label: 'Tokenomics', slug: 'docs/fundamentals/tokenomics' },
+            { label: 'Governance', slug: 'docs/fundamentals/governance' },
+            { label: 'SORA Nexus', slug: 'docs/fundamentals/sora-nexus' },
           ],
         },
         {
