@@ -2,7 +2,7 @@
 
 > **Started:** December 7, 2025  
 > **Target Completion:** 5-6 weeks  
-> **Current Phase:** Week 3 - Level 2 + Archive
+> **Current Phase:** Week 4 - Search + Automation
 
 ---
 
@@ -13,7 +13,7 @@
 | 1 | Foundation | ✅ Complete | All items done |
 | 2 | Level 1 Content | ✅ Complete | 9 pages |
 | 3 | Level 2 + Archive | ✅ Complete | 14 pages (7 Technical + 7 Archive) |
-| 4 | Search + Automation | ⬜ Not Started | |
+| 4 | Search + Automation | 🔄 In Progress | Search complete, CI pending |
 | 5 | Testing + Polish | ⬜ Not Started | |
 | 6 | Launch | ⬜ Not Started | |
 
@@ -107,17 +107,19 @@
 
 ## Week 4: Search + Automation
 
-### Search Implementation
-- [ ] Remove old Pagefind configuration
-- [ ] Configure unified Pagefind index
-- [ ] Create `UnifiedSearchModal.tsx`
-- [ ] Integrate GlossarySearchV2
-- [ ] Test Cmd+K opens modal
-- [ ] Test search results from all sources
+### Search Implementation ✅ COMPLETE
+- [x] Starlight pagefind disabled (using unified search)
+- [x] Custom pagefind-cli-runner integration configured
+- [x] Created `ContentPanel.astro` with Pagefind metadata
+- [x] Docs pages now indexed with `type:docs` filter
+- [x] SearchModal.astro already had Docs filter + searchDocs()
+- [x] 24 docs pages indexed with proper metadata
+- [x] Verified build: 458 pages indexed, 3 filters
 
-### Custom Components
-- [ ] `starlight/Header.astro` - With glossary link
-- [ ] `starlight/Search.astro` - Modal trigger
+### Custom Components ✅ COMPLETE
+- [x] `starlight/Header.astro` - With glossary/blog links
+- [x] `starlight/Search.astro` - Cmd+K trigger placeholder
+- [x] `starlight/ContentPanel.astro` - Pagefind metadata wrapper
 
 ### CI/CD
 - [ ] Create `docs-validation.yml` workflow

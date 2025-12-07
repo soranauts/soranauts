@@ -115,6 +115,8 @@ export default defineConfig({
         Header: './src/components/starlight/Header.astro',
         // Custom search trigger (unified modal in Week 4)
         Search: './src/components/starlight/Search.astro',
+        // Custom content panel with Pagefind metadata for unified search
+        ContentPanel: './src/components/starlight/ContentPanel.astro',
       },
       // Minimal sidebar for initial setup - will expand in Week 2
       sidebar: [
