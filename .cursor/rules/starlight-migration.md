@@ -269,6 +269,44 @@ pnpm test:e2e
 
 ---
 
+## Workflow
+
+### End-of-Week Checkpoints
+
+Before starting a new week, verify previous week's deliverables:
+
+**Week 1 Checklist:**
+- [ ] Starlight installed and building
+- [ ] /docs route working
+- [ ] starlight-custom.css exists with design tokens
+- [ ] Custom Header.astro with glossary/blog links
+- [ ] No route conflicts with /glossary/*
+
+**Week 2 Checklist:**
+- [ ] All 9 Level 1 pages created
+- [ ] All have Official badge + :::tip callout
+- [ ] All glossary links use /glossary/term (no anchors)
+- [ ] PROGRESS.md updated
+
+**Week 3 Checklist:**
+- [ ] Level 2 Technical pages created
+- [ ] Archive content migrated
+- [ ] All badges correct (Technical=note, Archive=caution)
+
+**Week 4 Checklist:**
+- [ ] Unified search working
+- [ ] Pagefind indexing docs
+- [ ] GlossarySearchV2 integrated
+
+**Week 5 Checklist:**
+- [ ] E2E tests passing
+- [ ] No broken links
+- [ ] Performance acceptable
+
+Run checklist before proceeding to next phase.
+
+---
+
 ## Getting Help
 
 If stuck on something:
