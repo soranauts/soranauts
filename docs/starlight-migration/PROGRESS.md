@@ -60,12 +60,12 @@
 - [x] `fundamentals/governance.mdx` - SORA Parliament, voting, proposals (~1,800 words)
 - [x] `fundamentals/sora-nexus.mdx` - SORA v3/Nexus, Iroha 3 (~1,400 words)
 
-### Products
-- [ ] `products/polkaswap.mdx` - Polkaswap DEX
-- [ ] `products/fearless-wallet.mdx` - Fearless Wallet
-- [ ] `products/sora-card.mdx` - SORA Card
-- [ ] `products/tonswap/index.mdx` - TONSWAP Overview
-- [ ] `products/tonswap/features.mdx` - TONSWAP Features
+### Products ✅ COMPLETE
+- [x] `products/polkaswap.mdx` - Polkaswap DEX (~1,500 words)
+- [x] `products/fearless-wallet.mdx` - Fearless Wallet (~1,300 words)
+- [x] `products/sora-card.mdx` - SORA Card (~1,100 words)
+- [x] `products/tonswap/index.mdx` - TONSWAP Overview (~900 words)
+- [x] `products/tonswap/features.mdx` - TONSWAP Features (~900 words)
 
 ### Week 2 Review
 - [ ] All frontmatter validated

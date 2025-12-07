@@ -1,0 +1,323 @@
+---
+title: "TONSWAP Features"
+description: "Detailed guide to TONSWAP's trading features and capabilities"
+source: wiki
+lastVerified: 2025-12-06
+sidebar:
+  label: Features
+  order: 5
+  badge:
+    text: Official
+    variant: success
+---
+
+import { Card, CardGrid, LinkCard, Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::tip[Official Documentation]
+This content reflects TONSWAP features as of December 2025.
+[TONSWAP Website](https://tonswap.org) | [TONSWAP Roadmap](https://tonswap.org/roadmap)
+:::
+
+# TONSWAP Features
+
+This guide covers the detailed features and capabilities of [TONSWAP](/glossary/tonswap), the SORA-connected DEX on The Open Network.
+
+## Trading Features
+
+### Instant Swaps
+
+The core trading experience on TONSWAP:
+
+| Feature | Details |
+|---------|---------|
+| **Speed** | Near-instant confirmation |
+| **Fees** | ~0.3% trading fee |
+| **Slippage** | Customizable tolerance |
+| **Price Impact** | Displayed before confirmation |
+
+### Trade Execution
+
+<Tabs>
+  <TabItem label="Market Orders">
+    Execute immediately at current market price:
+    - Best for speed
+    - Subject to price impact
+    - Instant execution
+  </TabItem>
+  <TabItem label="Limit Orders">
+    Set your desired price and wait:
+    - Price guarantee
+    - May not fill immediately
+    - Good for patient traders
+  </TabItem>
+</Tabs>
+
+---
+
+## Concentrated Liquidity (CLMM)
+
+TONSWAP implements concentrated liquidity market maker technology for superior capital efficiency.
+
+### How CLMM Works
+
+Traditional AMMs spread liquidity across all possible prices (0 to ∞). CLMM allows liquidity providers to concentrate their capital in specific price ranges.
+
+**Example:**
+
+For an ETH/USDC pool:
+- **Traditional AMM**: Your liquidity covers $0 to $∞
+- **CLMM**: You can focus on $1,800 - $2,200 where most trading occurs
+
+### Benefits
+
+| Benefit | Impact |
+|---------|--------|
+| **Higher Returns** | More fees earned per dollar deposited |
+| **Lower Slippage** | Better prices for traders |
+| **Active Management** | Optimize based on market conditions |
+| **Capital Efficiency** | Up to 4000x improvement vs. traditional AMM |
+
+### Managing Positions
+
+As a CLMM liquidity provider:
+
+1. **Set Range** — Choose min and max price for your liquidity
+2. **Monitor** — Watch if price stays in your range
+3. **Adjust** — Rebalance as market moves
+4. **Collect** — Claim earned fees
+
+<Aside type="note">
+If price moves outside your range, you stop earning fees but don't lose funds. You can adjust your range at any time.
+</Aside>
+
+---
+
+## Liquidity Provision
+
+### Creating Positions
+
+To provide liquidity on TONSWAP:
+
+1. Select a trading pair
+2. Choose your price range
+3. Deposit both tokens in correct ratio
+4. Receive LP position NFT
+5. Start earning fees
+
+### Fee Tiers
+
+Different pools may have different fee tiers:
+
+| Tier | Use Case |
+|------|----------|
+| **0.01%** | Stablecoin pairs |
+| **0.05%** | Correlated assets |
+| **0.3%** | Standard pairs |
+| **1%** | Volatile/exotic pairs |
+
+### Rewards
+
+Liquidity providers earn:
+
+- **Trading fees** — Share of every swap
+- **Incentive programs** — Bonus token rewards
+- **XOR exposure** — Through fee mechanisms
+
+---
+
+## XOR Buyback Integration
+
+A unique feature connecting TONSWAP to the SORA economy:
+
+### Mechanism
+
+```
+Trading Fees → 10% allocated to XOR buyback → XOR burned
+```
+
+### How It Works
+
+1. User makes a trade on TONSWAP
+2. Standard trading fee collected (e.g., 0.3%)
+3. 10% of that fee set aside for XOR
+4. Smart contract buys XOR from the market
+5. Purchased XOR is permanently burned
+
+### Impact
+
+- **For XOR Holders**: Continuous buy pressure
+- **For SORA Ecosystem**: Connected economies
+- **For Traders**: Contributing to ecosystem health
+- **Transparency**: All buybacks on-chain
+
+---
+
+## Telegram Integration
+
+### In-App Trading
+
+Trade directly within Telegram:
+
+- No separate app needed
+- Wallet in your messenger
+- Quick access to swaps
+- Social sharing features
+
+### Wallet Features
+
+The Telegram wallet supports:
+
+- Token storage
+- Transaction history
+- Price alerts
+- Portfolio tracking
+
+### Social Features
+
+- Share trades with friends
+- Trading competitions
+- Community pools
+- Referral rewards
+
+---
+
+## Launchpad
+
+### Token Launches
+
+TONSWAP's launchpad helps new projects:
+
+- **Fair Distribution** — Equal opportunity participation
+- **Vetting** — Projects reviewed before launch
+- **Liquidity** — Initial liquidity provided
+- **Community** — Built-in user base
+
+### Participation
+
+To participate in launches:
+
+1. Hold required tokens (usually TONSWAP LP or XOR)
+2. Register for launch
+3. Commit funds during sale window
+4. Receive new tokens
+5. Trade when unlocked
+
+<Aside type="caution">
+Always do your own research. Launchpad listing doesn't guarantee project success.
+</Aside>
+
+---
+
+## Analytics
+
+### Trading Data
+
+TONSWAP provides comprehensive analytics:
+
+| Metric | Description |
+|--------|-------------|
+| **Volume** | 24h, 7d, 30d trading volume |
+| **TVL** | Total value locked in pools |
+| **Fees** | Generated fees by pool |
+| **APR** | Estimated returns for LPs |
+
+### Position Tracking
+
+For liquidity providers:
+
+- Current position value
+- Fees earned
+- Price range status
+- Impermanent loss tracking
+- Historical performance
+
+---
+
+## Security
+
+### Smart Contract Safety
+
+- **Audited** — Third-party security audits
+- **Open Source** — Code publicly available
+- **Battle-tested** — Based on proven technology
+
+### User Security
+
+Best practices for using TONSWAP:
+
+- ✅ Verify contract addresses
+- ✅ Start with small amounts
+- ✅ Use hardware wallet for large holdings
+- ✅ Enable all available security features
+- ❌ Don't connect to unknown sites
+- ❌ Don't share seed phrases
+
+---
+
+## Comparison
+
+### TONSWAP vs. Other TON DEXs
+
+| Feature | TONSWAP | Others |
+|---------|---------|--------|
+| CLMM | ✅ | Varies |
+| SORA Connection | ✅ | ❌ |
+| XOR Buyback | ✅ | ❌ |
+| Launchpad | ✅ | Varies |
+| Telegram Integration | ✅ | Varies |
+
+### TONSWAP vs. Polkaswap
+
+| Aspect | TONSWAP | Polkaswap |
+|--------|---------|-----------|
+| Network | TON | SORA |
+| Focus | TON users | Polkadot ecosystem |
+| AMM Type | CLMM | Multi-source aggregation |
+| Reward Token | Various | PSWAP |
+| Connection | XOR buyback | Native |
+
+---
+
+## Roadmap Features
+
+### Coming Soon
+
+- 🔄 Advanced order types
+- 🔄 Cross-chain bridges
+- 🔄 Governance token
+- 🔄 Lending/borrowing
+- 🔄 Perpetual futures
+
+### Future Vision
+
+- Full SORA bridge
+- Multi-chain expansion
+- Institutional features
+- Advanced analytics
+
+---
+
+## Get Started
+
+<CardGrid>
+  <LinkCard
+    title="TONSWAP App"
+    description="Start trading now"
+    href="https://tonswap.org"
+  />
+  <LinkCard
+    title="TONSWAP Overview"
+    description="Return to overview"
+    href="/docs/products/tonswap"
+  />
+  <LinkCard
+    title="Polkaswap"
+    description="SORA's main DEX"
+    href="/docs/products/polkaswap"
+  />
+  <LinkCard
+    title="XOR Token"
+    description="Beneficiary of buybacks"
+    href="/glossary/xor"
+  />
+</CardGrid>

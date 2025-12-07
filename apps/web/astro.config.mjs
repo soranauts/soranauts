@@ -129,8 +129,18 @@ export default defineConfig({
         },
         {
           label: 'Products',
-          collapsed: true,
-          autogenerate: { directory: 'docs/products' },
+          items: [
+            { label: 'Polkaswap', slug: 'docs/products/polkaswap' },
+            { label: 'Fearless Wallet', slug: 'docs/products/fearless-wallet' },
+            { label: 'SORA Card', slug: 'docs/products/sora-card' },
+            {
+              label: 'TONSWAP',
+              items: [
+                { label: 'Overview', slug: 'docs/products/tonswap' },
+                { label: 'Features', slug: 'docs/products/tonswap/features' },
+              ],
+            },
+          ],
         },
         {
           label: 'Technical',
