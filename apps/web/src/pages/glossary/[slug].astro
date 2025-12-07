@@ -563,12 +563,8 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
       <article
         class="sr-only"
         aria-hidden="true"
-        data-pagefind-body
-        data-pagefind-url={`/glossary/${term.slug}/`}
-        data-pagefind-meta={JSON.stringify(pagefindPayload)}
+        data-pagefind-ignore="all"
       >
-        <span data-pagefind-filter="type:glossary"></span>
-        <span data-pagefind-filter={`category:${term.category}`}></span>
       <p>{displayDefinition}</p>
       </article>
     )}
@@ -647,13 +643,9 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
         class="scroll-mt-28 md:scroll-mt-32"
       >
         <article
-          data-pagefind-body
-          data-pagefind-url={`/glossary/${term.slug}/`}
-          data-pagefind-meta={JSON.stringify(pagefindPayload)}
+          data-pagefind-ignore="all"
           class="prose"
         >
-              <span data-pagefind-filter="type:glossary"></span>
-              <span data-pagefind-filter={`category:${term.category}`}></span>
               <span class="sr-only" aria-hidden="true">
                 {displayTermTitle} {term.aliases?.join(' ')} {term.category} glossary
               </span>
