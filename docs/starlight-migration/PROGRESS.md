@@ -14,7 +14,7 @@
 | 2 | Level 1 Content | ✅ Complete | 9 pages |
 | 3 | Level 2 + Archive | ✅ Complete | 14 pages (7 Technical + 7 Archive) |
 | 4 | Search + Automation | ✅ Complete | Search + CI validation |
-| 5 | Testing + Polish | ✅ Complete | 12/15 tests pass, docs created |
+| 5 | Testing + Polish | ✅ Complete | 13/15 tests pass, search integrated |
 | 6 | Launch | ⬜ Not Started | |
 
 **Legend:** ✅ Complete | 🔄 In Progress | ⬜ Not Started | ❌ Blocked
@@ -146,7 +146,7 @@
 - [x] Glossary cross-links work (/glossary/xor navigates correctly)
 - [x] Code blocks have syntax highlighting
 - [x] SORA Codex branding visible (title + subtitle)
-- [ ] Search modal on /docs pages (deferred - see ISSUES.md)
+- [x] Search modal on /docs pages (SearchModal integrated into Search.astro)
 - [ ] Mobile testing (deferred)
 
 ### Bug Fixes

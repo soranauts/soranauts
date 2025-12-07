@@ -150,9 +150,9 @@ Tasks identified during migration that should be addressed later:
   - **FIXED:** Removed `#definition` anchor from auto-linker (`src/utils/glossary-auto-link.mjs`)
 - [ ] Consider adding `scroll-margin-top` to glossary page headings (if anchor links reintroduced)
 - [ ] Evaluate if Starlight's built-in anchor handling can improve glossary UX
-- [ ] **Integrate SearchModal into Starlight layout** — Currently the unified search modal (`SearchModal.astro`) is only in the main site layout. Need to add it to Starlight's custom Header or create a dedicated layout wrapper.
-  - **Workaround:** Starlight Search.astro triggers Cmd+K but modal needs to be present on /docs pages
-  - **Impact:** Search works from main site, but not directly from /docs pages
+- [x] ~~**Integrate SearchModal into Starlight layout**~~ — **FIXED:** SearchModal is now imported directly into `starlight/Search.astro`
+  - Cmd+K opens unified search on all /docs pages
+  - Uses same `data-aw-search-trigger` attribute as main site
 - [ ] Fix pre-existing `/404` route collision (Starlight 404 vs custom 404.astro)
 - [ ] Fix pre-existing trailing slash route collisions
 
