@@ -2,7 +2,7 @@
 
 > **Started:** December 7, 2025  
 > **Target Completion:** 5-6 weeks  
-> **Current Phase:** Week 4 - Search + Automation
+> **Current Phase:** Week 6 - Launch Prep
 
 ---
 
@@ -108,18 +108,19 @@
 ## Week 4: Search + Automation
 
 ### Search Implementation ✅ COMPLETE
-- [x] Starlight pagefind disabled (using unified search)
-- [x] Custom pagefind-cli-runner integration configured
-- [x] Created `ContentPanel.astro` with Pagefind metadata
-- [x] Docs pages now indexed with `type:docs` filter
-- [x] SearchModal.astro already had Docs filter + searchDocs()
-- [x] 24 docs pages indexed with proper metadata
-- [x] Verified build: 458 pages indexed, 3 filters
+- [x] Starlight native Pagefind enabled for /docs pages
+- [x] Main site pages (blog, glossary, explore, tags) use `data-pagefind-ignore`
+- [x] 24 docs pages indexed cleanly (no JSON metadata in results)
+- [x] Custom CSS for search modal styling:
+  - Document icons before page titles
+  - Tree-like structure with left border for sub-results
+  - Solid background instead of blur
+  - Result grouping by parent page
+- [x] Search matches official Starlight look and feel
 
 ### Custom Components ✅ COMPLETE
-- [x] `starlight/Header.astro` - With glossary/blog links
-- [x] `starlight/Search.astro` - Cmd+K trigger placeholder
-- [x] `starlight/ContentPanel.astro` - Pagefind metadata wrapper
+- [x] `starlight/Header.astro` - With glossary/blog/home links
+- [x] `starlight/SiteTitle.astro` - Links to /docs (docs home)
 
 ### CI/CD ✅ COMPLETE
 - [x] Create `docs-validation.yml` workflow
@@ -129,12 +130,12 @@
 
 ---
 
-## Week 5: Testing + Polish
+## Week 5: Testing + Polish ✅ COMPLETE
 
 ### Automated Testing ✅ COMPLETE
 - [x] `npx tsx scripts/docs-validate.ts` passes (24/24 files)
 - [x] Link linting in CI workflow (no #definition, no localhost)
-- [x] `pnpm build` succeeds (627 pages, 458 indexed)
+- [x] `pnpm build` succeeds (627 pages, 24 docs indexed)
 - [ ] E2E tests (deferred - not critical for launch)
 
 ### Manual Testing ✅ COMPLETE
@@ -146,12 +147,18 @@
 - [x] Glossary cross-links work (/glossary/xor navigates correctly)
 - [x] Code blocks have syntax highlighting
 - [x] SORA Codex branding visible (title + subtitle)
-- [x] Search modal on /docs pages (SearchModal integrated into Search.astro)
+- [x] Starlight native search on /docs pages (clean results, tree structure)
+- [x] "SORA Codex" link goes to /docs
+- [x] "Home" link goes to / (main site)
 - [ ] Mobile testing (deferred)
 
 ### Bug Fixes
 - [x] Fixed `func` language warning in TON bridge docs (changed to `c`)
 - [x] Fixed docs-validate.ts path issue (now uses absolute paths)
+- [x] Fixed search showing raw JSON (switched to Starlight native Pagefind)
+- [x] Fixed SORA Codex header link (now goes to /docs)
+- [x] Added favicon.svg for /docs pages
+- [x] Added Docs link to main site navigation
 
 ### Documentation ✅ COMPLETE
 - [x] Internal STARLIGHT_GUIDE.md created (comprehensive 400+ lines)
