@@ -6,7 +6,9 @@ import { resolveAutoLinkConfig } from '../lib/glossary/autoLinkConfig.ts';
 const TABLE_TYPES = new Set(['table', 'tableRow', 'tableCell', 'thead', 'tbody', 'tr', 'th', 'td']);
 const URL_REGEX = /https?:\/\/[^\s)]+/gi;
 const MAX_LINKS_PER_PARAGRAPH = 2;
-const SECTION_ANCHOR = '#definition';
+// Removed #definition anchor - it skips headers on glossary pages
+// See: docs/starlight-migration/ISSUES.md "Deferred Tasks"
+const SECTION_ANCHOR = '';
 
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
