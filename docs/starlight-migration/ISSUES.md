@@ -146,8 +146,9 @@ Reference as /docs/images/filename.png
 
 Tasks identified during migration that should be addressed later:
 
-- [ ] Glossary pages: Review anchor/scroll behavior — currently `#definition` skips header
-- [ ] Consider adding `scroll-margin-top` to glossary page headings
+- [x] ~~Glossary pages: Review anchor/scroll behavior — currently `#definition` skips header~~
+  - **FIXED:** Removed `#definition` anchor from auto-linker (`src/utils/glossary-auto-link.mjs`)
+- [ ] Consider adding `scroll-margin-top` to glossary page headings (if anchor links reintroduced)
 - [ ] Evaluate if Starlight's built-in anchor handling can improve glossary UX
 
 ---
