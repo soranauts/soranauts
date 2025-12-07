@@ -54,11 +54,11 @@
 
 ## Week 2: Level 1 Content (Official)
 
-### Fundamentals
+### Fundamentals ✅ COMPLETE
 - [x] `fundamentals/index.mdx` - SORA Overview (~1,700 words)
-- [ ] `fundamentals/tokenomics.mdx` - Token Bonding Curve
-- [ ] `fundamentals/governance.mdx` - SORA Parliament
-- [ ] `fundamentals/sora-nexus.mdx` - SORA Nexus
+- [x] `fundamentals/tokenomics.mdx` - Token Bonding Curve, XOR, VAL, PSWAP (~2,300 words)
+- [x] `fundamentals/governance.mdx` - SORA Parliament, voting, proposals (~1,800 words)
+- [x] `fundamentals/sora-nexus.mdx` - SORA v3/Nexus, Iroha 3 (~1,400 words)
 
 ### Products
 - [ ] `products/polkaswap.mdx` - Polkaswap DEX

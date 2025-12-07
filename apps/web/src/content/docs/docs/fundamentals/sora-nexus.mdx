@@ -1,0 +1,327 @@
+---
+title: "SORA Nexus"
+description: "The next generation SORA network built on Hyperledger Iroha 3 with sub-second finality, data spaces, and post-quantum security"
+source: wiki
+lastVerified: 2025-12-06
+sidebar:
+  label: SORA Nexus
+  order: 4
+  badge:
+    text: Official
+    variant: success
+---
+
+import { Aside, Card, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
+
+:::tip[Official Documentation]
+This content reflects SORA Nexus development status as of December 2025.
+[View SORA Wiki](https://wiki.sora.org/)
+:::
+
+# SORA Nexus
+
+**One World. One Economy. One Ledger.**
+
+[SORA Nexus](/glossary/soranexus) (also known as SORA v3) represents the next evolution of the SORA network—a complete reimagining of blockchain architecture designed to host global economic activity with unprecedented performance, privacy, and governance.
+
+Built on [Hyperledger Iroha 3](/glossary/hyperledger-iroha-3), SORA Nexus aims to be the definitive infrastructure for a new world economic order.
+
+## Vision: The End of History
+
+The name "SORA Nexus" reflects its ambition to be the final blockchain architecture needed—a single logical ledger capable of hosting all transactions for all time. This bold vision is enabled by:
+
+- **Infinite Scalability** — Parallel lanes that can split and merge based on demand
+- **Universal Compatibility** — Support for public and private data spaces
+- **Future-Proof Security** — Post-quantum cryptographic primitives
+- **Global Standards** — ISO 20022 alignment for institutional integration
+
+<Aside type="note" title="Development Status">
+SORA v3 development targets a 2025 launch window, but no specific date is guaranteed. The team prioritizes safety, correctness, and efficiency over arbitrary release dates.
+</Aside>
+
+---
+
+## Key Features
+
+### Sub-Second Finality
+
+SORA Nexus targets transaction finality in under one second:
+
+| Metric | Target |
+|--------|--------|
+| Lane Finality | ≤ 1 second |
+| Commit Window | ≤ 2 slots |
+| Proof Verification | 100-200 ms |
+
+This is achieved through the [SUMERAGI](/glossary/sumeragi) consensus protocol, a BFT (Byzantine Fault Tolerant) mechanism with deterministic leader rotation.
+
+### Data Spaces
+
+[Data Spaces](/glossary/dataspaces) are first-class partitions within SORA Nexus:
+
+<CardGrid>
+  <Card title="Private Data Spaces" icon="approve-check">
+    Permissioned zones for institutions, governments, and enterprises with confidential transactions.
+  </Card>
+  <Card title="Public Data Spaces" icon="open-book">
+    Open participation for DeFi, community projects, and general blockchain use cases.
+  </Card>
+</CardGrid>
+
+Both types share the same deterministic admission rules and can interact when policy allows—enabling unprecedented interoperability between private and public blockchains.
+
+### Lanes and Merge Ledger
+
+SORA Nexus scales through **parallel lanes**:
+
+1. Multiple lanes process transactions independently
+2. Each lane finalizes blocks with ~1 second finality
+3. A lightweight **merge ledger** orders lane tips into a single global sequence
+4. Lanes fuse under low load, split under high load—automatically
+
+This architecture allows horizontal scaling without sacrificing consistency or requiring sharding complexity.
+
+### Post-Quantum Security
+
+SORA Nexus is designed for a post-quantum world:
+
+- **ML-DSA-87** signatures for consensus and data space attestations
+- **Ed25519** for standard operations (with PQ fields reserved)
+- **STARK proofs** with 128-bit security
+- **Kyber768** for SoraNet encryption
+
+These primitives ensure SORA Nexus remains secure even against future quantum computers.
+
+---
+
+## Architecture Overview
+
+### The IVM: Iroha Virtual Machine
+
+At the core of SORA Nexus is the [Iroha Virtual Machine](/glossary/ivm) (IVM), a purpose-built execution environment:
+
+- **Deterministic Execution** — No floating point, no reentrancy, explicit syscalls
+- **Pointer-ABI** — Type-safe handles for assets, accounts, and data spaces
+- **Auditable** — Merkle commitments over memory and registers
+- **Hardware Acceleration** — SIMD/GPU allowed only if bit-for-bit identical
+
+Smart contracts compile to **Kotodama** bytecode, SORA's native contract format.
+
+### Consensus: SUMERAGI
+
+[SUMERAGI](/glossary/sumeragi) is the consensus protocol powering SORA Nexus:
+
+- **BFT Safety** — Tolerates up to f Byzantine nodes (N = 3f + 1)
+- **Deterministic Leaders** — Leader rotation based on VRF randomness
+- **No Empty Blocks** — Blocks only produced when there's work
+- **Post-Quantum QCs** — Quorum certificates signed with ML-DSA-87
+
+### Data Availability
+
+SORA Nexus uses advanced data availability (DA) techniques:
+
+<Steps>
+1. **2D Erasure Coding**
+   
+   Blocks are encoded with row and column parity for redundancy
+
+2. **ZK DA Proofs**
+   
+   Cryptographic proofs bind data shards to block Merkle roots
+
+3. **DA Certificates**
+   
+   Attesters sample shards and sign availability certificates
+
+4. **Sampling Budget**
+   
+   Verification completes in ~300ms with 1.5x overhead
+</Steps>
+
+---
+
+## Ecosystem Integration
+
+### Polkaswap on Nexus
+
+[Polkaswap](/glossary/polkaswap) will migrate to SORA Nexus, gaining:
+
+- Faster trade settlement (sub-second)
+- Cross-data-space liquidity
+- Enhanced privacy options
+- Institutional-grade compliance tools
+
+### Bridge Architecture
+
+SORA Nexus serves as a **hub chain** connecting:
+
+- **TON** — Via the TON Bridge with XOR buyback-and-burn
+- **Polkadot** — Through existing bridge infrastructure
+- **Ethereum** — For major DeFi integration
+- **Future Networks** — Modular bridge architecture
+
+### ISO 20022 Alignment
+
+For institutional adoption, SORA Nexus aligns with **ISO 20022**:
+
+- Payment messages (pacs.008) map to Norito transfers
+- Deterministic field mappings
+- Versioned specifications
+- Ambiguous mappings rejected
+
+This enables SORA to interface with traditional financial infrastructure.
+
+---
+
+## Governance Evolution
+
+### From V1 to Parliament
+
+Governance in SORA Nexus evolves toward a **hybrid DAO framework**:
+
+| Current (V1) | Nexus (V3) |
+|--------------|------------|
+| Council + referendum | Council + Assembly |
+| Token-weighted voting | Sortition + stake-weighted |
+| Single governance track | Domain-specific governance |
+| Manual enactment | Deterministic ISI execution |
+
+### Governance Surfaces
+
+SORA Nexus introduces [governance surfaces](/glossary/governancesurfaces):
+
+- **Configuration** — `iroha_config` as source of truth
+- **Parameter Sets** — Versioned, on-chain governance parameters
+- **Attestations** — Cryptographic certificates for governance actions
+- **Data Space Governance** — Customized rules per data space
+
+---
+
+## Development Roadmap
+
+### Fujiwara Testnet
+
+The [Fujiwara Testnet](/glossary/fujiwaratestnet) is the first public testnet for SORA v3:
+
+- Named after Japan's influential Fujiwara family
+- Enables experimentation with key features
+- First public blockchain on Iroha 3 infrastructure
+- Tests DeFi, governance, and network stability
+
+### SORA Integrated Plan
+
+The [SORA Integrated Plan](/glossary/soraintegratedplan) tracks development across:
+
+- **Business Track** — Partnerships and adoption
+- **Backend Track** — Core infrastructure
+- **Web Track** — User interfaces
+- **Mobile Track** — Fearless Wallet integration
+
+---
+
+## Technical Highlights
+
+### Performance Targets
+
+| Parameter | Default |
+|-----------|---------|
+| Lane TEU Budget | ~20,000 TEU/s |
+| Envelope Size | ≤16 MB typical, 32 MB hard cap |
+| DA Samples | 8 per data space, ≤2048 total |
+| Lane Validators | 22 per lane (f=7) |
+
+### Cryptographic Primitives
+
+- **Hashing** — Poseidon2 (internal), SHA-2/3 (external)
+- **Signatures** — Ed25519, secp256k1 (legacy), ML-DSA-87 (consensus)
+- **Proofs** — STARK with DEEP-FRI
+- **National Suites** — SM2/3/4 and GOST available when governed
+
+### Serialization: Norito
+
+**Norito** is the canonical serialization format:
+
+- Binary and JSON derived from Norito schemas
+- `SignedBlockWire` encodes all persisted blocks
+- SCALE excluded from production paths
+- Streaming via Norito/Kaigi for real-time data
+
+---
+
+## Why It Matters
+
+SORA Nexus isn't just an upgrade—it's a paradigm shift:
+
+<Aside type="caution" title="A New Foundation">
+Moving from Substrate to Iroha 3 represents a fundamental architectural change. This enables capabilities impossible on the current network while maintaining the SORA economic philosophy.
+</Aside>
+
+### For Users
+
+- **Faster Transactions** — Sub-second finality
+- **More Privacy** — Data space isolation
+- **Better Integration** — Cross-chain + traditional finance
+
+### For Developers
+
+- **Deterministic Execution** — Predictable smart contracts
+- **Rich SDKs** — Mobile, web, server libraries
+- **ISO Standards** — Enterprise integration
+
+### For Institutions
+
+- **Compliance Ready** — ISO 20022, privacy controls
+- **Private Data Spaces** — Regulated activity
+- **Audit Trail** — Complete transparency
+
+---
+
+## Summary
+
+SORA Nexus represents the culmination of SORA's vision:
+
+| Feature | Capability |
+|---------|------------|
+| Finality | Sub-second |
+| Scale | Parallel lanes, dynamic splitting |
+| Privacy | Data spaces (public + private) |
+| Security | Post-quantum ready |
+| Standards | ISO 20022 aligned |
+| Governance | Hybrid DAO with Parliament |
+
+**One World. One Economy. One Ledger.**
+
+---
+
+## Learn More
+
+<CardGrid>
+  <LinkCard
+    title="Hyperledger Iroha 3"
+    description="The blockchain framework powering Nexus"
+    href="/glossary/hyperledger-iroha-3"
+  />
+  <LinkCard
+    title="Data Spaces"
+    description="Private and public domains on one ledger"
+    href="/glossary/dataspaces"
+  />
+  <LinkCard
+    title="SUMERAGI"
+    description="The BFT consensus protocol"
+    href="/glossary/sumeragi"
+  />
+  <LinkCard
+    title="Fujiwara Testnet"
+    description="Test SORA v3 today"
+    href="/glossary/fujiwaratestnet"
+  />
+</CardGrid>
+
+---
+
+## Next Steps
+
+- [Overview](/docs/fundamentals) — Return to SORA fundamentals
+- [Tokenomics](/docs/fundamentals/tokenomics) — XOR utility in SORA Nexus
+- [Governance](/docs/fundamentals/governance) — Parliament evolution in v3
