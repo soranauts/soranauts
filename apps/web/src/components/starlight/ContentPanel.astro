@@ -1,0 +1,82 @@
+---
+/**
+ * Custom Starlight ContentPanel Component
+ * 
+ * Extends the default ContentPanel to add Pagefind metadata for unified search.
+ * This enables docs pages to be filtered as "docs" type alongside glossary/articles.
+ * 
+ * Pagefind attributes added:
+ * - data-pagefind-filter="type:docs" - Enables type filtering in search modal
+ * - data-pagefind-meta - JSON metadata for search result display
+ */
+
+// Import the default ContentPanel from Starlight
+import Default from '@astrojs/starlight/components/ContentPanel.astro';
+
+// Get the current page's frontmatter and URL from Astro context
+const { frontmatter, url } = Astro.props.entry?.data 
+  ? { frontmatter: Astro.props.entry.data, url: Astro.url }
+  : { frontmatter: {}, url: Astro.url };
+
+// Extract page info for Pagefind metadata
+const title = frontmatter?.title || 'Documentation';
+const description = frontmatter?.description || frontmatter?.summary || '';
+
+// Derive category from URL path (fundamentals/products/technical/archive)
+function getCategoryFromPath(pathname: string): string {
+  const pathParts = pathname.replace(/^\/docs\//, '').split('/');
+  const firstSegment = pathParts[0] || '';
+  
+  const categoryMap: Record<string, string> = {
+    'fundamentals': 'Fundamentals',
+    'products': 'Products', 
+    'technical': 'Technical',
+    'archive': 'Archive',
+    'guides': 'Guides',
+  };
+  
+  return categoryMap[firstSegment] || 'Documentation';
+}
+
+const category = getCategoryFromPath(url?.pathname || '');
+const categoryRaw = category.toLowerCase();
+
+// Get section for more specific categorization (e.g., "iroha", "bridges")
+function getSectionFromPath(pathname: string): string | null {
+  const pathParts = pathname.replace(/^\/docs\//, '').split('/').filter(Boolean);
+  if (pathParts.length >= 2) {
+    return pathParts[1];
+  }
+  return null;
+}
+
+const section = getSectionFromPath(url?.pathname || '');
+
+// Build Pagefind metadata JSON
+const pagefindMeta = JSON.stringify({
+  type: 'docs',
+  title,
+  description,
+  category: categoryRaw,
+  section: section || categoryRaw,
+  url: url?.pathname || '',
+});
+---
+
+<div 
+  class="docs-content-wrapper"
+  data-pagefind-filter="type:docs"
+  data-pagefind-filter:category={categoryRaw}
+  data-pagefind-meta={pagefindMeta}
+>
+  <Default {...Astro.props}>
+    <slot />
+  </Default>
+</div>
+
+<style>
+  .docs-content-wrapper {
+    /* Invisible wrapper - no visual impact */
+    display: contents;
+  }
+</style>
