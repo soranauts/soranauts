@@ -107,6 +107,8 @@ export default defineConfig({
       title: 'Soranauts Docs',
       // Disable Starlight's built-in Pagefind - we use our own unified search
       pagefind: false,
+      // Custom CSS with Soranauts design tokens
+      customCss: ['./src/styles/starlight-custom.css'],
       // Minimal sidebar for initial setup - will expand in Week 2
       sidebar: [
         {
