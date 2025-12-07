@@ -1,0 +1,445 @@
+---
+title: "Smart Contracts on Iroha"
+description: "Building smart contracts with WASM and Iroha Special Instructions"
+source: iroha_docs
+lastVerified: 2025-12-07
+sidebar:
+  label: Smart Contracts
+  order: 3
+  badge:
+    text: Technical
+    variant: note
+---
+
+import { Card, CardGrid, Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::note[Technical Documentation]
+This documentation covers smart contract development for Hyperledger Iroha and SORA v3.
+[Iroha Documentation](https://docs.iroha.tech/)
+:::
+
+# Smart Contracts on Iroha
+
+[Hyperledger Iroha](/glossary/hyperledger-iroha) supports two complementary approaches to programmable logic: **Iroha Special Instructions (ISI)** for common operations and **WASM smart contracts** for custom business logic. This dual approach provides both simplicity and flexibility for SORA v3 development.
+
+## Two Contract Paradigms
+
+<CardGrid>
+  <Card title="Iroha Special Instructions" icon="approve-check">
+    Pre-built, optimized commands for common blockchain operations. Fast, secure, and easy to use.
+  </Card>
+  <Card title="WASM Contracts" icon="seti:code">
+    Custom WebAssembly code for complex business logic. Flexible, powerful, and Turing-complete.
+  </Card>
+</CardGrid>
+
+---
+
+## Iroha Special Instructions (ISI)
+
+[ISI](/glossary/iroha-special-instructions) are domain-oriented commands that handle common blockchain operations without custom code.
+
+### Why ISI?
+
+| Benefit | Description |
+|---------|-------------|
+| **Performance** | Native execution, no VM overhead |
+| **Security** | Audited, battle-tested implementations |
+| **Simplicity** | No coding required for common tasks |
+| **Determinism** | Guaranteed same result on all nodes |
+
+### Core Instructions
+
+<Tabs>
+  <TabItem label="Register">
+    Create new entities in the blockchain:
+    
+    ```rust
+    // Register a new domain
+    Register::domain(Domain::new("finance".parse()?))
+    
+    // Register an account
+    Register::account(Account::new(
+        "alice@finance".parse()?
+    ))
+    
+    // Register an asset definition
+    Register::asset_definition(
+        AssetDefinition::quantity("usd#finance".parse()?)
+    )
+    ```
+  </TabItem>
+  <TabItem label="Transfer">
+    Move assets between accounts:
+    
+    ```rust
+    // Transfer tokens
+    Transfer::asset_quantity(
+        IdBox::AssetId("xor#sora@alice".parse()?),
+        100_u32,
+        IdBox::AccountId("bob@sora".parse()?),
+    )
+    
+    // Transfer domain ownership
+    Transfer::domain(
+        IdBox::AccountId("alice@sora".parse()?),
+        IdBox::DomainId("finance".parse()?),
+        IdBox::AccountId("bob@sora".parse()?),
+    )
+    ```
+  </TabItem>
+  <TabItem label="Mint/Burn">
+    Create or destroy assets:
+    
+    ```rust
+    // Mint new tokens
+    Mint::asset_quantity(
+        100_u32,
+        IdBox::AssetId("xor#sora@treasury".parse()?),
+    )
+    
+    // Burn tokens
+    Burn::asset_quantity(
+        50_u32,
+        IdBox::AssetId("xor#sora@treasury".parse()?),
+    )
+    ```
+  </TabItem>
+  <TabItem label="Set Key-Value">
+    Store metadata:
+    
+    ```rust
+    // Set account metadata
+    SetKeyValue::account(
+        "alice@sora".parse()?,
+        "profile".parse()?,
+        "Senior Developer".into(),
+    )
+    
+    // Set asset metadata
+    SetKeyValue::asset(
+        "nft#sora@alice".parse()?,
+        "image_url".parse()?,
+        "ipfs://Qm...".into(),
+    )
+    ```
+  </TabItem>
+</Tabs>
+
+### Composing Instructions
+
+Instructions can be combined for complex operations:
+
+```rust
+// Atomic batch of instructions
+let batch = vec![
+    Register::account(new_account).into(),
+    Mint::asset_quantity(initial_balance, account_asset).into(),
+    SetKeyValue::account(account_id, key, value).into(),
+];
+
+// All succeed or all fail
+client.submit_all_blocking(batch)?;
+```
+
+---
+
+## WASM Smart Contracts
+
+For custom business logic, Iroha supports WebAssembly (WASM) smart contracts written in Rust.
+
+### Smart Contract Structure
+
+```rust
+#![no_std]
+
+extern crate alloc;
+
+use iroha_wasm::prelude::*;
+
+#[iroha_wasm::main]
+fn main(host: Iroha) {
+    // Access execution context
+    let authority = host.context().authority();
+    
+    // Query state
+    let account = host.query_single(
+        FindAccountById::new(authority.clone())
+    ).unwrap();
+    
+    // Execute instructions
+    let instruction = Transfer::asset_quantity(
+        source_asset,
+        amount,
+        destination,
+    );
+    
+    host.submit(instruction).unwrap();
+}
+```
+
+### Contract Capabilities
+
+WASM contracts can:
+
+| Capability | Example |
+|------------|---------|
+| **Query state** | Read account balances, asset metadata |
+| **Execute ISI** | Transfer, mint, burn assets |
+| **Emit events** | Trigger external notifications |
+| **Access context** | Get caller, block height, timestamp |
+| **Validate** | Implement custom permission logic |
+
+<Aside type="caution">
+WASM contracts run in a sandboxed environment. They cannot access network, filesystem, or random number generation directly.
+</Aside>
+
+### Example: Token Vesting
+
+```rust
+#![no_std]
+
+extern crate alloc;
+
+use iroha_wasm::prelude::*;
+use alloc::vec::Vec;
+
+/// Vesting contract that releases tokens over time
+#[iroha_wasm::main]
+fn claim_vested(host: Iroha) {
+    let authority = host.context().authority();
+    let current_time = host.context().block_timestamp();
+    
+    // Read vesting schedule from account metadata
+    let vesting_start: u128 = host.query_single(
+        FindAccountMetadata::new(
+            authority.clone(),
+            "vesting_start".parse().unwrap()
+        )
+    ).unwrap().try_into().unwrap();
+    
+    let vesting_duration: u128 = host.query_single(
+        FindAccountMetadata::new(
+            authority.clone(),
+            "vesting_duration".parse().unwrap()
+        )
+    ).unwrap().try_into().unwrap();
+    
+    let total_amount: u32 = host.query_single(
+        FindAccountMetadata::new(
+            authority.clone(),
+            "vesting_amount".parse().unwrap()
+        )
+    ).unwrap().try_into().unwrap();
+    
+    // Calculate vested amount
+    let elapsed = current_time.saturating_sub(vesting_start);
+    let vested_fraction = elapsed.min(vesting_duration) as f64 
+        / vesting_duration as f64;
+    let vested_amount = (total_amount as f64 * vested_fraction) as u32;
+    
+    // Transfer vested tokens
+    let transfer = Transfer::asset_quantity(
+        vesting_pool_asset,
+        vested_amount,
+        authority.clone(),
+    );
+    
+    host.submit(transfer).dbg_unwrap();
+}
+```
+
+---
+
+## Triggers
+
+Triggers enable event-driven smart contract execution:
+
+### Trigger Types
+
+| Type | Fires When |
+|------|------------|
+| **By Event** | Specific event occurs (transfer, mint, etc.) |
+| **By Time** | Scheduled time reached |
+| **By Block** | New block committed |
+| **Pre-commit** | Before block finalization |
+
+### Example: Automatic Fee Collection
+
+```rust
+// Register a trigger that collects fees on every transfer
+let trigger = Trigger::new(
+    "fee_collector".parse()?,
+    Action::new(
+        collect_fee_wasm,  // WASM contract bytecode
+        Repeats::Indefinitely,
+        authority,
+        FilterBox::Data(DataEventFilter::ByAssetEventFilter(
+            AssetEventFilter::ByTransferred
+        )),
+    ),
+);
+
+Register::trigger(trigger);
+```
+
+---
+
+## Permissions and Validators
+
+### Built-in Permissions
+
+```rust
+// Grant permission to mint specific asset
+Grant::permission(
+    PermissionToken::new(
+        "CanMintAssetsWithDefinition".parse()?,
+        json!({ "asset_definition_id": "xor#sora" }),
+    ),
+    IdBox::AccountId("minter@sora".parse()?),
+)
+```
+
+### Custom Validators
+
+Implement custom validation logic:
+
+```rust
+#[iroha_wasm::validator]
+fn validate_transfer(
+    host: Iroha,
+    instruction: InstructionBox,
+) -> Result {
+    // Only allow transfers during business hours
+    let hour = host.context().block_timestamp() % 86400 / 3600;
+    
+    if hour < 9 || hour > 17 {
+        return Err(ValidationFail::NotPermitted(
+            "Transfers only allowed 9AM-5PM".into()
+        ));
+    }
+    
+    Ok(())
+}
+```
+
+---
+
+## Development Workflow
+
+### Setup
+
+```bash
+# Install Rust toolchain
+rustup target add wasm32-unknown-unknown
+
+# Install Iroha WASM tools
+cargo install iroha_wasm_builder
+```
+
+### Build Contract
+
+```bash
+# Build optimized WASM
+cargo build --release --target wasm32-unknown-unknown
+
+# Optimize size
+wasm-opt -Oz target/wasm32-unknown-unknown/release/contract.wasm \
+    -o contract.opt.wasm
+```
+
+### Deploy
+
+```rust
+// Load WASM bytecode
+let wasm = fs::read("contract.opt.wasm")?;
+
+// Register as executable
+let executable = WasmSmartContract::new(wasm);
+Register::executable(executable);
+
+// Or register as trigger
+let trigger = Trigger::new(
+    trigger_id,
+    Action::new(executable, repeats, authority, filter),
+);
+Register::trigger(trigger);
+```
+
+### Test
+
+```rust
+#[test]
+fn test_contract() {
+    let network = TestNetwork::new();
+    let client = network.client();
+    
+    // Deploy contract
+    client.submit(Register::trigger(trigger))?;
+    
+    // Trigger event
+    client.submit(Transfer::asset_quantity(...))?;
+    
+    // Verify result
+    let balance = client.query(FindAssetQuantityById::new(...))?;
+    assert_eq!(balance, expected);
+}
+```
+
+---
+
+## Best Practices
+
+### Security
+
+<Aside type="danger">
+Always audit smart contracts before production deployment. Consider formal verification for high-value contracts.
+</Aside>
+
+1. **Validate all inputs** — Never trust external data
+2. **Check permissions** — Verify caller authorization
+3. **Handle errors** — Use proper error handling, not panics
+4. **Limit loops** — Avoid unbounded iterations
+5. **Minimize state** — Reduce attack surface
+
+### Performance
+
+| Practice | Reason |
+|----------|--------|
+| Use ISI when possible | Native execution is faster |
+| Batch instructions | Reduce transaction overhead |
+| Minimize queries | Each query has latency |
+| Optimize WASM size | Smaller = faster deployment |
+
+### Upgradeability
+
+```rust
+// Version your contracts
+const CONTRACT_VERSION: u32 = 1;
+
+// Store version in metadata
+SetKeyValue::asset_definition(
+    contract_asset,
+    "version".parse()?,
+    CONTRACT_VERSION.into(),
+)
+```
+
+---
+
+## Learn More
+
+<CardGrid>
+  <Card title="Iroha Overview" icon="open-book">
+    [Understanding the full Iroha framework](/docs/technical/iroha)
+  </Card>
+  <Card title="Sumeragi Consensus" icon="random">
+    [How transactions are validated](/docs/technical/iroha/consensus)
+  </Card>
+  <Card title="Getting Started" icon="rocket">
+    [Set up your development environment](/docs/technical/integration/getting-started)
+  </Card>
+  <Card title="Official Docs" icon="external">
+    [Hyperledger Iroha documentation](https://docs.iroha.tech/)
+  </Card>
+</CardGrid>

@@ -2,7 +2,7 @@
 
 > **Started:** December 7, 2025  
 > **Target Completion:** 5-6 weeks  
-> **Current Phase:** Week 2 - Level 1 Content
+> **Current Phase:** Week 3 - Level 2 + Archive
 
 ---
 
@@ -11,8 +11,8 @@
 | Week | Phase | Status | Notes |
 |------|-------|--------|-------|
 | 1 | Foundation | ✅ Complete | All items done |
-| 2 | Level 1 Content | 🔄 In Progress | Fundamentals complete, Products next |
-| 3 | Level 2 + Archive | ⬜ Not Started | |
+| 2 | Level 1 Content | ✅ Complete | 9 pages |
+| 3 | Level 2 + Archive | 🔄 In Progress | Technical complete, Archive next |
 | 4 | Search + Automation | ⬜ Not Started | |
 | 5 | Testing + Polish | ⬜ Not Started | |
 | 6 | Launch | ⬜ Not Started | |
@@ -78,18 +78,18 @@
 
 ## Week 3: Level 2 + Archive
 
-### Technical - Iroha
-- [ ] `technical/iroha/index.mdx`
-- [ ] `technical/iroha/consensus.mdx`
-- [ ] `technical/iroha/smart-contracts.mdx`
+### Technical - Iroha ✅ COMPLETE
+- [x] `technical/iroha/index.mdx` - Iroha overview (~2,000 words)
+- [x] `technical/iroha/consensus.mdx` - Sumeragi BFT (~1,500 words)
+- [x] `technical/iroha/smart-contracts.mdx` - WASM contracts (~1,500 words)
 
-### Technical - Bridges
-- [ ] `technical/bridges/ethereum.mdx`
-- [ ] `technical/bridges/polkadot.mdx`
-- [ ] `technical/bridges/ton.mdx`
+### Technical - Bridges ✅ COMPLETE
+- [x] `technical/bridges/ethereum.mdx` - HASHI bridge (~1,100 words)
+- [x] `technical/bridges/polkadot.mdx` - XCM/parachain (~1,100 words)
+- [x] `technical/bridges/ton.mdx` - TON bridge (~1,100 words)
 
-### Technical - Integration
-- [ ] `technical/integration/getting-started.mdx`
+### Technical - Integration ✅ COMPLETE
+- [x] `technical/integration/getting-started.mdx` - Dev quickstart (~1,500 words)
 
 ### Guides
 - [ ] `guides/user-guides.mdx`

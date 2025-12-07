@@ -1,0 +1,443 @@
+---
+title: "Getting Started with SORA Development"
+description: "Developer quickstart guide for building on SORA"
+source: iroha_docs
+lastVerified: 2025-12-07
+sidebar:
+  label: Getting Started
+  order: 1
+  badge:
+    text: Technical
+    variant: note
+---
+
+import { Card, CardGrid, Aside, Tabs, TabItem, Steps } from '@astrojs/starlight/components';
+
+:::note[Technical Documentation]
+This guide helps developers get started building on the SORA ecosystem.
+[SORA Wiki](https://wiki.sora.org) | [Polkaswap Docs](https://wiki.sora.org/polkaswap.html)
+:::
+
+# Getting Started with SORA Development
+
+Welcome to SORA development! This guide will help you set up your environment, understand the ecosystem, and start building applications on the SORA network.
+
+## Choose Your Path
+
+<CardGrid>
+  <Card title="DApp Developer" icon="laptop">
+    Build applications that interact with SORA, Polkaswap, or TONSWAP.
+  </Card>
+  <Card title="Smart Contract Developer" icon="seti:code">
+    Write WASM contracts for SORA v3 (Iroha).
+  </Card>
+  <Card title="Integration Developer" icon="random">
+    Connect existing systems to SORA via APIs and bridges.
+  </Card>
+  <Card title="Infrastructure" icon="setting">
+    Run nodes, validators, or indexing services.
+  </Card>
+</CardGrid>
+
+---
+
+## Prerequisites
+
+### Required Knowledge
+
+| Topic | Level | Why |
+|-------|-------|-----|
+| JavaScript/TypeScript | Intermediate | Frontend + SDK usage |
+| Blockchain Basics | Beginner | Transaction concepts |
+| React (optional) | Beginner | Frontend development |
+| Rust (optional) | Beginner | Smart contracts (v3) |
+
+### System Requirements
+
+```bash
+# Node.js 18+
+node --version  # v18.0.0 or higher
+
+# pnpm (recommended) or npm
+pnpm --version  # 8.0.0 or higher
+
+# Git
+git --version
+```
+
+---
+
+## Quick Start
+
+### Option 1: Polkaswap Integration
+
+The fastest way to integrate with SORA:
+
+<Steps>
+1. **Install the SDK**
+   
+   ```bash
+   pnpm add @sora-substrate/sdk @polkadot/api
+   ```
+
+2. **Initialize Connection**
+   
+   ```typescript
+   import { Api } from '@sora-substrate/sdk';
+   
+   const api = new Api();
+   await api.connect('wss://mof3.sora.org');
+   
+   console.log('Connected to SORA mainnet');
+   ```
+
+3. **Query Data**
+   
+   ```typescript
+   // Get XOR balance
+   const balance = await api.query.assets.freeBalance(
+     XOR_ASSET_ID,
+     accountAddress
+   );
+   
+   console.log('XOR Balance:', balance.toString());
+   ```
+
+4. **Submit Transaction**
+   
+   ```typescript
+   // Transfer XOR
+   const tx = api.tx.assets.transfer(
+     XOR_ASSET_ID,
+     recipientAddress,
+     amount
+   );
+   
+   await tx.signAndSend(keypair);
+   ```
+</Steps>
+
+### Option 2: Web3 Wallet Integration
+
+Connect to user wallets:
+
+```typescript
+import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
+
+// Request wallet access
+const extensions = await web3Enable('My SORA App');
+
+if (extensions.length === 0) {
+  throw new Error('No wallet found. Install Fearless or Polkadot.js');
+}
+
+// Get accounts
+const accounts = await web3Accounts();
+console.log('Available accounts:', accounts);
+```
+
+---
+
+## Development Environment
+
+### Local Setup
+
+<Tabs>
+  <TabItem label="Testnet">
+    Connect to SORA testnet for development:
+    
+    ```typescript
+    const TESTNET_WS = 'wss://ws.stage.sora2.soramitsu.co.jp';
+    
+    const api = new Api();
+    await api.connect(TESTNET_WS);
+    ```
+    
+    Get test tokens:
+    1. Join SORA Discord
+    2. Use #faucet channel
+    3. Request test XOR
+  </TabItem>
+  <TabItem label="Local Node">
+    Run a local SORA node:
+    
+    ```bash
+    # Clone repository
+    git clone https://github.com/sora-xor/sora2-network.git
+    cd sora2-network
+    
+    # Build
+    cargo build --release
+    
+    # Run development chain
+    ./target/release/sora2-node --dev
+    ```
+    
+    Connect to local:
+    ```typescript
+    await api.connect('ws://127.0.0.1:9944');
+    ```
+  </TabItem>
+  <TabItem label="Mainnet">
+    Production endpoints:
+    
+    ```typescript
+    // Primary endpoint
+    const MAINNET_WS = 'wss://mof3.sora.org';
+    
+    // Backup endpoints
+    const BACKUP_WS = [
+      'wss://ws.mof.sora.org',
+      'wss://sora.api.onfinality.io/public-ws',
+    ];
+    ```
+    
+    <Aside type="caution">
+    Test thoroughly on testnet before mainnet deployment.
+    </Aside>
+  </TabItem>
+</Tabs>
+
+---
+
+## Common Operations
+
+### Asset Operations
+
+```typescript
+import { XOR, VAL, PSWAP } from '@sora-substrate/sdk/assets';
+
+// Get asset info
+const xorInfo = await api.query.assets.assetInfos(XOR);
+console.log('XOR Decimals:', xorInfo.precision.toString());
+
+// Get all balances
+const balances = await api.query.assets.freeBalance.multi([
+  [XOR, account],
+  [VAL, account],
+  [PSWAP, account],
+]);
+
+// Register new asset (requires permission)
+const registerTx = api.tx.assets.register(
+  symbol,
+  name,
+  totalSupply,
+  isMintable,
+  isIndivisible,
+  optionalContent
+);
+```
+
+### Trading on Polkaswap
+
+```typescript
+// Get quote for swap
+const quote = await api.rpc.liquidityProxy.quote(
+  dexId,
+  inputAssetId,
+  outputAssetId,
+  amount,
+  'WithDesiredInput', // or 'WithDesiredOutput'
+  [],  // filter sources
+  'Disabled' // filter mode
+);
+
+console.log('Expected output:', quote.amount.toString());
+console.log('Price impact:', quote.priceImpact.toString());
+
+// Execute swap
+const swapTx = api.tx.liquidityProxy.swap(
+  dexId,
+  inputAssetId,
+  outputAssetId,
+  swapAmount,
+  minAmountOut,
+  [],  // sources
+  'Disabled'
+);
+
+await swapTx.signAndSend(keypair);
+```
+
+### Liquidity Operations
+
+```typescript
+// Add liquidity to XYK pool
+const addLiquidityTx = api.tx.poolXYK.depositLiquidity(
+  dexId,
+  assetA,
+  assetB,
+  amountADesired,
+  amountBDesired,
+  amountAMin,
+  amountBMin
+);
+
+// Remove liquidity
+const removeLiquidityTx = api.tx.poolXYK.withdrawLiquidity(
+  dexId,
+  assetA,
+  assetB,
+  markerAssetId,
+  liquidityAmount,
+  amountAMin,
+  amountBMin
+);
+```
+
+---
+
+## Bridge Integration
+
+### HASHI (Ethereum)
+
+```typescript
+// Request outgoing transfer to Ethereum
+const bridgeTx = api.tx.ethBridge.transferToSidechain(
+  assetId,
+  ethRecipientAddress,
+  amount,
+  bridgeNetworkId
+);
+
+// Listen for bridge events
+api.query.system.events((events) => {
+  events.forEach(({ event }) => {
+    if (event.section === 'ethBridge') {
+      console.log('Bridge event:', event.method, event.data);
+    }
+  });
+});
+```
+
+### TONSWAP
+
+```typescript
+// TONSWAP uses its own SDK
+import { TonSwapSDK } from '@tonswap/sdk';
+
+const tonswap = new TonSwapSDK();
+
+// Bridge XOR to TON
+await tonswap.bridge.toTon({
+  asset: 'XOR',
+  amount: '100',
+  tonRecipient: 'EQ...',
+});
+```
+
+---
+
+## Best Practices
+
+### Error Handling
+
+```typescript
+try {
+  const result = await tx.signAndSend(keypair, ({ status, events }) => {
+    if (status.isInBlock) {
+      console.log('Transaction in block:', status.asInBlock.toHex());
+      
+      // Check for errors in events
+      events.forEach(({ event }) => {
+        if (api.events.system.ExtrinsicFailed.is(event)) {
+          const [error] = event.data;
+          if (error.isModule) {
+            const decoded = api.registry.findMetaError(error.asModule);
+            console.error('Error:', decoded.name, decoded.docs);
+          }
+        }
+      });
+    }
+  });
+} catch (error) {
+  console.error('Transaction failed:', error.message);
+}
+```
+
+### Performance
+
+| Practice | Reason |
+|----------|--------|
+| Batch queries | Reduce RPC calls |
+| Cache responses | Avoid redundant requests |
+| Use subscriptions | Real-time updates |
+| Handle reconnects | Network reliability |
+
+```typescript
+// Batch multiple queries
+const [balance1, balance2, balance3] = await Promise.all([
+  api.query.assets.freeBalance(asset1, account),
+  api.query.assets.freeBalance(asset2, account),
+  api.query.assets.freeBalance(asset3, account),
+]);
+
+// Subscribe to changes
+const unsub = await api.query.assets.freeBalance(
+  XOR, 
+  account,
+  (balance) => {
+    console.log('Balance updated:', balance.toString());
+  }
+);
+
+// Cleanup
+unsub();
+```
+
+### Security
+
+<Aside type="danger">
+Never expose private keys in frontend code. Use wallet extensions for signing.
+</Aside>
+
+- ✅ Use wallet extensions for signing
+- ✅ Validate all user inputs
+- ✅ Handle transaction errors gracefully
+- ✅ Test on testnet first
+- ❌ Don't hardcode private keys
+- ❌ Don't trust client-side data
+
+---
+
+## Resources
+
+### SDKs and Libraries
+
+| Library | Purpose | Install |
+|---------|---------|---------|
+| @sora-substrate/sdk | Core SORA SDK | `pnpm add @sora-substrate/sdk` |
+| @polkadot/api | Substrate base | `pnpm add @polkadot/api` |
+| @polkadot/extension-dapp | Wallet integration | `pnpm add @polkadot/extension-dapp` |
+
+### Documentation
+
+- [SORA Wiki](https://wiki.sora.org) — Official documentation
+- [Polkaswap Guide](https://wiki.sora.org/polkaswap.html) — DEX documentation
+- [Substrate Docs](https://docs.substrate.io) — Framework reference
+
+### Community
+
+- [Discord](https://discord.gg/sora) — Developer chat
+- [Telegram](https://t.me/saboranauts) — Community discussion
+- [GitHub](https://github.com/sora-xor) — Source code
+
+---
+
+## Next Steps
+
+<CardGrid>
+  <Card title="Iroha Overview" icon="open-book">
+    [Learn about SORA v3 infrastructure](/docs/technical/iroha)
+  </Card>
+  <Card title="Smart Contracts" icon="seti:code">
+    [Build WASM contracts](/docs/technical/iroha/smart-contracts)
+  </Card>
+  <Card title="Bridges" icon="random">
+    [Cross-chain integration](/docs/technical/bridges/ethereum)
+  </Card>
+  <Card title="Polkaswap" icon="star">
+    [DEX integration guide](/docs/products/polkaswap)
+  </Card>
+</CardGrid>

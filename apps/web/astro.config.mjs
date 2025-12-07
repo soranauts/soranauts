@@ -145,7 +145,30 @@ export default defineConfig({
         {
           label: 'Technical',
           collapsed: true,
-          autogenerate: { directory: 'docs/technical' },
+          items: [
+            {
+              label: 'Iroha',
+              items: [
+                { label: 'Overview', slug: 'docs/technical/iroha' },
+                { label: 'Sumeragi Consensus', slug: 'docs/technical/iroha/consensus' },
+                { label: 'Smart Contracts', slug: 'docs/technical/iroha/smart-contracts' },
+              ],
+            },
+            {
+              label: 'Bridges',
+              items: [
+                { label: 'Ethereum (HASHI)', slug: 'docs/technical/bridges/ethereum' },
+                { label: 'Polkadot (XCM)', slug: 'docs/technical/bridges/polkadot' },
+                { label: 'TON Bridge', slug: 'docs/technical/bridges/ton' },
+              ],
+            },
+            {
+              label: 'Integration',
+              items: [
+                { label: 'Getting Started', slug: 'docs/technical/integration/getting-started' },
+              ],
+            },
+          ],
         },
         {
           label: 'Guides',
