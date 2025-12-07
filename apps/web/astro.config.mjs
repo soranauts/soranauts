@@ -113,8 +113,10 @@ export default defineConfig({
       components: {
         // Custom header with glossary/blog navigation links
         Header: './src/components/starlight/Header.astro',
-        // Custom search trigger (unified modal in Week 4)
+        // Custom search trigger button
         Search: './src/components/starlight/Search.astro',
+        // Custom head to include SearchModal at document level
+        Head: './src/components/starlight/Head.astro',
         // Custom content panel with Pagefind metadata for unified search
         ContentPanel: './src/components/starlight/ContentPanel.astro',
       },

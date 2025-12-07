@@ -75,7 +75,7 @@ const SEARCH_ALIAS_MICROCOPY =
         
         <!-- No results -->
         <div id="search-no-results" class="hidden py-8 text-center">
-          <svg class="mx-auto h-12 w-12 text-text-soft" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="mx-auto text-text-soft" style="width: 48px; height: 48px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.709M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
           <h3 class="mt-2 text-sm font-medium text-text-main">No results found</h3>
@@ -84,7 +84,7 @@ const SEARCH_ALIAS_MICROCOPY =
         
         <!-- Initial state -->
         <div id="search-initial" class="py-8 text-center">
-          <svg class="mx-auto h-12 w-12 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="mx-auto text-brand-500" style="width: 48px; height: 48px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <h3 class="mt-2 text-sm font-medium text-text-main">Search Soranauts</h3>
@@ -1742,7 +1742,7 @@ const SEARCH_ALIAS_MICROCOPY =
       this.noResults?.classList.remove('hidden');
       if (this.noResults) {
         this.noResults.innerHTML = `
-          <svg class="mx-auto h-12 w-12 text-status-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="mx-auto text-status-error" style="width: 48px; height: 48px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
           </svg>
           <h3 class="mt-2 text-sm font-medium text-text-main">Search Error</h3>
@@ -1756,7 +1756,7 @@ const SEARCH_ALIAS_MICROCOPY =
       this.noResults?.classList.remove('hidden');
       if (this.noResults) {
         this.noResults.innerHTML = `
-          <svg class="mx-auto h-12 w-12 text-status-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="mx-auto text-status-warning" style="width: 48px; height: 48px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>

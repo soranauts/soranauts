@@ -2,13 +2,10 @@
 /**
  * Custom Starlight Search Component
  * 
- * Integrates the unified SearchModal into Starlight pages.
- * The SearchModal component handles:
- * - Cmd+K / Ctrl+K keyboard shortcut
- * - Pagefind search across all content types
- * - Docs, Glossary, Articles, Tags filters
+ * Search trigger button for the unified SearchModal.
+ * The SearchModal itself is rendered via Head.astro at document level
+ * to ensure proper overlay behavior.
  */
-import SearchModal from '~/components/SearchModal.astro';
 ---
 
 <!-- Search trigger button in header -->
@@ -29,9 +26,6 @@ import SearchModal from '~/components/SearchModal.astro';
     </kbd>
   </button>
 </div>
-
-<!-- Include the unified search modal -->
-<SearchModal />
 
 <style>
   .search-trigger-wrapper {
