@@ -12,7 +12,7 @@
 |------|-------|--------|-------|
 | 1 | Foundation | ✅ Complete | All items done |
 | 2 | Level 1 Content | ✅ Complete | 9 pages |
-| 3 | Level 2 + Archive | 🔄 In Progress | Technical complete, Archive next |
+| 3 | Level 2 + Archive | ✅ Complete | 14 pages (7 Technical + 7 Archive) |
 | 4 | Search + Automation | ⬜ Not Started | |
 | 5 | Testing + Polish | ⬜ Not Started | |
 | 6 | Launch | ⬜ Not Started | |
@@ -94,13 +94,14 @@
 ### Guides
 - [ ] `guides/user-guides.mdx`
 
-### Archive
-- [ ] `archive/index.mdx` - Timeline overview
-- [ ] Curated 2025 highlights (select 1-2)
-- [ ] Curated 2024 highlights (select 1-2)
-- [ ] Curated 2023 highlights (select 1-2)
-- [ ] Curated 2022 highlights (select 1-2)
-- [ ] Curated 2021 highlights (select 1-2)
+### Archive ✅ COMPLETE
+- [x] `archive/index.mdx` - Timeline overview (~500 words)
+- [x] `archive/2025/sora-nexus-launch.mdx` - Nexus announcement (~700 words)
+- [x] `archive/2024/sora-card-launch.mdx` - SORA Card launch (~700 words)
+- [x] `archive/2024/year-review.mdx` - 2024 summary (~800 words)
+- [x] `archive/2023/polkaswap-v2.mdx` - Polkaswap 2.0 (~600 words)
+- [x] `archive/2022/kusama-parachain.mdx` - Kusama slot win (~600 words)
+- [x] `archive/2021/sora-v2-launch.mdx` - SORA v2 launch (~600 words)
 
 ---
 

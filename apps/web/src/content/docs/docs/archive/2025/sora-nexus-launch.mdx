@@ -1,0 +1,195 @@
+---
+title: "SORA Nexus Announcement"
+description: "The next-generation SORA network built on Hyperledger Iroha 3"
+source: update
+publishDate: 2025-11-30
+lastVerified: 2025-12-07
+sidebar:
+  label: "2025: Nexus Announcement"
+  badge:
+    text: Archive
+    variant: caution
+---
+
+import { Card, CardGrid, Aside } from '@astrojs/starlight/components';
+
+:::caution[Historical Content]
+This article documents the SORA Nexus announcement from November 2025.
+[Read Original Article](https://sora-xor.medium.com/sora-nexus-e32cfd1edef6)
+:::
+
+# SORA Nexus Announcement
+
+**Published:** November 30, 2025
+
+In late 2025, the SORA team unveiled **SORA Nexus** — the next-generation blockchain network that represents the most significant architectural evolution since SORA's inception. Built on [Hyperledger Iroha 3](/glossary/iroha3), Nexus introduces breakthrough technologies designed to position SORA as the backbone for global digital finance.
+
+## The Vision
+
+[SORA Nexus](/glossary/sora-v3) is not merely an upgrade—it's a fundamental reimagining of what the SORA network can be:
+
+> "SORA Nexus creates a supranational platform where CBDCs and digital assets operate free from political and economic instability."
+
+### Key Announcements
+
+<CardGrid>
+  <Card title="Hyperledger Iroha 3" icon="rocket">
+    Complete migration from Substrate to the next-generation Iroha framework.
+  </Card>
+  <Card title="Sub-Second Finality" icon="star">
+    Transactions finalize in under one second using enhanced Sumeragi consensus.
+  </Card>
+  <Card title="Data Spaces" icon="document">
+    Modular architecture enabling domain-specific blockchain applications.
+  </Card>
+  <Card title="FASTPQ Security" icon="approve-check">
+    Post-quantum cryptographic primitives for future-proof security.
+  </Card>
+</CardGrid>
+
+---
+
+## Technical Highlights
+
+### From Substrate to Iroha 3
+
+The decision to migrate from [Substrate](/glossary/substrate) to [Hyperledger Iroha 3](/glossary/hyperledger-iroha) reflects SORA's evolving requirements:
+
+| Aspect | SORA v2 (Substrate) | SORA Nexus (Iroha 3) |
+|--------|---------------------|---------------------|
+| Finality | 12-60 seconds | Sub-second |
+| Smart Contracts | Ink! WASM | ISI + WASM |
+| Consensus | BABE/GRANDPA | Sumeragi BFT |
+| Enterprise Focus | Limited | Native |
+| CBDC Support | Workarounds | Built-in |
+
+### Sumeragi Consensus Evolution
+
+The enhanced [Sumeragi](/glossary/sumeragi) consensus algorithm provides:
+
+- **Deterministic finality** — No block reorganizations
+- **Byzantine fault tolerance** — Operates with up to 1/3 malicious nodes
+- **High throughput** — Thousands of transactions per second
+- **Low latency** — Block times under 2 seconds
+
+### Data Spaces Architecture
+
+One of Nexus's most innovative features is the **Data Spaces** concept:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    SORA Nexus Hub                        │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
+│  │   DeFi      │  │   CBDC      │  │  Enterprise │     │
+│  │ Data Space  │  │ Data Space  │  │ Data Space  │     │
+│  └─────────────┘  └─────────────┘  └─────────────┘     │
+└─────────────────────────────────────────────────────────┘
+```
+
+Each Data Space can have:
+- Custom governance rules
+- Specialized validators
+- Domain-specific logic
+- Controlled interoperability
+
+---
+
+## Economic Implications
+
+### XOR in the Nexus Era
+
+[XOR](/glossary/xor) remains the native utility token, with enhanced roles:
+
+- **Transaction fees** across all Data Spaces
+- **Staking** for validator participation
+- **Governance** through SORA Parliament
+- **Bridge collateral** for cross-chain operations
+
+### CBDC Integration
+
+Nexus positions SORA as infrastructure for Central Bank Digital Currencies:
+
+- National banks can deploy sovereign Data Spaces
+- Assets remain de-correlated from political instability
+- Global settlement layer connects isolated economies
+- [SORAMITSU](/glossary/soramitsu)'s CBDC expertise embedded
+
+---
+
+## Governance Evolution
+
+The [SORA Parliament](/glossary/sora-parliament) receives significant upgrades:
+
+### Iroha Special Instructions
+
+Governance logic implemented via [ISI](/glossary/iroha-special-instructions):
+
+- **Modular proposals** — Domain-specific voting
+- **Automated execution** — On-chain enforcement
+- **Cross-Data Space coordination** — Unified governance
+
+### Enhanced Democracy
+
+- Sortition-based citizen selection continues
+- XOR bonds for citizenship maintained
+- New Panel structures for specialized decisions
+- Integration with external governance (Polkadot, TON)
+
+---
+
+## Development Status
+
+At announcement, the team revealed:
+
+| Component | Status |
+|-----------|--------|
+| Iroha 3 Core | Active development |
+| Nexus Repository | Private alpha |
+| Fujiwara Testnet | Live (Iroha 2) |
+| Migration Plan | In planning |
+| Whitepaper | Drafting |
+
+<Aside type="note">
+The transition to Nexus will be gradual, with SORA v2 continuing to operate during the migration period.
+</Aside>
+
+---
+
+## Community Response
+
+The announcement generated significant discussion:
+
+- **Validators** — Interested in new staking mechanics
+- **Developers** — Excited about ISI capabilities
+- **DeFi users** — Looking forward to speed improvements
+- **Enterprise** — Intrigued by Data Spaces concept
+
+---
+
+## What's Next
+
+Following the announcement, the roadmap includes:
+
+1. **Whitepaper release** — Full technical specification
+2. **Testnet expansion** — More Nexus-specific testing
+3. **Migration planning** — Detailed v2 → v3 pathway
+4. **Partner integration** — CBDC and enterprise pilots
+
+---
+
+## Learn More
+
+<CardGrid>
+  <Card title="SORA Nexus" icon="rocket">
+    [Current Nexus documentation](/docs/fundamentals/sora-nexus)
+  </Card>
+  <Card title="Iroha Technology" icon="seti:code">
+    [Technical deep-dive](/docs/technical/iroha)
+  </Card>
+  <Card title="Original Article" icon="external">
+    [Read on Medium](https://sora-xor.medium.com/sora-nexus-e32cfd1edef6)
+  </Card>
+  <Card title="Whitepaper" icon="document">
+    [SORA Nexus Whitepaper](/glossary/sora-v3)
+  </Card>
+</CardGrid>
