@@ -108,8 +108,39 @@ export default defineConfig({
       // Disable Starlight's built-in Pagefind - we use our own unified search
       pagefind: false,
       // Minimal sidebar for initial setup - will expand in Week 2
-      // Let Starlight auto-generate sidebar from docs directory
-      sidebar: [],
+      sidebar: [
+        {
+          label: 'Fundamentals',
+          items: [
+            { label: 'SORA Overview', slug: 'docs/fundamentals' },
+            // Week 2: Add these pages
+            // { label: 'Tokenomics', slug: 'docs/fundamentals/tokenomics' },
+            // { label: 'Governance', slug: 'docs/fundamentals/governance' },
+            // { label: 'SORA Nexus', slug: 'docs/fundamentals/sora-nexus' },
+          ],
+        },
+        {
+          label: 'Products',
+          collapsed: true,
+          autogenerate: { directory: 'docs/products' },
+        },
+        {
+          label: 'Technical',
+          collapsed: true,
+          autogenerate: { directory: 'docs/technical' },
+        },
+        {
+          label: 'Guides',
+          collapsed: true,
+          autogenerate: { directory: 'docs/guides' },
+        },
+        {
+          label: 'Archive',
+          collapsed: true,
+          badge: { text: 'Historical', variant: 'caution' },
+          autogenerate: { directory: 'docs/archive' },
+        },
+      ],
     }),
     tailwind({
       applyBaseStyles: false,
