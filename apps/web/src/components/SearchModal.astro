@@ -133,6 +133,7 @@ const SEARCH_ALIAS_MICROCOPY =
   const GLOSSARY_ALIAS_MICROCOPY = aliasMicrocopy;
   const TYPE_FILTERS = [
     { id: 'all', label: 'All' },
+    { id: 'docs', label: 'Docs' },
     { id: 'glossary', label: 'Glossary' },
     { id: 'articles', label: 'Articles' },
     { id: 'tags', label: 'Tags' },
@@ -141,6 +142,7 @@ const SEARCH_ALIAS_MICROCOPY =
   const MAX_INITIAL_GLOSSARY = 3;
   const MAX_INITIAL_ARTICLES = 5;
   const MAX_INITIAL_TAGS = 6;
+  const MAX_INITIAL_DOCS = 5;
 
   const SYNONYM_MAP = {
     sora: ['soramitsu', 'xor', 'sora-network'],
@@ -193,6 +195,7 @@ const SEARCH_ALIAS_MICROCOPY =
       this.showAllArticles = false;
       this.showAllGlossary = false;
       this.showAllTags = false;
+      this.showAllDocs = false;
       this.cachedResults = null;
       this.focusedResultIndex = -1;
       this.locale = document.documentElement.lang || 'en';
@@ -208,11 +211,13 @@ const SEARCH_ALIAS_MICROCOPY =
         glossaryCategory: 'all',
         articleCategory: 'all',
         tagCategory: 'all',
+        docsCategory: 'all',
       };
       this.availableCategories = {
         glossary: [],
         article: [],
         tag: [],
+        docs: [],
       };
       
       this.init();
@@ -453,13 +458,14 @@ const SEARCH_ALIAS_MICROCOPY =
       const expandedQuery = this.expandQueryWithSynonyms(trimmed);
       
       try {
-        const [articlesResults, glossaryResults, tagResults] = await Promise.all([
+        const [articlesResults, glossaryResults, tagResults, docsResults] = await Promise.all([
           this.searchArticles(expandedQuery),
           this.searchGlossary(expandedQuery),
           this.searchTags(expandedQuery),
+          this.searchDocs(expandedQuery),
         ]);
         
-        this.cacheResults(trimmed, expandedQuery, articlesResults, glossaryResults, tagResults);
+        this.cacheResults(trimmed, expandedQuery, articlesResults, glossaryResults, tagResults, docsResults);
       } catch (error) {
         console.error('Search error:', error);
         this.showError();
@@ -731,6 +737,89 @@ const SEARCH_ALIAS_MICROCOPY =
         return [];
       }
     }
+
+    async searchDocs(query) {
+      if (!this.pagefind) {
+        return [];
+      }
+
+      try {
+        const search = await this.pagefind.search(query, {
+          excerptLength: 32,
+        });
+
+        const results = search.results || [];
+
+        const withData = await Promise.all(
+          results.map(async (r) => ({ r, d: await r.data() })),
+        );
+
+        const docsResults = [];
+
+        for (const { r, d } of withData) {
+          const filters = d.filters || {};
+          const meta = d.meta || {};
+
+          const types = Array.isArray(filters.type) ? filters.type : filters.type ? [filters.type] : [];
+          const typeFromFilters = types.includes('docs')
+            ? 'docs'
+            : types.includes('glossary')
+            ? 'glossary'
+            : types.includes('article')
+            ? 'article'
+            : types.includes('tag')
+            ? 'tag'
+            : null;
+
+          const t = typeFromFilters || meta.type || null;
+
+          if (t !== 'docs') {
+            continue;
+          }
+
+          let url = d.url || r.url || meta.url || '#';
+          if (url.endsWith('.html')) {
+            url = url.replace('.html', '');
+          }
+          if (url.endsWith('/index')) {
+            url = url.replace('/index', '');
+          }
+          if (url.endsWith('/') && url !== '/') {
+            url = url.slice(0, -1);
+          }
+          if (!url.startsWith('http') && !url.startsWith('/')) {
+            url = '/' + url;
+          }
+          url = url.replace(/\/+/g, '/');
+
+          const title = meta.title || d.title || r.title || 'Documentation';
+          const summary = meta.description || d.excerpt || '';
+          const categoryRaw = meta.category || this.getCategoryFromUrl(url) || '';
+          const section = meta.section || categoryRaw;
+
+          docsResults.push({
+            url,
+            title,
+            summary,
+            excerpt: d.excerpt || summary,
+            category: this.formatCategoryLabel(categoryRaw),
+            categoryRaw,
+            section,
+            score: r.score ?? 0,
+          });
+        }
+
+        return docsResults.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+      } catch (error) {
+        console.error('Pagefind docs search error:', error);
+        return [];
+      }
+    }
+
+    getCategoryFromUrl(url) {
+      const pathParts = url.replace(/^\/docs\//, '').split('/');
+      return pathParts[0] || 'documentation';
+    }
     
     showLoading() {
       this.loading?.classList.remove('hidden');
@@ -758,26 +847,30 @@ const SEARCH_ALIAS_MICROCOPY =
         glossaryCategory: 'all',
         articleCategory: 'all',
         tagCategory: 'all',
+        docsCategory: 'all',
       };
       this.availableCategories = {
         glossary: [],
         article: [],
         tag: [],
+        docs: [],
       };
       this.showAllGlossary = false;
       this.showAllArticles = false;
       this.showAllTags = false;
+      this.showAllDocs = false;
       this.cachedResults = null;
       this.resultAnchors = [];
       this.focusedResultIndex = -1;
     }
     
-    cacheResults(query, expandedQuery, articles, glossary, tags) {
-      this.cachedResults = { query, expandedQuery, articles, glossary, tags };
+    cacheResults(query, expandedQuery, articles, glossary, tags, docs) {
+      this.cachedResults = { query, expandedQuery, articles, glossary, tags, docs };
       this.availableCategories.glossary = this.collectCategories(glossary);
       this.availableCategories.article = this.collectCategories(articles);
       this.availableCategories.tag = this.collectCategories(tags);
-      const hasResults = articles.length + glossary.length + tags.length > 0;
+      this.availableCategories.docs = this.collectCategories(docs);
+      const hasResults = articles.length + glossary.length + tags.length + docs.length > 0;
       this.filtersContainer?.classList.toggle('hidden', !hasResults);
       this.renderTypeFilters(this.getCurrentCounts());
       this.renderCategoryFilters();
@@ -817,12 +910,13 @@ const SEARCH_ALIAS_MICROCOPY =
 
     getCurrentCounts() {
       if (!this.cachedResults) {
-        return { glossary: 0, articles: 0, tags: 0 };
+        return { glossary: 0, articles: 0, tags: 0, docs: 0 };
       }
       return {
         glossary: this.cachedResults.glossary.length,
         articles: this.cachedResults.articles.length,
         tags: this.cachedResults.tags.length,
+        docs: this.cachedResults.docs?.length || 0,
       };
     }
 
@@ -831,10 +925,12 @@ const SEARCH_ALIAS_MICROCOPY =
         return;
       }
 
-      const total = counts.glossary + counts.articles + counts.tags;
+      const total = counts.glossary + counts.articles + counts.tags + counts.docs;
       const buttons = TYPE_FILTERS.map((filter) => {
         const count =
-          filter.id === 'glossary'
+          filter.id === 'docs'
+            ? counts.docs
+            : filter.id === 'glossary'
             ? counts.glossary
             : filter.id === 'articles'
             ? counts.articles
@@ -1677,3 +1773,107 @@ const SEARCH_ALIAS_MICROCOPY =
     new SearchModal();
   });
 </script>
+
+<style is:global>
+  /* Ensure hidden class works on all pages including Starlight */
+  #search-modal .hidden,
+  #search-modal.hidden {
+    display: none !important;
+  }
+  
+  /* SearchModal core styles - ensure they work on Starlight pages */
+  .search-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+  }
+  
+  .search-modal__backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+  
+  .search-modal__dialog {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4rem 1rem 1rem;
+    overflow-y: auto;
+  }
+  
+  .search-modal__panel {
+    width: 100%;
+    max-width: 42rem;
+    background-color: var(--color-surface, #1a1a2e);
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+  
+  .search-modal__header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
+  }
+  
+  .search-modal__header h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text, #fff);
+  }
+  
+  .search-modal__close {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: var(--color-text-soft, #a0a0a0);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 150ms;
+  }
+  
+  .search-modal__close:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text, #fff);
+  }
+  
+  .search-modal__input {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
+  }
+  
+  .search-modal__input-field {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    color: var(--color-text, #fff);
+    font-size: 1rem;
+  }
+  
+  .search-modal__input-field:focus {
+    outline: none;
+    border-color: var(--color-brand, #E3242D);
+    box-shadow: 0 0 0 3px rgba(227, 36, 45, 0.2);
+  }
+  
+  .search-modal__input-field::placeholder {
+    color: var(--color-text-soft, #a0a0a0);
+  }
+  
+  .search-modal__results {
+    max-height: 24rem;
+    overflow-y: auto;
+    padding: 1rem 1.5rem;
+  }
+  
+  .search-modal__badges {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>

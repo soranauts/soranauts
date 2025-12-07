@@ -22,13 +22,83 @@ hero:
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-## Explore the Docs
+## Learn the Fundamentals
 
 <CardGrid>
   <LinkCard
-    title="Fundamentals"
-    description="Core concepts about SORA, XOR, and the ecosystem"
+    title="SORA Overview"
+    description="What is SORA? Philosophy, key components, and why it matters"
     href="/docs/fundamentals"
+  />
+  <LinkCard
+    title="Tokenomics"
+    description="Token Bonding Curve, XOR supply, VAL, and PSWAP mechanics"
+    href="/docs/fundamentals/tokenomics"
+  />
+  <LinkCard
+    title="Governance"
+    description="SORA Parliament, voting, proposals, and on-chain democracy"
+    href="/docs/fundamentals/governance"
+  />
+  <LinkCard
+    title="SORA Nexus"
+    description="The next evolution: SORA v3, Iroha 2, and upcoming features"
+    href="/docs/fundamentals/sora-nexus"
+  />
+</CardGrid>
+
+## Explore Products
+
+<CardGrid>
+  <LinkCard
+    title="Polkaswap"
+    description="Cross-chain DEX with unlimited liquidity"
+    href="/docs/products/polkaswap"
+  />
+  <LinkCard
+    title="Fearless Wallet"
+    description="Multi-chain DeFi wallet for Polkadot ecosystem"
+    href="/docs/products/fearless-wallet"
+  />
+  <LinkCard
+    title="SORA Card"
+    description="Crypto-to-fiat debit card powered by SORA"
+    href="/docs/products/sora-card"
+  />
+  <LinkCard
+    title="TONSWAP"
+    description="DEX bringing SORA's liquidity to TON blockchain"
+    href="/docs/products/tonswap"
+  />
+</CardGrid>
+
+## Technical Documentation
+
+<CardGrid>
+  <LinkCard
+    title="Hyperledger Iroha"
+    description="Blockchain framework powering SORA Network"
+    href="/docs/technical/iroha"
+  />
+  <LinkCard
+    title="Bridges"
+    description="Cross-chain connectivity: Ethereum, Polkadot, TON"
+    href="/docs/technical/bridges/ethereum"
+  />
+  <LinkCard
+    title="Getting Started"
+    description="Developer quickstart and integration guides"
+    href="/docs/technical/integration/getting-started"
+  />
+</CardGrid>
+
+## Archive & History
+
+<CardGrid>
+  <LinkCard
+    title="SORA Timeline"
+    description="Key milestones and ecosystem evolution"
+    href="/docs/archive"
   />
   <LinkCard
     title="Glossary"
@@ -36,24 +106,3 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
     href="/glossary"
   />
 </CardGrid>
-
-## Coming Soon
-
-<CardGrid stagger>
-  <Card title="Products" icon="puzzle">
-    Guides for Polkaswap, Fearless Wallet, SORA Card, and more
-  </Card>
-  <Card title="Technical" icon="setting">
-    Developer documentation and integration guides
-  </Card>
-  <Card title="Guides" icon="document">
-    Step-by-step tutorials for using SORA products
-  </Card>
-  <Card title="Archive" icon="open-book">
-    Historical ecosystem updates and announcements
-  </Card>
-</CardGrid>
-
-:::note[Under Construction]
-This documentation section is actively being built. New content is added regularly.
-:::
