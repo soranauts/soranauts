@@ -110,6 +110,43 @@ See [Tokenomics](/docs/fundamentals/tokenomics) for details.
 
 ---
 
+## Content Standards
+
+### Glossary Cross-Links
+
+When linking to glossary terms from documentation:
+
+- Always use `/glossary/term` format (no anchors)
+- ✅ Correct: `[XOR](/glossary/xor)`
+- ❌ Wrong: `[XOR](/glossary/xor#definition)`
+
+Anchors on glossary pages may not work as expected due to header scroll behavior. Use clean links without hash fragments.
+
+### Link Examples
+
+```mdx
+{/* ✅ Correct glossary links */}
+The [XOR](/glossary/xor) token powers the network.
+Learn about the [Token Bonding Curve](/glossary/tokenbondingcurve).
+Use [Polkaswap](/glossary/polkaswap) for trading.
+
+{/* ❌ Wrong - no anchors */}
+The [XOR](/glossary/xor#definition) token powers the network.
+Learn about the [Token Bonding Curve](/glossary/tokenbondingcurve#how-it-works).
+```
+
+### Slug Format
+
+Glossary slugs use lowercase, no hyphens for compound terms:
+- `/glossary/xor` (not `/glossary/x-o-r`)
+- `/glossary/tokenbondingcurve` (not `/glossary/token-bonding-curve`)
+- `/glossary/soraparliament` (not `/glossary/sora-parliament`)
+- `/glossary/fearlesswallet` (not `/glossary/fearless-wallet`)
+
+Check existing glossary files for correct slugs before linking.
+
+---
+
 ## Code Style
 
 ### File Naming

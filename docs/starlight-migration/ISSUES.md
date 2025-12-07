@@ -142,6 +142,16 @@ Reference as /docs/images/filename.png
 
 ---
 
+## Deferred Tasks
+
+Tasks identified during migration that should be addressed later:
+
+- [ ] Glossary pages: Review anchor/scroll behavior — currently `#definition` skips header
+- [ ] Consider adding `scroll-margin-top` to glossary page headings
+- [ ] Evaluate if Starlight's built-in anchor handling can improve glossary UX
+
+---
+
 ## Escalation Notes
 
 <!-- For issues that need external help (Starlight Discord, etc.) -->
