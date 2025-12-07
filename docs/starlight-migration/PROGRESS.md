@@ -13,7 +13,7 @@
 | 1 | Foundation | ✅ Complete | All items done |
 | 2 | Level 1 Content | ✅ Complete | 9 pages |
 | 3 | Level 2 + Archive | ✅ Complete | 14 pages (7 Technical + 7 Archive) |
-| 4 | Search + Automation | 🔄 In Progress | Search complete, CI pending |
+| 4 | Search + Automation | ✅ Complete | Search + CI validation |
 | 5 | Testing + Polish | ⬜ Not Started | |
 | 6 | Launch | ⬜ Not Started | |
 
@@ -121,11 +121,11 @@
 - [x] `starlight/Search.astro` - Cmd+K trigger placeholder
 - [x] `starlight/ContentPanel.astro` - Pagefind metadata wrapper
 
-### CI/CD
-- [ ] Create `docs-validation.yml` workflow
-- [ ] Create `docs-validate.ts` script
-- [ ] Add link checking
-- [ ] Test CI on PR
+### CI/CD ✅ COMPLETE
+- [x] Create `docs-validation.yml` workflow
+- [x] Create `docs-validate.ts` script
+- [x] Add link checking (broken links, #definition anchors, localhost URLs)
+- [x] Validation passes: 24/24 files ✅
 
 ---
 
