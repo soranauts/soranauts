@@ -23,6 +23,10 @@ export interface TagHubMetadataEntry {
    * when legacy taxonomy data points to an alias (e.g. SORA previously pointed to TONSWAP).
    */
   glossarySlug?: string;
+  /**
+   * Optional array of related glossary term slugs for cross-linking on tag hub pages.
+   */
+  relatedSlugs?: string[];
 }
 
 export interface TagHubQuickPath {
