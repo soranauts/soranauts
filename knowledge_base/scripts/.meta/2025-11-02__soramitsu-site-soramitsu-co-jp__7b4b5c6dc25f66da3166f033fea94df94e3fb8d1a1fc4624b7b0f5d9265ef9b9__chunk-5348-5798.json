@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "Soramitsu is an award-winning blockchain technology leader revolutionizing global payments, empowering governments, advancing Web3 infrastructure and transforming telecoms.",
-  "chunk_char_start": 0,
-  "chunk_char_end": 31107
-}

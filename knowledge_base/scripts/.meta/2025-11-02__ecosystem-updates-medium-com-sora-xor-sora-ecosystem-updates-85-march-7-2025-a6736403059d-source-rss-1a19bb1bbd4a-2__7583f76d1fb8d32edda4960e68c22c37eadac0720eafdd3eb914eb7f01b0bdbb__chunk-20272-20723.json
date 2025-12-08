@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "SORA Ecosystem Updates #85, March 7, 2025",
-  "chunk_char_start": 81090,
-  "chunk_char_end": 82890
-}

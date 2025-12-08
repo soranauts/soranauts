@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "Fearless Wallet Polkadot Parachain Crowdloan Unlock Update",
-  "chunk_char_start": 6120,
-  "chunk_char_end": 7920
-}

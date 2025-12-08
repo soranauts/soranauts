@@ -1,6 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "chunk_char_start": 0,
-  "chunk_char_end": 2217
-}

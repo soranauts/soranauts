@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "Explorar Bloques en la Red SORA | Documentación de SORA",
-  "chunk_char_start": 1530,
-  "chunk_char_end": 2904
-}
