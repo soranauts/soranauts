@@ -52,7 +52,7 @@ jobs:
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -60,7 +60,7 @@ jobs:
           version: 9.12.2
           
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -130,7 +130,7 @@ jobs:
           
       - name: Upload index manifest
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: kb-index-manifest
           path: knowledge_base/.kb_index/manifest.json
