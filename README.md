@@ -91,7 +91,6 @@ The site uses minimal JavaScript for core functionality while maintaining excell
 │       │   ├── data/
 │       │   │   └── sora-glossary.ts
 │       │   ├── scripts/
-│       │   │   ├── generate-glossary-fixed.js
 │       │   │   └── indexGlossary.ts
 │       │   └── types/
 │       │       └── glossary.ts

@@ -100,7 +100,6 @@ src/
 ├── data/
 │   └── sora-glossary.ts   # Glossary data source
 ├── scripts/
-│   ├── generate-glossary-fixed.js  # Generate glossary.json
 │   └── indexGlossary.ts   # Typesense indexing script
 └── types/
     └── glossary.ts        # TypeScript interfaces

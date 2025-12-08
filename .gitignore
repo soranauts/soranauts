@@ -2,6 +2,10 @@
 dist/
 .output/
 
+# Backup files
+*.backup
+*.bak
+
 # Content lint reports (generated)
 content-lint-report.md
 
