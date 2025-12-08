@@ -132,7 +132,7 @@ describe('cross: autolink legacy exclusions', () => {
     const link = findLink(paragraph);
     expect(link).toBeDefined();
     if (!link) return;
-    expect(link.url).toBe('/glossary/polkaswap#definition');
+    expect(link.url).toBe('/glossary/polkaswap');
     expect(link.data?.hProperties?.class).toBe('glossary');
     expect(link.data?.hProperties?.['aria-label']).toContain('Glossary term');
   });
@@ -156,7 +156,7 @@ describe('cross: autolink v2 mode', () => {
     const link = findLink(paragraph);
     expect(link).toBeDefined();
     if (!link) return;
-    expect(link.url).toBe('/glossary/polkaswap#definition');
+    expect(link.url).toBe('/glossary/polkaswap');
     expect(link.data?.hProperties?.class).toBe('glossary');
     expect(link.data?.hProperties?.['data-cat']).toBe('defi');
     expect(link.data?.hProperties?.['data-title']).toBe('PolkaSwap');

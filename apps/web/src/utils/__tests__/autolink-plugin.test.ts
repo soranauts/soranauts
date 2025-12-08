@@ -76,7 +76,7 @@ describe('glossary auto-link plugin', () => {
 
     runPlugin(tree);
     const link = extractLinks(tree.children[0])[0];
-    expect(link.url).toBe('/glossary/polkaswap#definition');
+    expect(link.url).toBe('/glossary/polkaswap');
     expect(link.children[0].value).toBe('PSWAP');
     expect(link.data.hProperties['data-alias-source']).toBe('true');
     expect(link.data.hProperties['data-canonical-slug']).toBe('polkaswap');
