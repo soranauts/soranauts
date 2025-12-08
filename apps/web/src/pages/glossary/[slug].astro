@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/widgets/Header.astro';
 import Footer from '../../components/widgets/Footer.astro';
@@ -207,6 +208,13 @@ const taxonomyNode = getTaxonomyNode(term.slug);
 const relatedTagNodes = taxonomyNode ? getRelatedTags(taxonomyNode.slug) : [];
 
 const posts = await getCollection('post');
+
+/** Derive slug from a post collection entry (Astro 5.x compatible) */
+const getPostSlug = (post: CollectionEntry<'post'>): string => {
+  const customSlug = post.data.customSlug as string | undefined;
+  if (customSlug) return cleanSlug(customSlug);
+  return cleanSlug(post.id.replace(/\.(mdx?|md)$/i, ''));
+};
 
 const relatedTagArticles = (() => {
   const seen = new Set<string>();
@@ -737,7 +745,7 @@ const initialQuickViewSlug = Astro.url.searchParams.get('term') || null;
                     </div>
                     <ul class="glossary-related__list">
                       {posts.map((post) => {
-                        const postPermalink = getPermalink(post.slug, 'post');
+                        const postPermalink = getPermalink(getPostSlug(post), 'post');
                         return (
                           <li class="glossary-related__list-item">
                             <a href={postPermalink}>{post.data.title}</a>

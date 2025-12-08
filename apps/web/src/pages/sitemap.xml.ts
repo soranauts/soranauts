@@ -1,10 +1,18 @@
 import type { APIRoute, ImageMetadata } from 'astro';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 import glossary from '../../public/glossary.json';
 import { env } from '../server/env';
 import { getAllTagHubViewModels } from '../lib/tag-hub';
 import { shouldIndexTagPage } from '../lib/tag-pages';
+
+/** Derive slug from a post collection entry (Astro 5.x compatible) */
+const getPostSlug = (post: CollectionEntry<'post'>): string => {
+  const customSlug = post.data.customSlug as string | undefined;
+  if (customSlug) return customSlug;
+  return post.id.replace(/\.(mdx?|md)$/i, '');
+};
 
 type SitemapEntry = {
   loc: string;
@@ -118,7 +126,7 @@ if (isExplorerEnabled) {
     }
 
     entries.push({
-      loc: formatUrl(baseUrl, `/${post.slug}`),
+      loc: formatUrl(baseUrl, `/${getPostSlug(post)}`),
       lastmod,
       changefreq: 'weekly',
       priority: '0.8',

@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 import BlogList from '~/components/blog/List.astro';
 import Pagination from '~/components/blog/Pagination.astro';
 import { getCollection } from 'astro:content';
@@ -58,8 +59,16 @@ export const getStaticPaths = (async () => {
 
 const { tagSlug, posts } = Astro.props as TagPageProps;
 const postsCollection = await getCollection('post');
+
+/** Derive slug from a post collection entry (Astro 5.x compatible) */
+const getPostSlug = (post: CollectionEntry<'post'>): string => {
+  const customSlug = post.data.customSlug as string | undefined;
+  if (customSlug) return customSlug;
+  return post.id.replace(/\.(mdx?|md)$/i, '');
+};
+
 const postsBySlug = new Map<string, (typeof postsCollection)[number]>(
-  postsCollection.map((post) => [post.slug, post]),
+  postsCollection.map((post) => [getPostSlug(post), post]),
 );
 
 const tag = getTagViewModelBySlug(tagSlug);
@@ -148,7 +157,7 @@ const relatedArticlesFromMap =
           if (!post) return null;
           return {
             title: post.data.title ?? formatTagLabel(tag.slug, slug),
-            href: getPermalink(post.slug, 'post'),
+            href: getPermalink(getPostSlug(post), 'post'),
             date: post.data.publishDate ? formatArticleDate(post.data.publishDate) : null,
           };
         })
