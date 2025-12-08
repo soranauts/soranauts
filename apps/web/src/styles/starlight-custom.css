@@ -383,79 +383,96 @@ nav[aria-label="Main"] {
   background: rgb(var(--sl-color-bg-sidebar)) !important;
 }
 
-/* Mobile TOC (Table of Contents) breadcrumb bar - iOS Safari fix */
+/* ========================================
+   Mobile TOC "On this page" bar - CRITICAL
+   ======================================== */
+
+/* Parent container for mobile TOC */
+.lg\:sl-hidden {
+  background-color: #0C0F14 !important;
+  background: #0C0F14 !important;
+}
+
+/* The mobile-starlight-toc custom element - this is THE element */
+mobile-starlight-toc {
+  background-color: #0C0F14 !important;
+  background: #0C0F14 !important;
+  display: block !important;
+}
+
+/* The nav inside mobile TOC */
+mobile-starlight-toc > nav {
+  background-color: #0C0F14 !important;
+  background: #0C0F14 !important;
+}
+
+/* The details dropdown */
+mobile-starlight-toc details,
+#starlight__mobile-toc {
+  background-color: #0C0F14 !important;
+  background: #0C0F14 !important;
+}
+
+/* The summary (clickable "On this page" bar) */
+mobile-starlight-toc summary,
+#starlight__on-this-page--mobile {
+  background-color: #0C0F14 !important;
+  background: #0C0F14 !important;
+}
+
+/* The dropdown content when expanded */
+mobile-starlight-toc .dropdown {
+  background-color: #0C0F14 !important;
+  background: #0C0F14 !important;
+}
+
+/* Right sidebar container that holds the mobile TOC */
+.right-sidebar-container,
+.right-sidebar {
+  background-color: #0C0F14 !important;
+  background: #0C0F14 !important;
+}
+
+/* Desktop starlight-toc (hidden on mobile, but style anyway) */
 starlight-toc {
   background-color: #0C0F14 !important;
   background: #0C0F14 !important;
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
 }
 
-starlight-toc > nav,
-starlight-toc nav,
-starlight-toc details,
-starlight-toc summary {
-  background-color: #0C0F14 !important;
-  background: #0C0F14 !important;
+/* ========================================
+   Light Mode
+   ======================================== */
+
+:root[data-theme='light'] .lg\:sl-hidden,
+:root[data-theme='light'] mobile-starlight-toc,
+:root[data-theme='light'] mobile-starlight-toc > nav,
+:root[data-theme='light'] mobile-starlight-toc details,
+:root[data-theme='light'] mobile-starlight-toc summary,
+:root[data-theme='light'] mobile-starlight-toc .dropdown,
+:root[data-theme='light'] #starlight__mobile-toc,
+:root[data-theme='light'] #starlight__on-this-page--mobile,
+:root[data-theme='light'] .right-sidebar-container,
+:root[data-theme='light'] .right-sidebar,
+:root[data-theme='light'] starlight-toc {
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
 }
 
-/* The "On this page" mobile dropdown */
-mobile-starlight-toc,
-.mobile-starlight-toc,
-[data-mobile-toc],
-starlight-toc mobile-starlight-toc {
-  background-color: #0C0F14 !important;
-  background: #0C0F14 !important;
-}
+/* ========================================
+   Mobile Menu Sidebar
+   ======================================== */
 
-/* Mobile menu overlay - solid background */
 @media (max-width: 50rem) {
   .sidebar,
   .sidebar-pane {
     background-color: #0C0F14 !important;
     background: #0C0F14 !important;
   }
-  
-  /* Right sidebar/TOC on mobile */
-  .right-sidebar,
-  .right-sidebar-panel,
-  .right-sidebar-container {
-    background-color: #0C0F14 !important;
-    background: #0C0F14 !important;
-  }
-  
-  /* Mobile TOC wrapper and content */
-  starlight-toc,
-  starlight-toc > *,
-  starlight-toc nav,
-  starlight-toc details,
-  starlight-toc summary,
-  .sl-mobile-toc,
-  [class*="mobile-toc"] {
-    background-color: #0C0F14 !important;
-    background: #0C0F14 !important;
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-  }
-}
-
-/* Light mode */
-:root[data-theme='light'] starlight-toc,
-:root[data-theme='light'] starlight-toc > *,
-:root[data-theme='light'] starlight-toc nav,
-:root[data-theme='light'] starlight-toc details,
-:root[data-theme='light'] starlight-toc summary {
-  background-color: #FFFFFF !important;
-  background: #FFFFFF !important;
 }
 
 @media (max-width: 50rem) {
   :root[data-theme='light'] .sidebar,
-  :root[data-theme='light'] .sidebar-pane,
-  :root[data-theme='light'] .right-sidebar,
-  :root[data-theme='light'] .right-sidebar-panel,
-  :root[data-theme='light'] starlight-toc,
-  :root[data-theme='light'] starlight-toc > * {
+  :root[data-theme='light'] .sidebar-pane {
     background-color: #FFFFFF !important;
     background: #FFFFFF !important;
   }
