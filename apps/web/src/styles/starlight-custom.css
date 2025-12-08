@@ -370,7 +370,7 @@ site-search dialog::backdrop {
 }
 
 /* ==========================================================================
-   10. Mobile Sidebar - Solid background
+   10. Mobile Sidebar & TOC - Solid background (iOS Safari fix)
    ========================================================================== */
 
 /* Mobile sidebar - ensure solid background on all sidebar elements */
@@ -380,41 +380,84 @@ starlight-menu-button ~ nav,
 .sidebar-content,
 nav[aria-label="Main"] {
   background-color: rgb(var(--sl-color-bg-sidebar)) !important;
+  background: rgb(var(--sl-color-bg-sidebar)) !important;
+}
+
+/* Mobile TOC (Table of Contents) breadcrumb bar - iOS Safari fix */
+starlight-toc {
+  background-color: #0C0F14 !important;
+  background: #0C0F14 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+starlight-toc > nav,
+starlight-toc nav,
+starlight-toc details,
+starlight-toc summary {
+  background-color: #0C0F14 !important;
+  background: #0C0F14 !important;
+}
+
+/* The "On this page" mobile dropdown */
+mobile-starlight-toc,
+.mobile-starlight-toc,
+[data-mobile-toc],
+starlight-toc mobile-starlight-toc {
+  background-color: #0C0F14 !important;
+  background: #0C0F14 !important;
 }
 
 /* Mobile menu overlay - solid background */
 @media (max-width: 50rem) {
-  .sidebar {
-    background-color: rgb(12, 15, 20) !important;
-  }
-  
+  .sidebar,
   .sidebar-pane {
-    background-color: rgb(12, 15, 20) !important;
+    background-color: #0C0F14 !important;
+    background: #0C0F14 !important;
   }
   
-  /* Table of contents on mobile */
-  starlight-toc nav {
-    background-color: rgb(12, 15, 20) !important;
+  /* Right sidebar/TOC on mobile */
+  .right-sidebar,
+  .right-sidebar-panel,
+  .right-sidebar-container {
+    background-color: #0C0F14 !important;
+    background: #0C0F14 !important;
   }
   
-  /* Right sidebar on mobile */
-  .right-sidebar {
-    background-color: rgb(12, 15, 20) !important;
-  }
-  
-  .right-sidebar-panel {
-    background-color: rgb(12, 15, 20) !important;
+  /* Mobile TOC wrapper and content */
+  starlight-toc,
+  starlight-toc > *,
+  starlight-toc nav,
+  starlight-toc details,
+  starlight-toc summary,
+  .sl-mobile-toc,
+  [class*="mobile-toc"] {
+    background-color: #0C0F14 !important;
+    background: #0C0F14 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
   }
 }
 
 /* Light mode */
+:root[data-theme='light'] starlight-toc,
+:root[data-theme='light'] starlight-toc > *,
+:root[data-theme='light'] starlight-toc nav,
+:root[data-theme='light'] starlight-toc details,
+:root[data-theme='light'] starlight-toc summary {
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+}
+
 @media (max-width: 50rem) {
   :root[data-theme='light'] .sidebar,
   :root[data-theme='light'] .sidebar-pane,
-  :root[data-theme='light'] starlight-toc nav,
   :root[data-theme='light'] .right-sidebar,
-  :root[data-theme='light'] .right-sidebar-panel {
-    background-color: rgb(255, 255, 255) !important;
+  :root[data-theme='light'] .right-sidebar-panel,
+  :root[data-theme='light'] starlight-toc,
+  :root[data-theme='light'] starlight-toc > * {
+    background-color: #FFFFFF !important;
+    background: #FFFFFF !important;
   }
 }
 
