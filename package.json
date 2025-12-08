@@ -59,7 +59,7 @@
     "commander": "^14.0.2",
     "duckdb": "^1.4.2",
     "glob": "^11.0.3",
-    "got": "^14.2.0",
+    "got": "^14.6.5",
     "gray-matter": "^4.0.3",
     "minisearch": "^7.0.1",
     "openai": "^4.28.0",
@@ -77,8 +77,8 @@
     "diff": "^8.0.2",
     "fast-glob": "^3.3.2",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
-    "tsx": "^4.20.5"
+    "lint-staged": "^16.2.7",
+    "tsx": "^4.21.0"
   },
   "lint-staged": {
     "{apps,packages}/**/*.{ts,tsx}": [],
