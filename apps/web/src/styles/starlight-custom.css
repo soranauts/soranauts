@@ -385,19 +385,27 @@ nav[aria-label="Main"] {
 
 /* ========================================
    Mobile TOC "On this page" bar - CRITICAL
+   iOS Safari fix - remove ALL transparency
    ======================================== */
 
 /* Parent container for mobile TOC */
 .lg\:sl-hidden {
   background-color: #0C0F14 !important;
   background: #0C0F14 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* The mobile-starlight-toc custom element - this is THE element */
-mobile-starlight-toc {
+mobile-starlight-toc,
+mobile-starlight-toc *,
+mobile-starlight-toc *::before,
+mobile-starlight-toc *::after {
   background-color: #0C0F14 !important;
   background: #0C0F14 !important;
-  display: block !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* The nav inside mobile TOC */
@@ -418,6 +426,9 @@ mobile-starlight-toc summary,
 #starlight__on-this-page--mobile {
   background-color: #0C0F14 !important;
   background: #0C0F14 !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* The dropdown content when expanded */
@@ -428,9 +439,13 @@ mobile-starlight-toc .dropdown {
 
 /* Right sidebar container that holds the mobile TOC */
 .right-sidebar-container,
-.right-sidebar {
+.right-sidebar,
+.right-sidebar-panel {
   background-color: #0C0F14 !important;
   background: #0C0F14 !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* Desktop starlight-toc (hidden on mobile, but style anyway) */
@@ -445,6 +460,7 @@ starlight-toc {
 
 :root[data-theme='light'] .lg\:sl-hidden,
 :root[data-theme='light'] mobile-starlight-toc,
+:root[data-theme='light'] mobile-starlight-toc *,
 :root[data-theme='light'] mobile-starlight-toc > nav,
 :root[data-theme='light'] mobile-starlight-toc details,
 :root[data-theme='light'] mobile-starlight-toc summary,
@@ -453,9 +469,13 @@ starlight-toc {
 :root[data-theme='light'] #starlight__on-this-page--mobile,
 :root[data-theme='light'] .right-sidebar-container,
 :root[data-theme='light'] .right-sidebar,
+:root[data-theme='light'] .right-sidebar-panel,
 :root[data-theme='light'] starlight-toc {
   background-color: #FFFFFF !important;
   background: #FFFFFF !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* ========================================
