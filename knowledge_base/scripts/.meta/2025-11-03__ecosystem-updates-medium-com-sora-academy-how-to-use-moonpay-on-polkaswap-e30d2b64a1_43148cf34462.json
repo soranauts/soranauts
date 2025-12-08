@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "How to Use Moonpay on Polkaswap",
-  "chunk_char_start": 7650,
-  "chunk_char_end": 9450
-}

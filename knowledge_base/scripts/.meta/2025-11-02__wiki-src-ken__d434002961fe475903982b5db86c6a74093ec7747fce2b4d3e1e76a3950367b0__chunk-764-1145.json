@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "Kensetsu KEN | SORA Docs",
-  "chunk_char_start": 0,
-  "chunk_char_end": 4375
-}

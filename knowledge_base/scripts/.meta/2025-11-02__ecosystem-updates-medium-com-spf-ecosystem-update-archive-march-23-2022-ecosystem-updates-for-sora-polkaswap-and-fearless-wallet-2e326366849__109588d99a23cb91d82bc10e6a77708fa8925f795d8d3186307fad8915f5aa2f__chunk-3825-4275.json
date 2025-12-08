@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "March 23 2022, Ecosystem Updates for SORA, Polkaswap, and Fearless Wallet",
-  "chunk_char_start": 15300,
-  "chunk_char_end": 17100
-}

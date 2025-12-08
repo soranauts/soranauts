@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "SORA: The New Economic Order",
-  "chunk_char_start": 9180,
-  "chunk_char_end": 10980
-}

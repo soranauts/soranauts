@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "代币绑定曲线美元 (TBCD) | SORA 文档",
-  "chunk_char_start": 0,
-  "chunk_char_end": 1800
-}

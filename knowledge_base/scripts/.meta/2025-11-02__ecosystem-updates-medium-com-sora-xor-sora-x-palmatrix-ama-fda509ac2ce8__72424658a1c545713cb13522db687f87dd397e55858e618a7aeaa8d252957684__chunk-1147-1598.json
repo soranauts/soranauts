@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "SORA x Palmatrix AMA",
-  "chunk_char_start": 4590,
-  "chunk_char_end": 6390
-}

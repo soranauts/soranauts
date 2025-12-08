@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "SORAMITSU, Fearless Wallet, and the Kusama Treasury",
-  "chunk_char_start": 16830,
-  "chunk_char_end": 18630
-}

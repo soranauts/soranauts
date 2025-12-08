@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "The Fujiwara Testnet | The Next Step on the Way to SORA v3",
-  "chunk_char_start": 26010,
-  "chunk_char_end": 27810
-}

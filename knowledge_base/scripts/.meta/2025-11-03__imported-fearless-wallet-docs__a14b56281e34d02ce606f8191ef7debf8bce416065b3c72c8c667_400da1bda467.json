@@ -1,7 +1,0 @@
-{
-  "embed_model": "text-embedding-3-large",
-  "embed_dim": 3072,
-  "source_title": "Fearless Wallet — User Documentation (Extracted)",
-  "chunk_char_start": 18360,
-  "chunk_char_end": 20160
-}
