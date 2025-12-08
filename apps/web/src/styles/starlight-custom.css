@@ -30,8 +30,8 @@
 
   /* Background */
   --sl-color-bg: var(--sl-color-black);
-  --sl-color-bg-nav: rgba(12, 15, 20, 0.95);
-  --sl-color-bg-sidebar: var(--sl-color-black);
+  --sl-color-bg-nav: 12, 15, 20;
+  --sl-color-bg-sidebar: 12, 15, 20;
   --sl-color-bg-inline-code: var(--sl-color-gray-6);
 
   /* Hairline/Borders */
@@ -75,7 +75,7 @@
 
   /* Background */
   --sl-color-bg: 244, 245, 247;             /* #F4F5F7 - Page bg */
-  --sl-color-bg-nav: rgba(255, 255, 255, 0.95);
+  --sl-color-bg-nav: 255, 255, 255;
   --sl-color-bg-sidebar: 255, 255, 255;
 }
 
@@ -370,7 +370,56 @@ site-search dialog::backdrop {
 }
 
 /* ==========================================================================
-   10. Hero/Splash pages
+   10. Mobile Sidebar - Solid background
+   ========================================================================== */
+
+/* Mobile sidebar - ensure solid background on all sidebar elements */
+starlight-menu-button ~ nav,
+.sidebar,
+.sidebar-pane,
+.sidebar-content,
+nav[aria-label="Main"] {
+  background-color: rgb(var(--sl-color-bg-sidebar)) !important;
+}
+
+/* Mobile menu overlay - solid background */
+@media (max-width: 50rem) {
+  .sidebar {
+    background-color: rgb(12, 15, 20) !important;
+  }
+  
+  .sidebar-pane {
+    background-color: rgb(12, 15, 20) !important;
+  }
+  
+  /* Table of contents on mobile */
+  starlight-toc nav {
+    background-color: rgb(12, 15, 20) !important;
+  }
+  
+  /* Right sidebar on mobile */
+  .right-sidebar {
+    background-color: rgb(12, 15, 20) !important;
+  }
+  
+  .right-sidebar-panel {
+    background-color: rgb(12, 15, 20) !important;
+  }
+}
+
+/* Light mode */
+@media (max-width: 50rem) {
+  :root[data-theme='light'] .sidebar,
+  :root[data-theme='light'] .sidebar-pane,
+  :root[data-theme='light'] starlight-toc nav,
+  :root[data-theme='light'] .right-sidebar,
+  :root[data-theme='light'] .right-sidebar-panel {
+    background-color: rgb(255, 255, 255) !important;
+  }
+}
+
+/* ==========================================================================
+   11. Hero/Splash pages
    ========================================================================== */
 
 .hero {
