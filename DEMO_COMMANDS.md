@@ -60,7 +60,7 @@ soranauts/
 │   ├── public/
 │   │   └── glossary.json       # Generated glossary data (58 terms)
 │   └── scripts/
-│       └── generate-glossary-fixed.js  # Build-time data generation
+│       └── indexGlossary.ts  # Typesense indexing script
 ├── packages/
 │   ├── chain/                  # Blockchain facade
 │   ├── config/                 # Shared configuration
