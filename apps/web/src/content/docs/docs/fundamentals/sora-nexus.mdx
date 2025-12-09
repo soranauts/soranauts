@@ -96,6 +96,16 @@ These primitives ensure SORA Nexus remains secure even against future quantum co
 
 ## Architecture Overview
 
+SORA Nexus unifies multiple architectural innovations into a single coherent system. The diagram below illustrates how data spaces, parallel lanes, and the merge ledger work together to achieve infinite scalability while maintaining a single logical ledger.
+
+![SORA Nexus Architecture Overview](/sora-nexus-architecture-overview.webp)
+
+*Figure: SORA Nexus architecture showing data spaces (public and private), parallel processing lanes, and the merge ledger that unifies them into a single canonical sequence.*
+
+<Aside type="tip" title="Understanding the Flow">
+Transactions enter through **data spaces** (sovereign domains), get processed in **parallel lanes** (for speed), and are finalized in the **merge ledger** (for global ordering). This three-tier design enables SORA Nexus to scale horizontally while preserving deterministic finality.
+</Aside>
+
 ### The IVM: Iroha Virtual Machine
 
 At the core of SORA Nexus is the [Iroha Virtual Machine](/glossary/ivm) (IVM), a purpose-built execution environment:
