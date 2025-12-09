@@ -1,0 +1,393 @@
+---
+publishDate: 2025-12-09T00:00:00Z
+updateDate: 2025-12-09T00:00:00Z
+title: "SORA Nexus: Complete Guide to Blockchain's End of History"
+excerpt: "Discover SORA Nexus, the Hyperledger Iroha 3 blockchain uniting DeFi, CBDCs, and enterprise on one infinite-scale ledger with 1-second finality."
+image: ~/assets/images/sora-nexus-complete-guide.jpg
+category: "Guides"
+tags:
+  - sora
+  - nexus
+  - iroha3
+  - blockchain
+  - cbdc
+  - defi
+  - governance
+  - enterprise
+  - interoperability
+  - tokenomics
+  - polkadot
+  - xor
+canonicalURL: https://soranauts.com/sora-nexus-complete-guide
+customSlug: sora-nexus-complete-guide
+---
+
+import FaqSection from '~/components/blog/FaqSection.astro';
+
+With over $150 billion processed through Cambodia's Bakong CBDC in 2024—representing 330% of the country's GDP—the question isn't whether blockchain can handle real finance. The question is which architecture will ultimately host the world's economic activity. SORA Nexus answers that question with a bold claim: one ledger is all humanity needs.
+
+In SORA Nexus, the blockchain fragmentation problem—thousands of L1s, L2s, sidechains, and appchains competing for liquidity and developer attention—finally meets its solution. Built on Hyperledger Iroha 3, SORA Nexus introduces a unified architecture where central bank digital currencies, permissionless DeFi, and enterprise applications coexist on a single network with sub-second finality.
+
+This guide explains everything you need to know about SORA Nexus: its architecture, key components, real-world applications, and why its creators call it "the end of history" for blockchain infrastructure.
+
+---
+
+## TL;DR
+
+- **SORA Nexus (SORA v3)** is a unified blockchain built on Hyperledger Iroha 3, designed to replace fragmented chains with one infinite-scale ledger for DeFi, CBDCs, and enterprise applications.
+- **The Iroha Virtual Machine (IVM)** delivers fully deterministic smart contract execution—every node produces identical results, eliminating the quirks that plague other blockchain VMs.
+- **Data Spaces** let organizations run private, governed environments (like CBDCs) alongside public DeFi on the same network without sacrificing composability.
+- **Parallel Lanes + Merge Ledger** provide horizontal scalability—multiple transaction pipelines process work simultaneously, then unify into a single canonical timeline with ~1-second finality.
+- **FASTPQ zk-STARK proofs** enable privacy-preserving auditability: prove your books balance without revealing individual transactions, all with post-quantum security.
+- **SUMERAGI consensus** uses BFT with deterministic leader rotation, producing blocks only when transactions exist and achieving rapid finality with ML-DSA-87 post-quantum signatures.
+- **XOR** remains the universal utility token for fees, staking, governance, and economic coordination across all data spaces.
+
+---
+
+## The Problem: Blockchain Fragmentation
+
+Every time you bridge tokens between chains, you're paying a tax on blockchain's biggest failure: fragmentation. Today's landscape includes thousands of competing networks—Ethereum and its rollups, Polkadot parachains, Cosmos zones, Solana, and countless others—each with isolated liquidity, different security assumptions, and incompatible tooling.
+
+This fragmentation creates real costs, as explored in our guide on [how SORA's blockchain approach differs](/sora-blockchain-new-world-economic-order):
+
+- **Liquidity fragmentation**: Capital splits across dozens of chains, reducing depth and increasing slippage.
+- **User experience nightmare**: Managing wallets, bridges, and gas tokens across networks confuses mainstream users.
+- **Developer overhead**: Teams must choose a chain, then rebuild if they bet wrong or want multichain presence.
+- **Security surface expansion**: Every bridge becomes an attack vector, as billions lost to bridge hacks demonstrate.
+
+Current "solutions" like L2 rollups and cross-chain messaging don't solve the fundamental problem—they add complexity layers. What if one network could host everything?
+
+---
+
+## SORA Nexus: One World, One Economy, One Ledger
+
+SORA Nexus takes a radically different approach. Instead of spinning up new chains for new use cases, SORA Nexus provides a single logical ledger where:
+
+- **Private data spaces** host regulated applications like CBDCs with full sovereignty over data and governance.
+- **Public data spaces** enable permissionless DeFi, NFT marketplaces, and open innovation.
+- **Parallel lanes** scale throughput horizontally without fragmenting state.
+- **Shared consensus and finality** mean all applications benefit from the same security guarantees.
+
+In SORA Nexus, a regulated stablecoin issued in a private CBDC data space can be used as liquidity on a DEX running in a public data space—through governed gateways that ensure compliance. This policy-controlled interoperability eliminates the need for risky bridges while preserving the separation institutions require.
+
+The SORA Nexus Whitepaper calls this "the end of history" for blockchain architecture: no further proliferation of L1 networks is necessary when one network can host unlimited data spaces with infinite scalability.
+
+The following diagram illustrates how SORA Nexus addresses blockchain's fragmentation problem with a unified, scalable architecture:
+
+![Infographic comparing blockchain fragmentation problems with SORA Nexus solution: unified architecture with parallel lanes, deterministic IVM execution, and zk-STARK privacy proofs](/sora-nexus-architecture-overview.webp)
+
+---
+
+## Core Architecture Explained
+
+SORA Nexus combines several innovations into a cohesive architecture. Let's explore each component.
+
+### Data Spaces: Sovereign Zones on a Universal Ledger
+
+**Plain English:** Imagine a massive office building where different companies rent different floors. Each company controls who can access their floor, what rules apply there, and what information stays private. But everyone shares the same elevators, lobby, and building security. Data Spaces work the same way—private organizations get their own "floor" with full control while remaining connected to the broader SORA network.
+
+**How It Works:** Data Spaces are first-class ledger partitions with explicit privacy and routing policies. Each data space can define its own governance rules, validator requirements, and access controls. Private data spaces confine transaction details to authorized participants, while public data spaces allow open participation.
+
+**Technical Details:** In SORA Nexus, private data spaces use ML-DSA-87 attestation certificates to confine data to authorized validators. Public data spaces enable in-slot data availability sampling with Ed25519 signatures (with post-quantum fields reserved for future upgrades). Cross-data-space interactions happen through type-checked references when policies permit.
+
+### Lanes and Merge Ledger: Parallel Paths to One Finality
+
+**Plain English:** Picture a grocery store with multiple checkout lanes. Each lane processes customers independently, but at the end of the day, all transactions merge into one unified sales report. SORA Nexus works similarly—multiple "lanes" process transactions in parallel for speed, then a "merge ledger" combines them into one authoritative timeline.
+
+**How It Works:** Rather than forcing all transactions through a single pipeline, SORA Nexus distributes work across multiple lanes. Each lane is a set of validators that processes a subset of transactions and produces its own block sequence. A lightweight merge ledger then orders lane tips into a single global sequence, ensuring one unified finality.
+
+**Technical Details:** Under the Iroha 3 model, lanes execute disjoint data-space workloads in parallel. The default configuration runs K=4 lanes, each handling up to 20,000 transfer-equivalent units (TEU) per second. When load is low, lanes automatically fuse to reduce latency; they split back under high demand. This elasticity happens deterministically without rewriting finalized lane history.
+
+### The IVM: Deterministic Execution for Smart Contracts
+
+**Plain English:** Think of the IVM as a universal calculator that always gives the exact same answer, no matter which computer runs it. Unlike other blockchain systems where tiny hardware differences can occasionally cause problems, the IVM guarantees identical results everywhere.
+
+**How It Works:** The Iroha Virtual Machine (IVM) executes smart contracts written in Kotodama bytecode using a fixed set of rules. It prohibits operations that could vary between computers—like floating-point math—and packages all inputs in a standardized format called Norito. Every validator running the same contract reaches the exact same conclusion.
+
+**Technical Details:** The SORA Nexus Whitepaper specifies that the IVM provides 256 64-bit general-purpose registers, uses pointer-ABI types with Norito TLV envelopes, and enforces determinism by prohibiting floating-point operations and nondeterministic syscalls. Smart contracts compile to `.to` bytecode files with headers including ABI version, feature bits, and gas budgets.
+
+---
+
+## Key Features Deep Dive
+
+### SUMERAGI Consensus: Fast BFT Finality
+
+SUMERAGI is the Byzantine Fault Tolerant consensus algorithm at SORA Nexus's heart. Developed for Hyperledger Iroha, SUMERAGI uses deterministic leader rotation and only produces blocks when transactions exist—no empty blocks wasting resources.
+
+Each lane maintains a committee of 22 validators (tolerating up to 7 Byzantine faults). Quorum certificates require signatures from at least 15 validators, using ML-DSA-87 post-quantum signatures for consensus-critical messages. The commit window is bounded to ≤2 slots, achieving lane finality in approximately 1 second.
+
+### FASTPQ: Zero-Knowledge Proofs with Post-Quantum Security
+
+**Plain English:** Imagine proving to a bouncer that you're over 21 without showing your actual ID. You just show them a special stamp that mathematically proves your age without revealing your birthdate, address, or anything else. FASTPQ proofs do the same thing for financial data—a central bank can prove their books balance perfectly without revealing any individual transaction.
+
+FASTPQ uses zk-STARKs (zero-knowledge Scalable Transparent Arguments of Knowledge) over the Goldilocks field with Poseidon2 hashing. The proof system achieves ≥128-bit security and verifies in 100-200 milliseconds per lane committee on consumer hardware. Because STARKs rely only on hash-based cryptography rather than elliptic curves, they're inherently post-quantum secure.
+
+This enables a powerful combination: **privacy by design with integrity guarantees**. Institutions can prove compliance and correctness without exposing confidential data.
+
+### Data Availability Layer
+
+When blocks are produced, the network must ensure all necessary data remains retrievable. SORA Nexus uses two-dimensional Reed-Solomon erasure coding: blocks are partitioned into shards with row and column parity, allowing reconstruction from any subset meeting the threshold.
+
+For public data spaces, validators sample 8 shards per data space per slot, with a total sampling budget of ≤2,048 samples across lanes. Data availability verification completes within 300 milliseconds at approximately 1.5× storage overhead. Private data spaces handle DA internally via ML-DSA-87 attestations without public sampling.
+
+---
+
+## SORA Nexus vs. Current Blockchain Approaches
+
+| Feature | SORA Nexus | Ethereum + L2s | Polkadot | Cosmos |
+|---------|------------|----------------|----------|--------|
+| Architecture | Single ledger + Data Spaces | Main chain + Rollups | Relay chain + Parachains | Hub + Zones |
+| Finality | ~1 second | 12+ seconds (+ L2 delays) | 12-60 seconds | 7+ seconds |
+| Privacy Model | Native private data spaces | Limited (zk-rollups) | Per-parachain | Per-chain |
+| Determinism | Full (IVM) | Near-full (EVM quirks) | Varies | Varies |
+| Scalability | Infinite (lanes + merge ledger) | L2-dependent | Limited slots (100) | Unlimited zones |
+| CBDC Ready | Yes (proven deployments) | No | No | Limited |
+| Post-Quantum Security | Yes (ML-DSA-87) | No | No | No |
+
+### Why Not Just Use Ethereum?
+
+Ethereum's EVM has served the industry well, but carries legacy baggage: reentrancy vulnerabilities, gas refund oddities, and subtle nondeterminism edge cases. More fundamentally, Ethereum's L2 approach fragments liquidity—each rollup becomes its own island requiring bridges.
+
+SORA Nexus provides unified architecture without L2 complexity. Applications deploy to data spaces on one network, sharing liquidity and finality rather than competing for it.
+
+### How Is This Different From Polkadot?
+
+Polkadot's parachain model limits slot count—only 100 parachains can connect to the relay chain. Each parachain also requires winning an expensive auction. In SORA Nexus, unlimited data spaces can exist without slot constraints or auctions. SORA also brings proven CBDC deployment experience that Polkadot lacks.
+
+Learn more about [Polkadot's architecture](/polkadot-architecture-guide) and how it compares to SORA's approach. You can also explore [how Polkaswap and TONSWAP work together](/how-polkaswap-and-tonswap-work-together-on-sora) within the SORA ecosystem.
+
+### What About Cosmos?
+
+Cosmos zones communicate via IBC messaging, but each zone maintains fully independent security and governance. Cross-zone composability requires trusting multiple validator sets. SORA Nexus provides native interoperability within one security domain—data spaces share consensus while maintaining governance isolation.
+
+---
+
+## Performance Specifications
+
+| Parameter | Specification |
+|-----------|---------------|
+| Lane Finality Target | ≤1 second between non-empty blocks |
+| Commit Window | ≤2 slots for DA and proof completion |
+| Default Lane Count | 4 lanes (auto-fuses under low load) |
+| Lane TEU Budget | 20,000 transfer-equivalent units/second |
+| Envelope Size | Typical ≤16 MB; hard cap 32 MB |
+| Proof Verification | 100-200 ms per lane committee |
+| Validator Quorum | 22 validators per lane (f=7 fault tolerance) |
+| Consensus Security | Post-quantum (ML-DSA-87) |
+| DA Sample Target | ≤300ms verification window |
+| DA Samples per Public DS | 8 samples per slot |
+| Total DA Samples | ≤2,048 across all lanes |
+
+---
+
+## Key Components at a Glance
+
+| Component | Purpose | Plain English Analogy |
+|-----------|---------|----------------------|
+| **IVM** (Iroha Virtual Machine) | Smart contract execution | A universal calculator that always gives the same answer |
+| **Data Spaces** | Privacy/governance zones | Private offices in a shared building |
+| **Lanes** | Parallel processing | Multiple checkout lanes at a store |
+| **Merge Ledger** | Unified ordering | The receipt that combines all registers |
+| **FASTPQ** | Zero-knowledge proofs | Proving your age without showing your ID |
+| **Kura** | Block storage (history) | A filing cabinet for all past transactions |
+| **WSV** (World State View) | Current state | The current balance sheet—what exists now |
+| **SUMERAGI** | Consensus mechanism | A voting system where validators agree |
+| **Norito** | Serialization format | The "language" all data speaks on Nexus |
+| **Kotodama** | Smart contract bytecode | Compiled instructions that run on IVM |
+
+---
+
+## Real-World Applications
+
+### CBDCs: From Pilot to Production
+
+SORA's architecture isn't theoretical—it powers real central bank deployments:
+
+**Bakong (Cambodia):** Built on Hyperledger Iroha, <a href="https://soramitsu.co.jp/centralbanking" target="_blank" rel="noopener noreferrer">Bakong</a> processed transactions equivalent to 330% of Cambodia's GDP in 2024. It delivers mobile-first payments, ISO 20022 messaging, and delegated key recovery for a national population.
+
+**Digital Kina (Papua New Guinea):** The Bank of Papua New Guinea's recent proof-of-concept leveraged SORA's Hub-Chain architecture to demonstrate 24/7 instant payments and programmable money in a real regulatory context.
+
+**Solomon Islands and Palau:** Additional CBDC pilots showcase how SORA Nexus can connect national settlement systems to the broader decentralized economy. Read more about the [Solomon Islands CBDC pilot](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc).
+
+SORAMITSU has engaged with over 80 central banks and regulators, making SORA Nexus one of the most institution-ready blockchain platforms in existence.
+
+### DeFi Applications
+
+SORA Nexus's public data spaces serve as a playground for permissionless innovation. Developers can deploy DEXes, lending protocols, and stablecoins on a high-throughput, low-latency network without worrying about gas wars or network congestion.
+
+Polkaswap already demonstrates cross-chain liquidity aggregation in the SORA ecosystem, ranking among the [best decentralized exchanges](/best-decentralized-exchanges-dexs) in the Polkadot ecosystem. Under Nexus, liquidity can aggregate on a single network rather than fragmenting across dozens of chains—composability without compromise.
+
+### Enterprise and Institutional Use Cases
+
+Beyond CBDCs, SORA Nexus targets:
+
+- **Interbank settlement (RTGS modernization):** Deterministic execution and ISO 20022 alignment make Nexus suitable for real-time gross settlement upgrades.
+- **Tokenized assets and registries:** Securities, real estate, and other assets can be represented with predictable, standards-compliant behavior. Explore our [ultimate guide to tokenization](/ultimate-guide-to-tokenization-of-assets) for more context.
+- **Cross-border corridors:** Data spaces can bridge multiple jurisdictions while maintaining sovereignty—a regulated stablecoin from one country interoperates with another's settlement system.
+
+---
+
+## Governance and XOR Token Role
+
+### SORA Parliament
+
+SORA Nexus evolves through on-chain governance rather than hard forks. The planned SORA Parliament includes two bodies:
+
+- **Council:** Fixed seats filled through NPoS nomination or appointment, handling day-to-day governance decisions.
+- **Assembly:** Stake-weighted or one-person-one-vote participation for major network changes.
+
+Proposals are Norito-encoded and enacted deterministically via IVM execution. This means upgrades—even to cryptographic algorithms or consensus parameters—happen through transparent, auditable governance flows.
+
+### XOR Utility in Nexus
+
+XOR remains the universal asset across SORA Nexus:
+
+- **Transaction fees:** All data spaces accept XOR for fees, creating consistent demand.
+- **Staking and validation:** Validators stake XOR to participate in SUMERAGI consensus and earn rewards.
+- **Governance participation:** XOR holders vote on Parliament proposals and parameter changes.
+- **Cross-data-space settlement:** Even when data spaces use local assets (like CBDCs), XOR provides the bridge for cross-domain interactions.
+
+The Token Bonding Curve continues to manage XOR supply elastically, routing 20% of bonding curve intake to burns while maintaining reserve assets. For a deeper understanding of how these tokens interact, read our [deep dive into XOR, VAL, and PSWAP](/deep-dive-into-xor-val-and-pswap).
+
+---
+
+## Migration Path from SORA v2
+
+The [Fujiwara testnet](/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future) serves as SORA Nexus's proving ground. Validators, provers, and gateway teams rehearse multi-lane scheduling, ISI governance flows, and bridge logic before mainnet activation.
+
+For existing SORA (v2) users:
+
+- **XOR continuity:** XOR remains the native token across both versions with deterministic migration.
+- **Asset preservation:** Balances and positions migrate through governed bridge mechanisms.
+- **Application compatibility:** The Kotodama compiler provides migration paths for existing smart contracts.
+
+The testnet also validates performance budgets—lane finality, TEU quotas, DA sampling—ensuring the mainnet launch meets specification targets.
+
+---
+
+## Ecosystem Components
+
+### SoraFS: Decentralized Storage
+
+SoraFS provides the storage layer for erasure-coded Kura blocks and WSV snapshots. It handles reliable broadcast sessions, data availability proofs, and privacy-preserving audits without exposing raw payloads.
+
+### SoraNet: Privacy Overlay
+
+SoraNet is a decentralized CDN and privacy overlay using three-hop QUIC circuits with hybrid post-quantum handshakes (Curve25519 + Kyber768). It enables confidential data transmission while maintaining network performance.
+
+### Soracles: Deterministic Oracles
+
+Oracle actors in SORA Nexus follow governed onboarding with rate limits, mixed-scheme multisig, and identical DA/proof budgets as other data space artifacts. This ensures oracle data meets the same determinism and security standards as native transactions.
+
+### ISO 20022 Alignment
+
+SORA Nexus maps ISO 20022 messages (pacs/pain/camt) deterministically to Norito/ledger fields. This enables seamless integration with existing financial infrastructure—a pacs.008 payment message translates directly to a Norito transfer with data-space-qualified accounts.
+
+---
+
+## Developer Experience
+
+SORA Nexus provides comprehensive SDK support:
+
+- **Language SDKs:** Mobile, web, and server libraries with Norito-first APIs.
+- **Deterministic builders:** Type-safe transaction construction preventing runtime errors.
+- **ISO helpers:** Pre-built mappings for ISO 20022 message types.
+- **Offline flows:** Support for pre-authorized vouchers and delayed settlement.
+- **REST/gRPC gateways:** Standard API access patterns for integration.
+
+Receipts and proofs align directly with protocol primitives, enabling applications to verify execution without trusting intermediaries.
+
+---
+
+<FaqSection>
+  <details>
+    <summary>What is SORA Nexus?</summary>
+    SORA Nexus is the third major version of the SORA network, built on Hyperledger Iroha 3. It introduces a unified ledger architecture with data spaces, parallel lanes, and the Iroha Virtual Machine (IVM) for deterministic smart contract execution. The vision is "One World, One Economy, One Ledger"—a single network capable of hosting DeFi, CBDCs, and enterprise applications without fragmentation.
+  </details>
+
+  <details>
+    <summary>How is SORA Nexus different from Ethereum?</summary>
+    SORA Nexus provides full determinism through the IVM (eliminating EVM quirks), native private data spaces (vs. Ethereum's public-by-default model), unified architecture instead of L2 fragmentation, ~1-second finality (vs. 12+ seconds plus L2 delays), and post-quantum security through ML-DSA-87 signatures. SORA Nexus also has proven CBDC deployments, which Ethereum lacks.
+  </details>
+
+  <details>
+    <summary>What is the Iroha Virtual Machine (IVM)?</summary>
+    The IVM is SORA Nexus's purpose-built smart contract engine. It provides 256 64-bit registers, enforces strict determinism by prohibiting floating-point operations and nondeterministic syscalls, and uses pointer-ABI types with Norito TLV envelopes. Every validator executing the same contract produces identical results—critical for financial applications requiring predictability.
+  </details>
+
+  <details>
+    <summary>What are Data Spaces in SORA Nexus?</summary>
+    Data Spaces are sovereign partitions within the SORA Nexus ledger. Think of them as private offices in a shared building—each organization controls access, rules, and privacy within their space while sharing the building's security and infrastructure. Private data spaces can host CBDCs; public data spaces enable permissionless DeFi. Both coexist on one network with governed interoperability.
+  </details>
+
+  <details>
+    <summary>How does SORA Nexus achieve 1-second finality?</summary>
+    SORA Nexus uses SUMERAGI, a BFT consensus algorithm with deterministic leader rotation. Blocks are produced only when transactions exist, eliminating empty block overhead. Each lane maintains 22 validators (f=7 fault tolerance) with ML-DSA-87 post-quantum signatures for quorum certificates. The commit window is bounded to ≤2 slots, achieving approximately 1-second finality.
+  </details>
+
+  <details>
+    <summary>What are FASTPQ proofs and why do they matter?</summary>
+    FASTPQ uses zk-STARKs (zero-knowledge Scalable Transparent Arguments of Knowledge) to prove computational correctness without revealing underlying data. A central bank can prove all balances are consistent without exposing individual transactions. Because STARKs rely on hash-based cryptography rather than elliptic curves, they're post-quantum secure. Proofs verify in 100-200ms on consumer hardware.
+  </details>
+
+  <details>
+    <summary>Is SORA Nexus suitable for CBDCs?</summary>
+    Yes—SORA Nexus is one of the most CBDC-ready platforms available. SORAMITSU built Cambodia's Bakong (processing 330% of GDP in 2024), Papua New Guinea's Digital Kina PoC, and pilots in Solomon Islands and Palau. The team has engaged with 80+ central banks. Private data spaces provide the sovereignty and compliance controls institutions require.
+  </details>
+
+  <details>
+    <summary>What role does XOR play in SORA Nexus?</summary>
+    XOR is the universal utility token across SORA Nexus. It pays transaction fees across all data spaces, serves as the staking asset for validators in SUMERAGI consensus, enables governance participation through the SORA Parliament, and provides cross-data-space settlement. The Token Bonding Curve continues managing XOR supply elastically.
+  </details>
+
+  <details>
+    <summary>How does governance work in SORA Nexus?</summary>
+    SORA Nexus uses on-chain governance through the SORA Parliament, consisting of a Council (fixed seats via NPoS/appointment) and Assembly (stake-weighted or 1p1v). Proposals are Norito-encoded and enacted deterministically via IVM execution. This enables upgrades—even to cryptography or consensus—without hard forks or community splits.
+  </details>
+
+  <details>
+    <summary>When will SORA Nexus launch?</summary>
+    The Fujiwara testnet is currently operational, allowing validators, provers, and developers to test multi-lane scheduling, governance flows, and bridge logic. Mainnet activation follows successful testnet validation. Check the official <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer">SORA Telegram</a> and <a href="https://twitter.com/sora_xor" target="_blank" rel="noopener noreferrer">@sora_xor on X</a> for timeline updates.
+  </details>
+
+  <details>
+    <summary>What is the "End of History" concept?</summary>
+    SORA Nexus claims to be "the end of history" for blockchain architecture—meaning no further proliferation of L1 networks should be necessary. With unlimited data spaces, infinite lane scalability, native privacy, and governed evolution, one network can adapt to any use case rather than spawning new chains for each requirement.
+  </details>
+
+  <details>
+    <summary>How does SORA Nexus handle privacy?</summary>
+    Private data spaces confine transaction details to authorized validators using ML-DSA-87 attestation certificates. Public data spaces remain open but can still use FASTPQ proofs for selective disclosure. This enables privacy-by-design with integrity guarantees—prove correctness without revealing confidential data.
+  </details>
+
+  <details>
+    <summary>What is the difference between Lanes and Data Spaces?</summary>
+    Lanes are parallel execution pipelines for throughput—multiple lanes process transactions simultaneously, then merge into unified finality. Data Spaces are logical/governance partitions—they define who can access data, what rules apply, and how privacy works. A single lane can process transactions from multiple data spaces; a single data space's transactions might route through multiple lanes.
+  </details>
+
+  <details>
+    <summary>Can existing SORA (v2) users migrate to Nexus?</summary>
+    Yes. XOR remains the native token with deterministic migration. Balances and positions transfer through governed bridge mechanisms. The Fujiwara testnet validates these migration paths before mainnet activation. Existing Polkaswap liquidity and Kensetsu positions have planned migration support.
+  </details>
+</FaqSection>
+
+---
+
+## Conclusion: The New Foundation for Global Finance
+
+SORA Nexus represents more than a version upgrade—it's a fundamental rethinking of blockchain architecture. By combining the deterministic IVM, sovereign data spaces, horizontal scalability through lanes, FASTPQ zero-knowledge proofs, and XOR-driven governance, SORA Nexus delivers a platform capable of hosting everything from community applications to national digital currencies.
+
+One ledger, many domains, infinite scale isn't just marketing—it describes how the system actually works. The days of choosing between scalability and composability, or between privacy and auditability, are ending.
+
+For developers and DeFi builders, SORA Nexus offers a canvas for next-generation applications that seamlessly integrate with regulated finance. For institutions and governments, it provides a governed, auditable, private-by-design solution that doesn't sacrifice global connectivity. And for the industry at large, it signals that we may not need countless isolated blockchains—we can grow one network organically to meet any requirement.
+
+The launch of SORA Nexus invites us to imagine a world where all economic activity lives on a single, interoperable ledger—much like all documents reside on the internet or all information flows through the web. That world is now within reach.
+
+---
+
+**Stay Connected:**
+- Follow <a href="https://twitter.com/sora_xor" target="_blank" rel="noopener noreferrer">@sora_xor on X</a> for the latest updates
+- Join the <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer">SORA Telegram community</a>
+- Read the official <a href="https://sora-xor.medium.com/" target="_blank" rel="noopener noreferrer">SORA Medium blog</a>
+- Explore the <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer">SORA Wiki</a> for documentation
+
