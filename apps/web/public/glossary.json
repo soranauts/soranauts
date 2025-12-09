@@ -7737,7 +7737,7 @@
   },
   {
     "slug": "sorafs",
-    "title": "SORA Fs",
+    "title": "SoraFS",
     "summary": "The decentralized storage and erasure-coding layer that handles lane envelopes, DA proofs, and retry policies.",
     "status": "canonical",
     "targetSlug": null,
@@ -7794,7 +7794,7 @@
   },
   {
     "slug": "soranet",
-    "title": "SORA Net",
+    "title": "SoraNet",
     "summary": "The privacy overlay and deterministic CDN using three-hop QUIC circuits, hybrid PQ handshakes, and blinded metadata for data delivery.",
     "status": "canonical",
     "targetSlug": null,

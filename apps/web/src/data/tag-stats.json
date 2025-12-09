@@ -30,9 +30,9 @@
     "lastSeen": "2025-11-29T00:00:00.000Z"
   },
   "tag-blockchain": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2023-11-28T00:00:00.000Z",
-    "lastSeen": "2025-11-22T00:00:00.000Z"
+    "lastSeen": "2025-12-09T00:00:00.000Z"
   },
   "tag-blockchain-architecture": {
     "count": 1,
@@ -85,9 +85,9 @@
     "lastSeen": "2025-11-29T00:00:00.000Z"
   },
   "tag-cbdc": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-11-21T00:00:00.000Z"
+    "lastSeen": "2025-12-09T00:00:00.000Z"
   },
   "tag-central-bank": {
     "count": 1,
@@ -165,9 +165,9 @@
     "lastSeen": "2025-11-24T00:00:00.000Z"
   },
   "tag-defi": {
-    "count": 22,
+    "count": 23,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-11-30T00:00:00.000Z"
+    "lastSeen": "2025-12-09T00:00:00.000Z"
   },
   "tag-dex": {
     "count": 2,
@@ -209,6 +209,11 @@
     "firstSeen": "2023-11-24T00:00:00.000Z",
     "lastSeen": "2025-11-27T00:00:00.000Z"
   },
+  "tag-enterprise": {
+    "count": 1,
+    "firstSeen": "2025-12-09T00:00:00.000Z",
+    "lastSeen": "2025-12-09T00:00:00.000Z"
+  },
   "tag-ethereum": {
     "count": 1,
     "firstSeen": "2024-01-23T00:00:00.000Z",
@@ -230,9 +235,9 @@
     "lastSeen": "2025-10-22T00:00:00.000Z"
   },
   "tag-governance": {
-    "count": 16,
+    "count": 17,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-11-30T00:00:00.000Z"
+    "lastSeen": "2025-12-09T00:00:00.000Z"
   },
   "tag-halving": {
     "count": 1,
@@ -263,9 +268,9 @@
     "count": 0
   },
   "tag-interoperability": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2023-11-26T00:00:00.000Z",
-    "lastSeen": "2025-11-23T00:00:00.000Z"
+    "lastSeen": "2025-12-09T00:00:00.000Z"
   },
   "tag-investment-strategy": {
     "count": 2,
@@ -283,9 +288,9 @@
     "lastSeen": "2025-10-29T00:00:00.000Z"
   },
   "tag-iroha3": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-11-30T00:00:00.000Z"
+    "lastSeen": "2025-12-09T00:00:00.000Z"
   },
   "tag-kensetsu": {
     "count": 5,
@@ -367,6 +372,11 @@
     "firstSeen": "2023-12-20T00:00:00.000Z",
     "lastSeen": "2025-11-18T00:00:00.000Z"
   },
+  "tag-nexus": {
+    "count": 1,
+    "firstSeen": "2025-12-09T00:00:00.000Z",
+    "lastSeen": "2025-12-09T00:00:00.000Z"
+  },
   "tag-nfts": {
     "count": 1,
     "firstSeen": "2023-11-26T00:00:00.000Z",
@@ -408,9 +418,9 @@
     "lastSeen": "2025-10-27T00:00:00.000Z"
   },
   "tag-polkadot": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2023-12-13T00:00:00.000Z",
-    "lastSeen": "2025-11-20T00:00:00.000Z"
+    "lastSeen": "2025-12-09T00:00:00.000Z"
   },
   "tag-polkaswap": {
     "count": 15,
@@ -503,9 +513,9 @@
     "lastSeen": "2025-11-21T00:00:00.000Z"
   },
   "tag-sora": {
-    "count": 22,
+    "count": 23,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-11-30T00:00:00.000Z"
+    "lastSeen": "2025-12-09T00:00:00.000Z"
   },
   "tag-sora-card": {
     "count": 1,
@@ -593,9 +603,9 @@
     "lastSeen": "2025-11-23T00:00:00.000Z"
   },
   "tag-tokenomics": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-11-30T00:00:00.000Z"
+    "lastSeen": "2025-12-09T00:00:00.000Z"
   },
   "tag-ton": {
     "count": 2,
@@ -656,8 +666,8 @@
     "lastSeen": "2025-11-18T00:00:00.000Z"
   },
   "tag-xor": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-11-30T00:00:00.000Z"
+    "lastSeen": "2025-12-09T00:00:00.000Z"
   }
 }

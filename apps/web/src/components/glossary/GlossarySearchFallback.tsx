@@ -173,11 +173,26 @@ function Hit({ hit, onAliasClick, onTagClick, existingSlugs }: {
   // Take first 6 unique chips for display
   const displayChips = uniqueChips.slice(0, 6);
   return (
-    <a
-      href={`/glossary/${hit.slug}`}
+    <div
       id={`glossary-${hit.slug}`}
       className="glossary-card glossary-search__result"
+      role="article"
+      onClick={(e) => {
+        // Only navigate if click wasn't on an interactive element
+        const target = e.target as HTMLElement;
+        if (!target.closest('a, button')) {
+          window.location.href = `/glossary/${hit.slug}`;
+        }
+      }}
+      onKeyDown={(e) => {
+        const target = e.target as HTMLElement;
+        if (e.key === 'Enter' && !target.closest?.('a, button')) {
+          window.location.href = `/glossary/${hit.slug}`;
+        }
+      }}
+      tabIndex={0}
       aria-label={`Open ${hit.term} term page`}
+      style={{ cursor: 'pointer' }}
     >
       <div className="glossary-card__header">
         <span className="glossary-search__result-title">{hit.term}</span>
@@ -265,7 +280,7 @@ function Hit({ hit, onAliasClick, onTagClick, existingSlugs }: {
           })}
         </div>
       )}
-    </a>
+    </div>
   );
 }
 
