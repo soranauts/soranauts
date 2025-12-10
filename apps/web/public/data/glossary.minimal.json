@@ -4,15 +4,15 @@
       "slug": "accountid",
       "title": "Account ID",
       "category": "Accounts & Identity",
-      "summary": "A typed Norito pointer uniquely referencing a Nexus account, including network, data-space UUID, domain, name, and checksum fields.",
-      "tagline": "Enables human-readable addresses while preventing typos and cross-chain confusion."
+      "summary": "An Account ID is a typed Norito pointer that uniquely identifies a Nexus account across all networks, data spaces, and execution lanes. It encodes the network identifier, the data-space UUID, the domain, the human-readable account name, and a checksum that prevents malformed or ambiguous identifiers. This structured format ensures deterministic routing and stable identity resolution throughout SORA Nexus.",
+      "tagline": "Account IDs allow Nexus applications, smart contracts, validators, and users to reference accounts safely and consistently. The checksum prevents mis-addressing, the namespace fields prevent cross-domain collisions, and the typed Norito format ensures that account references behave identically across all lanes and data spaces. This enables reliable interoperability, secure transaction routing, and clear identity governance across the entire network."
     },
     {
       "slug": "accountlifecycle",
       "title": "Account Lifecycle",
       "category": "Accounts & Identity",
       "summary": "The governed process that creates, updates, and retires Nexus accounts, ensuring every change is validated by the Iroha Virtual Machine and the hosting data space's policy.",
-      "tagline": "Creates."
+      "tagline": "Ensures every account creation, update, and retirement is validated and auditable, preventing unauthorized identity changes across the network."
     },
     {
       "slug": "action",
@@ -615,7 +615,7 @@
       "title": "DSID",
       "category": "Governance",
       "summary": "A UUID-style identifier assigned to every data space, used for routing, policy lookup, and cross-space access control.",
-      "tagline": "Enables routing."
+      "tagline": "Provides a universal address for any data space, enabling validators and applications to route transactions and enforce policies without ambiguity."
     },
     {
       "slug": "dualsig",
@@ -1363,7 +1363,7 @@
       "title": "Norito",
       "category": "Serialization & Encoding",
       "summary": "The canonical serialization language for commands, receipts, and state, ensuring all tooling speaks a single schema.",
-      "tagline": "Enables commands."
+      "tagline": "Guarantees that every client, validator, and tool interprets data identically, eliminating serialization bugs and cross-platform inconsistencies."
     },
     {
       "slug": "noritocodec",
@@ -1575,7 +1575,7 @@
       "title": "Private Data Spaces",
       "category": "Governance",
       "summary": "Permissioned domains where data and proofs remain within the operator's trust boundary, using ML-DSA attestations for DA.",
-      "tagline": "Enables DA."
+      "tagline": "Allows enterprises and institutions to participate in SORA Nexus while keeping sensitive data confidential and compliant with local regulations."
     },
     {
       "slug": "programming",
@@ -1844,7 +1844,7 @@
       "title": "Shielded Transfers",
       "category": "Cryptography",
       "summary": "Privacy-preserving asset moves that use commitments, nullifiers, and Halo2 proofs to hide values while keeping auditability.",
-      "tagline": "Use commitments."
+      "tagline": "Enables private transactions where transfer amounts remain hidden from the public while still being cryptographically verifiable for compliance."
     },
     {
       "slug": "signedblockwire",
@@ -2132,7 +2132,7 @@
       "title": "Taikai",
       "category": "Networking",
       "summary": "The streaming and data pipeline platform governed on-ledger, supporting Norito streaming, telemetry, and slashing for misbehavior.",
-      "tagline": "Enables misbehavior."
+      "tagline": "Detects and penalizes validator misbehavior through on-ledger governance, protecting network integrity while enabling real-time data streaming."
     },
     {
       "slug": "tbcd",
@@ -2435,5 +2435,5 @@
   "canonicalCount": 369,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-09T16:26:37.853Z"
+  "lastUpdated": "2025-12-10T20:14:46.014Z"
 }

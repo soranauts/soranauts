@@ -68,6 +68,61 @@ interface CanonicalTerm {
   examples: string[];
   links: Array<{ label: string; url: string }>;
   tagline?: string;
+  priority: number;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Priority Tiers for Search Ranking
+// ─────────────────────────────────────────────────────────────────────────────
+
+const PRIORITY_TIERS: Record<number, string[]> = {
+  // Tier 10: Core ecosystem tokens
+  10: ['xor', 'val', 'pswap', 'tbcd', 'kusd', 'xst', 'ken'],
+  
+  // Tier 9: Core entities  
+  9: ['sora', 'soranexus', 'polkaswap', 'soramitsu', 'iroha'],
+  
+  // Tier 8: Products
+  8: ['fearlesswallet', 'soracard', 'tonswap', 'kensetsu', 'demeter', 'hashi', 'ceres'],
+  
+  // Tier 7: Key Nexus architecture (most important technical concepts)
+  7: [
+    'irohavirtualmachineivm', 'sumeragi', 'kura', 'norito', 'kotodama', 
+    'worldstateviewwsv', 'dataspaces', 'lanes', 'mergeledger', 'fastpq',
+    'taikai', 'assembly', 'privatedataspaces', 'publicdataspaces',
+  ],
+  
+  // Tier 6: Important technical concepts
+  6: [
+    'dataavailability', 'consensus', 'iroha3', 'tokenbondingcurve', 
+    'triggers', 'isi', 'governance', 'staking', 'validator', 'nominator',
+    'liquiditypool', 'amm', 'dex', 'bridge', 'substrate',
+  ],
+};
+
+// Build reverse lookup: slug → priority
+const SLUG_PRIORITY_MAP = new Map<string, number>();
+for (const [priority, slugs] of Object.entries(PRIORITY_TIERS)) {
+  for (const slug of slugs) {
+    SLUG_PRIORITY_MAP.set(slug, Number(priority));
+  }
+}
+
+/**
+ * Get priority for a term based on its slug
+ * @param slug - The normalized slug
+ * @param isMdxTerm - Whether this is an MDX-sourced term (vs taxonomy)
+ * @returns Priority value (higher = more important)
+ */
+function getPriority(slug: string, isMdxTerm: boolean): number {
+  // Check explicit tier membership first
+  const explicitPriority = SLUG_PRIORITY_MAP.get(slug);
+  if (explicitPriority !== undefined) {
+    return explicitPriority;
+  }
+  
+  // Default: MDX Nexus terms get 5, taxonomy terms get 4
+  return isMdxTerm ? 5 : 4;
 }
 
 interface AliasTerm {
@@ -474,6 +529,7 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
         examples: term.examples || [],
         links: term.links || [],
         tagline,
+        priority: getPriority(slug, false), // Taxonomy term
       });
     }
 
@@ -523,6 +579,7 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
           examples: [],
           links: [],
           tagline,
+          priority: getPriority(slug, false), // Canonical tag term
         });
       }
     }
@@ -578,6 +635,7 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
         examples: [],
         links: [],
         tagline: undefined,
+        priority: getPriority(slug, false), // Fallback entry term
       });
     }
 
@@ -718,6 +776,7 @@ async function main() {
       relatedTerms: stableSortDedupe(resolvedRelated),
       examples: [],
       links: [],
+      priority: getPriority(normalizedSlug, true), // MDX terms
       ...(fm.tagline ? { tagline: fm.tagline } : {}),
     };
 
@@ -782,7 +841,7 @@ async function main() {
       title: t.title,
       type: 'term',
       category: t.category,
-      priority: 0,
+      priority: t.priority,
       aliases: t.aliases,
       tags: t.tags,
       summary: t.summary,

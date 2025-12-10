@@ -2,10 +2,10 @@
   {
     "slug": "accountid",
     "title": "Account ID",
-    "summary": "A typed Norito pointer uniquely referencing a Nexus account, including network, data-space UUID, domain, name, and checksum fields.",
+    "summary": "An Account ID is a typed Norito pointer that uniquely identifies a Nexus account across all networks, data spaces, and execution lanes. It encodes the network identifier, the data-space UUID, the domain, the human-readable account name, and a checksum that prevents malformed or ambiguous identifiers. This structured format ensures deterministic routing and stable identity resolution throughout SORA Nexus.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "A typed Norito pointer uniquely referencing a Nexus account, including network, data-space UUID, domain, name, and checksum fields.",
+    "definition": "An Account ID is a typed Norito pointer that uniquely identifies a Nexus account across all networks, data spaces, and execution lanes. It encodes the network identifier, the data-space UUID, the domain, the human-readable account name, and a checksum that prevents malformed or ambiguous identifiers. This structured format ensures deterministic routing and stable identity resolution throughout SORA Nexus.",
     "category": "Accounts & Identity",
     "aliases": [],
     "tags": [
@@ -20,7 +20,8 @@
     ],
     "examples": [],
     "links": [],
-    "tagline": "Enables human-readable addresses while preventing typos and cross-chain confusion."
+    "priority": 5,
+    "tagline": "Account IDs allow Nexus applications, smart contracts, validators, and users to reference accounts safely and consistently. The checksum prevents mis-addressing, the namespace fields prevent cross-domain collisions, and the typed Norito format ensures that account references behave identically across all lanes and data spaces. This enables reliable interoperability, secure transaction routing, and clear identity governance across the entire network."
   },
   {
     "slug": "accountlifecycle",
@@ -43,7 +44,8 @@
     ],
     "examples": [],
     "links": [],
-    "tagline": "Creates."
+    "priority": 5,
+    "tagline": "Ensures every account creation, update, and retirement is validated and auditable, preventing unauthorized identity changes across the network."
   },
   {
     "slug": "action",
@@ -66,6 +68,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Separates logic from scheduling, making smart contracts easier to audit and compose."
   },
   {
@@ -89,6 +92,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -112,6 +116,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides seamless access to SORA Nexus services."
   },
   {
@@ -127,7 +132,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Drives network effects and increases utility for all participants."
+    "tagline": "Drives network effects and increases utility for all participants.",
+    "priority": 4
   },
   {
     "slug": "aggregation",
@@ -150,6 +156,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Combines parallel lane outputs into a single verifiable state transition."
   },
   {
@@ -181,7 +188,8 @@
         "label": "Polkadot Wiki – Agile Coretime",
         "url": "https://wiki.polkadot.network/docs/learn-agile-coretime"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "algorithmicstability",
@@ -210,7 +218,8 @@
         "label": "TBCD Explained",
         "url": "https://soranauts.com/soras-token-bonding-curve-dollar-tbcd-explained"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "amm",
@@ -247,7 +256,8 @@
         "label": "Polkaswap AMM",
         "url": "https://wiki.sora.org/polkaswap.html"
       }
-    ]
+    ],
+    "priority": 6
   },
   {
     "slug": "analytics",
@@ -262,7 +272,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Enables data-driven decisions for network optimization."
+    "tagline": "Enables data-driven decisions for network optimization.",
+    "priority": 4
   },
   {
     "slug": "apolloprotocol",
@@ -292,7 +303,8 @@
         "label": "Apollo Protocol Overview",
         "url": "https://soranauts.com/apollo-protocol-sora-network"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "apollotoken",
@@ -322,7 +334,8 @@
         "label": "Apollo Protocol Overview",
         "url": "https://soranauts.com/apollo-protocol-sora-network"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "assembly",
@@ -345,6 +358,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Gives token holders direct influence over network upgrades and policy changes."
   },
   {
@@ -368,6 +382,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Points to an asset schema within a data space."
   },
   {
@@ -399,7 +414,8 @@
         "label": "Guide to Asset Tokenization",
         "url": "https://soranauts.com/the-ultimate-guide-to-asset-tokenization-in-crypto-and-blockchain"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "asynchronousbacking",
@@ -430,7 +446,8 @@
         "label": "Polkadot Wiki – Asynchronous Backing",
         "url": "https://wiki.polkadot.network/docs/learn-async-backing"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "attestations",
@@ -453,6 +470,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Empowers the community to shape the network's evolution."
   },
   {
@@ -476,6 +494,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Guarantees that transaction data remains accessible and verifiable."
   },
   {
@@ -508,7 +527,8 @@
         "label": "Polkadot Wiki – Parachain Auctions",
         "url": "https://wiki.polkadot.network/docs/learn-auction"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "automation",
@@ -531,6 +551,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures fair resource allocation across the network."
   },
   {
@@ -569,7 +590,8 @@
         "label": "Bakong White Paper",
         "url": "https://bakong.nbc.gov.kh/download/NBC_BAKONG_White_Paper.pdf"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "bearmarket",
@@ -598,7 +620,8 @@
         "label": "Investopedia – Bear Market",
         "url": "https://www.investopedia.com/terms/b/bearmarket.asp"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "bech32format",
@@ -621,6 +644,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables Nexus account addresses."
   },
   {
@@ -665,7 +689,8 @@
         "label": "Hyperledger Iroha",
         "url": "https://docs.iroha.tech/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "bitcoin",
@@ -701,7 +726,8 @@
         "label": "Bitcoin.org – How Bitcoin Works",
         "url": "https://bitcoin.org/en/how-it-works"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "blake2b",
@@ -724,6 +750,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures data integrity and enables secure verification across the network."
   },
   {
@@ -747,6 +774,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Preserve privacy by hiding the underlying data reference while still allowing routing and settlement."
   },
   {
@@ -788,7 +816,8 @@
         "label": "Blockchain Technology",
         "url": "https://en.wikipedia.org/wiki/Blockchain"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "blockchainarchitecture",
@@ -825,7 +854,8 @@
         "label": "Polkadot Technology Overview",
         "url": "https://polkadot.network/technology/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "blockchainculture",
@@ -855,7 +885,8 @@
         "label": "Harvard Business Review – What Blockchain Can Do",
         "url": "https://hbr.org/2017/01/the-truth-about-blockchain"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "blockchaindevelopment",
@@ -890,7 +921,8 @@
         "label": "Substrate Developer Hub",
         "url": "https://docs.substrate.io/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "blockchaineconomics",
@@ -921,7 +953,8 @@
         "label": "SORA Tokenomics",
         "url": "https://wiki.sora.org/tokenomics.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "bokolocash",
@@ -954,7 +987,8 @@
         "label": "Soramitsu CBDC Pilot",
         "url": "https://soranauts.com/soramitsu-pilots-central-bank-of-solomon-islands-cbdc"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "bondingcurve",
@@ -968,7 +1002,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "bonk",
@@ -1004,7 +1039,8 @@
         "label": "BONK Token on Solscan",
         "url": "https://solscan.io/token/DezXkwLmNwjX1JdacoZ1DAEYBDH1dY9Y7JqeyK8G1g9w"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "borderlessfinance",
@@ -1018,7 +1054,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "borrowing",
@@ -1049,7 +1086,8 @@
         "label": "SORA Wiki – Kensetsu Vaults",
         "url": "https://wiki.sora.org/kensetsu-vaults.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "bridges",
@@ -1064,7 +1102,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Connects SORA to the broader blockchain ecosystem."
+    "tagline": "Connects SORA to the broader blockchain ecosystem.",
+    "priority": 4
   },
   {
     "slug": "budget",
@@ -1087,6 +1126,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Caps resource usage per operation so no single transaction can monopolize the network."
   },
   {
@@ -1116,7 +1156,8 @@
         "label": "Investopedia – Bull Market",
         "url": "https://www.investopedia.com/terms/b/bullmarket.asp"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "buybackandburn",
@@ -1153,7 +1194,8 @@
         "label": "PSWAP Tokenomics",
         "url": "https://wiki.sora.org/pswap.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "byzantinefaulttolerance",
@@ -1167,7 +1209,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "canonicalprimitives",
@@ -1190,6 +1233,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "SORA Nexus mandates to keep security assumptions consistent across data spaces."
   },
   {
@@ -1239,7 +1283,8 @@
         "label": "CBDC Development in Asia-Pacific",
         "url": "https://www.japanpolicyforum.jp/economy/pt2024041523151814191.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "ceres",
@@ -1269,7 +1314,8 @@
         "url": "https://cerestoken.io/"
       }
     ],
-    "tagline": "Provides essential DeFi infrastructure for projects building on SORA."
+    "tagline": "Provides essential DeFi infrastructure for projects building on SORA.",
+    "priority": 8
   },
   {
     "slug": "chainlink",
@@ -1300,7 +1346,8 @@
         "label": "Chainlink Official Site",
         "url": "https://chain.link/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "circuitbreakers",
@@ -1323,6 +1370,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
   },
   {
@@ -1346,6 +1394,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
   },
   {
@@ -1383,7 +1432,8 @@
         "label": "SORA Parliament",
         "url": "https://wiki.sora.org/sora-governance.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "collateral",
@@ -1414,7 +1464,8 @@
         "label": "SORA Token Bonding Curve Dollar Explained",
         "url": "https://soranauts.com/soras-token-bonding-curve-dollar-tbcd-explained"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "collateralizedlocks",
@@ -1437,6 +1488,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables secure offline payments that settle atomically when parties reconnect."
   },
   {
@@ -1460,6 +1512,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Lets anyone verify state correctness by checking a small proof instead of replaying all transactions."
   },
   {
@@ -1483,6 +1536,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -1497,7 +1551,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "computelane",
@@ -1520,6 +1575,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Isolates resource-intensive workloads so they don't slow down regular transactions."
   },
   {
@@ -1543,6 +1599,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -1572,7 +1629,8 @@
         "label": "Rust Book – Fearless Concurrency",
         "url": "https://doc.rust-lang.org/book/ch16-00-concurrency.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "condition",
@@ -1595,6 +1653,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures fair resource allocation across the network."
   },
   {
@@ -1643,7 +1702,8 @@
         "label": "SORA Consensus",
         "url": "https://wiki.sora.org/consensus.html"
       }
-    ]
+    ],
+    "priority": 6
   },
   {
     "slug": "coretime",
@@ -1674,7 +1734,8 @@
         "label": "Polkadot Wiki – Coretime",
         "url": "https://wiki.polkadot.network/docs/learn-coretime"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "council",
@@ -1689,7 +1750,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Ensures community oversight of network development."
+    "tagline": "Ensures community oversight of network development.",
+    "priority": 4
   },
   {
     "slug": "councilmotion",
@@ -1726,7 +1788,8 @@
         "label": "SORA Governance",
         "url": "https://wiki.sora.org/sora-governance.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "crossbordercorridors",
@@ -1747,6 +1810,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -1782,7 +1846,8 @@
         "label": "CBDC Development",
         "url": "https://www.japanpolicyforum.jp/economy/pt2024041523151814191.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "crosschain",
@@ -1817,7 +1882,8 @@
         "label": "Polkaswap",
         "url": "https://wiki.sora.org/polkaswap.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "crowdloans",
@@ -1848,7 +1914,8 @@
         "label": "Polkadot Wiki – Crowdloans",
         "url": "https://wiki.polkadot.network/docs/learn-crowdloan"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "cryptography",
@@ -1862,7 +1929,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "cryptomarketcycles",
@@ -1893,7 +1961,8 @@
         "label": "Understanding Crypto Bull Markets",
         "url": "https://soranauts.com/understanding-crypto-bull-markets-patterns-triggers-and-psychology"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "curve25519",
@@ -1916,6 +1985,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Foundation for secure key exchange and digital signatures."
   },
   {
@@ -1939,6 +2009,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Guarantees that transaction data remains accessible and verifiable."
   },
   {
@@ -1962,6 +2033,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Reduces bandwidth requirements for validators while maintaining strong availability guarantees."
   },
   {
@@ -1985,6 +2057,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures fair resource allocation across the network."
   },
   {
@@ -2008,6 +2081,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Guarantees that transaction data remains accessible and verifiable."
   },
   {
@@ -2031,6 +2105,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 6,
     "tagline": "Prevents data withholding attacks that could halt chain progress or hide fraud."
   },
   {
@@ -2054,6 +2129,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Lets light clients verify block data exists without downloading entire blocks."
   },
   {
@@ -2077,6 +2153,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -2100,6 +2177,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides seamless access to SORA Nexus services."
   },
   {
@@ -2123,6 +2201,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Identifies which data space an account."
   },
   {
@@ -2146,6 +2225,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Enables enterprises and regulators to participate in SORA while maintaining data isolation."
   },
   {
@@ -2161,7 +2241,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Prevents censorship and ensures permissionless access."
+    "tagline": "Prevents censorship and ensures permissionless access.",
+    "priority": 4
   },
   {
     "slug": "decentralizedexchange",
@@ -2175,7 +2256,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "deepfri",
@@ -2198,6 +2280,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Lets verifiers check massive execution traces with logarithmic work."
   },
   {
@@ -2236,7 +2319,8 @@
         "label": "SORA DeFi",
         "url": "https://polkaswap.io"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "deflationary",
@@ -2273,7 +2357,8 @@
         "label": "SORA Tokenomics",
         "url": "https://wiki.sora.org/tokenomics.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "demeter",
@@ -2287,7 +2372,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 8
   },
   {
     "slug": "democracy",
@@ -2325,7 +2411,8 @@
         "label": "SORA Democracy",
         "url": "https://wiki.sora.org/sora-governance.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "deterministicbudgets",
@@ -2348,6 +2435,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -2371,6 +2459,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Guarantees every validator reaches the same result, enabling fraud proofs and cross-chain verification."
   },
   {
@@ -2394,6 +2483,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides seamless access to SORA Nexus services."
   },
   {
@@ -2431,7 +2521,8 @@
         "label": "Polkaswap DEX",
         "url": "https://polkaswap.io"
       }
-    ]
+    ],
+    "priority": 6
   },
   {
     "slug": "digitalcurrency",
@@ -2445,7 +2536,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "digitalownership",
@@ -2474,7 +2566,8 @@
         "label": "SORA Wiki – NFTs",
         "url": "https://wiki.sora.org/nft.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "dogecoin",
@@ -2510,7 +2603,8 @@
         "label": "Dogecoin Core Repository",
         "url": "https://github.com/dogecoin/dogecoin"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "dsid",
@@ -2533,7 +2627,8 @@
     ],
     "examples": [],
     "links": [],
-    "tagline": "Enables routing."
+    "priority": 5,
+    "tagline": "Provides a universal address for any data space, enabling validators and applications to route transactions and enforce policies without ambiguity."
   },
   {
     "slug": "dualsig",
@@ -2556,6 +2651,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides cryptographic authentication for transactions and attestations."
   },
   {
@@ -2591,7 +2687,8 @@
         "label": "SORA Tokenomics",
         "url": "https://wiki.sora.org/tokenomics.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "economicmodel",
@@ -2614,6 +2711,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Aligns validator, developer, and user incentives to maintain network security and growth."
   },
   {
@@ -2629,7 +2727,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Creates sustainable incentives for long-term network growth."
+    "tagline": "Creates sustainable incentives for long-term network growth.",
+    "priority": 4
   },
   {
     "slug": "economicsovereignty",
@@ -2667,7 +2766,8 @@
         "label": "SORA v3 Hub Chain",
         "url": "https://wiki.sora.org/sora-v3.html#the-sora-v3-hubchain"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "economicsystems",
@@ -2696,7 +2796,8 @@
         "label": "SORA Blockchain: New World Economic Order",
         "url": "https://soranauts.com/sora-blockchain-new-world-economic-order"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "ed25519",
@@ -2719,6 +2820,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides cryptographic authentication for transactions and attestations."
   },
   {
@@ -2760,7 +2862,8 @@
         "url": "https://wiki.sora.org/tokenomics.html"
       }
     ],
-    "tagline": "Enables sustainable economic policy that adapts to real network usage."
+    "tagline": "Enables sustainable economic policy that adapts to real network usage.",
+    "priority": 4
   },
   {
     "slug": "energy",
@@ -2774,7 +2877,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "epochbeacon",
@@ -2797,6 +2901,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures fair, unpredictable validator selection that no single party can manipulate."
   },
   {
@@ -2820,6 +2925,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -2843,6 +2949,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Allows the network to recover full state even if some validators fail or go offline."
   },
   {
@@ -2866,6 +2973,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -2889,6 +2997,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables secure symmetric encryption for sensitive data."
   },
   {
@@ -2904,7 +3013,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Provides transparency and accountability for all network activity."
+    "tagline": "Provides transparency and accountability for all network activity.",
+    "priority": 4
   },
   {
     "slug": "exposure",
@@ -2927,6 +3037,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -2950,6 +3061,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Captures Iroha Special Instructions with high throughput and post-quantum security."
   },
   {
@@ -2973,6 +3085,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -2996,6 +3109,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -3019,6 +3133,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -3042,6 +3157,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Create a FASTPQ proof."
   },
   {
@@ -3065,6 +3181,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -3080,7 +3197,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Provides secure, user-friendly access to SORA DeFi on mobile devices."
+    "tagline": "Provides secure, user-friendly access to SORA DeFi on mobile devices.",
+    "priority": 8
   },
   {
     "slug": "fiatshamirtranscript",
@@ -3103,6 +3221,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures data integrity and enables secure verification across the network."
   },
   {
@@ -3126,6 +3245,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures data integrity and enables secure verification across the network."
   },
   {
@@ -3161,7 +3281,8 @@
         "label": "CBDC Development",
         "url": "https://www.japanpolicyforum.jp/economy/pt2024041523151814191.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "fixedsizecells",
@@ -3184,6 +3305,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Protects user privacy by making all network traffic look identical to outside observers."
   },
   {
@@ -3214,7 +3336,8 @@
         "label": "Polkadot Wiki – Upgrades",
         "url": "https://wiki.polkadot.network/docs/learn-upgrades"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "fujiwaratestnet",
@@ -3254,7 +3377,8 @@
         "label": "Fujiwara Testnet Guide",
         "url": "https://wiki.sora.org/sora-v3.html#why-the-fujiwara-testnet-matters"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "gastables",
@@ -3277,6 +3401,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Lets developers estimate execution costs accurately before deployment."
   },
   {
@@ -3300,6 +3425,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Simplifies client integration by handling protocol translation and routing."
   },
   {
@@ -3323,6 +3449,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables running validators."
   },
   {
@@ -3346,6 +3473,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Improves network performance and efficiency."
   },
   {
@@ -3369,6 +3497,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Empowers the community to shape the network's evolution."
   },
   {
@@ -3412,7 +3541,8 @@
         "label": "SORA Governance",
         "url": "https://wiki.sora.org/sora-governance.html"
       }
-    ]
+    ],
+    "priority": 6
   },
   {
     "slug": "governancesurfaces",
@@ -3435,6 +3565,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Allows protocol upgrades via voting instead of contentious hard forks."
   },
   {
@@ -3475,7 +3606,8 @@
         "label": "SORA Governance",
         "url": "https://wiki.sora.org/sora-governance.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "governedmanifest",
@@ -3498,6 +3630,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures all validators upgrade atomically at the same block height."
   },
   {
@@ -3521,6 +3654,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides seamless access to SORA Nexus services."
   },
   {
@@ -3544,6 +3678,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
   },
   {
@@ -3567,6 +3702,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
   },
   {
@@ -3597,7 +3733,8 @@
         "label": "Bitcoin.org – Halving FAQ",
         "url": "https://bitcoin.org/en/faq#what-is-the-bitcoin-halving"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "hashi",
@@ -3644,7 +3781,8 @@
         "url": "https://medium.com/polkaswap-community-collective/how-to-use-the-hashi-bridge-eb69e88bc87"
       }
     ],
-    "tagline": "Enables secure asset transfers without trusted intermediaries."
+    "tagline": "Enables secure asset transfers without trusted intermediaries.",
+    "priority": 8
   },
   {
     "slug": "hubchain",
@@ -3686,7 +3824,8 @@
         "label": "SORA v3 Hub Chain",
         "url": "https://wiki.sora.org/sora-v3.html#the-sora-v3-hubchain"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "hybridpqhandshake",
@@ -3709,6 +3848,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Future-proofs connections against quantum computing attacks."
   },
   {
@@ -3724,7 +3864,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Provides enterprise-grade credibility and interoperability."
+    "tagline": "Provides enterprise-grade credibility and interoperability.",
+    "priority": 4
   },
   {
     "slug": "hyperledgeriroha",
@@ -3738,7 +3879,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "hyperledgeriroha3",
@@ -3752,7 +3894,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "impermanentloss",
@@ -3791,7 +3934,8 @@
         "label": "What is Impermanent Loss (Cointelegraph)",
         "url": "https://cointelegraph.com/explained/what-is-impermanent-loss-and-how-to-avoid-it"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "integratedplan",
@@ -3829,7 +3973,8 @@
         "label": "SORA Integrated Plan",
         "url": "https://wiki.sora.org/integrated-plan.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "interbanksettlement",
@@ -3850,6 +3995,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -3865,7 +4011,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Enables seamless asset movement across ecosystems."
+    "tagline": "Enables seamless asset movement across ecosystems.",
+    "priority": 4
   },
   {
     "slug": "ipacommitments",
@@ -3888,6 +4035,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Improves network performance and efficiency."
   },
   {
@@ -3933,7 +4081,8 @@
         "label": "IPFS Protocol",
         "url": "https://ipfs.tech/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "iroha",
@@ -3948,7 +4097,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Powers enterprise blockchain with production-proven reliability."
+    "tagline": "Powers enterprise blockchain with production-proven reliability.",
+    "priority": 9
   },
   {
     "slug": "iroha3",
@@ -3962,7 +4112,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 6
   },
   {
     "slug": "irohaconfig",
@@ -3985,6 +4136,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -4026,7 +4178,8 @@
         "label": "Hyperledger Iroha",
         "url": "https://docs.iroha.tech/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "irohavirtualmachineivm",
@@ -4049,6 +4202,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Ensures every node computes identical results, making cross-chain verification trustless."
   },
   {
@@ -4072,6 +4226,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Nexus aligns with for payment."
   },
   {
@@ -4095,6 +4250,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -4118,6 +4274,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides seamless access to SORA Nexus services."
   },
   {
@@ -4140,6 +4297,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables IVM execution."
   },
   {
@@ -4163,6 +4321,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Empowers the community to shape the network's evolution."
   },
   {
@@ -4208,7 +4367,8 @@
         "url": "https://wiki.sora.org/kensetsu-vaults.html"
       }
     ],
-    "tagline": "Unlocks liquidity from existing holdings without selling your assets."
+    "tagline": "Unlocks liquidity from existing holdings without selling your assets.",
+    "priority": 8
   },
   {
     "slug": "kotodama",
@@ -4231,6 +4391,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Powers programmable logic on SORA without the unpredictability of Turing-complete VMs."
   },
   {
@@ -4254,6 +4415,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -4277,6 +4439,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Validates Kotodama contracts."
   },
   {
@@ -4298,6 +4461,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Records every committed block alongside erasure-coded redundancy."
   },
   {
@@ -4335,7 +4499,8 @@
         "label": "Polkadot Wiki – Kusama",
         "url": "https://wiki.polkadot.network/docs/learn-kusama"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "kusd",
@@ -4388,7 +4553,8 @@
         "url": "https://wiki.sora.org/kensetsu-vaults.html"
       }
     ],
-    "tagline": "Provides stable value for trading, payments, and DeFi without relying on centralized custodians."
+    "tagline": "Provides stable value for trading, payments, and DeFi without relying on centralized custodians.",
+    "priority": 10
   },
   {
     "slug": "kyber768",
@@ -4411,6 +4577,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -4434,6 +4601,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -4457,6 +4625,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Automatically reduces infrastructure overhead when network demand is low."
   },
   {
@@ -4480,6 +4649,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Prevents any single lane from starving others of compute resources."
   },
   {
@@ -4503,6 +4673,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing while maintaining global ordering guarantees."
   },
   {
@@ -4526,6 +4697,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -4549,6 +4721,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -4572,6 +4745,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Enables horizontal scaling by running multiple transaction streams concurrently."
   },
   {
@@ -4595,6 +4769,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables fault isolation so one lane's problems don't affect the entire network."
   },
   {
@@ -4618,6 +4793,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -4641,6 +4817,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -4664,6 +4841,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Prevents any single lane from starving others of compute resources."
   },
   {
@@ -4695,7 +4873,8 @@
         "label": "SORA Wiki – Kensetsu Vaults",
         "url": "https://wiki.sora.org/kensetsu-vaults.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "liquidity",
@@ -4732,7 +4911,8 @@
         "label": "Polkaswap Liquidity",
         "url": "https://wiki.sora.org/polkaswap.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "liquidityaggregation",
@@ -4769,7 +4949,8 @@
         "label": "Polkaswap Liquidity",
         "url": "https://wiki.sora.org/polkaswap.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "liquiditypool",
@@ -4809,7 +4990,8 @@
         "label": "Polkaswap Liquidity",
         "url": "https://wiki.sora.org/polkaswap.html"
       }
-    ]
+    ],
+    "priority": 6
   },
   {
     "slug": "lockedqc",
@@ -4832,6 +5014,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -4846,7 +5029,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "marketcycles",
@@ -4860,7 +5044,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "marketplace",
@@ -4875,7 +5060,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Connects builders with users to grow the ecosystem."
+    "tagline": "Connects builders with users to grow the ecosystem.",
+    "priority": 4
   },
   {
     "slug": "marketpsychology",
@@ -4906,7 +5092,8 @@
         "label": "Behavioral Finance Overview",
         "url": "https://www.cfainstitute.org/en/research/foundation/2013/behavioral-finance"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "markettiming",
@@ -4937,7 +5124,8 @@
         "label": "Timing the Crypto Market",
         "url": "https://soranauts.com/timing-the-crypto-market-insights-into-bull-cycles"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "memecoins",
@@ -4951,7 +5139,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "memorymodel",
@@ -4972,6 +5161,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Prevents buffer overflows and enables efficient state proofs for light clients."
   },
   {
@@ -5001,7 +5191,8 @@
         "label": "Why Cryptocurrencies Are Embracing Rust",
         "url": "https://soranauts.com/cryptocurrencies-rust-programming"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "mergeledger",
@@ -5024,6 +5215,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Provides a single source of truth while enabling parallel transaction processing."
   },
   {
@@ -5047,6 +5239,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Allow succinct verification of state changes."
   },
   {
@@ -5076,7 +5269,8 @@
         "label": "Bitcoin.org – Mining Guide",
         "url": "https://bitcoin.org/en/how-it-works#mining"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "mldsa87",
@@ -5099,6 +5293,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides cryptographic authentication for transactions and attestations."
   },
   {
@@ -5114,7 +5309,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Brings blockchain to billions of smartphone users."
+    "tagline": "Brings blockchain to billions of smartphone users.",
+    "priority": 4
   },
   {
     "slug": "mobilepayments",
@@ -5147,7 +5343,8 @@
         "label": "SORA Card Overview",
         "url": "https://wiki.sora.org/sora-card.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "monetarysystems",
@@ -5182,7 +5379,8 @@
         "label": "SORA Economic Vision",
         "url": "https://soranauts.com/sora-blockchain-new-world-economic-order"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "moneymarket",
@@ -5217,7 +5415,8 @@
         "label": "International Monetary Fund – Money Market",
         "url": "https://www.imf.org/external/np/exr/glossary/showTerm.asp#80"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "multisig",
@@ -5240,6 +5439,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Nexus's flexible signing model where different schemes (Ed25519, ML-DSA-87, etc."
   },
   {
@@ -5263,6 +5463,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -5286,6 +5487,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Proves a validator has seen sufficient votes to advance to the next proposal round."
   },
   {
@@ -5300,7 +5502,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "nexusaccountstructure",
@@ -5323,6 +5526,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -5337,7 +5541,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "nft",
@@ -5385,7 +5590,8 @@
         "label": "Polkaswap Exchange",
         "url": "https://polkaswap.io"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "norito",
@@ -5408,7 +5614,8 @@
     ],
     "examples": [],
     "links": [],
-    "tagline": "Enables commands."
+    "priority": 7,
+    "tagline": "Guarantees that every client, validator, and tool interprets data identically, eliminating serialization bugs and cross-platform inconsistencies."
   },
   {
     "slug": "noritocodec",
@@ -5431,6 +5638,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Encodes/decodes Norito TLV structures and streams data for storage or networking layers."
   },
   {
@@ -5454,6 +5662,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables programmatic access to network functionality."
   },
   {
@@ -5477,6 +5686,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures data integrity and enables secure verification across the network."
   },
   {
@@ -5500,6 +5710,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables efficient data transfer across the network while maintaining deterministic ordering."
   },
   {
@@ -5523,6 +5734,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -5546,6 +5758,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -5569,6 +5782,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures data integrity and enables secure verification across the network."
   },
   {
@@ -5592,6 +5806,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides seamless access to SORA Nexus services."
   },
   {
@@ -5606,7 +5821,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "overcollateralized",
@@ -5620,7 +5836,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "parachain",
@@ -5662,7 +5879,8 @@
         "label": "Polkadot Parachains Guide",
         "url": "https://wiki.polkadot.com/learn/learn-parachains/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "parachains",
@@ -5676,7 +5894,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "parallellanes",
@@ -5699,6 +5918,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -5734,7 +5954,8 @@
         "label": "Polkadot Parachains",
         "url": "https://wiki.polkadot.com/learn/learn-parachains/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "parametersets",
@@ -5757,6 +5978,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Lets the network tune performance and security without redeploying code."
   },
   {
@@ -5788,7 +6010,8 @@
         "label": "Polkadot Wiki – Parathreads",
         "url": "https://wiki.polkadot.network/docs/learn-parathreads"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "parliament",
@@ -5803,7 +6026,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Enables fair representation through democratic lottery selection."
+    "tagline": "Enables fair representation through democratic lottery selection.",
+    "priority": 4
   },
   {
     "slug": "payments",
@@ -5818,7 +6042,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Enables real-world commerce with digital assets."
+    "tagline": "Enables real-world commerce with digital assets.",
+    "priority": 4
   },
   {
     "slug": "pepe",
@@ -5849,7 +6074,8 @@
         "label": "PEPE Token on Etherscan",
         "url": "https://etherscan.io/token/0x6982508145454ce325ddbe47a25d4ec3d2311933"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "performance",
@@ -5878,7 +6104,8 @@
         "label": "Computer Performance Overview",
         "url": "https://en.wikipedia.org/wiki/Computer_performance"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "performancetargets",
@@ -5901,6 +6128,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -5924,6 +6152,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
   },
   {
@@ -5947,6 +6176,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Prevents contracts from misusing identifiers by encoding domain-specific types into pointers."
   },
   {
@@ -5986,7 +6216,8 @@
         "label": "Polkadot Network",
         "url": "https://polkadot.network/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "polkadotgovernance",
@@ -6028,7 +6259,8 @@
         "label": "Polkadot Governance",
         "url": "https://wiki.polkadot.network/docs/learn-governance"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "polkaswap",
@@ -6077,7 +6309,8 @@
         "url": "https://polkaswap.io"
       }
     ],
-    "tagline": "Enables permissionless trading with best-price routing across multiple liquidity sources."
+    "tagline": "Enables permissionless trading with best-price routing across multiple liquidity sources.",
+    "priority": 9
   },
   {
     "slug": "poseidon2",
@@ -6100,6 +6333,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures data integrity and enables secure verification across the network."
   },
   {
@@ -6123,6 +6357,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -6137,7 +6372,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "pricestability",
@@ -6172,7 +6408,8 @@
         "label": "SORA Tokenomics",
         "url": "https://wiki.sora.org/tokenomics.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "privacytransactions",
@@ -6195,6 +6432,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
   },
   {
@@ -6218,7 +6456,8 @@
     ],
     "examples": [],
     "links": [],
-    "tagline": "Enables DA."
+    "priority": 7,
+    "tagline": "Allows enterprises and institutions to participate in SORA Nexus while keeping sensitive data confidential and compliant with local regulations."
   },
   {
     "slug": "programming",
@@ -6247,7 +6486,8 @@
         "label": "MDN Web Docs – Programming Basics",
         "url": "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Programming_basics"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "proofofstake",
@@ -6277,7 +6517,8 @@
         "label": "Proof of Stake vs Proof of Work",
         "url": "https://soranauts.com/differences-between-proof-of-stake-and-proof-of-work"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "proofofwork",
@@ -6307,7 +6548,8 @@
         "label": "Bitcoin.org – Proof of Work",
         "url": "https://bitcoin.org/en/developer-guide#proof-of-work"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "proofsystems",
@@ -6330,6 +6572,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
   },
   {
@@ -6353,6 +6596,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -6368,7 +6612,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Gives every community member a voice in network decisions."
+    "tagline": "Gives every community member a voice in network decisions.",
+    "priority": 4
   },
   {
     "slug": "proposevalidatevotecommit",
@@ -6391,6 +6636,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Drive HotStuff-style consensus with deterministic leader rotation and locking."
   },
   {
@@ -6414,6 +6660,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures fair resource allocation across the network."
   },
   {
@@ -6460,7 +6707,8 @@
         "url": "https://polkaswap.io"
       }
     ],
-    "tagline": "Rewards users who provide liquidity, creating sustainable DeFi incentives."
+    "tagline": "Rewards users who provide liquidity, creating sustainable DeFi incentives.",
+    "priority": 10
   },
   {
     "slug": "publicdataspaces",
@@ -6483,6 +6731,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Provides cryptographic authentication for transactions and attestations."
   },
   {
@@ -6515,7 +6764,8 @@
         "label": "SORA Card FAQ",
         "url": "https://wiki.sora.org/sora-card.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "quorumcertificate",
@@ -6538,6 +6788,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Proves supermajority agreement on a block, enabling light clients to verify finality with minimal data."
   },
   {
@@ -6571,7 +6822,8 @@
         "label": "RWA Opportunities on SORA",
         "url": "https://soranauts.com/soras-leap-transforming-apac-with-cbdcs-and-savings-bonds"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "redenomination",
@@ -6602,7 +6854,8 @@
         "label": "Understanding the XOR Token Supply",
         "url": "https://soranauts.com/sora-xor-token-supply-explained"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "reedsolomon",
@@ -6625,6 +6878,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides mathematical guarantees that data survives validator failures or network partitions."
   },
   {
@@ -6663,7 +6917,8 @@
         "label": "SORA Governance",
         "url": "https://wiki.sora.org/sora-governance.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "relaychain",
@@ -6700,7 +6955,8 @@
         "label": "Polkadot Relay Chain",
         "url": "https://wiki.polkadot.network/docs/learn-architecture"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "restgateways",
@@ -6723,6 +6979,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables familiar HTTP access to SORA Nexus for web and mobile developers."
   },
   {
@@ -6746,6 +7003,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -6783,7 +7041,8 @@
         "label": "SORA Rewards",
         "url": "https://wiki.sora.org/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "roadmap",
@@ -6798,7 +7057,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Aligns community expectations with development priorities."
+    "tagline": "Aligns community expectations with development priorities.",
+    "priority": 4
   },
   {
     "slug": "rollingupgrades",
@@ -6821,6 +7081,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -6851,7 +7112,8 @@
         "label": "Ethereum.org – Rollups",
         "url": "https://ethereum.org/en/developers/docs/scaling/#rollups"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "rtgsmodernization",
@@ -6872,6 +7134,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -6895,6 +7158,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Allows the network to evolve without disruptive hard forks."
   },
   {
@@ -6909,7 +7173,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "rustlanguage",
@@ -6944,7 +7209,8 @@
         "label": "Rust Programming Language",
         "url": "https://www.rust-lang.org/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "scalability",
@@ -6958,7 +7224,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "scale",
@@ -6981,6 +7248,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -6995,7 +7263,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "scarcityeconomics",
@@ -7024,7 +7293,8 @@
         "label": "SORA XOR Token Supply Explained",
         "url": "https://soranauts.com/sora-xor-token-supply-explained"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "sdks",
@@ -7047,6 +7317,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Simplifies building applications on SORA Nexus."
   },
   {
@@ -7070,6 +7341,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables compatibility with Bitcoin, Ethereum, and other legacy blockchain ecosystems."
   },
   {
@@ -7107,7 +7379,8 @@
         "label": "SORA Security",
         "url": "https://wiki.sora.org/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "seedbeacon",
@@ -7130,6 +7403,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures data integrity and enables secure verification across the network."
   },
   {
@@ -7153,6 +7427,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures data integrity and enables secure verification across the network."
   },
   {
@@ -7176,6 +7451,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides NIST-standardized hashing for regulatory compliance and external interoperability."
   },
   {
@@ -7213,7 +7489,8 @@
         "label": "Polkadot Security",
         "url": "https://wiki.polkadot.network/docs/learn-security"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "shibainu",
@@ -7249,7 +7526,8 @@
         "label": "Shiba Inu Documentation",
         "url": "https://docs.shibatoken.com/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "shieldedroots",
@@ -7272,6 +7550,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Allows privacy-preserving transactions while maintaining network auditability."
   },
   {
@@ -7295,7 +7574,8 @@
     ],
     "examples": [],
     "links": [],
-    "tagline": "Use commitments."
+    "priority": 5,
+    "tagline": "Enables private transactions where transfer amounts remain hidden from the public while still being cryptographically verifiable for compliance."
   },
   {
     "slug": "signedblockwire",
@@ -7318,6 +7598,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides cryptographic authentication for transactions and attestations."
   },
   {
@@ -7341,6 +7622,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Discourages misbehavior by making attacks economically costly."
   },
   {
@@ -7372,7 +7654,8 @@
         "label": "Polkadot Wiki – Parachains",
         "url": "https://wiki.polkadot.network/docs/learn-parachains"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "sm2",
@@ -7395,6 +7678,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides cryptographic authentication for transactions and attestations."
   },
   {
@@ -7418,6 +7702,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables SORA Nexus to operate in markets requiring Chinese national cryptographic standards."
   },
   {
@@ -7441,6 +7726,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Completes the SM cryptographic suite for regulated Chinese market deployments."
   },
   {
@@ -7471,7 +7757,8 @@
       "Automated supply management",
       "Self-executing agreements"
     ],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "smartcontracts",
@@ -7485,7 +7772,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "smartrouting",
@@ -7522,7 +7810,8 @@
         "label": "Polkaswap Features",
         "url": "https://wiki.sora.org/polkaswap.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "solana",
@@ -7555,7 +7844,8 @@
         "label": "Solana.com",
         "url": "https://solana.com/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "solomonislands",
@@ -7588,7 +7878,8 @@
         "label": "Solomon Islands CBDC Overview",
         "url": "https://soranauts.com/soras-leap-transforming-apac-with-cbdcs-and-savings-bonds"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "sora",
@@ -7616,7 +7907,8 @@
     ],
     "examples": [],
     "links": [],
-    "tagline": "Foundation for a new decentralized world economy with programmable finance and democratic governance."
+    "tagline": "Foundation for a new decentralized world economy with programmable finance and democratic governance.",
+    "priority": 9
   },
   {
     "slug": "soracard",
@@ -7659,7 +7951,8 @@
         "url": "https://wiki.sora.org/sora-card-kyc-tutorial.html"
       }
     ],
-    "tagline": "Bridges crypto and traditional payments for everyday spending."
+    "tagline": "Bridges crypto and traditional payments for everyday spending.",
+    "priority": 8
   },
   {
     "slug": "soracles",
@@ -7682,6 +7975,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Brings off-chain data on-chain with the same security guarantees as native transactions."
   },
   {
@@ -7719,7 +8013,8 @@
         "label": "SORA Governance",
         "url": "https://wiki.sora.org/sora-governance.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "soraecosystem",
@@ -7733,7 +8028,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "sorafs",
@@ -7753,6 +8049,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -7790,7 +8087,8 @@
         "label": "SORAMITSU Website",
         "url": "https://soramitsu.co.jp/"
       }
-    ]
+    ],
+    "priority": 9
   },
   {
     "slug": "soranet",
@@ -7813,6 +8111,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Protects user privacy while delivering content with predictable latency."
   },
   {
@@ -7827,7 +8126,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "soranexus",
@@ -7850,6 +8150,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 9,
     "tagline": "Unifies private data spaces."
   },
   {
@@ -7904,7 +8205,8 @@
         "url": "https://medium.com/sora-xor/the-sora-parliament-af8184dae384"
       }
     ],
-    "tagline": "Gives the community direct control over network upgrades and treasury spending."
+    "tagline": "Gives the community direct control over network upgrades and treasury spending.",
+    "priority": 4
   },
   {
     "slug": "sorav2",
@@ -7941,7 +8243,8 @@
         "label": "SORA Network",
         "url": "https://sora.org/"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "sorav3",
@@ -7997,7 +8300,8 @@
         "label": "SORA v3 Guide",
         "url": "https://wiki.sora.org/sora-v3.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "sortition",
@@ -8034,7 +8338,8 @@
         "label": "SORA Governance",
         "url": "https://wiki.sora.org/sora-governance.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "soshiba",
@@ -8065,7 +8370,8 @@
         "label": "Meme Coins vs. Traditional Crypto",
         "url": "https://soranauts.com/meme-coins-vs-traditional-crypto"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "sovereigndataspaces",
@@ -8088,6 +8394,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Let entities maintain jurisdictional control over privacy."
   },
   {
@@ -8102,7 +8409,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "stablecoin",
@@ -8117,7 +8425,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Enables everyday transactions without price volatility."
+    "tagline": "Enables everyday transactions without price volatility.",
+    "priority": 4
   },
   {
     "slug": "staking",
@@ -8152,7 +8461,8 @@
         "label": "Staking Guide",
         "url": "https://wiki.sora.org/nominating-validators.html"
       }
-    ]
+    ],
+    "priority": 6
   },
   {
     "slug": "stark",
@@ -8175,6 +8485,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enhances network security and protects user data."
   },
   {
@@ -8198,6 +8509,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Ensures fair resource allocation across the network."
   },
   {
@@ -8220,6 +8532,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Orders work by virtual finish times while enforcing TEU and age constraints."
   },
   {
@@ -8243,6 +8556,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -8266,6 +8580,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides seamless access to SORA Nexus services."
   },
   {
@@ -8308,7 +8623,8 @@
         "label": "Substrate",
         "url": "https://substrate.io"
       }
-    ]
+    ],
+    "priority": 6
   },
   {
     "slug": "sumeragi",
@@ -8331,6 +8647,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Delivers sub-second block finality while tolerating up to one-third Byzantine validators."
   },
   {
@@ -8354,6 +8671,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides mathematical proof that committed blocks cannot be reverted, even under network partitions."
   },
   {
@@ -8377,6 +8695,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -8391,7 +8710,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "supplyreduction",
@@ -8405,7 +8725,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "supranationalplatform",
@@ -8443,7 +8764,8 @@
         "label": "SORA v3 Hub Chain",
         "url": "https://wiki.sora.org/sora-v3.html#the-sora-v3-hubchain"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "syscalls",
@@ -8466,6 +8788,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides a secure, auditable interface between smart contracts and the underlying runtime."
   },
   {
@@ -8489,7 +8812,8 @@
     ],
     "examples": [],
     "links": [],
-    "tagline": "Enables misbehavior."
+    "priority": 7,
+    "tagline": "Detects and penalizes validator misbehavior through on-ledger governance, protecting network integrity while enabling real-time data streaming."
   },
   {
     "slug": "tbcd",
@@ -8536,7 +8860,8 @@
         "url": "https://wiki.sora.org/tbc.html"
       }
     ],
-    "tagline": "Offers algorithmic stability through the token bonding curve mechanism."
+    "tagline": "Offers algorithmic stability through the token bonding curve mechanism.",
+    "priority": 10
   },
   {
     "slug": "telegram",
@@ -8551,7 +8876,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Central hub for community coordination and support."
+    "tagline": "Central hub for community coordination and support.",
+    "priority": 4
   },
   {
     "slug": "telemetry",
@@ -8574,6 +8900,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -8597,6 +8924,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Hides user IP addresses from destination servers while maintaining fast connections."
   },
   {
@@ -8635,7 +8963,8 @@
         "url": "https://wiki.sora.org/tbc.html"
       }
     ],
-    "tagline": "Creates predictable pricing and built-in liquidity for XOR without requiring external market makers."
+    "tagline": "Creates predictable pricing and built-in liquidity for XOR without requiring external market makers.",
+    "priority": 6
   },
   {
     "slug": "tokenburning",
@@ -8672,7 +9001,8 @@
         "label": "SORA Tokenomics",
         "url": "https://wiki.sora.org/tokenomics.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "tokenization",
@@ -8703,7 +9033,8 @@
         "label": "Tokenization Explained",
         "url": "https://soranauts.com/the-ultimate-guide-to-asset-tokenization-in-crypto-and-blockchain"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "tokenizedassets",
@@ -8724,6 +9055,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -8741,7 +9073,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Creates sustainable value through aligned incentives."
+    "tagline": "Creates sustainable value through aligned incentives.",
+    "priority": 4
   },
   {
     "slug": "tokenrepackaging",
@@ -8774,7 +9107,8 @@
         "label": "SORA Token Repackaging Brief",
         "url": "https://soranauts.com/sora-roadmap-token-repackaging-hub-chain-defi-upgrades"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "ton",
@@ -8789,7 +9123,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Opens SORA to Telegram massive user base."
+    "tagline": "Opens SORA to Telegram massive user base.",
+    "priority": 4
   },
   {
     "slug": "tonswap",
@@ -8857,7 +9192,8 @@
         "url": "https://tonswap.org/"
       }
     ],
-    "tagline": "Expands SORA DeFi reach to Telegram users through TON integration."
+    "tagline": "Expands SORA DeFi reach to Telegram users through TON integration.",
+    "priority": 8
   },
   {
     "slug": "torii",
@@ -8880,6 +9216,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Provides real-time updates to applications without polling."
   },
   {
@@ -8894,7 +9231,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "tradingfees",
@@ -8931,7 +9269,8 @@
         "label": "Polkaswap Trading",
         "url": "https://wiki.sora.org/polkaswap.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "tradingstrategy",
@@ -8962,7 +9301,8 @@
         "label": "Polkaswap Trading Tips",
         "url": "https://soranauts.com/best-decentralized-exchanges-dexs"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "transactionexecutionunitsteu",
@@ -8985,6 +9325,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Lets users predict transaction costs before submitting, preventing surprise fees."
   },
   {
@@ -9008,6 +9349,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Every Nexus transaction follows."
   },
   {
@@ -9031,6 +9373,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 6,
     "tagline": "Enables smart contracts to self-execute based on time or events, removing reliance on external keepers."
   },
   {
@@ -9084,7 +9427,8 @@
         "label": "TONSWAP Documentation",
         "url": "https://tonswap.org/roadmap"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "twodimensionalerasurecoding",
@@ -9107,6 +9451,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Essential component of the SORA Nexus architecture."
   },
   {
@@ -9151,7 +9496,8 @@
         "url": "https://wiki.sora.org/sora-governance.html"
       }
     ],
-    "tagline": "Incentivizes network security through deflationary rewards to validators and nominators."
+    "tagline": "Incentivizes network security through deflationary rewards to validators and nominators.",
+    "priority": 10
   },
   {
     "slug": "validator",
@@ -9186,7 +9532,8 @@
         "label": "Validator Guide",
         "url": "https://wiki.sora.org/nominating-validators.html"
       }
-    ]
+    ],
+    "priority": 6
   },
   {
     "slug": "validators",
@@ -9200,7 +9547,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "vault",
@@ -9214,7 +9562,8 @@
     "tags": [],
     "relatedTerms": [],
     "examples": [],
-    "links": []
+    "links": [],
+    "priority": 4
   },
   {
     "slug": "vaults",
@@ -9245,7 +9594,8 @@
         "label": "Kensetsu Explained",
         "url": "https://soranauts.com/exploring-sora-kensetsu-polkaswap"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "volatility",
@@ -9276,7 +9626,8 @@
         "label": "Market Volatility Explained",
         "url": "https://www.investopedia.com/terms/v/volatility.asp"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "voting",
@@ -9291,7 +9642,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Ensures democratic control over network evolution."
+    "tagline": "Ensures democratic control over network evolution.",
+    "priority": 4
   },
   {
     "slug": "vrfaggregate",
@@ -9314,6 +9666,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -9337,6 +9690,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Prevents validator collusion by making committee selection unpredictable until the moment of reveal."
   },
   {
@@ -9352,7 +9706,8 @@
     "relatedTerms": [],
     "examples": [],
     "links": [],
-    "tagline": "Gateway to all SORA services and assets."
+    "tagline": "Gateway to all SORA services and assets.",
+    "priority": 4
   },
   {
     "slug": "wasm",
@@ -9382,7 +9737,8 @@
         "label": "WASM vs EVM Analysis",
         "url": "https://soranauts.com/wasm-rust-substrate-vs-evm-solidity-ethereum"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "web3",
@@ -9411,7 +9767,8 @@
         "label": "SORA Ecosystem Overview",
         "url": "https://soranauts.com"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "worldstateviewwsv",
@@ -9434,6 +9791,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 7,
     "tagline": "Gives every validator a consistent snapshot of network state, enabling instant balance queries."
   },
   {
@@ -9471,7 +9829,8 @@
         "label": "XCM Documentation",
         "url": "https://wiki.polkadot.network/docs/learn-crosschain"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "xcmp",
@@ -9502,7 +9861,8 @@
         "label": "Polkadot Wiki – XCMP",
         "url": "https://wiki.polkadot.network/docs/learn-xcmp"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "xor",
@@ -9549,7 +9909,8 @@
         "url": "https://wiki.sora.org/sora-governance.html"
       }
     ],
-    "tagline": "Powers every transaction on SORA and gives holders governance rights in the network."
+    "tagline": "Powers every transaction on SORA and gives holders governance rights in the network.",
+    "priority": 10
   },
   {
     "slug": "xorbonds",
@@ -9572,6 +9933,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Empowers the community to shape the network's evolution."
   },
   {
@@ -9595,6 +9957,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Enables parallel transaction processing for higher throughput."
   },
   {
@@ -9618,6 +9981,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Creates natural demand for XOR through its essential role in every network operation."
   },
   {
@@ -9655,7 +10019,8 @@
         "label": "Polkaswap Liquidity",
         "url": "https://wiki.sora.org/polkaswap.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "yieldfarming",
@@ -9693,7 +10058,8 @@
         "label": "Polkaswap Farming",
         "url": "https://wiki.sora.org/polkaswap.html"
       }
-    ]
+    ],
+    "priority": 4
   },
   {
     "slug": "zkbackedaccesstickets",
@@ -9716,6 +10082,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Grant network access while obscuring user identity or route."
   },
   {
@@ -9739,6 +10106,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "Guarantees that transaction data remains accessible and verifiable."
   },
   {
@@ -9762,6 +10130,7 @@
     ],
     "examples": [],
     "links": [],
+    "priority": 5,
     "tagline": "FASTPQ can run in audit (non-zk) or privacy (zk) modes while sharing the same verifier logic."
   }
 ]
