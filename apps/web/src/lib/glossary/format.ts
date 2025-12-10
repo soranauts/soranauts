@@ -124,6 +124,11 @@ export const COMPOUND_TERM_OVERRIDES: Record<string, string> = {
   'protobuf': 'Protobuf',
   'flatbuffers': 'FlatBuffers',
   'messagepack': 'MessagePack',
+  
+  // SORA compound terms (preserve casing, don't split)
+  'soranet': 'SoraNet',
+  'sorafs': 'SoraFS',
+  'soracles': 'Soracles',
 };
 
 export const HIDDEN_RENDER_SLUGS = new Set(['alias-redirect', 'autolinkconfig']);
