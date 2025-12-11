@@ -3158,7 +3158,7 @@
     "examples": [],
     "links": [],
     "priority": 5,
-    "tagline": "Create a FASTPQ proof."
+    "tagline": "Defines the exact sequence of cryptographic steps so that any validator can verify a proof independently, ensuring trustless auditability across the network."
   },
   {
     "slug": "fastpqzkstarkproofs",
@@ -3450,7 +3450,7 @@
     "examples": [],
     "links": [],
     "priority": 5,
-    "tagline": "Enables running validators."
+    "tagline": "Protects the network against regional outages, natural disasters, and infrastructure failures by distributing critical nodes across multiple geographic locations."
   },
   {
     "slug": "goldilocksfield",
@@ -4298,7 +4298,7 @@
     "examples": [],
     "links": [],
     "priority": 5,
-    "tagline": "Enables IVM execution."
+    "tagline": "Provides a portable, versioned format for smart contracts that guarantees identical execution across all validators regardless of hardware or operating system."
   },
   {
     "slug": "kaigi",
@@ -4440,7 +4440,7 @@
     "examples": [],
     "links": [],
     "priority": 5,
-    "tagline": "Validates Kotodama contracts."
+    "tagline": "Catches incompatible or malformed contracts before deployment, preventing costly on-chain failures and ensuring all deployed code meets network standards."
   },
   {
     "slug": "kura",
@@ -8151,7 +8151,7 @@
     "examples": [],
     "links": [],
     "priority": 9,
-    "tagline": "Unifies private data spaces."
+    "tagline": "Delivers a unified global ledger where enterprises, governments, and individuals transact on equal footing with sub-second finality and post-quantum security."
   },
   {
     "slug": "soraparliament",

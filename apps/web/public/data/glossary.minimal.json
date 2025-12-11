@@ -758,7 +758,7 @@
       "title": "FASTPQ Proof Composition",
       "category": "Cryptography",
       "summary": "The ordered phases - trace commitment, challenge derivation, DEEP-FRI folding, and Merkle openings - that create a FASTPQ proof.",
-      "tagline": "Create a FASTPQ proof."
+      "tagline": "Defines the exact sequence of cryptographic steps so that any validator can verify a proof independently, ensuring trustless auditability across the network."
     },
     {
       "slug": "fastpqzkstarkproofs",
@@ -832,7 +832,7 @@
       "title": "Geo-redundancy",
       "category": "Observability & Operations",
       "summary": "Operational guidance for running validators, provers, and storage nodes across multiple regions to survive localized outages.",
-      "tagline": "Enables running validators."
+      "tagline": "Protects the network against regional outages, natural disasters, and infrastructure failures by distributing critical nodes across multiple geographic locations."
     },
     {
       "slug": "goldilocksfield",
@@ -1038,7 +1038,7 @@
       "title": "IVM Bytecode",
       "category": "Execution",
       "summary": "The compiled Kotodama program format (.to files) containing headers, ABI versions, and vector tables for IVM execution.",
-      "tagline": "Enables IVM execution."
+      "tagline": "Provides a portable, versioned format for smart contracts that guarantees identical execution across all validators regardless of hardware or operating system."
     },
     {
       "slug": "kaigi",
@@ -1073,7 +1073,7 @@
       "title": "Kotodama Runtime",
       "category": "Execution",
       "summary": "The toolchain that validates Kotodama contracts, ensuring pointer ABIs and gas tables are compatible before deployment.",
-      "tagline": "Validates Kotodama contracts."
+      "tagline": "Catches incompatible or malformed contracts before deployment, preventing costly on-chain failures and ensuring all deployed code meets network standards."
     },
     {
       "slug": "kura",
@@ -1981,7 +1981,7 @@
       "title": "SORA Nexus",
       "category": "Governance",
       "summary": "The single logical ledger built on Hyperledger Iroha 3 that unifies private data spaces, public domains, and modern cryptography.",
-      "tagline": "Unifies private data spaces."
+      "tagline": "Delivers a unified global ledger where enterprises, governments, and individuals transact on equal footing with sub-second finality and post-quantum security."
     },
     {
       "slug": "soraparliament",
@@ -2435,5 +2435,5 @@
   "canonicalCount": 369,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-10T20:14:46.014Z"
+  "lastUpdated": "2025-12-11T00:01:40.790Z"
 }
