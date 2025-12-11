@@ -22,7 +22,11 @@ const headerLinks: NavigationLink[] = [
 ];
 
 if (TAG_HUB_V1_ENABLED) {
-  headerLinks.unshift({ text: 'Explore', href: '/explore' });
+  // Explore = tag discovery, Learn = guided paths
+  headerLinks.unshift(
+    { text: 'Explore', href: '/explore' },
+    { text: 'Learn', href: '/learn' }
+  );
 }
 
 export const headerData = {
@@ -41,7 +45,10 @@ const learnLinks: NavigationLink[] = [
 ];
 
 if (TAG_HUB_V1_ENABLED) {
-  learnLinks.unshift({ text: 'SORA Explorer', href: '/explore' });
+  learnLinks.unshift(
+    { text: 'Learning Paths', href: '/learn' },
+    { text: 'SORA Explorer', href: '/explore' }
+  );
 }
 
 export const footerData = {

@@ -32,7 +32,7 @@ describe('Glossary ranking snapshots', () => {
         "hyperledgeriroha",
         "hyperledgeriroha3",
         "sorav3",
-        "bftconsensus",
+        "iroha",
       ]
     `);
   });

@@ -1,0 +1,193 @@
+---
+/**
+ * PathCompletion.astro
+ * 
+ * End-of-path celebration and next steps section.
+ */
+import type { LearningPath } from '~/data/learning-paths.config';
+import PathCard from './PathCard.astro';
+
+interface Props {
+  pathTitle: string;
+  nextPaths: LearningPath[];
+  cta?: {
+    label: string;
+    href: string;
+  };
+}
+
+const { pathTitle, nextPaths, cta } = Astro.props;
+---
+
+<section class="path-completion" aria-labelledby="completion-title">
+  <div class="path-completion__celebration">
+    <span class="path-completion__emoji" aria-hidden="true">🎉</span>
+    <h2 id="completion-title">Path Complete!</h2>
+    <p>
+      Congratulations! You've completed <strong>{pathTitle}</strong>. 
+      You now have a solid understanding of these concepts.
+    </p>
+  </div>
+
+  {cta && (
+    <div class="path-completion__action">
+      <p>Ready to try what you've learned?</p>
+      <a href={cta.href} class="path-completion__cta-button" target="_blank" rel="noopener noreferrer">
+        {cta.label}
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  )}
+
+  {nextPaths.length > 0 && (
+    <div class="path-completion__next">
+      <h3>What's Next?</h3>
+      <p>Continue your learning journey with these paths:</p>
+      <div class="path-completion__grid">
+        {nextPaths.slice(0, 3).map(path => <PathCard path={path} />)}
+      </div>
+    </div>
+  )}
+
+  <div class="path-completion__support">
+    <p>Did this help you understand SORA better?</p>
+    <a href="/donate" class="path-completion__support-link">
+      Support Soranauts
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M7 2L8.5 5.5H12L9 8L10 12L7 9.5L4 12L5 8L2 5.5H5.5L7 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .path-completion {
+    margin-top: var(--space-10);
+    padding-top: var(--space-10);
+    border-top: 2px solid var(--color-border);
+  }
+
+  .path-completion__celebration {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .path-completion__emoji {
+    display: block;
+    font-size: 4rem;
+    margin-bottom: var(--space-4);
+    animation: bounce 0.5s ease-out;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .path-completion__celebration h2 {
+    font-size: var(--text-2xl);
+    color: #22c55e;
+    margin: 0 0 var(--space-3);
+  }
+
+  .path-completion__celebration p {
+    color: var(--color-text-muted);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .path-completion__celebration strong {
+    color: var(--color-text);
+  }
+
+  .path-completion__action {
+    text-align: center;
+    padding: var(--space-6);
+    background: color-mix(in srgb, var(--red-600) 5%, transparent 95%);
+    border: 1px solid color-mix(in srgb, var(--red-600) 20%, var(--color-border) 80%);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-8);
+  }
+
+  .path-completion__action p {
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-3);
+  }
+
+  .path-completion__cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-weight: 600;
+    color: white;
+    background: var(--red-600);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+
+  .path-completion__cta-button:hover {
+    background: var(--red-700);
+  }
+
+  .path-completion__next {
+    margin-bottom: var(--space-8);
+  }
+
+  .path-completion__next h3 {
+    font-size: var(--text-xl);
+    margin: 0 0 var(--space-2);
+    color: var(--color-text);
+  }
+
+  .path-completion__next > p {
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-4);
+  }
+
+  .path-completion__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .path-completion__support {
+    text-align: center;
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  .path-completion__support p {
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-3);
+  }
+
+  .path-completion__support-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-weight: 500;
+    color: var(--red-600);
+    text-decoration: none;
+  }
+
+  .path-completion__support-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .path-completion__emoji {
+      animation: none;
+    }
+
+    .path-completion__cta-button {
+      transition: none;
+    }
+  }
+</style>

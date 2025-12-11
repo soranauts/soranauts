@@ -1,0 +1,158 @@
+---
+/**
+ * ProgressBar.astro
+ * 
+ * Sticky progress indicator for learning path pages.
+ * Shows current step, total steps, and visual progress.
+ */
+interface Props {
+  current: number;
+  total: number;
+  pathTitle: string;
+}
+
+const { current, total, pathTitle } = Astro.props;
+
+const progressPercent = Math.round((current / total) * 100);
+const isComplete = current >= total;
+---
+
+<div class="progress-bar" role="navigation" aria-label="Learning path progress">
+  <div class="progress-bar__content">
+    <div class="progress-bar__info">
+      <a href="/learn" class="progress-bar__back" aria-label="Back to all learning paths">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <span class="progress-bar__title">{pathTitle}</span>
+    </div>
+    
+    <div class="progress-bar__status">
+      <span class="progress-bar__step">
+        {isComplete ? (
+          <span class="progress-bar__complete">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 7L6 10L11 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Complete
+          </span>
+        ) : (
+          `Step ${current} of ${total}`
+        )}
+      </span>
+    </div>
+  </div>
+
+  <div 
+    class="progress-bar__track" 
+    role="progressbar" 
+    aria-valuenow={current}
+    aria-valuemin="1"
+    aria-valuemax={total}
+    aria-label={`Progress: ${current} of ${total} steps`}
+  >
+    <div 
+      class="progress-bar__fill" 
+      style={`width: ${progressPercent}%`}
+      data-complete={isComplete}
+    ></div>
+  </div>
+</div>
+
+<style>
+  .progress-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-4);
+    backdrop-filter: blur(8px);
+    background: color-mix(in srgb, var(--color-surface) 90%, transparent 10%);
+  }
+
+  .progress-bar__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto var(--space-2);
+  }
+
+  .progress-bar__info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .progress-bar__back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: var(--color-text-muted);
+    border-radius: var(--radius-md);
+    transition: color 0.15s ease, background 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .progress-bar__back:hover {
+    color: var(--color-text);
+    background: var(--color-surface-hover);
+  }
+
+  .progress-bar__title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .progress-bar__status {
+    flex-shrink: 0;
+  }
+
+  .progress-bar__step {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .progress-bar__complete {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: #22c55e;
+  }
+
+  .progress-bar__track {
+    max-width: 800px;
+    margin: 0 auto;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  .progress-bar__fill {
+    height: 100%;
+    background: var(--red-600);
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+  }
+
+  .progress-bar__fill[data-complete="true"] {
+    background: #22c55e;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progress-bar__fill {
+      transition: none;
+    }
+  }
+</style>

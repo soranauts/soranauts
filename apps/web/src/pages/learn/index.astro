@@ -1,0 +1,175 @@
+---
+/**
+ * Learn Index Page
+ * 
+ * Lists all learning paths grouped by difficulty level.
+ */
+import PageLayout from '~/layouts/PageLayout.astro';
+import PathCard from '~/components/learn/PathCard.astro';
+import { 
+  LEARNING_PATHS, 
+  getLearningPathsByDifficulty,
+  getTotalLearningTime 
+} from '~/data/learning-paths.config';
+
+const beginnerPaths = getLearningPathsByDifficulty('beginner');
+const intermediatePaths = getLearningPathsByDifficulty('intermediate');
+const advancedPaths = getLearningPathsByDifficulty('advanced');
+
+const metadata = {
+  title: 'Learn SORA | SORA Learning Center',
+  description: 'Master SORA at your own pace with structured learning paths from beginner to advanced.',
+};
+---
+
+<PageLayout {metadata}>
+  <main class="learn-index">
+    <header class="learn-header">
+      <p class="learn-header__kicker">SORA LEARNING CENTER</p>
+      <h1>Master SORA at Your Own Pace</h1>
+      <p class="learn-header__description">
+        {LEARNING_PATHS.length} structured paths · {getTotalLearningTime()} minutes of content
+      </p>
+    </header>
+
+    <section class="path-section">
+      <h2><span class="difficulty-dot difficulty-dot--beginner"></span> Start Here</h2>
+      <p>New to SORA? Begin with the fundamentals.</p>
+      <div class="path-grid">
+        {beginnerPaths.map(path => <PathCard path={path} />)}
+      </div>
+    </section>
+
+    <section class="path-section">
+      <h2><span class="difficulty-dot difficulty-dot--intermediate"></span> Go Deeper</h2>
+      <p>Ready for more? Explore governance, economics, and DeFi.</p>
+      <div class="path-grid">
+        {intermediatePaths.map(path => <PathCard path={path} />)}
+      </div>
+    </section>
+
+    <section class="path-section">
+      <h2><span class="difficulty-dot difficulty-dot--advanced"></span> Master the Architecture</h2>
+      <p>Deep dive into SORA Nexus technical architecture.</p>
+      <div class="path-grid">
+        {advancedPaths.map(path => <PathCard path={path} />)}
+      </div>
+    </section>
+
+    <section class="learn-cta">
+      <p>Not sure where to start?</p>
+      <a href="/learn/new-to-sora" class="learn-cta__button">
+        Begin with "New to SORA?"
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </section>
+  </main>
+</PageLayout>
+
+<style>
+  .learn-index {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--space-6);
+  }
+
+  .learn-header {
+    text-align: center;
+    padding: var(--space-10) 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-8);
+  }
+
+  .learn-header__kicker {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--red-500);
+    margin-bottom: var(--space-2);
+  }
+
+  .learn-header h1 {
+    font-size: var(--text-3xl);
+    margin: 0 0 var(--space-3);
+    color: var(--color-text);
+  }
+
+  .learn-header__description {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .path-section {
+    margin-bottom: var(--space-10);
+  }
+
+  .path-section h2 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xl);
+    margin: 0 0 var(--space-2);
+    color: var(--color-text);
+  }
+
+  .path-section > p {
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-4);
+  }
+
+  .path-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .difficulty-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .difficulty-dot--beginner { background: #22c55e; }
+  .difficulty-dot--intermediate { background: #eab308; }
+  .difficulty-dot--advanced { background: #ef4444; }
+
+  .learn-cta {
+    text-align: center;
+    padding: var(--space-8);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    margin-top: var(--space-8);
+  }
+
+  .learn-cta p {
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-4);
+  }
+
+  .learn-cta__button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-weight: 600;
+    color: white;
+    background: var(--red-600);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+
+  .learn-cta__button:hover {
+    background: var(--red-700);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .learn-cta__button {
+      transition: none;
+    }
+  }
+</style>
