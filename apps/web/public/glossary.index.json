@@ -482,11 +482,14 @@
       "slug": "attesters",
       "title": "Attesters",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "Specialized actors who verify erasure-coded shards and proofs, then issue DA certificates so validators can rely on the data without downloading everything.",
       "definition": "Specialized actors who verify erasure-coded shards and proofs, then issue DA certificates so validators can rely on the data without downloading everything.",
@@ -500,7 +503,7 @@
         "dataavailability"
       ],
       "glossaryRef": "/glossary/attesters",
-      "blob": "attesters specialized actors who verify erasure-coded shards and proofs, then issue da certificates so validators can rely on the data without downloading everything. nexus architecture dacertificates dasampling dasamplingbudget dasamplingconfidence dataavailability"
+      "blob": "attesters specialized actors who verify erasure-coded shards and proofs, then issue da certificates so validators can rely on the data without downloading everything. data availability infrastructure nexus architecture proofs dacertificates dasampling dasamplingbudget dasamplingconfidence dataavailability"
     },
     {
       "slug": "auctions",
@@ -1727,11 +1730,14 @@
       "slug": "crossbordercorridors",
       "title": "Cross-Border Corridors",
       "type": "term",
-      "category": "Use & Cases",
+      "category": "Use Cases",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Applications",
+        "Enterprise",
+        "Nexus Architecture",
+        "Real World"
       ],
       "summary": "A highlighted use case where Nexus hosts multi-jurisdiction payment networks with deterministic policy enforcement and shared liquidity.",
       "definition": "A highlighted use case where Nexus hosts multi-jurisdiction payment networks with deterministic policy enforcement and shared liquidity.",
@@ -1743,7 +1749,7 @@
         "tokenizedassets"
       ],
       "glossaryRef": "/glossary/crossbordercorridors",
-      "blob": "cross-border corridors a highlighted use case where nexus hosts multi-jurisdiction payment networks with deterministic policy enforcement and shared liquidity. nexus architecture interbanksettlement rtgsmodernization tokenizedassets"
+      "blob": "cross-border corridors a highlighted use case where nexus hosts multi-jurisdiction payment networks with deterministic policy enforcement and shared liquidity. applications enterprise nexus architecture real world interbanksettlement rtgsmodernization tokenizedassets"
     },
     {
       "slug": "crossborderpayments",
@@ -1913,11 +1919,14 @@
       "slug": "dacertificates",
       "title": "DA Certificates",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "Signed attestations from validators or attesters confirming that required data-availability samples were checked and can be reconstructed.",
       "definition": "Signed attestations from validators or attesters confirming that required data-availability samples were checked and can be reconstructed.",
@@ -1931,17 +1940,20 @@
         "laneanddabudgets"
       ],
       "glossaryRef": "/glossary/dacertificates",
-      "blob": "da certificates signed attestations from validators or attesters confirming that required data-availability samples were checked and can be reconstructed. nexus architecture dasampling dasamplingbudget dasamplingconfidence dataavailability laneanddabudgets"
+      "blob": "da certificates signed attestations from validators or attesters confirming that required data-availability samples were checked and can be reconstructed. data availability infrastructure nexus architecture proofs dasampling dasamplingbudget dasamplingconfidence dataavailability laneanddabudgets"
     },
     {
       "slug": "dasampling",
       "title": "DA Sampling",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "Fetching a limited number of erasure-coded shards per data space to statistically guarantee recoverability without downloading entire envelopes.",
       "definition": "Fetching a limited number of erasure-coded shards per data space to statistically guarantee recoverability without downloading entire envelopes.",
@@ -1955,17 +1967,20 @@
         "reedsolomon"
       ],
       "glossaryRef": "/glossary/dasampling",
-      "blob": "da sampling fetching a limited number of erasure-coded shards per data space to statistically guarantee recoverability without downloading entire envelopes. nexus architecture dacertificates dasamplingbudget dasamplingconfidence dataavailability reedsolomon"
+      "blob": "da sampling fetching a limited number of erasure-coded shards per data space to statistically guarantee recoverability without downloading entire envelopes. data availability infrastructure nexus architecture proofs dacertificates dasamplingbudget dasamplingconfidence dataavailability reedsolomon"
     },
     {
       "slug": "dasamplingbudget",
       "title": "DA Sampling Budget",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "The governance cap (e.g., q_total <= 2048) on how many DA samples can be performed per slot so verification stays within hardware limits.",
       "definition": "The governance cap (e.g., q_total <= 2048) on how many DA samples can be performed per slot so verification stays within hardware limits.",
@@ -1979,17 +1994,20 @@
         "dataavailability"
       ],
       "glossaryRef": "/glossary/dasamplingbudget",
-      "blob": "da sampling budget the governance cap (e.g., q_total <= 2048) on how many da samples can be performed per slot so verification stays within hardware limits. nexus architecture budget dacertificates dasampling dasamplingconfidence dataavailability"
+      "blob": "da sampling budget the governance cap (e.g., q_total <= 2048) on how many da samples can be performed per slot so verification stays within hardware limits. data availability infrastructure nexus architecture proofs budget dacertificates dasampling dasamplingconfidence dataavailability"
     },
     {
       "slug": "dasamplingconfidence",
       "title": "DA Sampling Confidence",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "The probability, computed via combinatorics, that malicious withholding will be detected given the chosen sample count and committee size.",
       "definition": "The probability, computed via combinatorics, that malicious withholding will be detected given the chosen sample count and committee size.",
@@ -2003,17 +2021,20 @@
         "laneanddabudgets"
       ],
       "glossaryRef": "/glossary/dasamplingconfidence",
-      "blob": "da sampling confidence the probability, computed via combinatorics, that malicious withholding will be detected given the chosen sample count and committee size. nexus architecture dacertificates dasampling dasamplingbudget dataavailability laneanddabudgets"
+      "blob": "da sampling confidence the probability, computed via combinatorics, that malicious withholding will be detected given the chosen sample count and committee size. data availability infrastructure nexus architecture proofs dacertificates dasampling dasamplingbudget dataavailability laneanddabudgets"
     },
     {
       "slug": "dataavailability",
       "title": "Data Availability",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 6,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "The guarantee that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline.",
       "definition": "The guarantee that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline.",
@@ -2027,17 +2048,20 @@
         "reedsolomon"
       ],
       "glossaryRef": "/glossary/dataavailability",
-      "blob": "data availability the guarantee that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline. nexus architecture dacertificates dasampling dataavailabilitylayer erasurecodedwsv reedsolomon"
+      "blob": "data availability the guarantee that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline. data availability infrastructure nexus architecture proofs dacertificates dasampling dataavailabilitylayer erasurecodedwsv reedsolomon"
     },
     {
       "slug": "dataavailabilitylayer",
       "title": "Data Availability Layer",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "The combined erasure-coding, sampling, proving, and attestation system enforcing data availability across public and private data spaces.",
       "definition": "The combined erasure-coding, sampling, proving, and attestation system enforcing data availability across public and private data spaces.",
@@ -2051,17 +2075,20 @@
         "dataspacedirectory"
       ],
       "glossaryRef": "/glossary/dataavailabilitylayer",
-      "blob": "data availability layer the combined erasure-coding, sampling, proving, and attestation system enforcing data availability across public and private data spaces. nexus architecture dacertificates dasampling dataavailability dataenvelope dataspacedirectory"
+      "blob": "data availability layer the combined erasure-coding, sampling, proving, and attestation system enforcing data availability across public and private data spaces. data availability infrastructure nexus architecture proofs dacertificates dasampling dataavailability dataenvelope dataspacedirectory"
     },
     {
       "slug": "dataenvelope",
       "title": "Data Envelope",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "The serialized bundle of transactions, proofs, and metadata that a data space contributes to a lane block before erasure coding.",
       "definition": "The serialized bundle of transactions, proofs, and metadata that a data space contributes to a lane block before erasure coding.",
@@ -2075,7 +2102,7 @@
         "developerexperience"
       ],
       "glossaryRef": "/glossary/dataenvelope",
-      "blob": "data envelope the serialized bundle of transactions, proofs, and metadata that a data space contributes to a lane block before erasure coding. nexus architecture dataavailability dataavailabilitylayer dataspacedirectory dataspaces developerexperience"
+      "blob": "data envelope the serialized bundle of transactions, proofs, and metadata that a data space contributes to a lane block before erasure coding. data availability infrastructure nexus architecture proofs dataavailability dataavailabilitylayer dataspacedirectory dataspaces developerexperience"
     },
     {
       "slug": "dataspacedirectory",
@@ -2391,11 +2418,14 @@
       "slug": "developerexperience",
       "title": "Developer Experience",
       "type": "term",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Developer Tools",
+        "Integration",
+        "Nexus Architecture",
+        "SDK"
       ],
       "summary": "The suite of Norito-first SDKs, REST/gRPC gateways, and deterministic builders that let teams integrate without learning low-level ledger internals.",
       "definition": "The suite of Norito-first SDKs, REST/gRPC gateways, and deterministic builders that let teams integrate without learning low-level ledger internals.",
@@ -2409,7 +2439,7 @@
         "sdks"
       ],
       "glossaryRef": "/glossary/developerexperience",
-      "blob": "developer experience the suite of norito-first sdks, rest/grpc gateways, and deterministic builders that let teams integrate without learning low-level ledger internals. nexus architecture dataenvelope iso20022connectors noritofirstapis restgateways sdks"
+      "blob": "developer experience the suite of norito-first sdks, rest/grpc gateways, and deterministic builders that let teams integrate without learning low-level ledger internals. developer tools integration nexus architecture sdk dataenvelope iso20022connectors noritofirstapis restgateways sdks"
     },
     {
       "slug": "dex",
@@ -2822,11 +2852,14 @@
       "slug": "erasurecodedkura",
       "title": "Erasure-Coded Kura",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "The historical storage (Kura) extended with Reed - Solomon coding so archived blocks stay recoverable even with partial failures.",
       "definition": "The historical storage (Kura) extended with Reed - Solomon coding so archived blocks stay recoverable even with partial failures.",
@@ -2840,17 +2873,20 @@
         "twodimensionalerasurecoding"
       ],
       "glossaryRef": "/glossary/erasurecodedkura",
-      "blob": "erasure-coded kura the historical storage (kura) extended with reed - solomon coding so archived blocks stay recoverable even with partial failures. nexus architecture attesters dacertificates erasurecodedwsv kura twodimensionalerasurecoding"
+      "blob": "erasure-coded kura the historical storage (kura) extended with reed - solomon coding so archived blocks stay recoverable even with partial failures. data availability infrastructure nexus architecture proofs attesters dacertificates erasurecodedwsv kura twodimensionalerasurecoding"
     },
     {
       "slug": "erasurecodedwsv",
       "title": "Erasure-Coded WSV",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "World State View snapshots protected by erasure coding, enabling resilient state recovery across validators.",
       "definition": "World State View snapshots protected by erasure coding, enabling resilient state recovery across validators.",
@@ -2864,7 +2900,7 @@
         "worldstateviewwsv"
       ],
       "glossaryRef": "/glossary/erasurecodedwsv",
-      "blob": "erasure-coded wsv world state view snapshots protected by erasure coding, enabling resilient state recovery across validators. nexus architecture dataavailability erasurecodedkura reedsolomon twodimensionalerasurecoding worldstateviewwsv"
+      "blob": "erasure-coded wsv world state view snapshots protected by erasure coding, enabling resilient state recovery across validators. data availability infrastructure nexus architecture proofs dataavailability erasurecodedkura reedsolomon twodimensionalerasurecoding worldstateviewwsv"
     },
     {
       "slug": "execution",
@@ -3577,11 +3613,14 @@
       "slug": "grpcgateways",
       "title": "gRPC Gateways",
       "type": "term",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Developer Tools",
+        "Integration",
+        "Nexus Architecture",
+        "SDK"
       ],
       "summary": "Binary RPC interfaces exposing Norito-first semantics for high-performance integrations that prefer typed protobuf APIs.",
       "definition": "Binary RPC interfaces exposing Norito-first semantics for high-performance integrations that prefer typed protobuf APIs.",
@@ -3595,7 +3634,7 @@
         "restgateways"
       ],
       "glossaryRef": "/glossary/grpcgateways",
-      "blob": "grpc gateways binary rpc interfaces exposing norito-first semantics for high-performance integrations that prefer typed protobuf apis. nexus architecture developerexperience gateways iso20022connectors noritofirstapis restgateways"
+      "blob": "grpc gateways binary rpc interfaces exposing norito-first semantics for high-performance integrations that prefer typed protobuf apis. developer tools integration nexus architecture sdk developerexperience gateways iso20022connectors noritofirstapis restgateways"
     },
     {
       "slug": "halo2circuits",
@@ -3889,11 +3928,14 @@
       "slug": "interbanksettlement",
       "title": "Interbank Settlement",
       "type": "term",
-      "category": "Use & Cases",
+      "category": "Use Cases",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Applications",
+        "Enterprise",
+        "Nexus Architecture",
+        "Real World"
       ],
       "summary": "A Nexus use case where regulated data spaces host RTGS-style payment flows with deterministic finality and auditability.",
       "definition": "A Nexus use case where regulated data spaces host RTGS-style payment flows with deterministic finality and auditability.",
@@ -3905,7 +3947,7 @@
         "tokenizedassets"
       ],
       "glossaryRef": "/glossary/interbanksettlement",
-      "blob": "interbank settlement a nexus use case where regulated data spaces host rtgs-style payment flows with deterministic finality and auditability. nexus architecture crossbordercorridors rtgsmodernization tokenizedassets"
+      "blob": "interbank settlement a nexus use case where regulated data spaces host rtgs-style payment flows with deterministic finality and auditability. applications enterprise nexus architecture real world crossbordercorridors rtgsmodernization tokenizedassets"
     },
     {
       "slug": "interoperability",
@@ -4160,11 +4202,14 @@
       "slug": "iso20022connectors",
       "title": "ISO 20022 Connectors",
       "type": "term",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Developer Tools",
+        "Integration",
+        "Nexus Architecture",
+        "SDK"
       ],
       "summary": "Gateway components that translate ISO 20022 payloads into Nexus transactions and return receipts back into banking flows.",
       "definition": "Gateway components that translate ISO 20022 payloads into Nexus transactions and return receipts back into banking flows.",
@@ -4178,7 +4223,7 @@
         "restgateways"
       ],
       "glossaryRef": "/glossary/iso20022connectors",
-      "blob": "iso 20022 connectors gateway components that translate iso 20022 payloads into nexus transactions and return receipts back into banking flows. nexus architecture developerexperience iso20022 iso20022alignment noritofirstapis restgateways"
+      "blob": "iso 20022 connectors gateway components that translate iso 20022 payloads into nexus transactions and return receipts back into banking flows. developer tools integration nexus architecture sdk developerexperience iso20022 iso20022alignment noritofirstapis restgateways"
     },
     {
       "slug": "ivmbytecode",
@@ -4607,11 +4652,14 @@
       "slug": "laneproofs",
       "title": "Lane Proofs",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "Aggregated FASTPQ or DA proofs scoped per lane, allowing committees to verify execution efficiently.",
       "definition": "Aggregated FASTPQ or DA proofs scoped per lane, allowing committees to verify execution efficiently.",
@@ -4625,7 +4673,7 @@
         "lanefinality"
       ],
       "glossaryRef": "/glossary/laneproofs",
-      "blob": "lane proofs aggregated fastpq or da proofs scoped per lane, allowing committees to verify execution efficiently. nexus architecture computelane fastpqisiproofs fastpqzkstarkproofs halo2ipaproofs lanefinality"
+      "blob": "lane proofs aggregated fastpq or da proofs scoped per lane, allowing committees to verify execution efficiently. data availability infrastructure nexus architecture proofs computelane fastpqisiproofs fastpqzkstarkproofs halo2ipaproofs lanefinality"
     },
     {
       "slug": "lanes",
@@ -5539,11 +5587,14 @@
       "slug": "noritofirstapis",
       "title": "Norito-First APIs",
       "type": "term",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Developer Tools",
+        "Integration",
+        "Nexus Architecture",
+        "SDK"
       ],
       "summary": "Developer interfaces that expose ledger functionality directly in Norito semantics, reducing translation bugs.",
       "definition": "Developer interfaces that expose ledger functionality directly in Norito semantics, reducing translation bugs.",
@@ -5557,7 +5608,7 @@
         "restgateways"
       ],
       "glossaryRef": "/glossary/noritofirstapis",
-      "blob": "norito-first apis developer interfaces that expose ledger functionality directly in norito semantics, reducing translation bugs. nexus architecture developerexperience grpcgateways norito noritocodec restgateways"
+      "blob": "norito-first apis developer interfaces that expose ledger functionality directly in norito semantics, reducing translation bugs. developer tools integration nexus architecture sdk developerexperience grpcgateways norito noritocodec restgateways"
     },
     {
       "slug": "noritoreceipts",
@@ -6462,11 +6513,14 @@
       "slug": "proofverificationbudget",
       "title": "Proof Verification Budget",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "The per-slot time allocation (100 - 200 ms typical) reserved for lane committees to check proofs without falling behind.",
       "definition": "The per-slot time allocation (100 - 200 ms typical) reserved for lane committees to check proofs without falling behind.",
@@ -6480,7 +6534,7 @@
         "provers"
       ],
       "glossaryRef": "/glossary/proofverificationbudget",
-      "blob": "proof verification budget the per-slot time allocation (100 - 200 ms typical) reserved for lane committees to check proofs without falling behind. nexus architecture budget dasampling dasamplingbudget laneproofs provers"
+      "blob": "proof verification budget the per-slot time allocation (100 - 200 ms typical) reserved for lane committees to check proofs without falling behind. data availability infrastructure nexus architecture proofs budget dasampling dasamplingbudget laneproofs provers"
     },
     {
       "slug": "proposal",
@@ -6533,11 +6587,14 @@
       "slug": "provers",
       "title": "Provers",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "Actors (often GPU-accelerated) that generate FASTPQ or DA proofs and deliver them within the configured latency budget.",
       "definition": "Actors (often GPU-accelerated) that generate FASTPQ or DA proofs and deliver them within the configured latency budget.",
@@ -6551,7 +6608,7 @@
         "dasamplingconfidence"
       ],
       "glossaryRef": "/glossary/provers",
-      "blob": "provers actors (often gpu-accelerated) that generate fastpq or da proofs and deliver them within the configured latency budget. nexus architecture attesters dacertificates dasampling dasamplingbudget dasamplingconfidence"
+      "blob": "provers actors (often gpu-accelerated) that generate fastpq or da proofs and deliver them within the configured latency budget. data availability infrastructure nexus architecture proofs attesters dacertificates dasampling dasamplingbudget dasamplingconfidence"
     },
     {
       "slug": "pswap",
@@ -6738,11 +6795,14 @@
       "slug": "reedsolomon",
       "title": "Reed-solomon",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "The erasure-coding scheme used in SoraFS for row and column parity, ensuring any k shards can reconstruct the envelope.",
       "definition": "The erasure-coding scheme used in SoraFS for row and column parity, ensuring any k shards can reconstruct the envelope.",
@@ -6756,7 +6816,7 @@
         "twodimensionalerasurecoding"
       ],
       "glossaryRef": "/glossary/reedsolomon",
-      "blob": "reed-solomon the erasure-coding scheme used in sorafs for row and column parity, ensuring any k shards can reconstruct the envelope. nexus architecture dacertificates dasampling dataavailability erasurecodedwsv twodimensionalerasurecoding"
+      "blob": "reed-solomon the erasure-coding scheme used in sorafs for row and column parity, ensuring any k shards can reconstruct the envelope. data availability infrastructure nexus architecture proofs dacertificates dasampling dataavailability erasurecodedwsv twodimensionalerasurecoding"
     },
     {
       "slug": "referendum",
@@ -6825,11 +6885,14 @@
       "slug": "restgateways",
       "title": "REST Gateways",
       "type": "term",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Developer Tools",
+        "Integration",
+        "Nexus Architecture",
+        "SDK"
       ],
       "summary": "HTTP interfaces that expose Norito-first APIs for developers who prefer REST semantics over gRPC. These gateways provide deterministic transaction builders, ISO 20022 helpers, and offline flow support, with receipts and proofs aligned to protocol primitives for web and mobile SDK integration.",
       "definition": "HTTP interfaces that expose Norito-first APIs for developers who prefer REST semantics over gRPC. These gateways provide deterministic transaction builders, ISO 20022 helpers, and offline flow support, with receipts and proofs aligned to protocol primitives for web and mobile SDK integration.",
@@ -6843,7 +6906,7 @@
         "noritofirstapis"
       ],
       "glossaryRef": "/glossary/restgateways",
-      "blob": "rest gateways http interfaces that expose norito-first apis for developers who prefer rest semantics over grpc. these gateways provide deterministic transaction builders, iso 20022 helpers, and offline flow support, with receipts and proofs aligned to protocol primitives for web and mobile sdk integration. nexus architecture developerexperience gateways grpcgateways iso20022connectors noritofirstapis"
+      "blob": "rest gateways http interfaces that expose norito-first apis for developers who prefer rest semantics over grpc. these gateways provide deterministic transaction builders, iso 20022 helpers, and offline flow support, with receipts and proofs aligned to protocol primitives for web and mobile sdk integration. developer tools integration nexus architecture sdk developerexperience gateways grpcgateways iso20022connectors noritofirstapis"
     },
     {
       "slug": "revocationwindows",
@@ -6976,11 +7039,14 @@
       "slug": "rtgsmodernization",
       "title": "RTGS Modernization",
       "type": "term",
-      "category": "Use & Cases",
+      "category": "Use Cases",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Applications",
+        "Enterprise",
+        "Nexus Architecture",
+        "Real World"
       ],
       "summary": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls.",
       "definition": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls.",
@@ -6992,7 +7058,7 @@
         "tokenizedassets"
       ],
       "glossaryRef": "/glossary/rtgsmodernization",
-      "blob": "rtgs modernization a targeted use case where central banks run real-time gross settlement on nexus with deterministic policy controls. nexus architecture crossbordercorridors interbanksettlement tokenizedassets"
+      "blob": "rtgs modernization a targeted use case where central banks run real-time gross settlement on nexus with deterministic policy controls. applications enterprise nexus architecture real world crossbordercorridors interbanksettlement tokenizedassets"
     },
     {
       "slug": "runtimeupgrades",
@@ -7161,11 +7227,14 @@
       "slug": "sdks",
       "title": "Sd Ks",
       "type": "term",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Developer Tools",
+        "Integration",
+        "Nexus Architecture",
+        "SDK"
       ],
       "summary": "Language toolkits (mobile, web, server) that wrap Norito schemas, ISO helpers, and offline flows for application builders.",
       "definition": "Language toolkits (mobile, web, server) that wrap Norito schemas, ISO helpers, and offline flows for application builders.",
@@ -7179,7 +7248,7 @@
         "restgateways"
       ],
       "glossaryRef": "/glossary/sdks",
-      "blob": "sd ks language toolkits (mobile, web, server) that wrap norito schemas, iso helpers, and offline flows for application builders. nexus architecture developerexperience grpcgateways iso20022connectors noritofirstapis restgateways"
+      "blob": "sd ks language toolkits (mobile, web, server) that wrap norito schemas, iso helpers, and offline flows for application builders. developer tools integration nexus architecture sdk developerexperience grpcgateways iso20022connectors noritofirstapis restgateways"
     },
     {
       "slug": "secp256k1",
@@ -8842,11 +8911,14 @@
       "slug": "tokenizedassets",
       "title": "Tokenized Assets",
       "type": "term",
-      "category": "Use & Cases",
+      "category": "Use Cases",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Applications",
+        "Enterprise",
+        "Nexus Architecture",
+        "Real World"
       ],
       "summary": "A use case where real-world assets are issued in data spaces with deterministic policy, proofs, and ISO-aligned connectors.",
       "definition": "A use case where real-world assets are issued in data spaces with deterministic policy, proofs, and ISO-aligned connectors.",
@@ -8858,7 +8930,7 @@
         "rtgsmodernization"
       ],
       "glossaryRef": "/glossary/tokenizedassets",
-      "blob": "tokenized assets a use case where real-world assets are issued in data spaces with deterministic policy, proofs, and iso-aligned connectors. nexus architecture crossbordercorridors interbanksettlement rtgsmodernization"
+      "blob": "tokenized assets a use case where real-world assets are issued in data spaces with deterministic policy, proofs, and iso-aligned connectors. applications enterprise nexus architecture real world crossbordercorridors interbanksettlement rtgsmodernization"
     },
     {
       "slug": "tokenomics",
@@ -9208,11 +9280,14 @@
       "slug": "twodimensionalerasurecoding",
       "title": "Two-Dimensional Erasure Coding",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "The matrix-style Reed - Solomon scheme (rows and columns) SoraFS uses to ensure any subset of shards can rebuild the original data.",
       "definition": "The matrix-style Reed - Solomon scheme (rows and columns) SoraFS uses to ensure any subset of shards can rebuild the original data.",
@@ -9226,7 +9301,7 @@
         "erasurecodedwsv"
       ],
       "glossaryRef": "/glossary/twodimensionalerasurecoding",
-      "blob": "two-dimensional erasure coding the matrix-style reed - solomon scheme (rows and columns) sorafs uses to ensure any subset of shards can rebuild the original data. nexus architecture attesters dacertificates dasampling erasurecodedkura erasurecodedwsv"
+      "blob": "two-dimensional erasure coding the matrix-style reed - solomon scheme (rows and columns) sorafs uses to ensure any subset of shards can rebuild the original data. data availability infrastructure nexus architecture proofs attesters dacertificates dasampling erasurecodedkura erasurecodedwsv"
     },
     {
       "slug": "val",
@@ -9809,11 +9884,14 @@
       "slug": "zkdaproofs",
       "title": "ZK DA Proofs",
       "type": "term",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "priority": 5,
       "aliases": [],
       "tags": [
-        "Nexus Architecture"
+        "Data Availability",
+        "Infrastructure",
+        "Nexus Architecture",
+        "Proofs"
       ],
       "summary": "Zero-knowledge proofs that bind erasure-coded shards to block commitments, proving availability without revealing private data.",
       "definition": "Zero-knowledge proofs that bind erasure-coded shards to block commitments, proving availability without revealing private data.",
@@ -9827,7 +9905,7 @@
         "provers"
       ],
       "glossaryRef": "/glossary/zkdaproofs",
-      "blob": "zk da proofs zero-knowledge proofs that bind erasure-coded shards to block commitments, proving availability without revealing private data. nexus architecture dacertificates dasampling fastpqzkstarkproofs laneproofs provers"
+      "blob": "zk da proofs zero-knowledge proofs that bind erasure-coded shards to block commitments, proving availability without revealing private data. data availability infrastructure nexus architecture proofs dacertificates dasampling fastpqzkstarkproofs laneproofs provers"
     },
     {
       "slug": "zkstarkvsstark",
@@ -9858,5 +9936,5 @@
     }
   ],
   "totalCount": 369,
-  "lastUpdated": "2025-12-11T00:15:55.851Z"
+  "lastUpdated": "2025-12-11T00:23:23.802Z"
 }
