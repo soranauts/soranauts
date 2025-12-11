@@ -2915,8 +2915,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The IVM phase where admitted instructions mutate the World State View under deterministic gas and syscall rules.",
-      "definition": "The IVM phase where admitted instructions mutate the World State View under deterministic gas and syscall rules.",
+      "summary": "The IVM phase in SORA Nexus where admitted instructions mutate the World State View under deterministic gas metering and syscall rules, ensuring identical results across validators.",
+      "definition": "The IVM phase in SORA Nexus where admitted instructions mutate the World State View under deterministic gas metering and syscall rules, ensuring identical results across validators.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -2927,7 +2927,7 @@
         "transactionexecutionunitsteu"
       ],
       "glossaryRef": "/glossary/execution",
-      "blob": "execution the ivm phase where admitted instructions mutate the world state view under deterministic gas and syscall rules. execution ivm nexus architecture smart contracts action activationslot admission aggregation transactionexecutionunitsteu"
+      "blob": "execution the ivm phase in sora nexus where admitted instructions mutate the world state view under deterministic gas metering and syscall rules, ensuring identical results across validators. execution ivm nexus architecture smart contracts action activationslot admission aggregation transactionexecutionunitsteu"
     },
     {
       "slug": "exitcaches",
@@ -4323,8 +4323,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The instruction set and runtime for Nexus smart contracts, compiled to deterministic bytecode for IVM execution.",
-      "definition": "The instruction set and runtime for Nexus smart contracts, compiled to deterministic bytecode for IVM execution.",
+      "summary": "The instruction set and runtime for SORA Nexus smart contracts, compiled to deterministic bytecode that the IVM executes with predictable gas costs and typed inputs.",
+      "definition": "The instruction set and runtime for SORA Nexus smart contracts, compiled to deterministic bytecode that the IVM executes with predictable gas costs and typed inputs.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4335,7 +4335,7 @@
         "triggers"
       ],
       "glossaryRef": "/glossary/kotodama",
-      "blob": "kotodama the instruction set and runtime for nexus smart contracts, compiled to deterministic bytecode for ivm execution. execution ivm nexus architecture smart contracts irohavirtualmachineivm ivmbytecode kotodamabytecode kotodamaruntime triggers"
+      "blob": "kotodama the instruction set and runtime for sora nexus smart contracts, compiled to deterministic bytecode that the ivm executes with predictable gas costs and typed inputs. execution ivm nexus architecture smart contracts irohavirtualmachineivm ivmbytecode kotodamabytecode kotodamaruntime triggers"
     },
     {
       "slug": "kotodamabytecode",
@@ -4404,8 +4404,8 @@
         "Persistence",
         "Storage"
       ],
-      "summary": "The append-only history store in Iroha 3 that records every committed block alongside erasure-coded redundancy.",
-      "definition": "The append-only history store in Iroha 3 that records every committed block alongside erasure-coded redundancy.",
+      "summary": "The append-only history store in SORA Nexus that records every committed block alongside erasure-coded redundancy, providing an immutable audit trail of all network activity.",
+      "definition": "The append-only history store in SORA Nexus that records every committed block alongside erasure-coded redundancy, providing an immutable audit trail of all network activity.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4414,7 +4414,7 @@
         "worldstateviewwsv"
       ],
       "glossaryRef": "/glossary/kura",
-      "blob": "kura the append-only history store in iroha 3 that records every committed block alongside erasure-coded redundancy. infrastructure nexus architecture persistence storage erasurecodedkura sorafs worldstateviewwsv"
+      "blob": "kura the append-only history store in sora nexus that records every committed block alongside erasure-coded redundancy, providing an immutable audit trail of all network activity. infrastructure nexus architecture persistence storage erasurecodedkura sorafs worldstateviewwsv"
     },
     {
       "slug": "kusama",
@@ -4607,8 +4607,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "The ~1-second confirmation target each lane's SUMERAGI pipeline reaches before merge ordering with other lanes.",
-      "definition": "The ~1-second confirmation target each lane's SUMERAGI pipeline reaches before merge ordering with other lanes.",
+      "summary": "The approximately one-second confirmation target each lane's SUMERAGI pipeline in SORA Nexus reaches before merge ordering combines outputs with other parallel lanes.",
+      "definition": "The approximately one-second confirmation target each lane's SUMERAGI pipeline in SORA Nexus reaches before merge ordering combines outputs with other parallel lanes.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4619,7 +4619,7 @@
         "lanesplit"
       ],
       "glossaryRef": "/glossary/lanefinality",
-      "blob": "lane finality the ~1-second confirmation target each lane's sumeragi pipeline reaches before merge ordering with other lanes. bft consensus nexus architecture validators computelane lambdafloor lanefusion laneproofs lanesplit"
+      "blob": "lane finality the approximately one-second confirmation target each lane's sumeragi pipeline in sora nexus reaches before merge ordering combines outputs with other parallel lanes. bft consensus nexus architecture validators computelane lambdafloor lanefusion laneproofs lanesplit"
     },
     {
       "slug": "lanefusion",
@@ -5394,8 +5394,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The fairness rule requiring any data space with pending work to get scheduled within a bounded number of slots.",
-      "definition": "The fairness rule requiring any data space with pending work to get scheduled within a bounded number of slots.",
+      "summary": "The fairness rule in SORA Nexus requiring any data space with pending work to get scheduled within a bounded number of slots, preventing starvation of smaller participants.",
+      "definition": "The fairness rule in SORA Nexus requiring any data space with pending work to get scheduled within a bounded number of slots, preventing starvation of smaller participants.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5406,7 +5406,7 @@
         "automation"
       ],
       "glossaryRef": "/glossary/mustserveslice",
-      "blob": "must-serve slice the fairness rule requiring any data space with pending work to get scheduled within a bounded number of slots. execution ivm nexus architecture smart contracts action activationslot admission aggregation automation"
+      "blob": "must-serve slice the fairness rule in sora nexus requiring any data space with pending work to get scheduled within a bounded number of slots, preventing starvation of smaller participants. execution ivm nexus architecture smart contracts action activationslot admission aggregation automation"
     },
     {
       "slug": "newview",
@@ -5569,8 +5569,8 @@
         "Norito",
         "Serialization"
       ],
-      "summary": "The implementation that encodes/decodes Norito TLV structures and streams data for storage or networking layers.",
-      "definition": "The implementation that encodes/decodes Norito TLV structures and streams data for storage or networking layers.",
+      "summary": "The implementation in SORA Nexus that encodes and decodes Norito TLV structures, streaming data efficiently for storage layers, networking, and cross-validator communication.",
+      "definition": "The implementation in SORA Nexus that encodes and decodes Norito TLV structures, streaming data efficiently for storage layers, networking, and cross-validator communication.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5581,7 +5581,7 @@
         "noritotlv"
       ],
       "glossaryRef": "/glossary/noritocodec",
-      "blob": "norito codec the implementation that encodes/decodes norito tlv structures and streams data for storage or networking layers. data format nexus architecture norito serialization norito noritofirstapis noritoreceipts noritostreaming noritotlv"
+      "blob": "norito codec the implementation in sora nexus that encodes and decodes norito tlv structures, streaming data efficiently for storage layers, networking, and cross-validator communication. data format nexus architecture norito serialization norito noritofirstapis noritoreceipts noritostreaming noritotlv"
     },
     {
       "slug": "noritofirstapis",
@@ -6361,8 +6361,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "Shielded flows that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers.",
-      "definition": "Shielded flows that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers.",
+      "summary": "Shielded transaction flows in SORA Nexus that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers while maintaining auditability.",
+      "definition": "Shielded transaction flows in SORA Nexus that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers while maintaining auditability.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -6373,7 +6373,7 @@
         "performancetargets"
       ],
       "glossaryRef": "/glossary/privacytransactions",
-      "blob": "privacy transactions shielded flows that keep amounts and participants confidential via halo2 circuits, commitments, and nullifiers. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments offlineofflinetransactions performancetargets"
+      "blob": "privacy transactions shielded transaction flows in sora nexus that keep amounts and participants confidential via halo2 circuits, commitments, and nullifiers while maintaining auditability. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments offlineofflinetransactions performancetargets"
     },
     {
       "slug": "privatedataspaces",
@@ -6569,8 +6569,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "The SUMERAGI pipeline stages that drive HotStuff-style consensus with deterministic leader rotation and locking.",
-      "definition": "The SUMERAGI pipeline stages that drive HotStuff-style consensus with deterministic leader rotation and locking.",
+      "summary": "The four SUMERAGI pipeline stages in SORA Nexus that drive HotStuff-style consensus with deterministic leader rotation, vote collection, and cryptographic locking for finality.",
+      "definition": "The four SUMERAGI pipeline stages in SORA Nexus that drive HotStuff-style consensus with deterministic leader rotation, vote collection, and cryptographic locking for finality.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -6581,7 +6581,7 @@
         "newview"
       ],
       "glossaryRef": "/glossary/proposevalidatevotecommit",
-      "blob": "propose-validate-vote-commit the sumeragi pipeline stages that drive hotstuff-style consensus with deterministic leader rotation and locking. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality lockedqc newview"
+      "blob": "propose-validate-vote-commit the four sumeragi pipeline stages in sora nexus that drive hotstuff-style consensus with deterministic leader rotation, vote collection, and cryptographic locking for finality. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality lockedqc newview"
     },
     {
       "slug": "provers",
@@ -7073,8 +7073,8 @@
         "Nexus Architecture",
         "Policy"
       ],
-      "summary": "Governed changes to binaries, ABIs, or parameters staged, verified, and activated atomically at an agreed slot.",
-      "definition": "Governed changes to binaries, ABIs, or parameters staged, verified, and activated atomically at an agreed slot.",
+      "summary": "Governed changes in SORA Nexus to binaries, ABIs, or parameters that are staged, verified, and activated atomically at an agreed slot across all validators simultaneously.",
+      "definition": "Governed changes in SORA Nexus to binaries, ABIs, or parameters that are staged, verified, and activated atomically at an agreed slot across all validators simultaneously.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -7085,7 +7085,7 @@
         "parametersets"
       ],
       "glossaryRef": "/glossary/runtimeupgrades",
-      "blob": "runtime upgrades governed changes to binaries, abis, or parameters staged, verified, and activated atomically at an agreed slot. data spaces governance nexus architecture policy assembly deterministicruntime governancesurfaces governedmanifest parametersets"
+      "blob": "runtime upgrades governed changes in sora nexus to binaries, abis, or parameters that are staged, verified, and activated atomically at an agreed slot across all validators simultaneously. data spaces governance nexus architecture policy assembly deterministicruntime governancesurfaces governedmanifest parametersets"
     },
     {
       "slug": "rust",
@@ -7951,8 +7951,8 @@
         "Persistence",
         "Storage"
       ],
-      "summary": "The decentralized storage and erasure-coding layer that handles lane envelopes, DA proofs, and retry policies.",
-      "definition": "The decentralized storage and erasure-coding layer that handles lane envelopes, DA proofs, and retry policies.",
+      "summary": "The decentralized storage and erasure-coding layer in SORA Nexus that handles lane envelopes, DA proofs, and retry policies for resilient data persistence across validators.",
+      "definition": "The decentralized storage and erasure-coding layer in SORA Nexus that handles lane envelopes, DA proofs, and retry policies for resilient data persistence across validators.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -7960,7 +7960,7 @@
         "worldstateviewwsv"
       ],
       "glossaryRef": "/glossary/sorafs",
-      "blob": "sorafs the decentralized storage and erasure-coding layer that handles lane envelopes, da proofs, and retry policies. infrastructure nexus architecture persistence storage kura worldstateviewwsv"
+      "blob": "sorafs the decentralized storage and erasure-coding layer in sora nexus that handles lane envelopes, da proofs, and retry policies for resilient data persistence across validators. infrastructure nexus architecture persistence storage kura worldstateviewwsv"
     },
     {
       "slug": "soramitsu",
@@ -8373,8 +8373,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "The parameter sizing (blow-up factors, query counts, grinding) that keeps FASTPQ proofs at >=128-bit soundness.",
-      "definition": "The parameter sizing (blow-up factors, query counts, grinding) that keeps FASTPQ proofs at >=128-bit soundness.",
+      "summary": "The parameter sizing in SORA Nexus controlling blow-up factors, query counts, and grinding that keeps FASTPQ proofs at 128-bit or higher cryptographic soundness.",
+      "definition": "The parameter sizing in SORA Nexus controlling blow-up factors, query counts, and grinding that keeps FASTPQ proofs at 128-bit or higher cryptographic soundness.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -8385,7 +8385,7 @@
         "proofverificationbudget"
       ],
       "glossaryRef": "/glossary/starksecuritybudget",
-      "blob": "stark security budget the parameter sizing (blow-up factors, query counts, grinding) that keeps fastpq proofs at >=128-bit soundness. cryptography nexus architecture proofs security budget dasamplingbudget fastpqzkstarkproofs laneteubudget proofverificationbudget"
+      "blob": "stark security budget the parameter sizing in sora nexus controlling blow-up factors, query counts, and grinding that keeps fastpq proofs at 128-bit or higher cryptographic soundness. cryptography nexus architecture proofs security budget dasamplingbudget fastpqzkstarkproofs laneteubudget proofverificationbudget"
     },
     {
       "slug": "starttimefairqueuingsfq",
@@ -8453,8 +8453,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The first step of the transaction lifecycle where signed Norito instructions enter the network through gateways.",
-      "definition": "The first step of the transaction lifecycle where signed Norito instructions enter the network through gateways.",
+      "summary": "The first step of the transaction lifecycle in SORA Nexus where signed Norito instructions enter the network through gateways and proceed to admission and scheduling.",
+      "definition": "The first step of the transaction lifecycle in SORA Nexus where signed Norito instructions enter the network through gateways and proceed to admission and scheduling.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -8465,7 +8465,7 @@
         "automation"
       ],
       "glossaryRef": "/glossary/submission",
-      "blob": "submission the first step of the transaction lifecycle where signed norito instructions enter the network through gateways. execution ivm nexus architecture smart contracts action activationslot admission aggregation automation"
+      "blob": "submission the first step of the transaction lifecycle in sora nexus where signed norito instructions enter the network through gateways and proceed to admission and scheduling. execution ivm nexus architecture smart contracts action activationslot admission aggregation automation"
     },
     {
       "slug": "substrate",
@@ -9168,8 +9168,8 @@
         "Nexus Architecture",
         "Tokenomics"
       ],
-      "summary": "The resource metric measuring instruction cost, bandwidth, and storage to drive scheduling and fee calculation.",
-      "definition": "The resource metric measuring instruction cost, bandwidth, and storage to drive scheduling and fee calculation.",
+      "summary": "The Transaction Execution Unit in SORA Nexus measuring instruction cost, bandwidth, and storage consumption to drive fair scheduling and predictable fee calculation.",
+      "definition": "The Transaction Execution Unit in SORA Nexus measuring instruction cost, bandwidth, and storage consumption to drive fair scheduling and predictable fee calculation.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -9180,7 +9180,7 @@
         "laneteubudget"
       ],
       "glossaryRef": "/glossary/transactionexecutionunitsteu",
-      "blob": "transaction execution units (teu) the resource metric measuring instruction cost, bandwidth, and storage to drive scheduling and fee calculation. economics incentives nexus architecture tokenomics budget collateralizedlocks economicmodel execution laneteubudget"
+      "blob": "transaction execution units (teu) the transaction execution unit in sora nexus measuring instruction cost, bandwidth, and storage consumption to drive fair scheduling and predictable fee calculation. economics incentives nexus architecture tokenomics budget collateralizedlocks economicmodel execution laneteubudget"
     },
     {
       "slug": "transactionlifecycle",
@@ -9779,8 +9779,8 @@
         "Nexus Architecture",
         "Tokenomics"
       ],
-      "summary": "The multi-role nature of XOR as fee token, settlement asset, collateral, and governance bond across data spaces.",
-      "definition": "The multi-role nature of XOR as fee token, settlement asset, collateral, and governance bond across data spaces.",
+      "summary": "The multi-role nature of XOR in SORA Nexus serving as fee token, settlement asset, collateral for bonds, and governance voting power across all data spaces.",
+      "definition": "The multi-role nature of XOR in SORA Nexus serving as fee token, settlement asset, collateral for bonds, and governance voting power across all data spaces.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -9791,7 +9791,7 @@
         "xorfeeequilibrium"
       ],
       "glossaryRef": "/glossary/xorutility",
-      "blob": "xor utility the multi-role nature of xor as fee token, settlement asset, collateral, and governance bond across data spaces. economics incentives nexus architecture tokenomics collateralizedlocks economicmodel transactionexecutionunitsteu xorbonds xorfeeequilibrium"
+      "blob": "xor utility the multi-role nature of xor in sora nexus serving as fee token, settlement asset, collateral for bonds, and governance voting power across all data spaces. economics incentives nexus architecture tokenomics collateralizedlocks economicmodel transactionexecutionunitsteu xorbonds xorfeeequilibrium"
     },
     {
       "slug": "xykpools",
@@ -9936,5 +9936,5 @@
     }
   ],
   "totalCount": 369,
-  "lastUpdated": "2025-12-11T00:47:30.175Z"
+  "lastUpdated": "2025-12-11T00:50:50.608Z"
 }
