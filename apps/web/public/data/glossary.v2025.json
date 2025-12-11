@@ -1968,10 +1968,10 @@
     {
       "slug": "curve25519",
       "title": "Curve25519",
-      "summary": "The elliptic-curve key exchange primitive paired with Kyber768 in SoraNet's hybrid post-quantum handshake.",
+      "summary": "The elliptic-curve key exchange primitive in SORA Nexus paired with Kyber768 in the hybrid post-quantum handshake, providing classical security alongside lattice-based protection.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The elliptic-curve key exchange primitive paired with Kyber768 in SoraNet's hybrid post-quantum handshake.",
+      "definition": "The elliptic-curve key exchange primitive in SORA Nexus paired with Kyber768 in the hybrid post-quantum handshake, providing classical security alongside lattice-based protection.",
       "category": "Cryptography",
       "aliases": [],
       "tags": [
@@ -2803,10 +2803,10 @@
     {
       "slug": "ed25519",
       "title": "Ed25519",
-      "summary": "The default signature scheme for end users and public DA samples, chosen for speed and wide tooling support.",
+      "summary": "The default signature scheme in SORA Nexus for end-user transactions and public DA samples, chosen for its speed, security, and wide tooling support across platforms.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The default signature scheme for end users and public DA samples, chosen for speed and wide tooling support.",
+      "definition": "The default signature scheme in SORA Nexus for end-user transactions and public DA samples, chosen for its speed, security, and wide tooling support across platforms.",
       "category": "Cryptography",
       "aliases": [],
       "tags": [
@@ -2884,10 +2884,10 @@
     {
       "slug": "epochbeacon",
       "title": "Epoch Beacon",
-      "summary": "A randomness source derived from VRF aggregates each epoch, feeding leader rotation and sortition processes.",
+      "summary": "A randomness source in SORA Nexus derived from VRF aggregates each epoch, feeding leader rotation and sortition processes to ensure fair and unpredictable validator selection.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "A randomness source derived from VRF aggregates each epoch, feeding leader rotation and sortition processes.",
+      "definition": "A randomness source in SORA Nexus derived from VRF aggregates each epoch, feeding leader rotation and sortition processes to ensure fair and unpredictable validator selection.",
       "category": "Consensus",
       "aliases": [],
       "tags": [
@@ -2932,10 +2932,10 @@
     {
       "slug": "erasurecodedwsv",
       "title": "Erasure-Coded WSV",
-      "summary": "World State View snapshots protected by erasure coding, enabling resilient state recovery across validators.",
+      "summary": "World State View snapshots in SORA Nexus protected by erasure coding, enabling resilient state recovery across validators even when some nodes are offline or corrupted.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "World State View snapshots protected by erasure coding, enabling resilient state recovery across validators.",
+      "definition": "World State View snapshots in SORA Nexus protected by erasure coding, enabling resilient state recovery across validators even when some nodes are offline or corrupted.",
       "category": "Data Availability",
       "aliases": [],
       "tags": [
@@ -4209,10 +4209,10 @@
     {
       "slug": "iso20022",
       "title": "ISO 20022",
-      "summary": "The global financial messaging standard that Nexus aligns with for payment, securities, and FX data models.",
+      "summary": "The global financial messaging standard that SORA Nexus aligns with for payment, securities, and FX data models, enabling seamless integration with traditional banking infrastructure.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The global financial messaging standard that Nexus aligns with for payment, securities, and FX data models.",
+      "definition": "The global financial messaging standard that SORA Nexus aligns with for payment, securities, and FX data models, enabling seamless integration with traditional banking infrastructure.",
       "category": "Serialization & Encoding",
       "aliases": [],
       "tags": [
@@ -4304,10 +4304,10 @@
     {
       "slug": "kaigi",
       "title": "Kaigi",
-      "summary": "The real-time conferencing product managed on-ledger, with governance for rooms, relays, and usage accounting.",
+      "summary": "The real-time conferencing product in SORA Nexus managed on-ledger, with governance controls for rooms, relays, usage accounting, and decentralized communication infrastructure.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The real-time conferencing product managed on-ledger, with governance for rooms, relays, and usage accounting.",
+      "definition": "The real-time conferencing product in SORA Nexus managed on-ledger, with governance controls for rooms, relays, usage accounting, and decentralized communication infrastructure.",
       "category": "Networking",
       "aliases": [],
       "tags": [
@@ -4800,10 +4800,10 @@
     {
       "slug": "lanesplit",
       "title": "Lane Split",
-      "summary": "The act of doubling lanes once lambda_exit is exceeded, enabling horizontal scaling without rewriting history.",
+      "summary": "The process in SORA Nexus of doubling lanes once the lambda_exit threshold is exceeded, enabling automatic horizontal scaling without rewriting transaction history.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The act of doubling lanes once lambda_exit is exceeded, enabling horizontal scaling without rewriting history.",
+      "definition": "The process in SORA Nexus of doubling lanes once the lambda_exit threshold is exceeded, enabling automatic horizontal scaling without rewriting transaction history.",
       "category": "Execution",
       "aliases": [],
       "tags": [
@@ -5276,10 +5276,10 @@
     {
       "slug": "mldsa87",
       "title": "Ml-dsa-87",
-      "summary": "The post-quantum signature suite used for consensus votes, data-space attestations, and private-domain proofs.",
+      "summary": "The post-quantum signature suite in SORA Nexus used for consensus votes, data-space attestations, and private-domain proofs, providing resistance against quantum computer attacks.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The post-quantum signature suite used for consensus votes, data-space attestations, and private-domain proofs.",
+      "definition": "The post-quantum signature suite in SORA Nexus used for consensus votes, data-space attestations, and private-domain proofs, providing resistance against quantum computer attacks.",
       "category": "Cryptography",
       "aliases": [],
       "tags": [
@@ -5470,10 +5470,10 @@
     {
       "slug": "newview",
       "title": "New_view",
-      "summary": "The SUMERAGI message that proves a validator has seen sufficient votes to advance to the next proposal round.",
+      "summary": "The SUMERAGI consensus message in SORA Nexus that proves a validator has seen sufficient votes to advance to the next proposal round, enabling view changes during leader failures.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The SUMERAGI message that proves a validator has seen sufficient votes to advance to the next proposal round.",
+      "definition": "The SUMERAGI consensus message in SORA Nexus that proves a validator has seen sufficient votes to advance to the next proposal round, enabling view changes during leader failures.",
       "category": "Consensus",
       "aliases": [],
       "tags": [
@@ -5645,10 +5645,10 @@
     {
       "slug": "noritofirstapis",
       "title": "Norito-First APIs",
-      "summary": "Developer interfaces that expose ledger functionality directly in Norito semantics, reducing translation bugs.",
+      "summary": "Developer interfaces in SORA Nexus that expose ledger functionality directly in Norito semantics, reducing translation bugs and ensuring consistent behavior across client implementations.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Developer interfaces that expose ledger functionality directly in Norito semantics, reducing translation bugs.",
+      "definition": "Developer interfaces in SORA Nexus that expose ledger functionality directly in Norito semantics, reducing translation bugs and ensuring consistent behavior across client implementations.",
       "category": "Developer Experience",
       "aliases": [],
       "tags": [
@@ -5669,10 +5669,10 @@
     {
       "slug": "noritoreceipts",
       "title": "Norito Receipts",
-      "summary": "Structured execution receipts generated by Norito, containing hashes, proofs, and state deltas for auditing.",
+      "summary": "Structured execution receipts in SORA Nexus generated after transaction processing, containing hashes, proofs, and state deltas that enable independent auditing and verification.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Structured execution receipts generated by Norito, containing hashes, proofs, and state deltas for auditing.",
+      "definition": "Structured execution receipts in SORA Nexus generated after transaction processing, containing hashes, proofs, and state deltas that enable independent auditing and verification.",
       "category": "Serialization & Encoding",
       "aliases": [],
       "tags": [
@@ -7231,10 +7231,10 @@
     {
       "slug": "scale",
       "title": "Scale",
-      "summary": "Parity's serialization format mentioned as explicitly excluded from production Nexus paths to avoid ambiguity.",
+      "summary": "Parity's serialization format explicitly excluded from production SORA Nexus paths to avoid ambiguity, with Norito serving as the canonical serialization standard instead.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Parity's serialization format mentioned as explicitly excluded from production Nexus paths to avoid ambiguity.",
+      "definition": "Parity's serialization format explicitly excluded from production SORA Nexus paths to avoid ambiguity, with Norito serving as the canonical serialization standard instead.",
       "category": "Serialization & Encoding",
       "aliases": [],
       "tags": [
@@ -7605,10 +7605,10 @@
     {
       "slug": "slashing",
       "title": "Slashing",
-      "summary": "The penalty framework confiscating bonds or XOR rewards when validators double-sign or violate protocol rules.",
+      "summary": "The penalty framework in SORA Nexus that confiscates bonds or XOR rewards when validators double-sign, go offline, or violate protocol rules, maintaining network integrity.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The penalty framework confiscating bonds or XOR rewards when validators double-sign or violate protocol rules.",
+      "definition": "The penalty framework in SORA Nexus that confiscates bonds or XOR rewards when validators double-sign, go offline, or violate protocol rules, maintaining network integrity.",
       "category": "Governance",
       "aliases": [],
       "tags": [
@@ -10139,5 +10139,5 @@
   "aliasCount": 39,
   "deprecatedCount": 0,
   "version": 2025,
-  "lastUpdated": "2025-12-11T00:43:23.075Z"
+  "lastUpdated": "2025-12-11T00:47:30.174Z"
 }

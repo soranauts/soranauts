@@ -1901,8 +1901,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "The elliptic-curve key exchange primitive paired with Kyber768 in SoraNet's hybrid post-quantum handshake.",
-      "definition": "The elliptic-curve key exchange primitive paired with Kyber768 in SoraNet's hybrid post-quantum handshake.",
+      "summary": "The elliptic-curve key exchange primitive in SORA Nexus paired with Kyber768 in the hybrid post-quantum handshake, providing classical security alongside lattice-based protection.",
+      "definition": "The elliptic-curve key exchange primitive in SORA Nexus paired with Kyber768 in the hybrid post-quantum handshake, providing classical security alongside lattice-based protection.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -1913,7 +1913,7 @@
         "ed25519"
       ],
       "glossaryRef": "/glossary/curve25519",
-      "blob": "curve25519 the elliptic-curve key exchange primitive paired with kyber768 in soranet's hybrid post-quantum handshake. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments deepfri ed25519"
+      "blob": "curve25519 the elliptic-curve key exchange primitive in sora nexus paired with kyber768 in the hybrid post-quantum handshake, providing classical security alongside lattice-based protection. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments deepfri ed25519"
     },
     {
       "slug": "dacertificates",
@@ -2756,8 +2756,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "The default signature scheme for end users and public DA samples, chosen for speed and wide tooling support.",
-      "definition": "The default signature scheme for end users and public DA samples, chosen for speed and wide tooling support.",
+      "summary": "The default signature scheme in SORA Nexus for end-user transactions and public DA samples, chosen for its speed, security, and wide tooling support across platforms.",
+      "definition": "The default signature scheme in SORA Nexus for end-user transactions and public DA samples, chosen for its speed, security, and wide tooling support across platforms.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -2768,7 +2768,7 @@
         "deepfri"
       ],
       "glossaryRef": "/glossary/ed25519",
-      "blob": "ed25519 the default signature scheme for end users and public da samples, chosen for speed and wide tooling support. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
+      "blob": "ed25519 the default signature scheme in sora nexus for end-user transactions and public da samples, chosen for its speed, security, and wide tooling support across platforms. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
     },
     {
       "slug": "elasticsupply",
@@ -2834,8 +2834,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "A randomness source derived from VRF aggregates each epoch, feeding leader rotation and sortition processes.",
-      "definition": "A randomness source derived from VRF aggregates each epoch, feeding leader rotation and sortition processes.",
+      "summary": "A randomness source in SORA Nexus derived from VRF aggregates each epoch, feeding leader rotation and sortition processes to ensure fair and unpredictable validator selection.",
+      "definition": "A randomness source in SORA Nexus derived from VRF aggregates each epoch, feeding leader rotation and sortition processes to ensure fair and unpredictable validator selection.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -2846,7 +2846,7 @@
         "vrfsortition"
       ],
       "glossaryRef": "/glossary/epochbeacon",
-      "blob": "epoch beacon a randomness source derived from vrf aggregates each epoch, feeding leader rotation and sortition processes. bft consensus nexus architecture validators lanefinality lockedqc seedbeacon sumeragi vrfsortition"
+      "blob": "epoch beacon a randomness source in sora nexus derived from vrf aggregates each epoch, feeding leader rotation and sortition processes to ensure fair and unpredictable validator selection. bft consensus nexus architecture validators lanefinality lockedqc seedbeacon sumeragi vrfsortition"
     },
     {
       "slug": "erasurecodedkura",
@@ -2888,8 +2888,8 @@
         "Nexus Architecture",
         "Proofs"
       ],
-      "summary": "World State View snapshots protected by erasure coding, enabling resilient state recovery across validators.",
-      "definition": "World State View snapshots protected by erasure coding, enabling resilient state recovery across validators.",
+      "summary": "World State View snapshots in SORA Nexus protected by erasure coding, enabling resilient state recovery across validators even when some nodes are offline or corrupted.",
+      "definition": "World State View snapshots in SORA Nexus protected by erasure coding, enabling resilient state recovery across validators even when some nodes are offline or corrupted.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -2900,7 +2900,7 @@
         "worldstateviewwsv"
       ],
       "glossaryRef": "/glossary/erasurecodedwsv",
-      "blob": "erasure-coded wsv world state view snapshots protected by erasure coding, enabling resilient state recovery across validators. data availability infrastructure nexus architecture proofs dataavailability erasurecodedkura reedsolomon twodimensionalerasurecoding worldstateviewwsv"
+      "blob": "erasure-coded wsv world state view snapshots in sora nexus protected by erasure coding, enabling resilient state recovery across validators even when some nodes are offline or corrupted. data availability infrastructure nexus architecture proofs dataavailability erasurecodedkura reedsolomon twodimensionalerasurecoding worldstateviewwsv"
     },
     {
       "slug": "execution",
@@ -4157,8 +4157,8 @@
         "Norito",
         "Serialization"
       ],
-      "summary": "The global financial messaging standard that Nexus aligns with for payment, securities, and FX data models.",
-      "definition": "The global financial messaging standard that Nexus aligns with for payment, securities, and FX data models.",
+      "summary": "The global financial messaging standard that SORA Nexus aligns with for payment, securities, and FX data models, enabling seamless integration with traditional banking infrastructure.",
+      "definition": "The global financial messaging standard that SORA Nexus aligns with for payment, securities, and FX data models, enabling seamless integration with traditional banking infrastructure.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4169,7 +4169,7 @@
         "noritoreceipts"
       ],
       "glossaryRef": "/glossary/iso20022",
-      "blob": "iso 20022 the global financial messaging standard that nexus aligns with for payment, securities, and fx data models. data format nexus architecture norito serialization iso20022alignment iso20022connectors norito noritocodec noritoreceipts"
+      "blob": "iso 20022 the global financial messaging standard that sora nexus aligns with for payment, securities, and fx data models, enabling seamless integration with traditional banking infrastructure. data format nexus architecture norito serialization iso20022alignment iso20022connectors norito noritocodec noritoreceipts"
     },
     {
       "slug": "iso20022alignment",
@@ -4264,8 +4264,8 @@
         "Nexus Architecture",
         "P2P"
       ],
-      "summary": "The real-time conferencing product managed on-ledger, with governance for rooms, relays, and usage accounting.",
-      "definition": "The real-time conferencing product managed on-ledger, with governance for rooms, relays, and usage accounting.",
+      "summary": "The real-time conferencing product in SORA Nexus managed on-ledger, with governance controls for rooms, relays, usage accounting, and decentralized communication infrastructure.",
+      "definition": "The real-time conferencing product in SORA Nexus managed on-ledger, with governance controls for rooms, relays, usage accounting, and decentralized communication infrastructure.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4276,7 +4276,7 @@
         "hybridpqhandshake"
       ],
       "glossaryRef": "/glossary/kaigi",
-      "blob": "kaigi the real-time conferencing product managed on-ledger, with governance for rooms, relays, and usage accounting. infrastructure networking nexus architecture p2p blindedcids exitcaches fixedsizecells gateways hybridpqhandshake"
+      "blob": "kaigi the real-time conferencing product in sora nexus managed on-ledger, with governance controls for rooms, relays, usage accounting, and decentralized communication infrastructure. infrastructure networking nexus architecture p2p blindedcids exitcaches fixedsizecells gateways hybridpqhandshake"
     },
     {
       "slug": "kensetsu",
@@ -4769,8 +4769,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The act of doubling lanes once lambda_exit is exceeded, enabling horizontal scaling without rewriting history.",
-      "definition": "The act of doubling lanes once lambda_exit is exceeded, enabling horizontal scaling without rewriting history.",
+      "summary": "The process in SORA Nexus of doubling lanes once the lambda_exit threshold is exceeded, enabling automatic horizontal scaling without rewriting transaction history.",
+      "definition": "The process in SORA Nexus of doubling lanes once the lambda_exit threshold is exceeded, enabling automatic horizontal scaling without rewriting transaction history.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4781,7 +4781,7 @@
         "parallellanes"
       ],
       "glossaryRef": "/glossary/lanesplit",
-      "blob": "lane split the act of doubling lanes once lambda_exit is exceeded, enabling horizontal scaling without rewriting history. execution ivm nexus architecture smart contracts computelane lanefinality lanefusion lanes parallellanes"
+      "blob": "lane split the process in sora nexus of doubling lanes once the lambda_exit threshold is exceeded, enabling automatic horizontal scaling without rewriting transaction history. execution ivm nexus architecture smart contracts computelane lanefinality lanefusion lanes parallellanes"
     },
     {
       "slug": "laneteubudget",
@@ -5231,8 +5231,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "The post-quantum signature suite used for consensus votes, data-space attestations, and private-domain proofs.",
-      "definition": "The post-quantum signature suite used for consensus votes, data-space attestations, and private-domain proofs.",
+      "summary": "The post-quantum signature suite in SORA Nexus used for consensus votes, data-space attestations, and private-domain proofs, providing resistance against quantum computer attacks.",
+      "definition": "The post-quantum signature suite in SORA Nexus used for consensus votes, data-space attestations, and private-domain proofs, providing resistance against quantum computer attacks.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5243,7 +5243,7 @@
         "mergeledger"
       ],
       "glossaryRef": "/glossary/mldsa87",
-      "blob": "ml-dsa-87 the post-quantum signature suite used for consensus votes, data-space attestations, and private-domain proofs. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 mergeledger"
+      "blob": "ml-dsa-87 the post-quantum signature suite in sora nexus used for consensus votes, data-space attestations, and private-domain proofs, providing resistance against quantum computer attacks. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 mergeledger"
     },
     {
       "slug": "mobile",
@@ -5421,8 +5421,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "The SUMERAGI message that proves a validator has seen sufficient votes to advance to the next proposal round.",
-      "definition": "The SUMERAGI message that proves a validator has seen sufficient votes to advance to the next proposal round.",
+      "summary": "The SUMERAGI consensus message in SORA Nexus that proves a validator has seen sufficient votes to advance to the next proposal round, enabling view changes during leader failures.",
+      "definition": "The SUMERAGI consensus message in SORA Nexus that proves a validator has seen sufficient votes to advance to the next proposal round, enabling view changes during leader failures.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5433,7 +5433,7 @@
         "nposvariant"
       ],
       "glossaryRef": "/glossary/newview",
-      "blob": "new_view the sumeragi message that proves a validator has seen sufficient votes to advance to the next proposal round. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality lockedqc nposvariant"
+      "blob": "new_view the sumeragi consensus message in sora nexus that proves a validator has seen sufficient votes to advance to the next proposal round, enabling view changes during leader failures. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality lockedqc nposvariant"
     },
     {
       "slug": "nexus",
@@ -5596,8 +5596,8 @@
         "Nexus Architecture",
         "SDK"
       ],
-      "summary": "Developer interfaces that expose ledger functionality directly in Norito semantics, reducing translation bugs.",
-      "definition": "Developer interfaces that expose ledger functionality directly in Norito semantics, reducing translation bugs.",
+      "summary": "Developer interfaces in SORA Nexus that expose ledger functionality directly in Norito semantics, reducing translation bugs and ensuring consistent behavior across client implementations.",
+      "definition": "Developer interfaces in SORA Nexus that expose ledger functionality directly in Norito semantics, reducing translation bugs and ensuring consistent behavior across client implementations.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5608,7 +5608,7 @@
         "restgateways"
       ],
       "glossaryRef": "/glossary/noritofirstapis",
-      "blob": "norito-first apis developer interfaces that expose ledger functionality directly in norito semantics, reducing translation bugs. developer tools integration nexus architecture sdk developerexperience grpcgateways norito noritocodec restgateways"
+      "blob": "norito-first apis developer interfaces in sora nexus that expose ledger functionality directly in norito semantics, reducing translation bugs and ensuring consistent behavior across client implementations. developer tools integration nexus architecture sdk developerexperience grpcgateways norito noritocodec restgateways"
     },
     {
       "slug": "noritoreceipts",
@@ -5623,8 +5623,8 @@
         "Norito",
         "Serialization"
       ],
-      "summary": "Structured execution receipts generated by Norito, containing hashes, proofs, and state deltas for auditing.",
-      "definition": "Structured execution receipts generated by Norito, containing hashes, proofs, and state deltas for auditing.",
+      "summary": "Structured execution receipts in SORA Nexus generated after transaction processing, containing hashes, proofs, and state deltas that enable independent auditing and verification.",
+      "definition": "Structured execution receipts in SORA Nexus generated after transaction processing, containing hashes, proofs, and state deltas that enable independent auditing and verification.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5635,7 +5635,7 @@
         "noritotlv"
       ],
       "glossaryRef": "/glossary/noritoreceipts",
-      "blob": "norito receipts structured execution receipts generated by norito, containing hashes, proofs, and state deltas for auditing. data format nexus architecture norito serialization norito noritocodec noritofirstapis noritostreaming noritotlv"
+      "blob": "norito receipts structured execution receipts in sora nexus generated after transaction processing, containing hashes, proofs, and state deltas that enable independent auditing and verification. data format nexus architecture norito serialization norito noritocodec noritofirstapis noritostreaming noritotlv"
     },
     {
       "slug": "noritostreaming",
@@ -7160,8 +7160,8 @@
         "Norito",
         "Serialization"
       ],
-      "summary": "Parity's serialization format mentioned as explicitly excluded from production Nexus paths to avoid ambiguity.",
-      "definition": "Parity's serialization format mentioned as explicitly excluded from production Nexus paths to avoid ambiguity.",
+      "summary": "Parity's serialization format explicitly excluded from production SORA Nexus paths to avoid ambiguity, with Norito serving as the canonical serialization standard instead.",
+      "definition": "Parity's serialization format explicitly excluded from production SORA Nexus paths to avoid ambiguity, with Norito serving as the canonical serialization standard instead.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -7172,7 +7172,7 @@
         "noritoreceipts"
       ],
       "glossaryRef": "/glossary/scale",
-      "blob": "scale parity's serialization format mentioned as explicitly excluded from production nexus paths to avoid ambiguity. data format nexus architecture norito serialization iso20022 iso20022alignment norito noritocodec noritoreceipts"
+      "blob": "scale parity's serialization format explicitly excluded from production sora nexus paths to avoid ambiguity, with norito serving as the canonical serialization standard instead. data format nexus architecture norito serialization iso20022 iso20022alignment norito noritocodec noritoreceipts"
     },
     {
       "slug": "scarcity",
@@ -7544,8 +7544,8 @@
         "Nexus Architecture",
         "Policy"
       ],
-      "summary": "The penalty framework confiscating bonds or XOR rewards when validators double-sign or violate protocol rules.",
-      "definition": "The penalty framework confiscating bonds or XOR rewards when validators double-sign or violate protocol rules.",
+      "summary": "The penalty framework in SORA Nexus that confiscates bonds or XOR rewards when validators double-sign, go offline, or violate protocol rules, maintaining network integrity.",
+      "definition": "The penalty framework in SORA Nexus that confiscates bonds or XOR rewards when validators double-sign, go offline, or violate protocol rules, maintaining network integrity.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -7556,7 +7556,7 @@
         "xorbonds"
       ],
       "glossaryRef": "/glossary/slashing",
-      "blob": "slashing the penalty framework confiscating bonds or xor rewards when validators double-sign or violate protocol rules. data spaces governance nexus architecture policy assembly economicmodel quorumcertificate sumeragi xorbonds"
+      "blob": "slashing the penalty framework in sora nexus that confiscates bonds or xor rewards when validators double-sign, go offline, or violate protocol rules, maintaining network integrity. data spaces governance nexus architecture policy assembly economicmodel quorumcertificate sumeragi xorbonds"
     },
     {
       "slug": "slotleases",
@@ -9936,5 +9936,5 @@
     }
   ],
   "totalCount": 369,
-  "lastUpdated": "2025-12-11T00:43:23.076Z"
+  "lastUpdated": "2025-12-11T00:47:30.175Z"
 }
