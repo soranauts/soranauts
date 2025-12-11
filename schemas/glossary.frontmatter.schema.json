@@ -25,16 +25,23 @@
       "type": "string",
       "description": "Primary category in Title Case",
       "enum": [
-        "Technology",
+        "Cryptography",
+        "Execution",
         "Governance",
+        "Data Availability",
+        "Consensus",
+        "Networking",
+        "Serialization & Encoding",
+        "Observability & Operations",
+        "Accounts & Identity",
         "Economics",
-        "Tokens",
+        "Developer Experience",
+        "Use Cases",
+        "Storage",
         "DeFi",
-        "Infrastructure",
-        "Community",
-        "Security",
-        "Interoperability",
-        "Development"
+        "Tokens",
+        "Ecosystem",
+        "Interoperability"
       ]
     },
     "summary": {
