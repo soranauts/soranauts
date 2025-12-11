@@ -125,6 +125,50 @@ function getPriority(slug: string, isMdxTerm: boolean): number {
   return isMdxTerm ? 5 : 4;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Category-Based Tag Enrichment
+// ─────────────────────────────────────────────────────────────────────────────
+
+const CATEGORY_TAG_MAP: Record<string, string[]> = {
+  'Cryptography': ['Cryptography', 'Security', 'Proofs'],
+  'Execution': ['Smart Contracts', 'IVM', 'Execution'],
+  'Governance': ['Governance', 'Data Spaces', 'Policy'],
+  'Data Availability': ['Data Availability', 'Infrastructure', 'Proofs'],
+  'Consensus': ['Consensus', 'Validators', 'BFT'],
+  'Networking': ['Networking', 'P2P', 'Infrastructure'],
+  'Serialization & Encoding': ['Serialization', 'Norito', 'Data Format'],
+  'Observability & Operations': ['Operations', 'Monitoring', 'Infrastructure'],
+  'Accounts & Identity': ['Identity', 'Accounts', 'Security'],
+  'Economics': ['Economics', 'Tokenomics', 'Incentives'],
+  'Developer Experience': ['Developer Tools', 'SDK', 'Integration'],
+  'Use Cases': ['Applications', 'Enterprise', 'Real World'],
+  'Storage': ['Storage', 'Persistence', 'Infrastructure'],
+};
+
+/**
+ * Get enriched tags for a term by combining existing tags with category-based tags
+ * @param existingTags - Tags from the term's frontmatter
+ * @param category - The term's category
+ * @returns Deduplicated, sorted array of tags
+ */
+function getEnrichedTags(existingTags: string[], category: string): string[] {
+  const categoryTags = CATEGORY_TAG_MAP[category] ?? [];
+  const allTags = new Set<string>();
+  
+  // Add existing tags (preserve "Nexus Architecture" etc.)
+  for (const tag of existingTags) {
+    allTags.add(tag);
+  }
+  
+  // Add category-based tags
+  for (const tag of categoryTags) {
+    allTags.add(tag);
+  }
+  
+  // Return sorted, deduplicated array
+  return Array.from(allTags).sort((a, b) => a.localeCompare(b));
+}
+
 interface AliasTerm {
   alias: string;
   target: string;
@@ -836,22 +880,26 @@ async function main() {
 
   // glossary.index.json (minimal index)
   const glossaryIndex = {
-    index: canonicalTerms.map((t) => ({
-      slug: t.slug,
-      title: t.title,
-      type: 'term',
-      category: t.category,
-      priority: t.priority,
-      aliases: t.aliases,
-      tags: t.tags,
-      summary: t.summary,
-      definition: t.definition,
-      entity: null,
-      versions: [],
-      relatedTerms: t.relatedTerms,
-      glossaryRef: `/glossary/${t.slug}`,
-      blob: [t.title, t.summary, ...t.tags, ...t.relatedTerms].join(' ').toLowerCase(),
-    })),
+    index: canonicalTerms.map((t) => {
+      // Enrich tags with category-based tags for better filtering
+      const enrichedTags = getEnrichedTags(t.tags, t.category);
+      return {
+        slug: t.slug,
+        title: t.title,
+        type: 'term',
+        category: t.category,
+        priority: t.priority,
+        aliases: t.aliases,
+        tags: enrichedTags,
+        summary: t.summary,
+        definition: t.definition,
+        entity: null,
+        versions: [],
+        relatedTerms: t.relatedTerms,
+        glossaryRef: `/glossary/${t.slug}`,
+        blob: [t.title, t.summary, ...enrichedTags, ...t.relatedTerms].join(' ').toLowerCase(),
+      };
+    }),
     totalCount: stats.canonicalCount,
     lastUpdated: new Date().toISOString(),
   };
