@@ -483,7 +483,7 @@
       "slug": "dataavailability",
       "title": "Data Availability",
       "category": "Data Availability",
-      "summary": "The guarantee that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline.",
+      "summary": "The guarantee in SORA Nexus that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline, preventing data withholding attacks.",
       "tagline": "Prevents data withholding attacks that could halt chain progress or hide fraud."
     },
     {
@@ -838,7 +838,7 @@
       "slug": "goldilocksfield",
       "title": "Goldilocks Field",
       "category": "Cryptography",
-      "summary": "The prime field used by Poseidon2 and FASTPQ's AIR so constraints map efficiently onto modern hardware.",
+      "summary": "The 64-bit prime field used by Poseidon2 and FASTPQ in SORA Nexus, chosen because its structure maps efficiently onto modern CPU architectures for fast proof generation.",
       "tagline": "Improves network performance and efficiency."
     },
     {
@@ -871,7 +871,7 @@
       "slug": "governedmanifest",
       "title": "Governed Manifest",
       "category": "Governance",
-      "summary": "A hashed package of binaries, ABI versions, and activation slots defining a runtime upgrade proposal.",
+      "summary": "A hashed package of binaries, ABI versions, and activation slots in SORA Nexus that defines a runtime upgrade proposal, ensuring all validators upgrade atomically at the same block.",
       "tagline": "Ensures all validators upgrade atomically at the same block height."
     },
     {
@@ -1099,7 +1099,7 @@
       "slug": "kyber768",
       "title": "Kyber768",
       "category": "Cryptography",
-      "summary": "The lattice-based KEM used in SoraNet's hybrid handshake to future-proof against quantum adversaries.",
+      "summary": "The lattice-based key encapsulation mechanism used in SORA Nexus's hybrid handshake to provide post-quantum security for network communications against future quantum attacks.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
@@ -1141,7 +1141,7 @@
       "slug": "laneproofs",
       "title": "Lane Proofs",
       "category": "Data Availability",
-      "summary": "Aggregated FASTPQ or DA proofs scoped per lane, allowing committees to verify execution efficiently.",
+      "summary": "Aggregated FASTPQ or DA proofs scoped per lane in SORA Nexus, allowing validator committees to verify execution efficiently without processing every transaction individually.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
@@ -1162,7 +1162,7 @@
       "slug": "lanescopedstate",
       "title": "Lane-Scoped State",
       "category": "Observability & Operations",
-      "summary": "State shards maintained per lane (especially in SoraNet) to localize failures and simplify recovery.",
+      "summary": "State shards maintained per lane in SORA Nexus to localize failures and simplify recovery, ensuring that issues in one lane don't cascade across the entire network.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
@@ -1397,7 +1397,7 @@
       "slug": "noritotlv",
       "title": "Norito TLV",
       "category": "Serialization & Encoding",
-      "summary": "The typed-length-value format underlying Norito messages, enabling unambiguous parsing inside the IVM.",
+      "summary": "The typed-length-value encoding format underlying Norito messages in SORA Nexus, enabling unambiguous parsing of commands and data structures inside the IVM execution environment.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
@@ -1810,7 +1810,7 @@
       "slug": "sha2",
       "title": "Sha-2",
       "category": "Cryptography",
-      "summary": "A legacy hash suite retained for interoperability with existing systems and regulatory requirements.",
+      "summary": "A legacy hash suite retained in SORA Nexus for interoperability with existing systems, regulatory requirements, and compatibility with external chains that rely on SHA-256.",
       "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
@@ -1870,7 +1870,7 @@
       "slug": "sm2",
       "title": "Sm2",
       "category": "Cryptography",
-      "summary": "The Chinese national elliptic-curve signature suite available via governance for compliant deployments.",
+      "summary": "The Chinese national elliptic-curve signature suite available in SORA Nexus via governance configuration, enabling regulatory-compliant deployments in jurisdictions requiring SM2.",
       "tagline": "Provides cryptographic authentication for transactions and attestations."
     },
     {
@@ -2159,7 +2159,7 @@
       "slug": "threehopquiccircuits",
       "title": "Three-Hop QUIC Circuits",
       "category": "Networking",
-      "summary": "SoraNet's onion-style routing pattern using QUIC, providing low-latency privacy with fixed hop counts.",
+      "summary": "SORA Nexus's onion-style routing pattern using QUIC protocol, providing low-latency privacy with fixed three-hop paths that hide user IP addresses from destination servers.",
       "tagline": "Hides user IP addresses from destination servers while maintaining fast connections."
     },
     {
@@ -2219,7 +2219,7 @@
       "slug": "torii",
       "title": "Torii",
       "category": "Networking",
-      "summary": "The Norito-native gateway streaming events, receipts, and telemetry to clients via REST, SSE, or gRPC.",
+      "summary": "The Norito-native gateway in SORA Nexus that streams events, receipts, and telemetry to clients via REST, SSE, or gRPC, providing real-time updates without polling.",
       "tagline": "Provides real-time updates to applications without polling."
     },
     {
@@ -2258,7 +2258,7 @@
       "slug": "triggers",
       "title": "Triggers",
       "category": "Execution",
-      "summary": "On-ledger automation objects with condition, action, and budget fields that execute schedules or reactions without off-chain cron jobs.",
+      "summary": "On-ledger automation objects in SORA Nexus with condition, action, and budget fields that execute scheduled tasks or event reactions without requiring external cron jobs or keepers.",
       "tagline": "Enables smart contracts to self-execute based on time or events, removing reliance on external keepers."
     },
     {
@@ -2435,5 +2435,5 @@
   "canonicalCount": 369,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-11T00:33:08.873Z"
+  "lastUpdated": "2025-12-11T00:38:12.171Z"
 }
