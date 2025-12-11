@@ -2171,8 +2171,8 @@
         "Nexus Architecture",
         "Policy"
       ],
-      "summary": "Sovereignty-preserving partitions allowing different jurisdictions or applications to share the same ledger without sharing private data.",
-      "definition": "Sovereignty-preserving partitions allowing different jurisdictions or applications to share the same ledger without sharing private data.",
+      "summary": "Sovereignty-preserving partitions in SORA Nexus that allow different jurisdictions or applications to share the same ledger without sharing private data, enabling both enterprise privacy and public transparency on one network.",
+      "definition": "Sovereignty-preserving partitions in SORA Nexus that allow different jurisdictions or applications to share the same ledger without sharing private data, enabling both enterprise privacy and public transparency on one network.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -2183,7 +2183,7 @@
         "sovereigndataspaces"
       ],
       "glossaryRef": "/glossary/dataspaces",
-      "blob": "data spaces sovereignty-preserving partitions allowing different jurisdictions or applications to share the same ledger without sharing private data. data spaces governance nexus architecture policy dataavailability dataspacedirectory privatedataspaces publicdataspaces sovereigndataspaces"
+      "blob": "data spaces sovereignty-preserving partitions in sora nexus that allow different jurisdictions or applications to share the same ledger without sharing private data, enabling both enterprise privacy and public transparency on one network. data spaces governance nexus architecture policy dataavailability dataspacedirectory privatedataspaces publicdataspaces sovereigndataspaces"
     },
     {
       "slug": "decentralization",
@@ -4130,8 +4130,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "A purpose-built deterministic runtime that executes Kotodama bytecode with typed ABIs and fixed gas metering.",
-      "definition": "A purpose-built deterministic runtime that executes Kotodama bytecode with typed ABIs and fixed gas metering.",
+      "summary": "The purpose-built deterministic runtime at the core of SORA Nexus that executes Kotodama bytecode with typed ABIs and fixed gas metering, ensuring identical computation across all validators.",
+      "definition": "The purpose-built deterministic runtime at the core of SORA Nexus that executes Kotodama bytecode with typed ABIs and fixed gas metering, ensuring identical computation across all validators.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4142,7 +4142,7 @@
         "kotodama"
       ],
       "glossaryRef": "/glossary/irohavirtualmachineivm",
-      "blob": "iroha virtual machine (ivm) a purpose-built deterministic runtime that executes kotodama bytecode with typed abis and fixed gas metering. execution ivm nexus architecture smart contracts action activationslot irohaconfig ivmbytecode kotodama"
+      "blob": "iroha virtual machine (ivm) the purpose-built deterministic runtime at the core of sora nexus that executes kotodama bytecode with typed abis and fixed gas metering, ensuring identical computation across all validators. execution ivm nexus architecture smart contracts action activationslot irohaconfig ivmbytecode kotodama"
     },
     {
       "slug": "iso20022",
@@ -4688,8 +4688,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "Parallel execution tracks that process transactions independently before a merge ledger orders their outputs.",
-      "definition": "Parallel execution tracks that process transactions independently before a merge ledger orders their outputs.",
+      "summary": "Parallel execution tracks in SORA Nexus that process transactions independently before the Merge Ledger orders their outputs, enabling horizontal scaling without sacrificing global consistency.",
+      "definition": "Parallel execution tracks in SORA Nexus that process transactions independently before the Merge Ledger orders their outputs, enabling horizontal scaling without sacrificing global consistency.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4700,7 +4700,7 @@
         "parallellanes"
       ],
       "glossaryRef": "/glossary/lanes",
-      "blob": "lanes parallel execution tracks that process transactions independently before a merge ledger orders their outputs. execution ivm nexus architecture smart contracts computelane lanefinality lanefusion lanesplit parallellanes"
+      "blob": "lanes parallel execution tracks in sora nexus that process transactions independently before the merge ledger orders their outputs, enabling horizontal scaling without sacrificing global consistency. execution ivm nexus architecture smart contracts computelane lanefinality lanefusion lanesplit parallellanes"
     },
     {
       "slug": "lanescopedrecovery",
@@ -5151,8 +5151,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The lightweight ordering layer that sequences finalized lane tips into a single global history. Multiple lanes process transactions in parallel for throughput, and the merge ledger orders these lane tips into one canonical sequence without re-ordering finalized lane history, preserving both parallelism and consistency.",
-      "definition": "The lightweight ordering layer that sequences finalized lane tips into a single global history. Multiple lanes process transactions in parallel for throughput, and the merge ledger orders these lane tips into one canonical sequence without re-ordering finalized lane history, preserving both parallelism and consistency.",
+      "summary": "The lightweight ordering layer in SORA Nexus that sequences finalized lane tips into a single global history, preserving both parallel throughput and a canonical transaction order.",
+      "definition": "The lightweight ordering layer in SORA Nexus that sequences finalized lane tips into a single global history, preserving both parallel throughput and a canonical transaction order.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5163,7 +5163,7 @@
         "mldsa87"
       ],
       "glossaryRef": "/glossary/mergeledger",
-      "blob": "merge ledger the lightweight ordering layer that sequences finalized lane tips into a single global history. multiple lanes process transactions in parallel for throughput, and the merge ledger orders these lane tips into one canonical sequence without re-ordering finalized lane history, preserving both parallelism and consistency. execution ivm nexus architecture smart contracts action activationslot admission aggregation mldsa87"
+      "blob": "merge ledger the lightweight ordering layer in sora nexus that sequences finalized lane tips into a single global history, preserving both parallel throughput and a canonical transaction order. execution ivm nexus architecture smart contracts action activationslot admission aggregation mldsa87"
     },
     {
       "slug": "merklecommitments",
@@ -5542,8 +5542,8 @@
         "Norito",
         "Serialization"
       ],
-      "summary": "The canonical serialization language for commands, receipts, and state, ensuring all tooling speaks a single schema.",
-      "definition": "The canonical serialization language for commands, receipts, and state, ensuring all tooling speaks a single schema.",
+      "summary": "The canonical serialization format for SORA Nexus that defines how commands, receipts, and state are encoded, ensuring all clients, validators, and tools interpret data identically.",
+      "definition": "The canonical serialization format for SORA Nexus that defines how commands, receipts, and state are encoded, ensuring all clients, validators, and tools interpret data identically.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5554,7 +5554,7 @@
         "noritotlv"
       ],
       "glossaryRef": "/glossary/norito",
-      "blob": "norito the canonical serialization language for commands, receipts, and state, ensuring all tooling speaks a single schema. data format nexus architecture norito serialization noritocodec noritofirstapis noritoreceipts noritostreaming noritotlv"
+      "blob": "norito the canonical serialization format for sora nexus that defines how commands, receipts, and state are encoded, ensuring all clients, validators, and tools interpret data identically. data format nexus architecture norito serialization noritocodec noritofirstapis noritoreceipts noritostreaming noritotlv"
     },
     {
       "slug": "noritocodec",
@@ -6388,8 +6388,8 @@
         "Nexus Architecture",
         "Policy"
       ],
-      "summary": "Permissioned domains where data and proofs remain within the operator's trust boundary, using ML-DSA attestations for DA.",
-      "definition": "Permissioned domains where data and proofs remain within the operator's trust boundary, using ML-DSA attestations for DA.",
+      "summary": "Permissioned partitions in SORA Nexus where data and proofs remain within the operator's trust boundary, using ML-DSA-87 attestations for data availability while maintaining regulatory compliance.",
+      "definition": "Permissioned partitions in SORA Nexus where data and proofs remain within the operator's trust boundary, using ML-DSA-87 attestations for data availability while maintaining regulatory compliance.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -6400,7 +6400,7 @@
         "sovereigndataspaces"
       ],
       "glossaryRef": "/glossary/privatedataspaces",
-      "blob": "private data spaces permissioned domains where data and proofs remain within the operator's trust boundary, using ml-dsa attestations for da. data spaces governance nexus architecture policy dataavailability dataavailabilitylayer dataspaces publicdataspaces sovereigndataspaces"
+      "blob": "private data spaces permissioned partitions in sora nexus where data and proofs remain within the operator's trust boundary, using ml-dsa-87 attestations for data availability while maintaining regulatory compliance. data spaces governance nexus architecture policy dataavailability dataavailabilitylayer dataspaces publicdataspaces sovereigndataspaces"
     },
     {
       "slug": "programming",
@@ -6657,8 +6657,8 @@
         "Nexus Architecture",
         "Policy"
       ],
-      "summary": "Open participation domains where DA sampling is performed publicly and Ed25519 signatures attest to availability.",
-      "definition": "Open participation domains where DA sampling is performed publicly and Ed25519 signatures attest to availability.",
+      "summary": "Open participation domains in SORA Nexus where data availability sampling is performed publicly and Ed25519 signatures attest to availability, enabling transparent verification by any network participant.",
+      "definition": "Open participation domains in SORA Nexus where data availability sampling is performed publicly and Ed25519 signatures attest to availability, enabling transparent verification by any network participant.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -6669,7 +6669,7 @@
         "sovereigndataspaces"
       ],
       "glossaryRef": "/glossary/publicdataspaces",
-      "blob": "public data spaces open participation domains where da sampling is performed publicly and ed25519 signatures attest to availability. data spaces governance nexus architecture policy dataavailability dataavailabilitylayer dataspaces privatedataspaces sovereigndataspaces"
+      "blob": "public data spaces open participation domains in sora nexus where data availability sampling is performed publicly and ed25519 signatures attest to availability, enabling transparent verification by any network participant. data spaces governance nexus architecture policy dataavailability dataavailabilitylayer dataspaces privatedataspaces sovereigndataspaces"
     },
     {
       "slug": "qrpayments",
@@ -8692,8 +8692,8 @@
         "Nexus Architecture",
         "P2P"
       ],
-      "summary": "The streaming and data pipeline platform governed on-ledger, supporting Norito streaming, telemetry, and slashing for misbehavior.",
-      "definition": "The streaming and data pipeline platform governed on-ledger, supporting Norito streaming, telemetry, and slashing for misbehavior.",
+      "summary": "The streaming and data pipeline platform in SORA Nexus governed on-ledger, supporting Norito streaming, real-time telemetry, and cryptographic slashing for validator misbehavior.",
+      "definition": "The streaming and data pipeline platform in SORA Nexus governed on-ledger, supporting Norito streaming, real-time telemetry, and cryptographic slashing for validator misbehavior.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -8704,7 +8704,7 @@
         "hybridpqhandshake"
       ],
       "glossaryRef": "/glossary/taikai",
-      "blob": "taikai the streaming and data pipeline platform governed on-ledger, supporting norito streaming, telemetry, and slashing for misbehavior. infrastructure networking nexus architecture p2p blindedcids exitcaches fixedsizecells gateways hybridpqhandshake"
+      "blob": "taikai the streaming and data pipeline platform in sora nexus governed on-ledger, supporting norito streaming, real-time telemetry, and cryptographic slashing for validator misbehavior. infrastructure networking nexus architecture p2p blindedcids exitcaches fixedsizecells gateways hybridpqhandshake"
     },
     {
       "slug": "tbcd",
@@ -9610,8 +9610,8 @@
         "Persistence",
         "Storage"
       ],
-      "summary": "The canonical state database holding current balances, metadata, and trigger definitions across all data spaces.",
-      "definition": "The canonical state database holding current balances, metadata, and trigger definitions across all data spaces.",
+      "summary": "The canonical state database in SORA Nexus holding current balances, metadata, and trigger definitions across all data spaces, providing every validator with a consistent snapshot of network state.",
+      "definition": "The canonical state database in SORA Nexus holding current balances, metadata, and trigger definitions across all data spaces, providing every validator with a consistent snapshot of network state.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -9622,7 +9622,7 @@
         "stateapplication"
       ],
       "glossaryRef": "/glossary/worldstateviewwsv",
-      "blob": "world state view (wsv) the canonical state database holding current balances, metadata, and trigger definitions across all data spaces. infrastructure nexus architecture persistence storage circuitbreakerstate erasurecodedwsv kura sorafs stateapplication"
+      "blob": "world state view (wsv) the canonical state database in sora nexus holding current balances, metadata, and trigger definitions across all data spaces, providing every validator with a consistent snapshot of network state. infrastructure nexus architecture persistence storage circuitbreakerstate erasurecodedwsv kura sorafs stateapplication"
     },
     {
       "slug": "xcm",
@@ -9936,5 +9936,5 @@
     }
   ],
   "totalCount": 369,
-  "lastUpdated": "2025-12-11T00:23:23.802Z"
+  "lastUpdated": "2025-12-11T00:33:08.821Z"
 }
