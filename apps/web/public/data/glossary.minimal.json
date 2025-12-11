@@ -701,7 +701,7 @@
       "slug": "execution",
       "title": "Execution",
       "category": "Execution",
-      "summary": "The IVM phase where admitted instructions mutate the World State View under deterministic gas and syscall rules.",
+      "summary": "The IVM phase in SORA Nexus where admitted instructions mutate the World State View under deterministic gas metering and syscall rules, ensuring identical results across validators.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
@@ -1058,7 +1058,7 @@
       "slug": "kotodama",
       "title": "Kotodama",
       "category": "Execution",
-      "summary": "The instruction set and runtime for Nexus smart contracts, compiled to deterministic bytecode for IVM execution.",
+      "summary": "The instruction set and runtime for SORA Nexus smart contracts, compiled to deterministic bytecode that the IVM executes with predictable gas costs and typed inputs.",
       "tagline": "Powers programmable logic on SORA without the unpredictability of Turing-complete VMs."
     },
     {
@@ -1079,7 +1079,7 @@
       "slug": "kura",
       "title": "Kura",
       "category": "Storage",
-      "summary": "The append-only history store in Iroha 3 that records every committed block alongside erasure-coded redundancy.",
+      "summary": "The append-only history store in SORA Nexus that records every committed block alongside erasure-coded redundancy, providing an immutable audit trail of all network activity.",
       "tagline": "Records every committed block alongside erasure-coded redundancy."
     },
     {
@@ -1127,7 +1127,7 @@
       "slug": "lanefinality",
       "title": "Lane Finality",
       "category": "Consensus",
-      "summary": "The ~1-second confirmation target each lane's SUMERAGI pipeline reaches before merge ordering with other lanes.",
+      "summary": "The approximately one-second confirmation target each lane's SUMERAGI pipeline in SORA Nexus reaches before merge ordering combines outputs with other parallel lanes.",
       "tagline": "Enables parallel transaction processing while maintaining global ordering guarantees."
     },
     {
@@ -1323,7 +1323,7 @@
       "slug": "mustserveslice",
       "title": "Must-Serve Slice",
       "category": "Execution",
-      "summary": "The fairness rule requiring any data space with pending work to get scheduled within a bounded number of slots.",
+      "summary": "The fairness rule in SORA Nexus requiring any data space with pending work to get scheduled within a bounded number of slots, preventing starvation of smaller participants.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
@@ -1369,7 +1369,7 @@
       "slug": "noritocodec",
       "title": "Norito Codec",
       "category": "Serialization & Encoding",
-      "summary": "The implementation that encodes/decodes Norito TLV structures and streams data for storage or networking layers.",
+      "summary": "The implementation in SORA Nexus that encodes and decodes Norito TLV structures, streaming data efficiently for storage layers, networking, and cross-validator communication.",
       "tagline": "Encodes/decodes Norito TLV structures and streams data for storage or networking layers."
     },
     {
@@ -1567,7 +1567,7 @@
       "slug": "privacytransactions",
       "title": "Privacy Transactions",
       "category": "Cryptography",
-      "summary": "Shielded flows that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers.",
+      "summary": "Shielded transaction flows in SORA Nexus that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers while maintaining auditability.",
       "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
     },
     {
@@ -1620,7 +1620,7 @@
       "slug": "proposevalidatevotecommit",
       "title": "Propose-validate-vote-commit",
       "category": "Consensus",
-      "summary": "The SUMERAGI pipeline stages that drive HotStuff-style consensus with deterministic leader rotation and locking.",
+      "summary": "The four SUMERAGI pipeline stages in SORA Nexus that drive HotStuff-style consensus with deterministic leader rotation, vote collection, and cryptographic locking for finality.",
       "tagline": "Drive HotStuff-style consensus with deterministic leader rotation and locking."
     },
     {
@@ -1739,7 +1739,7 @@
       "slug": "runtimeupgrades",
       "title": "Runtime Upgrades",
       "category": "Governance",
-      "summary": "Governed changes to binaries, ABIs, or parameters staged, verified, and activated atomically at an agreed slot.",
+      "summary": "Governed changes in SORA Nexus to binaries, ABIs, or parameters that are staged, verified, and activated atomically at an agreed slot across all validators simultaneously.",
       "tagline": "Allows the network to evolve without disruptive hard forks."
     },
     {
@@ -1954,7 +1954,7 @@
       "slug": "sorafs",
       "title": "SoraFS",
       "category": "Storage",
-      "summary": "The decentralized storage and erasure-coding layer that handles lane envelopes, DA proofs, and retry policies.",
+      "summary": "The decentralized storage and erasure-coding layer in SORA Nexus that handles lane envelopes, DA proofs, and retry policies for resilient data persistence across validators.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
@@ -2051,7 +2051,7 @@
       "slug": "starksecuritybudget",
       "title": "STARK Security Budget",
       "category": "Cryptography",
-      "summary": "The parameter sizing (blow-up factors, query counts, grinding) that keeps FASTPQ proofs at >=128-bit soundness.",
+      "summary": "The parameter sizing in SORA Nexus controlling blow-up factors, query counts, and grinding that keeps FASTPQ proofs at 128-bit or higher cryptographic soundness.",
       "tagline": "Ensures fair resource allocation across the network."
     },
     {
@@ -2072,7 +2072,7 @@
       "slug": "submission",
       "title": "Submission",
       "category": "Execution",
-      "summary": "The first step of the transaction lifecycle where signed Norito instructions enter the network through gateways.",
+      "summary": "The first step of the transaction lifecycle in SORA Nexus where signed Norito instructions enter the network through gateways and proceed to admission and scheduling.",
       "tagline": "Provides seamless access to SORA Nexus services."
     },
     {
@@ -2244,7 +2244,7 @@
       "slug": "transactionexecutionunitsteu",
       "title": "Transaction Execution Units (TEU)",
       "category": "Economics",
-      "summary": "The resource metric measuring instruction cost, bandwidth, and storage to drive scheduling and fee calculation.",
+      "summary": "The Transaction Execution Unit in SORA Nexus measuring instruction cost, bandwidth, and storage consumption to drive fair scheduling and predictable fee calculation.",
       "tagline": "Lets users predict transaction costs before submitting, preventing surprise fees."
     },
     {
@@ -2395,7 +2395,7 @@
       "slug": "xorutility",
       "title": "XOR Utility",
       "category": "Economics",
-      "summary": "The multi-role nature of XOR as fee token, settlement asset, collateral, and governance bond across data spaces.",
+      "summary": "The multi-role nature of XOR in SORA Nexus serving as fee token, settlement asset, collateral for bonds, and governance voting power across all data spaces.",
       "tagline": "Creates natural demand for XOR through its essential role in every network operation."
     },
     {
@@ -2435,5 +2435,5 @@
   "canonicalCount": 369,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-11T00:47:30.208Z"
+  "lastUpdated": "2025-12-11T00:50:50.640Z"
 }

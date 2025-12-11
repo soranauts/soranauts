@@ -2955,10 +2955,10 @@
   {
     "slug": "execution",
     "title": "Execution",
-    "summary": "The IVM phase where admitted instructions mutate the World State View under deterministic gas and syscall rules.",
+    "summary": "The IVM phase in SORA Nexus where admitted instructions mutate the World State View under deterministic gas metering and syscall rules, ensuring identical results across validators.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The IVM phase where admitted instructions mutate the World State View under deterministic gas and syscall rules.",
+    "definition": "The IVM phase in SORA Nexus where admitted instructions mutate the World State View under deterministic gas metering and syscall rules, ensuring identical results across validators.",
     "category": "Execution",
     "aliases": [],
     "tags": [
@@ -4373,10 +4373,10 @@
   {
     "slug": "kotodama",
     "title": "Kotodama",
-    "summary": "The instruction set and runtime for Nexus smart contracts, compiled to deterministic bytecode for IVM execution.",
+    "summary": "The instruction set and runtime for SORA Nexus smart contracts, compiled to deterministic bytecode that the IVM executes with predictable gas costs and typed inputs.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The instruction set and runtime for Nexus smart contracts, compiled to deterministic bytecode for IVM execution.",
+    "definition": "The instruction set and runtime for SORA Nexus smart contracts, compiled to deterministic bytecode that the IVM executes with predictable gas costs and typed inputs.",
     "category": "Execution",
     "aliases": [],
     "tags": [
@@ -4445,10 +4445,10 @@
   {
     "slug": "kura",
     "title": "Kura",
-    "summary": "The append-only history store in Iroha 3 that records every committed block alongside erasure-coded redundancy.",
+    "summary": "The append-only history store in SORA Nexus that records every committed block alongside erasure-coded redundancy, providing an immutable audit trail of all network activity.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The append-only history store in Iroha 3 that records every committed block alongside erasure-coded redundancy.",
+    "definition": "The append-only history store in SORA Nexus that records every committed block alongside erasure-coded redundancy, providing an immutable audit trail of all network activity.",
     "category": "Storage",
     "aliases": [],
     "tags": [
@@ -4655,10 +4655,10 @@
   {
     "slug": "lanefinality",
     "title": "Lane Finality",
-    "summary": "The ~1-second confirmation target each lane's SUMERAGI pipeline reaches before merge ordering with other lanes.",
+    "summary": "The approximately one-second confirmation target each lane's SUMERAGI pipeline in SORA Nexus reaches before merge ordering combines outputs with other parallel lanes.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The ~1-second confirmation target each lane's SUMERAGI pipeline reaches before merge ordering with other lanes.",
+    "definition": "The approximately one-second confirmation target each lane's SUMERAGI pipeline in SORA Nexus reaches before merge ordering combines outputs with other parallel lanes.",
     "category": "Consensus",
     "aliases": [],
     "tags": [
@@ -5445,10 +5445,10 @@
   {
     "slug": "mustserveslice",
     "title": "Must-Serve Slice",
-    "summary": "The fairness rule requiring any data space with pending work to get scheduled within a bounded number of slots.",
+    "summary": "The fairness rule in SORA Nexus requiring any data space with pending work to get scheduled within a bounded number of slots, preventing starvation of smaller participants.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The fairness rule requiring any data space with pending work to get scheduled within a bounded number of slots.",
+    "definition": "The fairness rule in SORA Nexus requiring any data space with pending work to get scheduled within a bounded number of slots, preventing starvation of smaller participants.",
     "category": "Execution",
     "aliases": [],
     "tags": [
@@ -5620,10 +5620,10 @@
   {
     "slug": "noritocodec",
     "title": "Norito Codec",
-    "summary": "The implementation that encodes/decodes Norito TLV structures and streams data for storage or networking layers.",
+    "summary": "The implementation in SORA Nexus that encodes and decodes Norito TLV structures, streaming data efficiently for storage layers, networking, and cross-validator communication.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The implementation that encodes/decodes Norito TLV structures and streams data for storage or networking layers.",
+    "definition": "The implementation in SORA Nexus that encodes and decodes Norito TLV structures, streaming data efficiently for storage layers, networking, and cross-validator communication.",
     "category": "Serialization & Encoding",
     "aliases": [],
     "tags": [
@@ -6414,10 +6414,10 @@
   {
     "slug": "privacytransactions",
     "title": "Privacy Transactions",
-    "summary": "Shielded flows that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers.",
+    "summary": "Shielded transaction flows in SORA Nexus that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers while maintaining auditability.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "Shielded flows that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers.",
+    "definition": "Shielded transaction flows in SORA Nexus that keep amounts and participants confidential via Halo2 circuits, commitments, and nullifiers while maintaining auditability.",
     "category": "Cryptography",
     "aliases": [],
     "tags": [
@@ -6618,10 +6618,10 @@
   {
     "slug": "proposevalidatevotecommit",
     "title": "Propose-validate-vote-commit",
-    "summary": "The SUMERAGI pipeline stages that drive HotStuff-style consensus with deterministic leader rotation and locking.",
+    "summary": "The four SUMERAGI pipeline stages in SORA Nexus that drive HotStuff-style consensus with deterministic leader rotation, vote collection, and cryptographic locking for finality.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The SUMERAGI pipeline stages that drive HotStuff-style consensus with deterministic leader rotation and locking.",
+    "definition": "The four SUMERAGI pipeline stages in SORA Nexus that drive HotStuff-style consensus with deterministic leader rotation, vote collection, and cryptographic locking for finality.",
     "category": "Consensus",
     "aliases": [],
     "tags": [
@@ -7140,10 +7140,10 @@
   {
     "slug": "runtimeupgrades",
     "title": "Runtime Upgrades",
-    "summary": "Governed changes to binaries, ABIs, or parameters staged, verified, and activated atomically at an agreed slot.",
+    "summary": "Governed changes in SORA Nexus to binaries, ABIs, or parameters that are staged, verified, and activated atomically at an agreed slot across all validators simultaneously.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "Governed changes to binaries, ABIs, or parameters staged, verified, and activated atomically at an agreed slot.",
+    "definition": "Governed changes in SORA Nexus to binaries, ABIs, or parameters that are staged, verified, and activated atomically at an agreed slot across all validators simultaneously.",
     "category": "Governance",
     "aliases": [],
     "tags": [
@@ -8034,10 +8034,10 @@
   {
     "slug": "sorafs",
     "title": "SoraFS",
-    "summary": "The decentralized storage and erasure-coding layer that handles lane envelopes, DA proofs, and retry policies.",
+    "summary": "The decentralized storage and erasure-coding layer in SORA Nexus that handles lane envelopes, DA proofs, and retry policies for resilient data persistence across validators.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The decentralized storage and erasure-coding layer that handles lane envelopes, DA proofs, and retry policies.",
+    "definition": "The decentralized storage and erasure-coding layer in SORA Nexus that handles lane envelopes, DA proofs, and retry policies for resilient data persistence across validators.",
     "category": "Storage",
     "aliases": [],
     "tags": [
@@ -8491,10 +8491,10 @@
   {
     "slug": "starksecuritybudget",
     "title": "STARK Security Budget",
-    "summary": "The parameter sizing (blow-up factors, query counts, grinding) that keeps FASTPQ proofs at >=128-bit soundness.",
+    "summary": "The parameter sizing in SORA Nexus controlling blow-up factors, query counts, and grinding that keeps FASTPQ proofs at 128-bit or higher cryptographic soundness.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The parameter sizing (blow-up factors, query counts, grinding) that keeps FASTPQ proofs at >=128-bit soundness.",
+    "definition": "The parameter sizing in SORA Nexus controlling blow-up factors, query counts, and grinding that keeps FASTPQ proofs at 128-bit or higher cryptographic soundness.",
     "category": "Cryptography",
     "aliases": [],
     "tags": [
@@ -8562,10 +8562,10 @@
   {
     "slug": "submission",
     "title": "Submission",
-    "summary": "The first step of the transaction lifecycle where signed Norito instructions enter the network through gateways.",
+    "summary": "The first step of the transaction lifecycle in SORA Nexus where signed Norito instructions enter the network through gateways and proceed to admission and scheduling.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The first step of the transaction lifecycle where signed Norito instructions enter the network through gateways.",
+    "definition": "The first step of the transaction lifecycle in SORA Nexus where signed Norito instructions enter the network through gateways and proceed to admission and scheduling.",
     "category": "Execution",
     "aliases": [],
     "tags": [
@@ -9307,10 +9307,10 @@
   {
     "slug": "transactionexecutionunitsteu",
     "title": "Transaction Execution Units (TEU)",
-    "summary": "The resource metric measuring instruction cost, bandwidth, and storage to drive scheduling and fee calculation.",
+    "summary": "The Transaction Execution Unit in SORA Nexus measuring instruction cost, bandwidth, and storage consumption to drive fair scheduling and predictable fee calculation.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The resource metric measuring instruction cost, bandwidth, and storage to drive scheduling and fee calculation.",
+    "definition": "The Transaction Execution Unit in SORA Nexus measuring instruction cost, bandwidth, and storage consumption to drive fair scheduling and predictable fee calculation.",
     "category": "Economics",
     "aliases": [],
     "tags": [
@@ -9963,10 +9963,10 @@
   {
     "slug": "xorutility",
     "title": "XOR Utility",
-    "summary": "The multi-role nature of XOR as fee token, settlement asset, collateral, and governance bond across data spaces.",
+    "summary": "The multi-role nature of XOR in SORA Nexus serving as fee token, settlement asset, collateral for bonds, and governance voting power across all data spaces.",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "The multi-role nature of XOR as fee token, settlement asset, collateral, and governance bond across data spaces.",
+    "definition": "The multi-role nature of XOR in SORA Nexus serving as fee token, settlement asset, collateral for bonds, and governance voting power across all data spaces.",
     "category": "Economics",
     "aliases": [],
     "tags": [
