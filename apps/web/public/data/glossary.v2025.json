@@ -4584,10 +4584,10 @@
     {
       "slug": "lambdaexit",
       "title": "Lambda Exit",
-      "summary": "The throughput threshold that triggers deterministic lane splits when demand exceeds configured capacity.",
+      "summary": "The throughput threshold in SORA Nexus that triggers deterministic lane splits when transaction demand exceeds configured capacity, enabling automatic horizontal scaling.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The throughput threshold that triggers deterministic lane splits when demand exceeds configured capacity.",
+      "definition": "The throughput threshold in SORA Nexus that triggers deterministic lane splits when transaction demand exceeds configured capacity, enabling automatic horizontal scaling.",
       "category": "Execution",
       "aliases": [],
       "tags": [
@@ -4997,10 +4997,10 @@
     {
       "slug": "lockedqc",
       "title": "Locked QC",
-      "summary": "The highest quorum certificate a validator is currently locked on, enforcing HotStuff-style safety rules.",
+      "summary": "The highest quorum certificate a validator in SORA Nexus is currently locked on, enforcing HotStuff-style safety rules that prevent conflicting block commits.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The highest quorum certificate a validator is currently locked on, enforcing HotStuff-style safety rules.",
+      "definition": "The highest quorum certificate a validator in SORA Nexus is currently locked on, enforcing HotStuff-style safety rules that prevent conflicting block commits.",
       "category": "Consensus",
       "aliases": [],
       "tags": [
@@ -5741,10 +5741,10 @@
     {
       "slug": "nposvariant",
       "title": "NPoS Variant",
-      "summary": "A committee selection option where validators are chosen via Nominated Proof of Stake with VRF sortition.",
+      "summary": "A committee selection mechanism in SORA Nexus where validators are chosen via Nominated Proof of Stake combined with VRF sortition for fair, unpredictable selection.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "A committee selection option where validators are chosen via Nominated Proof of Stake with VRF sortition.",
+      "definition": "A committee selection mechanism in SORA Nexus where validators are chosen via Nominated Proof of Stake combined with VRF sortition for fair, unpredictable selection.",
       "category": "Consensus",
       "aliases": [],
       "tags": [
@@ -6316,10 +6316,10 @@
     {
       "slug": "poseidon2",
       "title": "Poseidon2",
-      "summary": "The hash function optimized for zero-knowledge circuits, used extensively in FASTPQ commitments and SMTs.",
+      "summary": "The algebraic hash function optimized for zero-knowledge circuits in SORA Nexus, used extensively in FASTPQ commitments, Sparse Merkle Trees, and state proofs.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The hash function optimized for zero-knowledge circuits, used extensively in FASTPQ commitments and SMTs.",
+      "definition": "The algebraic hash function optimized for zero-knowledge circuits in SORA Nexus, used extensively in FASTPQ commitments, Sparse Merkle Trees, and state proofs.",
       "category": "Cryptography",
       "aliases": [],
       "tags": [
@@ -6986,10 +6986,10 @@
     {
       "slug": "revocationwindows",
       "title": "Revocation Windows",
-      "summary": "Bounded time intervals during which off-chain vouchers can be canceled if reconciliation uncovers fraud.",
+      "summary": "Bounded time intervals in SORA Nexus during which off-chain vouchers can be canceled if reconciliation uncovers fraud, protecting users from delayed attack vectors.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Bounded time intervals during which off-chain vouchers can be canceled if reconciliation uncovers fraud.",
+      "definition": "Bounded time intervals in SORA Nexus during which off-chain vouchers can be canceled if reconciliation uncovers fraud, protecting users from delayed attack vectors.",
       "category": "Accounts & Identity",
       "aliases": [],
       "tags": [
@@ -7386,10 +7386,10 @@
     {
       "slug": "seedbeacon",
       "title": "Seed Beacon",
-      "summary": "The randomness derivation combining previous epoch entropy and BLAKE2b hashing to select leaders fairly.",
+      "summary": "The randomness derivation mechanism in SORA Nexus that combines previous epoch entropy with BLAKE2b hashing to select consensus leaders fairly and unpredictably.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The randomness derivation combining previous epoch entropy and BLAKE2b hashing to select leaders fairly.",
+      "definition": "The randomness derivation mechanism in SORA Nexus that combines previous epoch entropy with BLAKE2b hashing to select consensus leaders fairly and unpredictably.",
       "category": "Consensus",
       "aliases": [],
       "tags": [
@@ -7958,10 +7958,10 @@
     {
       "slug": "soracles",
       "title": "Soracles",
-      "summary": "Deterministic oracle actors governed like data spaces, with onboarding, rate limits, and proof budgets.",
+      "summary": "Deterministic oracle actors in SORA Nexus governed like data spaces, with onboarding requirements, rate limits, and proof budgets that bring off-chain data on-chain securely.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Deterministic oracle actors governed like data spaces, with onboarding, rate limits, and proof budgets.",
+      "definition": "Deterministic oracle actors in SORA Nexus governed like data spaces, with onboarding requirements, rate limits, and proof budgets that bring off-chain data on-chain securely.",
       "category": "Governance",
       "aliases": [],
       "tags": [
@@ -8468,10 +8468,10 @@
     {
       "slug": "stark",
       "title": "Stark",
-      "summary": "The transparent proof system underpinning FASTPQ, providing post-quantum security without trusted setup.",
+      "summary": "The transparent proof system underpinning FASTPQ in SORA Nexus, providing post-quantum security and succinct verification without requiring a trusted setup ceremony.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The transparent proof system underpinning FASTPQ, providing post-quantum security without trusted setup.",
+      "definition": "The transparent proof system underpinning FASTPQ in SORA Nexus, providing post-quantum security and succinct verification without requiring a trusted setup ceremony.",
       "category": "Cryptography",
       "aliases": [],
       "tags": [
@@ -8678,10 +8678,10 @@
     {
       "slug": "sumeragipipeline",
       "title": "SUMERAGI Pipeline",
-      "summary": "The multi-stage HotStuff-like process in Iroha 3 that sequences proposals, votes, and commits per lane.",
+      "summary": "The multi-stage HotStuff-like consensus process in SORA Nexus that sequences proposals, votes, and commits per lane, achieving sub-second finality with Byzantine fault tolerance.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The multi-stage HotStuff-like process in Iroha 3 that sequences proposals, votes, and commits per lane.",
+      "definition": "The multi-stage HotStuff-like consensus process in SORA Nexus that sequences proposals, votes, and commits per lane, achieving sub-second finality with Byzantine fault tolerance.",
       "category": "Consensus",
       "aliases": [],
       "tags": [
@@ -9916,10 +9916,10 @@
     {
       "slug": "xorbonds",
       "title": "XOR Bonds",
-      "summary": "Stake deposits in XOR that governance proposals or data-space onboardings must lock to align incentives.",
+      "summary": "Stake deposits in XOR that governance proposals or data-space onboardings in SORA Nexus must lock, aligning economic incentives with network participation.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Stake deposits in XOR that governance proposals or data-space onboardings must lock to align incentives.",
+      "definition": "Stake deposits in XOR that governance proposals or data-space onboardings in SORA Nexus must lock, aligning economic incentives with network participation.",
       "category": "Economics",
       "aliases": [],
       "tags": [
@@ -9940,10 +9940,10 @@
     {
       "slug": "xorfeeequilibrium",
       "title": "XOR Fee Equilibrium",
-      "summary": "The economic model that balances lane demand, TEU costs, and fee floors so XOR rewards stay predictable.",
+      "summary": "The economic model in SORA Nexus that balances lane demand, TEU costs, and fee floors to keep XOR rewards predictable and prevent fee volatility.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The economic model that balances lane demand, TEU costs, and fee floors so XOR rewards stay predictable.",
+      "definition": "The economic model in SORA Nexus that balances lane demand, TEU costs, and fee floors to keep XOR rewards predictable and prevent fee volatility.",
       "category": "Economics",
       "aliases": [],
       "tags": [
@@ -10065,10 +10065,10 @@
     {
       "slug": "zkbackedaccesstickets",
       "title": "ZK-Backed Access Tickets",
-      "summary": "Proof-carrying credentials in SoraNet that grant network access while obscuring user identity or route.",
+      "summary": "Proof-carrying credentials in SORA Nexus that grant network access while cryptographically obscuring user identity and routing paths, enabling private participation.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Proof-carrying credentials in SoraNet that grant network access while obscuring user identity or route.",
+      "definition": "Proof-carrying credentials in SORA Nexus that grant network access while cryptographically obscuring user identity and routing paths, enabling private participation.",
       "category": "Networking",
       "aliases": [],
       "tags": [
@@ -10139,5 +10139,5 @@
   "aliasCount": 39,
   "deprecatedCount": 0,
   "version": 2025,
-  "lastUpdated": "2025-12-11T00:38:12.136Z"
+  "lastUpdated": "2025-12-11T00:43:23.075Z"
 }

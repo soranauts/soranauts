@@ -4526,8 +4526,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The throughput threshold that triggers deterministic lane splits when demand exceeds configured capacity.",
-      "definition": "The throughput threshold that triggers deterministic lane splits when demand exceeds configured capacity.",
+      "summary": "The throughput threshold in SORA Nexus that triggers deterministic lane splits when transaction demand exceeds configured capacity, enabling automatic horizontal scaling.",
+      "definition": "The throughput threshold in SORA Nexus that triggers deterministic lane splits when transaction demand exceeds configured capacity, enabling automatic horizontal scaling.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4538,7 +4538,7 @@
         "lambdafloor"
       ],
       "glossaryRef": "/glossary/lambdaexit",
-      "blob": "lambda exit the throughput threshold that triggers deterministic lane splits when demand exceeds configured capacity. execution ivm nexus architecture smart contracts action activationslot admission exitcaches lambdafloor"
+      "blob": "lambda exit the throughput threshold in sora nexus that triggers deterministic lane splits when transaction demand exceeds configured capacity, enabling automatic horizontal scaling. execution ivm nexus architecture smart contracts action activationslot admission exitcaches lambdafloor"
     },
     {
       "slug": "lambdafloor",
@@ -4943,8 +4943,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "The highest quorum certificate a validator is currently locked on, enforcing HotStuff-style safety rules.",
-      "definition": "The highest quorum certificate a validator is currently locked on, enforcing HotStuff-style safety rules.",
+      "summary": "The highest quorum certificate a validator in SORA Nexus is currently locked on, enforcing HotStuff-style safety rules that prevent conflicting block commits.",
+      "definition": "The highest quorum certificate a validator in SORA Nexus is currently locked on, enforcing HotStuff-style safety rules that prevent conflicting block commits.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4955,7 +4955,7 @@
         "quorumcertificate"
       ],
       "glossaryRef": "/glossary/lockedqc",
-      "blob": "locked qc the highest quorum certificate a validator is currently locked on, enforcing hotstuff-style safety rules. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality newview quorumcertificate"
+      "blob": "locked qc the highest quorum certificate a validator in sora nexus is currently locked on, enforcing hotstuff-style safety rules that prevent conflicting block commits. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality newview quorumcertificate"
     },
     {
       "slug": "makerdao",
@@ -5704,8 +5704,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "A committee selection option where validators are chosen via Nominated Proof of Stake with VRF sortition.",
-      "definition": "A committee selection option where validators are chosen via Nominated Proof of Stake with VRF sortition.",
+      "summary": "A committee selection mechanism in SORA Nexus where validators are chosen via Nominated Proof of Stake combined with VRF sortition for fair, unpredictable selection.",
+      "definition": "A committee selection mechanism in SORA Nexus where validators are chosen via Nominated Proof of Stake combined with VRF sortition for fair, unpredictable selection.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5716,7 +5716,7 @@
         "newview"
       ],
       "glossaryRef": "/glossary/nposvariant",
-      "blob": "npos variant a committee selection option where validators are chosen via nominated proof of stake with vrf sortition. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality lockedqc newview"
+      "blob": "npos variant a committee selection mechanism in sora nexus where validators are chosen via nominated proof of stake combined with vrf sortition for fair, unpredictable selection. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality lockedqc newview"
     },
     {
       "slug": "nullifiers",
@@ -6260,8 +6260,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "The hash function optimized for zero-knowledge circuits, used extensively in FASTPQ commitments and SMTs.",
-      "definition": "The hash function optimized for zero-knowledge circuits, used extensively in FASTPQ commitments and SMTs.",
+      "summary": "The algebraic hash function optimized for zero-knowledge circuits in SORA Nexus, used extensively in FASTPQ commitments, Sparse Merkle Trees, and state proofs.",
+      "definition": "The algebraic hash function optimized for zero-knowledge circuits in SORA Nexus, used extensively in FASTPQ commitments, Sparse Merkle Trees, and state proofs.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -6272,7 +6272,7 @@
         "deepfri"
       ],
       "glossaryRef": "/glossary/poseidon2",
-      "blob": "poseidon2 the hash function optimized for zero-knowledge circuits, used extensively in fastpq commitments and smts. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
+      "blob": "poseidon2 the algebraic hash function optimized for zero-knowledge circuits in sora nexus, used extensively in fastpq commitments, sparse merkle trees, and state proofs. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
     },
     {
       "slug": "preauthorizedvouchers",
@@ -6921,8 +6921,8 @@
         "Nexus Architecture",
         "Security"
       ],
-      "summary": "Bounded time intervals during which off-chain vouchers can be canceled if reconciliation uncovers fraud.",
-      "definition": "Bounded time intervals during which off-chain vouchers can be canceled if reconciliation uncovers fraud.",
+      "summary": "Bounded time intervals in SORA Nexus during which off-chain vouchers can be canceled if reconciliation uncovers fraud, protecting users from delayed attack vectors.",
+      "definition": "Bounded time intervals in SORA Nexus during which off-chain vouchers can be canceled if reconciliation uncovers fraud, protecting users from delayed attack vectors.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -6933,7 +6933,7 @@
         "dualsig"
       ],
       "glossaryRef": "/glossary/revocationwindows",
-      "blob": "revocation windows bounded time intervals during which off-chain vouchers can be canceled if reconciliation uncovers fraud. accounts identity nexus architecture security accountid accountlifecycle assetdefinitionid bech32format dualsig"
+      "blob": "revocation windows bounded time intervals in sora nexus during which off-chain vouchers can be canceled if reconciliation uncovers fraud, protecting users from delayed attack vectors. accounts identity nexus architecture security accountid accountlifecycle assetdefinitionid bech32format dualsig"
     },
     {
       "slug": "rewards",
@@ -7320,8 +7320,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "The randomness derivation combining previous epoch entropy and BLAKE2b hashing to select leaders fairly.",
-      "definition": "The randomness derivation combining previous epoch entropy and BLAKE2b hashing to select leaders fairly.",
+      "summary": "The randomness derivation mechanism in SORA Nexus that combines previous epoch entropy with BLAKE2b hashing to select consensus leaders fairly and unpredictably.",
+      "definition": "The randomness derivation mechanism in SORA Nexus that combines previous epoch entropy with BLAKE2b hashing to select consensus leaders fairly and unpredictably.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -7332,7 +7332,7 @@
         "newview"
       ],
       "glossaryRef": "/glossary/seedbeacon",
-      "blob": "seed beacon the randomness derivation combining previous epoch entropy and blake2b hashing to select leaders fairly. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality lockedqc newview"
+      "blob": "seed beacon the randomness derivation mechanism in sora nexus that combines previous epoch entropy with blake2b hashing to select consensus leaders fairly and unpredictably. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality lockedqc newview"
     },
     {
       "slug": "sha2",
@@ -7875,8 +7875,8 @@
         "Nexus Architecture",
         "Policy"
       ],
-      "summary": "Deterministic oracle actors governed like data spaces, with onboarding, rate limits, and proof budgets.",
-      "definition": "Deterministic oracle actors governed like data spaces, with onboarding, rate limits, and proof budgets.",
+      "summary": "Deterministic oracle actors in SORA Nexus governed like data spaces, with onboarding requirements, rate limits, and proof budgets that bring off-chain data on-chain securely.",
+      "definition": "Deterministic oracle actors in SORA Nexus governed like data spaces, with onboarding requirements, rate limits, and proof budgets that bring off-chain data on-chain securely.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -7887,7 +7887,7 @@
         "triggers"
       ],
       "glossaryRef": "/glossary/soracles",
-      "blob": "soracles deterministic oracle actors governed like data spaces, with onboarding, rate limits, and proof budgets. data spaces governance nexus architecture policy assembly budget dataspaces governancesurfaces triggers"
+      "blob": "soracles deterministic oracle actors in sora nexus governed like data spaces, with onboarding requirements, rate limits, and proof budgets that bring off-chain data on-chain securely. data spaces governance nexus architecture policy assembly budget dataspaces governancesurfaces triggers"
     },
     {
       "slug": "soracouncil",
@@ -8346,8 +8346,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "The transparent proof system underpinning FASTPQ, providing post-quantum security without trusted setup.",
-      "definition": "The transparent proof system underpinning FASTPQ, providing post-quantum security without trusted setup.",
+      "summary": "The transparent proof system underpinning FASTPQ in SORA Nexus, providing post-quantum security and succinct verification without requiring a trusted setup ceremony.",
+      "definition": "The transparent proof system underpinning FASTPQ in SORA Nexus, providing post-quantum security and succinct verification without requiring a trusted setup ceremony.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -8358,7 +8358,7 @@
         "zkstarkvsstark"
       ],
       "glossaryRef": "/glossary/stark",
-      "blob": "stark the transparent proof system underpinning fastpq, providing post-quantum security without trusted setup. cryptography nexus architecture proofs security blake2b canonicalprimitives fastpqzkstarkproofs starksecuritybudget zkstarkvsstark"
+      "blob": "stark the transparent proof system underpinning fastpq in sora nexus, providing post-quantum security and succinct verification without requiring a trusted setup ceremony. cryptography nexus architecture proofs security blake2b canonicalprimitives fastpqzkstarkproofs starksecuritybudget zkstarkvsstark"
     },
     {
       "slug": "starksecuritybudget",
@@ -8568,8 +8568,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "The multi-stage HotStuff-like process in Iroha 3 that sequences proposals, votes, and commits per lane.",
-      "definition": "The multi-stage HotStuff-like process in Iroha 3 that sequences proposals, votes, and commits per lane.",
+      "summary": "The multi-stage HotStuff-like consensus process in SORA Nexus that sequences proposals, votes, and commits per lane, achieving sub-second finality with Byzantine fault tolerance.",
+      "definition": "The multi-stage HotStuff-like consensus process in SORA Nexus that sequences proposals, votes, and commits per lane, achieving sub-second finality with Byzantine fault tolerance.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -8580,7 +8580,7 @@
         "sumeragiconsensus"
       ],
       "glossaryRef": "/glossary/sumeragipipeline",
-      "blob": "sumeragi pipeline the multi-stage hotstuff-like process in iroha 3 that sequences proposals, votes, and commits per lane. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality sumeragi sumeragiconsensus"
+      "blob": "sumeragi pipeline the multi-stage hotstuff-like consensus process in sora nexus that sequences proposals, votes, and commits per lane, achieving sub-second finality with byzantine fault tolerance. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality sumeragi sumeragiconsensus"
     },
     {
       "slug": "supplymanagement",
@@ -9725,8 +9725,8 @@
         "Nexus Architecture",
         "Tokenomics"
       ],
-      "summary": "Stake deposits in XOR that governance proposals or data-space onboardings must lock to align incentives.",
-      "definition": "Stake deposits in XOR that governance proposals or data-space onboardings must lock to align incentives.",
+      "summary": "Stake deposits in XOR that governance proposals or data-space onboardings in SORA Nexus must lock, aligning economic incentives with network participation.",
+      "definition": "Stake deposits in XOR that governance proposals or data-space onboardings in SORA Nexus must lock, aligning economic incentives with network participation.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -9737,7 +9737,7 @@
         "xorutility"
       ],
       "glossaryRef": "/glossary/xorbonds",
-      "blob": "xor bonds stake deposits in xor that governance proposals or data-space onboardings must lock to align incentives. economics incentives nexus architecture tokenomics budget collateralizedlocks economicmodel xorfeeequilibrium xorutility"
+      "blob": "xor bonds stake deposits in xor that governance proposals or data-space onboardings in sora nexus must lock, aligning economic incentives with network participation. economics incentives nexus architecture tokenomics budget collateralizedlocks economicmodel xorfeeequilibrium xorutility"
     },
     {
       "slug": "xorfeeequilibrium",
@@ -9752,8 +9752,8 @@
         "Nexus Architecture",
         "Tokenomics"
       ],
-      "summary": "The economic model that balances lane demand, TEU costs, and fee floors so XOR rewards stay predictable.",
-      "definition": "The economic model that balances lane demand, TEU costs, and fee floors so XOR rewards stay predictable.",
+      "summary": "The economic model in SORA Nexus that balances lane demand, TEU costs, and fee floors to keep XOR rewards predictable and prevent fee volatility.",
+      "definition": "The economic model in SORA Nexus that balances lane demand, TEU costs, and fee floors to keep XOR rewards predictable and prevent fee volatility.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -9764,7 +9764,7 @@
         "xorutility"
       ],
       "glossaryRef": "/glossary/xorfeeequilibrium",
-      "blob": "xor fee equilibrium the economic model that balances lane demand, teu costs, and fee floors so xor rewards stay predictable. economics incentives nexus architecture tokenomics budget collateralizedlocks economicmodel xorbonds xorutility"
+      "blob": "xor fee equilibrium the economic model in sora nexus that balances lane demand, teu costs, and fee floors to keep xor rewards predictable and prevent fee volatility. economics incentives nexus architecture tokenomics budget collateralizedlocks economicmodel xorbonds xorutility"
     },
     {
       "slug": "xorutility",
@@ -9866,8 +9866,8 @@
         "Nexus Architecture",
         "P2P"
       ],
-      "summary": "Proof-carrying credentials in SoraNet that grant network access while obscuring user identity or route.",
-      "definition": "Proof-carrying credentials in SoraNet that grant network access while obscuring user identity or route.",
+      "summary": "Proof-carrying credentials in SORA Nexus that grant network access while cryptographically obscuring user identity and routing paths, enabling private participation.",
+      "definition": "Proof-carrying credentials in SORA Nexus that grant network access while cryptographically obscuring user identity and routing paths, enabling private participation.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -9878,7 +9878,7 @@
         "zkstarkvsstark"
       ],
       "glossaryRef": "/glossary/zkbackedaccesstickets",
-      "blob": "zk-backed access tickets proof-carrying credentials in soranet that grant network access while obscuring user identity or route. infrastructure networking nexus architecture p2p blindedcids exitcaches fastpqzkstarkproofs zkdaproofs zkstarkvsstark"
+      "blob": "zk-backed access tickets proof-carrying credentials in sora nexus that grant network access while cryptographically obscuring user identity and routing paths, enabling private participation. infrastructure networking nexus architecture p2p blindedcids exitcaches fastpqzkstarkproofs zkdaproofs zkstarkvsstark"
     },
     {
       "slug": "zkdaproofs",
@@ -9936,5 +9936,5 @@
     }
   ],
   "totalCount": 369,
-  "lastUpdated": "2025-12-11T00:38:12.138Z"
+  "lastUpdated": "2025-12-11T00:43:23.076Z"
 }

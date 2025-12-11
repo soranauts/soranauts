@@ -1106,7 +1106,7 @@
       "slug": "lambdaexit",
       "title": "Lambda Exit",
       "category": "Execution",
-      "summary": "The throughput threshold that triggers deterministic lane splits when demand exceeds configured capacity.",
+      "summary": "The throughput threshold in SORA Nexus that triggers deterministic lane splits when transaction demand exceeds configured capacity, enabling automatic horizontal scaling.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
@@ -1207,7 +1207,7 @@
       "slug": "lockedqc",
       "title": "Locked QC",
       "category": "Consensus",
-      "summary": "The highest quorum certificate a validator is currently locked on, enforcing HotStuff-style safety rules.",
+      "summary": "The highest quorum certificate a validator in SORA Nexus is currently locked on, enforcing HotStuff-style safety rules that prevent conflicting block commits.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
@@ -1404,7 +1404,7 @@
       "slug": "nposvariant",
       "title": "NPoS Variant",
       "category": "Consensus",
-      "summary": "A committee selection option where validators are chosen via Nominated Proof of Stake with VRF sortition.",
+      "summary": "A committee selection mechanism in SORA Nexus where validators are chosen via Nominated Proof of Stake combined with VRF sortition for fair, unpredictable selection.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
@@ -1541,7 +1541,7 @@
       "slug": "poseidon2",
       "title": "Poseidon2",
       "category": "Cryptography",
-      "summary": "The hash function optimized for zero-knowledge circuits, used extensively in FASTPQ commitments and SMTs.",
+      "summary": "The algebraic hash function optimized for zero-knowledge circuits in SORA Nexus, used extensively in FASTPQ commitments, Sparse Merkle Trees, and state proofs.",
       "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
@@ -1699,7 +1699,7 @@
       "slug": "revocationwindows",
       "title": "Revocation Windows",
       "category": "Accounts & Identity",
-      "summary": "Bounded time intervals during which off-chain vouchers can be canceled if reconciliation uncovers fraud.",
+      "summary": "Bounded time intervals in SORA Nexus during which off-chain vouchers can be canceled if reconciliation uncovers fraud, protecting users from delayed attack vectors.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
@@ -1803,7 +1803,7 @@
       "slug": "seedbeacon",
       "title": "Seed Beacon",
       "category": "Consensus",
-      "summary": "The randomness derivation combining previous epoch entropy and BLAKE2b hashing to select leaders fairly.",
+      "summary": "The randomness derivation mechanism in SORA Nexus that combines previous epoch entropy with BLAKE2b hashing to select consensus leaders fairly and unpredictably.",
       "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
@@ -1935,7 +1935,7 @@
       "slug": "soracles",
       "title": "Soracles",
       "category": "Governance",
-      "summary": "Deterministic oracle actors governed like data spaces, with onboarding, rate limits, and proof budgets.",
+      "summary": "Deterministic oracle actors in SORA Nexus governed like data spaces, with onboarding requirements, rate limits, and proof budgets that bring off-chain data on-chain securely.",
       "tagline": "Brings off-chain data on-chain with the same security guarantees as native transactions."
     },
     {
@@ -2044,7 +2044,7 @@
       "slug": "stark",
       "title": "Stark",
       "category": "Cryptography",
-      "summary": "The transparent proof system underpinning FASTPQ, providing post-quantum security without trusted setup.",
+      "summary": "The transparent proof system underpinning FASTPQ in SORA Nexus, providing post-quantum security and succinct verification without requiring a trusted setup ceremony.",
       "tagline": "Enhances network security and protects user data."
     },
     {
@@ -2099,7 +2099,7 @@
       "slug": "sumeragipipeline",
       "title": "SUMERAGI Pipeline",
       "category": "Consensus",
-      "summary": "The multi-stage HotStuff-like process in Iroha 3 that sequences proposals, votes, and commits per lane.",
+      "summary": "The multi-stage HotStuff-like consensus process in SORA Nexus that sequences proposals, votes, and commits per lane, achieving sub-second finality with Byzantine fault tolerance.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
@@ -2381,14 +2381,14 @@
       "slug": "xorbonds",
       "title": "XOR Bonds",
       "category": "Economics",
-      "summary": "Stake deposits in XOR that governance proposals or data-space onboardings must lock to align incentives.",
+      "summary": "Stake deposits in XOR that governance proposals or data-space onboardings in SORA Nexus must lock, aligning economic incentives with network participation.",
       "tagline": "Empowers the community to shape the network's evolution."
     },
     {
       "slug": "xorfeeequilibrium",
       "title": "XOR Fee Equilibrium",
       "category": "Economics",
-      "summary": "The economic model that balances lane demand, TEU costs, and fee floors so XOR rewards stay predictable.",
+      "summary": "The economic model in SORA Nexus that balances lane demand, TEU costs, and fee floors to keep XOR rewards predictable and prevent fee volatility.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
@@ -2414,7 +2414,7 @@
       "slug": "zkbackedaccesstickets",
       "title": "ZK-Backed Access Tickets",
       "category": "Networking",
-      "summary": "Proof-carrying credentials in SoraNet that grant network access while obscuring user identity or route.",
+      "summary": "Proof-carrying credentials in SORA Nexus that grant network access while cryptographically obscuring user identity and routing paths, enabling private participation.",
       "tagline": "Grant network access while obscuring user identity or route."
     },
     {
@@ -2435,5 +2435,5 @@
   "canonicalCount": 369,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-11T00:38:12.171Z"
+  "lastUpdated": "2025-12-11T00:43:23.118Z"
 }
