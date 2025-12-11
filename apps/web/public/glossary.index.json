@@ -2036,8 +2036,8 @@
         "Nexus Architecture",
         "Proofs"
       ],
-      "summary": "The guarantee that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline.",
-      "definition": "The guarantee that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline.",
+      "summary": "The guarantee in SORA Nexus that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline, preventing data withholding attacks.",
+      "definition": "The guarantee in SORA Nexus that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline, preventing data withholding attacks.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -2048,7 +2048,7 @@
         "reedsolomon"
       ],
       "glossaryRef": "/glossary/dataavailability",
-      "blob": "data availability the guarantee that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline. data availability infrastructure nexus architecture proofs dacertificates dasampling dataavailabilitylayer erasurecodedwsv reedsolomon"
+      "blob": "data availability the guarantee in sora nexus that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline, preventing data withholding attacks. data availability infrastructure nexus architecture proofs dacertificates dasampling dataavailabilitylayer erasurecodedwsv reedsolomon"
     },
     {
       "slug": "dataavailabilitylayer",
@@ -3442,8 +3442,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "The prime field used by Poseidon2 and FASTPQ's AIR so constraints map efficiently onto modern hardware.",
-      "definition": "The prime field used by Poseidon2 and FASTPQ's AIR so constraints map efficiently onto modern hardware.",
+      "summary": "The 64-bit prime field used by Poseidon2 and FASTPQ in SORA Nexus, chosen because its structure maps efficiently onto modern CPU architectures for fast proof generation.",
+      "definition": "The 64-bit prime field used by Poseidon2 and FASTPQ in SORA Nexus, chosen because its structure maps efficiently onto modern CPU architectures for fast proof generation.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -3454,7 +3454,7 @@
         "deepfri"
       ],
       "glossaryRef": "/glossary/goldilocksfield",
-      "blob": "goldilocks field the prime field used by poseidon2 and fastpq's air so constraints map efficiently onto modern hardware. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
+      "blob": "goldilocks field the 64-bit prime field used by poseidon2 and fastpq in sora nexus, chosen because its structure maps efficiently onto modern cpu architectures for fast proof generation. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
     },
     {
       "slug": "gostsuites",
@@ -3595,8 +3595,8 @@
         "Nexus Architecture",
         "Policy"
       ],
-      "summary": "A hashed package of binaries, ABI versions, and activation slots defining a runtime upgrade proposal.",
-      "definition": "A hashed package of binaries, ABI versions, and activation slots defining a runtime upgrade proposal.",
+      "summary": "A hashed package of binaries, ABI versions, and activation slots in SORA Nexus that defines a runtime upgrade proposal, ensuring all validators upgrade atomically at the same block.",
+      "definition": "A hashed package of binaries, ABI versions, and activation slots in SORA Nexus that defines a runtime upgrade proposal, ensuring all validators upgrade atomically at the same block.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -3607,7 +3607,7 @@
         "runtimeupgrades"
       ],
       "glossaryRef": "/glossary/governedmanifest",
-      "blob": "governed manifest a hashed package of binaries, abi versions, and activation slots defining a runtime upgrade proposal. data spaces governance nexus architecture policy activationslot assembly governancesurfaces parametersets runtimeupgrades"
+      "blob": "governed manifest a hashed package of binaries, abi versions, and activation slots in sora nexus that defines a runtime upgrade proposal, ensuring all validators upgrade atomically at the same block. data spaces governance nexus architecture policy activationslot assembly governancesurfaces parametersets runtimeupgrades"
     },
     {
       "slug": "grpcgateways",
@@ -4499,8 +4499,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "The lattice-based KEM used in SoraNet's hybrid handshake to future-proof against quantum adversaries.",
-      "definition": "The lattice-based KEM used in SoraNet's hybrid handshake to future-proof against quantum adversaries.",
+      "summary": "The lattice-based key encapsulation mechanism used in SORA Nexus's hybrid handshake to provide post-quantum security for network communications against future quantum attacks.",
+      "definition": "The lattice-based key encapsulation mechanism used in SORA Nexus's hybrid handshake to provide post-quantum security for network communications against future quantum attacks.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4511,7 +4511,7 @@
         "deepfri"
       ],
       "glossaryRef": "/glossary/kyber768",
-      "blob": "kyber768 the lattice-based kem used in soranet's hybrid handshake to future-proof against quantum adversaries. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
+      "blob": "kyber768 the lattice-based key encapsulation mechanism used in sora nexus's hybrid handshake to provide post-quantum security for network communications against future quantum attacks. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
     },
     {
       "slug": "lambdaexit",
@@ -4661,8 +4661,8 @@
         "Nexus Architecture",
         "Proofs"
       ],
-      "summary": "Aggregated FASTPQ or DA proofs scoped per lane, allowing committees to verify execution efficiently.",
-      "definition": "Aggregated FASTPQ or DA proofs scoped per lane, allowing committees to verify execution efficiently.",
+      "summary": "Aggregated FASTPQ or DA proofs scoped per lane in SORA Nexus, allowing validator committees to verify execution efficiently without processing every transaction individually.",
+      "definition": "Aggregated FASTPQ or DA proofs scoped per lane in SORA Nexus, allowing validator committees to verify execution efficiently without processing every transaction individually.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4673,7 +4673,7 @@
         "lanefinality"
       ],
       "glossaryRef": "/glossary/laneproofs",
-      "blob": "lane proofs aggregated fastpq or da proofs scoped per lane, allowing committees to verify execution efficiently. data availability infrastructure nexus architecture proofs computelane fastpqisiproofs fastpqzkstarkproofs halo2ipaproofs lanefinality"
+      "blob": "lane proofs aggregated fastpq or da proofs scoped per lane in sora nexus, allowing validator committees to verify execution efficiently without processing every transaction individually. data availability infrastructure nexus architecture proofs computelane fastpqisiproofs fastpqzkstarkproofs halo2ipaproofs lanefinality"
     },
     {
       "slug": "lanes",
@@ -4742,8 +4742,8 @@
         "Nexus Architecture",
         "Operations"
       ],
-      "summary": "State shards maintained per lane (especially in SoraNet) to localize failures and simplify recovery.",
-      "definition": "State shards maintained per lane (especially in SoraNet) to localize failures and simplify recovery.",
+      "summary": "State shards maintained per lane in SORA Nexus to localize failures and simplify recovery, ensuring that issues in one lane don't cascade across the entire network.",
+      "definition": "State shards maintained per lane in SORA Nexus to localize failures and simplify recovery, ensuring that issues in one lane don't cascade across the entire network.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4754,7 +4754,7 @@
         "lanescopedrecovery"
       ],
       "glossaryRef": "/glossary/lanescopedstate",
-      "blob": "lane-scoped state state shards maintained per lane (especially in soranet) to localize failures and simplify recovery. infrastructure monitoring nexus architecture operations circuitbreakerstate computelane lanefinality lanefusion lanescopedrecovery"
+      "blob": "lane-scoped state state shards maintained per lane in sora nexus to localize failures and simplify recovery, ensuring that issues in one lane don't cascade across the entire network. infrastructure monitoring nexus architecture operations circuitbreakerstate computelane lanefinality lanefusion lanescopedrecovery"
     },
     {
       "slug": "lanesplit",
@@ -5677,8 +5677,8 @@
         "Norito",
         "Serialization"
       ],
-      "summary": "The typed-length-value format underlying Norito messages, enabling unambiguous parsing inside the IVM.",
-      "definition": "The typed-length-value format underlying Norito messages, enabling unambiguous parsing inside the IVM.",
+      "summary": "The typed-length-value encoding format underlying Norito messages in SORA Nexus, enabling unambiguous parsing of commands and data structures inside the IVM execution environment.",
+      "definition": "The typed-length-value encoding format underlying Norito messages in SORA Nexus, enabling unambiguous parsing of commands and data structures inside the IVM execution environment.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5689,7 +5689,7 @@
         "pointerabi"
       ],
       "glossaryRef": "/glossary/noritotlv",
-      "blob": "norito tlv the typed-length-value format underlying norito messages, enabling unambiguous parsing inside the ivm. data format nexus architecture norito serialization norito noritocodec noritoreceipts noritostreaming pointerabi"
+      "blob": "norito tlv the typed-length-value encoding format underlying norito messages in sora nexus, enabling unambiguous parsing of commands and data structures inside the ivm execution environment. data format nexus architecture norito serialization norito noritocodec noritoreceipts noritostreaming pointerabi"
     },
     {
       "slug": "nposvariant",
@@ -7347,8 +7347,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "A legacy hash suite retained for interoperability with existing systems and regulatory requirements.",
-      "definition": "A legacy hash suite retained for interoperability with existing systems and regulatory requirements.",
+      "summary": "A legacy hash suite retained in SORA Nexus for interoperability with existing systems, regulatory requirements, and compatibility with external chains that rely on SHA-256.",
+      "definition": "A legacy hash suite retained in SORA Nexus for interoperability with existing systems, regulatory requirements, and compatibility with external chains that rely on SHA-256.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -7359,7 +7359,7 @@
         "sha3"
       ],
       "glossaryRef": "/glossary/sha2",
-      "blob": "sha-2 a legacy hash suite retained for interoperability with existing systems and regulatory requirements. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 sha3"
+      "blob": "sha-2 a legacy hash suite retained in sora nexus for interoperability with existing systems, regulatory requirements, and compatibility with external chains that rely on sha-256. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 sha3"
     },
     {
       "slug": "sha3",
@@ -7602,8 +7602,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "The Chinese national elliptic-curve signature suite available via governance for compliant deployments.",
-      "definition": "The Chinese national elliptic-curve signature suite available via governance for compliant deployments.",
+      "summary": "The Chinese national elliptic-curve signature suite available in SORA Nexus via governance configuration, enabling regulatory-compliant deployments in jurisdictions requiring SM2.",
+      "definition": "The Chinese national elliptic-curve signature suite available in SORA Nexus via governance configuration, enabling regulatory-compliant deployments in jurisdictions requiring SM2.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -7614,7 +7614,7 @@
         "deepfri"
       ],
       "glossaryRef": "/glossary/sm2",
-      "blob": "sm2 the chinese national elliptic-curve signature suite available via governance for compliant deployments. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
+      "blob": "sm2 the chinese national elliptic-curve signature suite available in sora nexus via governance configuration, enabling regulatory-compliant deployments in jurisdictions requiring sm2. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
     },
     {
       "slug": "sm3",
@@ -8796,8 +8796,8 @@
         "Nexus Architecture",
         "P2P"
       ],
-      "summary": "SoraNet's onion-style routing pattern using QUIC, providing low-latency privacy with fixed hop counts.",
-      "definition": "SoraNet's onion-style routing pattern using QUIC, providing low-latency privacy with fixed hop counts.",
+      "summary": "SORA Nexus's onion-style routing pattern using QUIC protocol, providing low-latency privacy with fixed three-hop paths that hide user IP addresses from destination servers.",
+      "definition": "SORA Nexus's onion-style routing pattern using QUIC protocol, providing low-latency privacy with fixed three-hop paths that hide user IP addresses from destination servers.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -8808,7 +8808,7 @@
         "soranet"
       ],
       "glossaryRef": "/glossary/threehopquiccircuits",
-      "blob": "three-hop quic circuits soranet's onion-style routing pattern using quic, providing low-latency privacy with fixed hop counts. infrastructure networking nexus architecture p2p blindedcids exitcaches fixedsizecells hybridpqhandshake soranet"
+      "blob": "three-hop quic circuits sora nexus's onion-style routing pattern using quic protocol, providing low-latency privacy with fixed three-hop paths that hide user ip addresses from destination servers. infrastructure networking nexus architecture p2p blindedcids exitcaches fixedsizecells hybridpqhandshake soranet"
     },
     {
       "slug": "tokenbondingcurve",
@@ -9064,8 +9064,8 @@
         "Nexus Architecture",
         "P2P"
       ],
-      "summary": "The Norito-native gateway streaming events, receipts, and telemetry to clients via REST, SSE, or gRPC.",
-      "definition": "The Norito-native gateway streaming events, receipts, and telemetry to clients via REST, SSE, or gRPC.",
+      "summary": "The Norito-native gateway in SORA Nexus that streams events, receipts, and telemetry to clients via REST, SSE, or gRPC, providing real-time updates without polling.",
+      "definition": "The Norito-native gateway in SORA Nexus that streams events, receipts, and telemetry to clients via REST, SSE, or gRPC, providing real-time updates without polling.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -9076,7 +9076,7 @@
         "taikai"
       ],
       "glossaryRef": "/glossary/torii",
-      "blob": "torii the norito-native gateway streaming events, receipts, and telemetry to clients via rest, sse, or grpc. infrastructure networking nexus architecture p2p dataspaces gateways kaigi soranet taikai"
+      "blob": "torii the norito-native gateway in sora nexus that streams events, receipts, and telemetry to clients via rest, sse, or grpc, providing real-time updates without polling. infrastructure networking nexus architecture p2p dataspaces gateways kaigi soranet taikai"
     },
     {
       "slug": "trading",
@@ -9222,8 +9222,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "On-ledger automation objects with condition, action, and budget fields that execute schedules or reactions without off-chain cron jobs.",
-      "definition": "On-ledger automation objects with condition, action, and budget fields that execute schedules or reactions without off-chain cron jobs.",
+      "summary": "On-ledger automation objects in SORA Nexus with condition, action, and budget fields that execute scheduled tasks or event reactions without requiring external cron jobs or keepers.",
+      "definition": "On-ledger automation objects in SORA Nexus with condition, action, and budget fields that execute scheduled tasks or event reactions without requiring external cron jobs or keepers.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -9234,7 +9234,7 @@
         "automation"
       ],
       "glossaryRef": "/glossary/triggers",
-      "blob": "triggers on-ledger automation objects with condition, action, and budget fields that execute schedules or reactions without off-chain cron jobs. execution ivm nexus architecture smart contracts action activationslot admission aggregation automation"
+      "blob": "triggers on-ledger automation objects in sora nexus with condition, action, and budget fields that execute scheduled tasks or event reactions without requiring external cron jobs or keepers. execution ivm nexus architecture smart contracts action activationslot admission aggregation automation"
     },
     {
       "slug": "ts",
@@ -9936,5 +9936,5 @@
     }
   ],
   "totalCount": 369,
-  "lastUpdated": "2025-12-11T00:33:08.821Z"
+  "lastUpdated": "2025-12-11T00:38:12.138Z"
 }
