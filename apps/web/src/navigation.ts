@@ -16,16 +16,15 @@ const headerLinks: NavigationLink[] = [
   { text: 'Docs', href: '/docs' },
   { text: 'Blog', href: getBlogPermalink() },
   { text: 'Glossary', href: '/glossary' },
-  { text: 'Features', href: '/features' },
   { text: 'About', href: '/about' },
   { text: 'Donate', href: '/donate' },
 ];
 
 if (TAG_HUB_V1_ENABLED) {
-  // Explore = tag discovery, Learn = guided paths
+  // Learn = guided paths (primary), Explore = tag discovery
   headerLinks.unshift(
-    { text: 'Explore', href: '/explore' },
-    { text: 'Learn', href: '/learn' }
+    { text: 'Learn', href: '/learn' },
+    { text: 'Explore', href: '/explore' }
   );
 }
 
@@ -45,9 +44,10 @@ const learnLinks: NavigationLink[] = [
 ];
 
 if (TAG_HUB_V1_ENABLED) {
+  // Learning Paths first (primary learning entry point)
   learnLinks.unshift(
     { text: 'Learning Paths', href: '/learn' },
-    { text: 'SORA Explorer', href: '/explore' }
+    { text: 'Topic Explorer', href: '/explore' }
   );
 }
 
