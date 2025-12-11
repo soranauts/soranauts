@@ -122,7 +122,7 @@
     {
       "slug": "attesters",
       "title": "Attesters",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "Specialized actors who verify erasure-coded shards and proofs, then issue DA certificates so validators can rely on the data without downloading everything.",
       "tagline": "Guarantees that transaction data remains accessible and verifiable."
     },
@@ -410,7 +410,7 @@
     {
       "slug": "crossbordercorridors",
       "title": "Cross-Border Corridors",
-      "category": "Use & Cases",
+      "category": "Use Cases",
       "summary": "A highlighted use case where Nexus hosts multi-jurisdiction payment networks with deterministic policy enforcement and shared liquidity.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
@@ -454,49 +454,49 @@
     {
       "slug": "dacertificates",
       "title": "DA Certificates",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "Signed attestations from validators or attesters confirming that required data-availability samples were checked and can be reconstructed.",
       "tagline": "Guarantees that transaction data remains accessible and verifiable."
     },
     {
       "slug": "dasampling",
       "title": "DA Sampling",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "Fetching a limited number of erasure-coded shards per data space to statistically guarantee recoverability without downloading entire envelopes.",
       "tagline": "Reduces bandwidth requirements for validators while maintaining strong availability guarantees."
     },
     {
       "slug": "dasamplingbudget",
       "title": "DA Sampling Budget",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "The governance cap (e.g., q_total <= 2048) on how many DA samples can be performed per slot so verification stays within hardware limits.",
       "tagline": "Ensures fair resource allocation across the network."
     },
     {
       "slug": "dasamplingconfidence",
       "title": "DA Sampling Confidence",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "The probability, computed via combinatorics, that malicious withholding will be detected given the chosen sample count and committee size.",
       "tagline": "Guarantees that transaction data remains accessible and verifiable."
     },
     {
       "slug": "dataavailability",
       "title": "Data Availability",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "The guarantee that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline.",
       "tagline": "Prevents data withholding attacks that could halt chain progress or hide fraud."
     },
     {
       "slug": "dataavailabilitylayer",
       "title": "Data Availability Layer",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "The combined erasure-coding, sampling, proving, and attestation system enforcing data availability across public and private data spaces.",
       "tagline": "Lets light clients verify block data exists without downloading entire blocks."
     },
     {
       "slug": "dataenvelope",
       "title": "Data Envelope",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "The serialized bundle of transactions, proofs, and metadata that a data space contributes to a lane block before erasure coding.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
@@ -582,7 +582,7 @@
     {
       "slug": "developerexperience",
       "title": "Developer Experience",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "summary": "The suite of Norito-first SDKs, REST/gRPC gateways, and deterministic builders that let teams integrate without learning low-level ledger internals.",
       "tagline": "Provides seamless access to SORA Nexus services."
     },
@@ -686,14 +686,14 @@
     {
       "slug": "erasurecodedkura",
       "title": "Erasure-Coded Kura",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "The historical storage (Kura) extended with Reed - Solomon coding so archived blocks stay recoverable even with partial failures.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
       "slug": "erasurecodedwsv",
       "title": "Erasure-Coded WSV",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "World State View snapshots protected by erasure coding, enabling resilient state recovery across validators.",
       "tagline": "Allows the network to recover full state even if some validators fail or go offline."
     },
@@ -877,7 +877,7 @@
     {
       "slug": "grpcgateways",
       "title": "gRPC Gateways",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "summary": "Binary RPC interfaces exposing Norito-first semantics for high-performance integrations that prefer typed protobuf APIs.",
       "tagline": "Provides seamless access to SORA Nexus services."
     },
@@ -955,7 +955,7 @@
     {
       "slug": "interbanksettlement",
       "title": "Interbank Settlement",
-      "category": "Use & Cases",
+      "category": "Use Cases",
       "summary": "A Nexus use case where regulated data spaces host RTGS-style payment flows with deterministic finality and auditability.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
@@ -1029,7 +1029,7 @@
     {
       "slug": "iso20022connectors",
       "title": "ISO 20022 Connectors",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "summary": "Gateway components that translate ISO 20022 payloads into Nexus transactions and return receipts back into banking flows.",
       "tagline": "Provides seamless access to SORA Nexus services."
     },
@@ -1140,7 +1140,7 @@
     {
       "slug": "laneproofs",
       "title": "Lane Proofs",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "Aggregated FASTPQ or DA proofs scoped per lane, allowing committees to verify execution efficiently.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
@@ -1375,7 +1375,7 @@
     {
       "slug": "noritofirstapis",
       "title": "Norito-First APIs",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "summary": "Developer interfaces that expose ledger functionality directly in Norito semantics, reducing translation bugs.",
       "tagline": "Enables programmatic access to network functionality."
     },
@@ -1605,7 +1605,7 @@
     {
       "slug": "proofverificationbudget",
       "title": "Proof Verification Budget",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "The per-slot time allocation (100 - 200 ms typical) reserved for lane committees to check proofs without falling behind.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
@@ -1626,7 +1626,7 @@
     {
       "slug": "provers",
       "title": "Provers",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "Actors (often GPU-accelerated) that generate FASTPQ or DA proofs and deliver them within the configured latency budget.",
       "tagline": "Ensures fair resource allocation across the network."
     },
@@ -1672,7 +1672,7 @@
     {
       "slug": "reedsolomon",
       "title": "Reed-solomon",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "The erasure-coding scheme used in SoraFS for row and column parity, ensuring any k shards can reconstruct the envelope.",
       "tagline": "Provides mathematical guarantees that data survives validator failures or network partitions."
     },
@@ -1691,7 +1691,7 @@
     {
       "slug": "restgateways",
       "title": "REST Gateways",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "summary": "HTTP interfaces that expose Norito-first APIs for developers who prefer REST semantics over gRPC. These gateways provide deterministic transaction builders, ISO 20022 helpers, and offline flow support, with receipts and proofs aligned to protocol primitives for web and mobile SDK integration.",
       "tagline": "Enables familiar HTTP access to SORA Nexus for web and mobile developers."
     },
@@ -1731,7 +1731,7 @@
     {
       "slug": "rtgsmodernization",
       "title": "RTGS Modernization",
-      "category": "Use & Cases",
+      "category": "Use Cases",
       "summary": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
@@ -1782,7 +1782,7 @@
     {
       "slug": "sdks",
       "title": "Sd Ks",
-      "category": "Developer & Experience",
+      "category": "Developer Experience",
       "summary": "Language toolkits (mobile, web, server) that wrap Norito schemas, ISO helpers, and offline flows for application builders.",
       "tagline": "Simplifies building applications on SORA Nexus."
     },
@@ -2184,7 +2184,7 @@
     {
       "slug": "tokenizedassets",
       "title": "Tokenized Assets",
-      "category": "Use & Cases",
+      "category": "Use Cases",
       "summary": "A use case where real-world assets are issued in data spaces with deterministic policy, proofs, and ISO-aligned connectors.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
@@ -2270,7 +2270,7 @@
     {
       "slug": "twodimensionalerasurecoding",
       "title": "Two-Dimensional Erasure Coding",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "The matrix-style Reed - Solomon scheme (rows and columns) SoraFS uses to ensure any subset of shards can rebuild the original data.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
@@ -2420,7 +2420,7 @@
     {
       "slug": "zkdaproofs",
       "title": "ZK DA Proofs",
-      "category": "Data & Availability",
+      "category": "Data Availability",
       "summary": "Zero-knowledge proofs that bind erasure-coded shards to block commitments, proving availability without revealing private data.",
       "tagline": "Guarantees that transaction data remains accessible and verifiable."
     },
@@ -2435,5 +2435,5 @@
   "canonicalCount": 369,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-11T00:15:55.881Z"
+  "lastUpdated": "2025-12-11T00:23:23.829Z"
 }

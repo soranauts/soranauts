@@ -480,7 +480,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Specialized actors who verify erasure-coded shards and proofs, then issue DA certificates so validators can rely on the data without downloading everything.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -1798,7 +1798,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "A highlighted use case where Nexus hosts multi-jurisdiction payment networks with deterministic policy enforcement and shared liquidity.",
-    "category": "Use & Cases",
+    "category": "Use Cases",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -1995,7 +1995,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Signed attestations from validators or attesters confirming that required data-availability samples were checked and can be reconstructed.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -2019,7 +2019,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Fetching a limited number of erasure-coded shards per data space to statistically guarantee recoverability without downloading entire envelopes.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -2043,7 +2043,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "The governance cap (e.g., q_total <= 2048) on how many DA samples can be performed per slot so verification stays within hardware limits.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -2067,7 +2067,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "The probability, computed via combinatorics, that malicious withholding will be detected given the chosen sample count and committee size.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -2091,7 +2091,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "The guarantee that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -2115,7 +2115,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "The combined erasure-coding, sampling, proving, and attestation system enforcing data availability across public and private data spaces.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -2139,7 +2139,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "The serialized bundle of transactions, proofs, and metadata that a data space contributes to a lane block before erasure coding.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -2469,7 +2469,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "The suite of Norito-first SDKs, REST/gRPC gateways, and deterministic builders that let teams integrate without learning low-level ledger internals.",
-    "category": "Developer & Experience",
+    "category": "Developer Experience",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -2911,7 +2911,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "The historical storage (Kura) extended with Reed - Solomon coding so archived blocks stay recoverable even with partial failures.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -2935,7 +2935,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "World State View snapshots protected by erasure coding, enabling resilient state recovery across validators.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -3640,7 +3640,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Binary RPC interfaces exposing Norito-first semantics for high-performance integrations that prefer typed protobuf APIs.",
-    "category": "Developer & Experience",
+    "category": "Developer Experience",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -3983,7 +3983,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "A Nexus use case where regulated data spaces host RTGS-style payment flows with deterministic finality and auditability.",
-    "category": "Use & Cases",
+    "category": "Use Cases",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -4260,7 +4260,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Gateway components that translate ISO 20022 payloads into Nexus transactions and return receipts back into banking flows.",
-    "category": "Developer & Experience",
+    "category": "Developer Experience",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -4707,7 +4707,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Aggregated FASTPQ or DA proofs scoped per lane, allowing committees to verify execution efficiently.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -5648,7 +5648,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Developer interfaces that expose ledger functionality directly in Norito semantics, reducing translation bugs.",
-    "category": "Developer & Experience",
+    "category": "Developer Experience",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -6582,7 +6582,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "The per-slot time allocation (100 - 200 ms typical) reserved for lane committees to check proofs without falling behind.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -6646,7 +6646,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Actors (often GPU-accelerated) that generate FASTPQ or DA proofs and deliver them within the configured latency budget.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -6864,7 +6864,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "The erasure-coding scheme used in SoraFS for row and column parity, ensuring any k shards can reconstruct the envelope.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -6965,7 +6965,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "HTTP interfaces that expose Norito-first APIs for developers who prefer REST semantics over gRPC. These gateways provide deterministic transaction builders, ISO 20022 helpers, and offline flow support, with receipts and proofs aligned to protocol primitives for web and mobile SDK integration.",
-    "category": "Developer & Experience",
+    "category": "Developer Experience",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -7122,7 +7122,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls.",
-    "category": "Use & Cases",
+    "category": "Use Cases",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -7303,7 +7303,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Language toolkits (mobile, web, server) that wrap Norito schemas, ISO helpers, and offline flows for application builders.",
-    "category": "Developer & Experience",
+    "category": "Developer Experience",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -9043,7 +9043,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "A use case where real-world assets are issued in data spaces with deterministic policy, proofs, and ISO-aligned connectors.",
-    "category": "Use & Cases",
+    "category": "Use Cases",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -9437,7 +9437,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "The matrix-style Reed - Solomon scheme (rows and columns) SoraFS uses to ensure any subset of shards can rebuild the original data.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"
@@ -10092,7 +10092,7 @@
     "status": "canonical",
     "targetSlug": null,
     "definition": "Zero-knowledge proofs that bind erasure-coded shards to block commitments, proving availability without revealing private data.",
-    "category": "Data & Availability",
+    "category": "Data Availability",
     "aliases": [],
     "tags": [
       "Nexus Architecture"

@@ -348,11 +348,11 @@ function isValidSlug(slug: string): boolean {
  * Normalize category to Title Case
  */
 function normalizeCategory(category: string): string {
-  return category
-    .split(/[\s&]+/)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' & ')
-    .replace(/\s+&\s+/g, ' & ');
+  // Only use & joiner for categories that originally contain &
+  const hasAmpersand = category.includes('&');
+  const words = category.split(/[\s&]+/);
+  const titleCased = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+  return hasAmpersand ? titleCased.join(' & ') : titleCased.join(' ');
 }
 
 /**
