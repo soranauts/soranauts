@@ -1,0 +1,200 @@
+---
+/**
+ * Dynamic Learning Path Page
+ * 
+ * Renders a full learning path with interactive step progression.
+ * Uses React controller for state management and persistence.
+ */
+import PageLayout from '~/layouts/PageLayout.astro';
+import ProgressBar from '~/components/learn/ProgressBar.astro';
+import PathCompletion from '~/components/learn/PathCompletion.astro';
+import LearningPathController from '~/components/learn/LearningPathController';
+import { 
+  LEARNING_PATHS,
+  type LearningPath 
+} from '~/data/learning-paths.config';
+import { getGlossaryTerm } from '~/lib/glossary/glossary-loader';
+import { getTagHubViewModel } from '~/lib/tag-hub';
+
+export function getStaticPaths() {
+  return LEARNING_PATHS.map((path) => ({
+    params: { pathId: path.id },
+    props: { path },
+  }));
+}
+
+interface Props {
+  path: LearningPath;
+}
+
+const { path } = Astro.props;
+
+// Pre-fetch glossary content for all glossary steps
+const glossaryContent: Record<string, { summary: string; tagline?: string }> = {};
+for (const step of path.steps) {
+  if (step.type === 'glossary') {
+    const term = getGlossaryTerm(step.slug);
+    if (term) {
+      glossaryContent[step.slug] = {
+        summary: term.summary || '',
+        tagline: term.tagline ?? undefined,
+      };
+    }
+  }
+}
+
+// Pre-fetch tag content for all tag steps
+const tagContent: Record<string, { summary: string }> = {};
+for (const step of path.steps) {
+  if (step.type === 'tag') {
+    const tag = getTagHubViewModel(step.slug);
+    if (tag) {
+      tagContent[step.slug] = {
+        summary: tag.summary || '',
+      };
+    }
+  }
+}
+
+// Get recommended next paths (different difficulty or category)
+const getNextPaths = (): LearningPath[] => {
+  const currentIndex = LEARNING_PATHS.findIndex(p => p.id === path.id);
+  const otherPaths = LEARNING_PATHS.filter((_, i) => i !== currentIndex);
+  
+  // Prioritize: same category different difficulty, then different category
+  const sameCategory = otherPaths.filter(p => p.category === path.category && p.difficulty !== path.difficulty);
+  const differentCategory = otherPaths.filter(p => p.category !== path.category);
+  
+  return [...sameCategory, ...differentCategory].slice(0, 3);
+};
+
+const nextPaths = getNextPaths();
+
+// Difficulty configuration for badge
+const difficultyConfig = {
+  beginner: { color: '#22c55e', label: 'Beginner' },
+  intermediate: { color: '#eab308', label: 'Intermediate' },
+  advanced: { color: '#ef4444', label: 'Advanced' },
+};
+
+const difficulty = difficultyConfig[path.difficulty];
+
+const metadata = {
+  title: `${path.title} | SORA Learning Center`,
+  description: path.description,
+};
+---
+
+<PageLayout {metadata}>
+  <ProgressBar 
+    current={1} 
+    total={path.steps.length} 
+    pathTitle={path.title} 
+  />
+
+  <main class="path-page">
+    <header class="path-header">
+      <div class="path-header__meta">
+        <span class="path-header__difficulty" style={`--badge-color: ${difficulty.color}`}>
+          {difficulty.label}
+        </span>
+        <span class="path-header__time">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M7 4V7L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          {path.estimatedMinutes} min
+        </span>
+      </div>
+      
+      <h1>{path.title}</h1>
+      <p class="path-header__description">{path.description}</p>
+      
+      <div class="path-header__progress">
+        <span>{path.steps.length} steps in this path</span>
+      </div>
+    </header>
+
+    <section class="path-steps" aria-label="Learning steps">
+      <LearningPathController 
+        client:load
+        path={path}
+        glossaryContent={glossaryContent}
+        tagContent={tagContent}
+      />
+    </section>
+
+    <PathCompletion 
+      pathTitle={path.title}
+      nextPaths={nextPaths}
+      cta={path.cta}
+    />
+  </main>
+</PageLayout>
+
+<style>
+  .path-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-6);
+  }
+
+  .path-header {
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-6);
+  }
+
+  .path-header__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .path-header__difficulty {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--badge-color);
+    background: color-mix(in srgb, var(--badge-color) 10%, transparent 90%);
+    border: 1px solid color-mix(in srgb, var(--badge-color) 30%, transparent 70%);
+    border-radius: var(--radius-full);
+  }
+
+  .path-header__time {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .path-header h1 {
+    font-size: var(--text-3xl);
+    margin: 0 0 var(--space-3);
+    color: var(--color-text);
+    line-height: 1.2;
+  }
+
+  .path-header__description {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0 0 var(--space-4);
+  }
+
+  .path-header__progress {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .path-steps {
+    margin-bottom: var(--space-8);
+  }
+</style>

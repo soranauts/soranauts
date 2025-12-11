@@ -1,0 +1,617 @@
+---
+/**
+ * SimplifiedExplorer.astro
+ * 
+ * A focused 4-section explorer layout optimized for learning and conversion.
+ * Replaces the previous 7-section explore page.
+ * 
+ * @see ./SIMPLIFIED-EXPLORER-SPEC.md for full specification
+ */
+import {
+  LEARNING_PATHS,
+  getLearningPathsByDifficulty,
+  getTotalLearningTime,
+  type LearningPath,
+} from '~/data/learning-paths.config';
+import { getAllTagHubViewModels, formatTagLabel } from '~/lib/tag-hub';
+import TagFilters from '~/components/tag-hub/TagFilters.tsx';
+import type { TagHubDomainOption, TagHubTraitFilter, TagHubClientTag } from '~/components/tag-hub/TagFilters.tsx';
+
+// Get tag data for TagFilters
+const tags = getAllTagHubViewModels();
+
+// Domain options for filter
+const domainLabels: Record<string, string> = {
+  ecosystem: 'Ecosystem & Adoption',
+  defi: 'DeFi & Liquidity',
+  economics: 'Economics & Tokenomics',
+  governance: 'Governance & Policy',
+  technology: 'Technology & Infrastructure',
+  network: 'Network & Validators',
+};
+
+const domainOptions: TagHubDomainOption[] = [
+  { id: 'ecosystem', label: 'Ecosystem & Adoption' },
+  { id: 'defi', label: 'DeFi & Liquidity' },
+  { id: 'economics', label: 'Economics & Tokenomics' },
+  { id: 'governance', label: 'Governance & Policy' },
+  { id: 'technology', label: 'Technology & Infrastructure' },
+  { id: 'network', label: 'Network & Validators' },
+];
+
+const traitFilters: TagHubTraitFilter[] = [
+  { id: 'foundational', label: 'Foundational', trait: 'foundational' },
+  { id: 'glossary', label: 'Glossary linked', trait: 'glossary-linked' },
+  { id: 'beginner', label: 'Beginner friendly', trait: 'beginner-friendly' },
+];
+
+// Prepare tags for client component
+const islandTags: TagHubClientTag[] = tags.map((tag) => ({
+  slug: tag.slug,
+  title: tag.title,
+  summary: tag.summary,
+  domain: tag.domain,
+  domainLabel: domainLabels[tag.domain] ?? tag.domain,
+  traits: tag.traits,
+  quickPathIds: tag.quickPathIds,
+  usageCount: tag.usageCount,
+  firstSeen: tag.firstSeen,
+  lastSeen: tag.lastSeen,
+  glossaryRef: tag.glossaryRef,
+  category: tag.category,
+  relatedTags: tag.relatedTags,
+  aliases: tag.aliases,
+}));
+
+// Group paths by difficulty
+const beginnerPaths = getLearningPathsByDifficulty('beginner');
+const intermediatePaths = getLearningPathsByDifficulty('intermediate');
+const advancedPaths = getLearningPathsByDifficulty('advanced');
+
+// Stats
+const totalTime = getTotalLearningTime();
+const totalHours = Math.floor(totalTime / 60);
+const totalMinutes = totalTime % 60;
+const timeDisplay = totalHours > 0 
+  ? `${totalHours}h ${totalMinutes}m` 
+  : `${totalMinutes}m`;
+
+// Helper to build step URL
+const getStepUrl = (step: { type: 'tag' | 'glossary'; slug: string }) =>
+  step.type === 'glossary' ? `/glossary/${step.slug}` : `/tag/${step.slug}`;
+
+// Difficulty config
+const difficultyConfig = {
+  beginner: { color: '#22c55e', label: 'Start Here', icon: '🌱' },
+  intermediate: { color: '#eab308', label: 'Go Deeper', icon: '📈' },
+  advanced: { color: '#ef4444', label: 'Master the Architecture', icon: '🔬' },
+};
+---
+
+<div class="simplified-explorer">
+  <!-- SECTION 1: Hero -->
+  <section class="explorer-hero" aria-labelledby="explorer-title">
+    <span class="explorer-hero__kicker">SORA EXPLORER</span>
+    <h1 id="explorer-title" class="explorer-hero__title">Learn SORA</h1>
+    <p class="explorer-hero__description">
+      Your guide to the decentralized economic network. Start with the basics or dive deep into the architecture.
+    </p>
+    
+    <div class="explorer-hero__ctas">
+      <a href="#learning-paths" class="explorer-cta explorer-cta--primary">
+        Start Learning
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 3L8 13M8 13L4 9M8 13L12 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#search" class="explorer-cta explorer-cta--secondary">
+        Search Topics
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="7" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+          <path d="M10 10L14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+    
+    <dl class="explorer-hero__stats">
+      <div class="explorer-hero__stat">
+        <dt>Learning Paths</dt>
+        <dd>{LEARNING_PATHS.length}</dd>
+      </div>
+      <div class="explorer-hero__stat">
+        <dt>Glossary Terms</dt>
+        <dd>369</dd>
+      </div>
+      <div class="explorer-hero__stat">
+        <dt>Articles</dt>
+        <dd>49</dd>
+      </div>
+      <div class="explorer-hero__stat">
+        <dt>Total Learning</dt>
+        <dd>{timeDisplay}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- SECTION 2: Learning Paths -->
+  <section class="explorer-paths" id="learning-paths" aria-labelledby="paths-title">
+    <div class="explorer-section-header">
+      <h2 id="paths-title">Choose Your Path</h2>
+      <p>Structured learning from beginner to advanced. Each path builds on the last.</p>
+    </div>
+
+    {[
+      { paths: beginnerPaths, difficulty: 'beginner' as const },
+      { paths: intermediatePaths, difficulty: 'intermediate' as const },
+      { paths: advancedPaths, difficulty: 'advanced' as const },
+    ].map(({ paths, difficulty }) => (
+      <div class="explorer-path-group" data-difficulty={difficulty}>
+        <h3 class="explorer-path-group__title">
+          <span class="explorer-path-group__dot" style={`background: ${difficultyConfig[difficulty].color}`} aria-hidden="true"></span>
+          <span>{difficultyConfig[difficulty].label}</span>
+          <span class="explorer-path-group__icon" aria-hidden="true">{difficultyConfig[difficulty].icon}</span>
+        </h3>
+        
+        <div class="explorer-path-grid">
+          {paths.map((path) => (
+            <article 
+              class="explorer-path-card" 
+              style={`--accent-color: ${difficultyConfig[difficulty].color}`}
+              aria-labelledby={`path-${path.id}`}
+            >
+              <header class="explorer-path-card__header">
+                <h4 id={`path-${path.id}`} class="explorer-path-card__title">{path.title}</h4>
+                <span class="explorer-path-card__time">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M7 4V7L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  {path.estimatedMinutes} min
+                </span>
+              </header>
+              
+              <p class="explorer-path-card__description">{path.description}</p>
+              
+              <nav class="explorer-path-card__steps" aria-label={`${path.title} steps`}>
+                {path.steps.map((step, index) => (
+                  <a 
+                    href={getStepUrl(step)} 
+                    class="explorer-path-step"
+                    title={step.summary}
+                  >
+                    <span class="explorer-path-step__number" aria-hidden="true">{index + 1}</span>
+                    <span class="explorer-path-step__title">{step.title}</span>
+                  </a>
+                ))}
+              </nav>
+              
+              {path.cta && (
+                <a href={path.cta.href} class="explorer-path-card__cta" target="_blank" rel="noopener noreferrer">
+                  {path.cta.label}
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- SECTION 3: Search & Discover -->
+  <section class="explorer-search" id="search" aria-labelledby="search-title">
+    <div class="explorer-section-header">
+      <h2 id="search-title">Explore All Topics</h2>
+      <p>Search {tags.length} curated topics covering the SORA ecosystem, DeFi strategies, and technical architecture.</p>
+    </div>
+    
+    <TagFilters 
+      client:load 
+      tags={islandTags} 
+      domains={domainOptions} 
+      traitFilters={traitFilters}
+    />
+  </section>
+
+  <!-- SECTION 4: Support -->
+  <section class="explorer-support" aria-labelledby="support-title">
+    <h2 id="support-title">Support Soranauts</h2>
+    <p>This resource is independently maintained. If you found it helpful, consider supporting continued development.</p>
+    <a href="/donate" class="explorer-support__cta">
+      Learn How to Support
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
+</div>
+
+<style>
+  .simplified-explorer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .simplified-explorer {
+      padding: var(--space-12) var(--space-6);
+    }
+  }
+
+  /* ============================================
+     SECTION 1: Hero
+     ============================================ */
+  .explorer-hero {
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .explorer-hero__kicker {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+  }
+
+  .explorer-hero__title {
+    font-size: var(--text-4xl);
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+    line-height: 1.1;
+  }
+
+  @media (min-width: 768px) {
+    .explorer-hero__title {
+      font-size: var(--text-5xl);
+    }
+  }
+
+  .explorer-hero__description {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto var(--space-8);
+    line-height: 1.6;
+  }
+
+  .explorer-hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-10);
+  }
+
+  .explorer-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    transition: all 0.15s ease;
+  }
+
+  .explorer-cta--primary {
+    background: var(--red-600);
+    color: white;
+  }
+
+  .explorer-cta--primary:hover {
+    background: var(--red-700);
+    transform: translateY(-1px);
+  }
+
+  .explorer-cta--secondary {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .explorer-cta--secondary:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-text-muted);
+  }
+
+  .explorer-hero__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  @media (min-width: 640px) {
+    .explorer-hero__stats {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 700px;
+    }
+  }
+
+  .explorer-hero__stat {
+    text-align: center;
+  }
+
+  .explorer-hero__stat dt {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-1);
+  }
+
+  .explorer-hero__stat dd {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* ============================================
+     SECTION 2: Learning Paths
+     ============================================ */
+  .explorer-paths {
+    margin-bottom: var(--space-16);
+  }
+
+  .explorer-section-header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  .explorer-section-header h2 {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 var(--space-3);
+  }
+
+  .explorer-section-header p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .explorer-path-group {
+    margin-bottom: var(--space-10);
+  }
+
+  .explorer-path-group__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-5);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .explorer-path-group__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .explorer-path-group__icon {
+    margin-left: auto;
+    font-size: var(--text-xl);
+  }
+
+  .explorer-path-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .explorer-path-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .explorer-path-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .explorer-path-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--accent-color, var(--color-accent));
+    border-radius: var(--radius-lg);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .explorer-path-card:hover {
+    border-color: var(--accent-color, var(--color-accent));
+    box-shadow: var(--shadow-md);
+  }
+
+  .explorer-path-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+
+  .explorer-path-card__title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .explorer-path-card__time {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .explorer-path-card__description {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0 0 var(--space-4);
+    flex-grow: 1;
+  }
+
+  .explorer-path-card__steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .explorer-path-step {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-text);
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .explorer-path-step:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--accent-color, var(--color-accent));
+  }
+
+  .explorer-path-step__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    background: var(--accent-color, var(--color-accent));
+    border-radius: 50%;
+  }
+
+  .explorer-path-step__title {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .explorer-path-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: auto;
+    padding-top: var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--accent-color, var(--color-accent));
+    text-decoration: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .explorer-path-card__cta:hover {
+    text-decoration: underline;
+  }
+
+  /* ============================================
+     SECTION 3: Search & Discover
+     ============================================ */
+  .explorer-search {
+    margin-bottom: var(--space-16);
+    scroll-margin-top: var(--space-20);
+  }
+
+  /* ============================================
+     SECTION 4: Support
+     ============================================ */
+  .explorer-support {
+    text-align: center;
+    padding: var(--space-10);
+    background: linear-gradient(135deg, 
+      color-mix(in srgb, var(--color-surface) 95%, var(--red-600) 5%) 0%, 
+      var(--color-surface) 100%
+    );
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+  }
+
+  .explorer-support h2 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 var(--space-3);
+  }
+
+  .explorer-support p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    max-width: 500px;
+    margin: 0 auto var(--space-6);
+  }
+
+  .explorer-support__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: white;
+    background: var(--red-600);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .explorer-support__cta:hover {
+    background: var(--red-700);
+    transform: translateY(-1px);
+  }
+
+  /* ============================================
+     Reduced Motion
+     ============================================ */
+  @media (prefers-reduced-motion: reduce) {
+    .explorer-cta,
+    .explorer-path-card,
+    .explorer-path-step,
+    .explorer-support__cta {
+      transition: none;
+    }
+
+    .explorer-cta--primary:hover,
+    .explorer-support__cta:hover {
+      transform: none;
+    }
+  }
+</style>

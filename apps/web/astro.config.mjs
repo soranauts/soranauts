@@ -114,7 +114,8 @@ export default defineConfig({
         Header: './src/components/starlight/Header.astro',
         // Custom site title that links to /docs instead of /
         SiteTitle: './src/components/starlight/SiteTitle.astro',
-        // ContentPanel removed - let Starlight handle Pagefind indexing natively
+        // Redirect Starlight 404 to main site 404
+        NotFound: './src/components/starlight/NotFound.astro',
       },
       // Minimal sidebar for initial setup - will expand in Week 2
       sidebar: [
