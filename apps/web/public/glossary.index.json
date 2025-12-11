@@ -2562,8 +2562,8 @@
         "Nexus Architecture",
         "Policy"
       ],
-      "summary": "A UUID-style identifier assigned to every data space, used for routing, policy lookup, and cross-space access control.",
-      "definition": "A UUID-style identifier assigned to every data space, used for routing, policy lookup, and cross-space access control.",
+      "summary": "A UUID-style identifier in SORA Nexus assigned to every data space, used for transaction routing, policy lookup, and cross-space access control throughout the network.",
+      "definition": "A UUID-style identifier in SORA Nexus assigned to every data space, used for transaction routing, policy lookup, and cross-space access control throughout the network.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -2574,7 +2574,7 @@
         "dataspaces"
       ],
       "glossaryRef": "/glossary/dsid",
-      "blob": "dsid a uuid-style identifier assigned to every data space, used for routing, policy lookup, and cross-space access control. data spaces governance nexus architecture policy assembly attestations dataspacedirectory dataspaceid dataspaces"
+      "blob": "dsid a uuid-style identifier in sora nexus assigned to every data space, used for transaction routing, policy lookup, and cross-space access control throughout the network. data spaces governance nexus architecture policy assembly attestations dataspacedirectory dataspaceid dataspaces"
     },
     {
       "slug": "dualsig",
@@ -2942,8 +2942,8 @@
         "Nexus Architecture",
         "P2P"
       ],
-      "summary": "SoraNet components that hold recent ciphertexts near egress points, smoothing traffic and hiding timing correlations.",
-      "definition": "SoraNet components that hold recent ciphertexts near egress points, smoothing traffic and hiding timing correlations.",
+      "summary": "SORA Nexus network components that hold recent ciphertexts near egress points, smoothing traffic patterns and hiding timing correlations to protect user privacy.",
+      "definition": "SORA Nexus network components that hold recent ciphertexts near egress points, smoothing traffic patterns and hiding timing correlations to protect user privacy.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -2954,7 +2954,7 @@
         "lambdaexit"
       ],
       "glossaryRef": "/glossary/exitcaches",
-      "blob": "exit caches soranet components that hold recent ciphertexts near egress points, smoothing traffic and hiding timing correlations. infrastructure networking nexus architecture p2p blindedcids fixedsizecells gateways hybridpqhandshake lambdaexit"
+      "blob": "exit caches sora nexus network components that hold recent ciphertexts near egress points, smoothing traffic patterns and hiding timing correlations to protect user privacy. infrastructure networking nexus architecture p2p blindedcids fixedsizecells gateways hybridpqhandshake lambdaexit"
     },
     {
       "slug": "explorer",
@@ -3066,8 +3066,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "The reference workflow showing how transfers, SMT updates, and proofs compose from trace commitment to verifier checks.",
-      "definition": "The reference workflow showing how transfers, SMT updates, and proofs compose from trace commitment to verifier checks.",
+      "summary": "The reference workflow in SORA Nexus showing how transfers, SMT updates, and proofs compose from trace commitment through DEEP-FRI folding to verifier checks.",
+      "definition": "The reference workflow in SORA Nexus showing how transfers, SMT updates, and proofs compose from trace commitment through DEEP-FRI folding to verifier checks.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -3078,7 +3078,7 @@
         "fastpqzkstarkproofs"
       ],
       "glossaryRef": "/glossary/fastpqendtoendexample",
-      "blob": "fastpq end-to-end example the reference workflow showing how transfers, smt updates, and proofs compose from trace commitment to verifier checks. cryptography nexus architecture proofs security fastpq fastpqconstraintsystem fastpqisiproofs fastpqproofcomposition fastpqzkstarkproofs"
+      "blob": "fastpq end-to-end example the reference workflow in sora nexus showing how transfers, smt updates, and proofs compose from trace commitment through deep-fri folding to verifier checks. cryptography nexus architecture proofs security fastpq fastpqconstraintsystem fastpqisiproofs fastpqproofcomposition fastpqzkstarkproofs"
     },
     {
       "slug": "fastpqisiproofs",
@@ -3093,8 +3093,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "Proof bundles scoped to specific Iroha Special Instructions, allowing granular verification and aggregation per lane.",
-      "definition": "Proof bundles scoped to specific Iroha Special Instructions, allowing granular verification and aggregation per lane.",
+      "summary": "Proof bundles in SORA Nexus scoped to specific Iroha Special Instructions, allowing granular verification and efficient aggregation of proofs per lane.",
+      "definition": "Proof bundles in SORA Nexus scoped to specific Iroha Special Instructions, allowing granular verification and efficient aggregation of proofs per lane.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -3105,7 +3105,7 @@
         "fastpqzkstarkproofs"
       ],
       "glossaryRef": "/glossary/fastpqisiproofs",
-      "blob": "fastpq-isi proofs proof bundles scoped to specific iroha special instructions, allowing granular verification and aggregation per lane. cryptography nexus architecture proofs security fastpq fastpqconstraintsystem fastpqendtoendexample fastpqproofcomposition fastpqzkstarkproofs"
+      "blob": "fastpq-isi proofs proof bundles in sora nexus scoped to specific iroha special instructions, allowing granular verification and efficient aggregation of proofs per lane. cryptography nexus architecture proofs security fastpq fastpqconstraintsystem fastpqendtoendexample fastpqproofcomposition fastpqzkstarkproofs"
     },
     {
       "slug": "fastpqproofcomposition",
@@ -3361,8 +3361,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "Versioned, audited cost schedules assigning deterministic TEU prices to every syscall and instruction inside the IVM.",
-      "definition": "Versioned, audited cost schedules assigning deterministic TEU prices to every syscall and instruction inside the IVM.",
+      "summary": "Versioned, audited cost schedules in SORA Nexus assigning deterministic TEU prices to every syscall and instruction, ensuring predictable execution costs across the IVM.",
+      "definition": "Versioned, audited cost schedules in SORA Nexus assigning deterministic TEU prices to every syscall and instruction, ensuring predictable execution costs across the IVM.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -3373,7 +3373,7 @@
         "transactionexecutionunitsteu"
       ],
       "glossaryRef": "/glossary/gastables",
-      "blob": "gas tables versioned, audited cost schedules assigning deterministic teu prices to every syscall and instruction inside the ivm. execution ivm nexus architecture smart contracts budget economicmodel irohavirtualmachineivm syscalls transactionexecutionunitsteu"
+      "blob": "gas tables versioned, audited cost schedules in sora nexus assigning deterministic teu prices to every syscall and instruction, ensuring predictable execution costs across the ivm. execution ivm nexus architecture smart contracts budget economicmodel irohavirtualmachineivm syscalls transactionexecutionunitsteu"
     },
     {
       "slug": "gateways",
@@ -3978,8 +3978,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "Polynomial commitments based on inner product arguments, employed in Halo2 privacy proofs to verify tables efficiently.",
-      "definition": "Polynomial commitments based on inner product arguments, employed in Halo2 privacy proofs to verify tables efficiently.",
+      "summary": "Polynomial commitments in SORA Nexus based on inner product arguments, employed in Halo2 privacy proofs to verify lookup tables efficiently without revealing data.",
+      "definition": "Polynomial commitments in SORA Nexus based on inner product arguments, employed in Halo2 privacy proofs to verify lookup tables efficiently without revealing data.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -3990,7 +3990,7 @@
         "merklecommitments"
       ],
       "glossaryRef": "/glossary/ipacommitments",
-      "blob": "ipa commitments polynomial commitments based on inner product arguments, employed in halo2 privacy proofs to verify tables efficiently. cryptography nexus architecture proofs security blake2b commitments halo2ipaproofs irohaconfig merklecommitments"
+      "blob": "ipa commitments polynomial commitments in sora nexus based on inner product arguments, employed in halo2 privacy proofs to verify lookup tables efficiently without revealing data. cryptography nexus architecture proofs security blake2b commitments halo2ipaproofs irohaconfig merklecommitments"
     },
     {
       "slug": "ipfs",
@@ -4238,8 +4238,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The compiled Kotodama program format (.to files) containing headers, ABI versions, and vector tables for IVM execution.",
-      "definition": "The compiled Kotodama program format (.to files) containing headers, ABI versions, and vector tables for IVM execution.",
+      "summary": "The compiled Kotodama program format in SORA Nexus (.to files) containing headers, ABI versions, and vector tables that the IVM loads and executes deterministically.",
+      "definition": "The compiled Kotodama program format in SORA Nexus (.to files) containing headers, ABI versions, and vector tables that the IVM loads and executes deterministically.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4249,7 +4249,7 @@
         "kotodamabytecode"
       ],
       "glossaryRef": "/glossary/ivmbytecode",
-      "blob": "ivm bytecode the compiled kotodama program format (.to files) containing headers, abi versions, and vector tables for ivm execution. execution ivm nexus architecture smart contracts action activationslot irohavirtualmachineivm kotodamabytecode"
+      "blob": "ivm bytecode the compiled kotodama program format in sora nexus (.to files) containing headers, abi versions, and vector tables that the ivm loads and executes deterministically. execution ivm nexus architecture smart contracts action activationslot irohavirtualmachineivm kotodamabytecode"
     },
     {
       "slug": "kaigi",
@@ -4377,8 +4377,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The toolchain that validates Kotodama contracts, ensuring pointer ABIs and gas tables are compatible before deployment.",
-      "definition": "The toolchain that validates Kotodama contracts, ensuring pointer ABIs and gas tables are compatible before deployment.",
+      "summary": "The toolchain in SORA Nexus that validates Kotodama contracts before deployment, ensuring pointer ABIs and gas tables are compatible with the current network version.",
+      "definition": "The toolchain in SORA Nexus that validates Kotodama contracts before deployment, ensuring pointer ABIs and gas tables are compatible with the current network version.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4389,7 +4389,7 @@
         "kotodamabytecode"
       ],
       "glossaryRef": "/glossary/kotodamaruntime",
-      "blob": "kotodama runtime the toolchain that validates kotodama contracts, ensuring pointer abis and gas tables are compatible before deployment. execution ivm nexus architecture smart contracts deterministicruntime irohavirtualmachineivm ivmbytecode kotodama kotodamabytecode"
+      "blob": "kotodama runtime the toolchain in sora nexus that validates kotodama contracts before deployment, ensuring pointer abis and gas tables are compatible with the current network version. execution ivm nexus architecture smart contracts deterministicruntime irohavirtualmachineivm ivmbytecode kotodama kotodamabytecode"
     },
     {
       "slug": "kura",
@@ -5926,8 +5926,8 @@
         "Nexus Architecture",
         "Policy"
       ],
-      "summary": "Versioned on-chain collections of cryptography choices, admission caps, and scheduler knobs that governance can update.",
-      "definition": "Versioned on-chain collections of cryptography choices, admission caps, and scheduler knobs that governance can update.",
+      "summary": "Versioned on-chain collections in SORA Nexus of cryptography choices, admission caps, and scheduler knobs that governance can update without requiring hard forks.",
+      "definition": "Versioned on-chain collections in SORA Nexus of cryptography choices, admission caps, and scheduler knobs that governance can update without requiring hard forks.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5938,7 +5938,7 @@
         "runtimeupgrades"
       ],
       "glossaryRef": "/glossary/parametersets",
-      "blob": "parameter sets versioned on-chain collections of cryptography choices, admission caps, and scheduler knobs that governance can update. data spaces governance nexus architecture policy admission assembly gastables governancesurfaces runtimeupgrades"
+      "blob": "parameter sets versioned on-chain collections in sora nexus of cryptography choices, admission caps, and scheduler knobs that governance can update without requiring hard forks. data spaces governance nexus architecture policy admission assembly gastables governancesurfaces runtimeupgrades"
     },
     {
       "slug": "parathreads",
@@ -6074,8 +6074,8 @@
         "Nexus Architecture",
         "Operations"
       ],
-      "summary": "The published defaults (<=1 s lane finality, <=32 MB envelopes, etc.) guiding deployments toward predictable behavior.",
-      "definition": "The published defaults (<=1 s lane finality, <=32 MB envelopes, etc.) guiding deployments toward predictable behavior.",
+      "summary": "The published defaults in SORA Nexus (sub-second lane finality, 32 MB envelope limits, etc.) guiding validator deployments toward predictable, consistent behavior.",
+      "definition": "The published defaults in SORA Nexus (sub-second lane finality, 32 MB envelope limits, etc.) guiding validator deployments toward predictable, consistent behavior.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -6086,7 +6086,7 @@
         "privacytransactions"
       ],
       "glossaryRef": "/glossary/performancetargets",
-      "blob": "performance targets the published defaults (<=1 s lane finality, <=32 mb envelopes, etc.) guiding deployments toward predictable behavior. infrastructure monitoring nexus architecture operations circuitbreakers circuitbreakerstate georedundancy laneanddabudgets privacytransactions"
+      "blob": "performance targets the published defaults in sora nexus (sub-second lane finality, 32 mb envelope limits, etc.) guiding validator deployments toward predictable, consistent behavior. infrastructure monitoring nexus architecture operations circuitbreakers circuitbreakerstate georedundancy laneanddabudgets privacytransactions"
     },
     {
       "slug": "plonkish",
@@ -6101,8 +6101,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "A descriptor for the Halo2 circuit style that supports lookups and flexible gates, enabling efficient privacy proofs.",
-      "definition": "A descriptor for the Halo2 circuit style that supports lookups and flexible gates, enabling efficient privacy proofs.",
+      "summary": "A descriptor for the Halo2 circuit style used in SORA Nexus that supports lookups and flexible gates, enabling efficient zero-knowledge privacy proofs.",
+      "definition": "A descriptor for the Halo2 circuit style used in SORA Nexus that supports lookups and flexible gates, enabling efficient zero-knowledge privacy proofs.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -6113,7 +6113,7 @@
         "deepfri"
       ],
       "glossaryRef": "/glossary/plonkish",
-      "blob": "plon kish a descriptor for the halo2 circuit style that supports lookups and flexible gates, enabling efficient privacy proofs. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
+      "blob": "plon kish a descriptor for the halo2 circuit style used in sora nexus that supports lookups and flexible gates, enabling efficient zero-knowledge privacy proofs. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
     },
     {
       "slug": "pointerabi",
@@ -6596,8 +6596,8 @@
         "Nexus Architecture",
         "Proofs"
       ],
-      "summary": "Actors (often GPU-accelerated) that generate FASTPQ or DA proofs and deliver them within the configured latency budget.",
-      "definition": "Actors (often GPU-accelerated) that generate FASTPQ or DA proofs and deliver them within the configured latency budget.",
+      "summary": "Actors in SORA Nexus (often GPU-accelerated) that generate FASTPQ or DA proofs and deliver them within configured latency budgets to maintain network throughput.",
+      "definition": "Actors in SORA Nexus (often GPU-accelerated) that generate FASTPQ or DA proofs and deliver them within configured latency budgets to maintain network throughput.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -6608,7 +6608,7 @@
         "dasamplingconfidence"
       ],
       "glossaryRef": "/glossary/provers",
-      "blob": "provers actors (often gpu-accelerated) that generate fastpq or da proofs and deliver them within the configured latency budget. data availability infrastructure nexus architecture proofs attesters dacertificates dasampling dasamplingbudget dasamplingconfidence"
+      "blob": "provers actors in sora nexus (often gpu-accelerated) that generate fastpq or da proofs and deliver them within configured latency budgets to maintain network throughput. data availability infrastructure nexus architecture proofs attesters dacertificates dasampling dasamplingbudget dasamplingconfidence"
     },
     {
       "slug": "pswap",
@@ -6804,8 +6804,8 @@
         "Nexus Architecture",
         "Proofs"
       ],
-      "summary": "The erasure-coding scheme used in SoraFS for row and column parity, ensuring any k shards can reconstruct the envelope.",
-      "definition": "The erasure-coding scheme used in SoraFS for row and column parity, ensuring any k shards can reconstruct the envelope.",
+      "summary": "The erasure-coding scheme used in SORA Nexus for row and column parity in SoraFS, ensuring any k-of-n shards can reconstruct the original data envelope.",
+      "definition": "The erasure-coding scheme used in SORA Nexus for row and column parity in SoraFS, ensuring any k-of-n shards can reconstruct the original data envelope.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -6816,7 +6816,7 @@
         "twodimensionalerasurecoding"
       ],
       "glossaryRef": "/glossary/reedsolomon",
-      "blob": "reed-solomon the erasure-coding scheme used in sorafs for row and column parity, ensuring any k shards can reconstruct the envelope. data availability infrastructure nexus architecture proofs dacertificates dasampling dataavailability erasurecodedwsv twodimensionalerasurecoding"
+      "blob": "reed-solomon the erasure-coding scheme used in sora nexus for row and column parity in sorafs, ensuring any k-of-n shards can reconstruct the original data envelope. data availability infrastructure nexus architecture proofs dacertificates dasampling dataavailability erasurecodedwsv twodimensionalerasurecoding"
     },
     {
       "slug": "referendum",
@@ -8426,8 +8426,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The deterministic process of applying validated instructions to the World State View after consensus confirms a block.",
-      "definition": "The deterministic process of applying validated instructions to the World State View after consensus confirms a block.",
+      "summary": "The deterministic process in SORA Nexus of applying validated instructions to the World State View after consensus confirms a block, updating balances and metadata.",
+      "definition": "The deterministic process in SORA Nexus of applying validated instructions to the World State View after consensus confirms a block, updating balances and metadata.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -8438,7 +8438,7 @@
         "worldstateviewwsv"
       ],
       "glossaryRef": "/glossary/stateapplication",
-      "blob": "state application the deterministic process of applying validated instructions to the world state view after consensus confirms a block. execution ivm nexus architecture smart contracts action activationslot circuitbreakerstate lanescopedstate worldstateviewwsv"
+      "blob": "state application the deterministic process in sora nexus of applying validated instructions to the world state view after consensus confirms a block, updating balances and metadata. execution ivm nexus architecture smart contracts action activationslot circuitbreakerstate lanescopedstate worldstateviewwsv"
     },
     {
       "slug": "submission",
@@ -9936,5 +9936,5 @@
     }
   ],
   "totalCount": 369,
-  "lastUpdated": "2025-12-11T00:53:28.699Z"
+  "lastUpdated": "2025-12-11T00:56:24.234Z"
 }
