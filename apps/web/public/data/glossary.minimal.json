@@ -518,7 +518,7 @@
       "slug": "dataspaces",
       "title": "Data Spaces",
       "category": "Governance",
-      "summary": "Sovereignty-preserving partitions allowing different jurisdictions or applications to share the same ledger without sharing private data.",
+      "summary": "Sovereignty-preserving partitions in SORA Nexus that allow different jurisdictions or applications to share the same ledger without sharing private data, enabling both enterprise privacy and public transparency on one network.",
       "tagline": "Enables enterprises and regulators to participate in SORA while maintaining data isolation."
     },
     {
@@ -1009,7 +1009,7 @@
       "slug": "irohavirtualmachineivm",
       "title": "Iroha Virtual Machine (IVM)",
       "category": "Execution",
-      "summary": "A purpose-built deterministic runtime that executes Kotodama bytecode with typed ABIs and fixed gas metering.",
+      "summary": "The purpose-built deterministic runtime at the core of SORA Nexus that executes Kotodama bytecode with typed ABIs and fixed gas metering, ensuring identical computation across all validators.",
       "tagline": "Ensures every node computes identical results, making cross-chain verification trustless."
     },
     {
@@ -1148,7 +1148,7 @@
       "slug": "lanes",
       "title": "Lanes",
       "category": "Execution",
-      "summary": "Parallel execution tracks that process transactions independently before a merge ledger orders their outputs.",
+      "summary": "Parallel execution tracks in SORA Nexus that process transactions independently before the Merge Ledger orders their outputs, enabling horizontal scaling without sacrificing global consistency.",
       "tagline": "Enables horizontal scaling by running multiple transaction streams concurrently."
     },
     {
@@ -1264,7 +1264,7 @@
       "slug": "mergeledger",
       "title": "Merge Ledger",
       "category": "Execution",
-      "summary": "The lightweight ordering layer that sequences finalized lane tips into a single global history. Multiple lanes process transactions in parallel for throughput, and the merge ledger orders these lane tips into one canonical sequence without re-ordering finalized lane history, preserving both parallelism and consistency.",
+      "summary": "The lightweight ordering layer in SORA Nexus that sequences finalized lane tips into a single global history, preserving both parallel throughput and a canonical transaction order.",
       "tagline": "Provides a single source of truth while enabling parallel transaction processing."
     },
     {
@@ -1362,7 +1362,7 @@
       "slug": "norito",
       "title": "Norito",
       "category": "Serialization & Encoding",
-      "summary": "The canonical serialization language for commands, receipts, and state, ensuring all tooling speaks a single schema.",
+      "summary": "The canonical serialization format for SORA Nexus that defines how commands, receipts, and state are encoded, ensuring all clients, validators, and tools interpret data identically.",
       "tagline": "Guarantees that every client, validator, and tool interprets data identically, eliminating serialization bugs and cross-platform inconsistencies."
     },
     {
@@ -1574,7 +1574,7 @@
       "slug": "privatedataspaces",
       "title": "Private Data Spaces",
       "category": "Governance",
-      "summary": "Permissioned domains where data and proofs remain within the operator's trust boundary, using ML-DSA attestations for DA.",
+      "summary": "Permissioned partitions in SORA Nexus where data and proofs remain within the operator's trust boundary, using ML-DSA-87 attestations for data availability while maintaining regulatory compliance.",
       "tagline": "Allows enterprises and institutions to participate in SORA Nexus while keeping sensitive data confidential and compliant with local regulations."
     },
     {
@@ -1641,7 +1641,7 @@
       "slug": "publicdataspaces",
       "title": "Public Data Spaces",
       "category": "Governance",
-      "summary": "Open participation domains where DA sampling is performed publicly and Ed25519 signatures attest to availability.",
+      "summary": "Open participation domains in SORA Nexus where data availability sampling is performed publicly and Ed25519 signatures attest to availability, enabling transparent verification by any network participant.",
       "tagline": "Provides cryptographic authentication for transactions and attestations."
     },
     {
@@ -2131,7 +2131,7 @@
       "slug": "taikai",
       "title": "Taikai",
       "category": "Networking",
-      "summary": "The streaming and data pipeline platform governed on-ledger, supporting Norito streaming, telemetry, and slashing for misbehavior.",
+      "summary": "The streaming and data pipeline platform in SORA Nexus governed on-ledger, supporting Norito streaming, real-time telemetry, and cryptographic slashing for validator misbehavior.",
       "tagline": "Detects and penalizes validator misbehavior through on-ledger governance, protecting network integrity while enabling real-time data streaming."
     },
     {
@@ -2355,7 +2355,7 @@
       "slug": "worldstateviewwsv",
       "title": "World State View (WSV)",
       "category": "Storage",
-      "summary": "The canonical state database holding current balances, metadata, and trigger definitions across all data spaces.",
+      "summary": "The canonical state database in SORA Nexus holding current balances, metadata, and trigger definitions across all data spaces, providing every validator with a consistent snapshot of network state.",
       "tagline": "Gives every validator a consistent snapshot of network state, enabling instant balance queries."
     },
     {
@@ -2435,5 +2435,5 @@
   "canonicalCount": 369,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-11T00:23:23.829Z"
+  "lastUpdated": "2025-12-11T00:33:08.873Z"
 }

@@ -2208,10 +2208,10 @@
     {
       "slug": "dataspaces",
       "title": "Data Spaces",
-      "summary": "Sovereignty-preserving partitions allowing different jurisdictions or applications to share the same ledger without sharing private data.",
+      "summary": "Sovereignty-preserving partitions in SORA Nexus that allow different jurisdictions or applications to share the same ledger without sharing private data, enabling both enterprise privacy and public transparency on one network.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Sovereignty-preserving partitions allowing different jurisdictions or applications to share the same ledger without sharing private data.",
+      "definition": "Sovereignty-preserving partitions in SORA Nexus that allow different jurisdictions or applications to share the same ledger without sharing private data, enabling both enterprise privacy and public transparency on one network.",
       "category": "Governance",
       "aliases": [],
       "tags": [
@@ -4185,10 +4185,10 @@
     {
       "slug": "irohavirtualmachineivm",
       "title": "Iroha Virtual Machine (IVM)",
-      "summary": "A purpose-built deterministic runtime that executes Kotodama bytecode with typed ABIs and fixed gas metering.",
+      "summary": "The purpose-built deterministic runtime at the core of SORA Nexus that executes Kotodama bytecode with typed ABIs and fixed gas metering, ensuring identical computation across all validators.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "A purpose-built deterministic runtime that executes Kotodama bytecode with typed ABIs and fixed gas metering.",
+      "definition": "The purpose-built deterministic runtime at the core of SORA Nexus that executes Kotodama bytecode with typed ABIs and fixed gas metering, ensuring identical computation across all validators.",
       "category": "Execution",
       "aliases": [],
       "tags": [
@@ -4728,10 +4728,10 @@
     {
       "slug": "lanes",
       "title": "Lanes",
-      "summary": "Parallel execution tracks that process transactions independently before a merge ledger orders their outputs.",
+      "summary": "Parallel execution tracks in SORA Nexus that process transactions independently before the Merge Ledger orders their outputs, enabling horizontal scaling without sacrificing global consistency.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Parallel execution tracks that process transactions independently before a merge ledger orders their outputs.",
+      "definition": "Parallel execution tracks in SORA Nexus that process transactions independently before the Merge Ledger orders their outputs, enabling horizontal scaling without sacrificing global consistency.",
       "category": "Execution",
       "aliases": [],
       "tags": [
@@ -5198,10 +5198,10 @@
     {
       "slug": "mergeledger",
       "title": "Merge Ledger",
-      "summary": "The lightweight ordering layer that sequences finalized lane tips into a single global history. Multiple lanes process transactions in parallel for throughput, and the merge ledger orders these lane tips into one canonical sequence without re-ordering finalized lane history, preserving both parallelism and consistency.",
+      "summary": "The lightweight ordering layer in SORA Nexus that sequences finalized lane tips into a single global history, preserving both parallel throughput and a canonical transaction order.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The lightweight ordering layer that sequences finalized lane tips into a single global history. Multiple lanes process transactions in parallel for throughput, and the merge ledger orders these lane tips into one canonical sequence without re-ordering finalized lane history, preserving both parallelism and consistency.",
+      "definition": "The lightweight ordering layer in SORA Nexus that sequences finalized lane tips into a single global history, preserving both parallel throughput and a canonical transaction order.",
       "category": "Execution",
       "aliases": [],
       "tags": [
@@ -5597,10 +5597,10 @@
     {
       "slug": "norito",
       "title": "Norito",
-      "summary": "The canonical serialization language for commands, receipts, and state, ensuring all tooling speaks a single schema.",
+      "summary": "The canonical serialization format for SORA Nexus that defines how commands, receipts, and state are encoded, ensuring all clients, validators, and tools interpret data identically.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The canonical serialization language for commands, receipts, and state, ensuring all tooling speaks a single schema.",
+      "definition": "The canonical serialization format for SORA Nexus that defines how commands, receipts, and state are encoded, ensuring all clients, validators, and tools interpret data identically.",
       "category": "Serialization & Encoding",
       "aliases": [],
       "tags": [
@@ -6439,10 +6439,10 @@
     {
       "slug": "privatedataspaces",
       "title": "Private Data Spaces",
-      "summary": "Permissioned domains where data and proofs remain within the operator's trust boundary, using ML-DSA attestations for DA.",
+      "summary": "Permissioned partitions in SORA Nexus where data and proofs remain within the operator's trust boundary, using ML-DSA-87 attestations for data availability while maintaining regulatory compliance.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Permissioned domains where data and proofs remain within the operator's trust boundary, using ML-DSA attestations for DA.",
+      "definition": "Permissioned partitions in SORA Nexus where data and proofs remain within the operator's trust boundary, using ML-DSA-87 attestations for data availability while maintaining regulatory compliance.",
       "category": "Governance",
       "aliases": [],
       "tags": [
@@ -6714,10 +6714,10 @@
     {
       "slug": "publicdataspaces",
       "title": "Public Data Spaces",
-      "summary": "Open participation domains where DA sampling is performed publicly and Ed25519 signatures attest to availability.",
+      "summary": "Open participation domains in SORA Nexus where data availability sampling is performed publicly and Ed25519 signatures attest to availability, enabling transparent verification by any network participant.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Open participation domains where DA sampling is performed publicly and Ed25519 signatures attest to availability.",
+      "definition": "Open participation domains in SORA Nexus where data availability sampling is performed publicly and Ed25519 signatures attest to availability, enabling transparent verification by any network participant.",
       "category": "Governance",
       "aliases": [],
       "tags": [
@@ -8795,10 +8795,10 @@
     {
       "slug": "taikai",
       "title": "Taikai",
-      "summary": "The streaming and data pipeline platform governed on-ledger, supporting Norito streaming, telemetry, and slashing for misbehavior.",
+      "summary": "The streaming and data pipeline platform in SORA Nexus governed on-ledger, supporting Norito streaming, real-time telemetry, and cryptographic slashing for validator misbehavior.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The streaming and data pipeline platform governed on-ledger, supporting Norito streaming, telemetry, and slashing for misbehavior.",
+      "definition": "The streaming and data pipeline platform in SORA Nexus governed on-ledger, supporting Norito streaming, real-time telemetry, and cryptographic slashing for validator misbehavior.",
       "category": "Networking",
       "aliases": [],
       "tags": [
@@ -9774,10 +9774,10 @@
     {
       "slug": "worldstateviewwsv",
       "title": "World State View (WSV)",
-      "summary": "The canonical state database holding current balances, metadata, and trigger definitions across all data spaces.",
+      "summary": "The canonical state database in SORA Nexus holding current balances, metadata, and trigger definitions across all data spaces, providing every validator with a consistent snapshot of network state.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The canonical state database holding current balances, metadata, and trigger definitions across all data spaces.",
+      "definition": "The canonical state database in SORA Nexus holding current balances, metadata, and trigger definitions across all data spaces, providing every validator with a consistent snapshot of network state.",
       "category": "Storage",
       "aliases": [],
       "tags": [
@@ -10139,5 +10139,5 @@
   "aliasCount": 39,
   "deprecatedCount": 0,
   "version": 2025,
-  "lastUpdated": "2025-12-11T00:23:23.801Z"
+  "lastUpdated": "2025-12-11T00:33:08.819Z"
 }
