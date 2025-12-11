@@ -255,7 +255,7 @@
       "slug": "budget",
       "title": "Budget",
       "category": "Economics",
-      "summary": "The TEU and fee allowance assigned to a trigger or automation, preventing unlimited compute or bandwidth consumption.",
+      "summary": "The TEU and fee allowance in SORA Nexus assigned to triggers or automations, preventing unlimited compute or bandwidth consumption and ensuring predictable resource usage.",
       "tagline": "Caps resource usage per operation so no single transaction can monopolize the network."
     },
     {
@@ -634,7 +634,7 @@
       "slug": "economicmodel",
       "title": "Economic Model",
       "category": "Economics",
-      "summary": "The XOR-denominated fee, reward, and bonding framework harmonizing incentives across public and private data spaces.",
+      "summary": "The XOR-denominated fee, reward, and bonding framework in SORA Nexus that harmonizes economic incentives across public and private data spaces for sustainable operation.",
       "tagline": "Aligns validator, developer, and user incentives to maintain network security and growth."
     },
     {
@@ -1065,7 +1065,7 @@
       "slug": "kotodamabytecode",
       "title": "Kotodama Bytecode",
       "category": "Execution",
-      "summary": "The low-level output of Kotodama compilers, packing opcodes, pointer tables, and gas ceilings enforced by the IVM.",
+      "summary": "The low-level output of Kotodama compilers in SORA Nexus, packing opcodes, pointer tables, and gas ceilings into portable bytecode that the IVM executes deterministically.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
@@ -1251,7 +1251,7 @@
       "slug": "memorymodel",
       "title": "Memory Model",
       "category": "Execution",
-      "summary": "The IVM's segmented memory rules (code, heap, stack, IO) with strict bounds and Merkle commitments for traceability.",
+      "summary": "The IVM's segmented memory rules in SORA Nexus (code, heap, stack, IO) with strict bounds checking and Merkle commitments enabling traceable, deterministic execution.",
       "tagline": "Prevents buffer overflows and enables efficient state proofs for light clients."
     },
     {
@@ -1271,7 +1271,7 @@
       "slug": "merklecommitments",
       "title": "Merkle Commitments",
       "category": "Cryptography",
-      "summary": "Poseidon2-based Merkle roots over memory, registers, or storage that allow succinct verification of state changes.",
+      "summary": "Poseidon2-based Merkle roots in SORA Nexus over memory, registers, or storage that allow succinct cryptographic verification of state changes without full data access.",
       "tagline": "Allow succinct verification of state changes."
     },
     {
@@ -1316,7 +1316,7 @@
       "slug": "multisig",
       "title": "Multi-Sig",
       "category": "Accounts & Identity",
-      "summary": "Nexus's flexible signing model where different schemes (Ed25519, ML-DSA-87, etc.) can be mixed in m-of-n policies.",
+      "summary": "SORA Nexus's flexible signing model where different cryptographic schemes (Ed25519, ML-DSA-87, SM2) can be mixed in m-of-n policies for institutional and multi-party accounts.",
       "tagline": "Nexus's flexible signing model where different schemes (Ed25519, ML-DSA-87, etc."
     },
     {
@@ -1411,7 +1411,7 @@
       "slug": "nullifiers",
       "title": "Nullifiers",
       "category": "Cryptography",
-      "summary": "Hash-derived tags in shielded transfers that prevent double-spending by marking commitments as spent once revealed.",
+      "summary": "Hash-derived tags in SORA Nexus shielded transfers that prevent double-spending by marking commitments as spent once revealed, enabling private but secure transactions.",
       "tagline": "Ensures data integrity and enables secure verification across the network."
     },
     {
@@ -1449,7 +1449,7 @@
       "slug": "parallellanes",
       "title": "Parallel Lanes",
       "category": "Execution",
-      "summary": "The architectural pattern of running multiple lanes simultaneously to boost throughput without spawning new chains.",
+      "summary": "The architectural pattern in SORA Nexus of running multiple lanes simultaneously to boost throughput horizontally without spawning separate chains or fragmenting liquidity.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
@@ -1732,7 +1732,7 @@
       "slug": "rtgsmodernization",
       "title": "RTGS Modernization",
       "category": "Use Cases",
-      "summary": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls.",
+      "summary": "A targeted use case where central banks run real-time gross settlement on SORA Nexus with deterministic policy controls, data space isolation, and regulatory compliance.",
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
@@ -2085,14 +2085,14 @@
       "slug": "sumeragi",
       "title": "Sumeragi",
       "category": "Consensus",
-      "summary": "The BFT consensus protocol for Iroha 3, featuring deterministic leader rotation and locking rules for fast finality.",
+      "summary": "The BFT consensus protocol at the heart of SORA Nexus featuring deterministic leader rotation, cryptographic locking rules, and sub-second finality for all transactions.",
       "tagline": "Delivers sub-second block finality while tolerating up to one-third Byzantine validators."
     },
     {
       "slug": "sumeragiconsensus",
       "title": "Sumeragi Consensus",
       "category": "Consensus",
-      "summary": "The formal HotStuff-style guarantees—safety, liveness, and QC intersection—embedded in the SUMERAGI pipeline.",
+      "summary": "The formal HotStuff-style guarantees in SORA Nexus—safety, liveness, and QC intersection—embedded in the SUMERAGI pipeline to ensure consistent block finalization.",
       "tagline": "Provides mathematical proof that committed blocks cannot be reverted, even under network partitions."
     },
     {
@@ -2152,7 +2152,7 @@
       "slug": "telemetry",
       "title": "Telemetry",
       "category": "Observability & Operations",
-      "summary": "The observability feeds - lane latency, DA failures, breaker status - that operators monitor to keep Nexus healthy.",
+      "summary": "The observability feeds in SORA Nexus—lane latency, DA failures, circuit breaker status—that operators monitor to maintain network health and respond to issues quickly.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
@@ -2322,14 +2322,14 @@
       "slug": "vrfaggregate",
       "title": "VRF Aggregate",
       "category": "Consensus",
-      "summary": "The combined verifiable random function output from committees, feeding epoch beacons and lane-specific randomness.",
+      "summary": "The combined verifiable random function output in SORA Nexus from validator committees, feeding epoch beacons and lane-specific randomness for fair leader selection.",
       "tagline": "Enables parallel transaction processing for higher throughput."
     },
     {
       "slug": "vrfsortition",
       "title": "VRF Sortition",
       "category": "Consensus",
-      "summary": "A method for drawing validator committees where candidates prove via VRF that their random output meets a threshold.",
+      "summary": "A method in SORA Nexus for drawing validator committees where candidates prove via VRF that their random output meets a threshold, ensuring fair and unpredictable selection.",
       "tagline": "Prevents validator collusion by making committee selection unpredictable until the moment of reveal."
     },
     {
@@ -2435,5 +2435,5 @@
   "canonicalCount": 369,
   "aliasCount": 39,
   "version": 2025,
-  "lastUpdated": "2025-12-11T00:50:50.640Z"
+  "lastUpdated": "2025-12-11T00:53:28.729Z"
 }

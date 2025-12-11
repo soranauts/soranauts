@@ -1075,8 +1075,8 @@
         "Nexus Architecture",
         "Tokenomics"
       ],
-      "summary": "The TEU and fee allowance assigned to a trigger or automation, preventing unlimited compute or bandwidth consumption.",
-      "definition": "The TEU and fee allowance assigned to a trigger or automation, preventing unlimited compute or bandwidth consumption.",
+      "summary": "The TEU and fee allowance in SORA Nexus assigned to triggers or automations, preventing unlimited compute or bandwidth consumption and ensuring predictable resource usage.",
+      "definition": "The TEU and fee allowance in SORA Nexus assigned to triggers or automations, preventing unlimited compute or bandwidth consumption and ensuring predictable resource usage.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -1087,7 +1087,7 @@
         "triggers"
       ],
       "glossaryRef": "/glossary/budget",
-      "blob": "budget the teu and fee allowance assigned to a trigger or automation, preventing unlimited compute or bandwidth consumption. economics incentives nexus architecture tokenomics collateralizedlocks gastables laneteubudget transactionexecutionunitsteu triggers"
+      "blob": "budget the teu and fee allowance in sora nexus assigned to triggers or automations, preventing unlimited compute or bandwidth consumption and ensuring predictable resource usage. economics incentives nexus architecture tokenomics collateralizedlocks gastables laneteubudget transactionexecutionunitsteu triggers"
     },
     {
       "slug": "bullmarket",
@@ -2647,8 +2647,8 @@
         "Nexus Architecture",
         "Tokenomics"
       ],
-      "summary": "The XOR-denominated fee, reward, and bonding framework harmonizing incentives across public and private data spaces.",
-      "definition": "The XOR-denominated fee, reward, and bonding framework harmonizing incentives across public and private data spaces.",
+      "summary": "The XOR-denominated fee, reward, and bonding framework in SORA Nexus that harmonizes economic incentives across public and private data spaces for sustainable operation.",
+      "definition": "The XOR-denominated fee, reward, and bonding framework in SORA Nexus that harmonizes economic incentives across public and private data spaces for sustainable operation.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -2659,7 +2659,7 @@
         "xorutility"
       ],
       "glossaryRef": "/glossary/economicmodel",
-      "blob": "economic model the xor-denominated fee, reward, and bonding framework harmonizing incentives across public and private data spaces. economics incentives nexus architecture tokenomics budget collateralizedlocks laneteubudget transactionexecutionunitsteu xorutility"
+      "blob": "economic model the xor-denominated fee, reward, and bonding framework in sora nexus that harmonizes economic incentives across public and private data spaces for sustainable operation. economics incentives nexus architecture tokenomics budget collateralizedlocks laneteubudget transactionexecutionunitsteu xorutility"
     },
     {
       "slug": "economics",
@@ -4350,8 +4350,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The low-level output of Kotodama compilers, packing opcodes, pointer tables, and gas ceilings enforced by the IVM.",
-      "definition": "The low-level output of Kotodama compilers, packing opcodes, pointer tables, and gas ceilings enforced by the IVM.",
+      "summary": "The low-level output of Kotodama compilers in SORA Nexus, packing opcodes, pointer tables, and gas ceilings into portable bytecode that the IVM executes deterministically.",
+      "definition": "The low-level output of Kotodama compilers in SORA Nexus, packing opcodes, pointer tables, and gas ceilings into portable bytecode that the IVM executes deterministically.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -4362,7 +4362,7 @@
         "kotodamaruntime"
       ],
       "glossaryRef": "/glossary/kotodamabytecode",
-      "blob": "kotodama bytecode the low-level output of kotodama compilers, packing opcodes, pointer tables, and gas ceilings enforced by the ivm. execution ivm nexus architecture smart contracts action activationslot ivmbytecode kotodama kotodamaruntime"
+      "blob": "kotodama bytecode the low-level output of kotodama compilers in sora nexus, packing opcodes, pointer tables, and gas ceilings into portable bytecode that the ivm executes deterministically. execution ivm nexus architecture smart contracts action activationslot ivmbytecode kotodama kotodamaruntime"
     },
     {
       "slug": "kotodamaruntime",
@@ -5100,8 +5100,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The IVM's segmented memory rules (code, heap, stack, IO) with strict bounds and Merkle commitments for traceability.",
-      "definition": "The IVM's segmented memory rules (code, heap, stack, IO) with strict bounds and Merkle commitments for traceability.",
+      "summary": "The IVM's segmented memory rules in SORA Nexus (code, heap, stack, IO) with strict bounds checking and Merkle commitments enabling traceable, deterministic execution.",
+      "definition": "The IVM's segmented memory rules in SORA Nexus (code, heap, stack, IO) with strict bounds checking and Merkle commitments enabling traceable, deterministic execution.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5110,7 +5110,7 @@
         "kotodama"
       ],
       "glossaryRef": "/glossary/memorymodel",
-      "blob": "memory model the ivm's segmented memory rules (code, heap, stack, io) with strict bounds and merkle commitments for traceability. execution ivm nexus architecture smart contracts deterministicruntime irohavirtualmachineivm kotodama"
+      "blob": "memory model the ivm's segmented memory rules in sora nexus (code, heap, stack, io) with strict bounds checking and merkle commitments enabling traceable, deterministic execution. execution ivm nexus architecture smart contracts deterministicruntime irohavirtualmachineivm kotodama"
     },
     {
       "slug": "memorysafety",
@@ -5178,8 +5178,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "Poseidon2-based Merkle roots over memory, registers, or storage that allow succinct verification of state changes.",
-      "definition": "Poseidon2-based Merkle roots over memory, registers, or storage that allow succinct verification of state changes.",
+      "summary": "Poseidon2-based Merkle roots in SORA Nexus over memory, registers, or storage that allow succinct cryptographic verification of state changes without full data access.",
+      "definition": "Poseidon2-based Merkle roots in SORA Nexus over memory, registers, or storage that allow succinct cryptographic verification of state changes without full data access.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5190,7 +5190,7 @@
         "ipacommitments"
       ],
       "glossaryRef": "/glossary/merklecommitments",
-      "blob": "merkle commitments poseidon2-based merkle roots over memory, registers, or storage that allow succinct verification of state changes. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 ipacommitments"
+      "blob": "merkle commitments poseidon2-based merkle roots in sora nexus over memory, registers, or storage that allow succinct cryptographic verification of state changes without full data access. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 ipacommitments"
     },
     {
       "slug": "mining",
@@ -5367,8 +5367,8 @@
         "Nexus Architecture",
         "Security"
       ],
-      "summary": "Nexus's flexible signing model where different schemes (Ed25519, ML-DSA-87, etc.) can be mixed in m-of-n policies.",
-      "definition": "Nexus's flexible signing model where different schemes (Ed25519, ML-DSA-87, etc.) can be mixed in m-of-n policies.",
+      "summary": "SORA Nexus's flexible signing model where different cryptographic schemes (Ed25519, ML-DSA-87, SM2) can be mixed in m-of-n policies for institutional and multi-party accounts.",
+      "definition": "SORA Nexus's flexible signing model where different cryptographic schemes (Ed25519, ML-DSA-87, SM2) can be mixed in m-of-n policies for institutional and multi-party accounts.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5379,7 +5379,7 @@
         "dualsig"
       ],
       "glossaryRef": "/glossary/multisig",
-      "blob": "multi-sig nexus's flexible signing model where different schemes (ed25519, ml-dsa-87, etc.) can be mixed in m-of-n policies. accounts identity nexus architecture security accountid accountlifecycle assetdefinitionid bech32format dualsig"
+      "blob": "multi-sig sora nexus's flexible signing model where different cryptographic schemes (ed25519, ml-dsa-87, sm2) can be mixed in m-of-n policies for institutional and multi-party accounts. accounts identity nexus architecture security accountid accountlifecycle assetdefinitionid bech32format dualsig"
     },
     {
       "slug": "mustserveslice",
@@ -5731,8 +5731,8 @@
         "Proofs",
         "Security"
       ],
-      "summary": "Hash-derived tags in shielded transfers that prevent double-spending by marking commitments as spent once revealed.",
-      "definition": "Hash-derived tags in shielded transfers that prevent double-spending by marking commitments as spent once revealed.",
+      "summary": "Hash-derived tags in SORA Nexus shielded transfers that prevent double-spending by marking commitments as spent once revealed, enabling private but secure transactions.",
+      "definition": "Hash-derived tags in SORA Nexus shielded transfers that prevent double-spending by marking commitments as spent once revealed, enabling private but secure transactions.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5743,7 +5743,7 @@
         "deepfri"
       ],
       "glossaryRef": "/glossary/nullifiers",
-      "blob": "nullifiers hash-derived tags in shielded transfers that prevent double-spending by marking commitments as spent once revealed. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
+      "blob": "nullifiers hash-derived tags in sora nexus shielded transfers that prevent double-spending by marking commitments as spent once revealed, enabling private but secure transactions. cryptography nexus architecture proofs security blake2b canonicalprimitives commitments curve25519 deepfri"
     },
     {
       "slug": "offlineofflinetransactions",
@@ -5871,8 +5871,8 @@
         "Nexus Architecture",
         "Smart Contracts"
       ],
-      "summary": "The architectural pattern of running multiple lanes simultaneously to boost throughput without spawning new chains.",
-      "definition": "The architectural pattern of running multiple lanes simultaneously to boost throughput without spawning new chains.",
+      "summary": "The architectural pattern in SORA Nexus of running multiple lanes simultaneously to boost throughput horizontally without spawning separate chains or fragmenting liquidity.",
+      "definition": "The architectural pattern in SORA Nexus of running multiple lanes simultaneously to boost throughput horizontally without spawning separate chains or fragmenting liquidity.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -5883,7 +5883,7 @@
         "lanesplit"
       ],
       "glossaryRef": "/glossary/parallellanes",
-      "blob": "parallel lanes the architectural pattern of running multiple lanes simultaneously to boost throughput without spawning new chains. execution ivm nexus architecture smart contracts action activationslot lanefusion lanes lanesplit"
+      "blob": "parallel lanes the architectural pattern in sora nexus of running multiple lanes simultaneously to boost throughput horizontally without spawning separate chains or fragmenting liquidity. execution ivm nexus architecture smart contracts action activationslot lanefusion lanes lanesplit"
     },
     {
       "slug": "parallelprocessing",
@@ -7048,8 +7048,8 @@
         "Nexus Architecture",
         "Real World"
       ],
-      "summary": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls.",
-      "definition": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls.",
+      "summary": "A targeted use case where central banks run real-time gross settlement on SORA Nexus with deterministic policy controls, data space isolation, and regulatory compliance.",
+      "definition": "A targeted use case where central banks run real-time gross settlement on SORA Nexus with deterministic policy controls, data space isolation, and regulatory compliance.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -7058,7 +7058,7 @@
         "tokenizedassets"
       ],
       "glossaryRef": "/glossary/rtgsmodernization",
-      "blob": "rtgs modernization a targeted use case where central banks run real-time gross settlement on nexus with deterministic policy controls. applications enterprise nexus architecture real world crossbordercorridors interbanksettlement tokenizedassets"
+      "blob": "rtgs modernization a targeted use case where central banks run real-time gross settlement on sora nexus with deterministic policy controls, data space isolation, and regulatory compliance. applications enterprise nexus architecture real world crossbordercorridors interbanksettlement tokenizedassets"
     },
     {
       "slug": "runtimeupgrades",
@@ -8514,8 +8514,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "The BFT consensus protocol for Iroha 3, featuring deterministic leader rotation and locking rules for fast finality.",
-      "definition": "The BFT consensus protocol for Iroha 3, featuring deterministic leader rotation and locking rules for fast finality.",
+      "summary": "The BFT consensus protocol at the heart of SORA Nexus featuring deterministic leader rotation, cryptographic locking rules, and sub-second finality for all transactions.",
+      "definition": "The BFT consensus protocol at the heart of SORA Nexus featuring deterministic leader rotation, cryptographic locking rules, and sub-second finality for all transactions.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -8526,7 +8526,7 @@
         "sumeragipipeline"
       ],
       "glossaryRef": "/glossary/sumeragi",
-      "blob": "sumeragi the bft consensus protocol for iroha 3, featuring deterministic leader rotation and locking rules for fast finality. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality sumeragiconsensus sumeragipipeline"
+      "blob": "sumeragi the bft consensus protocol at the heart of sora nexus featuring deterministic leader rotation, cryptographic locking rules, and sub-second finality for all transactions. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality sumeragiconsensus sumeragipipeline"
     },
     {
       "slug": "sumeragiconsensus",
@@ -8541,8 +8541,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "The formal HotStuff-style guarantees—safety, liveness, and QC intersection—embedded in the SUMERAGI pipeline.",
-      "definition": "The formal HotStuff-style guarantees—safety, liveness, and QC intersection—embedded in the SUMERAGI pipeline.",
+      "summary": "The formal HotStuff-style guarantees in SORA Nexus—safety, liveness, and QC intersection—embedded in the SUMERAGI pipeline to ensure consistent block finalization.",
+      "definition": "The formal HotStuff-style guarantees in SORA Nexus—safety, liveness, and QC intersection—embedded in the SUMERAGI pipeline to ensure consistent block finalization.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -8553,7 +8553,7 @@
         "sumeragipipeline"
       ],
       "glossaryRef": "/glossary/sumeragiconsensus",
-      "blob": "sumeragi consensus the formal hotstuff-style guarantees—safety, liveness, and qc intersection—embedded in the sumeragi pipeline. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality sumeragi sumeragipipeline"
+      "blob": "sumeragi consensus the formal hotstuff-style guarantees in sora nexus—safety, liveness, and qc intersection—embedded in the sumeragi pipeline to ensure consistent block finalization. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality sumeragi sumeragipipeline"
     },
     {
       "slug": "sumeragipipeline",
@@ -8769,8 +8769,8 @@
         "Nexus Architecture",
         "Operations"
       ],
-      "summary": "The observability feeds - lane latency, DA failures, breaker status - that operators monitor to keep Nexus healthy.",
-      "definition": "The observability feeds - lane latency, DA failures, breaker status - that operators monitor to keep Nexus healthy.",
+      "summary": "The observability feeds in SORA Nexus—lane latency, DA failures, circuit breaker status—that operators monitor to maintain network health and respond to issues quickly.",
+      "definition": "The observability feeds in SORA Nexus—lane latency, DA failures, circuit breaker status—that operators monitor to maintain network health and respond to issues quickly.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -8781,7 +8781,7 @@
         "lanescopedrecovery"
       ],
       "glossaryRef": "/glossary/telemetry",
-      "blob": "telemetry the observability feeds - lane latency, da failures, breaker status - that operators monitor to keep nexus healthy. infrastructure monitoring nexus architecture operations circuitbreakers circuitbreakerstate georedundancy laneanddabudgets lanescopedrecovery"
+      "blob": "telemetry the observability feeds in sora nexus—lane latency, da failures, circuit breaker status—that operators monitor to maintain network health and respond to issues quickly. infrastructure monitoring nexus architecture operations circuitbreakers circuitbreakerstate georedundancy laneanddabudgets lanescopedrecovery"
     },
     {
       "slug": "threehopquiccircuits",
@@ -9487,8 +9487,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "The combined verifiable random function output from committees, feeding epoch beacons and lane-specific randomness.",
-      "definition": "The combined verifiable random function output from committees, feeding epoch beacons and lane-specific randomness.",
+      "summary": "The combined verifiable random function output in SORA Nexus from validator committees, feeding epoch beacons and lane-specific randomness for fair leader selection.",
+      "definition": "The combined verifiable random function output in SORA Nexus from validator committees, feeding epoch beacons and lane-specific randomness for fair leader selection.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -9499,7 +9499,7 @@
         "vrfsortition"
       ],
       "glossaryRef": "/glossary/vrfaggregate",
-      "blob": "vrf aggregate the combined verifiable random function output from committees, feeding epoch beacons and lane-specific randomness. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality lockedqc vrfsortition"
+      "blob": "vrf aggregate the combined verifiable random function output in sora nexus from validator committees, feeding epoch beacons and lane-specific randomness for fair leader selection. bft consensus nexus architecture validators commitwindow epochbeacon lanefinality lockedqc vrfsortition"
     },
     {
       "slug": "vrfsortition",
@@ -9514,8 +9514,8 @@
         "Nexus Architecture",
         "Validators"
       ],
-      "summary": "A method for drawing validator committees where candidates prove via VRF that their random output meets a threshold.",
-      "definition": "A method for drawing validator committees where candidates prove via VRF that their random output meets a threshold.",
+      "summary": "A method in SORA Nexus for drawing validator committees where candidates prove via VRF that their random output meets a threshold, ensuring fair and unpredictable selection.",
+      "definition": "A method in SORA Nexus for drawing validator committees where candidates prove via VRF that their random output meets a threshold, ensuring fair and unpredictable selection.",
       "entity": null,
       "versions": [],
       "relatedTerms": [
@@ -9526,7 +9526,7 @@
         "vrfaggregate"
       ],
       "glossaryRef": "/glossary/vrfsortition",
-      "blob": "vrf sortition a method for drawing validator committees where candidates prove via vrf that their random output meets a threshold. bft consensus nexus architecture validators epochbeacon lanefinality seedbeacon sumeragi vrfaggregate"
+      "blob": "vrf sortition a method in sora nexus for drawing validator committees where candidates prove via vrf that their random output meets a threshold, ensuring fair and unpredictable selection. bft consensus nexus architecture validators epochbeacon lanefinality seedbeacon sumeragi vrfaggregate"
     },
     {
       "slug": "wallet",
@@ -9936,5 +9936,5 @@
     }
   ],
   "totalCount": 369,
-  "lastUpdated": "2025-12-11T00:50:50.608Z"
+  "lastUpdated": "2025-12-11T00:53:28.699Z"
 }

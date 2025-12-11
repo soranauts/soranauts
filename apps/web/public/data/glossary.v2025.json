@@ -1109,10 +1109,10 @@
     {
       "slug": "budget",
       "title": "Budget",
-      "summary": "The TEU and fee allowance assigned to a trigger or automation, preventing unlimited compute or bandwidth consumption.",
+      "summary": "The TEU and fee allowance in SORA Nexus assigned to triggers or automations, preventing unlimited compute or bandwidth consumption and ensuring predictable resource usage.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The TEU and fee allowance assigned to a trigger or automation, preventing unlimited compute or bandwidth consumption.",
+      "definition": "The TEU and fee allowance in SORA Nexus assigned to triggers or automations, preventing unlimited compute or bandwidth consumption and ensuring predictable resource usage.",
       "category": "Economics",
       "aliases": [],
       "tags": [
@@ -2694,10 +2694,10 @@
     {
       "slug": "economicmodel",
       "title": "Economic Model",
-      "summary": "The XOR-denominated fee, reward, and bonding framework harmonizing incentives across public and private data spaces.",
+      "summary": "The XOR-denominated fee, reward, and bonding framework in SORA Nexus that harmonizes economic incentives across public and private data spaces for sustainable operation.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The XOR-denominated fee, reward, and bonding framework harmonizing incentives across public and private data spaces.",
+      "definition": "The XOR-denominated fee, reward, and bonding framework in SORA Nexus that harmonizes economic incentives across public and private data spaces for sustainable operation.",
       "category": "Economics",
       "aliases": [],
       "tags": [
@@ -4398,10 +4398,10 @@
     {
       "slug": "kotodamabytecode",
       "title": "Kotodama Bytecode",
-      "summary": "The low-level output of Kotodama compilers, packing opcodes, pointer tables, and gas ceilings enforced by the IVM.",
+      "summary": "The low-level output of Kotodama compilers in SORA Nexus, packing opcodes, pointer tables, and gas ceilings into portable bytecode that the IVM executes deterministically.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The low-level output of Kotodama compilers, packing opcodes, pointer tables, and gas ceilings enforced by the IVM.",
+      "definition": "The low-level output of Kotodama compilers in SORA Nexus, packing opcodes, pointer tables, and gas ceilings into portable bytecode that the IVM executes deterministically.",
       "category": "Execution",
       "aliases": [],
       "tags": [
@@ -5146,10 +5146,10 @@
     {
       "slug": "memorymodel",
       "title": "Memory Model",
-      "summary": "The IVM's segmented memory rules (code, heap, stack, IO) with strict bounds and Merkle commitments for traceability.",
+      "summary": "The IVM's segmented memory rules in SORA Nexus (code, heap, stack, IO) with strict bounds checking and Merkle commitments enabling traceable, deterministic execution.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The IVM's segmented memory rules (code, heap, stack, IO) with strict bounds and Merkle commitments for traceability.",
+      "definition": "The IVM's segmented memory rules in SORA Nexus (code, heap, stack, IO) with strict bounds checking and Merkle commitments enabling traceable, deterministic execution.",
       "category": "Execution",
       "aliases": [],
       "tags": [
@@ -5222,10 +5222,10 @@
     {
       "slug": "merklecommitments",
       "title": "Merkle Commitments",
-      "summary": "Poseidon2-based Merkle roots over memory, registers, or storage that allow succinct verification of state changes.",
+      "summary": "Poseidon2-based Merkle roots in SORA Nexus over memory, registers, or storage that allow succinct cryptographic verification of state changes without full data access.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Poseidon2-based Merkle roots over memory, registers, or storage that allow succinct verification of state changes.",
+      "definition": "Poseidon2-based Merkle roots in SORA Nexus over memory, registers, or storage that allow succinct cryptographic verification of state changes without full data access.",
       "category": "Cryptography",
       "aliases": [],
       "tags": [
@@ -5422,10 +5422,10 @@
     {
       "slug": "multisig",
       "title": "Multi-Sig",
-      "summary": "Nexus's flexible signing model where different schemes (Ed25519, ML-DSA-87, etc.) can be mixed in m-of-n policies.",
+      "summary": "SORA Nexus's flexible signing model where different cryptographic schemes (Ed25519, ML-DSA-87, SM2) can be mixed in m-of-n policies for institutional and multi-party accounts.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Nexus's flexible signing model where different schemes (Ed25519, ML-DSA-87, etc.) can be mixed in m-of-n policies.",
+      "definition": "SORA Nexus's flexible signing model where different cryptographic schemes (Ed25519, ML-DSA-87, SM2) can be mixed in m-of-n policies for institutional and multi-party accounts.",
       "category": "Accounts & Identity",
       "aliases": [],
       "tags": [
@@ -5765,10 +5765,10 @@
     {
       "slug": "nullifiers",
       "title": "Nullifiers",
-      "summary": "Hash-derived tags in shielded transfers that prevent double-spending by marking commitments as spent once revealed.",
+      "summary": "Hash-derived tags in SORA Nexus shielded transfers that prevent double-spending by marking commitments as spent once revealed, enabling private but secure transactions.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Hash-derived tags in shielded transfers that prevent double-spending by marking commitments as spent once revealed.",
+      "definition": "Hash-derived tags in SORA Nexus shielded transfers that prevent double-spending by marking commitments as spent once revealed, enabling private but secure transactions.",
       "category": "Cryptography",
       "aliases": [],
       "tags": [
@@ -5901,10 +5901,10 @@
     {
       "slug": "parallellanes",
       "title": "Parallel Lanes",
-      "summary": "The architectural pattern of running multiple lanes simultaneously to boost throughput without spawning new chains.",
+      "summary": "The architectural pattern in SORA Nexus of running multiple lanes simultaneously to boost throughput horizontally without spawning separate chains or fragmenting liquidity.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The architectural pattern of running multiple lanes simultaneously to boost throughput without spawning new chains.",
+      "definition": "The architectural pattern in SORA Nexus of running multiple lanes simultaneously to boost throughput horizontally without spawning separate chains or fragmenting liquidity.",
       "category": "Execution",
       "aliases": [],
       "tags": [
@@ -7119,10 +7119,10 @@
     {
       "slug": "rtgsmodernization",
       "title": "RTGS Modernization",
-      "summary": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls.",
+      "summary": "A targeted use case where central banks run real-time gross settlement on SORA Nexus with deterministic policy controls, data space isolation, and regulatory compliance.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "A targeted use case where central banks run real-time gross settlement on Nexus with deterministic policy controls.",
+      "definition": "A targeted use case where central banks run real-time gross settlement on SORA Nexus with deterministic policy controls, data space isolation, and regulatory compliance.",
       "category": "Use Cases",
       "aliases": [],
       "tags": [
@@ -8630,10 +8630,10 @@
     {
       "slug": "sumeragi",
       "title": "Sumeragi",
-      "summary": "The BFT consensus protocol for Iroha 3, featuring deterministic leader rotation and locking rules for fast finality.",
+      "summary": "The BFT consensus protocol at the heart of SORA Nexus featuring deterministic leader rotation, cryptographic locking rules, and sub-second finality for all transactions.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The BFT consensus protocol for Iroha 3, featuring deterministic leader rotation and locking rules for fast finality.",
+      "definition": "The BFT consensus protocol at the heart of SORA Nexus featuring deterministic leader rotation, cryptographic locking rules, and sub-second finality for all transactions.",
       "category": "Consensus",
       "aliases": [],
       "tags": [
@@ -8654,10 +8654,10 @@
     {
       "slug": "sumeragiconsensus",
       "title": "Sumeragi Consensus",
-      "summary": "The formal HotStuff-style guarantees—safety, liveness, and QC intersection—embedded in the SUMERAGI pipeline.",
+      "summary": "The formal HotStuff-style guarantees in SORA Nexus—safety, liveness, and QC intersection—embedded in the SUMERAGI pipeline to ensure consistent block finalization.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The formal HotStuff-style guarantees—safety, liveness, and QC intersection—embedded in the SUMERAGI pipeline.",
+      "definition": "The formal HotStuff-style guarantees in SORA Nexus—safety, liveness, and QC intersection—embedded in the SUMERAGI pipeline to ensure consistent block finalization.",
       "category": "Consensus",
       "aliases": [],
       "tags": [
@@ -8883,10 +8883,10 @@
     {
       "slug": "telemetry",
       "title": "Telemetry",
-      "summary": "The observability feeds - lane latency, DA failures, breaker status - that operators monitor to keep Nexus healthy.",
+      "summary": "The observability feeds in SORA Nexus—lane latency, DA failures, circuit breaker status—that operators monitor to maintain network health and respond to issues quickly.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The observability feeds - lane latency, DA failures, breaker status - that operators monitor to keep Nexus healthy.",
+      "definition": "The observability feeds in SORA Nexus—lane latency, DA failures, circuit breaker status—that operators monitor to maintain network health and respond to issues quickly.",
       "category": "Observability & Operations",
       "aliases": [],
       "tags": [
@@ -9649,10 +9649,10 @@
     {
       "slug": "vrfaggregate",
       "title": "VRF Aggregate",
-      "summary": "The combined verifiable random function output from committees, feeding epoch beacons and lane-specific randomness.",
+      "summary": "The combined verifiable random function output in SORA Nexus from validator committees, feeding epoch beacons and lane-specific randomness for fair leader selection.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "The combined verifiable random function output from committees, feeding epoch beacons and lane-specific randomness.",
+      "definition": "The combined verifiable random function output in SORA Nexus from validator committees, feeding epoch beacons and lane-specific randomness for fair leader selection.",
       "category": "Consensus",
       "aliases": [],
       "tags": [
@@ -9673,10 +9673,10 @@
     {
       "slug": "vrfsortition",
       "title": "VRF Sortition",
-      "summary": "A method for drawing validator committees where candidates prove via VRF that their random output meets a threshold.",
+      "summary": "A method in SORA Nexus for drawing validator committees where candidates prove via VRF that their random output meets a threshold, ensuring fair and unpredictable selection.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "A method for drawing validator committees where candidates prove via VRF that their random output meets a threshold.",
+      "definition": "A method in SORA Nexus for drawing validator committees where candidates prove via VRF that their random output meets a threshold, ensuring fair and unpredictable selection.",
       "category": "Consensus",
       "aliases": [],
       "tags": [
@@ -10139,5 +10139,5 @@
   "aliasCount": 39,
   "deprecatedCount": 0,
   "version": 2025,
-  "lastUpdated": "2025-12-11T00:50:50.607Z"
+  "lastUpdated": "2025-12-11T00:53:28.698Z"
 }
