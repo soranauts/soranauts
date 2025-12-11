@@ -1,11 +1,29 @@
 ---
 title: Page Not Found
-description: The requested page could not be found
+description: The page you're looking for doesn't exist or has been moved.
 template: splash
+hero:
+  title: |
+    <span style="font-size: 6rem; font-weight: 800; background: linear-gradient(135deg, #E3242D, #b01c24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">404</span>
+  tagline: The page you're looking for doesn't exist or has been moved.
+  actions:
+    - text: Search Glossary
+      link: /glossary
+      icon: magnifier
+    - text: Back to Home
+      link: /
+      variant: minimal
 ---
 
-# Page Not Found
+import { CardGrid, Card, LinkCard } from '@astrojs/starlight/components';
 
-The page you're looking for doesn't exist.
+## Explore these sections
 
-[Return to Documentation Home](/docs)
+<CardGrid>
+  <LinkCard title="Start Learning" href="/learn" description="Guided paths from beginner to advanced" />
+  <LinkCard title="Explore Topics" href="/explore" description="Browse all SORA topics" />
+  <LinkCard title="Glossary" href="/glossary" description="369 terms explained" />
+  <LinkCard title="Documentation" href="/docs" description="Technical guides and references" />
+  <LinkCard title="Blog" href="/blog" description="Latest news and articles" />
+  <LinkCard title="Home" href="/" description="Return to homepage" />
+</CardGrid>
