@@ -60,7 +60,6 @@
     "duckdb": "^1.4.2",
     "glob": "^11.0.3",
     "got": "^14.2.0",
-    "gray-matter": "^4.0.3",
     "minisearch": "^7.0.1",
     "openai": "^4.28.0",
     "p-queue": "^8.0.1",
@@ -76,6 +75,7 @@
   "devDependencies": {
     "diff": "^8.0.2",
     "fast-glob": "^3.3.2",
+    "gray-matter": "^4.0.3",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "tsx": "^4.20.5"

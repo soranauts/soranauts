@@ -364,7 +364,7 @@ tags:
   - primary-tag
   - secondary-tag
   - tertiary-tag
-  # 8-12 tags total
+  # 8-14 tags total
 category: "Guides"  # or: News, Explainers, Technical, Ecosystem
 author: "Soranauts Team"  # or specific author
 image:
@@ -433,7 +433,7 @@ news, updates, community, announcements
 
 ### Metadata
 - [ ] All frontmatter fields complete
-- [ ] Tags are from canonical list (8-12 tags)
+- [ ] Tags are from canonical list (8-14 tags)
 - [ ] Image path is correct
 - [ ] Dates in ISO-8601 format
 
