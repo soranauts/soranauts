@@ -62,9 +62,9 @@ test.describe('Glossary Generator Output', () => {
     expect(glossaryData.aliasCount).toBeGreaterThan(0);
   });
 
-  test('canonical count matches expected (~179)', () => {
-    expect(glossaryData.canonicalCount).toBeGreaterThanOrEqual(170);
-    expect(glossaryData.canonicalCount).toBeLessThanOrEqual(200);
+  test('canonical count matches expected (~369)', () => {
+    expect(glossaryData.canonicalCount).toBeGreaterThanOrEqual(360);
+    expect(glossaryData.canonicalCount).toBeLessThanOrEqual(400);
   });
 
   test('terms are sorted by slug', () => {
