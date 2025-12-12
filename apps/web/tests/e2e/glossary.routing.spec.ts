@@ -54,7 +54,12 @@ function getRandomSample<T>(arr: T[], count: number): T[] {
 
 test.describe('Canonical Slug Routing', () => {
   const glossaryData = loadGlossaryData();
-  const randomTerms = getRandomSample(glossaryData.terms, 10);
+  const aliasData = loadAliasData();
+  
+  // Filter out any terms that are actually aliases (redirects)
+  const aliasSlugs = new Set(aliasData.aliases.map(a => a.alias));
+  const canonicalTerms = glossaryData.terms.filter(t => !aliasSlugs.has(t.slug));
+  const randomTerms = getRandomSample(canonicalTerms, 10);
 
   test('glossary index page loads successfully', async ({ page }) => {
     const response = await page.goto('/glossary');
