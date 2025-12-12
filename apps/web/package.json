@@ -89,7 +89,7 @@
     "@astrojs/check": "^0.3.4",
     "@astrojs/mdx": "^4.3.6",
     "@astrojs/partytown": "^2.1.4",
-    "@astrojs/react": "^3.0.0",
+    "@astrojs/react": "^4.4.2",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/starlight": "^0.37.0",
