@@ -106,7 +106,7 @@
     "astro": "^5.16.5",
     "astro-icon": "^1.0.0-next.2",
     "cheerio": "^1.0.0",
-    "chromadb": "^1.8.1",
+    "chromadb": "^3.1.7",
     "cli-table3": "^0.6.3",
     "commander": "^14.0.2",
     "execa": "^8.0.1",
