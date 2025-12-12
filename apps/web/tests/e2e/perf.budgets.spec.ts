@@ -255,6 +255,12 @@ test.describe('Performance Budgets', () => {
 
 test.describe('Resource Caching', () => {
   test('static assets have cache headers', async ({ page }) => {
+    // Skip in preview mode - cache headers are set by production CDN/hosting
+    if (!process.env.CI && process.env.NODE_ENV !== 'production') {
+      test.skip();
+      return;
+    }
+    
     const responses: Array<{ url: string; cacheControl: string | null }> = [];
     
     page.on('response', (response) => {
