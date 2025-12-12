@@ -1,6 +1,6 @@
 ---
 publishDate: 2023-10-04T00:00:00Z
-updateDate: 2025-11-30T00:00:00Z
+updateDate: 2025-12-12T00:00:00Z
 title: "SORA Ecosystem: Complete DeFi & Tokenomics Playbook"
 excerpt: "How SORA coordinates XOR, Polkaswap, Kensetsu, TONSWAP, and Nexus governance across DeFi rails and real-world pilots."
 image: ~/assets/images/sora-ecosystem-explained.jpg
@@ -18,6 +18,7 @@ tags:
   - defi
   - tokenomics
   - governance
+  - nexus
 canonicalURL: https://soranauts.com/sora-ecosystem-explained
 customSlug: sora-ecosystem-explained
 ---
@@ -31,7 +32,7 @@ This guide explains how those building blocks work today and how SORA Nexus (v3)
 
 ## TL;DR
 SORA is an elastic economy coordinated by XOR, Polkaswap, Kensetsu (KUSD), TONSWAP, and a Nexus hub chain built on Hyperledger Iroha 3.  
-As of November 2025, Nexus modules operate on the Fujiwara testnet while Gov1 governance, Polkaswap liquidity, and Kensetsu vaults run production usage.  
+As of December 2025, Nexus modules operate on the Fujiwara testnet while Gov1 governance, Polkaswap liquidity, and Kensetsu vaults run production usage.  
 Together these layers connect cross-chain DeFi with real-world rails such as Bakong, Bokolo Cash, and the SORA Card program.
 
 ---
@@ -63,7 +64,7 @@ For a closer look at how Polkaswap and TONSWAP complement each other, see [“Ho
 ---
 
 ## TONSWAP: Expanding the SORA Ecosystem to TON
-TONSWAP extends SORA liquidity into The Open Network (TON) and Telegram-native wallets. Ten percent of TONSWAP trading fees are routed to buy back and burn XOR, creating a recurring demand sink that links TON activity to SORA tokenomics. As of November 2025, the XOR-burn automation is live and transparency improvements for public accounting remain in progress.
+TONSWAP extends SORA liquidity into The Open Network (TON) and Telegram-native wallets. Ten percent of TONSWAP trading fees are routed to buy back and burn XOR, creating a recurring demand sink that links TON activity to SORA tokenomics. As of December 2025, the XOR-burn automation is live and transparency improvements for public accounting remain in progress.
 
 ---
 
@@ -91,12 +92,14 @@ SORA’s v3 fee routing is deterministic, so every transaction contributes to mu
 ---
 
 ## Governance in SORA
-As of November 2025, SORA uses the Substrate Gov1 pallet (council, referenda, conviction voting) rather than OpenGov. XOR holders vote on treasury spends, runtime upgrades, and Polkaswap changes, while VAL aligns validator incentives through NPoS staking. SORA Nexus is designing the future **SORA Parliament**: a multi-body structure inspired by isonomia and sortition where participants post XOR bonds, deliberative committees vet proposals, and Iroha 3 **Special Instructions (ISI)** enact deterministic outcomes once measures pass.
+As of December 2025, SORA uses the Substrate Gov1 pallet (council, referenda, conviction voting) rather than OpenGov. XOR holders vote on treasury spends, runtime upgrades, and Polkaswap changes, while VAL aligns validator incentives through NPoS staking. SORA Nexus is designing the future **SORA Parliament**: a multi-body structure inspired by isonomia and sortition where participants post XOR bonds, deliberative committees vet proposals, and Iroha 3 **Special Instructions (ISI)** enact deterministic outcomes once measures pass.
 
 ---
 
 ## Why SORA is Building on Hyperledger Iroha 3 (Nexus)
-SORA v2 already runs on <a href="https://iroha.tech" target="_blank" rel="noopener noreferrer">Hyperledger Iroha</a>, but Nexus (v3) pushes the architecture further. Think of Nexus as a multi-lane highway where each “lane” finalizes transactions independently, then a merge ledger weaves those lane tips into a single, globally ordered timeline. The custom **Iroha Virtual Machine (IVM)** enforces deterministic smart contracts with pointer-based ABIs, while **Sumeragi** consensus rotates leaders in a BFT pipeline. **FASTPQ** proofs and data-availability sampling add cryptographic receipts so every lane stays provable without exposing private payloads. As of November 2025, these modules remain under active development and are documented in the SORA Nexus Whitepaper.
+SORA v2 already runs on <a href="https://iroha.tech" target="_blank" rel="noopener noreferrer">Hyperledger Iroha</a>, but Nexus (v3) pushes the architecture further. Think of Nexus as a multi-lane highway where each "lane" finalizes transactions independently, then a merge ledger weaves those lane tips into a single, globally ordered timeline. The custom **Iroha Virtual Machine (IVM)** enforces deterministic smart contracts with pointer-based ABIs, while **Sumeragi** consensus rotates leaders in a BFT pipeline. **FASTPQ** proofs and data-availability sampling add cryptographic receipts so every lane stays provable without exposing private payloads. As of December 2025, these modules remain under active development and are documented in the SORA Nexus Whitepaper.
+
+For a complete technical overview, see ["SORA Nexus: The Complete Guide to Blockchain's 'End of History'"](/sora-nexus-complete-guide).
 
 ---
 
