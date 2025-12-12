@@ -21,13 +21,35 @@ Before doing ANY work on this project:
 
 ## 🚨 CRITICAL: Production Safety
 
-### NEVER Auto-Push to Production
-- **ALWAYS create a feature branch** for changes
-- **NEVER push directly to `main`** without explicit user approval
-- **ALWAYS ask before running `git push`**
-- Before pushing, show user `git status` and `git diff --stat`
+### Branch Requirements by Change Type
 
-### Pre-Push Checklist
+| Change Type | Branch Required? | Can Push to Main? |
+|-------------|------------------|-------------------|
+| **Content-only updates** (articles, glossary text, dates, typos) | ❌ No | ✅ Yes |
+| Code changes (components, utilities, logic) | ✅ Yes | ❌ No |
+| Configuration changes (package.json, astro.config, etc.) | ✅ Yes | ❌ No |
+| Styling changes (CSS, Tailwind classes) | ✅ Yes | ❌ No |
+| New features or components | ✅ Yes | ❌ No |
+
+### How to Identify Content-Only Changes
+
+**Direct commits to `main` are allowed when ALL modified files are in:**
+- `apps/web/src/content/post/*.mdx` — Blog articles
+- `apps/web/src/content/glossary/*.mdx` — Glossary term content
+- `docs/` — Documentation files
+- `*.md` files in project root (except config files)
+
+**Examples of content-only changes:**
+- Updating `updateDate` in article frontmatter
+- Fixing typos in article text
+- Changing "November 2025" to "December 2025"
+- Adding internal links to articles
+- Updating FAQ answers
+- Editorial improvements
+
+**If ANY non-content file is modified, create a feature branch.**
+
+### Pre-Push Checklist (For Code Changes)
 See `PUSH_SAFETY_CHECK.md` for the complete checklist. Key points:
 1. ✅ Verify you're on a feature branch (not `main`)
 2. ✅ Run `pnpm build` - ensure no errors
@@ -36,9 +58,15 @@ See `PUSH_SAFETY_CHECK.md` for the complete checklist. Key points:
 5. ✅ Remove duplicate files (" 2", " 3" suffixes)
 6. ✅ Get explicit user approval
 
+### Pre-Push Checklist (For Content-Only Changes)
+1. ✅ Verify ONLY content files are modified (`git status`)
+2. ✅ Run `pnpm build` - ensure no errors
+3. ✅ Commit with clear message (e.g., `content: update article dates`)
+4. ✅ Push directly to `main`
+
 ---
 
-## 📐 Architecture Understanding Required
+## 📚 Architecture Understanding Required
 
 ### Glossary System (368 terms)
 The user is learning software architecture. **Always explain your reasoning.**
@@ -158,14 +186,35 @@ try {
 ## 🔄 Git Workflow
 
 ### Branch Strategy
+
+**For code/config/styling changes:**
 ```bash
 # ALWAYS create feature branches
 git checkout -b feature/your-feature-name
 
-# NEVER push directly to main
-# Get user approval before:
+# Get user approval before pushing
 git push origin feature/your-feature-name
 ```
+
+**For content-only changes:**
+```bash
+# Verify only content files changed
+git status
+
+# If ONLY .mdx content files or docs changed:
+git add .
+git commit -m "content: brief description of changes"
+git push origin main
+```
+
+### Commit Message Prefixes
+- `content:` — Article/glossary content updates
+- `feat:` — New features
+- `fix:` — Bug fixes
+- `style:` — CSS/styling changes
+- `refactor:` — Code refactoring
+- `docs:` — Documentation updates
+- `chore:` — Maintenance tasks
 
 ### Files to NEVER Commit
 - `.env` or `.env.local`
@@ -208,13 +257,13 @@ git push origin feature/your-feature-name
 
 ### Red Flags - Stop and Ask
 If you encounter these, **STOP and ask user:**
-1. 🚨 Pushing to `main` branch
-2. 🚨 Deleting files in `apps/web/src/data/`
-3. 🚨 Modifying JSON files in `public/data/`
-4. 🚨 Changes affecting >50 files
-5. 🚨 Installing new dependencies
-6. 🚨 Build failing after your changes
-7. 🚨 User showing frustration about architecture
+1. 🚨 Deleting files in `apps/web/src/data/`
+2. 🚨 Modifying JSON files in `public/data/`
+3. 🚨 Changes affecting >50 files
+4. 🚨 Installing new dependencies
+5. 🚨 Build failing after your changes
+6. 🚨 User showing frustration about architecture
+7. 🚨 Pushing CODE changes to `main` (content-only is OK)
 
 ---
 
@@ -231,6 +280,8 @@ soranauts-main/
 │   └── pages/           # Routes and pages
 ├── apps/web/public/     # Static assets and build outputs
 │   └── data/           # Generated JSON files (DON'T EDIT)
+├── docs/               # Documentation and reference files
+│   └── claude-reference/  # AI assistant reference files
 ├── knowledge_base/      # Curated content
 ├── scripts/            # Build and utility scripts
 └── .github/workflows/  # CI/CD (be careful!)
@@ -241,7 +292,15 @@ soranauts-main/
 - `glossary-loader.ts` - Data loading logic
 - `CSS_GUARDRAILS.md` - Styling rules
 - `DESIGN-TOKENS.md` - Design system
-- `CURSOR_RULES.md` - This file
+- `MASTER_GUARDRAILS.md` - This file
+
+### Reference Files for Article Editing
+- `docs/claude-reference/LINK_INVENTORY.md` - All valid internal links
+- `docs/claude-reference/CONTENT_SUMMARY.md` - Article metadata
+- `docs/claude-reference/TAG_MATRIX.md` - Tag usage
+- `docs/claude-reference/VALIDATION_REPORT.md` - Broken links, orphans
+- `docs/ARTICLE_CREATION_GUIDE.md` - New article standards
+- `docs/ARTICLE_EDIT_PLAN_TEMPLATE.md` - Article editing standards
 
 ---
 
@@ -274,6 +333,12 @@ pnpm build
 3. **`CSS_GUARDRAILS.md`** - Styling rules
 4. **`DESIGN-TOKENS.md`** - Design system
 5. **`PUSH_SAFETY_CHECK.md`** - Pre-push checklist
+
+### For Article Editing
+1. **`docs/ARTICLE_EDIT_PLAN_TEMPLATE.md`** - Editing standards
+2. **`docs/ARTICLE_CREATION_GUIDE.md`** - New article standards
+3. **`docs/claude-reference/LINK_INVENTORY.md`** - Valid links
+4. **`docs/claude-reference/TAG_MATRIX.md`** - Tag reference
 
 ### Additional Resources
 - `CLAUDE_CODE_GUIDE.md` - How to use Claude Code
@@ -323,7 +388,22 @@ grep -r "text-blue-500" apps/web/src/
 # 4. Test: pnpm dev
 ```
 
-### Safe Git Workflow
+### Content-Only Git Workflow (Articles, Glossary Text)
+```bash
+# Verify only content files changed
+git status
+# Should show ONLY files in:
+#   - apps/web/src/content/post/
+#   - apps/web/src/content/glossary/
+#   - docs/
+
+# Commit and push directly
+git add .
+git commit -m "content: update article dates and links"
+git push origin main
+```
+
+### Code Change Git Workflow
 ```bash
 git checkout -b feature/my-changes
 # Make changes...
@@ -343,6 +423,7 @@ git push origin feature/my-changes
 - Run builds and tests
 - Explain your reasoning
 - Ask clarifying questions
+- **Push content-only changes to `main`**
 
 ### 🟡 Yellow Light (Ask first)
 - Installing new dependencies
@@ -352,7 +433,7 @@ git push origin feature/my-changes
 - Changing architecture
 
 ### 🔴 Red Light (Never do without explicit approval)
-- Push to `main` branch
+- Push CODE changes to `main` branch
 - Delete files in `/src/data/`
 - Modify JSON in `/public/data/`
 - Commit sensitive data
@@ -373,7 +454,6 @@ git push origin feature/my-changes
 ---
 
 ## Version
-- Master Guardrails v1.0
-- Combined from existing project docs + AI-specific rules
-- Last updated: 2024-12
-
+- Master Guardrails v1.1
+- Added content-only direct commit workflow
+- Last updated: 2025-12
