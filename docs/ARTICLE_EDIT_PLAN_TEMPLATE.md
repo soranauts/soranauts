@@ -183,7 +183,7 @@ Use `<FaqSection>` with literal `<details>` children:
 - `publishDate`: Original publication
 - `updatedDate`: Must reflect actual revision date
 
-### Tags (8–12 canonical tags)
+### Tags (8–14 canonical tags)
 **Allowed tags** (from Tag Matrix):
 ```
 sora, xor, val, pswap, tbcd, kusd, xst, ken

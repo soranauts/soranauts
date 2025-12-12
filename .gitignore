@@ -104,3 +104,4 @@ test-results/
 # AI assistant configuration files
 .cursorrules
 .claude/
+apps/web/test-results/.last-run.json
