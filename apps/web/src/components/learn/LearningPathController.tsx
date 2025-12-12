@@ -377,6 +377,8 @@ export default function LearningPathController({ path, glossaryContent, tagConte
           border-radius: var(--radius-lg);
           overflow: hidden;
           transition: border-color 0.15s ease, box-shadow 0.15s ease;
+          /* Account for sticky header/progress bar when scrolling */
+          scroll-margin-top: 100px;
         }
 
         .lpc__step--upcoming {
