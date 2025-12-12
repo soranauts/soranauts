@@ -58,7 +58,7 @@
     "chromadb": "^1.8.1",
     "commander": "^14.0.2",
     "duckdb": "^1.4.2",
-    "glob": "^11.0.3",
+    "glob": "^13.0.0",
     "got": "^14.2.0",
     "minisearch": "^7.0.1",
     "openai": "^4.28.0",
@@ -84,5 +84,12 @@
     "{apps,packages}/**/*.{ts,tsx}": [],
     "{apps,packages}/**/*.astro": [],
     "*.md": []
+  },
+  "pnpm": {
+    "overrides": {
+      "vite@>=5.2.6 <=5.4.20": ">=5.4.21",
+      "esbuild@<=0.24.2": ">=0.25.0",
+      "mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1"
+    }
   }
 }
