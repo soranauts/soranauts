@@ -102,7 +102,7 @@
     "@tanstack/react-query": "^5.0.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "algoliasearch": "^4.24.0",
+    "algoliasearch": "^5.46.0",
     "astro": "^5.16.5",
     "astro-icon": "^1.0.0-next.2",
     "cheerio": "^1.0.0",
