@@ -27,7 +27,7 @@
   "tag-bitcoin-halving": {
     "count": 2,
     "firstSeen": "2023-10-22T00:00:00.000Z",
-    "lastSeen": "2025-11-29T00:00:00.000Z"
+    "lastSeen": "2025-12-12T00:00:00.000Z"
   },
   "tag-blockchain": {
     "count": 5,
@@ -60,7 +60,7 @@
     "lastSeen": "2025-11-21T00:00:00.000Z"
   },
   "tag-bonding-curve": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2023-10-11T00:00:00.000Z",
     "lastSeen": "2025-12-12T00:00:00.000Z"
   },
@@ -82,7 +82,7 @@
   "tag-bull-market": {
     "count": 2,
     "firstSeen": "2023-10-22T00:00:00.000Z",
-    "lastSeen": "2025-11-29T00:00:00.000Z"
+    "lastSeen": "2025-12-12T00:00:00.000Z"
   },
   "tag-cbdc": {
     "count": 3,
@@ -132,12 +132,12 @@
   "tag-crypto-market-cycles": {
     "count": 1,
     "firstSeen": "2023-10-22T00:00:00.000Z",
-    "lastSeen": "2025-11-29T00:00:00.000Z"
+    "lastSeen": "2025-12-12T00:00:00.000Z"
   },
   "tag-crypto-trends": {
     "count": 1,
     "firstSeen": "2023-10-22T00:00:00.000Z",
-    "lastSeen": "2025-11-29T00:00:00.000Z"
+    "lastSeen": "2025-12-12T00:00:00.000Z"
   },
   "tag-cryptocurrency": {
     "count": 1,
@@ -275,7 +275,7 @@
   "tag-investment-strategy": {
     "count": 2,
     "firstSeen": "2023-10-22T00:00:00.000Z",
-    "lastSeen": "2025-11-29T00:00:00.000Z"
+    "lastSeen": "2025-12-12T00:00:00.000Z"
   },
   "tag-iroha": {
     "count": 3,
@@ -325,7 +325,7 @@
   "tag-market-analysis": {
     "count": 2,
     "firstSeen": "2023-10-22T00:00:00.000Z",
-    "lastSeen": "2025-11-29T00:00:00.000Z"
+    "lastSeen": "2025-12-12T00:00:00.000Z"
   },
   "tag-market-cycles": {
     "count": 1,
@@ -335,12 +335,12 @@
   "tag-market-psychology": {
     "count": 2,
     "firstSeen": "2023-10-22T00:00:00.000Z",
-    "lastSeen": "2025-11-29T00:00:00.000Z"
+    "lastSeen": "2025-12-12T00:00:00.000Z"
   },
   "tag-market-timing": {
     "count": 1,
     "firstSeen": "2023-10-22T00:00:00.000Z",
-    "lastSeen": "2025-11-29T00:00:00.000Z"
+    "lastSeen": "2025-12-12T00:00:00.000Z"
   },
   "tag-meme-coins": {
     "count": 1,
@@ -513,7 +513,7 @@
     "lastSeen": "2025-11-21T00:00:00.000Z"
   },
   "tag-sora": {
-    "count": 23,
+    "count": 24,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-12T00:00:00.000Z"
   },
@@ -603,7 +603,7 @@
     "lastSeen": "2025-11-23T00:00:00.000Z"
   },
   "tag-tokenomics": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-12T00:00:00.000Z"
   },
@@ -625,7 +625,7 @@
   "tag-trading-strategy": {
     "count": 1,
     "firstSeen": "2023-10-22T00:00:00.000Z",
-    "lastSeen": "2025-11-29T00:00:00.000Z"
+    "lastSeen": "2025-12-12T00:00:00.000Z"
   },
   "tag-treasury": {
     "count": 1,
@@ -666,7 +666,7 @@
     "lastSeen": "2025-11-18T00:00:00.000Z"
   },
   "tag-xor": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-12T00:00:00.000Z"
   }

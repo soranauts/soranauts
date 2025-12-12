@@ -1,0 +1,20 @@
+---
+alwaysApply: true
+---
+
+# Content-Only Push Rules
+
+For content-only changes where ONLY these file types are modified:
+- apps/web/src/content/post/*.mdx (blog articles)
+- apps/web/src/content/glossary/*.mdx (glossary terms)  
+- docs/*.md (documentation)
+
+ALWAYS:
+- Commit directly to main branch
+- Use commit prefix "content:" (e.g., "content: update article dates")
+- Push immediately without asking for confirmation
+- Do NOT suggest creating a feature branch
+
+This applies to: article updates, date changes, tag updates, typo fixes, adding/removing internal links, editorial improvements.
+
+For ANY other file types (code, config, components, styles), follow normal branch workflow.
