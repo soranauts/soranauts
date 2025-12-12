@@ -13,11 +13,31 @@ export interface ExplorerGlossaryContextProps {
   relatedArticles?: RelatedArticle[];
 }
 
-const humanize = (value: string): string =>
-  value
+// Special cases for terms that should be fully capitalized
+const CANONICAL_TERM_LABELS: Record<string, string> = {
+  xor: 'XOR',
+  pswap: 'PSWAP',
+  val: 'VAL',
+  kusd: 'KUSD',
+  tbcd: 'TBCD',
+  sora: 'SORA',
+  npos: 'NPoS',
+  iso20022: 'ISO 20022',
+};
+
+const humanize = (value: string): string => {
+  // Check for canonical label first
+  const key = value?.toLowerCase?.();
+  if (CANONICAL_TERM_LABELS[key]) {
+    return CANONICAL_TERM_LABELS[key];
+  }
+  
+  // Default humanization: split by dash and capitalize each segment
+  return value
     .split('-')
     .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
     .join(' ');
+};
 
 const ExplorerGlossaryContext = ({
   term,
