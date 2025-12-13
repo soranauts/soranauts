@@ -105,3 +105,11 @@ test-results/
 .cursorrules
 .claude/
 apps/web/test-results/.last-run.json
+
+# Auto-generated documentation files
+docs/claude-reference/00-START-HERE.md
+docs/claude-reference/CHECKLIST.md
+docs/claude-reference/COMMANDS.md
+docs/claude-reference/GENERATION_SUMMARY.md
+docs/claude-reference/INDEX.md
+glossary-audit-bundle.md
