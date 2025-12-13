@@ -1,6 +1,6 @@
 ---
 publishDate: 2023-11-24T00:00:00Z
-updateDate: 2025-11-27T00:00:00Z
+updateDate: 2025-12-12T00:00:00Z
 title: "Proof of Stake vs Proof of Work: The SORA Perspective"
 excerpt: "Learn how Proof of Work and Proof of Stake differ in energy use and security — and how SORA’s validator model brings sustainable decentralization to DeFi."
 image: ~/assets/images/differences-between-proof-of-stake-and-proof-of-work.jpg
@@ -14,7 +14,7 @@ tags:
   - governance
   - energy-efficiency
   - sustainability
-  - hyperledger-iroha
+  - iroha3
   - polkaswap
 canonicalURL: https://soranauts.com/differences-between-proof-of-stake-and-proof-of-work
 ---
@@ -42,11 +42,11 @@ Key traits (2025):
 - **Hardware centralization:** Access to advanced ASICs and cheap power concentrates mining geographically.
 - **Transparent issuance:** Predictable halving schedules support fixed-supply monetary policy.
 
-PoW is proven but resource-intensive, with slower governance agility and higher operational barriers.
+PoW is proven but resource-intensive, with slower governance agility and higher operational barriers. For a detailed comparison of Bitcoin's monetary model versus SORA's approach, see ["Bitcoin vs XOR: Competing Visions for a New World Economic Order"](/bitcoin-vs-xor).
 
 ## Proof of Stake fundamentals
 
-PoS selects **validators** by their bonded token stake and proven reliability. Instead of electricity, they risk losing deposits (slashing) for misbehavior. Modern PoS systems—**Ethereum 2.0**, **Polkadot**, **SORA**—add randomness, delegation, and governance modules to maintain decentralization as participation scales.
+PoS selects **validators** by their bonded token stake and proven reliability. SORA specifically uses **NPoS (Nominated Proof-of-Stake)**, where nominators delegate stake to trusted validators, adding an extra layer of community participation. Instead of electricity, they risk losing deposits (slashing) for misbehavior. Modern PoS systems—**Ethereum 2.0**, **Polkadot**, **SORA**—add randomness, delegation, and governance modules to maintain decentralization as participation scales.
 
 Key advantages:
 - **Energy efficiency:** Validator nodes draw about as much power as standard servers.  
@@ -81,7 +81,7 @@ Economic design determines resilience:
 
 ## SORA’s Proof of Stake implementation
 
-**SORA** currently operates PoS on **Hyperledger Iroha 2** while preparing **SORA v3 “Nexus”** on Iroha 3. The **Fujiwara testnet** runs the next-gen validator stack: operators bond XOR, earn VAL-denominated rewards, and trial governance before mainnet deployment.  
+**SORA** currently operates PoS on **Hyperledger Iroha 2** while preparing **[SORA v3 "Nexus"](/sora-nexus-complete-guide)** on Iroha 3. The **Fujiwara testnet** runs the next-gen validator stack: operators bond XOR, earn VAL-denominated rewards, and trial governance before mainnet deployment.  
 See the <a href="https://wiki.sora.org/sora-v3.html" target="_blank" rel="noopener noreferrer">SORA v3 overview</a> and <a href="https://wiki.sora.org/running-a-sora-testnet-node.html" target="_blank" rel="noopener noreferrer">Fujiwara validator guide</a>.
 
 Core pillars:
