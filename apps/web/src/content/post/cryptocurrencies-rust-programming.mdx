@@ -82,7 +82,7 @@ Rust stands out when:
 |-----------|-----------|------------------|
 | **High-throughput DeFi** | Zero-cost abstractions | **Solana**, **SORA** |
 | **Secure smart contracts** | Strong compile-time guarantees | **Polkadot**, **Substrate** |
-| **Cross-chain systems** | WASM compilation | **SORA Hub Chain (v3)** |
+| **Cross-chain systems** | Deterministic VMs, cross-chain bridges | **SORA Hub Chain (v3)** |
 | **Enterprise blockchain** | Predictable, deterministic execution | **Hyperledger Iroha** |
 
 ---
@@ -106,7 +106,7 @@ Combined with **Proof of History (PoH)**, Rust enables Solana’s performance-fi
 - **Byzantine Fault Tolerance**  
 - **Granular, auditable permission systems**  
 - **Deterministic asset and identity management**  
-- **WASM smart contract execution**  
+- **WASM smart contract execution** (Polkadot/Substrate ecosystem)  
 
 SORA teams have historically used **Hyperledger Iroha 2** to prototype Hub Chain concepts.  
 As of December 2025, **[SORA v3 (Nexus)](/sora-nexus-complete-guide)** is being built on **Hyperledger Iroha 3**, designed as a politically neutral **Hub Chain** enabling secure, controllable cross-network interoperability.
@@ -145,7 +145,7 @@ As **DeFi**, **CBDCs**, and global interoperability frameworks evolve, the indus
 - verifiable execution  
 - secure cross-chain messaging  
 
-Rust’s strict semantics and lack of runtime unpredictability make it a natural fit for sovereign and institutional blockchain systems, including **SORA v3 (Nexus)** and next-generation WASM-based frameworks.
+Rust's strict semantics and lack of runtime unpredictability make it a natural fit for sovereign and institutional blockchain systems. **SORA v3 (Nexus)**, built on Hyperledger Iroha 3, uses Rust extensively for its deterministic IVM (Iroha Virtual Machine) and Kotodama runtime.
 
 Rust is not replacing every language — but it has become the default foundation for *infrastructure that cannot fail*.
 
@@ -170,7 +170,7 @@ Rust is not replacing every language — but it has become the default foundatio
 
   <details>
     <summary>How does SORA use Rust?</summary>
-    **SORA v2** runs on Substrate, while **SORA v3 (Nexus)** is being built on Hyperledger Iroha 3. Rust powers economic modules, governance logic, and Polkaswap’s DeFi infrastructure.
+    **SORA v2** runs on Substrate (which supports WASM), while **SORA v3 (Nexus)** is built on Hyperledger Iroha 3 using the IVM (Iroha Virtual Machine) with Kotodama bytecode — a purpose-built deterministic runtime, not WASM. Rust powers economic modules, governance logic, and Polkaswap's DeFi infrastructure across both versions.
   </details>
 
   <details>
