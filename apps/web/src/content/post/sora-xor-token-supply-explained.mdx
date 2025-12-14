@@ -1,8 +1,8 @@
 ---
 publishDate: 2023-12-25T00:00:00Z
-updateDate: 2025-11-19T00:00:00Z
-title: "SORA’s XOR Token Supply and Denomination Explained"
-excerpt: Learn how SORA’s 1:1,000,000 XOR denomination update works, why it doesn’t change value, and how to verify live supply using Polkaswap and the SORA Wiki.
+updateDate: 2025-12-14T00:00:00Z
+title: "SORA's XOR Token Supply and Denomination Explained"
+excerpt: Learn how SORA's 1:1,000,000 XOR denomination update works, why it doesn't change value, and how to verify live supply using Polkaswap and the SORA Wiki.
 image: ~/assets/images/sora-xor-token-supply-explained.jpg
 category: "Economics & Policy"
 canonicalURL: https://soranauts.com/sora-xor-token-supply-explained
@@ -29,42 +29,42 @@ import FaqSection from '~/components/blog/FaqSection.astro';
 >
 > 💰 **What this means:**
 > • Holders saw their XOR balances divided by 1,000,000.
-> • The total supply figures on dashboards were scaled down by the same factor — real economic value didn’t change.
+> • The total supply figures on dashboards were scaled down by the same factor — real economic value didn't change.
 > • Prices, market caps, and purchasing power remain identical; only the unit denomination and displayed numbers shifted.
 > • This improves usability by bringing XOR into line with modern DeFi denomination standards.
 >
 > 📅 **Activation:** Block 22,708,853 — 17:57 CET (October 2025)
 
-SORA’s native token **XOR** has an **elastic supply** managed by on-chain governance and a token bonding curve, rather than a fixed cap. This article explains how the **1 : 1,000,000 denomination update** changed the **unit scale and displayed numbers** without changing anyone’s real value. It also shows how to **check live XOR supply data** via Polkaswap and the SORA Wiki, and how these mechanics fit into SORA’s broader economic design.
+SORA's native token **XOR** has an **elastic supply** managed by on-chain governance and a token bonding curve, rather than a fixed cap. This article explains how the **1 : 1,000,000 denomination update** changed the **unit scale and displayed numbers** without changing anyone's real value. It also shows how to **check live XOR supply data** via Polkaswap and the SORA Wiki, and how these mechanics fit into SORA's broader economic design.
 
 ---
 
 ## TL;DR
 
-As of **October 2025**, SORA repackaged XOR’s on-chain units by a factor of **1 : 1,000,000**, so balances and total supply values **displayed in wallets and dashboards** changed in scale — but underlying economic value and proportional ownership **did not**. XOR’s supply remains **elastic**, managed by a **token bonding curve** and **on-chain governance** rather than a fixed issuance schedule. Live supply figures should always be checked via **Polkaswap Stats** and the **SORA Wiki**, since the bonding curve and governance can adjust supply over time. This denomination step also prepares XOR for future SORA v3 accounting precision and interoperability.
+As of **October 2025**, SORA repackaged XOR's on-chain units by a factor of **1 : 1,000,000**, so balances and total supply values **displayed in wallets and dashboards** changed in scale — but underlying economic value and proportional ownership **did not**. XOR's supply remains **elastic**, managed by a **token bonding curve** and **on-chain governance** rather than a fixed issuance schedule. Live supply figures should always be checked via **Polkaswap Stats** and the **SORA Wiki**, since the bonding curve and governance can adjust supply over time. This denomination step also prepares XOR for future SORA v3 accounting precision and interoperability.
 
 ---
 
 ## 🪙 XOR Denomination Repackaging (TXOR)
 
-SORA has completed a major technical milestone — a **denomination repackaging** that modernizes XOR’s on-chain representation while keeping its public identity unchanged.
+SORA has completed a major technical milestone — a **denomination repackaging** that modernizes XOR's on-chain representation while keeping its public identity unchanged.
 
 Each **1,000,000 previous XOR units** is now represented internally as **1 TXOR** on-chain, but the token continues to be displayed and traded everywhere as **XOR**.
-This preserves every holder’s total value across wallets, pools, and contracts while simplifying backend precision for the SORA Network.
+This preserves every holder's total value across wallets, pools, and contracts while simplifying backend precision for the SORA Network.
 
 ### What Changed
 
 - Wallets and exchanges still display **XOR**, but the underlying on-chain denomination has shifted to **TXOR** units.
-- The network’s accounting system is now cleaner and more efficient for **DEX operations, governance, and future integrations**.
+- The network's accounting system is now cleaner and more efficient for **DEX operations, governance, and future integrations**.
 - Balances, prices, and market caps remain economically identical — only the **internal unit representation and visible scale** changed.
 
 ### Why It Matters
 
 - **Better clarity:** Less confusing decimals for on-chain operations and accounting.
-- **Improved compatibility:** Simplifies listings, cross-chain bridges, and Iroha integration (SORA v2 uses Iroha 2; SORA v3 will migrate to Iroha 3).
-- **Future-proof design:** Lays the groundwork for next-generation DeFi scaling and SORA v3’s hub-and-subnet architecture.
+- **Improved compatibility:** Simplifies listings, cross-chain bridges, and Iroha integration (SORA v2 uses Iroha 2; [SORA v3](/sora-nexus-complete-guide) will migrate to Iroha 3).
+- **Future-proof design:** Lays the groundwork for next-generation DeFi scaling and SORA v3's hub-and-subnet architecture.
 
-This update marks a **key milestone in SORA’s technical evolution** — improving usability while maintaining XOR’s established branding and economic role.
+This update marks a **key milestone in SORA's technical evolution** — improving usability while maintaining XOR's established branding and economic role.
 
 ---
 
@@ -80,26 +80,26 @@ Following the denomination transition, the SORA team released **Network v4.7.1**
   <a href="https://github.com/sora-xor/sora2-network/releases/tag/4.7.1" target="_blank" rel="noopener noreferrer">sora-xor/sora2-network v4.7.1 release notes</a>.
 
 As the developers humorously noted:
-> “Fees have been reduced so you don’t need to be Elon Musk — or a follower of Klaus Schwab — to use the SORA Network.”
+> "Fees have been reduced so you don't need to be Elon Musk — or a follower of Klaus Schwab — to use the SORA Network."
 
-This lighthearted acknowledgment highlights SORA’s community-driven governance — transparent, adaptive, and responsive when fine-tuning the network’s economy.
+This lighthearted acknowledgment highlights SORA's community-driven governance — transparent, adaptive, and responsive when fine-tuning the network's economy.
 
 ---
 
 ## How to Check the Live XOR Supply
 
-You can verify XOR’s total and circulating supply directly from two official sources:
+You can verify XOR's total and circulating supply directly from two official sources:
 
 - 🔗 **Polkaswap Stats Dashboard**
   Open the live dashboard at
   <a href="https://polkaswap.io/#/stats" target="_blank" rel="noopener noreferrer">polkaswap.io/#/stats</a>.
   The **Token Supply** panel shows live mint, burn, and remit activity.
-  As of **October 22, 2025**, total supply stood at approximately **245.22 trillion XOR** (after the denomination update). Always refer to the latest numbers on Polkaswap, as XOR’s elastic supply can change over time.
+  As of **October 22, 2025**, total supply stood at approximately **245.22 trillion XOR** (after the denomination update). Always refer to the latest numbers on Polkaswap, as XOR's elastic supply can change over time.
 
 - 📘 **Official SORA Wiki — Check Supply Guide**
   Read the step-by-step guide at
   <a href="https://wiki.sora.org/check-supply.html" target="_blank" rel="noopener noreferrer">wiki.sora.org/check-supply.html</a>.
-  It provides detailed instructions, consistent with the SORA Docs “Check Supply” guide, on how to confirm on-chain data using explorers or the SORA CLI tools.
+  It provides detailed instructions, consistent with the SORA Docs "Check Supply" guide, on how to confirm on-chain data using explorers or the SORA CLI tools.
 
 ---
 
@@ -109,11 +109,11 @@ SORA's economy is built around **transparent, rule-based monetary governance**.
 The repackaging didn't change anyone's actual value — it only adjusted the **unit scale** and how balances and supply values are **displayed**, simplifying accounting and aligning XOR's precision with modern DeFi norms. SORA v2 uses Iroha 2 standards, and SORA v3 (Nexus) will migrate to Iroha 3.
 
 Previously, XOR had been redenominated **1 : 100** earlier in 2025.
-This new **1 : 1,000,000** update consolidates units even further and prepares the token for interoperability across SORA v3’s Hub Chain and future subnets, which are being designed to benefit from more precise accounting and interoperability.
+This new **1 : 1,000,000** update consolidates units even further and prepares the token for interoperability across SORA v3's Hub Chain and future subnets, which are being designed to benefit from more precise accounting and interoperability.
 
 ---
 
-## Understanding XOR’s Token Supply Model
+## Understanding XOR's Token Supply Model
 
 SORA treats its token supply as a **governance-directed instrument** — dynamically managed through transparent smart contracts rather than fixed issuance.
 
@@ -134,8 +134,8 @@ XOR powers the SORA economy by serving as:
 
 - A **transaction medium** for network fees
 - A **governance token** for proposals and Treasury funding
-- The **base asset** for Polkaswap liquidity
-- The **unit of account** for assets such as KUSD on the Kensetsu Platform
+- The **base asset** for [Polkaswap liquidity](/deep-dive-into-xor-val-and-pswap)
+- The **unit of account** for assets such as [KUSD on the Kensetsu Platform](/exploring-sora-kensetsu-polkaswap)
 
 The design focuses on **economic utility**, not speculative scarcity.
 
@@ -144,26 +144,26 @@ The design focuses on **economic utility**, not speculative scarcity.
 ## Why the Numbers Look Large
 
 Community discussions often focus on the size of the XOR supply.
-Here’s what those numbers actually mean:
+Here's what those numbers actually mean:
 
 - **Current Total Supply (as of October 2025):** ≈ **245.22 trillion XOR** (subject to change as elastic supply adjusts)
 - **Circulating Supply:** Estimated **4 – 6 %** of total at that time, with the remainder locked in governance, liquidity, or ecosystem reserves
 - **Market Value:** Unchanged — denomination affects **display units and numeric scale**, not underlying economic value
 
-Just like a stock split, this adjustment improves usability while preserving every holder’s proportional value.
+Just like a stock split, this adjustment improves usability while preserving every holder's proportional value.
 
 ---
 
 ## Transparency Through Data
 
-SORA’s network provides live supply metrics through **Polkaswap Stats**, while the **SORA Wiki** explains how users can independently verify this data on-chain.
+SORA's network provides live supply metrics through **Polkaswap Stats**, while the **SORA Wiki** explains how users can independently verify this data on-chain.
 The dashboard also tracks:
 
 - **Mint (Remint)** – new XOR issued through bonding-curve logic
 - **Burns** – tokens removed from supply
 - **Net Supply Trend** – real-time change in total supply
 
-This transparency is rare among blockchain projects and underscores SORA’s commitment to auditable, data-driven governance.
+This transparency is rare among blockchain projects and underscores SORA's commitment to auditable, data-driven governance.
 
 ---
 
@@ -232,7 +232,7 @@ SORA reimagines economic management as a **community-governed process** — comb
 
 ## Conclusion
 
-The 2025 denomination update and **SORA Network v4.7.1** release mark another milestone in SORA’s evolution toward a transparent, mathematically governed economy.
+The 2025 denomination update and **SORA Network v4.7.1** release mark another milestone in SORA's evolution toward a transparent, mathematically governed economy.
 While raw numbers may appear massive, each adjustment improves usability and long-term precision without changing real value.
 
 For the most accurate picture, always check live data directly from <a href="https://polkaswap.io/#/stats" target="_blank" rel="noopener noreferrer">Polkaswap.io</a> or the <a href="https://wiki.sora.org/check-supply.html" target="_blank" rel="noopener noreferrer">official SORA Wiki</a> — and remember:
@@ -243,5 +243,6 @@ For the most accurate picture, always check live data directly from <a href="htt
 ### Related Reading
 
 - [SORA Blockchain: A New World Economic Order](/sora-blockchain-new-world-economic-order)
-- [SORA’s Token Bonding Curve Dollar (TBCD) Explained](/soras-token-bonding-curve-dollar-tbcd-explained)
+- [SORA's Token Bonding Curve Dollar (TBCD) Explained](/soras-token-bonding-curve-dollar-tbcd-explained)
 - [SORA Economic Forum 2024: SORA v3](/sora-v3-blockchain-innovations-at-the-sora-economic-forum-2024)
+- [Understanding the Increase in the SORA (XOR) Token Supply](/understanding-the-increase-in-the-sora-xor-token-supply-and-its-role)
