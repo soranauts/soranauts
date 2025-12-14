@@ -3,9 +3,9 @@
   "eslint.validate": [
     "javascript",
     "javascriptreact",
-    "astro", // Enable .astro
-    "typescript", // Enable .ts
-    "typescriptreact" // Enable .tsx
+    "astro",
+    "typescript",
+    "typescriptreact"
   ],
   "files.associations": {
     "*.mdx": "markdown"
@@ -16,5 +16,27 @@
   },
   "yaml.schemas": {
     "./.vscode/astrowind/config-schema.json": "/src/config.yaml"
+  },
+  
+  // Prevent auto-formatting from modifying unrelated files
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": false,
+  "files.trimTrailingWhitespace": false,
+  "files.insertFinalNewline": false,
+  "files.trimFinalNewlines": false,
+  
+  "[markdown]": {
+    "editor.formatOnSave": false,
+    "files.trimTrailingWhitespace": false
+  },
+  "[mdx]": {
+    "editor.formatOnSave": false,
+    "files.trimTrailingWhitespace": false
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "[json]": {
+    "editor.formatOnSave": false
   }
 }

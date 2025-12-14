@@ -7884,10 +7884,10 @@
   {
     "slug": "sora",
     "title": "SORA",
-    "summary": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament.",
+    "summary": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament. The network is transitioning from Substrate (SORA v2) to Hyperledger Iroha 3 (SORA v3/Nexus).",
     "status": "canonical",
     "targetSlug": null,
-    "definition": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament.",
+    "definition": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament. The network is transitioning from Substrate (SORA v2) to Hyperledger Iroha 3 (SORA v3/Nexus).",
     "category": "Ecosystem",
     "aliases": [],
     "tags": [
@@ -7906,7 +7906,44 @@
       "fearlesswallet"
     ],
     "examples": [],
-    "links": [],
+    "links": [
+      {
+        "label": "SORA Wiki",
+        "url": "https://wiki.sora.org/"
+      },
+      {
+        "label": "SORA Website",
+        "url": "https://sora.org/"
+      },
+      {
+        "label": "Polkaswap",
+        "url": "https://polkaswap.io/"
+      },
+      {
+        "label": "SORA Builders Portal",
+        "url": "https://sora.org/plan"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/sora-xor"
+      },
+      {
+        "label": "Hyperledger Iroha",
+        "url": "https://iroha.tech/"
+      },
+      {
+        "label": "SORA Ecosystem Guide",
+        "url": "/sora-ecosystem-explained"
+      },
+      {
+        "label": "XOR, VAL & PSWAP Deep Dive",
+        "url": "/deep-dive-into-xor-val-and-pswap"
+      },
+      {
+        "label": "SORA Nexus Guide",
+        "url": "/sora-nexus-complete-guide"
+      }
+    ],
     "tagline": "Foundation for a new decentralized world economy with programmable finance and democratic governance.",
     "priority": 9
   },
