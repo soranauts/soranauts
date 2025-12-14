@@ -1,6 +1,6 @@
 ---
 publishDate: 2023-12-21T00:00:00Z
-updateDate: 2025-11-18T00:00:00Z
+updateDate: 2025-12-14T00:00:00Z
 title: "Polkadot & Kusama Parachains Explained: The Complete Guide"
 excerpt: Polkadot and Kusama parachains use shared security, OpenGov, and coretime to power scalable, interoperable multichain applications.
 image: ~/assets/images/understanding-polkadot-and-kusama-parachains.jpg
@@ -37,7 +37,7 @@ For users, this means faster transfers, unified wallets, and stronger security a
 
 | Topic | What it means |
 |---|---|
-| Parachains | Specialized chains that run in parallel on Polkadot/Kusama and inherit the relay chain’s security. |
+| Parachains | Specialized chains that run in parallel on Polkadot/Kusama and inherit the relay chain's security. |
 | Interoperability | **XCM v3** language + **XCMP** transport for native cross-chain messaging. |
 | Performance | **Asynchronous backing** shortens block times and boosts throughput. |
 | Resources | **Coretime marketplace** (on-demand / bulk) plus classic slot auctions for long leases. |
@@ -48,7 +48,7 @@ For users, this means faster transfers, unified wallets, and stronger security a
 ## Key Takeaways
 
 - **Parallel by design:** Many parachains execute concurrently, scaling throughput without fragmenting security.
-- **Shared security:** Parachains use the relay chain’s validator set—no need to maintain separate security.
+- **Shared security:** Parachains use the relay chain's validator set—no need to maintain separate security.
 - **Native interop:** <a href="https://wiki.polkadot.network/docs/learn-xcm" target="_blank" rel="noopener noreferrer">XCM</a> + XCMP enable standardized cross-chain actions and asset flows.
 - **Coretime > leases:** The <a href="https://wiki.polkadot.com/learn/learn-guides-coretime-marketplaces/" target="_blank" rel="noopener noreferrer">coretime</a> market lets teams buy execution time flexibly; auctions remain for multi-year guarantees.
 - **OpenGov everywhere:** <a href="https://wiki.polkadot.com/learn/learn-polkadot-opengov/" target="_blank" rel="noopener noreferrer">OpenGov</a> coordinates treasury, upgrades, and parameters.
@@ -111,7 +111,7 @@ Reference: <a href="https://wiki.polkadot.com/learn/learn-comparisons-kusama/" t
 > - **2020–2021:** Launch of Polkadot & Kusama relay-chain model
 > - **2022–2023:** Parachain slot auctions and crowdloans
 > - **2024:** OpenGov replaces council/referendum systems
-> - **As of November 2025:** Coretime marketplace and asynchronous backing are in active rollout
+> - **As of December 2025:** Coretime marketplace and asynchronous backing are in active rollout
 
 ---
 
@@ -182,7 +182,7 @@ Docs: <a href="https://wiki.polkadot.com/learn/learn-polkadot-opengov/" target="
 ## Quick Builder Checklist
 
 - Need **scale**? Add parachains, not layers.
-- Need **security**? Use the relay chain’s validators.
+- Need **security**? Use the relay chain's validators.
 - Need **interop**? Rely on XCM/XCMP.
 - Need **flexibility**? Purchase coretime on demand.
 - Need **stability**? Lease via auctions.
@@ -190,7 +190,7 @@ Docs: <a href="https://wiki.polkadot.com/learn/learn-polkadot-opengov/" target="
 ---
 
 ## Polkadot Parachains vs. Hyperledger Iroha
-While Polkadot and Kusama focus on **public, permissionless multichain networks**, **Hyperledger Iroha**—the technology underlying SORA’s hub chain—offers a **permissioned and modular** blockchain framework built for regulated or institutional contexts.
+While Polkadot and Kusama focus on **public, permissionless multichain networks**, **Hyperledger Iroha**—the technology underlying SORA's hub chain—offers a **permissioned and modular** blockchain framework built for regulated or institutional contexts.
 
 | Feature | Polkadot / Kusama | Hyperledger Iroha |
 |---|---|---|
@@ -201,20 +201,20 @@ While Polkadot and Kusama focus on **public, permissionless multichain networks*
 | **Use Case Focus** | DeFi, interoperability, scalability | Enterprise, CBDCs, asset management, regulated systems |
 | **Interoperability** | Native cross-chain via XCM/XCMP | API- or bridge-based (e.g., via SORA Hub) |
 
-Polkadot’s relay-chain model enables **permissionless coordination** among independent chains, while Iroha provides **predictable, auditable control** suited for institutions such as central banks or enterprises.
-As of November 2025, planned bridges—like the **SORA Hub Chain**—aim to connect Iroha-based systems with public multichain ecosystems, but timelines and designs remain under active development.
+Polkadot's relay-chain model enables **permissionless coordination** among independent chains, while Iroha provides **predictable, auditable control** suited for institutions such as central banks or enterprises.
+As of December 2025, planned bridges—like the **[SORA Hub Chain](/sora-nexus-complete-guide)**—aim to connect Iroha-based systems with public multichain ecosystems, but timelines and designs remain under active development.
 
 Learn more about <a href="https://wiki.hyperledger.org/display/iroha" target="_blank" rel="noopener noreferrer">Hyperledger Iroha</a>
-and see how [SORAMITSU’s work with the Central Bank of the Solomon Islands](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc)
-demonstrates Iroha’s potential for regulated financial systems and future multichain connectivity.
+and see how [SORAMITSU's work with the Central Bank of the Solomon Islands](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc)
+demonstrates Iroha's potential for regulated financial systems and future multichain connectivity.
 
 
 ---
 
 ## Ecosystem Outlook
 
-As of November 2025, projects such as **SORA** and other Iroha-based networks are exploring ways to interoperate with Polkadot’s multichain architecture.
-As of November 2025, shared security and cross-network messaging could one day link these ecosystems, expanding liquidity and collaboration across DeFi and digital-asset platforms.
+As of December 2025, projects such as **[SORA](/sora-ecosystem-explained)** and other Iroha-based networks are exploring ways to interoperate with Polkadot's multichain architecture.
+Shared security and cross-network messaging could one day link these ecosystems, expanding liquidity and collaboration across DeFi and digital-asset platforms.
 
 ---
 
@@ -235,8 +235,8 @@ No. The relay-chain validator set secures all parachains under a shared-security
 </details>
 
 <details>
-<summary>What’s the difference between XCM and XCMP?</summary>
-XCM defines **what** happens (the message); XCMP handles **how** it’s delivered between parachains.
+<summary>What's the difference between XCM and XCMP?</summary>
+XCM defines **what** happens (the message); XCMP handles **how** it's delivered between parachains.
 </details>
 
 <details>
@@ -255,6 +255,7 @@ Kusama for rapid iteration and early features; Polkadot for production stability
 - [The SORA Blockchain and the New World Economic Order](/sora-blockchain-new-world-economic-order)
 - [Understanding DeFi Protocols](/defi-protocols-beginners-crash-course)
 - [Polkadot vs Ethereum: A Comparative Analysis](/polkadot-vs-ethereum-a-comparative-analysis)
+- [Top 14 Polkadot and Kusama Projects to Watch](/top-polkadot-kusama-projects)
 
 
 ---

@@ -1,6 +1,6 @@
 ---
 publishDate: 2023-12-20T00:00:00Z
-updateDate: 2025-11-18T00:00:00Z
+updateDate: 2025-12-14T00:00:00Z
 title: "Apollo Protocol: Lending and Borrowing on the SORA Network"
 excerpt: Apollo Protocol brings lending and borrowing to the SORA Network, letting users supply collateral, borrow assets, and participate in APOLLO governance.
 image: ~/assets/images/apollo-protocol-ceres-sora-network.jpg
@@ -28,7 +28,7 @@ Apollo Protocol is a lending and borrowing platform built by the Ceres team for 
 
 ---
 
-> **Editor’s note:**
+> **Editor's note:**
 > As of May 2025, Apollo Protocol remains deployed on the SORA Network as a functioning lending and borrowing protocol created by the Ceres team. Recent SORA ecosystem updates include runtime and compatibility fixes for Apollo-related borrowing functions. Users should always check the latest Ceres announcements and SORA ecosystem updates for accurate details on liquidity, supported assets, and risk conditions before participating.
 
 ---
@@ -41,13 +41,13 @@ Apollo Protocol is a lending and borrowing platform built by the Ceres team for 
 - **Borrow assets** by posting collateral and unlocking liquidity without selling holdings.
 - **Earn and govern** with the **APOLLO token**, which powers staking, farming, and treasury governance.
 
-This model strengthens SORA’s on-chain economy by improving liquidity, capital efficiency, and integration potential with other DeFi products like [**Polkaswap**](/sora-ecosystem-explained).
+This model strengthens SORA's on-chain economy by improving liquidity, capital efficiency, and integration potential with other DeFi products like [**Polkaswap**](/sora-ecosystem-explained).
 
 ---
 
 ## Getting Started on SORA
 
-Apollo runs natively on the SORA Network. To interact, you’ll need a compatible wallet:
+Apollo runs natively on the SORA Network. To interact, you'll need a compatible wallet:
 
 - **Fearless Wallet (recommended):** iOS/Android app designed for SORA, Polkadot, and Kusama networks.
 - **Polkadot-JS Extension:** browser wallet for creating and managing SORA accounts.
@@ -56,7 +56,7 @@ Apollo runs natively on the SORA Network. To interact, you’ll need a compatibl
 Supported Apollo assets have **varied over time** based on liquidity and governance.
 As of November 2024 updates, supported assets have included **DAI**, **ETH**, **APOLLO**, and **KSM**, with listings governed by community decisions and subject to change as liquidity conditions evolve.
 
-For a broader view of XOR’s role in the network economy, see our guide [**Why SORA XOR Matters**](/why-sora-xor-matters-a-simplified-guide).
+For a broader view of XOR's role in the network economy, see our guide [**Why SORA XOR Matters**](/why-sora-xor-matters-a-simplified-guide).
 
 For technical background, see our [**SORA v3 guide**](/sora-v3-revolutionizing-tokenomics-and-defi-on-polkadot).
 
@@ -68,7 +68,7 @@ For technical background, see our [**SORA v3 guide**](/sora-v3-revolutionizing-t
 
 Depositors supply assets into liquidity pools and earn yield through:
 - **Fixed APOLLO emissions** (distributed across pools for 12 months)
-- **Variable interest income** from borrowers’ repayments
+- **Variable interest income** from borrowers' repayments
 
 Borrowers post collateral to access liquidity. Each asset has defined risk parameters—Loan-to-Value (LTV), Liquidation Threshold (LT), and Reserve Factor (RF)—that determine borrowing capacity and liquidation risk.
 
@@ -78,7 +78,7 @@ Borrowers post collateral to access liquidity. Each asset has defined risk param
 - **HF > 1:** safe
 - **HF < 1:** triggers liquidation
 
-Liquidations sell collateral to repay the loan once HF falls below 1. Apollo’s documentation commonly references liquidation around **85%** of collateral value, but thresholds vary by asset and may be updated through governance.
+Liquidations sell collateral to repay the loan once HF falls below 1. Apollo's documentation commonly references liquidation around **85%** of collateral value, but thresholds vary by asset and may be updated through governance.
 
 ### 3. Rewards Overview
 
@@ -112,7 +112,7 @@ This dual-slope model helps balance liquidity across markets.
 
 ## Reserve Factor & Revenue Distribution
 
-Apollo’s **Reserve Factor (RF)** decides how loan interest and liquidation proceeds are split.
+Apollo's **Reserve Factor (RF)** decides how loan interest and liquidation proceeds are split.
 Over time, Apollo documentation and community calls have referenced configurations such as:
 
 - **GitBook (2024):** 60% APOLLO buyback → Treasury, 20% CERES buyback, 20% development.
@@ -157,13 +157,15 @@ This allows the protocol to evolve through community participation as the SORA e
 
 ## Why Apollo Matters to SORA
 
-SORA’s financial stack includes **Polkaswap** (DEX) and **HASHI Bridge** (interoperability). Apollo adds the **money-market layer**, enabling:
+SORA's financial stack includes **[Polkaswap](/best-decentralized-exchanges-dexs)** (DEX), **HASHI Bridge** (interoperability), and **[Kensetsu](/exploring-sora-kensetsu-polkaswap)** (stablecoin minting). Apollo adds the **money-market layer**, enabling:
 
 - On-chain credit markets
 - Cross-asset liquidity growth
 - Composability with other SORA DeFi tools
 
-Apollo was developed for the SORA v2 network and continues to function during the ecosystem’s broader transition toward SORA v3 and Hyperledger Iroha-based infrastructure.
+For a deeper understanding of how XOR, VAL, and PSWAP interact across these products, see [How XOR, VAL, and PSWAP Power the SORA Ecosystem](/deep-dive-into-xor-val-and-pswap).
+
+Apollo was developed for the SORA v2 network and continues to function during the ecosystem's broader transition toward SORA v3 and Hyperledger Iroha-based infrastructure.
 
 For newcomers, see our [**DeFi crash course**](/defi-protocols-beginners-crash-course) for key concepts.
 
@@ -221,7 +223,7 @@ For newcomers, see our [**DeFi crash course**](/defi-protocols-beginners-crash-c
 
   <details>
     <summary>What if Ceres development continues to slow?</summary>
-    Apollo’s smart contracts remain active on-chain, but new features or UI updates may progress more slowly unless community governance proposes changes.
+    Apollo's smart contracts remain active on-chain, but new features or UI updates may progress more slowly unless community governance proposes changes.
   </details>
 
   <details>
@@ -247,4 +249,4 @@ To learn more about Apollo and its role in the Ceres ecosystem, consult the late
 - <a href="https://cerestoken.io/" target="_blank" rel="noopener noreferrer">Ceres official website</a>
 - <a href="https://wiki.sora.org/ceres/overview.html" target="_blank" rel="noopener noreferrer">SORA Wiki – Ceres ecosystem overview</a>
 
-If you’re new to DeFi, you can learn more about these concepts (lending, collateral, liquidation, and utilization) in our beginner-friendly guide, [DeFi Protocols: A Beginner’s Crash Course](/defi-protocols-beginners-crash-course).
+If you're new to DeFi, you can learn more about these concepts (lending, collateral, liquidation, and utilization) in our beginner-friendly guide, [DeFi Protocols: A Beginner's Crash Course](/defi-protocols-beginners-crash-course).
