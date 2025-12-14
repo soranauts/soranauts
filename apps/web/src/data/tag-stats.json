@@ -32,7 +32,7 @@
   "tag-blockchain": {
     "count": 5,
     "firstSeen": "2023-11-28T00:00:00.000Z",
-    "lastSeen": "2025-12-09T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-blockchain-architecture": {
     "count": 1,
@@ -117,7 +117,7 @@
   "tag-cross-chain": {
     "count": 5,
     "firstSeen": "2023-10-09T00:00:00.000Z",
-    "lastSeen": "2025-12-12T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-cross-chain-bridges": {
     "count": 1,
@@ -157,7 +157,7 @@
   "tag-decentralized-exchanges": {
     "count": 1,
     "firstSeen": "2023-11-28T00:00:00.000Z",
-    "lastSeen": "2025-11-22T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-decentralized-finance": {
     "count": 3,
@@ -165,7 +165,7 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-defi": {
-    "count": 23,
+    "count": 24,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
@@ -182,7 +182,7 @@
   "tag-digital-ownership": {
     "count": 1,
     "firstSeen": "2023-11-26T00:00:00.000Z",
-    "lastSeen": "2025-11-23T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-dogecoin": {
     "count": 1,
@@ -257,7 +257,7 @@
   "tag-hyperledger-iroha": {
     "count": 8,
     "firstSeen": "2023-11-26T00:00:00.000Z",
-    "lastSeen": "2025-11-23T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-hyperledger-iroha-2": {
     "count": 1,
@@ -270,7 +270,7 @@
   "tag-interoperability": {
     "count": 9,
     "firstSeen": "2023-11-26T00:00:00.000Z",
-    "lastSeen": "2025-12-09T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-investment-strategy": {
     "count": 2,
@@ -380,7 +380,7 @@
   "tag-nfts": {
     "count": 1,
     "firstSeen": "2023-11-26T00:00:00.000Z",
-    "lastSeen": "2025-11-23T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-on-chain-governance": {
     "count": 1,
@@ -525,7 +525,7 @@
   "tag-sora-ecosystem": {
     "count": 3,
     "firstSeen": "2023-11-26T00:00:00.000Z",
-    "lastSeen": "2025-11-23T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-sora-parliament": {
     "count": 1,
@@ -560,7 +560,7 @@
   "tag-staking": {
     "count": 1,
     "firstSeen": "2023-11-28T00:00:00.000Z",
-    "lastSeen": "2025-11-22T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-substrate": {
     "count": 2,
@@ -600,7 +600,7 @@
   "tag-tokenization": {
     "count": 2,
     "firstSeen": "2023-11-26T00:00:00.000Z",
-    "lastSeen": "2025-11-23T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-tokenomics": {
     "count": 10,
@@ -643,7 +643,7 @@
   "tag-validators": {
     "count": 4,
     "firstSeen": "2023-11-24T00:00:00.000Z",
-    "lastSeen": "2025-12-12T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-volatility": {
     "count": 1,
@@ -668,6 +668,6 @@
   "tag-xor": {
     "count": 12,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-12T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   }
 }
