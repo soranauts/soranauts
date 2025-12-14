@@ -57,7 +57,7 @@
   "tag-bokolo-cash": {
     "count": 1,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-11-21T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-bonding-curve": {
     "count": 3,
@@ -87,12 +87,12 @@
   "tag-cbdc": {
     "count": 3,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-12-09T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-central-bank": {
     "count": 1,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-11-21T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-ceres": {
     "count": 1,
@@ -222,7 +222,7 @@
   "tag-financial-inclusion": {
     "count": 1,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-11-21T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-forkless-upgrades": {
     "count": 1,
@@ -262,7 +262,7 @@
   "tag-hyperledger-iroha-2": {
     "count": 1,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-11-21T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-hyperledger-iroha-3": {
     "count": 0
@@ -355,7 +355,7 @@
   "tag-mobile-payments": {
     "count": 1,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-11-21T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-monetary-policy": {
     "count": 1,
@@ -395,7 +395,7 @@
   "tag-pacific-islands": {
     "count": 1,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-11-21T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-parachain": {
     "count": 2,
@@ -445,7 +445,7 @@
   "tag-qr-payments": {
     "count": 1,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-11-21T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-real-world-assets": {
     "count": 1,
@@ -510,7 +510,7 @@
   "tag-solomon-islands": {
     "count": 1,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-11-21T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-sora": {
     "count": 24,
