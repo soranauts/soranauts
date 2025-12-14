@@ -609,6 +609,9 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
         // Get related terms from tag hub metadata
         const relatedTerms = (metadata as { relatedSlugs?: string[] })?.relatedSlugs || [];
         
+        // Get links from tag hub metadata
+        const links = (metadata as { links?: Array<{ label: string; url: string }> })?.links || [];
+        
         terms.push({
           slug,
           title: normalizeTitle(tagSlug.replace(/-/g, ' ')),
@@ -621,7 +624,7 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
           tags: metadata?.traits || [],
           relatedTerms,
           examples: [],
-          links: [],
+          links,
           tagline,
           priority: getPriority(slug, false), // Canonical tag term
         });

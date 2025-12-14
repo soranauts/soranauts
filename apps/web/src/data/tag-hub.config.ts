@@ -27,6 +27,10 @@ export interface TagHubMetadataEntry {
    * Optional array of related glossary term slugs for cross-linking on tag hub pages.
    */
   relatedSlugs?: string[];
+  /**
+   * Optional array of external/internal source links for the glossary page.
+   */
+  links?: Array<{ label: string; url: string }>;
 }
 
 export interface TagHubQuickPath {
@@ -107,13 +111,24 @@ export const tagHubMetadata: Record<string, TagHubMetadataEntry> = {
   'tag-sora': {
     domain: 'ecosystem',
     summary:
-      'SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament.',
+      'SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament. The network is transitioning from Substrate (SORA v2) to Hyperledger Iroha 3 (SORA v3/Nexus).',
     traits: ['foundational', 'glossary-linked', 'beginner-friendly'],
     quickPathIds: ['new-to-sora'],
     featured: true,
     weight: 100,
     glossarySlug: 'sora',
     relatedSlugs: ['xor', 'val', 'pswap', 'polkaswap', 'hashi', 'soraparliament', 'kensetsu', 'fearlesswallet'],
+    links: [
+      { label: 'SORA Wiki', url: 'https://wiki.sora.org/' },
+      { label: 'SORA Website', url: 'https://sora.org/' },
+      { label: 'Polkaswap', url: 'https://polkaswap.io/' },
+      { label: 'SORA Builders Portal', url: 'https://sora.org/plan' },
+      { label: 'GitHub', url: 'https://github.com/sora-xor' },
+      { label: 'Hyperledger Iroha', url: 'https://iroha.tech/' },
+      { label: 'SORA Ecosystem Guide', url: '/sora-ecosystem-explained' },
+      { label: 'XOR, VAL & PSWAP Deep Dive', url: '/deep-dive-into-xor-val-and-pswap' },
+      { label: 'SORA Nexus Guide', url: '/sora-nexus-complete-guide' },
+    ],
   },
   'tag-xor': {
     domain: 'economics',
