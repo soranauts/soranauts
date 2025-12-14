@@ -122,7 +122,7 @@
   "tag-cross-chain-bridges": {
     "count": 1,
     "firstSeen": "2023-11-25T00:00:00.000Z",
-    "lastSeen": "2025-11-24T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-crowdloans": {
     "count": 2,
@@ -162,12 +162,12 @@
   "tag-decentralized-finance": {
     "count": 3,
     "firstSeen": "2023-11-25T00:00:00.000Z",
-    "lastSeen": "2025-11-24T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-defi": {
     "count": 23,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-12T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-dex": {
     "count": 2,
@@ -237,7 +237,7 @@
   "tag-governance": {
     "count": 17,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-12T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-halving": {
     "count": 1,
@@ -305,7 +305,7 @@
   "tag-kusd": {
     "count": 6,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-12T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-lending": {
     "count": 1,
@@ -320,7 +320,7 @@
   "tag-liquidity-pools": {
     "count": 1,
     "firstSeen": "2023-11-25T00:00:00.000Z",
-    "lastSeen": "2025-11-24T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-market-analysis": {
     "count": 2,
@@ -425,7 +425,7 @@
   "tag-polkaswap": {
     "count": 15,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-12T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-proof-of-stake": {
     "count": 2,
@@ -515,7 +515,7 @@
   "tag-sora": {
     "count": 24,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-12T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-sora-card": {
     "count": 1,
@@ -555,7 +555,7 @@
   "tag-stablecoins": {
     "count": 1,
     "firstSeen": "2023-11-25T00:00:00.000Z",
-    "lastSeen": "2025-11-24T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-staking": {
     "count": 1,
@@ -610,12 +610,12 @@
   "tag-ton": {
     "count": 2,
     "firstSeen": "2023-11-25T00:00:00.000Z",
-    "lastSeen": "2025-11-24T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-tonswap": {
     "count": 6,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-12T00:00:00.000Z"
+    "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-trading": {
     "count": 2,
