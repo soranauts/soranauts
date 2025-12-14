@@ -1,47 +1,12 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
-import { TAG_HUB_V1 } from '~/utils/featureFlags';
-import {
-  formatTagLabel,
-  getAllTagHubViewModels,
-  getTagHubDomains,
-  getTagHubQuickPaths,
-} from '~/lib/tag-hub';
-import type { MetaData } from '~/types';
-import TagFilters from '~/components/tag-hub/TagFilters.tsx';
-import type {
-  TagHubDomainOption,
-  TagHubTraitFilter,
-  TagHubClientTag,
-} from '~/components/tag-hub/TagFilters.tsx';
-import ExplorerGlossaryContext from '~/components/tag-hub/ExplorerGlossaryContext';
-import { FEATURE_EXPLORER_GLOSSARY_CONTEXT } from '~/config/feature-flags';
-import { getTopTermsForDomain } from '~/lib/glossary/article-relations';
-import NexusExplorerSection from '~/components/explore/NexusExplorerSection.astro';
-import { getNexusTermCount } from '~/lib/glossary/stats';
+import TagFilters from '~/components/tag-hub/TagFilters';
+import { getAllTagHubViewModels } from '~/lib/tag-hub';
+import type { TagHubClientTag, TagHubDomainOption, TagHubTraitFilter } from '~/components/tag-hub/TagFilters';
 
 export const prerender = true;
 
-const disabledMetadata: MetaData = {
-  title: 'Explore SORA Topics',
-  description: 'Topic exploration is coming soon.',
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
-
-const placeholderCopy =
-  'SORA Explorer is in preview and not yet available on this environment. Check back after the next release to map governance activity, DeFi strategies, and ecosystem journeys curated by Soranauts.';
-
-const isEnabled = TAG_HUB_V1;
-
-const tags = isEnabled ? getAllTagHubViewModels() : [];
-const quickPaths = isEnabled ? getTagHubQuickPaths() : [];
-const domainOrder = isEnabled ? getTagHubDomains() : [];
-
-// Get live Nexus term count from glossary stats
-const nexusTermCount = getNexusTermCount();
+const allTags = getAllTagHubViewModels();
 
 const domainLabels: Record<string, string> = {
   ecosystem: 'Ecosystem & Adoption',
@@ -52,96 +17,22 @@ const domainLabels: Record<string, string> = {
   network: 'Network & Validators',
 };
 
-const domainOptions: TagHubDomainOption[] = domainOrder.map((domain) => ({
-  id: domain,
-  label:
-    domainLabels[domain] ?? domain.replace(/-/g, ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase()),
-}));
+const domainOptions: TagHubDomainOption[] = [
+  { id: 'ecosystem', label: 'Ecosystem & Adoption' },
+  { id: 'defi', label: 'DeFi & Liquidity' },
+  { id: 'economics', label: 'Economics & Tokenomics' },
+  { id: 'governance', label: 'Governance & Policy' },
+  { id: 'technology', label: 'Technology & Infrastructure' },
+  { id: 'network', label: 'Network & Validators' },
+];
 
 const traitFilters: TagHubTraitFilter[] = [
   { id: 'foundational', label: 'Foundational', trait: 'foundational' },
   { id: 'glossary', label: 'Glossary linked', trait: 'glossary-linked' },
   { id: 'beginner', label: 'Beginner friendly', trait: 'beginner-friendly' },
-  { id: 'builder', label: 'Builder guide', trait: 'builder-guide' },
-  { id: 'trending', label: 'Trending now', trait: 'trending' },
 ];
 
-const foundationalTopics = tags
-  .filter((tag) => tag.traits.includes('foundational'))
-  .sort((a, b) => (b.metadata?.weight ?? 0) - (a.metadata?.weight ?? 0))
-  .slice(0, 6);
-
-const trendingTopics = tags
-  .filter((tag) => Boolean(tag.lastSeen))
-  .sort((a, b) => {
-    const aDate = a.lastSeen ? new Date(a.lastSeen).valueOf() : 0;
-    const bDate = b.lastSeen ? new Date(b.lastSeen).valueOf() : 0;
-    if (bDate === aDate) {
-      return b.usageCount - a.usageCount;
-    }
-    return bDate - aDate;
-  })
-  .slice(0, 8);
-
-const domainSections = domainOrder.map((domain) => ({
-  id: domain,
-  label: domainLabels[domain] ?? domain,
-  tags: tags
-    .filter((tag) => tag.domain === domain)
-    .sort((a, b) => (b.metadata?.weight ?? 0) - (a.metadata?.weight ?? 0))
-    .slice(0, 6),
-}));
-
-const heroCopy =
-  'Navigate the SORA knowledge graph in one place. SORA Explorer unifies glossary terms, governance updates, DeFi strategies, and ecosystem signals so you can map and understand the network.';
-
-const glossaryContextByDomain =
-  isEnabled && FEATURE_EXPLORER_GLOSSARY_CONTEXT
-    ? Object.fromEntries(
-        domainOrder.map((domain) => [domain, getTopTermsForDomain(domain, tags)]),
-      )
-    : {};
-
-const enabledMetadata: MetaData = {
-  title: 'SORA Explorer: Discover the Decentralized Economy',
-  description:
-    'SORA Explorer unites glossary insights, governance updates, DeFi strategies, and ecosystem signals—helping contributors map the network with confidence.',
-  canonical: 'https://soranauts.com/explore',
-  openGraph: {
-    type: 'website',
-    url: 'https://soranauts.com/explore',
-    images: [
-      {
-        url: 'https://soranauts.com/og/sora-explorer.jpg',
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-};
-
-const metadata: MetaData = isEnabled ? enabledMetadata : disabledMetadata;
-
-const pagefindMeta = isEnabled
-  ? {
-      type: 'collection',
-      title: enabledMetadata.title,
-      description: enabledMetadata.description,
-      url: '/explore/',
-    }
-  : undefined;
-
-const collectionJsonLd = isEnabled
-  ? {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: enabledMetadata.title,
-      description: enabledMetadata.description,
-      url: 'https://soranauts.com/explore',
-    }
-  : undefined;
-
-const islandTags: TagHubClientTag[] = tags.map((tag) => ({
+const islandTags: TagHubClientTag[] = allTags.map((tag) => ({
   slug: tag.slug,
   title: tag.title,
   summary: tag.summary,
@@ -158,257 +49,87 @@ const islandTags: TagHubClientTag[] = tags.map((tag) => ({
   aliases: tag.aliases,
 }));
 
-const quickPathSections = quickPaths.map((path) => ({
-  id: path.id,
-  title: path.title,
-  description: path.description,
-  tags: path.tags,
-}));
+const meta = {
+  title: 'Explore SORA Topics | Soranauts',
+  description: 'Browse and search topics across the SORA ecosystem. Find articles, guides, and resources by tag.',
+  canonical: 'https://soranauts.com/explore',
+};
 ---
 
-<PageLayout metadata={metadata}>
-  {collectionJsonLd && <script is:inline type="application/ld+json">{JSON.stringify(collectionJsonLd)}</script>}
-  <main
-    id="main-content"
-    class="tag-hub-page px-4 md:px-6 lg:px-12 pt-8 md:pt-10 lg:pt-12 pb-12 md:pb-16 lg:pb-20 mx-auto max-w-7xl"
-    data-pagefind-ignore="all"
-  >
-    <section class="tag-hub-hero">
-      <span class="tag-hub-hero__kicker">SORA Explorer</span>
-      <h1>SORA Explorer</h1>
-      <p>{heroCopy}</p>
-      <dl class="tag-hub-hero__stats">
-        {isEnabled ? (
-          <>
-            <div class="tag-hub-hero__stat">
-              <dt>Curated topics</dt>
-              <dd>{tags.length}</dd>
-            </div>
-            <div class="tag-hub-hero__stat">
-              <dt>Quick journeys</dt>
-              <dd>{quickPathSections.length}</dd>
-            </div>
-            {nexusTermCount > 0 && (
-              <div class="tag-hub-hero__stat">
-                <dt>Nexus terms</dt>
-                <dd>{nexusTermCount}</dd>
-              </div>
-            )}
-            <div class="tag-hub-hero__stat">
-              <dt>Latest update</dt>
-              <dd>
-                {trendingTopics[0]?.lastSeen
-                  ? new Date(trendingTopics[0].lastSeen).toLocaleDateString('en', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric',
-                    })
-                  : '—'}
-              </dd>
-            </div>
-          </>
-        ) : (
-          <>
-            <div class="tag-hub-hero__stat">
-              <dt>Status</dt>
-              <dd>Preview</dd>
-            </div>
-            <div class="tag-hub-hero__stat">
-              <dt>Availability</dt>
-              <dd>Disabled</dd>
-            </div>
-            <div class="tag-hub-hero__stat">
-              <dt>Next step</dt>
-              <dd>Watch the release notes</dd>
-            </div>
-          </>
-        )}
-      </dl>
+<PageLayout metadata={meta}>
+  <main class="explore-hub">
+    <header class="explore-header">
+      <p class="explore-header__kicker">SORA EXPLORER</p>
+      <h1>Explore Topics</h1>
+      <p class="explore-header__description">
+        Search and filter {allTags.length} curated topics across the SORA ecosystem.
+      </p>
+      <p class="explore-header__learn-cta">
+        New to SORA? <a href="/learn">Start with guided learning paths →</a>
+      </p>
+    </header>
+
+    <section class="search-section">
+      <TagFilters 
+        client:load 
+        tags={islandTags} 
+        domains={domainOptions}
+        traitFilters={traitFilters}
+      />
     </section>
-
-    {!isEnabled && (
-      <section class="px-4 py-16 mx-auto max-w-4xl text-center space-y-6">
-        <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">SORA Explorer Preview</h2>
-        <p class="text-lg text-muted">{placeholderCopy}</p>
-      </section>
-    )}
-
-    {isEnabled && (
-      <>
-        <section class="tag-hub-section" id="foundational">
-      <div class="tag-hub-section__header">
-        <h2>Foundational Topics</h2>
-        <p class="tag-hub-section__description">
-          Start here for SORA's core primitives—network tokens, liquidity venues, and economic
-          guardrails that every contributor should know.
-        </p>
-      </div>
-      <div class="tag-hub-section__grid">
-        <!-- Tag cards are fully clickable anchors. When adding nested interactive controls, ensure they stop propagation so navigation remains intact. -->
-        {foundationalTopics.map((tag) => {
-          const formattedTitle = formatTagLabel(tag.slug, tag.title);
-          return (
-            <a class="tag-card" href={`/tag/${tag.slug.replace(/^tag-/, '')}`} role="group">
-              <div class="tag-card__header">
-                <span class="tag-card__domain">{domainLabels[tag.domain] ?? tag.domain.replace(/-/g, ' ')}</span>
-                {tag.glossaryRef && <span class="tag-card__badge">Glossary</span>}
-              </div>
-              <h3 class="tag-card__title">{formattedTitle}</h3>
-              {tag.summary && <p class="tag-card__summary">{tag.summary}</p>}
-              <div class="tag-card__footer">
-                <span class="tag-card__stat">
-                  {tag.usageCount === 1 ? '1 post' : `${tag.usageCount} posts`}
-                </span>
-                {tag.lastSeen && (
-                  <span class="tag-card__stat tag-card__stat--muted">
-                    Updated{' '}
-                    {new Date(tag.lastSeen).toLocaleDateString('en', { month: 'short', year: 'numeric' })}
-                  </span>
-                )}
-              </div>
-            </a>
-          );
-        })}
-      </div>
-    </section>
-
-    <!-- Nexus Architecture Section -->
-    <NexusExplorerSection />
-
-    <section class="tag-hub-section" id="quick-paths">
-      <div class="tag-hub-section__header">
-        <h2>Quick Paths</h2>
-        <p class="tag-hub-section__description">
-          Curated journeys bundle the most relevant tags for onboarding, governance deep dives, and
-          DeFi power users.
-        </p>
-      </div>
-      <div class="tag-hub-section__grid">
-        {quickPathSections.map((path) => (
-          <article class="tag-hub-quick-path">
-            <h3 class="tag-hub-quick-path__title">{path.title}</h3>
-            <p class="tag-hub-quick-path__description">{path.description}</p>
-            <div class="tag-hub-quick-path__tags">
-              {path.tags.map((tag) => {
-                const formattedTitle = formatTagLabel(tag.slug, tag.title);
-                return <a href={`/tag/${tag.slug.replace(/^tag-/, '')}`}>{formattedTitle}</a>;
-              })}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-
-        <TagFilters 
-          client:load 
-          tags={islandTags} 
-          domains={domainOptions} 
-          traitFilters={traitFilters}
-          title="Search SORA Explorer"
-          description="Look up topics, tags, and curated journeys. Filters and sorting help you discover governance updates, DeFi strategies, and ecosystem insights."
-        />
-
-    <section class="tag-hub-section" id="domains">
-      <div class="tag-hub-section__header">
-        <h2>Explore by Domain</h2>
-        <p class="tag-hub-section__description">
-          Browse tags grouped by focus area—economics, governance, technology, network security, and
-          the wider ecosystem.
-        </p>
-      </div>
-      <div class="space-y-12">
-        {domainSections.map((section) => (
-          <div class="space-y-5" id={`domain-${section.id}`}>
-            <div>
-              <div class="tag-hub-section__domain">Domain focus</div>
-              <h3 class="text-2xl font-semibold tracking-tight">{section.label}</h3>
-            </div>
-            {FEATURE_EXPLORER_GLOSSARY_CONTEXT &&
-              (glossaryContextByDomain[section.id]?.length ?? 0) > 0 && (
-                <ExplorerGlossaryContext
-                  category={section.label}
-                  relatedTerms={glossaryContextByDomain[section.id]}
-                />
-              )}
-            <div class="tag-hub-section__grid">
-              {section.tags.map((tag) => {
-                const formattedTitle = formatTagLabel(tag.slug, tag.title);
-                return (
-                  <a class="tag-card" href={`/tag/${tag.slug.replace(/^tag-/, '')}`} role="group">
-                    <div class="tag-card__header">
-                      <span class="tag-card__domain">{domainLabels[tag.domain] ?? tag.domain.replace(/-/g, ' ')}</span>
-                      {tag.glossaryRef && <span class="tag-card__badge">Glossary</span>}
-                    </div>
-                    <h3 class="tag-card__title">{formattedTitle}</h3>
-                    {tag.summary && <p class="tag-card__summary">{tag.summary}</p>}
-                    <div class="tag-card__footer">
-                      <span class="tag-card__stat">
-                        {tag.usageCount === 1 ? '1 post' : `${tag.usageCount} posts`}
-                      </span>
-                      {tag.lastSeen && (
-                        <span class="tag-card__stat tag-card__stat--muted">
-                          Updated{' '}
-                          {new Date(tag.lastSeen).toLocaleDateString('en', {
-                            month: 'short',
-                            year: 'numeric',
-                          })}
-                        </span>
-                      )}
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section class="tag-hub-section" id="trending">
-      <div class="tag-hub-section__header">
-        <h2>Trending & Recently Updated</h2>
-        <p class="tag-hub-section__description">
-          Follow emerging discussions and freshly updated knowledge—perfect for tracking governance
-          votes or hot DeFi integrations.
-        </p>
-      </div>
-      <div class="tag-hub-section__grid">
-        {trendingTopics.map((tag) => {
-          const formattedTitle = formatTagLabel(tag.slug, tag.title);
-          return (
-            <a class="tag-card" href={`/tag/${tag.slug.replace(/^tag-/, '')}`} role="group">
-              <div class="tag-card__header">
-                <span class="tag-card__domain">{domainLabels[tag.domain] ?? tag.domain.replace(/-/g, ' ')}</span>
-                {tag.glossaryRef && <span class="tag-card__badge">Glossary</span>}
-              </div>
-              <h3 class="tag-card__title">{formattedTitle}</h3>
-              {tag.summary && <p class="tag-card__summary">{tag.summary}</p>}
-              <div class="tag-card__footer">
-                <span class="tag-card__stat">
-                  {tag.usageCount === 1 ? '1 post' : `${tag.usageCount} posts`}
-                </span>
-                {tag.lastSeen && (
-                  <span class="tag-card__stat tag-card__stat--muted">
-                    Updated{' '}
-                    {new Date(tag.lastSeen).toLocaleDateString('en', { month: 'short', year: 'numeric' })}
-                  </span>
-                )}
-              </div>
-              {tag.traits.length > 0 && (
-                <div class="tag-card__traits">
-                  {tag.traits.map((trait) => (
-                    <span class="tag-card__chip">{trait.replace(/-/g, ' ')}</span>
-                  ))}
-                </div>
-              )}
-            </a>
-          );
-        })}
-      </div>
-    </section>
-      </>
-    )}
   </main>
 </PageLayout>
 
+<style>
+  .explore-hub {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-6);
+  }
 
+  .explore-header {
+    text-align: center;
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-6);
+  }
+
+  .explore-header__kicker {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+  }
+
+  .explore-header h1 {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    margin: 0 0 var(--space-3);
+  }
+
+  .explore-header__description {
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  .explore-header__learn-cta {
+    font-size: var(--text-sm);
+  }
+
+  .explore-header__learn-cta a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .explore-header__learn-cta a:hover {
+    text-decoration: underline;
+  }
+
+  .search-section {
+    padding: var(--space-4) 0;
+  }
+</style>
