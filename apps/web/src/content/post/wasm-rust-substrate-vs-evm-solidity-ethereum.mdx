@@ -1,9 +1,9 @@
 ---
 publishDate: 2024-01-27T00:00:00Z
-updateDate: 2025-11-15T00:00:00Z
-title: "Polkadot (WASM / Rust) vs Ethereum (EVM / Solidity)"
-excerpt: "How WASM/Rust on Hyperledger Iroha contrasts with the EVM/Solidity stack across SORA v3, Polkaswap, and Kensetsu."
-description: "Compare WASM/Rust on Hyperledger Iroha 3 with EVM/Solidity through SORA’s 2025 roadmap, Fujiwara testnet insights, and DeFi integrations."
+updateDate: 2025-12-14T00:00:00Z
+title: "EVM, WASM & IVM: Blockchain Execution Compared"
+excerpt: "How Ethereum’s EVM, Polkadot’s WASM, and SORA Nexus’s IVM differ in smart contract execution, composability, and deterministic governance."
+description: "Compare EVM/Solidity, WASM/Rust on Polkadot, and the IVM/Kotodama stack on SORA Nexus to understand which execution environment fits your blockchain project."
 image: ~/assets/images/wasm-rust-substrate-vs-evm-solidity-ethereum.jpg
 category: "Blockchain Technology"
 tags:
@@ -19,110 +19,188 @@ tags:
   - interoperability
   - bridges
   - blockchain
-canonicalURL: https://soranauts.com/polkadot-wasm-rust-vs-ethereum-evm-solidity
-source_url: https://soranauts.com/polkadot-wasm-rust-vs-ethereum-evm-solidity
-snapshot_id: "2025-11-14"
+  - evm
+  - wasm
+  - ivm
+canonicalURL: https://soranauts.com/wasm-rust-substrate-vs-evm-solidity-ethereum
+source_url: https://soranauts.com/wasm-rust-substrate-vs-evm-solidity-ethereum
+snapshot_id: "2025-12-14"
 ---
 
-Smart contracts continue to automate agreements across nearly every blockchain, but 2025 forces developers to choose between two distinct approaches: the liquidity network of Ethereum’s EVM or the governance-driven, WASM-powered path SORA is adopting with Hyperledger Iroha 3 (“Nexus”).
+Smart contracts continue to automate agreements across nearly every blockchain, but 2025 forces developers to choose between three distinct execution paradigms: Ethereum's liquidity-driven EVM, Polkadot's flexible WASM runtimes, or SORA Nexus's deterministic IVM designed for governed economies and CBDC integration.
 
-This choice matters because SORA’s roadmap now bridges both worlds—maintaining legacy Substrate runtimes while advancing Iroha 3 on the Fujiwara testnet. Together they connect to CBDC pilots and DeFi products like Polkaswap, Kensetsu, SORA Card, and TONSWAP’s burn mechanics.
+This choice matters because each approach optimizes for different priorities—composability, flexibility, or institutional-grade determinism. SORA's evolution from Substrate/WASM (v2) to Iroha 3/IVM (v3) demonstrates how networks can transition between paradigms while maintaining their DeFi ecosystems.
 
 ---
 
 ## TL;DR
 
-Hyperledger Iroha 3 anchors SORA v3 around WASM/Rust for safety and modular governance. The EVM/Solidity stack still dominates global DeFi for liquidity and tooling. Fujiwara testnet progress shows SORA’s Hubchain logic already functioning pre-mainnet, while Polkaswap and Kensetsu confirm the ecosystem’s multi-runtime economy.
+Three execution paradigms define modern blockchain development:
 
-In short: choose EVM when you need immediate market reach, and WASM when you need deterministic upgrades, governance control, or CBDC interoperability.
+- **EVM / Solidity** dominates DeFi with unmatched composability and liquidity across Ethereum, Base, Polygon, and L2s.
+- **WASM / Rust** powers Polkadot's parachain ecosystem with flexible, upgradeable runtimes via Substrate.
+- **IVM / Kotodama** is SORA Nexus's purpose-built deterministic VM — designed for governed execution, CBDC interoperability, and institutional use cases.
+
+Choose EVM for immediate market reach, WASM for parachain flexibility, and IVM for deterministic governance and regulatory compatibility.
 
 ---
 
 ## Key Takeaways
 
-- SORA is migrating contract logic to **Hyperledger Iroha 3**, while retaining Substrate modules for legacy compatibility.
-- **EVM/Solidity** remains the global standard for composability and liquidity, but SORA bridges these ecosystems through wrapped assets and verifiable cross-chain flows.
-- Products like **Polkaswap**, **Kensetsu**, **SORA Card**, and **TONSWAP** already rely on WASM-based governance.
-- Historical **Substrate/ink!** experience is still relevant, but new features align with Iroha 3’s modular domains and Special Instructions (ISI).
+- **EVM/Solidity** remains the global standard for DeFi composability and developer tooling.
+- **WASM/Rust** powers Polkadot's Substrate framework, enabling flexible parachain runtimes and upgradeable logic.
+- **SORA Nexus (Iroha 3)** uses the **IVM (Iroha Virtual Machine)** with **Kotodama bytecode** — NOT WASM — for deterministic, governed execution.
+- Products like **Polkaswap** and **Kensetsu** run on SORA's infrastructure, benefiting from IVM's predictability and governance integration.
+- **SORA v2** (Substrate-based) supported WASM; **SORA v3 (Nexus)** moved to IVM for stricter determinism and CBDC compatibility.
 - Definitions for governance, bonding curves, and liquidity live in the **Soranauts Glossary**, with related datasets viewable in **SORA Explorer**.
 
 ---
 
-## Understanding the Building Blocks
+## Understanding the Execution Environments
 
-Smart contracts are deterministic programs that define on-chain state transitions, but their execution environments differ dramatically.
+Smart contracts execute on virtual machines that define how bytecode runs on-chain. Three dominant approaches have emerged, each optimizing for different priorities:
 
-- The **EVM** prioritizes global composability and compatibility across Ethereum, Base, Polygon, and similar networks.
-- **WASM runtimes**, such as those in Hyperledger Iroha 3, focus on verifiable execution, modular governance, and safe upgrade paths.
+### EVM / Solidity (Ethereum)
 
-### EVM / Solidity
+The Ethereum Virtual Machine standardizes bytecode execution across Ethereum and compatible chains (Base, Polygon, Arbitrum, Optimism). Solidity's familiar syntax and massive ecosystem make it the default for DeFi applications. The <a href="https://ethereum.org/en/developers/docs/evm/" target="_blank" rel="noopener noreferrer">EVM documentation</a> covers execution mechanics, opcodes, and gas metering in detail.
 
-The Ethereum Virtual Machine standardizes how bytecode executes across chains, enabling Solidity contracts to behave consistently. Solidity's syntax feels familiar to web developers, while its ecosystem offers formal verification, proxy upgrades, and extensive dev tooling. The <a href="https://ethereum.org/en/developers/docs/evm/" target="_blank" rel="noopener noreferrer">Ethereum Virtual Machine documentation</a> provides comprehensive technical details on execution, opcodes, and gas mechanics.
+**Strengths:**
+- Global composability — deploy once, integrate everywhere
+- Extensive tooling (Hardhat, Foundry, Remix)
+- Massive liquidity and user base
+- Battle-tested security patterns
 
-The tradeoff: the EVM's opcode limits and shared gas model can restrict innovation. Developers benefit from massive network effects but must operate within Ethereum's long-standing constraints. For a deeper comparison of Polkadot and Ethereum architectures, see our [Polkadot vs Ethereum analysis](/polkadot-vs-ethereum-a-comparative-analysis).
+**Tradeoffs:**
+- Gas constraints and opcode limitations
+- Upgrade complexity (proxy patterns, migrations)
+- Shared congestion during high usage
 
-### WASM / Rust (Hyperledger Iroha 3)
+For a deeper comparison of Ethereum's architecture, see our [Polkadot vs Ethereum analysis](/polkadot-vs-ethereum-a-comparative-analysis).
 
-WASM brings near-native performance and language flexibility. In Hyperledger Iroha 3, domain-specific logic compiles into WASM modules, enabling deterministic execution and runtime hot-swaps when approved by SORA's Parliament. The <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly standard</a> enables portable, sandboxed execution across different platforms.
+### WASM / Rust (Polkadot/Substrate)
 
-Rust enforces memory safety through strict typing and ownership rules. Together, they form a secure foundation for SORA's governance-driven model, allowing validated updates without disrupting the entire network. For developers new to Rust in blockchain contexts, see our guide on [Rust programming for cryptocurrencies](/cryptocurrencies-rust-programming).
+WebAssembly enables near-native performance with language flexibility. Polkadot's Substrate framework uses WASM for parachain runtimes, allowing forkless upgrades and custom logic. The <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer">WebAssembly standard</a> ensures portable, sandboxed execution across different platforms.
 
-> **Context:** Earlier SORA versions (v1–v2) used Substrate pallets and ink! contracts. Those chains remain online, while new modules transition to Hyperledger Iroha 3 through Fujiwara testnet validation.
+**Strengths:**
+- Flexible runtimes — custom state models and execution logic
+- Forkless upgrades — governance-approved updates without hard forks
+- Multi-language support — Rust, C, C++, and others compile to WASM
+- Parachain specialization within Polkadot's shared security
+
+**Tradeoffs:**
+- Newer ecosystem compared to EVM
+- Parachain coordination overhead (slot auctions, relay chain dependencies)
+- Requires deeper technical expertise
+
+For developers exploring Rust in this context, see our guide on [Rust programming for cryptocurrencies](/cryptocurrencies-rust-programming).
+
+> **Historical Context:** Earlier SORA versions (v1–v2) used Substrate pallets and ink! contracts, leveraging WASM runtimes. SORA v2 remains online on Substrate, while SORA v3 (Nexus) transitions to a fundamentally different architecture.
+
+### IVM / Kotodama (SORA Nexus / Iroha 3)
+
+The **Iroha Virtual Machine (IVM)** is SORA Nexus's purpose-built execution environment. Unlike EVM or WASM, IVM was designed from scratch for **deterministic, auditable execution** suitable for CBDCs, institutional systems, and governed DeFi.
+
+**Key IVM characteristics:**
+- **Register-based architecture:** 256 64-bit general-purpose registers (`r0` always equals zero, following RISC conventions)
+- **Kotodama bytecode:** Smart contracts compile to `.to` files (not WASM) with explicit headers and ABI versions
+- **Pointer-ABI types:** Norito TLV envelopes ensure type-safe inter-contract calls
+- **No floating-point operations:** Strict determinism — identical execution across all validators, every time
+- **ISI integration:** All state changes via Iroha Special Instructions (ISI) applied to World State View (WSV)
+- **Governed upgrades:** Parliament-approved module updates, versioned configs, no surprise forks
+
+**Strengths:**
+- Guaranteed determinism for institutional use cases
+- CBDC compatibility by design
+- Governed evolution through SORA Parliament
+- Auditable state transitions (every change via explicit ISI)
+- No nondeterministic syscalls or floating-point edge cases
+
+**Tradeoffs:**
+- Newer ecosystem (Iroha 3 launched in 2025)
+- Requires Iroha-specific tooling and Kotodama compiler
+- Smaller developer community compared to EVM or Substrate
+
+For a complete overview, see the [SORA Nexus Complete Guide](/sora-nexus-complete-guide).
 
 ---
 
-## Comparing EVM/Solidity and WASM/Rust
+## Comparing Execution Environments
+
+| Category | EVM / Solidity | WASM / Rust (Substrate) | IVM / Kotodama (Iroha 3) |
+|----------|----------------|-------------------------|--------------------------|
+| **Language** | Solidity (domain-specific) | Rust, C, others | Rust (Kotodama compiler) |
+| **Bytecode** | EVM bytecode (stack-based) | WebAssembly | Kotodama bytecode (`.to`, register-based) |
+| **Architecture** | Stack machine, 256-bit words | Stack machine, 32/64-bit | Register machine, 64-bit registers |
+| **Determinism** | Gas-metered, generally deterministic | Runtime-dependent (WASM allows some nondeterminism) | Strict (no FP, explicit syscalls, ISI-only state changes) |
+| **Governance** | Off-chain EIPs, hard forks | On-chain (OpenGov, Polkadot referenda) | On-chain (SORA Parliament, versioned configs) |
+| **Upgrades** | Proxy patterns, migrations | Forkless runtime upgrades | Governed module updates via Parliament |
+| **State Model** | Flat key-value storage | Custom (depends on parachain) | Structured domains, accounts, assets (WSV) |
+| **Primary Use** | DeFi, NFTs, global composability | Parachains, custom runtimes, specialized chains | CBDCs, institutional DeFi, governed economies |
+| **Ecosystem Size** | Largest (Ethereum + L2s) | Growing (Polkadot, Kusama) | Emerging (SORA Nexus, Iroha 3) |
 
 ### Similarities
 
-- Both are **Turing-complete**, deterministic, and meter execution (via gas or weight).
-- Both provide testing frameworks and automation pipelines.
-- Bridges and wrapped assets allow liquidity and logic to flow between them.
-
-### Key Differences
-
-| Category | EVM / Solidity | WASM / Rust (Hyperledger Iroha 3) |
-|-----------|----------------|-----------------------------------|
-| **Language Scope** | Domain-specific scripting (Solidity) | System-level programming (Rust) with ownership semantics |
-| **Governance** | Fork-based upgrades | Domain-scoped, modular updates under Parliament oversight |
-| **Performance** | Predictable gas model, bounded throughput | Near-native speed, customizable execution limits |
-| **State Model** | Flat key-value storage | Structured domains, accounts, and assets |
-| **Bridging** | Generic messaging or Layer-2 rollups | Verifier/prover logic tied to Hubchain and CBDC links |
+All three are **Turing-complete**, meter execution (gas/weight/resources), provide testing frameworks, and enable cross-chain bridging through wrapped assets or message passing.
 
 ### Tradeoffs
 
-- **EVM/Solidity**: mature, composable, but constrained and security-intensive.
-- **WASM/Rust**: flexible, deterministic, but newer and requires deeper technical skill.
+- **EVM/Solidity**: Mature, composable, constrained by gas model and opcode limits
+- **WASM/Rust**: Flexible, performant, requires parachain coordination and deeper expertise
+- **IVM/Kotodama**: Deterministic, governed, newer with smaller ecosystem but designed for institutional requirements
 
 ---
 
 ## Case Study: The SORA Stack
 
-SORA’s evolution illustrates how a network can move from Substrate to Hyperledger Iroha without breaking its DeFi economy.
+SORA's evolution illustrates how a network can transition between execution environments while maintaining its DeFi ecosystem.
 
-### Fujiwara Testnet
+### SORA v2 (Substrate / WASM)
 
-Fujiwara serves as SORA’s public sandbox for Iroha 3 modules—mirroring validator orchestration, governance testing, and telemetry. It extends Hubchain’s verifier model and allows developers to validate upgrades before mainnet activation.
+SORA v2 runs on Substrate, using WASM-compatible runtimes. This phase established:
+- **Polkaswap** — liquidity aggregation and AMM
+- **Kensetsu** — KUSD stablecoin issuance
+- **XOR, VAL, PSWAP** — core token ecosystem
+- Polkadot parachain integration and XCM messaging
 
-SORA v3, codenamed **Nexus**, prioritizes auditability and bridge security over speed. Internal research notes show ongoing refinement before full release.
+SORA v2 demonstrated governance-driven DeFi within Polkadot's ecosystem but faced limitations in determinism and CBDC compatibility due to WASM's flexibility.
+
+### SORA v3 / Nexus (Iroha 3 / IVM)
+
+**SORA v3 (Nexus)** migrates to Hyperledger Iroha 3, replacing WASM with the **IVM (Iroha Virtual Machine)**. This architectural shift prioritizes:
+
+- **Strict determinism** — No floating-point operations, explicit syscalls, guaranteed identical execution across all validators
+- **CBDC compatibility** — Designed for institutional and regulatory requirements from day one
+- **Governed evolution** — Parliament-approved upgrades without hard forks or surprise changes
+- **Hubchain model** — Politically neutral interoperability layer connecting CBDCs, DeFi, and enterprise systems
+
+The **Fujiwara testnet** validates IVM modules, governance mechanisms, and cross-chain verifiers before mainnet activation. Internal research continues refining Nexus's architecture ahead of production release.
 
 ### Polkaswap & Kensetsu
 
-Polkaswap continues as the liquidity core for XOR, VAL, PSWAP, and cross-chain assets. Kensetsu complements it by issuing KUSD and TBCD, funding builders through the bonding-curve treasury.
+[Polkaswap](/best-decentralized-exchanges-dexs) continues as the liquidity core for [XOR, VAL, PSWAP](/deep-dive-into-xor-val-and-pswap), and cross-chain assets. [Kensetsu](/exploring-sora-kensetsu-polkaswap) complements it by issuing KUSD and TBCD, funding builders through the bonding-curve treasury.
 
-Together they form SORA’s economic engine—balancing DeFi liquidity with modular, WASM-based governance validated by Fujiwara.
+Together they form SORA's economic engine — with governance transitioning from Substrate's WASM runtime (v2) to Iroha 3's IVM (v3) as Nexus matures. Economic logic written in Rust adapts to the new execution environment while maintaining compatibility.
 
 ### SORA Card & TONSWAP
 
-SORA Card demonstrates how Iroha 3 governance can coexist with compliance frameworks, while TONSWAP closes the loop between Telegram-based liquidity and SORA’s burn mechanics. Both show how WASM logic powers cross-ecosystem integration without sacrificing decentralization.
+SORA Card demonstrates how IVM governance can coexist with compliance frameworks, bridging DeFi's permissionless ethos with institutional requirements. [TONSWAP](/tonswap-telegram-defi-hub-on-ton-complete-guide) connects Telegram-based liquidity to SORA's ecosystem, showcasing cross-chain integration under the new architecture.
+
+Both products benefit from IVM's deterministic execution and governed upgrade path, ensuring predictable behavior for institutional partners and retail users alike.
 
 ---
 
 ## Conclusion
 
-EVM/Solidity and WASM/Rust are not rivals—they’re two halves of a broader DeFi evolution.
+EVM, WASM, and IVM represent three philosophies for blockchain execution:
 
-Ethereum’s stack provides instant composability and global liquidity. SORA’s Iroha 3 stack brings governance, modularity, and sovereign programmability. The most resilient builders will use both: Solidity where market access matters, Rust/WASM where safety and policy integration dominate.
+- **EVM** optimizes for **global composability** — deploy once, integrate everywhere across Ethereum's vast liquidity network.
+- **WASM** optimizes for **flexibility** — custom runtimes, forkless upgrades, and specialized parachain logic within Polkadot's ecosystem.
+- **IVM** optimizes for **deterministic governance** — institutional-grade predictability, CBDC readiness, and Parliament-approved evolution.
+
+The most resilient builders will understand all three:
+- Use **Solidity** for Ethereum's liquidity and composability
+- Use **Rust/WASM** for Polkadot's modularity and parachain innovation
+- Use **Kotodama/IVM** for SORA Nexus's governed economy and institutional integration
 
 For deeper context on how these systems connect, see the [SORA Ecosystem Guide](/sora-ecosystem-explained).
 
@@ -131,21 +209,53 @@ For deeper context on how these systems connect, see the [SORA Ecosystem Guide](
 ## FAQs
 
 <details>
-<summary>When will the next major SORA network version launch?</summary>
-**SORA v3** remains under active development and is live only on **Fujiwara testnet**. Production release follows audits and **Parliament** approval.
+<summary>Does SORA Nexus use WASM?</summary>
+No. **SORA v2** (Substrate-based) supports WASM, but **SORA v3 (Nexus)** uses the **IVM (Iroha Virtual Machine)** with **Kotodama bytecode** — a purpose-built deterministic runtime designed for governed execution and CBDC compatibility. This is a fundamental architectural change from Iroha 2 (which supported WASM) to Iroha 3.
 </details>
 
 <details>
-<summary>What changed between Iroha version 2 and version 3?</summary>
-**Iroha 2** powered SORA's Hubchain Phase 1–2 prototypes, providing the foundation for cross-chain verifiers and prover-verifier logic. **Iroha 3 (Nexus)** introduces a re-engineered architecture with modular domains, upgraded consensus mechanisms, and enhanced security primitives. Key improvements include layered runtime for domain-specific modules, upgraded command model for deterministic operations, and simplified validator orchestration for multi-domain deployments. This evolution enables **SORA v3's** vision of connecting permissioned systems (CBDCs, government assets) with decentralized networks.
+<summary>What is the IVM?</summary>
+The **Iroha Virtual Machine (IVM)** is SORA Nexus's execution environment built on Hyperledger Iroha 3. It features 256 64-bit registers, pointer-ABI types, no floating-point operations, and explicit syscalls — ensuring identical execution across all validators. Unlike EVM (stack-based) or WASM (flexible but potentially nondeterministic), IVM prioritizes strict determinism for institutional use cases.
 </details>
 
 <details>
-<summary>Can I still use Solidity on SORA?</summary>
-**SORA v3** uses **WASM/Rust** for smart contracts, but bridges and wrapped assets enable interaction with **EVM** chains for liquidity and composability.
+<summary>What is Kotodama?</summary>
+**Kotodama** is the instruction set and bytecode format for SORA Nexus smart contracts. Kotodama programs compile to `.to` files (not WASM) and execute on the IVM with strict determinism guarantees. The name references Japanese spiritual concepts of language and creation, reflecting how code defines economic reality in SORA's governed economy.
 </details>
 
 <details>
-<summary>Why did SORA move from Substrate to a different blockchain framework?</summary>
-**Iroha 3** offers deterministic upgrades, structured **governance**, and compatibility with permissioned systems like **CBDCs**—core to SORA's long-term vision.
+<summary>Can I still use Solidity with SORA?</summary>
+Not directly. SORA Nexus uses IVM/Kotodama, not EVM. However, bridges and wrapped assets enable interaction with EVM chains (Ethereum, Base, Polygon) for liquidity and composability. SORA's interoperability model connects different execution environments rather than trying to replicate EVM directly.
+</details>
+
+<details>
+<summary>Why did SORA move from WASM to IVM?</summary>
+IVM offers stricter determinism, governed upgrades, and compatibility with institutional/CBDC requirements — aligning with SORA's vision of a governed, interoperable economic network. While WASM (used in SORA v2 via Substrate) provided flexibility, IVM's design guarantees identical execution across validators without edge cases, making it suitable for central bank digital currencies and regulated financial systems.
+</details>
+
+<details>
+<summary>Which should I choose: EVM, WASM, or IVM?</summary>
+Choose based on your priorities:
+- **EVM** for maximum DeFi composability and liquidity access across Ethereum's ecosystem
+- **WASM** (Substrate) for custom parachain runtimes and Polkadot integration
+- **IVM** for deterministic, governed execution and CBDC/institutional use cases
+
+Many projects will interact with all three through bridges and cross-chain messaging.
+</details>
+
+<details>
+<summary>When will SORA v3 (Nexus) launch on mainnet?</summary>
+**SORA v3** remains under active development and is live on **Fujiwara testnet** for validation. Production release follows comprehensive audits and **Parliament** approval. Internal research continues refining the architecture, with no fixed launch date announced as of December 2025.
+</details>
+
+<details>
+<summary>What changed between Iroha 2 and Iroha 3?</summary>
+**Iroha 2** powered SORA's early Hubchain prototypes and supported WASM smart contracts. **Iroha 3 (Nexus)** introduces a fundamentally re-engineered architecture:
+- **IVM replaces WASM** — purpose-built deterministic execution
+- **Modular domains** — structured state management (WSV)
+- **Enhanced consensus** — improved BFT and validator orchestration
+- **ISI model** — all state changes via explicit instructions
+- **CBDC-ready** — designed for institutional and regulatory requirements
+
+This evolution enables SORA v3's vision of connecting permissioned systems (CBDCs, government assets) with decentralized networks.
 </details>
