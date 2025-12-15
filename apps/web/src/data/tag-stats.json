@@ -85,9 +85,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-cbdc": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-12-14T00:00:00.000Z"
+    "lastSeen": "2025-12-15T00:00:00.000Z"
   },
   "tag-central-bank": {
     "count": 1,
@@ -165,7 +165,7 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-defi": {
-    "count": 26,
+    "count": 27,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-15T00:00:00.000Z"
   },
@@ -200,9 +200,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-economics": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2023-10-11T00:00:00.000Z",
-    "lastSeen": "2025-12-14T00:00:00.000Z"
+    "lastSeen": "2025-12-15T00:00:00.000Z"
   },
   "tag-energy-efficiency": {
     "count": 1,
@@ -240,7 +240,7 @@
     "lastSeen": "2025-10-22T00:00:00.000Z"
   },
   "tag-governance": {
-    "count": 18,
+    "count": 19,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-15T00:00:00.000Z"
   },
@@ -438,7 +438,7 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-polkaswap": {
-    "count": 16,
+    "count": 17,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-15T00:00:00.000Z"
   },
@@ -533,7 +533,7 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-sora": {
-    "count": 26,
+    "count": 27,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-15T00:00:00.000Z"
   },
@@ -623,9 +623,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-tokenomics": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-14T00:00:00.000Z"
+    "lastSeen": "2025-12-15T00:00:00.000Z"
   },
   "tag-ton": {
     "count": 2,
@@ -686,7 +686,7 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-xor": {
-    "count": 13,
+    "count": 14,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-15T00:00:00.000Z"
   }

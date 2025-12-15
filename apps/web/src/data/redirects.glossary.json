@@ -17,6 +17,14 @@
       "to": "/glossary/dogecoin"
     },
     {
+      "from": "/glossary/fearless",
+      "to": "/glossary/fearlesswallet"
+    },
+    {
+      "from": "/glossary/fearless-wallet",
+      "to": "/glossary/fearlesswallet"
+    },
+    {
       "from": "/glossary/hyperled",
       "to": "/glossary/hyperledger-iroha"
     },

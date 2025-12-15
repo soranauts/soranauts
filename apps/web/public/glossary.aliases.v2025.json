@@ -25,6 +25,10 @@
       "target": "dogecoin"
     },
     {
+      "alias": "fearless",
+      "target": "fearlesswallet"
+    },
+    {
       "alias": "hyperledgeriroha3",
       "target": "sorav3"
     },

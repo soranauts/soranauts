@@ -5122,6 +5122,63 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     ],
     "priority": 0,
     "glossaryRef": "/glossary/concurrency"
+  },
+  "fearlesswallet": {
+    "slug": "fearlesswallet",
+    "title": "Fearless Wallet",
+    "type": "term",
+    "category": "defi",
+    "summary": "Fearless Wallet is a non-custodial mobile wallet by SORAMITSU for managing Polkadot, Kusama, and SORA ecosystem assets with staking, DeFi access, and governance participation.",
+    "definition": "Fearless Wallet is a mobile-first, non-custodial cryptocurrency wallet developed by SORAMITSU. It provides secure access to the Polkadot, Kusama, and SORA ecosystems from iOS and Android devices. Key features include non-custodial security, multi-chain support for 100+ Substrate-based networks, native staking, Polkaswap integration for token swaps, crowdloan participation, governance voting, fiat on-ramp via Mercuryo and MoonPay, and NFT support. The wallet has deep integration with the SORA ecosystem including Polkaswap, SORA Card connectivity, and XOR/VAL/PSWAP management.",
+    "aliases": [
+      "Fearless Wallet",
+      "Fearless"
+    ],
+    "relatedTags": [
+      "polkaswap",
+      "sora",
+      "staking",
+      "polkadot",
+      "kusama",
+      "xor"
+    ],
+    "seeAlso": [
+      "Polkaswap",
+      "SORA",
+      "SORA Card",
+      "Staking",
+      "Polkadot",
+      "Kusama",
+      "XOR"
+    ],
+    "links": [
+      {
+        "label": "Fearless Wallet Official",
+        "url": "https://fearlesswallet.io/"
+      },
+      {
+        "label": "iOS App Store",
+        "url": "https://apps.apple.com/us/app/fearless-wallet/id1537745558"
+      },
+      {
+        "label": "Google Play Store",
+        "url": "https://play.google.com/store/apps/details?id=jp.co.soramitsu.fearless"
+      },
+      {
+        "label": "Fearless Wiki",
+        "url": "https://wiki.fearlesswallet.io/"
+      },
+      {
+        "label": "SORAMITSU",
+        "url": "https://soramitsu.co.jp/"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/soramitsu/fearless-iOS"
+      }
+    ],
+    "priority": 8,
+    "glossaryRef": "/glossary/fearlesswallet"
   }
 };
 const findNodeByAlias = (value: string): TaxonomyNode | undefined => {
