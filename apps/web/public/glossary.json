@@ -3658,6 +3658,23 @@
     "tagline": "Provides seamless access to SORA Nexus services."
   },
   {
+    "slug": "hacks",
+    "title": "Hacks",
+    "summary": "Security exploits, vulnerabilities, and attack vectors in the crypto ecosystem, plus how SORA architecture mitigates common threats.",
+    "status": "canonical",
+    "targetSlug": null,
+    "definition": "Security exploits, vulnerabilities, and attack vectors in the crypto ecosystem, plus how SORA architecture mitigates common threats.",
+    "category": "Technology",
+    "aliases": [],
+    "tags": [
+      "advanced"
+    ],
+    "relatedTerms": [],
+    "examples": [],
+    "links": [],
+    "priority": 4
+  },
+  {
     "slug": "halo2circuits",
     "title": "Halo2 Circuits",
     "summary": "Zero-knowledge circuits (PLONKish flavor) used for privacy transactions, offering succinct proofs for shielded asset flows.",
