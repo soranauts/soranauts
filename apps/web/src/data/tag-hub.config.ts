@@ -56,6 +56,7 @@ export const CANONICAL_TAGS = [
   'explorer',
   'fearless-wallet',
   'governance',
+  'hacks',
   'hashi',
   'hyperledger',
   'interoperability',
@@ -168,6 +169,12 @@ export const tagHubMetadata: Record<string, TagHubMetadataEntry> = {
       'On-chain decision making, bodies, and participation mechanisms that steer the SORA network.',
     traits: ['glossary-linked'],
     quickPathIds: ['governance-economics'],
+  },
+  'tag-hacks': {
+    domain: 'technology',
+    summary:
+      'Security exploits, vulnerabilities, and attack vectors in the crypto ecosystem, plus how SORA architecture mitigates common threats.',
+    traits: ['advanced'],
   },
   'tag-sora-parliament': {
     domain: 'governance',
