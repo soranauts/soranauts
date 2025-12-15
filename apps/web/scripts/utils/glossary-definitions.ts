@@ -69,9 +69,9 @@ const FALLBACK_ENTRIES: Record<string, FallbackEntry> = {
     whyItMatters: 'Unlocks liquidity from existing holdings without selling your assets.',
   },
   fearlesswallet: {
-    definition: 'A non-custodial mobile wallet for Polkadot, Kusama, and SORA ecosystems.',
+    definition: 'Fearless Wallet is a mobile-first, non-custodial cryptocurrency wallet developed by SORAMITSU. It provides secure access to the Polkadot, Kusama, and SORA ecosystems from iOS and Android devices with features including native staking, Polkaswap integration, crowdloan participation, governance voting, and fiat on-ramp via Mercuryo and MoonPay.',
     category: 'ecosystem',
-    whyItMatters: 'Provides secure, user-friendly access to SORA DeFi on mobile devices.',
+    whyItMatters: 'Provides the primary mobile gateway to SORA DeFi, enabling secure self-custody, staking rewards, and ecosystem participation without desktop access.',
   },
   soracard: {
     definition: 'A crypto debit card allowing users to spend SORA ecosystem tokens at traditional merchants.',
