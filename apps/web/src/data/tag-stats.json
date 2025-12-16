@@ -150,9 +150,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-decentralization": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2023-12-21T00:00:00.000Z",
-    "lastSeen": "2025-12-14T00:00:00.000Z"
+    "lastSeen": "2025-12-15T00:00:00.000Z"
   },
   "tag-decentralized-exchanges": {
     "count": 1,
@@ -165,8 +165,13 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-defi": {
-    "count": 27,
+    "count": 28,
     "firstSeen": "2023-10-04T00:00:00.000Z",
+    "lastSeen": "2025-12-15T00:00:00.000Z"
+  },
+  "tag-democracy": {
+    "count": 1,
+    "firstSeen": "2024-04-30T00:00:00.000Z",
     "lastSeen": "2025-12-15T00:00:00.000Z"
   },
   "tag-dex": {
@@ -240,7 +245,7 @@
     "lastSeen": "2025-10-22T00:00:00.000Z"
   },
   "tag-governance": {
-    "count": 19,
+    "count": 20,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-15T00:00:00.000Z"
   },
@@ -403,9 +408,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-opengov": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2024-01-23T00:00:00.000Z",
-    "lastSeen": "2025-12-14T00:00:00.000Z"
+    "lastSeen": "2025-12-15T00:00:00.000Z"
   },
   "tag-pacific-islands": {
     "count": 1,
@@ -433,9 +438,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-polkadot": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2023-12-13T00:00:00.000Z",
-    "lastSeen": "2025-12-14T00:00:00.000Z"
+    "lastSeen": "2025-12-15T00:00:00.000Z"
   },
   "tag-polkaswap": {
     "count": 17,
@@ -533,7 +538,7 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-sora": {
-    "count": 27,
+    "count": 28,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-15T00:00:00.000Z"
   },
