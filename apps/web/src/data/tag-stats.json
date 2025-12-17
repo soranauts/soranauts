@@ -170,7 +170,7 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-defi": {
-    "count": 30,
+    "count": 31,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-17T00:00:00.000Z"
   },
@@ -210,9 +210,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-economics": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2023-10-11T00:00:00.000Z",
-    "lastSeen": "2025-12-15T00:00:00.000Z"
+    "lastSeen": "2025-12-17T00:00:00.000Z"
   },
   "tag-energy-efficiency": {
     "count": 1,
@@ -553,7 +553,7 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-sora": {
-    "count": 29,
+    "count": 30,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-17T00:00:00.000Z"
   },
@@ -628,9 +628,9 @@
     "lastSeen": "2025-12-17T00:00:00.000Z"
   },
   "tag-token-bonding-curve": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2023-12-18T00:00:00.000Z",
-    "lastSeen": "2025-12-14T00:00:00.000Z"
+    "lastSeen": "2025-12-17T00:00:00.000Z"
   },
   "tag-token-repackaging": {
     "count": 2,
@@ -643,9 +643,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-tokenomics": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-15T00:00:00.000Z"
+    "lastSeen": "2025-12-17T00:00:00.000Z"
   },
   "tag-ton": {
     "count": 2,
@@ -706,8 +706,8 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-xor": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-15T00:00:00.000Z"
+    "lastSeen": "2025-12-17T00:00:00.000Z"
   }
 }
