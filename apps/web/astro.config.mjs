@@ -61,6 +61,9 @@ const siteRedirects = {
   '/sora-defi-ecosystem/': '/sora-ecosystem-explained',
   '/sora-ecosystem': '/sora-ecosystem-explained',
   '/sora-ecosystem/': '/sora-ecosystem-explained',
+  // Outdated V3 article redirect (V3/Nexus is now Iroha-based, not Polkadot)
+  '/sora-v3-revolutionizing-tokenomics-and-defi-on-polkadot': '/sora-nexus-complete-guide',
+  '/sora-v3-revolutionizing-tokenomics-and-defi-on-polkadot/': '/sora-nexus-complete-guide',
 };
 
 const redirects = {
