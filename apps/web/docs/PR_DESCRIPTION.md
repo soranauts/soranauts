@@ -46,7 +46,7 @@ Upgraded Related Articles component to a hybrid recommender system with graceful
 [related] 7.200 | polkaswap-architecture-guide | tagMatch:1.00 foundationalBonus:0.00 glossaryOverlap:3.00 titleKeyword:0.00 sameSection:1.00 recency:0.90
 [related] 6.800 | deep-dive-into-xor-val-and-pswap | tagMatch:3.00 foundationalBonus:1.00 glossaryOverlap:1.00 titleKeyword:0.00 sameSection:1.00 recency:0.75
 [related] 5.400 | understanding-the-increase-in-the-sora-xor-token-supply-and-its-role | tagMatch:1.00 foundationalBonus:0.00 glossaryOverlap:2.00 titleKeyword:1.00 sameSection:1.00 recency:0.80
-[related] 4.200 | sora-v3-revolutionizing-tokenomics-and-defi-on-polkadot | tagMatch:1.00 foundationalBonus:0.00 glossaryOverlap:1.00 titleKeyword:1.00 sameSection:1.00 recency:0.85
+[related] 4.200 | sora-blockchain-new-world-economic-order | tagMatch:1.00 foundationalBonus:0.00 glossaryOverlap:1.00 titleKeyword:1.00 sameSection:1.00 recency:0.85
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
