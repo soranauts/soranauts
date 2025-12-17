@@ -64,6 +64,9 @@ const siteRedirects = {
   // Outdated V3 article redirect (V3/Nexus is now Iroha-based, not Polkadot)
   '/sora-v3-revolutionizing-tokenomics-and-defi-on-polkadot': '/sora-nexus-complete-guide',
   '/sora-v3-revolutionizing-tokenomics-and-defi-on-polkadot/': '/sora-nexus-complete-guide',
+  // vXOR discontinued Nov 2024 (SORA v3 Stage II) - replaced by KUSD
+  '/sora-v3-vxor-key-updates-users-need-to-know': '/sora-nexus-complete-guide',
+  '/sora-v3-vxor-key-updates-users-need-to-know/': '/sora-nexus-complete-guide',
 };
 
 const redirects = {
