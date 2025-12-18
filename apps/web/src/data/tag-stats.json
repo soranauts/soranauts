@@ -90,9 +90,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-cbdc": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-12-17T00:00:00.000Z"
+    "lastSeen": "2025-12-18T00:00:00.000Z"
   },
   "tag-central-bank": {
     "count": 1,
@@ -209,6 +209,11 @@
     "firstSeen": "2024-01-17T00:00:00.000Z",
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
+  "tag-economic-theory": {
+    "count": 1,
+    "firstSeen": "2025-01-23T00:00:00.000Z",
+    "lastSeen": "2025-12-18T00:00:00.000Z"
+  },
   "tag-economics": {
     "count": 4,
     "firstSeen": "2023-10-11T00:00:00.000Z",
@@ -255,9 +260,9 @@
     "lastSeen": "2025-12-17T00:00:00.000Z"
   },
   "tag-governance": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-17T00:00:00.000Z"
+    "lastSeen": "2025-12-18T00:00:00.000Z"
   },
   "tag-hacks": {
     "count": 1,
@@ -336,6 +341,11 @@
     "count": 6,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-14T00:00:00.000Z"
+  },
+  "tag-legal-tender": {
+    "count": 1,
+    "firstSeen": "2025-01-23T00:00:00.000Z",
+    "lastSeen": "2025-12-18T00:00:00.000Z"
   },
   "tag-lending": {
     "count": 1,
@@ -443,9 +453,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-parliament": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2024-12-15T00:00:00.000Z",
-    "lastSeen": "2025-12-17T00:00:00.000Z"
+    "lastSeen": "2025-12-18T00:00:00.000Z"
   },
   "tag-pepe": {
     "count": 1,
@@ -501,6 +511,11 @@
     "count": 2,
     "firstSeen": "2024-01-07T00:00:00.000Z",
     "lastSeen": "2025-12-14T00:00:00.000Z"
+  },
+  "tag-richard-werner": {
+    "count": 1,
+    "firstSeen": "2025-01-23T00:00:00.000Z",
+    "lastSeen": "2025-12-18T00:00:00.000Z"
   },
   "tag-rollups": {
     "count": 1,
@@ -558,9 +573,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-sora": {
-    "count": 32,
+    "count": 33,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-17T00:00:00.000Z"
+    "lastSeen": "2025-12-18T00:00:00.000Z"
   },
   "tag-sora-card": {
     "count": 1,
@@ -716,8 +731,8 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-xor": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-17T00:00:00.000Z"
+    "lastSeen": "2025-12-18T00:00:00.000Z"
   }
 }
