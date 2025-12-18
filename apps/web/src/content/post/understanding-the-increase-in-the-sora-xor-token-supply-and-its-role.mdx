@@ -1,143 +1,364 @@
 ---
 publishDate: 2025-02-21T00:00:00Z
-title: "Understanding the Increase in the SORA (XOR) Token Supply and Its Role"
-excerpt: "Explore SORA (XOR)’s token supply surge, real-world utility, v3 tokenomics, and future burn scenarios amid fast-growing adoption."
+updateDate: 2025-12-18T00:00:00Z
+title: "XOR Token Supply: Inflation, Repackaging, and What Changed"
+excerpt: "XOR inflation diluted early holders. This article explains why it happened, what the repackaging means, and whether the tokenomics are actually better now."
 image: ~/assets/images/understanding-the-increase-in-the-sora-xor-token-supply-and-its-role.jpg
 category: "Economics & Policy"
+tags:
+  - xor
+  - tokenomics
+  - token-bonding-curve
+  - supply-management
+  - sora
+  - tbcd
+  - governance
 canonicalURL: https://soranauts.com/understanding-the-increase-in-the-sora-xor-token-supply-and-its-role
 ---
-Below is a comprehensive examination of why the SORA (XOR) token supply has grown significantly, how SORA v3 tokenomics affect its distribution and utility, and under what conditions the token supply could be burned. This article aims to address user concerns, highlight the token’s utility beyond speculation, and offer insight into the future of the SORA ecosystem.
+
+Let's be direct: XOR's token supply expanded massively over the past few years, and this expansion hurt the price. Early holders experienced significant dilution. If you're here because you're concerned about XOR inflation, you're not wrong to be concerned.
+
+This article won't pretend everything is fine. Instead, it will explain:
+- What actually happened with XOR supply
+- Why the team made these decisions
+- What the Token Bonding Curve is and how it works
+- What changed with the 2025 repackaging events
+- Whether the tokenomics have genuinely improved
+- What realistic scenarios look like going forward
+
+If you want honest answers, keep reading.
 
 ---
 
-## Introduction & Context
-SORA (XOR) is a project that aspires to create a new economic system—often referred to as a decentralized, global, and borderless economic environment. Launched to facilitate the free movement of value and foster new models of governance, SORA operates on blockchain technology to bring transparent, inclusive financial solutions to users around the world. At its heart, XOR is more than just a tradable token; it is the utility and governance asset of the SORA ecosystem.
-
-### A Brief History of SORA
-The [SORA network began](https://medium.com/sora-xor/sora-the-new-economic-order-3ec3f0327e5a) as an ambitious experiment to rethink economic mechanisms by leveraging blockchain’s decentralized infrastructure. Early in its development, SORA emphasized creating a community-driven environment where participants could propose projects, allocate funding, and implement governance decisions. Over time, this vision expanded to include functionalities such as decentralized exchanges (e.g., Polkaswap), stable assets, and cross-chain interoperability.
-
-### How and Why XOR’s Token Supply Increased
-To support this development, the SORA project required ongoing funding. Building blockchain infrastructure—especially one aiming to be interoperable with broader ecosystems—requires significant resources. As a result, the XOR token supply grew, particularly over the past few years, due to:
-- Funding Research and Development (R&D) initiatives.  
-- Supporting the infrastructure and operational costs of network validators.  
-- Encouraging liquidity and community engagement through rewards and incentives.  
-- Financing partnerships, marketing, and user onboarding efforts.
-
-This increase in supply has been met with both curiosity and concern from the community. To fully understand its implications, it’s crucial to look at the bigger picture of SORA’s evolving tokenomics, especially with the introduction of [**SORA v3**](https://soranauts.com/sora-v3-blockchain-innovations-at-the-sora-economic-forum-2024).
+<div class="not-prose my-8 rounded-lg border-l-4 border-red-500 bg-red-500/10 p-6">
+  <p class="text-sm font-semibold uppercase tracking-wide text-red-400">TL;DR — The Hard Truth</p>
+  <ul class="mt-2 space-y-1 text-sm">
+    <li>• <strong>Supply grew massively</strong> — XOR was minted to fund development, validators, liquidity, and operations</li>
+    <li>• <strong>This diluted holders</strong> — More supply + limited demand = lower price per token</li>
+    <li>• <strong>Repackaging happened</strong> — May 2025 (100:1) and October 2025 (1:1,000,000) changed display units, not value</li>
+    <li>• <strong>Burn mechanisms exist</strong> — Transaction fee burns, TONSWAP fee burns (10%); TBCD still funds development (transparently)</li>
+    <li>• <strong>Recovery is uncertain</strong> — Depends on real adoption (CBDCs, TONSWAP, Polkaswap volume), not just burns</li>
+  </ul>
+</div>
 
 ---
 
-## User Concerns About Supply Increase
-With any cryptocurrency, an increase in [token supply](https://soranauts.com/sora-xor-token-supply-explained) can spark worry about dilution. Users may fear that a higher supply of XOR could negatively affect token price or undermine long-term value. Common apprehensions include:
-- **Inflation:** More tokens in circulation could, in theory, put downward pressure on XOR’s market price.  
-- **Speculative Nature:** Many token holders primarily focus on price speculation. Observing an increasing supply might cause them to doubt XOR’s investment appeal.  
-- **Sustainability:** Users question whether the supply is being expanded responsibly and for strategic purposes aligned with a clear roadmap.
+## What Actually Happened to XOR Supply
 
-However, it is critical to understand that **XOR is not designed to be purely speculative**. The token’s primary goal is to power economic activity and governance within the SORA ecosystem. Through SORA v3 tokenomics, XOR aims to align incentives for developers, validators, and end-users, ensuring that **the utility aspect of XOR remains paramount**.
+XOR launched with a relatively small supply. Over subsequent years, that supply expanded dramatically. Here's why:
 
----
+### Where the New XOR Went
 
-## Utility of XOR
-Beyond price speculation, [XOR](https://wiki.sora.org/xor.html) has several real-world use cases and benefits for participants in the SORA ecosystem:
+<div class="not-prose my-6 overflow-x-auto">
+  <table class="w-full text-left text-sm">
+    <thead class="border-b border-gray-700 text-xs uppercase text-gray-400">
+      <tr>
+        <th class="px-4 py-3">Category</th>
+        <th class="px-4 py-3">Purpose</th>
+        <th class="px-4 py-3">Impact</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-800">
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">Development Funding</td>
+        <td class="px-4 py-3">Building SORA v2, v3, Polkaswap, bridges, wallets</td>
+        <td class="px-4 py-3 text-amber-400">Necessary but dilutive</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">Validator Rewards</td>
+        <td class="px-4 py-3">Incentivizing network security (NPoS consensus)</td>
+        <td class="px-4 py-3 text-amber-400">Ongoing emission</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">Liquidity Incentives</td>
+        <td class="px-4 py-3">PSWAP rewards, farming, TBC reserves</td>
+        <td class="px-4 py-3 text-amber-400">Bootstrapped ecosystem</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">TBCD Minting</td>
+        <td class="px-4 py-3">Governance-approved funding for builders</td>
+        <td class="px-4 py-3 text-amber-400">Added supply via TBC</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">Operations</td>
+        <td class="px-4 py-3">Marketing, partnerships, exchange listings</td>
+        <td class="px-4 py-3 text-amber-400">Standard project costs</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-1. **Transaction Medium:**  
-   XOR acts as a native currency within the SORA network, meaning it is used to pay transaction fees and facilitate transfers of value between participants.
+### The Result
 
-2. **Governance and Project Funding:**  
-   One of SORA’s unique features is **community-governed project funding**. XOR holders can propose and vote on initiatives, ranging from technology upgrades to marketing campaigns. This governance mechanism gives token holders a say in the network’s direction and resource allocation.
+More XOR in circulation, with demand not keeping pace, meant the price per token fell. This is basic economics: if you increase supply faster than demand, price drops.
 
-3. **Liquidity Provision:**  
-   XOR serves as a key asset for liquidity pools on **Polkaswap**, a decentralized exchange built on the SORA network. Liquidity providers are incentivized with trading fees and may receive staking rewards, thereby supporting the network’s overall health and exchange functionality.
-
-4. **Staking and Validation:**  
-   A portion of XOR is allocated to validators who secure the network. By staking XOR, validators and nominators help maintain blockchain consensus, ensuring the system remains robust and resistant to attacks.
-
-5. **Network Services and External Integrations:**  
-   As SORA expands its ecosystem, XOR is increasingly being used to pay for services and integrate with other blockchain platforms. This extends XOR’s utility to real-world applications and fosters cross-chain collaborations.
-
-### Reinforcing Utility Through SORA v3
-The release of **SORA v3 tokenomics** further cements XOR’s role as a **functional and [governance-oriented asset](https://soranauts.com/polkadot-sora-governance-model)** rather than just a vehicle for speculation. By carefully calibrating emission rates, rewards distribution, and community governance, SORA v3 aims to maintain XOR’s intrinsic value in correlation with actual network usage. This design approach discourages holding XOR purely for price speculation and instead encourages active participation, staking, and governance.
-
----
-
-## SORA v3 Tokenomics
-SORA v3 introduces a series of mechanisms designed to ensure long-term sustainability and a balanced approach to token issuance. While the **token supply did increase** in the past, v3’s structure is meant to transition the network into a more predictable and community-driven model.
-
-### Key Features of the Updated Tokenomics
-
-1. **Dynamic Supply Adjustments**  
-   [SORA v3](https://medium.com/sora-xor/sora-v3-stage-ii-f36b1e659e87) allows for **adaptive supply management**, meaning that additional XOR can be minted to fund projects, incentivize liquidity, or reward validators—**but always under community oversight**. This aims to ensure that any supply inflation is purposeful and tied to tangible network growth.
-
-2. **Emission Schedule Alignment**  
-   The **emission schedule** is designed to align with the pace of network development. As more dApps, services, and users join, the supply may expand proportionally to maintain network equilibrium. Conversely, if the ecosystem grows at a slower rate, emissions could be curbed.
-
-3. **Governance-Driven Funding**  
-   The hallmark of SORA’s governance model is the **ability for XOR holders to propose and vote on funding initiatives**. This direct-democracy approach ensures that expansions in token supply are not decided by a centralized authority but by community consensus, reinforcing transparency and accountability.
-
-4. **Built-In Burn Mechanisms**  
-   When network growth exceeds certain thresholds, or if projects and governance proposals call for a reduction in circulating supply, SORA v3 includes **burn mechanisms** to remove tokens from circulation. This helps maintain a balanced ecosystem where supply reflects real-world usage.
-
-5. **Incentive Alignment for Long-Term Sustainability**  
-   By emphasizing **staking rewards, liquidity provision benefits, and governance participation**, SORA v3 fosters a scenario in which XOR holders have a vested interest in the network’s stability rather than short-term gains.
-
-For those seeking detailed insights into emission schedules, distribution models, and governance procedures, the [**official SORA documentation**](https://wiki.sora.org/) offers granular information on how the network calculates rewards, manages supply, and handles governance decisions.
+<div class="not-prose my-6 rounded-lg border-l-4 border-amber-500 bg-amber-500/10 p-4">
+  <p class="text-sm"><strong>Honest assessment:</strong> The team prioritized building over tokenomics. The rationale was that a working product would eventually drive demand. Whether this trade-off was correct remains debatable — the product exists, but so does the dilution.</p>
+</div>
 
 ---
 
-## Supply Burn Scenarios
-One of the most frequent questions about an increased token supply is whether—and under what conditions—tokens might be burned. Burning XOR effectively reduces the circulating supply, potentially alleviating inflationary pressures and stabilizing token value.
+## The Token Bonding Curve: SORA's Core Mechanism
 
-### Conditions for Token Burning
-1. **Sudden Ecosystem Growth**  
-   If the SORA ecosystem experiences rapid adoption—such as a surge in new dApps or a big influx of users—governance proposals may call for a strategic burn to maintain token scarcity and manage inflation.
+XOR doesn't have a fixed supply like Bitcoin. Instead, it has an **elastic supply** managed by a smart contract called the Token Bonding Curve (TBC).
 
-2. **Institutional or National Adoption**  
-   In more dramatic scenarios, a **large institution or country might adopt SORA** for cross-border transactions or financial technology solutions. Should the ecosystem’s demand skyrocket, the community could vote to burn excess XOR to keep supply and demand balanced.
+### How It Works
 
-3. **Excessive Unused Treasury Funds**  
-   If the treasury (funded by minted tokens or transaction fees) accumulates more XOR than is necessary for development or community projects, the community might decide to burn a portion of the treasury holdings.
+The TBC is essentially a decentralized market maker with two functions:
 
-4. **Governance-Mandated Burns**  
-   Even outside rapid-growth scenarios, the community may determine that a burn is in the best interest of long-term network health. This decision could stem from updates to tokenomics, changes in broader market conditions, or as part of a [strategic roadmap](https://wiki.sora.org/integrated-plan.html).
+<div class="not-prose my-6 overflow-x-auto">
+  <table class="w-full text-left text-sm">
+    <thead class="border-b border-gray-700 text-xs uppercase text-gray-400">
+      <tr>
+        <th class="px-4 py-3">Function</th>
+        <th class="px-4 py-3">What Happens</th>
+        <th class="px-4 py-3">Effect on Supply</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-800">
+      <tr>
+        <td class="px-4 py-3 font-semibold text-green-400">Buy from TBC</td>
+        <td class="px-4 py-3">Pay reserve assets (DAI, ETH, etc.) → Receive newly minted XOR</td>
+        <td class="px-4 py-3">Supply increases</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-red-400">Sell to TBC</td>
+        <td class="px-4 py-3">Send XOR → Receive reserve assets, XOR is burned</td>
+        <td class="px-4 py-3">Supply decreases</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-### Projected Speed and Extent of Burns
-The exact pace and magnitude of XOR burns would depend on **community governance processes**, which place proposals to a vote. Since burns directly influence the circulating supply, **any major decision to burn tokens undergoes a thorough deliberation** period, giving network participants time to weigh the pros and cons. While it is difficult to predict exact figures without knowing future market conditions, SORA’s governance model ensures a structured approach that aligns with user sentiment.
+The buy price is always ~20% higher than the sell price (per current parameters — this can be adjusted by governance). This spread:
+- Builds reserves over time
+- Creates arbitrage bounds (limiting extreme volatility)
+- Funds KUSD stabilization operations (per current parameters)
+
+### The Ideal vs. Actual Scenario
+
+At launch, the TBC had an "unfunded liability" — XOR existed before reserves were built. This meant:
+- The **ideal sell price** (20% below buy) wasn't achievable
+- The **actual sell price** was lower, based on available reserves
+- As reserves build, actual approaches ideal
+
+<div class="not-prose my-6 rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4">
+  <p class="text-sm"><strong>Key insight:</strong> The TBC doesn't guarantee price stability — it provides "forward guidance" on price ranges. When the secondary market (Polkaswap, CEXs) trades outside TBC bounds, arbitrage opportunities pull price back. But if no one arbitrages, the bounds don't enforce themselves.</p>
+</div>
+
+For a deeper dive, see the <a href="https://wiki.sora.org/tbc.html" target="_blank" rel="noopener noreferrer">SORA Wiki on Token Bonding Curve</a>.
 
 ---
 
-## Additional Resources & Official Links
-If you want to stay informed or learn more about SORA and the role of XOR, here are some recommended resources:
+## The 2025 Repackaging: What Changed (And What Didn't)
 
-- **[SORA Official Website](https://sora.org)**  
-  Explore in-depth documentation about SORA v3 tokenomics and discover the project’s broader vision, roadmap, and ecosystem services.
+In 2025, SORA underwent two **denomination repackaging** events. These are often misunderstood.
 
-- **[Polkaswap](https://polkaswap.io)**  
-  A decentralized exchange built on the SORA network. Great for understanding how XOR is used in liquidity pools and cross-chain trading.
+### May 2025: 100:1 Repackaging
 
-- **[Medium: SORA Updates](https://medium.com/sora-xor)**  
-  Find governance proposals, development updates, and detailed articles discussing network changes, token burns, and project milestones.
+Every 100 XOR on the SORA network became 1 XOR. If you held 1,000 XOR, you now held 10 XOR.
 
-These resources offer detailed explanations, official announcements, and ongoing discussions about the SORA ecosystem, helping users track how XOR’s supply, governance, and real-world utility continue to evolve.
+### October 2025: 1:1,000,000 Repackaging
+
+A further adjustment grouped 1,000,000 old units into 1 new unit.
+
+### What This Means
+
+<div class="not-prose my-6 overflow-x-auto">
+  <table class="w-full text-left text-sm">
+    <thead class="border-b border-gray-700 text-xs uppercase text-gray-400">
+      <tr>
+        <th class="px-4 py-3">Aspect</th>
+        <th class="px-4 py-3">Changed?</th>
+        <th class="px-4 py-3">Explanation</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-800">
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">Display numbers</td>
+        <td class="px-4 py-3 text-green-400">Yes</td>
+        <td class="px-4 py-3">Fewer digits to read and input</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">Your ownership %</td>
+        <td class="px-4 py-3 text-red-400">No</td>
+        <td class="px-4 py-3">If you owned 0.001% of supply, you still do</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">Market cap</td>
+        <td class="px-4 py-3 text-red-400">No</td>
+        <td class="px-4 py-3">Total value unchanged</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">Price per token</td>
+        <td class="px-4 py-3 text-green-400">Yes (higher)</td>
+        <td class="px-4 py-3">Same value ÷ fewer tokens = higher unit price</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">Inflation problem</td>
+        <td class="px-4 py-3 text-red-400">No</td>
+        <td class="px-4 py-3">Repackaging doesn't fix dilution — it's cosmetic</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="not-prose my-6 rounded-lg border-l-4 border-amber-500 bg-amber-500/10 p-4">
+  <p class="text-sm"><strong>Be clear:</strong> Repackaging is like a stock split in reverse. It makes numbers easier to read. It does <em>not</em> make you richer or address past dilution. Anyone claiming otherwise is misleading you.</p>
+</div>
+
+**Bridge behavior:** XOR on Ethereum or other chains wasn't affected. When you bridge it into SORA, it automatically converts to the new denomination.
 
 ---
 
-## Future Outlook & Conclusion
-SORA’s vision extends far beyond simple token speculation. Its focus on economic governance, real-world utility, and adaptable tokenomics underscores a philosophy of **long-term sustainability**. While the increased supply of XOR may raise eyebrows among those who are price-focused, the overarching intent is to fuel the development of an **inclusive and dynamic financial system**.
+## What's Actually Changed in Tokenomics
 
-### Looking Ahead
-- **Roadmap Progress**: As the ecosystem matures, SORA intends to foster more dApps, services, and integrations with external blockchain platforms. This continued expansion may also introduce new incentives and governance proposals, further refining XOR’s role.
-- **Further Ecosystem Partnerships**: Partnerships with other projects in the Polkadot and Kusama ecosystems will likely bring additional utility to XOR, driving potential growth and activity on the network.
-- **Evolving Token Mechanics**: As adoption fluctuates, the community retains the power to adjust token supply parameters, ensuring XOR remains functional, fairly distributed, and aligned with real-world usage.
+Beyond cosmetic repackaging, there have been substantive changes to how XOR supply is managed:
 
-### Final Thoughts
-Concerns over an expanding token supply are natural, especially in a landscape where many tokens exist solely for speculation. However, XOR is designed with an emphasis on **community governance, utility, and scalable tokenomics**. The foundation laid by **SORA v3** aims to temper inflation, leverage strategic burns, and maintain transparency in financial management. As the network grows, XOR’s potential for sustainable development and robust utility stands at the forefront.
+### 1. TBCD Funding Continues (But It's Transparent)
 
-In the end, the drama surrounding the token supply’s expansion should be interpreted in the broader context of **SORA’s vision and governance structure**. The community-driven roadmap, combined with adaptive tokenomics, positions XOR as a prime example of how a cryptocurrency can evolve beyond speculation to serve as a key tool in a new economic model.
+TBCD (Token Bonding Curve Dollar) is a mechanism where governance mints stablecoins that buy XOR from the TBC, expanding supply. This is how SORA funds development — and it's still active.
+
+Every month, SORA's governance process approves invoices paid in TBCD. These are published in the <a href="https://github.com/orgs/sora-xor/projects/24" target="_blank" rel="noopener noreferrer">monthly memos on GitHub</a>, so you can see exactly what's being funded and how much TBCD is minted. (The full Parliament model with multi-body sortition is planned for SORA v3/Nexus; current governance uses Council and Technical Committee structures.) This transparency is unusual in crypto.
+
+**The trade-off:** TBCD minting expands XOR supply, which dilutes existing holders. The argument is that this funds productive development that should eventually increase demand. Whether that trade-off is worth it depends on whether the development delivers value.
+
+### 2. TONSWAP Fee Burns
+
+When [TONSWAP](/introducing-tonswap-the-dex-for-mass-adoption-on-ton) launches fully, 10% of trading fees will be allocated to **buy back and burn XOR**. This creates a direct link between TON ecosystem trading activity and XOR deflation.
+
+The more volume TONSWAP generates, the more XOR gets burned. This is a real deflationary mechanism tied to actual usage, not just tokenomics promises.
+
+### 3. Transaction Fee Burns
+
+Every SORA v2 transaction burns a small amount of XOR as fees. With enough network activity, burns can exceed emissions, making supply deflationary.
+
+### 4. Kensetsu XOR (Future)
+
+SORA is developing "Kensetsu XOR" — a proposed overcollateralized synthetic designed to track XOR's price. The idea: fund productive economy expansion without diluting XOR supply. Still in development; mechanics may evolve.
+
+<div class="not-prose my-6 rounded-lg border-l-4 border-green-500 bg-green-500/10 p-4">
+  <p class="text-sm"><strong>Net effect:</strong> TBCD still funds development (inflationary), but burn mechanisms now exist (deflationary). Whether supply grows or shrinks depends on the balance between development spending and network activity generating burns.</p>
+</div>
 
 ---
 
-## Disclaimer
+## Realistic Scenarios: What Could Happen
 
-_Cryptocurrencies involve substantial risk and volatility. This article does not provide individually tailored investment advice. It has been prepared without regard to the individual financial circumstances and objectives of persons who receive it. The cryptocurrencies mentioned are speculative, involve a high degree of risk and are not suitable for all investors. The valuation of cryptocurrencies and futures may fluctuate, and, as a result, clients may lose more than their original investment._
+Let's be honest about what would need to happen for XOR's situation to improve.
 
-_The past performance of a cryptocurrency is not indicative of future results. Please ensure you fully **understand the risks** involved before investing in any cryptocurrency. This article should not be viewed as a form of endorsement or recommendation. For advice regarding your individual circumstances, please consult with a professional financial advisor._
+### Scenario 1: Sustained High Network Activity
+
+If Polkaswap volume, [TONSWAP](/introducing-tonswap-the-dex-for-mass-adoption-on-ton) launch, and CBDC integrations drive significant transaction volume, fee burns could exceed emissions. Supply would shrink.
+
+**Likelihood:** Moderate. Requires sustained adoption, not just announcements.
+
+### Scenario 2: Institutional Adoption via Hub Chain
+
+If countries like those testing CBDCs (Cambodia, PNG, Solomon Islands) integrate with SORA's Hub Chain and create demand for XOR as a settlement layer, this could drive legitimate buy pressure. For more on the Hub Chain, see [SORA Nexus Complete Guide](/sora-nexus-complete-guide).
+
+**Likelihood:** Low-to-moderate. Pilots exist, but full integration is years away.
+
+### Scenario 3: Governance-Mandated Burns
+
+The community could vote to burn treasury XOR or implement more aggressive burn mechanisms.
+
+**Likelihood:** Possible. Depends on community consensus and whether treasury funds are needed for development.
+
+### Scenario 4: Status Quo
+
+Network activity remains modest. Burns roughly match emissions. Supply stays flat. Price depends on broader crypto market sentiment.
+
+**Likelihood:** Most likely in the short term.
+
+<div class="not-prose my-6 rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4">
+  <p class="text-sm"><strong>Time horizons:</strong> Most of these catalysts — TONSWAP volume, CBDC integration, Hub Chain adoption — are multi-quarter or multi-year developments. Don't expect overnight changes.</p>
+</div>
+
+<div class="not-prose my-6 rounded-lg border-l-4 border-amber-500 bg-amber-500/10 p-4">
+  <p class="text-sm"><strong>Bottom line:</strong> There's no magic fix. Recovery requires real utility — transactions, swaps, settlements — not just tokenomics changes. The infrastructure is being built. Whether it gets used is the question.</p>
+</div>
+
+---
+
+## How to Verify Supply Data Yourself
+
+Don't trust articles — verify on-chain:
+
+- **Polkaswap Stats:** <a href="https://polkaswap.io/#/stats" target="_blank" rel="noopener noreferrer">polkaswap.io/#/stats</a> — Live supply metrics
+- **SORA Wiki:** <a href="https://wiki.sora.org/xor.html" target="_blank" rel="noopener noreferrer">wiki.sora.org/xor.html</a> — Official documentation
+- **Subscan Explorer:** Query `tokens.totalIssuance` for precise numbers
+- **MOF Supply API:** <a href="https://mof.sora.org/qty/xor" target="_blank" rel="noopener noreferrer">mof.sora.org/qty/xor</a> — Raw total XOR supply (live number)
+
+Between Polkaswap stats and the MOF endpoint, you can verify:
+- Current total supply
+- Historical supply changes
+- Burn and mint activity
+
+This transparency is rare in crypto. Use it.
+
+---
+
+## Conclusion: Eyes Open
+
+XOR's supply expanded massively. This diluted early holders. That's the reality.
+
+The team's bet was that building infrastructure would eventually create enough utility to justify the supply. Whether that bet pays off depends on:
+
+1. **SORA v3 (Nexus) delivering** on its Hub Chain promise
+2. **Real adoption** — CBDCs, TONSWAP, Polkaswap volume
+3. **Community governance** making smart allocation decisions
+4. **Time** — utility takes years to compound
+
+Burns exist. TBCD funding is transparent. The mechanisms are more mature. But none of this guarantees price recovery.
+
+If you're holding XOR, you're betting on long-term utility, not short-term tokenomics. Go in with eyes open.
+
+---
+
+**Further Reading:**
+- <a href="https://wiki.sora.org/tbc.html" target="_blank" rel="noopener noreferrer">Token Bonding Curve (SORA Wiki)</a>
+- <a href="https://wiki.sora.org/tokenomics.html" target="_blank" rel="noopener noreferrer">SORA Tokenomics Overview</a>
+- <a href="https://wiki.sora.org/xor.html" target="_blank" rel="noopener noreferrer">XOR Token Documentation</a>
+- [SORA Nexus Complete Guide](/sora-nexus-complete-guide)
+- [Deep Dive into XOR, VAL, and PSWAP](/deep-dive-into-xor-val-and-pswap)
+
+---
+
+## FAQs
+
+<details>
+<summary>Did the repackaging make me richer?</summary>
+
+No. Repackaging is cosmetic — it changes display units, not value. If you owned 0.001% of XOR supply before, you still own 0.001% after. The price per token is higher because there are fewer tokens, but total value is unchanged. Think of it like exchanging 100 pennies for 1 dollar.
+</details>
+
+<details>
+<summary>Why did XOR inflate so much?</summary>
+
+To fund development. Building a blockchain ecosystem — wallets, DEXs, bridges, CBDC infrastructure — costs money. The team chose to fund this via XOR emission rather than VC funding or ICOs. The trade-off was dilution of existing holders.
+</details>
+
+<details>
+<summary>Is XOR supply still inflating?</summary>
+
+Yes, but with more transparency. TBCD is still minted to fund development (you can see exactly how much in the monthly Community Memos). Validator rewards also emit XOR. Transaction fee burns offset some of this, and TONSWAP's 10% fee burn will add deflationary pressure once it's live. Net effect depends on network activity vs. development spending.
+</details>
+
+<details>
+<summary>Will there be a big burn to fix the supply?</summary>
+
+Maybe, but don't count on it. Governance could vote to burn treasury XOR, but those funds may be needed for development. The main deflationary pressure comes from transaction fee burns and TONSWAP's 10% fee burn mechanism — both tied to actual network usage.
+</details>
+
+<details>
+<summary>What's the Token Bonding Curve and does it help?</summary>
+
+The TBC is a smart contract that mints XOR when you buy (with reserve assets) and burns XOR when you sell. It creates price bounds via arbitrage. It doesn't guarantee price stability, but it does provide some predictability. The catch: it only works if people actually arbitrage. See the <a href="https://wiki.sora.org/tbc.html" target="_blank" rel="noopener noreferrer">TBC documentation</a> for details.
+</details>
+
+<details>
+<summary>Should I buy XOR?</summary>
+
+This article doesn't give financial advice. If you're considering XOR, understand that you're betting on long-term utility (CBDCs, TONSWAP, Polkaswap adoption), not short-term tokenomics. The infrastructure is real, but adoption is uncertain. DYOR.
+</details>
