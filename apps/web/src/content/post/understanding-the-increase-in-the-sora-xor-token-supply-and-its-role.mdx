@@ -1,168 +1,206 @@
 ---
 publishDate: 2025-02-21T00:00:00Z
-updateDate: 2025-12-18T00:00:00Z
-title: "XOR Token Supply: Inflation, Repackaging, and What Changed"
-excerpt: "XOR inflation diluted early holders. This article explains why it happened, what the repackaging means, and whether the tokenomics are actually better now."
+updateDate: 2025-12-19T00:00:00Z
+title: "How XOR's Elastic Supply Powers the SORA Economic System"
+excerpt: "XOR isn't designed like Bitcoin. Its elastic supply funds productive development and adjusts to economic needs. Here's how the system works."
 image: ~/assets/images/understanding-the-increase-in-the-sora-xor-token-supply-and-its-role.jpg
 category: "Economics & Policy"
 tags:
   - xor
   - tokenomics
   - token-bonding-curve
-  - supply-management
   - sora
   - tbcd
   - governance
 canonicalURL: https://soranauts.com/understanding-the-increase-in-the-sora-xor-token-supply-and-its-role
 ---
 
-Let's be direct: XOR's token supply expanded massively over the past few years, and this expansion hurt the price. Early holders experienced significant dilution. If you're here because you're concerned about XOR inflation, you're not wrong to be concerned.
+XOR is not Bitcoin. It's not designed to be scarce, deflationary, or a store of value through artificial supply limits.
 
-This article won't pretend everything is fine. Instead, it will explain:
-- What actually happened with XOR supply
-- Why the team made these decisions
-- What the Token Bonding Curve is and how it works
-- What changed with the 2025 repackaging events
-- Whether the tokenomics have genuinely improved
-- What realistic scenarios look like going forward
+XOR is the utility token of the SORA economic system — a decentralized framework for funding productive development and enabling borderless transactions. Its supply is **elastic by design**, expanding to fund new goods and services and contracting through usage-based burn mechanisms.
 
-If you want honest answers, keep reading.
+This article explains how XOR's supply mechanics work and why elastic supply is central to SORA's economic model.
 
 ---
 
-<div class="not-prose my-8 rounded-lg border-l-4 border-red-500 bg-red-500/10 p-6">
-  <p class="text-sm font-semibold uppercase tracking-wide text-red-400">TL;DR — The Hard Truth</p>
+<div class="not-prose my-8 rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-6">
+  <p class="text-sm font-semibold uppercase tracking-wide text-blue-400">Key Concepts</p>
   <ul class="mt-2 space-y-1 text-sm">
-    <li>• <strong>Supply grew massively</strong> — XOR was minted to fund development, validators, liquidity, and operations</li>
-    <li>• <strong>This diluted holders</strong> — More supply + limited demand = lower price per token</li>
-    <li>• <strong>Repackaging happened</strong> — May 2025 (100:1) and October 2025 (1:1,000,000) changed display units, not value</li>
-    <li>• <strong>Burn mechanisms exist</strong> — Transaction fee burns, TONSWAP fee burns (10%); TBCD still funds development (transparently)</li>
-    <li>• <strong>Recovery is uncertain</strong> — Depends on real adoption (CBDCs, TONSWAP, Polkaswap volume), not just burns</li>
+    <li>• <strong>Elastic supply</strong> — XOR expands to fund productive development, contracts through burns</li>
+    <li>• <strong>Utility token</strong> — Designed for economic activity, not speculation</li>
+    <li>• <strong>Token Bonding Curve</strong> — Provides price predictability when reserves are built</li>
+    <li>• <strong>Transparent funding</strong> — TBCD allocations published monthly</li>
+    <li>• <strong>Usage-based burns</strong> — Network tx fees burn XOR; TONSWAP routes TS burns to XOR buyback</li>
   </ul>
 </div>
 
 ---
 
-## What Actually Happened to XOR Supply
+## Why XOR Has Elastic Supply
 
-XOR launched with a relatively small supply. Over subsequent years, that supply expanded dramatically. Here's why:
+Most cryptocurrencies copy Bitcoin's fixed-supply model: artificial scarcity, hope demand increases. This works for speculation but fails as economic infrastructure.
 
-### Where the New XOR Went
+SORA takes a different approach, based on [Richard Werner's economic research](/richard-werner-exposes-central-banks-and-the-sora-alternative): **money created for productive use generates real growth**.
 
 <div class="not-prose my-6 overflow-x-auto">
   <table class="w-full text-left text-sm">
     <thead class="border-b border-gray-700 text-xs uppercase text-gray-400">
       <tr>
-        <th class="px-4 py-3">Category</th>
-        <th class="px-4 py-3">Purpose</th>
-        <th class="px-4 py-3">Impact</th>
+        <th class="px-4 py-3">Money Created For</th>
+        <th class="px-4 py-3">Economic Effect</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-800">
       <tr>
-        <td class="px-4 py-3 font-semibold text-gray-300">Development Funding</td>
-        <td class="px-4 py-3">Building SORA v2, v3, Polkaswap, bridges, wallets</td>
-        <td class="px-4 py-3 text-amber-400">Necessary but dilutive</td>
+        <td class="px-4 py-3 font-semibold text-red-400">Consumption</td>
+        <td class="px-4 py-3">Price inflation (more money chasing same goods)</td>
       </tr>
       <tr>
-        <td class="px-4 py-3 font-semibold text-gray-300">Validator Rewards</td>
-        <td class="px-4 py-3">Incentivizing network security (NPoS consensus)</td>
-        <td class="px-4 py-3 text-amber-400">Ongoing emission</td>
+        <td class="px-4 py-3 font-semibold text-amber-400">Speculation</td>
+        <td class="px-4 py-3">Asset bubbles</td>
       </tr>
-      <tr>
-        <td class="px-4 py-3 font-semibold text-gray-300">Liquidity Incentives</td>
-        <td class="px-4 py-3">PSWAP rewards, farming, TBC reserves</td>
-        <td class="px-4 py-3 text-amber-400">Bootstrapped ecosystem</td>
-      </tr>
-      <tr>
-        <td class="px-4 py-3 font-semibold text-gray-300">TBCD Minting</td>
-        <td class="px-4 py-3">Governance-approved funding for builders</td>
-        <td class="px-4 py-3 text-amber-400">Added supply via TBC</td>
-      </tr>
-      <tr>
-        <td class="px-4 py-3 font-semibold text-gray-300">Operations</td>
-        <td class="px-4 py-3">Marketing, partnerships, exchange listings</td>
-        <td class="px-4 py-3 text-amber-400">Standard project costs</td>
+      <tr class="bg-green-500/10 border-l-2 border-green-500">
+        <td class="px-4 py-3 font-semibold text-green-400">Production</td>
+        <td class="px-4 py-3">Real GDP growth — new goods and services created</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-### The Result
+XOR's elastic supply targets the third category: **funding productive development** that creates real utility.
 
-More XOR in circulation, with demand not keeping pace, meant the price per token fell. This is basic economics: if you increase supply faster than demand, price drops.
-
-<div class="not-prose my-6 rounded-lg border-l-4 border-amber-500 bg-amber-500/10 p-4">
-  <p class="text-sm"><strong>Honest assessment:</strong> The team prioritized building over tokenomics. The rationale was that a working product would eventually drive demand. Whether this trade-off was correct remains debatable — the product exists, but so does the dilution.</p>
+<div class="not-prose my-6 rounded-lg border-l-4 border-green-500 bg-green-500/10 p-4">
+  <p class="text-sm"><strong>The SORA thesis:</strong> When new XOR funds development that creates utility (DEXs, bridges, wallets, CBDC infrastructure), the resulting economic activity justifies the expansion. Value comes from what's built and used.</p>
 </div>
 
 ---
 
-## The Token Bonding Curve: SORA's Core Mechanism
+## How XOR Supply Changes
 
-XOR doesn't have a fixed supply like Bitcoin. Instead, it has an **elastic supply** managed by a smart contract called the Token Bonding Curve (TBC).
+### Expansion: Funding Development
+
+TBCD (Token Bonding Curve Dollar) is SORA's mechanism for funding builders:
+
+1. Governance approves funding via on-chain referendum
+2. TBCD is allocated to builders for their work
+3. TBCD can be converted to XOR via the Token Bonding Curve
+4. The work produces utility (apps, infrastructure, integrations)
+
+Allocations are published in the <a href="https://github.com/orgs/sora-xor/projects/24" target="_blank" rel="noopener noreferrer">ecosystem accounting and funding records on GitHub</a>.
+
+<div class="not-prose my-6 rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4">
+  <p class="text-sm"><strong>How TBCD works:</strong> TBCD can only be created by on-chain governance — XOR token holders decide the supply. When builders convert TBCD to XOR via the TBC, the TBCD becomes a reserve asset backing XOR. The design goal is to offset newly minted XOR with reserve assets, reducing unbacked dilution risk.</p>
+</div>
+
+### Contraction: Burn Mechanisms
+
+XOR is removed from circulation through:
+
+<div class="not-prose my-6 overflow-x-auto">
+  <table class="w-full text-left text-sm">
+    <thead class="border-b border-gray-700 text-xs uppercase text-gray-400">
+      <tr>
+        <th class="px-4 py-3">Mechanism</th>
+        <th class="px-4 py-3">How It Works</th>
+        <th class="px-4 py-3">Status</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-800">
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">Transaction Fee Burns</td>
+        <td class="px-4 py-3">20% of every SORA network transaction fee burns XOR</td>
+        <td class="px-4 py-3 text-green-400">Active</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">TONSWAP Fee Burns</td>
+        <td class="px-4 py-3">Portion of TONSWAP's fee-driven TS burn/re-mint cycle allocated to XOR buyback-and-burn</td>
+        <td class="px-4 py-3 text-blue-400">When TONSWAP launches</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">TBC Sell Operations</td>
+        <td class="px-4 py-3">XOR sold to the TBC is burned</td>
+        <td class="px-4 py-3 text-green-400">Active</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="not-prose my-6 rounded-lg border-l-4 border-purple-500 bg-purple-500/10 p-4">
+  <p class="text-sm"><strong>How TONSWAP's XOR burn works:</strong> TONSWAP uses trading fees to buy and burn its native TS token. Of the burned TS, 90% is re-minted daily (10% stays burned permanently). The re-minted portion is distributed: 70% to liquidity providers, 10% to the TONSWAP DAO treasury, and 10% to buy and burn XOR. This creates a sustainable link between TON ecosystem activity and XOR deflation.</p>
+</div>
+
+As network usage grows, burns become more significant.
+
+---
+
+## The Token Bonding Curve
+
+The Token Bonding Curve (TBC) is a smart contract designed to provide **price predictability and liquidity** — not speculation-driven appreciation.
 
 ### How It Works
 
-The TBC is essentially a decentralized market maker with two functions:
+- **Buy from TBC:** Pay reserve assets (e.g., ETH, DAI, VAL, PSWAP, XST, TBCD) → receive newly minted XOR
+- **Sell to TBC:** Send XOR → receive reserve assets, XOR is burned
+- **~20% spread** between buy and sell price in the ideal model (actual sell price may be lower until reserves rebuild)
+- **Margin funds** buyback-and-burn programs (e.g., KUSD) and reserve building
+
+<div class="not-prose my-6 rounded-lg border-l-4 border-amber-500 bg-amber-500/10 p-4">
+  <p class="text-sm"><strong>Current status:</strong> The TBC is operational but has an "unfunded liability" — the reserves aren't yet full from when SORA v2 launched. The sell price is lower than the ideal 20%-below-buy until reserves build up. See the <a href="https://wiki.sora.org/tbc.html" target="_blank" rel="noopener noreferrer">SORA Wiki</a> for details.</p>
+</div>
+
+The TBC doesn't guarantee price stability — it provides **forward-guided price predictability**. As reserves grow, the system becomes more effective.
+
+---
+
+## Network Fee Distribution
+
+Every transaction on the SORA network pays a fee in XOR. That fee is distributed:
 
 <div class="not-prose my-6 overflow-x-auto">
   <table class="w-full text-left text-sm">
     <thead class="border-b border-gray-700 text-xs uppercase text-gray-400">
       <tr>
-        <th class="px-4 py-3">Function</th>
-        <th class="px-4 py-3">What Happens</th>
-        <th class="px-4 py-3">Effect on Supply</th>
+        <th class="px-4 py-3">Allocation</th>
+        <th class="px-4 py-3">Purpose</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-800">
       <tr>
-        <td class="px-4 py-3 font-semibold text-green-400">Buy from TBC</td>
-        <td class="px-4 py-3">Pay reserve assets (DAI, ETH, etc.) → Receive newly minted XOR</td>
-        <td class="px-4 py-3">Supply increases</td>
+        <td class="px-4 py-3 font-semibold text-gray-300">50%</td>
+        <td class="px-4 py-3">Buyback and burn VAL (validator rewards)</td>
       </tr>
       <tr>
-        <td class="px-4 py-3 font-semibold text-red-400">Sell to TBC</td>
-        <td class="px-4 py-3">Send XOR → Receive reserve assets, XOR is burned</td>
-        <td class="px-4 py-3">Supply decreases</td>
+        <td class="px-4 py-3 font-semibold text-green-400">20%</td>
+        <td class="px-4 py-3">Burn XOR</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">19.5%</td>
+        <td class="px-4 py-3">Buyback and burn KUSD</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">10%</td>
+        <td class="px-4 py-3">Referral rewards</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 font-semibold text-gray-300">0.5%</td>
+        <td class="px-4 py-3">Buyback and burn TBCD</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-The buy price is always ~20% higher than the sell price (per current parameters — this can be adjusted by governance). This spread:
-- Builds reserves over time
-- Creates arbitrage bounds (limiting extreme volatility)
-- Funds KUSD stabilization operations (per current parameters)
-
-### The Ideal vs. Actual Scenario
-
-At launch, the TBC had an "unfunded liability" — XOR existed before reserves were built. This meant:
-- The **ideal sell price** (20% below buy) wasn't achievable
-- The **actual sell price** was lower, based on available reserves
-- As reserves build, actual approaches ideal
-
-<div class="not-prose my-6 rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4">
-  <p class="text-sm"><strong>Key insight:</strong> The TBC doesn't guarantee price stability — it provides "forward guidance" on price ranges. When the secondary market (Polkaswap, CEXs) trades outside TBC bounds, arbitrage opportunities pull price back. But if no one arbitrages, the bounds don't enforce themselves.</p>
-</div>
-
-For a deeper dive, see the <a href="https://wiki.sora.org/tbc.html" target="_blank" rel="noopener noreferrer">SORA Wiki on Token Bonding Curve</a>.
+This distribution creates deflationary pressure on multiple ecosystem tokens while rewarding network participants.
 
 ---
 
-## The 2025 Repackaging: What Changed (And What Didn't)
+## The 2025 Repackaging
 
-In 2025, SORA underwent two **denomination repackaging** events. These are often misunderstood.
+XOR underwent denomination changes in 2025 to improve usability:
 
-### May 2025: 100:1 Repackaging
+- **May 2025:** 100 XOR → 1 XOR
+- **October 2025:** 1,000,000 old units → 1 new unit (further display convenience)
 
-Every 100 XOR on the SORA network became 1 XOR. If you held 1,000 XOR, you now held 10 XOR.
-
-### October 2025: 1:1,000,000 Repackaging
-
-A further adjustment grouped 1,000,000 old units into 1 new unit.
-
-### What This Means
+Both repackaging events were applied automatically on-chain — no user action was required, and all wallet balances adjusted instantly.
 
 <div class="not-prose my-6 overflow-x-auto">
   <table class="w-full text-left text-sm">
@@ -170,195 +208,112 @@ A further adjustment grouped 1,000,000 old units into 1 new unit.
       <tr>
         <th class="px-4 py-3">Aspect</th>
         <th class="px-4 py-3">Changed?</th>
-        <th class="px-4 py-3">Explanation</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-800">
       <tr>
         <td class="px-4 py-3 font-semibold text-gray-300">Display numbers</td>
-        <td class="px-4 py-3 text-green-400">Yes</td>
-        <td class="px-4 py-3">Fewer digits to read and input</td>
+        <td class="px-4 py-3 text-green-400">Yes — fewer digits</td>
       </tr>
       <tr>
-        <td class="px-4 py-3 font-semibold text-gray-300">Your ownership %</td>
-        <td class="px-4 py-3 text-red-400">No</td>
-        <td class="px-4 py-3">If you owned 0.001% of supply, you still do</td>
+        <td class="px-4 py-3 font-semibold text-gray-300">Proportional ownership</td>
+        <td class="px-4 py-3 text-gray-400">No change</td>
       </tr>
       <tr>
-        <td class="px-4 py-3 font-semibold text-gray-300">Market cap</td>
-        <td class="px-4 py-3 text-red-400">No</td>
-        <td class="px-4 py-3">Total value unchanged</td>
-      </tr>
-      <tr>
-        <td class="px-4 py-3 font-semibold text-gray-300">Price per token</td>
-        <td class="px-4 py-3 text-green-400">Yes (higher)</td>
-        <td class="px-4 py-3">Same value ÷ fewer tokens = higher unit price</td>
-      </tr>
-      <tr>
-        <td class="px-4 py-3 font-semibold text-gray-300">Inflation problem</td>
-        <td class="px-4 py-3 text-red-400">No</td>
-        <td class="px-4 py-3">Repackaging doesn't fix dilution — it's cosmetic</td>
+        <td class="px-4 py-3 font-semibold text-gray-300">Economic value</td>
+        <td class="px-4 py-3 text-gray-400">No change</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<div class="not-prose my-6 rounded-lg border-l-4 border-amber-500 bg-amber-500/10 p-4">
-  <p class="text-sm"><strong>Be clear:</strong> Repackaging is like a stock split in reverse. It makes numbers easier to read. It does <em>not</em> make you richer or address past dilution. Anyone claiming otherwise is misleading you.</p>
-</div>
-
-**Bridge behavior:** XOR on Ethereum or other chains wasn't affected. When you bridge it into SORA, it automatically converts to the new denomination.
+Like exchanging 100 pennies for 1 dollar — same value, easier to work with.
 
 ---
 
-## What's Actually Changed in Tokenomics
+## XOR's Role in the SORA System
 
-Beyond cosmetic repackaging, there have been substantive changes to how XOR supply is managed:
+XOR serves specific functions:
 
-### 1. TBCD Funding Continues (But It's Transparent)
-
-TBCD (Token Bonding Curve Dollar) is a mechanism where governance mints stablecoins that buy XOR from the TBC, expanding supply. This is how SORA funds development — and it's still active.
-
-Every month, SORA's governance process approves invoices paid in TBCD. These are published in the <a href="https://github.com/orgs/sora-xor/projects/24" target="_blank" rel="noopener noreferrer">monthly memos on GitHub</a>, so you can see exactly what's being funded and how much TBCD is minted. (The full Parliament model with multi-body sortition is planned for SORA v3/Nexus; current governance uses Council and Technical Committee structures.) This transparency is unusual in crypto.
-
-**The trade-off:** TBCD minting expands XOR supply, which dilutes existing holders. The argument is that this funds productive development that should eventually increase demand. Whether that trade-off is worth it depends on whether the development delivers value.
-
-### 2. TONSWAP Fee Burns
-
-When [TONSWAP](/introducing-tonswap-the-dex-for-mass-adoption-on-ton) launches fully, 10% of trading fees will be allocated to **buy back and burn XOR**. This creates a direct link between TON ecosystem trading activity and XOR deflation.
-
-The more volume TONSWAP generates, the more XOR gets burned. This is a real deflationary mechanism tied to actual usage, not just tokenomics promises.
-
-### 3. Transaction Fee Burns
-
-Every SORA v2 transaction burns a small amount of XOR as fees. With enough network activity, burns can exceed emissions, making supply deflationary.
-
-### 4. Kensetsu XOR (Future)
-
-SORA is developing "Kensetsu XOR" — a proposed overcollateralized synthetic designed to track XOR's price. The idea: fund productive economy expansion without diluting XOR supply. Still in development; mechanics may evolve.
-
-<div class="not-prose my-6 rounded-lg border-l-4 border-green-500 bg-green-500/10 p-4">
-  <p class="text-sm"><strong>Net effect:</strong> TBCD still funds development (inflationary), but burn mechanisms now exist (deflationary). Whether supply grows or shrinks depends on the balance between development spending and network activity generating burns.</p>
-</div>
-
----
-
-## Realistic Scenarios: What Could Happen
-
-Let's be honest about what would need to happen for XOR's situation to improve.
-
-### Scenario 1: Sustained High Network Activity
-
-If Polkaswap volume, [TONSWAP](/introducing-tonswap-the-dex-for-mass-adoption-on-ton) launch, and CBDC integrations drive significant transaction volume, fee burns could exceed emissions. Supply would shrink.
-
-**Likelihood:** Moderate. Requires sustained adoption, not just announcements.
-
-### Scenario 2: Institutional Adoption via Hub Chain
-
-If countries like those testing CBDCs (Cambodia, PNG, Solomon Islands) integrate with SORA's Hub Chain and create demand for XOR as a settlement layer, this could drive legitimate buy pressure. For more on the Hub Chain, see [SORA Nexus Complete Guide](/sora-nexus-complete-guide).
-
-**Likelihood:** Low-to-moderate. Pilots exist, but full integration is years away.
-
-### Scenario 3: Governance-Mandated Burns
-
-The community could vote to burn treasury XOR or implement more aggressive burn mechanisms.
-
-**Likelihood:** Possible. Depends on community consensus and whether treasury funds are needed for development.
-
-### Scenario 4: Status Quo
-
-Network activity remains modest. Burns roughly match emissions. Supply stays flat. Price depends on broader crypto market sentiment.
-
-**Likelihood:** Most likely in the short term.
+- **Transaction fees** — Native currency for network operations (with fee distribution above)
+- **Governance** — Participation in funding and protocol decisions via referenda
+- **Staking** — Stake XOR to nominate validators (validators are rewarded in VAL)
+- **Liquidity** — Base asset on Polkaswap, TBC reserve interactions
+- **Economic coordination** — Connecting DeFi, CBDCs, and cross-border payments
 
 <div class="not-prose my-6 rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4">
-  <p class="text-sm"><strong>Time horizons:</strong> Most of these catalysts — TONSWAP volume, CBDC integration, Hub Chain adoption — are multi-quarter or multi-year developments. Don't expect overnight changes.</p>
-</div>
-
-<div class="not-prose my-6 rounded-lg border-l-4 border-amber-500 bg-amber-500/10 p-4">
-  <p class="text-sm"><strong>Bottom line:</strong> There's no magic fix. Recovery requires real utility — transactions, swaps, settlements — not just tokenomics changes. The infrastructure is being built. Whether it gets used is the question.</p>
+  <p class="text-sm"><strong>Design philosophy:</strong> XOR's value comes from utility and adoption — not artificial scarcity. As the network is used, burns increase and the TBC reserves grow, creating sustainable tokenomics tied to real activity.</p>
 </div>
 
 ---
 
-## How to Verify Supply Data Yourself
+## Verify Supply Data
 
-Don't trust articles — verify on-chain:
+All XOR data is transparent:
 
-- **Polkaswap Stats:** <a href="https://polkaswap.io/#/stats" target="_blank" rel="noopener noreferrer">polkaswap.io/#/stats</a> — Live supply metrics
-- **SORA Wiki:** <a href="https://wiki.sora.org/xor.html" target="_blank" rel="noopener noreferrer">wiki.sora.org/xor.html</a> — Official documentation
-- **Subscan Explorer:** Query `tokens.totalIssuance` for precise numbers
-- **MOF Supply API:** <a href="https://mof.sora.org/qty/xor" target="_blank" rel="noopener noreferrer">mof.sora.org/qty/xor</a> — Raw total XOR supply (live number)
-
-Between Polkaswap stats and the MOF endpoint, you can verify:
-- Current total supply
-- Historical supply changes
-- Burn and mint activity
-
-This transparency is rare in crypto. Use it.
+- **Polkaswap Stats:** <a href="https://polkaswap.io/#/stats" target="_blank" rel="noopener noreferrer">polkaswap.io/#/stats</a>
+- **MOF Supply API:** <a href="https://mof.sora.org/qty/xor" target="_blank" rel="noopener noreferrer">mof.sora.org/qty/xor</a>
+- **SORA Wiki:** <a href="https://wiki.sora.org/xor.html" target="_blank" rel="noopener noreferrer">wiki.sora.org/xor.html</a>
+- **Monthly Memos:** <a href="https://github.com/orgs/sora-xor/projects/24" target="_blank" rel="noopener noreferrer">GitHub</a>
 
 ---
 
-## Conclusion: Eyes Open
+## Conclusion
 
-XOR's supply expanded massively. This diluted early holders. That's the reality.
+XOR is infrastructure for a decentralized economic system. Its elastic supply enables transparent funding of productive development, with burn mechanisms tied to actual usage.
 
-The team's bet was that building infrastructure would eventually create enough utility to justify the supply. Whether that bet pays off depends on:
-
-1. **SORA v3 (Nexus) delivering** on its Hub Chain promise
-2. **Real adoption** — CBDCs, TONSWAP, Polkaswap volume
-3. **Community governance** making smart allocation decisions
-4. **Time** — utility takes years to compound
-
-Burns exist. TBCD funding is transparent. The mechanisms are more mature. But none of this guarantees price recovery.
-
-If you're holding XOR, you're betting on long-term utility, not short-term tokenomics. Go in with eyes open.
+The system is designed to work at scale — when applications are used, transactions flow, and institutions integrate. That's when XOR's utility model demonstrates its value.
 
 ---
 
 **Further Reading:**
 - <a href="https://wiki.sora.org/tbc.html" target="_blank" rel="noopener noreferrer">Token Bonding Curve (SORA Wiki)</a>
-- <a href="https://wiki.sora.org/tokenomics.html" target="_blank" rel="noopener noreferrer">SORA Tokenomics Overview</a>
 - <a href="https://wiki.sora.org/xor.html" target="_blank" rel="noopener noreferrer">XOR Token Documentation</a>
+- [Richard Werner & the SORA Economic Model](/richard-werner-exposes-central-banks-and-the-sora-alternative)
 - [SORA Nexus Complete Guide](/sora-nexus-complete-guide)
-- [Deep Dive into XOR, VAL, and PSWAP](/deep-dive-into-xor-val-and-pswap)
 
 ---
 
 ## FAQs
 
 <details>
-<summary>Did the repackaging make me richer?</summary>
+<summary>Why doesn't XOR have a fixed supply?</summary>
 
-No. Repackaging is cosmetic — it changes display units, not value. If you owned 0.001% of XOR supply before, you still own 0.001% after. The price per token is higher because there are fewer tokens, but total value is unchanged. Think of it like exchanging 100 pennies for 1 dollar.
+XOR is designed as utility infrastructure, not a store of value. Elastic supply allows funding productive development — value comes from what's built and used, not scarcity.
 </details>
 
 <details>
-<summary>Why did XOR inflate so much?</summary>
+<summary>What did the repackaging change?</summary>
 
-To fund development. Building a blockchain ecosystem — wallets, DEXs, bridges, CBDC infrastructure — costs money. The team chose to fund this via XOR emission rather than VC funding or ICOs. The trade-off was dilution of existing holders.
+Display units only — like exchanging pennies for dollars. Your proportional stake in the network is unchanged.
 </details>
 
 <details>
-<summary>Is XOR supply still inflating?</summary>
+<summary>How is development funded?</summary>
 
-Yes, but with more transparency. TBCD is still minted to fund development (you can see exactly how much in the monthly Community Memos). Validator rewards also emit XOR. Transaction fee burns offset some of this, and TONSWAP's 10% fee burn will add deflationary pressure once it's live. Net effect depends on network activity vs. development spending.
+Through TBCD, approved by on-chain governance referendum and published monthly in the memos on GitHub. TBCD becomes a reserve asset in the TBC when converted to XOR.
 </details>
 
 <details>
-<summary>Will there be a big burn to fix the supply?</summary>
+<summary>What burns XOR?</summary>
 
-Maybe, but don't count on it. Governance could vote to burn treasury XOR, but those funds may be needed for development. The main deflationary pressure comes from transaction fee burns and TONSWAP's 10% fee burn mechanism — both tied to actual network usage.
+20% of network transaction fees burn XOR (active now). TONSWAP will route a portion of its fee-driven TS burn/re-mint cycle to XOR buyback-and-burn when live. XOR sold to the TBC is also burned.
 </details>
 
 <details>
-<summary>What's the Token Bonding Curve and does it help?</summary>
+<summary>What are validators paid in?</summary>
 
-The TBC is a smart contract that mints XOR when you buy (with reserve assets) and burns XOR when you sell. It creates price bounds via arbitrage. It doesn't guarantee price stability, but it does provide some predictability. The catch: it only works if people actually arbitrage. See the <a href="https://wiki.sora.org/tbc.html" target="_blank" rel="noopener noreferrer">TBC documentation</a> for details.
+Validators are rewarded in VAL, not XOR. Users stake XOR to nominate validators, but the rewards are distributed as VAL (which itself has deflationary tokenomics — burned on every transaction, with a portion re-minted for validator rewards).
 </details>
 
 <details>
-<summary>Should I buy XOR?</summary>
+<summary>Is the Token Bonding Curve active?</summary>
 
-This article doesn't give financial advice. If you're considering XOR, understand that you're betting on long-term utility (CBDCs, TONSWAP, Polkaswap adoption), not short-term tokenomics. The infrastructure is real, but adoption is uncertain. DYOR.
+Yes, but it has an "unfunded liability" from launch. The sell price is lower than the ideal 20%-below-buy until reserves build up. The TBC provides forward-guided price predictability, not guaranteed stability.
+</details>
+
+<details>
+<summary>Is XOR a good investment?</summary>
+
+XOR isn't designed as a speculative investment — it's utility infrastructure. Its value is tied to ecosystem adoption and usage, not supply scarcity. Evaluate whether you believe in the utility being built.
 </details>
