@@ -2,7 +2,7 @@
 publishDate: 2025-05-04T00:00:00Z
 updateDate: 2025-12-20T00:00:00Z
 title: "SORA v3 Guide: From Fujiwara Testnet to Nexus"
-excerpt: "The complete guide to SORA v3: understand the Fujiwara testnet on Iroha 2, the Nexus architecture on Iroha 3, XOR fee model, and what's changing from SORA v2."
+excerpt: "The complete guide to SORA v3: Fujiwara testnet on Iroha 2, Nexus architecture on Iroha 3, the XOR fee model, and what’s changing from SORA v2."
 image: ~/assets/images/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge.jpg
 category: "SORA Ecosystem"
 tags:
@@ -13,11 +13,13 @@ tags:
   - xor
   - defi
   - governance
-  - blockchain
+  - hub-chain
   - interoperability
   - cbdc
 canonicalURL: https://soranauts.com/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge
 ---
+
+import FaqSection from '~/components/blog/FaqSection.astro';
 
 SORA v3 represents the most significant architectural shift in the project's history—a migration from the Substrate/Polkadot ecosystem to Hyperledger Iroha. This isn't a simple upgrade; it's a reimagining of how decentralized economic infrastructure should work. This guide explains what's changing, what's already live for testing, and what's coming next.
 
@@ -35,7 +37,7 @@ SORA v3 represents the most significant architectural shift in the project's his
 
 SORA's evolution reflects a deliberate progression toward more sophisticated economic infrastructure. The original SORA v1 served as an experimental foundation, proving the viability of a decentralized economic system with programmatic token issuance.
 
-SORA v2 marked a major leap forward with integration into the Polkadot ecosystem. This version introduced Polkaswap as a fully decentralized exchange, established bridges to Ethereum and other networks, and leveraged Substrate's modular framework for governance and runtime upgrades. SORA v2 remains the operational mainnet today, processing real transactions and supporting the XOR, VAL, PSWAP, and TBCD tokens.
+SORA v2 marked a major leap forward with integration into the Polkadot ecosystem. This version introduced Polkaswap as a fully decentralized exchange, established bridges to Ethereum and other networks, and leveraged Substrate's modular framework for governance and runtime upgrades. SORA v2 remains the operational mainnet today, processing real transactions and supporting XOR, VAL, PSWAP, TBCD, and other ecosystem tokens.
 
 SORA v3 represents a strategic pivot toward institutional-grade infrastructure. Rather than continuing within Polkadot's ecosystem, the project is building on Hyperledger Iroha—a framework originally designed for enterprise and government deployments, now open-source and battle-tested through central bank digital currency (CBDC) implementations worldwide.
 
@@ -45,7 +47,7 @@ For a comprehensive overview of how these pieces fit together, see the [SORA Eco
 
 The Fujiwara testnet is the first public implementation of SORA v3 concepts. Named after the historical Japanese clan, Fujiwara runs on Hyperledger Iroha 2 and serves as a proving ground for the hub chain architecture that will inform the final design.
 
-Community validators can already participate in the network, running nodes and helping stress-test consensus mechanisms. The block explorer at <a href="https://explorer.fujiwara.sora.org/" target="_blank" rel="noopener noreferrer">explorer.fujiwara.sora.org</a> provides real-time visibility into network activity, block production, and peer connectivity.
+Community validators can already participate in the network, running nodes and helping stress-test validator operations, transaction flows, and hub-chain economics. The block explorer at <a href="https://explorer.fujiwara.sora.org/" target="_blank" rel="noopener noreferrer">explorer.fujiwara.sora.org</a> provides real-time visibility into network activity, block production, and peer connectivity.
 
 What makes Fujiwara significant isn't just that it works—it's that it validates the transition from Substrate's pallet-based architecture to Iroha's instruction-based model. Transactions on Fujiwara use Iroha Special Instructions (ISI) rather than Substrate extrinsics, demonstrating that the migration path is viable.
 
@@ -62,23 +64,23 @@ While Fujiwara validates v3 concepts on Iroha 2, SORA Nexus represents the long-
 
 The Iroha Virtual Machine (IVM) provides deterministic execution with predictable gas costs—critical for institutional users who need cost certainty. Data Spaces enable sovereign privacy zones where entities can control their own data while still participating in the broader network. The parallel Lanes architecture, combined with a Merge Ledger, enables horizontal scalability without sacrificing consistency.
 
-Performance targets for Nexus include approximately one-second finality, making it suitable for retail payment applications where users expect near-instant confirmation. This positions SORA to serve CBDCs, enterprise treasury operations, and consumer DeFi on a single unified network—use cases that typically require separate infrastructures.
+Performance targets for Nexus include approximately one-second finality (a design target), making it suitable for retail payment applications where users expect near-instant confirmation. This positions SORA to serve CBDCs, enterprise treasury operations, and consumer DeFi on a single unified network—use cases that typically require separate infrastructures.
 
 Nexus is not a product launch with a countdown timer. The team has consistently prioritized security and correctness over arbitrary deadlines. For the complete technical breakdown, see [SORA Nexus: Complete Guide to Blockchain's End of History](/sora-nexus-complete-guide).
 
 ## XOR in SORA v3
 
-XOR remains the native fee and utility token across all SORA versions. The token's role is actually expanding in v3, where every transaction—swaps, liquidity operations, governance votes—settles fees in XOR rather than a patchwork of wrapped assets.
+XOR remains the native fee and utility token across all SORA versions. The token's role is actually expanding in v3, where XOR serves as the default fee and governance token. Nexus's data-space architecture allows policy-driven fee abstractions in private domains, but XOR remains the settlement standard for public operations.
 
 The 100:1 repackaging completed in May 2025 addressed a long-standing usability issue: token amounts that required scientific notation to read. This redenomination grouped 100 old XOR into 1 new XOR on-chain, while bridges automatically handle compression and decompression for external networks. Total supply remains mathematically unchanged; only the unit of account shifted.
 
-A key user experience improvement coming with v3 is XORless transfers. Users bridging assets into SORA won't need to acquire XOR beforehand—the bridge performs a behind-the-scenes swap to cover gas fees. This removes a major friction point for new users entering the ecosystem from TON, Ethereum, or other networks.
+A key user experience improvement planned for v3 is XORless transfers. Users bridging assets into SORA won't need to acquire XOR beforehand—the bridge performs a behind-the-scenes swap to cover gas fees. This removes a major friction point for new users entering the ecosystem from TON, Ethereum, or other networks.
 
 For a detailed explanation of XOR tokenomics and supply mechanics, see [SORA's XOR Token Supply Explained](/sora-xor-token-supply-explained).
 
 ## Bridges and Interoperability
 
-SORA's bridge infrastructure continues expanding to match the multi-chain reality of modern crypto. The TON Bridge currently supports inbound transfers (TON to SORA), with SORA-to-TON functionality in testing. This connection is strategically important given Telegram's user base and the growing TON ecosystem.
+SORA's bridge infrastructure continues expanding to match the multi-chain reality of modern crypto. The TON Bridge currently supports inbound transfers (TON to SORA), with outbound SORA-to-TON functionality under active development. This connection is strategically important given Telegram's user base and the growing TON ecosystem.
 
 The Ethereum Bridge (Hashi) remains operational for bidirectional transfers between SORA and Ethereum. Similarly, Polkadot/Substrate bridges continue functioning, maintaining connectivity with SORA's original ecosystem even as v3 moves to Iroha.
 
@@ -90,7 +92,7 @@ For more on the TON integration and its implications, read [Introducing TONSWAP:
 
 SORA v3's design priorities aren't academic—they're directly informed by Soramitsu's real-world deployments. The company behind SORA has implemented CBDCs for Cambodia (Bakong), the Solomon Islands, and Papua New Guinea. The Palau savings bonds pilot demonstrated blockchain-based government securities with retail accessibility.
 
-These implementations matter for SORA because they validate the Iroha framework at production scale with institutional users. Features like Data Spaces for regulatory privacy, ISO 20022 alignment for bank interoperability, and deterministic execution for auditability emerged from these deployments rather than theoretical exercises.
+These implementations matter for SORA because they validate the Iroha framework at production scale with institutional users. Features like Data Spaces for regulatory privacy, ISO 20022 alignment for bank interoperability, and deterministic execution for auditability emerged from these deployments rather than theoretical exercises. While these deployments do not run on SORA Nexus itself, they directly inform its architecture and validate the Iroha framework at production scale.
 
 The overlap between CBDC infrastructure and decentralized finance infrastructure is where SORA sees its unique value proposition. Most blockchain projects target either institutions or retail users; SORA is building rails that accommodate both.
 
@@ -129,7 +131,7 @@ For context on how these CBDC deployments inform SORA's strategy, see [SORA's Le
       </tr>
       <tr class="bg-muted/20">
         <td class="border border-border p-3 font-medium">Smart Contracts</td>
-        <td class="border border-border p-3">ink! / Pallets</td>
+        <td class="border border-border p-3">Substrate runtime pallets</td>
         <td class="border border-border p-3">Iroha ISI</td>
         <td class="border border-border p-3">IVM + Kotodama</td>
       </tr>
@@ -171,30 +173,28 @@ To understand the broader Iroha framework underlying v3, the <a href="https://ir
 
 ## Frequently Asked Questions
 
-<details class="my-4 rounded-lg border border-border p-4">
-  <summary class="cursor-pointer font-semibold">Is SORA v3 live?</summary>
-  <p class="mt-3 text-muted-foreground">The Fujiwara testnet (running on Iroha 2) is live and accepting validators. SORA Nexus (targeting Iroha 3) is in active development with no announced launch date.</p>
-</details>
-
-<details class="my-4 rounded-lg border border-border p-4">
-  <summary class="cursor-pointer font-semibold">What happens to my XOR when v3 launches?</summary>
-  <p class="mt-3 text-muted-foreground">Migration plans are still being finalized. XOR remains the native token across all versions, and the team has committed to a seamless transition path for existing holders.</p>
-</details>
-
-<details class="my-4 rounded-lg border border-border p-4">
-  <summary class="cursor-pointer font-semibold">Is SORA still connected to Polkadot?</summary>
-  <p class="mt-3 text-muted-foreground">SORA v2 remains in the Polkadot ecosystem and continues operating. SORA v3/Nexus uses Hyperledger Iroha, a separate framework, but bridges will maintain interoperability with Polkadot and other networks.</p>
-</details>
-
-<details class="my-4 rounded-lg border border-border p-4">
-  <summary class="cursor-pointer font-semibold">What is the difference between Fujiwara and Nexus?</summary>
-  <p class="mt-3 text-muted-foreground">Fujiwara is the testnet running on Hyperledger Iroha 2. Nexus is the target architecture built on Iroha 3 with advanced features like the Iroha Virtual Machine (IVM) and Data Spaces.</p>
-</details>
-
-<details class="my-4 rounded-lg border border-border p-4">
-  <summary class="cursor-pointer font-semibold">When will Nexus launch?</summary>
-  <p class="mt-3 text-muted-foreground">No fixed date has been announced. The team prioritizes security and correctness over timelines, reflecting lessons learned from CBDC deployments where reliability is non-negotiable.</p>
-</details>
+<FaqSection>
+  <details>
+    <summary>Is SORA v3 live?</summary>
+    The Fujiwara testnet (running on Iroha 2) is live and accepting validators. SORA Nexus (targeting Iroha 3) is in active development with no announced launch date.
+  </details>
+  <details>
+    <summary>What happens to my XOR when v3 launches?</summary>
+    XOR remains the native token across all SORA versions. SORA v2 will continue operating alongside v3 development—there's no immediate action required from token holders. When migration mechanisms are finalized, the team has committed to a seamless transition that preserves existing balances automatically.
+  </details>
+  <details>
+    <summary>Is SORA still connected to Polkadot?</summary>
+    SORA v2 remains in the Polkadot ecosystem and continues operating. SORA v3/Nexus uses Hyperledger Iroha, a separate framework, but bridges will maintain interoperability with Polkadot and other networks.
+  </details>
+  <details>
+    <summary>What is the difference between Fujiwara and Nexus?</summary>
+    Fujiwara is the testnet running on Hyperledger Iroha 2. Nexus is the target architecture built on Iroha 3 with advanced features like the Iroha Virtual Machine (IVM) and Data Spaces.
+  </details>
+  <details>
+    <summary>When will Nexus launch?</summary>
+    No fixed date has been announced. The team prioritizes security and correctness over timelines, reflecting lessons learned from CBDC deployments where reliability is non-negotiable.
+  </details>
+</FaqSection>
 
 ## Conclusion
 
