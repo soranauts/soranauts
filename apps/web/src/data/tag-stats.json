@@ -35,9 +35,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-blockchain": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2023-11-28T00:00:00.000Z",
-    "lastSeen": "2025-12-15T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-blockchain-architecture": {
     "count": 1,
@@ -90,9 +90,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-cbdc": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-central-bank": {
     "count": 2,
@@ -170,9 +170,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-defi": {
-    "count": 33,
+    "count": 34,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-democracy": {
     "count": 1,
@@ -260,9 +260,9 @@
     "lastSeen": "2025-12-17T00:00:00.000Z"
   },
   "tag-governance": {
-    "count": 24,
+    "count": 25,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-hacks": {
     "count": 1,
@@ -298,9 +298,9 @@
     "count": 0
   },
   "tag-interoperability": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2023-11-26T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-investment-strategy": {
     "count": 3,
@@ -308,9 +308,9 @@
     "lastSeen": "2025-12-16T00:00:00.000Z"
   },
   "tag-iroha": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2023-12-16T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-iroha-2": {
     "count": 1,
@@ -318,9 +318,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-iroha3": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-ivm": {
     "count": 1,
@@ -413,9 +413,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-nexus": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-nfts": {
     "count": 1,
@@ -573,9 +573,9 @@
     "lastSeen": "2025-12-18T00:00:00.000Z"
   },
   "tag-sora": {
-    "count": 36,
+    "count": 37,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-sora-card": {
     "count": 1,
@@ -731,8 +731,8 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-xor": {
-    "count": 18,
+    "count": 19,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   }
 }
