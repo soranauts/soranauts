@@ -6,7 +6,7 @@ Use this as a reference when creating or editing articles.
 
 ## Blog Post Slugs (Valid Internal Links)
 
-Total blog posts: 46
+Total blog posts: 45
 
 | Slug | Title | File |
 |------|-------|------|
@@ -40,7 +40,6 @@ Total blog posts: 46
 | /sora-roadmap-token-repackaging-hub-chain-defi-upgrades | SORA Roadmap: Token Repackaging, Hub-Chain, and DeFi Upgrades | sora-roadmap-token-repackaging-hub-chain-defi-upgrades.mdx |
 | /sora-v3-blockchain-innovations-at-the-sora-economic-forum-2024 | SORA v3: Blockchain Innovations at the SORA Economic Forum 2024 | sora-v3-blockchain-innovations-at-the-sora-economic-forum-2024.mdx |
 | /sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge | SORA v3 Guide: Fujiwara Testnet, XOR Fees & TON Bridge | sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge.mdx |
-| /sora-v3-vision-defi-milestones-and-polkaswap-news-update-88 | SORA v3 Vision, DeFi Milestones & Polkaswap News â€“ Update #88 | sora-v3-vision-defi-milestones-and-polkaswap-news-update-88.mdx |
 | /sora-xor-token-supply-explained | SORAâ€™s XOR Token Supply and Denomination Explained | sora-xor-token-supply-explained.mdx |
 | /soramitsu-pilots-central-bank-of-solomon-islands-cbdc | Solomon Islands and Soramitsu Launch CBDC Pilot | soramitsu-pilots-central-bank-of-solomon-islands-cbdc.mdx |
 | /soras-leap-transforming-apac-with-cbdcs-and-savings-bonds | SORA's Leap: Transforming APAC with CBDCs and Savings Bonds | soras-leap-transforming-apac-with-cbdcs-and-savings-bonds.mdx |

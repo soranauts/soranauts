@@ -67,6 +67,9 @@ const siteRedirects = {
   // vXOR discontinued Nov 2024 (SORA v3 Stage II) - replaced by KUSD
   '/sora-v3-vxor-key-updates-users-need-to-know': '/sora-nexus-complete-guide',
   '/sora-v3-vxor-key-updates-users-need-to-know/': '/sora-nexus-complete-guide',
+  // Time-locked Update #88 with outdated claims and SORA v2 framework error
+  '/sora-v3-vision-defi-milestones-and-polkaswap-news-update-88': '/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge',
+  '/sora-v3-vision-defi-milestones-and-polkaswap-news-update-88/': '/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge',
 };
 
 const redirects = {
