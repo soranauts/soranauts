@@ -1,108 +1,177 @@
 ---
 publishDate: 2025-08-10T00:00:00Z
+updateDate: 2025-12-20T00:00:00Z
 title: "How Polkaswap and TONSWAP Work Together on SORA"
-excerpt: "Discover how Polkaswap and TONSWAP complement each other in the SORA ecosystem, sharing liquidity and expanding cross-chain DeFi access."
+excerpt: "Discover how Polkaswap and TONSWAP complement each other in the SORA ecosystem, enabling cross-chain DeFi access via the SORA↔TON bridge."
 image: ~/assets/images/how-polkaswap-and-tonswap-work-together-on-sora.jpg
 category: "DeFi & Trading"
+tags:
+  - polkaswap
+  - tonswap
+  - sora
+  - defi
+  - dex
+  - xor
+  - pswap
+  - ton
+  - liquidity
+  - cross-chain
 canonicalURL: https://soranauts.com/how-polkaswap-and-tonswap-work-together-on-sora
----## **TL;DR**
+---
 
-**TONSWAP**’s launch on SORA doesn’t make **Polkaswap** less relevant — the two **complement each other**. **Polkaswap** remains the **multi-chain DeFi hub** for **cross-chain trading** on SORA, while **TONSWAP** serves as a **TON-native gateway** bringing in **Telegram wallet users** and **TON liquidity**. Together, they form a **connected ecosystem** with shared liquidity, arbitrage opportunities, and expanded market reach.
+import FaqSection from '~/components/blog/FaqSection.astro';
+
+<div class="not-prose my-8 rounded-lg border-l-4 border-accent bg-accent/10 p-6">
+  <p class="font-semibold text-lg mb-3">TL;DR</p>
+  <p class="text-sm text-gray-300">TONSWAP's launch doesn't make Polkaswap less relevant — the two complement each other. Polkaswap remains the multi-chain DeFi hub for cross-chain trading on SORA, while TONSWAP serves as a TON-native gateway bringing in Telegram wallet users and TON liquidity. Together, they form a connected ecosystem with bridged liquidity, arbitrage opportunities, and expanded market reach.</p>
+</div>
 
 ---
 
+## Introduction
 
-## **Introduction**
+With TONSWAP going live, many in the community wondered:
 
-With **TONSWAP** going live on SORA, many in the community wondered:
+> "Does this mean Polkaswap is less important?"
 
-> “Does this mean **Polkaswap** is less important?”
-
-The answer is **no**. **Polkaswap** remains a **cornerstone of the SORA DeFi ecosystem**. **TONSWAP** expands the network’s reach into the **TON** and **Telegram** communities, creating a **more robust and interconnected trading environment**. This article explains their **differences**, **synergies**, and **why both are crucial** for SORA’s growth.
-
----
-
-## **Quick Summary**
-
-| Feature              | **Polkaswap** (SORA)                                                                 | **TONSWAP** (TON → SORA)                                                                 |
-|----------------------|---------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| **Network Base**     | **SORA Network**                                                                      | **TON Blockchain**                                                                        |
-| **Primary Role**     | **Cross-chain DeFi hub**                                                              | **TON-native gateway** into the SORA ecosystem                                           |
-| **Key Assets**       | **XOR**, **KUSD**, bridged ETH/DOT/KSM tokens                                         | **TS**, bridged TON assets, **XOR**                                                       |
-| **Bridges**          | **Ethereum**, **Polkadot**, **Kusama**                                                | **Bridge to SORA v3** (TON ↔ SORA)                                                        |
-| **Fee Mechanism**    | **0.3% in XOR** → converted to **PSWAP** → burned + partial remint to LPs              | **0.3% in TS** → burned + partial remint to LPs + **XOR buy/burn** ([details](https://medium.com/@tonswap-org/ts-token-633f2f74b4a1)) |
-| **Governance**       | **SORA on-chain governance**                                                          | **TONSWAP DAO**                                                                           |
-| **Best For**         | Multi-chain liquidity, **KUSD** settlement, DeFi integrations                         | Fast **TON↔SORA swaps**, Telegram-first UX, onboarding TON community                      |
+The answer is no. Polkaswap remains a cornerstone of the SORA DeFi ecosystem. TONSWAP expands the network's reach into the TON and Telegram communities, creating a more robust and interconnected trading environment. This article explains their differences, synergies, and why both are crucial for SORA's growth.
 
 ---
 
-## **Why Polkaswap Still Matters**
+## Quick Summary
 
-**Polkaswap** is the **flagship decentralized exchange** of the **SORA network** — a **non-custodial, cross-chain liquidity aggregator** built for **multi-chain interoperability**.
+<div class="not-prose my-8 overflow-x-auto">
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-gray-800/50">
+        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Feature</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Polkaswap (SORA)</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">TONSWAP (TON)</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-700/50">
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Network Base</td>
+        <td class="p-4 text-gray-300">SORA Network</td>
+        <td class="p-4 text-gray-300">TON Blockchain</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Primary Role</td>
+        <td class="p-4 text-gray-300">Cross-chain DeFi hub</td>
+        <td class="p-4 text-gray-300">TON-native gateway into SORA ecosystem</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Key Assets</td>
+        <td class="p-4 text-gray-300">XOR, KUSD, bridged ETH/DOT/KSM tokens</td>
+        <td class="p-4 text-gray-300">TS, bridged TON assets, XOR</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Bridges</td>
+        <td class="p-4 text-gray-300">Ethereum, Polkadot, Kusama</td>
+        <td class="p-4 text-gray-300">TON ↔ SORA bridge (TON→SORA live; SORA→TON in development)</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Fee Mechanism</td>
+        <td class="p-4 text-gray-300">0.3% swap fee → used to buy PSWAP → burned, with partial remint to LPs</td>
+        <td class="p-4 text-gray-300">0.3% swap fees in TS → burned + partial remint to LPs; currently 10% of fees allocated to XOR buy/burn (<a href="https://medium.com/@tonswap-org/ts-token-633f2f74b4a1" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">details</a>)</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Governance</td>
+        <td class="p-4 text-gray-300">SORA on-chain governance</td>
+        <td class="p-4 text-gray-300">TONSWAP DAO</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Best For</td>
+        <td class="p-4 text-gray-300">Multi-chain liquidity, KUSD settlement, DeFi integrations</td>
+        <td class="p-4 text-gray-300">Fast TON↔SORA swaps, Telegram-first UX, onboarding TON community</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Why Polkaswap Still Matters
+
+Polkaswap is the flagship decentralized exchange of the SORA network — a non-custodial, cross-chain liquidity aggregator built for multi-chain interoperability.
 
 **Key advantages:**
 
-- **Wide Bridge Access** — connects **SORA** to **Ethereum**, **Polkadot**, and **Kusama** ([learn more](https://wiki.sora.org/polkaswap/polkaswap-faq.html)).
-- **Deflationary Tokenomics** — fees are paid in **XOR**, swapped into **PSWAP**, burned, and partially reminted to **liquidity providers**. The remint rate declines over **5 years** (**90% → 35%**).
-- **Governance Integration** — decisions on pairs, features, and upgrades are made through **SORA governance**.
-- **Stablecoin Settlement** — **KUSD** integration makes Polkaswap ideal for **DeFi settlements**.
+- **Wide Bridge Access** — connects SORA to Ethereum, Polkadot, and Kusama (<a href="https://wiki.sora.org/polkaswap/polkaswap-faq.html" target="_blank" rel="noopener noreferrer">learn more</a>).
+- **Deflationary Tokenomics** — swap fees are used to buy back PSWAP, which is then burned, with a portion reminted to liquidity providers. The remint rate declines over 5 years (90% → 35%).
+- **Governance Integration** — core protocol upgrades and economic parameters are managed through SORA on-chain governance.
+- **Stablecoin Settlement** — KUSD (SORA's native synthetic stable asset from Kensetsu) provides a settlement layer for DeFi transactions.
 
-Polkaswap’s **established liquidity**, **reputation**, and **governance ties** ensure its relevance in the evolving **SORA DeFi ecosystem**.
+Polkaswap's established liquidity, reputation, and governance ties ensure its relevance in the evolving SORA DeFi ecosystem.
 
 ---
 
-## **TONSWAP’s Role**
+## TONSWAP's Role
 
-**TONSWAP** is a **TON blockchain-native DEX** with a **bridge to SORA v3**, giving **TON users** access to the **SORA DeFi ecosystem** while remaining based on the **TON network**.
+TONSWAP is a TON blockchain-native DEX with a bridge to the SORA network, giving TON users access to the SORA DeFi ecosystem while remaining based on the TON network.
 
 **Highlights:**
 
-- **Mobile & Telegram-First UX** — perfectly suited for **TON’s mobile-centric audience**.
-- **Cross-Ecosystem Liquidity** — the **bridge** connects TON assets to **SORA’s trading pools**.
-- **Fee Model:** **0.3% in TS token** — burned, partially reminted to LPs, and a portion used to **buy & burn XOR** (see tokenomics link in the table above).
-- **Expansion Gateway:** Acts as the **on-ramp** for **TON users** into the **broader SORA ecosystem**.
+- **Mobile & Telegram-First UX** — suited for TON's mobile-centric audience.
+- **Cross-Ecosystem Liquidity** — the bridge connects TON assets to SORA (TON→SORA live; SORA→TON under development).
+- **Fee Model:** 0.3% swap fees in TS token — burned, partially reminted to LPs, with currently 10% of fees allocated to XOR buy & burn.
+- **Expansion Gateway:** Acts as the on-ramp for TON users into the broader SORA ecosystem.
 
 ---
 
-## **How They Work Together**
+## How They Work Together
 
-Rather than competing, **Polkaswap** and **TONSWAP** form **two interconnected doors** into the same **decentralized economy**.
+Rather than competing, Polkaswap and TONSWAP form two interconnected doors into the same decentralized economy.
 
 **Synergies:**
 
-1. **Shared Liquidity Pools** — tokens bridged from **TON** can be traded on **Polkaswap**, and vice versa.
-2. **Arbitrage Opportunities** — price gaps between platforms create **profit opportunities** for traders.
-3. **Dual LP Incentives** — liquidity providers can earn rewards from **both DEXs** for supporting **cross-listed pairs**.
-4. **Stablecoin Settlement Layer** — **KUSD** provides a frictionless way to move value between **TON** and other ecosystems.
-5. **User Onboarding Flow** — **TONSWAP** attracts new users from the TON community who can later access the broader DeFi tools available on **Polkaswap**.
+1. **Bridged Liquidity** — tokens bridged from TON can be traded on Polkaswap, and SORA assets can be bridged to TON (outbound bridge in development).
+2. **Arbitrage Opportunities** — price gaps between platforms create profit opportunities for traders.
+3. **LP Incentives on Both Platforms** — liquidity providers can participate in pools on either DEX; cross-listed pairs may offer opportunities on both sides.
+4. **Stablecoin Settlement Layer** — KUSD (SORA's native synthetic stable asset) provides a settlement layer for moving value between TON and other ecosystems.
+5. **User Onboarding Flow** — TONSWAP attracts new users from the TON community who can later access the broader DeFi tools available on Polkaswap.
 
-This **dual-entry architecture** allows each DEX to **specialize** while **reinforcing the liquidity** and **resilience** of the entire network.
-
----
-
-## **FAQs**
-
-**Q: Will Polkaswap lose liquidity to TONSWAP?**  
-A: **Not likely** — Polkaswap’s **multi-chain depth** and **KUSD integration** serve broader use cases than TONSWAP’s TON onboarding.
-
-**Q: Can I move assets between them?**  
-A: **Yes** — the **SORA↔TON bridge** makes transfers between DEXs possible.
-
-**Q: Which one should I use?**  
-A: Use **Polkaswap** for **multi-chain DeFi strategies** and **deep liquidity**. Use **TONSWAP** for **fast TON↔SORA swaps** and **Telegram wallet convenience**.
-
-**Q: Do both DEXs charge the same fees?**  
-A: No — **Polkaswap** charges **0.3% in XOR** (converted to PSWAP and burned/reminted), while **TONSWAP** charges **0.3% in TS** (burned/reminted with a portion buying & burning XOR).
+This dual-entry architecture allows each DEX to specialize while reinforcing the liquidity and resilience of the entire network.
 
 ---
 
-## **Further Reading**
+<FaqSection>
+  <details>
+    <summary>Will Polkaswap lose liquidity to TONSWAP?</summary>
+    <p class="faq-answer">Not likely — Polkaswap's multi-chain depth and KUSD integration serve broader use cases than TONSWAP's TON-focused onboarding.</p>
+  </details>
+  <details>
+    <summary>Can I move assets between them?</summary>
+    <p class="faq-answer">Yes — the SORA↔TON bridge enables transfers. TON→SORA is live; SORA→TON is under active development.</p>
+  </details>
+  <details>
+    <summary>Which one should I use?</summary>
+    <p class="faq-answer">Use Polkaswap for multi-chain DeFi strategies and deep liquidity. Use TONSWAP for fast TON↔SORA swaps and Telegram wallet convenience.</p>
+  </details>
+  <details>
+    <summary>Do both DEXs charge the same fees?</summary>
+    <p class="faq-answer">Both charge 0.3% swap fees, but the mechanisms differ. Polkaswap's fees are used to buy back PSWAP (burned/reminted). TONSWAP charges in TS (burned/reminted, with currently 10% of fees allocated to XOR buy & burn).</p>
+  </details>
+</FaqSection>
 
-- [SORA v3 Guide: Fujiwara Testnet, XOR Fees & TON Bridge](/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge)  
-- [SORA Network – sora.org](https://sora.org)  
+## Further Reading
 
----
+<div class="not-prose my-6 grid gap-3 sm:grid-cols-2">
+  <a href="/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🚀</span>
+    <span class="text-gray-200 font-medium">SORA v3 Guide: Fujiwara & TON Bridge</span>
+  </a>
+  <a href="https://sora.org" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🌐</span>
+    <span class="text-gray-200 font-medium">SORA Network</span>
+  </a>
+  <a href="/tonswap-telegram-defi-hub-on-ton-complete-guide" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">💬</span>
+    <span class="text-gray-200 font-medium">TONSWAP Complete Guide</span>
+  </a>
+  <a href="https://polkaswap.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">💱</span>
+    <span class="text-gray-200 font-medium">Polkaswap DEX</span>
+  </a>
+</div>
 
-## **Financial Disclaimer**
-
-This content is for **informational purposes only** and should not be considered **financial advice**. **Cryptocurrency trading** and **investing** carry significant risk and may result in the **loss of your capital**. Always **conduct your own research** and consult a **licensed financial advisor** before making any investment decisions.
