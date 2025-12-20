@@ -2,37 +2,38 @@
 publishDate: 2025-03-20T00:00:00Z
 updateDate: 2025-12-19T00:00:00Z
 title: "The Fujiwara Testnet: SORA's Gateway to the Nexus Era"
-excerpt: "Fujiwara is the community testnet for SORA v3 (Nexus), running on Hyperledger Iroha and preparing the hub chain for institutional-scale deployment."
+excerpt: "Fujiwara is the community testnet for SORA v3’s Hub Chain on Hyperledger Iroha 2, informing SORA Nexus—the next-generation architecture built on Iroha 3."
 image: ~/assets/images/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future.jpg
 category: "Blockchain Technology"
 tags:
   - sora
   - nexus
+  - iroha
   - iroha3
   - cbdc
   - governance
   - enterprise
   - defi
-  - blockchain
   - xor
   - interoperability
+  - staking
 canonicalURL: https://soranauts.com/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future
 ---
 
 import FaqSection from '~/components/blog/FaqSection.astro';
 
-Fujiwara isn't just another blockchain testnet—it's the proving ground where SORA's most ambitious vision becomes reality. Named after Japan's influential Fujiwara clan, known for their centuries of political resilience and strategic adaptation, this testnet represents the first public glimpse of SORA Nexus: a unified hub chain designed to replace the fragmented blockchain landscape with a single, infinitely scalable ledger.
+Fujiwara isn't just another blockchain testnet—it's the proving ground where SORA's most ambitious vision becomes reality. Named after Japan's influential Fujiwara clan, known for their centuries of political resilience and strategic adaptation, this testnet represents the first public testnet implementation of SORA's v3 Hub Chain architecture on Hyperledger Iroha 2—laying the groundwork for SORA Nexus, the next-generation system being developed on Iroha 3.
 
-While most testnets serve as simple sandboxes for testing smart contracts, Fujiwara is testing something far more significant: the infrastructure that central banks, enterprises, and DeFi protocols will share on a single network. The architecture being validated here could power everything from [CBDCs and savings bonds](/soras-leap-transforming-apac-with-cbdcs-and-savings-bonds) to permissionless decentralized exchanges.
+While most testnets serve as simple sandboxes for testing smart contracts, Fujiwara is testing something far more significant: infrastructure designed to let central banks, enterprises, and DeFi protocols coexist on a single network. The architecture being validated here could power everything from [CBDCs and savings bonds](/soras-leap-transforming-apac-with-cbdcs-and-savings-bonds) to permissionless decentralized exchanges.
 
 ---
 
 ## TL;DR
 
-- **Fujiwara** is the public testnet for **SORA v3 (Nexus)**, built on the Hyperledger Iroha framework—a complete departure from SORA v2's Substrate architecture.
-- The testnet validates the **hub chain architecture** that will enable CBDCs, enterprise applications, and open DeFi to coexist on one network with sub-second finality.
-- **Community validators** can participate now via the [validator guide](https://wiki.sora.org/running-a-sora-testnet-node.html), helping stress-test consensus and governance mechanisms.
-- The [block explorer](https://explorer.fujiwara.sora.org/) is live, offering real-time visibility into network performance and validator activity.
+- **Fujiwara** is the public testnet for **SORA v3's Hub Chain**, built on Hyperledger Iroha 2. It validates concepts that will inform **SORA Nexus**, the successor architecture on Iroha 3.
+- The testnet validates **hub chain architecture concepts** intended to enable CBDCs, enterprise applications, and open DeFi to coexist on one network. Sub-second (~1s) finality is a Nexus design target informed by Fujiwara testing.
+- **Community validators** can participate now via the <a href="https://wiki.sora.org/running-a-sora-testnet-node.html" target="_blank" rel="noopener noreferrer">validator guide</a>, helping stress-test consensus and governance mechanisms.
+- The <a href="https://explorer.fujiwara.sora.org/" target="_blank" rel="noopener noreferrer">block explorer</a> is live, offering real-time visibility into network performance and validator activity.
 
 ---
 
@@ -40,15 +41,15 @@ While most testnets serve as simple sandboxes for testing smart contracts, Fujiw
 
 SORA's journey to the Nexus architecture follows a deliberate evolution through three major versions, each building on lessons learned from the previous.
 
-**SORA v1** launched in 2017 as an experimental economic system exploring decentralized governance and tokenomics. **SORA v2** expanded this vision by building on Substrate and integrating with the Polkadot ecosystem, enabling cross-chain bridges to Ethereum and access to shared security through parachain slots.
+**SORA v1** began as an experimental economic system exploring decentralized governance and tokenomics. **SORA v2** expanded this vision by building on Substrate, integrating with the Polkadot ecosystem via parachain strategy, and enabling cross-chain bridges to Ethereum.
 
 However, the team recognized that the blockchain landscape's fragmentation—thousands of L1s, L2s, parachains, and rollups competing for liquidity and developers—wasn't the future. Rather than continuing to add complexity through more chains, SORA chose a fundamentally different path.
 
-**SORA v3 (Nexus)** represents that new direction: a single logical ledger built on Hyperledger Iroha 3 that can host unlimited data spaces with infinite horizontal scalability. This isn't an incremental upgrade—it's a ground-up reimagining of what blockchain infrastructure should be.
+**SORA v3** represents that new direction. The current phase—tested on Fujiwara—runs on Hyperledger Iroha 2 as a Hub Chain prototype. **SORA Nexus**, the next evolution, is being developed on Iroha 3 with a single logical ledger designed to host unlimited data spaces with unbounded horizontal scalability. This isn't an incremental upgrade—it's a ground-up reimagining of what blockchain infrastructure should be.
 
 <div class="not-prose my-6 border-l-4 border-amber-500 bg-amber-900/10 p-4 rounded-r-lg">
   <p class="font-semibold text-amber-500 mb-2">⚠️ Important Distinction</p>
-  <p class="text-sm text-gray-300">SORA Nexus (v3) is NOT built on Polkadot or Substrate. It uses Hyperledger Iroha 3, a completely different blockchain framework. Articles referring to "parachains" or "Polkadot integration" in the context of SORA v3 are outdated or inaccurate.</p>
+  <p class="text-sm text-gray-300">SORA v3 is NOT built on Polkadot or Substrate. Fujiwara runs on Hyperledger Iroha 2, while SORA Nexus targets Iroha 3. Articles referring to "parachains" or "Polkadot integration" in the context of SORA v3 are outdated or inaccurate.</p>
 </div>
 
 For a deep dive into the complete Nexus architecture, see our [SORA Nexus Complete Guide](/sora-nexus-complete-guide).
@@ -61,13 +62,13 @@ The Fujiwara testnet validates the core components that distinguish SORA Nexus f
 
 ### Hyperledger Iroha Infrastructure
 
-Fujiwara began development using Hyperledger Iroha 2, with the architecture evolving toward Iroha 3 as that platform matures. Iroha 3 provides the deterministic execution environment, modular consensus, and governance primitives that central banks and regulated institutions require.
+Fujiwara runs on Hyperledger Iroha 2. SORA Nexus, the successor architecture, is being developed on Iroha 3 as that platform matures. Fujiwara validates Hub Chain concepts that inform Nexus design. Iroha 3 will provide the deterministic execution environment, modular consensus, and governance primitives that central banks and regulated institutions require.
 
 Unlike general-purpose blockchain frameworks, Iroha was designed specifically for permissioned financial infrastructure—making it ideal for a network that must serve both regulated and permissionless applications simultaneously.
 
 ### Hub Chain Architecture Validation
 
-The testnet validates SORA's vision of a unified hub chain: one network connecting external blockchains (TON, Polkadot, Ethereum) while hosting native applications. This contrasts with bridge-heavy approaches that fragment liquidity and introduce security vulnerabilities.
+The testnet validates SORA's vision of a unified hub chain: one network designed to connect external blockchains through governed connectors while hosting native applications. This contrasts with bridge-heavy approaches that fragment liquidity and introduce security vulnerabilities.
 
 Community validators running Fujiwara nodes help stress-test the consensus mechanism under realistic conditions, identifying edge cases before mainnet deployment.
 
@@ -79,9 +80,9 @@ The Fujiwara testnet provides the data needed to calibrate these parameters corr
 
 ---
 
-## SORA Nexus Architecture: A Brief Overview
+## SORA Nexus Architecture: What Fujiwara Informs
 
-While the [complete Nexus guide](/sora-nexus-complete-guide) covers the architecture in depth, understanding a few key concepts explains why Fujiwara matters.
+While the [complete Nexus guide](/sora-nexus-complete-guide) covers the Iroha 3 architecture in depth, understanding a few key concepts—targeted for Nexus but informed by Fujiwara testing—explains why this testnet matters.
 
 ### The Iroha Virtual Machine (IVM)
 
@@ -107,18 +108,65 @@ This design delivers throughput multiplication without fragmenting state or sacr
 
 Understanding what's changing helps explain why Fujiwara represents such a significant milestone.
 
-| Aspect | SORA v2 (Current) | SORA v3 (Nexus) |
-|--------|-------------------|-----------------|
-| **Framework** | Substrate (Rust) | Hyperledger Iroha 3 |
-| **Network Model** | Polkadot parachain + bridges | Unified hub chain with data spaces |
-| **Scalability** | Vertical (single chain) | Horizontal (parallel lanes + merge ledger) |
-| **Finality** | ~12 seconds | ~1 second target |
-| **Privacy Model** | Public by default | Data spaces with configurable privacy |
-| **Smart Contracts** | ink! / Substrate pallets | IVM + Kotodama bytecode |
-| **Target Use Case** | DeFi-focused | CBDCs, enterprises, AND DeFi |
-| **Proof System** | Standard signatures | FASTPQ zk-STARK proofs |
+<div class="not-prose my-8 overflow-x-auto">
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-gray-800/50">
+        <th class="text-left p-3 font-semibold text-gray-200 border-b border-gray-700">Aspect</th>
+        <th class="text-left p-3 font-semibold text-gray-200 border-b border-gray-700">SORA v2 (Current)</th>
+        <th class="text-left p-3 font-semibold text-amber-400 border-b border-gray-700">SORA v3 / Nexus (Target)</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-700/50">
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-3 font-medium text-gray-300">Framework</td>
+        <td class="p-3 text-gray-400">Substrate (Rust)</td>
+        <td class="p-3 text-gray-300">Hyperledger Iroha 3</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-3 font-medium text-gray-300">Network Model</td>
+        <td class="p-3 text-gray-400">Polkadot parachain + bridges</td>
+        <td class="p-3 text-gray-300">Unified hub chain with data spaces</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-3 font-medium text-gray-300">Scalability</td>
+        <td class="p-3 text-gray-400">Vertical (single chain)</td>
+        <td class="p-3 text-gray-300">Horizontal (parallel lanes + merge ledger)</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-3 font-medium text-gray-300">Finality</td>
+        <td class="p-3 text-gray-400">~12 seconds</td>
+        <td class="p-3 text-gray-300">~1 second (design target)</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-3 font-medium text-gray-300">Privacy Model</td>
+        <td class="p-3 text-gray-400">Public by default</td>
+        <td class="p-3 text-gray-300">Data spaces with configurable privacy</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-3 font-medium text-gray-300">Smart Contracts</td>
+        <td class="p-3 text-gray-400">ink! / Substrate pallets</td>
+        <td class="p-3 text-gray-300">IVM + Kotodama bytecode</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-3 font-medium text-gray-300">Target Use Case</td>
+        <td class="p-3 text-gray-400">DeFi-focused</td>
+        <td class="p-3 text-gray-300">CBDCs, enterprises, AND DeFi</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-3 font-medium text-gray-300">Proof System</td>
+        <td class="p-3 text-gray-400">Standard signatures</td>
+        <td class="p-3 text-gray-300">FASTPQ zk-STARK proofs</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 The transition isn't abandoning SORA v2—it's evolving to meet requirements that the original architecture couldn't address.
+
+<div class="not-prose my-4 text-sm text-gray-400 italic">
+  Note: Features in the "SORA v3 (Nexus)" column represent design targets for the Iroha 3-based architecture. Fujiwara (Iroha 2) validates foundational concepts but does not implement all Nexus features.
+</div>
 
 ---
 
@@ -128,19 +176,19 @@ The testnet is live and welcoming community participation. Here's how to get inv
 
 ### Run a Validator Node
 
-Validators help secure the testnet, stress-test consensus mechanisms, and earn experience with the Iroha-based architecture. The official validator guide at [wiki.sora.org/running-a-sora-testnet-node.html](https://wiki.sora.org/running-a-sora-testnet-node.html) provides step-by-step instructions.
+Validators help secure the testnet, stress-test consensus mechanisms, and earn experience with the Iroha-based architecture. The <a href="https://wiki.sora.org/running-a-sora-testnet-node.html" target="_blank" rel="noopener noreferrer">official validator guide</a> provides step-by-step instructions.
 
 Running a testnet node requires modest hardware and no financial stake—making it accessible for anyone wanting hands-on experience with SORA Nexus infrastructure.
 
 ### Monitor Network Activity
 
-The [Fujiwara Block Explorer](https://explorer.fujiwara.sora.org/) provides real-time visibility into network performance. You can track block times, finality metrics, validator uptime, and transaction throughput.
+The <a href="https://explorer.fujiwara.sora.org/" target="_blank" rel="noopener noreferrer">Fujiwara Block Explorer</a> provides real-time visibility into network performance. You can track block times, finality metrics, validator uptime, and transaction throughput.
 
 For developers and researchers, the explorer offers insights into how the Iroha-based architecture behaves under various load conditions.
 
 ### Join Community Discussions
 
-The SORA community on [Telegram](https://t.me/sora_xor) actively discusses Fujiwara developments, shares validator experiences, and coordinates testing efforts. This is where you'll find the latest updates on testnet milestones and upcoming features.
+The SORA community on <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer">Telegram</a> actively discusses Fujiwara developments, shares validator experiences, and coordinates testing efforts. This is where you'll find the latest updates on testnet milestones and upcoming features.
 
 ---
 
@@ -152,13 +200,13 @@ Fujiwara isn't being built in isolation—it's preparing infrastructure for real
 
 SORAMITSU, the company behind both Hyperledger Iroha and SORA, has deployed blockchain infrastructure for multiple central banks:
 
-**Cambodia's Bakong** processed transactions equivalent to 330% of the country's GDP in 2024—demonstrating that blockchain-based infrastructure can operate at national scale. The lessons learned directly informed Nexus design decisions.
+**Cambodia's Bakong** has processed transaction volumes exceeding $150 billion annually—demonstrating that blockchain-based infrastructure can operate at national scale. The lessons learned directly informed Nexus design decisions.
 
-The [Solomon Islands CBDC pilot](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc) (Bokolo Cash) tests how digital currency can serve a geographically dispersed island nation. Papua New Guinea's Digital Kina proof-of-concept explored similar use cases for financial inclusion.
+The [Solomon Islands CBDC pilot](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc) (Bokolo Cash) tests how digital currency can serve a geographically dispersed island nation. Papua New Guinea's Digital Kina proof-of-concept, supported by Soramitsu, evaluated similar use cases for financial inclusion.
 
 ### Palau Savings Bonds
 
-Perhaps most notably, Palau is implementing [blockchain-based savings bonds](https://cointelegraph.com/news/palau-invest-blockchain-savings-bonds-infrastructure) using SORA and SORAMITSU infrastructure. This represents one of the first sovereign bond issuances on blockchain—exactly the type of institutional use case Nexus is designed to support.
+Perhaps most notably, Palau is implementing <a href="https://cointelegraph.com/news/palau-invest-blockchain-savings-bonds-infrastructure" target="_blank" rel="noopener noreferrer">blockchain-based savings bonds</a> using SORA and SORAMITSU infrastructure. This represents one of the first sovereign bond issuances on blockchain—exactly the type of institutional use case Nexus is designed to support.
 
 These aren't theoretical future applications. They're production deployments testing whether blockchain can meet institutional requirements. Fujiwara validates the next-generation infrastructure these deployments will eventually migrate to.
 
@@ -176,6 +224,8 @@ To set accurate expectations, here's what Fujiwara is NOT testing:
 
 - **Fixed launch date**: SORA's engineering philosophy prioritizes security, correctness, and efficiency over arbitrary timelines. There is no announced mainnet launch date.
 
+- **Production guarantees**: Fujiwara is a testnet for validation and learning, not proof of production readiness. Results inform design but do not constitute deployment certification.
+
 The team has consistently emphasized that Nexus will launch "when it's boring"—meaning when all the exciting problems have been solved and the system is production-ready.
 
 ---
@@ -191,11 +241,11 @@ This naming choice reflects SORA's own philosophy: building infrastructure desig
 <FaqSection>
   <details>
     <summary>What blockchain framework does Fujiwara use?</summary>
-    Fujiwara runs on Hyperledger Iroha, initially using Iroha 2 with the architecture evolving toward Iroha 3. This is NOT Polkadot or Substrate—those frameworks power SORA v2, not the Nexus architecture being tested on Fujiwara.
+    Fujiwara runs on Hyperledger Iroha 2. SORA Nexus, the next-generation architecture, is being developed on Iroha 3. This is NOT Polkadot or Substrate—those frameworks power SORA v2, not the v3 architecture being tested on Fujiwara.
   </details>
   <details>
     <summary>Is Fujiwara the same as the SORA v2 testnet?</summary>
-    No. SORA v2 testnets run on Substrate and connect to Polkadot infrastructure. Fujiwara specifically tests SORA v3 (Nexus), which uses a completely different architecture based on Hyperledger Iroha 3.
+    No. SORA v2 testnets run on Substrate and connect to Polkadot infrastructure. Fujiwara specifically tests SORA v3's Hub Chain on Iroha 2. SORA Nexus, targeting Iroha 3, is the successor architecture.
   </details>
   <details>
     <summary>Can I earn rewards on the Fujiwara testnet?</summary>
@@ -207,7 +257,7 @@ This naming choice reflects SORA's own philosophy: building infrastructure desig
   </details>
   <details>
     <summary>How is SORA v3 different from SORA v2?</summary>
-    SORA v2 is a Substrate-based chain in the Polkadot ecosystem. SORA v3 (Nexus) is built on Hyperledger Iroha 3, featuring the Iroha Virtual Machine, sovereign data spaces, parallel lanes with a merge ledger, and FASTPQ zk-STARK proofs. The architecture is designed to serve both institutional (CBDC) and permissionless (DeFi) use cases on a single network.
+    SORA v2 is a Substrate-based chain in the Polkadot ecosystem. SORA v3's Hub Chain (tested on Fujiwara) runs on Iroha 2. SORA Nexus, targeting Iroha 3, will feature the Iroha Virtual Machine, sovereign data spaces, parallel lanes with a merge ledger, and FASTPQ zk-STARK proofs. The architecture is designed to serve both institutional (CBDC) and permissionless (DeFi) use cases on a single network.
   </details>
   <details>
     <summary>What is the IVM mentioned in Nexus documentation?</summary>
@@ -219,22 +269,12 @@ This naming choice reflects SORA's own philosophy: building infrastructure desig
   </details>
 </FaqSection>
 
----
-
 ## Conclusion: Building the Foundation
 
-Fujiwara represents more than a testnet—it's the foundation for SORA's most ambitious vision. By validating the Iroha-based hub chain architecture, testing consensus mechanisms with community validators, and calibrating fee models for institutional requirements, Fujiwara is preparing the infrastructure that could eventually host the world's economic activity on a single, unified ledger.
+Fujiwara represents more than a testnet—it's the proving ground for SORA v3's Hub Chain and the foundation for SORA Nexus. By validating the Iroha-based hub chain architecture, testing consensus mechanisms with community validators, and calibrating fee models for institutional requirements, Fujiwara is preparing the infrastructure that could eventually host the world's economic activity on a single, unified ledger.
 
-The transition from SORA v2's Polkadot-based architecture to Nexus's Iroha-powered hub chain is significant. It reflects a strategic decision to build infrastructure that can serve central banks and permissionless DeFi on the same network—something no existing blockchain architecture delivers.
+The transition from SORA v2's Polkadot-based architecture to SORA v3's Iroha-powered Hub Chain—and eventually to Nexus on Iroha 3—is significant. It reflects a strategic decision to build infrastructure that can serve central banks and permissionless DeFi on the same network—something no existing blockchain architecture delivers.
 
 For those interested in the complete technical architecture, our [SORA Nexus Complete Guide](/sora-nexus-complete-guide) provides comprehensive coverage of IVM, data spaces, lanes, and the governance model. For the latest Nexus announcements, see our coverage of [SORA v3 at the Economic Forum](/sora-v3-blockchain-innovations-at-the-sora-economic-forum-2024).
 
 The Fujiwara testnet is live. The explorer is running. Validators are needed. Whether you're a developer, researcher, or simply curious about what comes next, there's never been a better time to get involved in SORA's evolution.
-
----
-
-## Disclaimer
-
-_Cryptocurrencies involve substantial risk and volatility. This article does not provide individually tailored investment advice. It has been prepared without regard to the individual financial circumstances and objectives of persons who receive it. The cryptocurrencies mentioned are speculative, involve a high degree of risk and are not suitable for all investors._
-
-_Testnet participation carries no financial reward and test tokens have no real-world value. Always verify information against official SORA sources before making decisions. This article should not be viewed as a form of endorsement or recommendation._
