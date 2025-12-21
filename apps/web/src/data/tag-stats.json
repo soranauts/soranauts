@@ -120,9 +120,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-cross-chain": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2023-10-09T00:00:00.000Z",
-    "lastSeen": "2025-12-14T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-cross-chain-bridges": {
     "count": 1,
@@ -170,7 +170,7 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-defi": {
-    "count": 35,
+    "count": 36,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-20T00:00:00.000Z"
   },
@@ -180,9 +180,9 @@
     "lastSeen": "2025-12-16T00:00:00.000Z"
   },
   "tag-dex": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2023-10-09T00:00:00.000Z",
-    "lastSeen": "2025-12-17T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-digital-assets": {
     "count": 1,
@@ -353,9 +353,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-liquidity": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2023-10-09T00:00:00.000Z",
-    "lastSeen": "2025-12-14T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-liquidity-pools": {
     "count": 1,
@@ -473,7 +473,7 @@
     "lastSeen": "2025-12-16T00:00:00.000Z"
   },
   "tag-polkaswap": {
-    "count": 18,
+    "count": 19,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-20T00:00:00.000Z"
   },
@@ -488,9 +488,9 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-pswap": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-12T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-qr-payments": {
     "count": 1,
@@ -573,7 +573,7 @@
     "lastSeen": "2025-12-18T00:00:00.000Z"
   },
   "tag-sora": {
-    "count": 38,
+    "count": 39,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-20T00:00:00.000Z"
   },
@@ -673,14 +673,14 @@
     "lastSeen": "2025-12-19T00:00:00.000Z"
   },
   "tag-ton": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2023-11-25T00:00:00.000Z",
-    "lastSeen": "2025-12-17T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-tonswap": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-17T00:00:00.000Z"
+    "lastSeen": "2025-12-20T00:00:00.000Z"
   },
   "tag-trading": {
     "count": 3,
@@ -731,7 +731,7 @@
     "lastSeen": "2025-12-14T00:00:00.000Z"
   },
   "tag-xor": {
-    "count": 20,
+    "count": 21,
     "firstSeen": "2023-10-04T00:00:00.000Z",
     "lastSeen": "2025-12-20T00:00:00.000Z"
   }
