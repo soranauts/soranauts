@@ -37,7 +37,7 @@
   "tag-blockchain": {
     "count": 6,
     "firstSeen": "2023-11-28T00:00:00.000Z",
-    "lastSeen": "2025-12-15T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-blockchain-architecture": {
     "count": 1,
@@ -92,7 +92,7 @@
   "tag-cbdc": {
     "count": 10,
     "firstSeen": "2023-11-29T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-central-bank": {
     "count": 2,
@@ -122,7 +122,7 @@
   "tag-cross-chain": {
     "count": 6,
     "firstSeen": "2023-10-09T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-cross-chain-bridges": {
     "count": 1,
@@ -172,7 +172,7 @@
   "tag-defi": {
     "count": 36,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-democracy": {
     "count": 1,
@@ -182,7 +182,7 @@
   "tag-dex": {
     "count": 4,
     "firstSeen": "2023-10-09T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-digital-assets": {
     "count": 1,
@@ -227,7 +227,7 @@
   "tag-enterprise": {
     "count": 2,
     "firstSeen": "2025-03-20T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-ethereum": {
     "count": 1,
@@ -262,7 +262,7 @@
   "tag-governance": {
     "count": 26,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-hacks": {
     "count": 1,
@@ -300,7 +300,7 @@
   "tag-interoperability": {
     "count": 12,
     "firstSeen": "2023-11-26T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-investment-strategy": {
     "count": 3,
@@ -320,7 +320,7 @@
   "tag-iroha3": {
     "count": 9,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-ivm": {
     "count": 1,
@@ -355,7 +355,7 @@
   "tag-liquidity": {
     "count": 4,
     "firstSeen": "2023-10-09T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-liquidity-pools": {
     "count": 1,
@@ -415,7 +415,7 @@
   "tag-nexus": {
     "count": 6,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-nfts": {
     "count": 1,
@@ -470,7 +470,7 @@
   "tag-polkadot": {
     "count": 11,
     "firstSeen": "2023-12-13T00:00:00.000Z",
-    "lastSeen": "2025-12-16T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-polkaswap": {
     "count": 19,
@@ -575,7 +575,7 @@
   "tag-sora": {
     "count": 39,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-sora-card": {
     "count": 1,
@@ -650,7 +650,7 @@
   "tag-telegram": {
     "count": 3,
     "firstSeen": "2024-08-26T00:00:00.000Z",
-    "lastSeen": "2025-12-17T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-token-bonding-curve": {
     "count": 7,
@@ -670,17 +670,17 @@
   "tag-tokenomics": {
     "count": 13,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-19T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-ton": {
     "count": 4,
     "firstSeen": "2023-11-25T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-tonswap": {
     "count": 9,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   },
   "tag-trading": {
     "count": 3,
@@ -733,6 +733,6 @@
   "tag-xor": {
     "count": 21,
     "firstSeen": "2023-10-04T00:00:00.000Z",
-    "lastSeen": "2025-12-20T00:00:00.000Z"
+    "lastSeen": "2025-12-21T00:00:00.000Z"
   }
 }
