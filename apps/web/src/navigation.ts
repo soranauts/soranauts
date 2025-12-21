@@ -36,6 +36,7 @@ export const headerData = {
 const learnLinks: NavigationLink[] = [
   { text: 'SORA Codex', href: '/docs' },
   { text: 'SORA Glossary', href: '/glossary' },
+  { text: 'Platform Features', href: '/features' },
   { text: 'Tokenomics', href: 'https://wiki.sora.org/tokenomics.html' },
   { text: 'Governance', href: 'https://wiki.sora.org/sora-governance.html' },
   { text: 'Staking', href: 'https://wiki.sora.org/nominating-validators.html' },
