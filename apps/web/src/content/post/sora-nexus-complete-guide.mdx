@@ -1,8 +1,8 @@
 ---
 publishDate: 2025-12-09T00:00:00Z
-updateDate: 2025-12-09T00:00:00Z
+updateDate: 2025-12-21T00:00:00Z
 title: "SORA Nexus: Complete Guide to Blockchain's End of History"
-excerpt: "Discover SORA Nexus, the Hyperledger Iroha 3 blockchain uniting DeFi, CBDCs, and enterprise on one infinite-scale ledger with 1-second finality."
+excerpt: "Discover SORA Nexus (SORA v3), a next-generation blockchain built on Hyperledger Iroha to unite DeFi, CBDCs, and enterprises on a single scalable ledger."
 image: ~/assets/images/sora-nexus-complete-guide.jpg
 category: "Guides"
 tags:
@@ -24,23 +24,31 @@ customSlug: sora-nexus-complete-guide
 
 import FaqSection from '~/components/blog/FaqSection.astro';
 
+<div class="not-prose my-8 rounded-lg border border-amber-500/30 bg-amber-500/10 p-6">
+  <p class="font-semibold text-amber-300 mb-2">⚠️ Development Status</p>
+  <p class="text-sm text-amber-200">SORA Nexus represents the vision and architecture for SORA v3, currently in active development. The Fujiwara testnet runs on Hyperledger Iroha 2, with migration to Hyperledger Iroha 3 under evaluation. Features described here reflect design specifications from the SORA Nexus whitepaper and ongoing development; some capabilities are aspirational and not yet deployed to production.</p>
+</div>
+
 With over $150 billion processed through Cambodia's Bakong CBDC in 2024—representing 330% of the country's GDP—the question isn't whether blockchain can handle real finance. The question is which architecture will ultimately host the world's economic activity. SORA Nexus answers that question with a bold claim: one ledger is all humanity needs.
 
-In SORA Nexus, the blockchain fragmentation problem—thousands of L1s, L2s, sidechains, and appchains competing for liquidity and developer attention—finally meets its solution. Built on Hyperledger Iroha 3, SORA Nexus introduces a unified architecture where central bank digital currencies, permissionless DeFi, and enterprise applications coexist on a single network with sub-second finality.
+In SORA Nexus, the blockchain fragmentation problem—thousands of L1s, L2s, sidechains, and appchains competing for liquidity and developer attention—finally meets its solution. Building on Hyperledger Iroha technology (currently testing on Iroha 2 via the Fujiwara testnet, with migration to Iroha 3 underway), SORA Nexus introduces a unified architecture where central bank digital currencies, permissionless DeFi, and enterprise applications are designed to coexist on a single network with sub-second finality.
 
 This guide explains everything you need to know about SORA Nexus: its architecture, key components, real-world applications, and why its creators call it "the end of history" for blockchain infrastructure.
 
 ---
 
-## TL;DR
-
-- **SORA Nexus (SORA v3)** is a unified blockchain built on Hyperledger Iroha 3, designed to replace fragmented chains with one infinite-scale ledger for DeFi, CBDCs, and enterprise applications.
-- **The Iroha Virtual Machine (IVM)** delivers fully deterministic smart contract execution—every node produces identical results, eliminating the quirks that plague other blockchain VMs.
-- **Data Spaces** let organizations run private, governed environments (like CBDCs) alongside public DeFi on the same network without sacrificing composability.
-- **Parallel Lanes + Merge Ledger** provide horizontal scalability—multiple transaction pipelines process work simultaneously, then unify into a single canonical timeline with ~1-second finality.
-- **FASTPQ zk-STARK proofs** enable privacy-preserving auditability: prove your books balance without revealing individual transactions, all with post-quantum security.
-- **SUMERAGI consensus** uses BFT with deterministic leader rotation, producing blocks only when transactions exist and achieving rapid finality with ML-DSA-87 post-quantum signatures.
-- **XOR** remains the universal utility token for fees, staking, governance, and economic coordination across all data spaces.
+<div class="not-prose my-8 rounded-lg border-l-4 border-accent bg-accent/10 p-6">
+  <p class="font-semibold text-lg mb-3">TL;DR</p>
+  <ul class="text-sm text-gray-300 space-y-2">
+    <li>• <strong>SORA Nexus (SORA v3)</strong> is a unified blockchain designed to run on Hyperledger Iroha 3 (currently testing on Iroha 2 via Fujiwara testnet), aiming to replace fragmented chains with one infinite-scale ledger for DeFi, CBDCs, and enterprise applications.</li>
+    <li>• <strong>The Iroha Virtual Machine (IVM)</strong> is designed to deliver fully deterministic smart contract execution—every node produces identical results, eliminating the quirks that plague other blockchain VMs.</li>
+    <li>• <strong>Data Spaces</strong> are designed to let organizations run private, governed environments (like CBDCs) alongside public DeFi on the same network without sacrificing composability.</li>
+    <li>• <strong>Parallel Lanes + Merge Ledger</strong> provide horizontal scalability—multiple transaction pipelines process work simultaneously, then unify into a single canonical timeline, targeting sub-second finality.</li>
+    <li>• <strong>FASTPQ zk-STARK proofs</strong> enable privacy-preserving auditability: prove your books balance without revealing individual transactions, all with post-quantum security.</li>
+    <li>• <strong>SUMERAGI consensus</strong> will use BFT with deterministic leader rotation, producing blocks only when transactions exist and targeting rapid finality with ML-DSA-87 post-quantum signatures.</li>
+    <li>• <strong>XOR</strong> remains the universal utility token for fees, staking, governance, and economic coordination across all data spaces.</li>
+  </ul>
+</div>
 
 ---
 
@@ -50,12 +58,22 @@ Every time you bridge tokens between chains, you're paying a tax on blockchain's
 
 This fragmentation creates real costs, as explored in our guide on [how SORA's blockchain approach differs](/sora-blockchain-new-world-economic-order):
 
-- **Liquidity fragmentation**: Capital splits across dozens of chains, reducing depth and increasing slippage.
-- **User experience nightmare**: Managing wallets, bridges, and gas tokens across networks confuses mainstream users.
-- **Developer overhead**: Teams must choose a chain, then rebuild if they bet wrong or want multichain presence.
-- **Security surface expansion**: Every bridge becomes an attack vector, as billions lost to bridge hacks demonstrate.
+<div class="not-prose my-6 grid gap-4 sm:grid-cols-3">
+  <div class="rounded-lg border-l-4 border-red-500 bg-gray-800/40 p-4">
+    <p class="font-semibold text-red-400 mb-1">💸 Liquidity Fragmentation</p>
+    <p class="text-sm text-gray-300">Capital splits across dozens of chains, reducing depth and increasing slippage.</p>
+  </div>
+  <div class="rounded-lg border-l-4 border-orange-500 bg-gray-800/40 p-4">
+    <p class="font-semibold text-orange-400 mb-1">😵 UX Nightmare</p>
+    <p class="text-sm text-gray-300">Managing wallets, bridges, and gas tokens across networks confuses mainstream users.</p>
+  </div>
+  <div class="rounded-lg border-l-4 border-yellow-500 bg-gray-800/40 p-4">
+    <p class="font-semibold text-yellow-400 mb-1">⚙️ Developer Overhead</p>
+    <p class="text-sm text-gray-300">Teams must choose a chain, then rebuild if they bet wrong or want multichain presence.</p>
+  </div>
+</div>
 
-Current "solutions" like L2 rollups and cross-chain messaging don't solve the fundamental problem—they add complexity layers. What if one network could host everything?
+Security surface expansion makes the problem worse—every bridge becomes an attack vector, as billions lost to bridge hacks demonstrate. Current "solutions" like L2 rollups and cross-chain messaging don't solve the fundamental problem—they add complexity layers. What if one network could host everything?
 
 ---
 
@@ -82,29 +100,48 @@ The following diagram illustrates how SORA Nexus addresses blockchain's fragment
 
 SORA Nexus combines several innovations into a cohesive architecture. Let's explore each component.
 
+<div class="not-prose my-6 grid gap-4 sm:grid-cols-2">
+  <div class="rounded-lg border-l-4 border-blue-500 bg-gray-800/40 p-4">
+    <p class="font-semibold text-blue-400 mb-1">🏢 Data Spaces</p>
+    <p class="text-sm text-gray-300">Sovereign partitions for private CBDCs and public DeFi on one network.</p>
+  </div>
+  <div class="rounded-lg border-l-4 border-green-500 bg-gray-800/40 p-4">
+    <p class="font-semibold text-green-400 mb-1">🛤️ Parallel Lanes</p>
+    <p class="text-sm text-gray-300">Multiple transaction pipelines merge into unified finality.</p>
+  </div>
+  <div class="rounded-lg border-l-4 border-purple-500 bg-gray-800/40 p-4">
+    <p class="font-semibold text-purple-400 mb-1">⚙️ IVM</p>
+    <p class="text-sm text-gray-300">Fully deterministic smart contract execution—identical results everywhere.</p>
+  </div>
+  <div class="rounded-lg border-l-4 border-cyan-500 bg-gray-800/40 p-4">
+    <p class="font-semibold text-cyan-400 mb-1">🔐 SUMERAGI</p>
+    <p class="text-sm text-gray-300">BFT consensus with post-quantum signatures targeting ~1s finality.</p>
+  </div>
+</div>
+
 ### Data Spaces: Sovereign Zones on a Universal Ledger
 
 **Plain English:** Imagine a massive office building where different companies rent different floors. Each company controls who can access their floor, what rules apply there, and what information stays private. But everyone shares the same elevators, lobby, and building security. Data Spaces work the same way—private organizations get their own "floor" with full control while remaining connected to the broader SORA network.
 
-**How It Works:** Data Spaces are first-class ledger partitions with explicit privacy and routing policies. Each data space can define its own governance rules, validator requirements, and access controls. Private data spaces confine transaction details to authorized participants, while public data spaces allow open participation.
+**How It Works:** Data Spaces are designed as first-class ledger partitions with explicit privacy and routing policies. Each data space can define its own governance rules, validator requirements, and access controls. Private data spaces confine transaction details to authorized participants, while public data spaces allow open participation.
 
-**Technical Details:** In SORA Nexus, private data spaces use ML-DSA-87 attestation certificates to confine data to authorized validators. Public data spaces enable in-slot data availability sampling with Ed25519 signatures (with post-quantum fields reserved for future upgrades). Cross-data-space interactions happen through type-checked references when policies permit.
+**Technical Details:** In the planned SORA Nexus architecture, private data spaces use ML-DSA-87 attestation certificates to confine data to authorized validators. Public data spaces enable in-slot data availability sampling with Ed25519 signatures (with post-quantum fields reserved for future upgrades). Cross-data-space interactions happen through type-checked references when policies permit.
 
 ### Lanes and Merge Ledger: Parallel Paths to One Finality
 
 **Plain English:** Picture a grocery store with multiple checkout lanes. Each lane processes customers independently, but at the end of the day, all transactions merge into one unified sales report. SORA Nexus works similarly—multiple "lanes" process transactions in parallel for speed, then a "merge ledger" combines them into one authoritative timeline.
 
-**How It Works:** Rather than forcing all transactions through a single pipeline, SORA Nexus distributes work across multiple lanes. Each lane is a set of validators that processes a subset of transactions and produces its own block sequence. A lightweight merge ledger then orders lane tips into a single global sequence, ensuring one unified finality.
+**How It Works:** Rather than forcing all transactions through a single pipeline, SORA Nexus is designed to distribute work across multiple lanes. Each lane is a set of validators that processes a subset of transactions and produces its own block sequence. A lightweight merge ledger then orders lane tips into a single global sequence, ensuring one unified finality.
 
-**Technical Details:** Under the Iroha 3 model, lanes execute disjoint data-space workloads in parallel. The default configuration runs K=4 lanes, each handling up to 20,000 transfer-equivalent units (TEU) per second. When load is low, lanes automatically fuse to reduce latency; they split back under high demand. This elasticity happens deterministically without rewriting finalized lane history.
+**Technical Details:** Under the planned Iroha 3 architecture, lanes are designed to execute disjoint data-space workloads in parallel. The default configuration targets K=4 lanes, each designed to handle up to 20,000 transfer-equivalent units (TEU) per second. When load is low, lanes automatically fuse to reduce latency; they split back under high demand. This elasticity happens deterministically without rewriting finalized lane history.
 
 ### The IVM: Deterministic Execution for Smart Contracts
 
 **Plain English:** Think of the IVM as a universal calculator that always gives the exact same answer, no matter which computer runs it. Unlike other blockchain systems where tiny hardware differences can occasionally cause problems, the IVM guarantees identical results everywhere.
 
-**How It Works:** The Iroha Virtual Machine (IVM) executes smart contracts written in Kotodama bytecode using a fixed set of rules. It prohibits operations that could vary between computers—like floating-point math—and packages all inputs in a standardized format called Norito. Every validator running the same contract reaches the exact same conclusion.
+**How It Works:** The Iroha Virtual Machine (IVM) is designed to execute smart contracts written in Kotodama bytecode using a fixed set of rules. It prohibits operations that could vary between computers—like floating-point math—and packages all inputs in a standardized format called Norito. Every validator running the same contract reaches the exact same conclusion.
 
-**Technical Details:** The SORA Nexus Whitepaper specifies that the IVM provides 256 64-bit general-purpose registers, uses pointer-ABI types with Norito TLV envelopes, and enforces determinism by prohibiting floating-point operations and nondeterministic syscalls. Smart contracts compile to `.to` bytecode files with headers including ABI version, feature bits, and gas budgets.
+**Technical Details:** The SORA Nexus Whitepaper specifies that the IVM is designed to provide 256 64-bit general-purpose registers, uses pointer-ABI types with Norito TLV envelopes, and enforces determinism by prohibiting floating-point operations and nondeterministic syscalls. Smart contracts compile to `.to` bytecode files with headers including ABI version, feature bits, and gas budgets.
 
 ---
 
@@ -112,15 +149,15 @@ SORA Nexus combines several innovations into a cohesive architecture. Let's expl
 
 ### SUMERAGI Consensus: Fast BFT Finality
 
-SUMERAGI is the Byzantine Fault Tolerant consensus algorithm at SORA Nexus's heart. Developed for Hyperledger Iroha, SUMERAGI uses deterministic leader rotation and only produces blocks when transactions exist—no empty blocks wasting resources.
+SUMERAGI is the Byzantine Fault Tolerant consensus algorithm developed for Hyperledger Iroha. Proven in Iroha 2 deployments, SUMERAGI uses deterministic leader rotation and only produces blocks when transactions exist—no empty blocks wasting resources. The Iroha 3 implementation will evolve this proven foundation.
 
-Each lane maintains a committee of 22 validators (tolerating up to 7 Byzantine faults). Quorum certificates require signatures from at least 15 validators, using ML-DSA-87 post-quantum signatures for consensus-critical messages. The commit window is bounded to ≤2 slots, achieving lane finality in approximately 1 second.
+Each lane is designed to maintain a committee of 22 validators (tolerating up to 7 Byzantine faults). Quorum certificates require signatures from at least 15 validators, using ML-DSA-87 post-quantum signatures for consensus-critical messages. The commit window is bounded to ≤2 slots, targeting lane finality in approximately 1 second.
 
 ### FASTPQ: Zero-Knowledge Proofs with Post-Quantum Security
 
 **Plain English:** Imagine proving to a bouncer that you're over 21 without showing your actual ID. You just show them a special stamp that mathematically proves your age without revealing your birthdate, address, or anything else. FASTPQ proofs do the same thing for financial data—a central bank can prove their books balance perfectly without revealing any individual transaction.
 
-FASTPQ uses zk-STARKs (zero-knowledge Scalable Transparent Arguments of Knowledge) over the Goldilocks field with Poseidon2 hashing. The proof system achieves ≥128-bit security and verifies in 100-200 milliseconds per lane committee on consumer hardware. Because STARKs rely only on hash-based cryptography rather than elliptic curves, they're inherently post-quantum secure.
+FASTPQ uses zk-STARKs (zero-knowledge Scalable Transparent Arguments of Knowledge) over the Goldilocks field with Poseidon2 hashing. The proof system is designed to achieve ≥128-bit security and verify in 100-200 milliseconds per lane committee on consumer hardware. Because STARKs rely only on hash-based cryptography rather than elliptic curves, they're inherently post-quantum secure.
 
 This enables a powerful combination: **privacy by design with integrity guarantees**. Institutions can prove compliance and correctness without exposing confidential data.
 
@@ -128,21 +165,76 @@ This enables a powerful combination: **privacy by design with integrity guarante
 
 When blocks are produced, the network must ensure all necessary data remains retrievable. SORA Nexus uses two-dimensional Reed-Solomon erasure coding: blocks are partitioned into shards with row and column parity, allowing reconstruction from any subset meeting the threshold.
 
-For public data spaces, validators sample 8 shards per data space per slot, with a total sampling budget of ≤2,048 samples across lanes. Data availability verification completes within 300 milliseconds at approximately 1.5× storage overhead. Private data spaces handle DA internally via ML-DSA-87 attestations without public sampling.
+For public data spaces, validators are designed to sample 8 shards per data space per slot, with a total sampling budget of ≤2,048 samples across lanes. Data availability verification is designed to complete within 300 milliseconds at approximately 1.5× storage overhead. Private data spaces handle DA internally via ML-DSA-87 attestations without public sampling.
 
 ---
 
 ## SORA Nexus vs. Current Blockchain Approaches
 
-| Feature | SORA Nexus | Ethereum + L2s | Polkadot | Cosmos |
-|---------|------------|----------------|----------|--------|
-| Architecture | Single ledger + Data Spaces | Main chain + Rollups | Relay chain + Parachains | Hub + Zones |
-| Finality | ~1 second | 12+ seconds (+ L2 delays) | 12-60 seconds | 7+ seconds |
-| Privacy Model | Native private data spaces | Limited (zk-rollups) | Per-parachain | Per-chain |
-| Determinism | Full (IVM) | Near-full (EVM quirks) | Varies | Varies |
-| Scalability | Infinite (lanes + merge ledger) | L2-dependent | Limited slots (100) | Unlimited zones |
-| CBDC Ready | Yes (proven deployments) | No | No | Limited |
-| Post-Quantum Security | Yes (ML-DSA-87) | No | No | No |
+<div class="not-prose my-8 overflow-x-auto">
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-gray-800/50">
+        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Feature</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">SORA Nexus</th>
+        <th class="text-left p-4 font-semibold text-gray-400 border-b border-gray-700">Ethereum + L2s</th>
+        <th class="text-left p-4 font-semibold text-gray-400 border-b border-gray-700">Polkadot</th>
+        <th class="text-left p-4 font-semibold text-gray-400 border-b border-gray-700">Cosmos</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-700/50">
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Architecture</td>
+        <td class="p-4 text-accent">Single ledger + Data Spaces</td>
+        <td class="p-4 text-gray-400">Main chain + Rollups</td>
+        <td class="p-4 text-gray-400">Relay chain + Parachains</td>
+        <td class="p-4 text-gray-400">Hub + Zones</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Finality</td>
+        <td class="p-4 text-accent">~1 second (target)</td>
+        <td class="p-4 text-gray-400">12+ seconds (+ L2 delays)</td>
+        <td class="p-4 text-gray-400">12-60 seconds</td>
+        <td class="p-4 text-gray-400">7+ seconds</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Privacy Model</td>
+        <td class="p-4 text-accent">Native private data spaces</td>
+        <td class="p-4 text-gray-400">Limited (zk-rollups)</td>
+        <td class="p-4 text-gray-400">Per-parachain</td>
+        <td class="p-4 text-gray-400">Per-chain</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Determinism</td>
+        <td class="p-4 text-accent">Full (IVM)</td>
+        <td class="p-4 text-gray-400">Near-full (EVM quirks)</td>
+        <td class="p-4 text-gray-400">Varies</td>
+        <td class="p-4 text-gray-400">Varies</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Scalability</td>
+        <td class="p-4 text-accent">Infinite (lanes + merge ledger)</td>
+        <td class="p-4 text-gray-400">L2-dependent</td>
+        <td class="p-4 text-gray-400">Limited slots (100)</td>
+        <td class="p-4 text-gray-400">Unlimited zones</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">CBDC Ready</td>
+        <td class="p-4 text-accent">Yes (proven deployments)</td>
+        <td class="p-4 text-gray-400">No</td>
+        <td class="p-4 text-gray-400">No</td>
+        <td class="p-4 text-gray-400">Limited</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Post-Quantum Security</td>
+        <td class="p-4 text-accent">Yes (ML-DSA-87)</td>
+        <td class="p-4 text-gray-400">No</td>
+        <td class="p-4 text-gray-400">No</td>
+        <td class="p-4 text-gray-400">No</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Why Not Just Use Ethereum?
 
@@ -164,36 +256,132 @@ Cosmos zones communicate via IBC messaging, but each zone maintains fully indepe
 
 ## Performance Specifications
 
-| Parameter | Specification |
-|-----------|---------------|
-| Lane Finality Target | ≤1 second between non-empty blocks |
-| Commit Window | ≤2 slots for DA and proof completion |
-| Default Lane Count | 4 lanes (auto-fuses under low load) |
-| Lane TEU Budget | 20,000 transfer-equivalent units/second |
-| Envelope Size | Typical ≤16 MB; hard cap 32 MB |
-| Proof Verification | 100-200 ms per lane committee |
-| Validator Quorum | 22 validators per lane (f=7 fault tolerance) |
-| Consensus Security | Post-quantum (ML-DSA-87) |
-| DA Sample Target | ≤300ms verification window |
-| DA Samples per Public DS | 8 samples per slot |
-| Total DA Samples | ≤2,048 across all lanes |
+**Design specifications from the SORA Nexus whitepaper. These represent targets; actual performance will be validated as development progresses and mainnet deployment approaches.**
+
+<div class="not-prose my-8 overflow-x-auto">
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-gray-800/50">
+        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Parameter</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Specification (Target)</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-700/50">
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Lane Finality Target</td>
+        <td class="p-4 text-gray-300">≤1 second between non-empty blocks</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Commit Window</td>
+        <td class="p-4 text-gray-300">≤2 slots for DA and proof completion</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Default Lane Count</td>
+        <td class="p-4 text-gray-300">4 lanes (auto-fuses under low load)</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Lane TEU Budget</td>
+        <td class="p-4 text-gray-300">20,000 transfer-equivalent units/second</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Envelope Size</td>
+        <td class="p-4 text-gray-300">Typical ≤16 MB; hard cap 32 MB</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Proof Verification</td>
+        <td class="p-4 text-gray-300">100-200 ms per lane committee</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Validator Quorum</td>
+        <td class="p-4 text-gray-300">22 validators per lane (f=7 fault tolerance)</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Consensus Security</td>
+        <td class="p-4 text-gray-300">Post-quantum (ML-DSA-87)</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">DA Sample Target</td>
+        <td class="p-4 text-gray-300">≤300ms verification window</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">DA Samples per Public DS</td>
+        <td class="p-4 text-gray-300">8 samples per slot</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Total DA Samples</td>
+        <td class="p-4 text-gray-300">≤2,048 across all lanes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ---
 
 ## Key Components at a Glance
 
-| Component | Purpose | Plain English Analogy |
-|-----------|---------|----------------------|
-| **IVM** (Iroha Virtual Machine) | Smart contract execution | A universal calculator that always gives the same answer |
-| **Data Spaces** | Privacy/governance zones | Private offices in a shared building |
-| **Lanes** | Parallel processing | Multiple checkout lanes at a store |
-| **Merge Ledger** | Unified ordering | The receipt that combines all registers |
-| **FASTPQ** | Zero-knowledge proofs | Proving your age without showing your ID |
-| **Kura** | Block storage (history) | A filing cabinet for all past transactions |
-| **WSV** (World State View) | Current state | The current balance sheet—what exists now |
-| **SUMERAGI** | Consensus mechanism | A voting system where validators agree |
-| **Norito** | Serialization format | The "language" all data speaks on Nexus |
-| **Kotodama** | Smart contract bytecode | Compiled instructions that run on IVM |
+<div class="not-prose my-8 overflow-x-auto">
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-gray-800/50">
+        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Component</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Purpose</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Plain English Analogy</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-700/50">
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">IVM <span class="text-gray-500">(Iroha Virtual Machine)</span></td>
+        <td class="p-4 text-gray-300">Smart contract execution</td>
+        <td class="p-4 text-gray-300">A universal calculator that always gives the same answer</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Data Spaces</td>
+        <td class="p-4 text-gray-300">Privacy/governance zones</td>
+        <td class="p-4 text-gray-300">Private offices in a shared building</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Lanes</td>
+        <td class="p-4 text-gray-300">Parallel processing</td>
+        <td class="p-4 text-gray-300">Multiple checkout lanes at a store</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Merge Ledger</td>
+        <td class="p-4 text-gray-300">Unified ordering</td>
+        <td class="p-4 text-gray-300">The receipt that combines all registers</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">FASTPQ</td>
+        <td class="p-4 text-gray-300">Zero-knowledge proofs</td>
+        <td class="p-4 text-gray-300">Proving your age without showing your ID</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Kura</td>
+        <td class="p-4 text-gray-300">Block storage (history)</td>
+        <td class="p-4 text-gray-300">A filing cabinet for all past transactions</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">WSV <span class="text-gray-500">(World State View)</span></td>
+        <td class="p-4 text-gray-300">Current state</td>
+        <td class="p-4 text-gray-300">The current balance sheet—what exists now</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">SUMERAGI</td>
+        <td class="p-4 text-gray-300">Consensus mechanism</td>
+        <td class="p-4 text-gray-300">A voting system where validators agree</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Norito</td>
+        <td class="p-4 text-gray-300">Serialization format</td>
+        <td class="p-4 text-gray-300">The "language" all data speaks on Nexus</td>
+      </tr>
+      <tr class="hover:bg-gray-800/30 transition-colors">
+        <td class="p-4 font-medium text-gray-300">Kotodama</td>
+        <td class="p-4 text-gray-300">Smart contract bytecode</td>
+        <td class="p-4 text-gray-300">Compiled instructions that run on IVM</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ---
 
@@ -203,13 +391,16 @@ Cosmos zones communicate via IBC messaging, but each zone maintains fully indepe
 
 SORA's architecture isn't theoretical—it powers real central bank deployments:
 
-**Bakong (Cambodia):** Built on Hyperledger Iroha, <a href="https://soramitsu.co.jp/centralbanking" target="_blank" rel="noopener noreferrer">Bakong</a> processed transactions equivalent to 330% of Cambodia's GDP in 2024. It delivers mobile-first payments, ISO 20022 messaging, and delegated key recovery for a national population.
+<div class="not-prose my-8 rounded-lg border border-green-500/30 bg-green-500/10 p-6">
+  <p class="font-semibold text-green-400 text-lg mb-2">✅ Proven in Production</p>
+  <p class="text-sm text-gray-300 mb-3">Cambodia's <a href="https://soramitsu.co.jp/centralbanking" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:underline">Bakong</a> CBDC processed transactions equivalent to <strong class="text-green-300">330% of the country's GDP</strong> in 2024. SORAMITSU has engaged with <strong class="text-green-300">80+ central banks</strong> worldwide.</p>
+  <div class="text-sm text-gray-300 space-y-1">
+    <p><strong>• Digital Kina (Papua New Guinea):</strong> Proof-of-concept demonstrating 24/7 instant payments and programmable money.</p>
+    <p><strong>• Solomon Islands & Palau:</strong> CBDC pilots showcasing national settlement integration.</p>
+  </div>
+</div>
 
-**Digital Kina (Papua New Guinea):** The Bank of Papua New Guinea's recent proof-of-concept leveraged SORA's Hub-Chain architecture to demonstrate 24/7 instant payments and programmable money in a real regulatory context.
-
-**Solomon Islands and Palau:** Additional CBDC pilots showcase how SORA Nexus can connect national settlement systems to the broader decentralized economy. Read more about the [Solomon Islands CBDC pilot](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc).
-
-SORAMITSU has engaged with over 80 central banks and regulators, making SORA Nexus one of the most institution-ready blockchain platforms in existence.
+Read more about the [Solomon Islands CBDC pilot](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc).
 
 ### DeFi Applications
 
@@ -247,13 +438,13 @@ XOR remains the universal asset across SORA Nexus:
 - **Governance participation:** XOR holders vote on Parliament proposals and parameter changes.
 - **Cross-data-space settlement:** Even when data spaces use local assets (like CBDCs), XOR provides the bridge for cross-domain interactions.
 
-The Token Bonding Curve continues to manage XOR supply elastically, routing 20% of bonding curve intake to burns while maintaining reserve assets. For a deeper understanding of how these tokens interact, read our [deep dive into XOR, VAL, and PSWAP](/deep-dive-into-xor-val-and-pswap).
+The Token Bonding Curve is designed to manage XOR supply elastically, with the system built into Polkaswap for primary market XOR creation, routing 20% of bonding curve intake to burns while maintaining reserve assets. For a deeper understanding of how these tokens interact, read our [deep dive into XOR, VAL, and PSWAP](/deep-dive-into-xor-val-and-pswap).
 
 ---
 
 ## Migration Path from SORA v2
 
-The [Fujiwara testnet](/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future) serves as SORA Nexus's proving ground. Validators, provers, and gateway teams rehearse multi-lane scheduling, ISI governance flows, and bridge logic before mainnet activation.
+The [Fujiwara testnet](/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future) serves as SORA Nexus's proving ground. Running on Hyperledger Iroha 2, validators, provers, and gateway teams rehearse multi-lane scheduling, ISI governance flows, and bridge logic before mainnet activation.
 
 For existing SORA (v2) users:
 
@@ -302,17 +493,17 @@ Receipts and proofs align directly with protocol primitives, enabling applicatio
 <FaqSection>
   <details>
     <summary>What is SORA Nexus?</summary>
-    SORA Nexus is the third major version of the SORA network, built on Hyperledger Iroha 3. It introduces a unified ledger architecture with data spaces, parallel lanes, and the Iroha Virtual Machine (IVM) for deterministic smart contract execution. The vision is "One World, One Economy, One Ledger"—a single network capable of hosting DeFi, CBDCs, and enterprise applications without fragmentation.
+    SORA Nexus is the third major version of the SORA network, designed to run on Hyperledger Iroha 3 (currently testing on Iroha 2 via the Fujiwara testnet). It introduces a unified ledger architecture with data spaces, parallel lanes, and the Iroha Virtual Machine (IVM) for deterministic smart contract execution. The vision is "One World, One Economy, One Ledger"—a single network capable of hosting DeFi, CBDCs, and enterprise applications without fragmentation.
   </details>
 
   <details>
     <summary>How is SORA Nexus different from Ethereum?</summary>
-    SORA Nexus provides full determinism through the IVM (eliminating EVM quirks), native private data spaces (vs. Ethereum's public-by-default model), unified architecture instead of L2 fragmentation, ~1-second finality (vs. 12+ seconds plus L2 delays), and post-quantum security through ML-DSA-87 signatures. SORA Nexus also has proven CBDC deployments, which Ethereum lacks.
+    SORA Nexus is designed to provide full determinism through the IVM (eliminating EVM quirks), native private data spaces (vs. Ethereum's public-by-default model), unified architecture instead of L2 fragmentation, targeting ~1-second finality (vs. 12+ seconds plus L2 delays), and post-quantum security through ML-DSA-87 signatures. SORA Nexus also has proven CBDC deployments, which Ethereum lacks.
   </details>
 
   <details>
     <summary>What is the Iroha Virtual Machine (IVM)?</summary>
-    The IVM is SORA Nexus's purpose-built smart contract engine. It provides 256 64-bit registers, enforces strict determinism by prohibiting floating-point operations and nondeterministic syscalls, and uses pointer-ABI types with Norito TLV envelopes. Every validator executing the same contract produces identical results—critical for financial applications requiring predictability.
+    The IVM is SORA Nexus's purpose-built smart contract engine. It is designed to provide 256 64-bit registers, enforce strict determinism by prohibiting floating-point operations and nondeterministic syscalls, and use pointer-ABI types with Norito TLV envelopes. Every validator executing the same contract produces identical results—critical for financial applications requiring predictability.
   </details>
 
   <details>
@@ -322,12 +513,12 @@ Receipts and proofs align directly with protocol primitives, enabling applicatio
 
   <details>
     <summary>How does SORA Nexus achieve 1-second finality?</summary>
-    SORA Nexus uses SUMERAGI, a BFT consensus algorithm with deterministic leader rotation. Blocks are produced only when transactions exist, eliminating empty block overhead. Each lane maintains 22 validators (f=7 fault tolerance) with ML-DSA-87 post-quantum signatures for quorum certificates. The commit window is bounded to ≤2 slots, achieving approximately 1-second finality.
+    SORA Nexus is designed to use SUMERAGI, a BFT consensus algorithm with deterministic leader rotation. Blocks are produced only when transactions exist, eliminating empty block overhead. Each lane is designed to maintain 22 validators (f=7 fault tolerance) with ML-DSA-87 post-quantum signatures for quorum certificates. The commit window is bounded to ≤2 slots, targeting approximately 1-second finality.
   </details>
 
   <details>
     <summary>What are FASTPQ proofs and why do they matter?</summary>
-    FASTPQ uses zk-STARKs (zero-knowledge Scalable Transparent Arguments of Knowledge) to prove computational correctness without revealing underlying data. A central bank can prove all balances are consistent without exposing individual transactions. Because STARKs rely on hash-based cryptography rather than elliptic curves, they're post-quantum secure. Proofs verify in 100-200ms on consumer hardware.
+    FASTPQ uses zk-STARKs (zero-knowledge Scalable Transparent Arguments of Knowledge) to prove computational correctness without revealing underlying data. A central bank can prove all balances are consistent without exposing individual transactions. Because STARKs rely on hash-based cryptography rather than elliptic curves, they're post-quantum secure. Proofs are designed to verify in 100-200ms on consumer hardware.
   </details>
 
   <details>
@@ -337,17 +528,17 @@ Receipts and proofs align directly with protocol primitives, enabling applicatio
 
   <details>
     <summary>What role does XOR play in SORA Nexus?</summary>
-    XOR is the universal utility token across SORA Nexus. It pays transaction fees across all data spaces, serves as the staking asset for validators in SUMERAGI consensus, enables governance participation through the SORA Parliament, and provides cross-data-space settlement. The Token Bonding Curve continues managing XOR supply elastically.
+    XOR is the universal utility token across SORA Nexus. It pays transaction fees across all data spaces, serves as the staking asset for validators in SUMERAGI consensus, enables governance participation through the SORA Parliament, and provides cross-data-space settlement. The Token Bonding Curve is designed to manage XOR supply elastically.
   </details>
 
   <details>
     <summary>How does governance work in SORA Nexus?</summary>
-    SORA Nexus uses on-chain governance through the SORA Parliament, consisting of a Council (fixed seats via NPoS/appointment) and Assembly (stake-weighted or 1p1v). Proposals are Norito-encoded and enacted deterministically via IVM execution. This enables upgrades—even to cryptography or consensus—without hard forks or community splits.
+    SORA Nexus uses on-chain governance through the planned SORA Parliament, consisting of a Council (fixed seats via NPoS/appointment) and Assembly (stake-weighted or 1p1v). Proposals are Norito-encoded and enacted deterministically via IVM execution. This enables upgrades—even to cryptography or consensus—without hard forks or community splits.
   </details>
 
   <details>
     <summary>When will SORA Nexus launch?</summary>
-    The Fujiwara testnet is currently operational, allowing validators, provers, and developers to test multi-lane scheduling, governance flows, and bridge logic. Mainnet activation follows successful testnet validation. Check the official <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer">SORA Telegram</a> and <a href="https://twitter.com/sora_xor" target="_blank" rel="noopener noreferrer">@sora_xor on X</a> for timeline updates.
+    The Fujiwara testnet is currently operational on Hyperledger Iroha 2, allowing validators, provers, and developers to test multi-lane scheduling, governance flows, and bridge logic. Migration to Iroha 3 is under evaluation. Mainnet activation follows successful testnet validation. Check the official <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer">SORA Telegram</a> and <a href="https://twitter.com/sora_xor" target="_blank" rel="noopener noreferrer">@sora_xor on X</a> for timeline updates.
   </details>
 
   <details>
@@ -379,13 +570,58 @@ One ledger, many domains, infinite scale isn't just marketing—it describes how
 
 For developers and DeFi builders, SORA Nexus offers a canvas for next-generation applications that seamlessly integrate with regulated finance. For institutions and governments, it provides a governed, auditable, private-by-design solution that doesn't sacrifice global connectivity. And for the industry at large, it signals that we may not need countless isolated blockchains—we can grow one network organically to meet any requirement.
 
-The launch of SORA Nexus invites us to imagine a world where all economic activity lives on a single, interoperable ledger—much like all documents reside on the internet or all information flows through the web. That world is now within reach.
+The vision of SORA Nexus invites us to imagine a world where all economic activity lives on a single, interoperable ledger—much like all documents reside on the internet or all information flows through the web. That world is now within reach.
+
+---
+
+## 📚 Related Articles
+
+<div data-no-glossary class="not-prose my-6 grid gap-3 sm:grid-cols-2">
+  <a href="/sora-blockchain-new-world-economic-order" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🌍</span>
+    <span class="text-gray-200 font-medium">SORA: New World Economic Order</span>
+  </a>
+  <a href="/how-polkaswap-and-tonswap-work-together-on-sora" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🔗</span>
+    <span class="text-gray-200 font-medium">Polkaswap & TONSWAP Integration</span>
+  </a>
+  <a href="/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🧪</span>
+    <span class="text-gray-200 font-medium">Fujiwara Testnet Guide</span>
+  </a>
+  <a href="/deep-dive-into-xor-val-and-pswap" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">💎</span>
+    <span class="text-gray-200 font-medium">XOR, VAL & PSWAP Deep Dive</span>
+  </a>
+  <a href="/polkadot-architecture-guide" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🔷</span>
+    <span class="text-gray-200 font-medium">Polkadot Architecture Guide</span>
+  </a>
+  <a href="/best-decentralized-exchanges-dexs" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">💱</span>
+    <span class="text-gray-200 font-medium">Best Decentralized Exchanges</span>
+  </a>
+</div>
 
 ---
 
 **Stay Connected:**
-- Follow <a href="https://twitter.com/sora_xor" target="_blank" rel="noopener noreferrer">@sora_xor on X</a> for the latest updates
-- Join the <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer">SORA Telegram community</a>
-- Read the official <a href="https://sora-xor.medium.com/" target="_blank" rel="noopener noreferrer">SORA Medium blog</a>
-- Explore the <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer">SORA Wiki</a> for documentation
 
+<div data-no-glossary class="not-prose my-6 grid gap-3 sm:grid-cols-2">
+  <a href="https://twitter.com/sora_xor" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🐦</span>
+    <span class="text-gray-200 font-medium">@sora_xor on X</span>
+  </a>
+  <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">💬</span>
+    <span class="text-gray-200 font-medium">SORA Telegram</span>
+  </a>
+  <a href="https://sora-xor.medium.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">📝</span>
+    <span class="text-gray-200 font-medium">SORA Medium Blog</span>
+  </a>
+  <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">📚</span>
+    <span class="text-gray-200 font-medium">SORA Wiki</span>
+  </a>
+</div>
