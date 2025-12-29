@@ -57,9 +57,9 @@
     "cheerio": "^1.0.0",
     "chromadb": "^1.8.1",
     "commander": "^14.0.2",
-    "duckdb": "^1.4.2",
+    "duckdb": "^1.4.3",
     "glob": "^13.0.0",
-    "got": "^14.2.0",
+    "got": "^14.6.5",
     "minisearch": "^7.0.1",
     "openai": "^4.28.0",
     "p-queue": "^8.0.1",
@@ -77,8 +77,8 @@
     "fast-glob": "^3.3.2",
     "gray-matter": "^4.0.3",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
-    "tsx": "^4.20.5"
+    "lint-staged": "^16.2.7",
+    "tsx": "^4.21.0"
   },
   "lint-staged": {
     "{apps,packages}/**/*.{ts,tsx}": [],
