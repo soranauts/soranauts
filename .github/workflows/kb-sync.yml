@@ -27,11 +27,11 @@ jobs:
         run: |
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
         with:
           version: 9.12.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -60,11 +60,11 @@ jobs:
         run: |
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
         with:
           version: 9.12.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -93,11 +93,11 @@ jobs:
         run: |
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
         with:
           version: 9.12.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -126,11 +126,11 @@ jobs:
         run: |
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
         with:
           version: 9.12.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -159,11 +159,11 @@ jobs:
         run: |
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
         with:
           version: 9.12.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -192,11 +192,11 @@ jobs:
         run: |
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
         with:
           version: 9.12.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -225,11 +225,11 @@ jobs:
         run: |
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
         with:
           version: 9.12.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -258,11 +258,11 @@ jobs:
         run: |
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
         with:
           version: 9.12.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -301,11 +301,11 @@ jobs:
         run: |
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
         with:
           version: 9.12.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -342,18 +342,18 @@ jobs:
         run: |
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
         with:
           version: 9.12.2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       
       - name: Restore index cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: knowledge_base/.kb_index
           key: kb-index-${{ runner.os }}-${{ hashFiles('knowledge_base/.kb_index/manifest.json') }}
@@ -369,7 +369,7 @@ jobs:
         run: pnpm --filter @soranauts/web kb:ingest
         
       - name: Upload index manifest
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: kb-index-manifest
           path: knowledge_base/.kb_index/manifest.json
