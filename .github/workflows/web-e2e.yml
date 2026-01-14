@@ -35,6 +35,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Install Playwright browsers
+        run: pnpm --filter @soranauts/web exec playwright install --with-deps chromium
+
       - name: Build workspace
         run: pnpm -w build
 
