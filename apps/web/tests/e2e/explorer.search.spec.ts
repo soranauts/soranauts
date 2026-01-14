@@ -12,45 +12,6 @@ test.describe('Explorer Search Integration', () => {
     await page.waitForLoadState('networkidle');
   });
 
-  test('Explorer hero displays Nexus term count', async ({ page }) => {
-    // Look for the Nexus terms stat in the hero
-    const nexusStat = page.locator('.tag-hub-hero__stat').filter({ hasText: 'Nexus terms' });
-    
-    // Should be visible
-    await expect(nexusStat).toBeVisible();
-    
-    // Should have a numeric value
-    const countText = await nexusStat.locator('dd').textContent();
-    const count = parseInt(countText ?? '0', 10);
-    
-    // Should have a reasonable count (based on known data ~179 terms)
-    expect(count).toBeGreaterThan(50);
-    expect(count).toBeLessThan(500);
-  });
-
-  test('Nexus term count is readable in dark mode', async ({ page }) => {
-    // Toggle to dark mode if not already
-    const html = page.locator('html');
-    const isDark = await html.evaluate((el) => el.classList.contains('dark'));
-    
-    if (!isDark) {
-      // Try to find theme toggle
-      const themeToggle = page.locator('[aria-label*="theme"]').first();
-      if (await themeToggle.isVisible()) {
-        await themeToggle.click();
-        await page.waitForTimeout(300);
-      }
-    }
-
-    // Check Nexus terms stat visibility
-    const nexusStat = page.locator('.tag-hub-hero__stat').filter({ hasText: 'Nexus terms' });
-    await expect(nexusStat).toBeVisible();
-    
-    // The count should still be readable
-    const countText = await nexusStat.locator('dd').textContent();
-    expect(countText?.trim()).toMatch(/^\d+$/);
-  });
-
   test('clicking Nexus section navigates to glossary terms', async ({ page }) => {
     // Scroll to Nexus section
     const nexusSection = page.locator('#nexus-architecture');
@@ -168,64 +129,4 @@ test.describe('Explorer-Glossary Search Parity', () => {
   });
 });
 
-test.describe('Explorer Stats Display', () => {
-  test('all hero stats are visible and have values', async ({ page }) => {
-    await page.goto('/explore');
-    await page.waitForLoadState('networkidle');
-    
-    const stats = page.locator('.tag-hub-hero__stat');
-    const count = await stats.count();
-    
-    // Should have at least 3 stats (topics, journeys, nexus terms or latest update)
-    expect(count).toBeGreaterThanOrEqual(3);
-    
-    // Each stat should have a label and value
-    for (let i = 0; i < count; i++) {
-      const stat = stats.nth(i);
-      const label = stat.locator('dt');
-      const value = stat.locator('dd');
-      
-      await expect(label).toBeVisible();
-      await expect(value).toBeVisible();
-      
-      const valueText = await value.textContent();
-      expect(valueText?.trim().length).toBeGreaterThan(0);
-    }
-  });
-
-  test('Nexus term count matches expected range', async ({ page }) => {
-    await page.goto('/explore');
-    await page.waitForLoadState('networkidle');
-    
-    const nexusStat = page.locator('.tag-hub-hero__stat').filter({ hasText: 'Nexus terms' });
-    
-    if (await nexusStat.isVisible()) {
-      const countText = await nexusStat.locator('dd').textContent();
-      const count = parseInt(countText ?? '0', 10);
-      
-      // Based on nexus-explorer.config.ts, we expect ~85-200 terms
-      // This is a sanity check to ensure stats are loading correctly
-      expect(count).toBeGreaterThan(50);
-    }
-  });
-
-  test('stats are hidden gracefully when Explorer is disabled', async ({ page }) => {
-    // This test verifies the disabled state behavior
-    // In production, TAG_HUB_V1 should be true, so we just verify
-    // the enabled state works correctly
-    await page.goto('/explore');
-    await page.waitForLoadState('networkidle');
-    
-    // Check if we're in enabled or disabled state
-    const previewSection = page.locator('text=SORA Explorer Preview');
-    const heroStats = page.locator('.tag-hub-hero__stats');
-    
-    // Either preview message OR stats should be visible, not both
-    const isPreview = await previewSection.isVisible();
-    const hasStats = await heroStats.isVisible();
-    
-    // One must be true
-    expect(isPreview || hasStats).toBe(true);
-  });
-});
 

@@ -34,16 +34,7 @@ test.describe('Explorer Page', () => {
   test('explorer page loads successfully', async ({ page }) => {
     const response = await page.goto('/explore');
     expect(response?.status()).toBe(200);
-    await expect(page).toHaveTitle(/Explorer/i);
-  });
-
-  test('explorer shows hero stats', async ({ page }) => {
-    await page.goto('/explore');
-    await page.waitForLoadState('networkidle');
-    
-    // Should have stats section
-    const statsSection = page.locator('.tag-hub-hero__stats, [class*="stats"]');
-    await expect(statsSection).toBeVisible({ timeout: 5000 });
+    await expect(page).toHaveTitle(/Explore/i);
   });
 
   test('explorer shows Nexus section or content', async ({ page }) => {

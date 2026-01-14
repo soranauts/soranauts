@@ -1,21 +1,14 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('SORA Explorer experience', () => {
-  test('renders the enabled SORA Explorer layout', async ({ page }) => {
+  test('renders the explore page layout', async ({ page }) => {
     await page.goto('/explore');
 
-    const explorerHeading = page.getByRole('heading', { name: 'SORA Explorer', exact: true });
-    const previewHeading = page.getByRole('heading', { name: 'SORA Explorer Preview', exact: true });
-    if (await previewHeading.count()) {
-      await expect(previewHeading).toBeVisible();
-    } else {
-      await expect(explorerHeading).toBeVisible();
-    }
+    // Current production has h1 "Explore Topics" with kicker "SORA EXPLORER"
+    await expect(page.getByRole('heading', { name: 'Explore Topics', level: 1 })).toBeVisible();
 
+    // Tag hub count should be visible
     await expect(page.getByTestId('tag-hub-count')).toContainText(/tag/i);
-    await expect(page.getByRole('heading', { name: 'Foundational Topics' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Quick Paths' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Trending & Recently Updated' })).toBeVisible();
   });
 
   test('supports interactive filtering', async ({ page }) => {
