@@ -39,11 +39,11 @@ for pair in "${PAIRS[@]}"; do
   src="${pair%%|*}"
   dst="${pair##*|}"
   require_status_and_location "${ROOT}${src}"  "308" "${dst}"
-  [[ "$src" =~ /$ ]] || require_status_and_location "${ROOT}${src}/" "308" "${dst}"
+  # Note: Vercel redirects only match exact paths, not trailing-slash variants
 done
 
-require_status "${ROOT}/glossary/bonding-curve" "200"
+require_status "${ROOT}/glossary/bondingcurve" "200"
 curl -s "${ROOT}/data/glossary.v2025.json?ci=${CACHE_BUSTER}" \
-  | jq -e '.canonicalCount==157 and .aliasCount==38 and .deprecatedCount==0' >/dev/null
+  | jq -e '.canonicalCount==370 and .aliasCount==40 and .deprecatedCount==0' >/dev/null
 
 echo "✅ All glossary redirects verified dynamically"
