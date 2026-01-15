@@ -113,3 +113,9 @@ docs/claude-reference/COMMANDS.md
 docs/claude-reference/GENERATION_SUMMARY.md
 docs/claude-reference/INDEX.md
 glossary-audit-bundle.md
+
+# Generated reports
+content-gaps-report.md
+content-lint-report.md
+monitoring-report.md
+explorer-audit-bundle.md
