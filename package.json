@@ -94,6 +94,7 @@
       "preact": ">=10.27.3",
       "h3@<=1.15.4": ">=1.15.5",
       "diff@<8.0.3": ">=8.0.3"
-    }
+    },
+    "pnpmOverridesNotes": "h3 and diff overrides added 2026-01-15 to fix CVEs while Astro 5.16.9 pins older versions. Remove after Astro update includes patched deps natively. Check with: pnpm why h3 diff -r"
   }
 }
