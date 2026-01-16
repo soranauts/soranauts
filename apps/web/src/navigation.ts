@@ -90,6 +90,7 @@ export const footerData = {
         { text: 'SORA Telegram', href: 'https://t.me/sora_xor' },
         { text: 'Polkaswap Telegram', href: 'https://t.me/polkaswap' },
         { text: 'Soranauts Telegram', href: 'https://t.me/Soranauts' },
+        { text: 'Soranauts News', href: 'https://t.me/SoranautsNews' },
         { text: 'SORA Daily', href: 'https://t.me/SORAdaily' },
         { text: 'Twitter/X', href: 'https://x.com/sora_xor' },
       ],
