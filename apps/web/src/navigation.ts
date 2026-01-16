@@ -81,6 +81,7 @@ export const footerData = {
           href: 'https://medium.com/sora-xor/the-sora-network-hosts-the-first-substrate-polkadot-based-cbdc-in-collaboration-with-the-central-6cc78e9b82b8',
         },
         { text: 'GitHub', href: 'https://github.com/soranauts' },
+        { text: 'Contributors', href: '/contributors' },
       ],
     },
     {
