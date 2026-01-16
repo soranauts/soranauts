@@ -5,6 +5,51 @@
 
 ---
 
+## 2026-01-15 — Open-Source Launch Prep
+
+**Duration:** ~3 hours
+**Tools Used:** Cursor AI
+
+### Completed
+- [x] Tag cleanup: Deleted 21 stale backup tags (kept 4 release tags)
+- [x] Branch cleanup: Deleted 27 local branches + 2 worktrees (now only `main` locally)
+- [x] Security fixes: Resolved 3 CVEs (devalue, h3, diff)
+- [x] README refresh: Updated metrics, removed AstroWind artifacts, added prerequisites
+- [x] Root cleanup: Moved 48 files to docs/, deleted 7 temp files (~3.8MB freed)
+- [x] GitHub repo settings: Updated description, homepage, topics via CLI
+- [x] Created v1.0.0 tag and release notes
+- [x] Security audit: Removed personal paths from 4 files
+- [x] Removed tracked .env.local from git
+
+### Metrics After Session
+| Metric | Before | After |
+|--------|--------|-------|
+| Tags | 25 | 5 |
+| Local branches | 39 | 1 (main) |
+| Remote branches | 3 | 3 |
+| Root .md files | 36 | 6 (standard OSS) |
+| Security vulnerabilities | 3 | 0 |
+
+### Commits This Session
+```
+01c2569 docs: add v1.0.0 release notes
+f544970 chore: remove personal paths from documentation
+6bdfb5f chore: remove tracked .env.local, add to gitignore
+5abd9fe chore: clean up root directory for open-source launch
+d22304a docs(readme): refresh for open-source launch
+5c0755c docs: add note about temporary pnpm overrides for Astro deps
+d58ba4b fix(deps): resolve h3 and diff security vulnerabilities
+133c859 fix(deps): resolve CVE-2026-22774 (devalue DoS vulnerability)
+```
+
+### Handoff Notes
+- v1.0.0 tag created and pushed — ready to create GitHub release manually
+- Repository is ready to be made public
+- GitHub release URL: https://github.com/soranauts/soranauts/releases/new?tag=v1.0.0
+- pnpm.overrides added for h3/diff — remove after Astro update
+
+---
+
 ## 2026-01-15 — Context System Setup
 
 **Duration:** ~15 min
