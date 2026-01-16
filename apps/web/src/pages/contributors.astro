@@ -100,10 +100,10 @@ const communityLinks = [
                 target={link.href.startsWith('http') ? '_blank' : undefined}
                 rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 class:list={[
-                  "inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition",
+                  "inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition border",
                   link.primary 
-                    ? "bg-brand-500 text-white hover:bg-brand-600" 
-                    : "border border-border-subtle text-text-muted hover:border-brand-500 hover:text-link",
+                    ? "border-brand-500 bg-transparent text-brand-500 hover:bg-brand-soft hover:text-brand-600" 
+                    : "border-border-subtle bg-transparent text-text-muted hover:border-brand-500 hover:text-link",
                 ]}
               >
                 {link.text}
@@ -164,7 +164,7 @@ const communityLinks = [
         </div>
         <h2 class="text-2xl font-bold text-text-main">Recognition</h2>
         <p class="mx-auto mt-4 max-w-2xl text-text-muted">
-          Contributors are recognized in our <a href="https://github.com/soranauts/soranauts/releases" target="_blank" rel="noopener noreferrer" class="text-link hover:text-link-hover hover:underline">release notes</a> and celebrated here on this page. Every contribution — big or small — helps make Soranauts better for the entire SORA community.
+          Contributors are recognized in our <a href="https://github.com/soranauts/soranauts/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer" class="text-link hover:text-link-hover hover:underline">changelog</a> and celebrated here on this page. Every contribution — big or small — helps make Soranauts better for the entire SORA community.
         </p>
         <div class="mt-6 rounded-lg border border-dashed border-border-subtle bg-soft/50 px-6 py-4">
           <p class="text-sm text-text-soft">
