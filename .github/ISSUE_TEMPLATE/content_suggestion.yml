@@ -1,0 +1,59 @@
+name: Content Suggestion
+description: Suggest a new article or glossary term
+title: "[Content]: "
+labels: ["content", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us grow the Soranauts knowledge base! Suggest new content below.
+
+  - type: dropdown
+    id: content_type
+    attributes:
+      label: Content Type
+      description: What type of content are you suggesting?
+      options:
+        - Article
+        - Glossary Term
+        - Documentation
+    validations:
+      required: true
+
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      description: The topic or term you're suggesting.
+      placeholder: e.g., "XST Synthetic Assets" or "How to stake VAL"
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_important
+    attributes:
+      label: Why is this relevant to SORA?
+      description: Explain why this content would be valuable for the SORA community.
+      placeholder: This is important because...
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_sources
+    attributes:
+      label: Suggested Sources
+      description: Links to official documentation, articles, or other sources that could help write this content.
+      placeholder: |
+        - https://wiki.sora.org/...
+        - https://medium.com/sora-xor/...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: willing_to_write
+    attributes:
+      label: Contribution
+      description: Would you like to help write this content?
+      options:
+        - label: I'm willing to write this content
+          required: false
