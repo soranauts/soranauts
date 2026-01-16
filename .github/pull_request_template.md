@@ -1,50 +1,39 @@
 ## Description
 
-<!-- Brief description of what this PR does -->
+Brief description of the changes in this PR.
 
 ## Type of Change
 
-- [ ] 📝 Content (glossary terms, articles, documentation)
-- [ ] ✨ Feature (new functionality)
+- [ ] 📝 Content (article, glossary term, documentation)
 - [ ] 🐛 Bug fix
-- [ ] 🎨 Style/UI improvement
-- [ ] ♻️ Refactor (no functional changes)
-- [ ] 🧪 Tests
+- [ ] ✨ New feature
+- [ ] ♻️ Refactor
+- [ ] 🎨 Styling/UI
 - [ ] 📦 Dependencies
-- [ ] 🔧 Configuration
 
-## Content Checklist
+## Checklist
 
-<!-- For PRs that add or modify glossary terms -->
+### All PRs
+- [ ] I have read [CONTRIBUTING.md](./CONTRIBUTING.md)
+- [ ] My changes follow the project's style guidelines
+- [ ] I have tested my changes locally (`pnpm dev`)
 
-- [ ] Ran `pnpm content:lint` — no errors
-- [ ] Ran `pnpm content:validate` — no schema errors
-- [ ] Ran `pnpm glossary:build` — generation successful
-- [ ] Previewed term(s) locally with `pnpm author:preview <slug>`
-- [ ] Taglines present (or intentionally omitted with reason)
-- [ ] Related terms are canonical slugs and exist
-- [ ] Summary is ≤ 2 sentences and ≤ 300 characters
+### Content PRs
+- [ ] Facts verified against official sources (SORA Wiki, official docs)
+- [ ] No promotional language or unverified claims
+- [ ] Frontmatter is complete and valid
+- [ ] Links use correct slugs
 
-## Code Checklist
-
-<!-- For PRs that modify code -->
-
-- [ ] Ran `pnpm typecheck` — no errors
-- [ ] Ran `pnpm lint` — no errors
-- [ ] Ran `pnpm test` — tests pass
-- [ ] Added/updated tests if applicable
-- [ ] Updated documentation if applicable
-
-## Screenshots
-
-<!-- If applicable, add screenshots or recordings -->
+### Code PRs
+- [ ] `pnpm typecheck` passes
+- [ ] `pnpm lint` passes
+- [ ] `pnpm build` succeeds
+- [ ] Tests updated if applicable
 
 ## Related Issues
 
-<!-- Link any related issues: Fixes #123, Relates to #456 -->
+Closes #
 
-## Notes for Reviewers
+## Screenshots (if applicable)
 
-<!-- Any additional context or areas to focus on -->
-
-
+<!-- Add screenshots for UI changes -->
