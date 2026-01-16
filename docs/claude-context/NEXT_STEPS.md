@@ -18,17 +18,18 @@
 
 | Source | Command | Items Found |
 |--------|---------|-------------|
-| Uncommitted | `git status` | 2 (this context system) |
+| Uncommitted | `git status` | 0 |
 | TODO comments | `grep -r "TODO" apps/web/src/` | 61 |
 | FIXME comments | `grep -r "FIXME" apps/web/src/` | 1 |
 
 ---
 
-## Immediate (From git status)
+## Immediate
 
-| Task | Priority | Source |
+| Task | Priority | Status |
 |------|----------|--------|
-| Commit claude-context files | P0 | `git status` |
+| Create GitHub Release from v1.0.0 tag | P0 | 🔄 Manual step pending |
+| Make repository public | P0 | 🔄 Manual step pending |
 
 ---
 
@@ -45,16 +46,20 @@
 
 ---
 
-## Planned (Open-Source Prep)
+## Open-Source Prep — COMPLETED ✅
 
 | # | Task | Priority | Status |
 |---|------|----------|--------|
-| 1 | Branch cleanup (39 → ~5) | P1 | Pending |
-| 2 | Tag cleanup (25 tags) | P2 | Pending |
-| 3 | v1.0.0 release | P0 | Pending |
-| 4 | README refresh | P1 | Pending |
-| 5 | CONTRIBUTING.md review | P2 | Exists |
-| 6 | Issue templates | P2 | Pending |
+| 1 | Branch cleanup (39 → 1 local) | P1 | ✅ Done |
+| 2 | Tag cleanup (25 → 5 tags) | P2 | ✅ Done |
+| 3 | v1.0.0 release tag | P0 | ✅ Done |
+| 4 | README refresh | P1 | ✅ Done |
+| 5 | Root directory cleanup | P1 | ✅ Done |
+| 6 | Security audit | P0 | ✅ Done |
+| 7 | Remove personal info | P0 | ✅ Done |
+| 8 | Fix CVEs (devalue, h3, diff) | P0 | ✅ Done |
+| 9 | GitHub repo settings | P2 | ✅ Done |
+| 10 | v1.0.0 release notes | P1 | ✅ Done |
 
 ---
 
@@ -62,13 +67,15 @@
 
 | Date | Task | Commit |
 |------|------|--------|
+| 2026-01-15 | v1.0.0 release notes | `01c2569` |
+| 2026-01-15 | Remove personal paths | `f544970` |
+| 2026-01-15 | Remove tracked .env.local | `6bdfb5f` |
+| 2026-01-15 | Root directory cleanup | `5abd9fe` |
+| 2026-01-15 | README refresh | `d22304a` |
+| 2026-01-15 | Fix h3 and diff CVEs | `d58ba4b` |
+| 2026-01-15 | Fix devalue CVE | `133c859` |
 | 2026-01-14 | Batch update all dependencies | `cd54f58` |
-| 2026-01-14 | Fix verify-glossary-redirects.sh | `b5c7709` |
-| 2026-01-14 | Make cache headers test environment-aware | `2a01ae1` |
-| 2026-01-14 | Add Playwright browser installation step | `8890c30` |
-| 2026-01-14 | Align e2e tests with simplified /explore page | `f6aef3e` |
 | 2026-01-13 | Resolve security vulnerabilities (qs, preact) | `ac9d8c7` |
-| 2026-01-13 | Update glossary term count to 370 | `5c17ad4` |
 
 ---
 
@@ -81,8 +88,9 @@
 ### Technical Debt
 - [ ] Resolve 61 TODO comments
 - [ ] Resolve 1 FIXME comment
-- [ ] Clean up backup branches
+- [ ] Remove pnpm.overrides for h3/diff after Astro update
 
-### Infrastructure
-- [ ] Branch cleanup for open-source readiness
-- [ ] Tag strategy and cleanup
+### Post-Launch
+- [ ] Issue templates (.github/ISSUE_TEMPLATE/)
+- [ ] Discussion templates
+- [ ] Community guidelines

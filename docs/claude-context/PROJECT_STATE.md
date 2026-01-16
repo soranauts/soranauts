@@ -1,6 +1,6 @@
 # Soranauts Project State
 
-> **Last Updated:** 2026-01-15
+> **Last Updated:** 2026-01-15 (after open-source prep)
 > **Data Source:** Extracted from codebase on 2026-01-15
 
 ---
@@ -15,14 +15,19 @@
 | Categories | 18 | `jq '[.terms[].category] \| unique \| length'` |
 | Blog posts | 45 | `ls apps/web/src/content/post/*.mdx \| wc -l` |
 | Docs pages | 26 | `find apps/web/src/content/docs -name "*.mdx" \| wc -l` |
-| Total commits | 634 | `git rev-list --count HEAD` |
-| Branches | 39 | `git branch -a \| wc -l` |
+| Total commits | 642 | `git rev-list --count HEAD` |
+| Local branches | 1 (main) | `git branch \| wc -l` |
+| Remote branches | 3 | `git branch -r \| wc -l` |
+| Tags | 5 | `git tag -l \| wc -l` |
+| CI workflows | 15 | `ls .github/workflows/*.yml \| wc -l` |
 
 ---
 
 ## Current Status
 
-**Phase:** Pre-Open-Source Launch / Active Development
+**Phase:** Ready for Open-Source Launch 🚀
+
+**Release:** v1.0.0 (tag created, pending GitHub release)
 
 ### What Works
 
@@ -31,17 +36,36 @@
 - [x] Build: 667 pages in 16.80s
 - [x] CI workflows: 15 active workflows
 - [x] E2E tests: 15 test files
+- [x] Security: All CVEs resolved
+- [x] Repository: Clean, ready for public
 
-### In Progress
+### Completed (Today)
 
-- [ ] Branch cleanup (39 branches, many are backups)
-- [ ] Tag management (25 tags)
+- [x] Branch cleanup (39 → 1 local, 3 remote)
+- [x] Tag cleanup (25 → 5)
+- [x] Root directory cleanup (48 files moved, 7 deleted)
+- [x] README refresh
+- [x] Security audit passed
+- [x] v1.0.0 tag created
 
 ### Known Issues
 
 - [ ] 61 TODO comments in `apps/web/src/`
 - [ ] 1 FIXME comment in `apps/web/src/`
 - [ ] MDX pages (179) vs canonical terms (370) mismatch — some terms may not have dedicated MDX pages
+- [ ] pnpm.overrides for h3/diff — remove after Astro update
+
+---
+
+## Tags
+
+| Tag | Date | Purpose |
+|-----|------|---------|
+| v1.0.0 | 2026-01-15 | Official open-source launch |
+| v2025.2.0 | 2025-12-02 | Previous release |
+| v2025.1.1-homepage-redesign | 2025-12-02 | Homepage feature |
+| glossary-v2025-release | 2025-11-27 | Glossary v2025 milestone |
+| release/glossary-canonical-20251129-041236 | 2025-11-29 | Canonical URLs release |
 
 ---
 
@@ -49,16 +73,16 @@
 
 | Hash | Date | Description |
 |------|------|-------------|
+| 01c2569 | 2026-01-15 | docs: add v1.0.0 release notes |
+| f544970 | 2026-01-15 | chore: remove personal paths from documentation |
+| 6bdfb5f | 2026-01-15 | chore: remove tracked .env.local, add to gitignore |
+| 5abd9fe | 2026-01-15 | chore: clean up root directory for open-source launch |
+| d22304a | 2026-01-15 | docs(readme): refresh for open-source launch |
+| d58ba4b | 2026-01-15 | fix(deps): resolve h3 and diff security vulnerabilities |
+| 133c859 | 2026-01-15 | fix(deps): resolve CVE-2026-22774 (devalue DoS vulnerability) |
 | cd54f58 | 2026-01-14 | chore(deps): batch update all dependencies (#47) |
-| b5c7709 | 2026-01-14 | fix(ci): update verify-glossary-redirects.sh for expanded glossary |
-| 2a01ae1 | 2026-01-14 | test(e2e): make cache headers test environment-aware |
-| 8890c30 | 2026-01-14 | ci(e2e): add Playwright browser installation step |
-| f6aef3e | 2026-01-14 | test: align e2e tests with simplified /explore page |
 | ac9d8c7 | 2026-01-13 | fix(deps): resolve CVE-2025-15284 (qs) and CVE-2026-22028 (preact) |
-| b35d8fe | 2026-01-13 | Update validate-links.ts |
 | 5c17ad4 | 2026-01-13 | content: update glossary term count from 369 to 370 on homepage |
-| c8fd19e | 2026-01-12 | feat(nav): add /features page to footer and About page |
-| fb2dd2e | 2026-01-12 | content: update tag stats, improve website improvements summary |
 
 ---
 
