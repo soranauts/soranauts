@@ -1,0 +1,210 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Button from '~/components/ui/Button.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
+import type { MetaData } from '~/types';
+
+const metadata: MetaData = {
+  title: 'Contributors | Soranauts',
+  description: 'Join the Soranauts community. Learn how to contribute to the SORA ecosystem knowledge base.',
+};
+
+const contributeWays = [
+  {
+    icon: 'tabler:brand-github',
+    title: 'Contribute on GitHub',
+    description: 'Submit pull requests, fix bugs, add features, or improve documentation.',
+    links: [
+      { text: 'View Repository', href: 'https://github.com/soranauts/soranauts', primary: true },
+      { text: 'Contributing Guide', href: 'https://github.com/soranauts/soranauts/blob/main/CONTRIBUTING.md' },
+    ],
+  },
+  {
+    icon: 'tabler:pencil',
+    title: 'Edit Pages Directly',
+    description: 'Every article has an "Edit this page" link. Spot a typo or outdated info? Fix it in one click.',
+    links: [
+      { text: 'Browse Articles', href: '/blog', primary: true },
+    ],
+  },
+  {
+    icon: 'tabler:message-report',
+    title: 'Report Issues',
+    description: 'Found a bug or have a suggestion? Open an issue and help us improve.',
+    links: [
+      { text: 'Open an Issue', href: 'https://github.com/soranauts/soranauts/issues/new', primary: true },
+    ],
+  },
+];
+
+const communityLinks = [
+  {
+    icon: 'tabler:brand-telegram',
+    title: 'Soranauts Chat',
+    description: 'Join the discussion with other community members.',
+    href: 'https://t.me/Soranauts',
+    cta: 'Join the conversation',
+    accent: 'brand',
+  },
+  {
+    icon: 'tabler:speakerphone',
+    title: 'Soranauts News',
+    description: 'Stay updated with the latest announcements and releases.',
+    href: 'https://t.me/SoranautsNews',
+    cta: 'Get updates',
+    accent: 'info',
+  },
+];
+---
+
+<PageLayout metadata={metadata}>
+  <!-- SECTION 1: Hero -->
+  <section class="relative overflow-hidden bg-page">
+    <div class="absolute inset-0 -z-[1] bg-gradient-to-br from-brand-soft/70 via-transparent to-transparent" aria-hidden="true" />
+    <div class="mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 pb-16 pt-24 text-center md:px-6">
+      <span class="inline-flex items-center gap-2 rounded-full border border-brand-soft bg-surface/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-brand-600 shadow-sm">
+        Community
+      </span>
+      <h1 class="text-4xl font-bold leading-tight text-text-main md:text-5xl lg:text-6xl">
+        Contributors
+      </h1>
+      <p class="max-w-2xl text-lg text-text-muted md:text-xl">
+        Soranauts is built by the SORA community, for the SORA community.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 2: How to Contribute -->
+  <WidgetWrapper id="contribute" containerClass="max-w-5xl">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Get Involved</p>
+      <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">How to contribute</h2>
+      <p class="mt-4 text-lg text-text-muted">
+        Soranauts is open source. Whether you're a developer, writer, or just passionate about SORA — there's a way for you to help.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {contributeWays.map(({ icon, title, description, links }) => (
+        <div class="flex flex-col rounded-xl border border-border-subtle bg-surface/90 p-6">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-brand-500">
+            <Icon name={icon} class="h-6 w-6" />
+          </div>
+          <h3 class="text-lg font-semibold text-text-main">{title}</h3>
+          <p class="mt-2 flex-grow text-sm text-text-muted">{description}</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {links.map((link) => (
+              <a
+                href={link.href}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class:list={[
+                  "inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition",
+                  link.primary 
+                    ? "bg-brand-500 text-white hover:bg-brand-600" 
+                    : "border border-border-subtle text-text-muted hover:border-brand-500 hover:text-link",
+                ]}
+              >
+                {link.text}
+                {link.href.startsWith('http') && (
+                  <Icon name="tabler:external-link" class="h-3.5 w-3.5" />
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </WidgetWrapper>
+
+  <!-- SECTION 3: Join the Community -->
+  <section class="px-4 py-16 md:px-6">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-brand-500">Connect</p>
+        <h2 class="mt-4 text-3xl font-bold text-text-main md:text-4xl">Join the community</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-text-muted">
+          Connect with other SORA enthusiasts, ask questions, and stay in the loop.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        {communityLinks.map(({ icon, title, description, href, cta, accent }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative flex flex-col overflow-hidden rounded-2xl border border-border-subtle bg-surface p-6 transition hover:border-brand-500/50 hover:shadow-elevated"
+          >
+            <div class:list={[
+              "mb-4 flex h-14 w-14 items-center justify-center rounded-full transition group-hover:scale-110",
+              accent === 'brand' && "bg-brand-soft text-brand-500",
+              accent === 'info' && "bg-status-info/10 text-status-info",
+            ]}>
+              <Icon name={icon} class="h-7 w-7" />
+            </div>
+            <h3 class="text-xl font-semibold text-text-main">{title}</h3>
+            <p class="mt-2 flex-grow text-text-muted">{description}</p>
+            <div class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 group-hover:text-brand-600">
+              {cta}
+              <Icon name="tabler:arrow-right" class="h-4 w-4 transition group-hover:translate-x-1" />
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Recognition -->
+  <WidgetWrapper id="recognition" containerClass="max-w-4xl">
+    <div class="rounded-2xl border border-border-subtle bg-surface/50 p-8 md:p-10">
+      <div class="flex flex-col items-center text-center">
+        <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-brand-500">
+          <Icon name="tabler:award" class="h-7 w-7" />
+        </div>
+        <h2 class="text-2xl font-bold text-text-main">Recognition</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-text-muted">
+          Contributors are recognized in our <a href="https://github.com/soranauts/soranauts/releases" target="_blank" rel="noopener noreferrer" class="text-link hover:text-link-hover hover:underline">release notes</a> and celebrated here on this page. Every contribution — big or small — helps make Soranauts better for the entire SORA community.
+        </p>
+        <div class="mt-6 rounded-lg border border-dashed border-border-subtle bg-soft/50 px-6 py-4">
+          <p class="text-sm text-text-soft">
+            <Icon name="tabler:clock" class="mr-1.5 inline h-4 w-4" />
+            Coming soon: Automated contributor wall powered by GitHub API
+          </p>
+        </div>
+      </div>
+    </div>
+  </WidgetWrapper>
+
+  <!-- CTA -->
+  <CallToAction
+    isDark
+    classes={{
+      container: 'max-w-4xl',
+      actions: 'gap-3 sm:gap-4',
+    }}
+    actions={[
+      {
+        variant: 'primary',
+        href: 'https://github.com/soranauts/soranauts',
+        target: '_blank',
+        text: 'View on GitHub',
+        icon: 'tabler:brand-github',
+      },
+      {
+        variant: 'secondary',
+        href: 'https://t.me/Soranauts',
+        target: '_blank',
+        text: 'Join Telegram',
+        icon: 'tabler:brand-telegram',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready to contribute?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Every contribution makes the SORA knowledge base stronger. Join us in building something valuable for the community.
+    </Fragment>
+  </CallToAction>
+</PageLayout>
