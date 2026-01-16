@@ -5,6 +5,7 @@ import Footer from '~/components/widgets/Footer.astro';
 import Announcement from '~/components/widgets/Announcement.astro';
 import SchemaMarkup from '~/components/SEO/SchemaMarkup.astro';
 import RelatedArticles from '~/components/blog/RelatedArticles.astro';
+import EditThisPage from '~/components/common/EditThisPage.astro';
 import { SITE } from '~/utils/config';
 import { fetchPosts } from '~/utils/blog';
 
@@ -130,6 +131,11 @@ const enhancedMetadata = {
     >
       <slot />
     </article>
+
+    <!-- Edit This Page Link -->
+    <div class="container mx-auto px-4 py-4 flex justify-end border-t border-muted/20 mt-8">
+      <EditThisPage filePath={`apps/web/src/content/post/${post.slug}.mdx`} />
+    </div>
   
   <!-- Related Articles Section -->
     <div class="container mx-auto px-4 py-8">
