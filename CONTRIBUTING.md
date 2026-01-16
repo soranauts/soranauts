@@ -1,6 +1,54 @@
 # Contributing to Soranauts
 
-Welcome to the Soranauts monorepo! This guide will help you get started with development.
+Welcome to the Soranauts monorepo! We're excited to have you contribute to the SORA ecosystem knowledge base.
+
+## 🔗 Quick Links
+
+| Resource | Link |
+|----------|------|
+| **Contributors Page** | [soranauts.com/contributors](/contributors) |
+| **Create an Issue** | [Issue Templates](https://github.com/soranauts/soranauts/issues/new/choose) |
+| **Community Chat** | [Telegram](https://t.me/Soranauts) |
+| **News & Updates** | [Telegram Channel](https://t.me/SoranautsNews) |
+
+---
+
+## 🤝 How to Contribute
+
+There are many ways to contribute to Soranauts:
+
+### Quick Edits
+Every blog post has an **"Edit this page"** link at the bottom. Spot a typo or outdated info? Click to open a PR directly.
+
+### Report Issues
+Use our [issue templates](https://github.com/soranauts/soranauts/issues/new/choose) for:
+- 🐛 **Bug Reports** — Something broken? Let us know
+- ✨ **Feature Requests** — Ideas for improvements
+- 📝 **Content Suggestions** — Propose new articles or glossary terms
+
+### Submit Pull Requests
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a PR using our [pull request template](.github/PULL_REQUEST_TEMPLATE.md)
+
+---
+
+## 📋 Quality Standards
+
+**Soranauts maintains high standards because SORA deserves accurate, high-quality content.**
+
+### Content Guidelines
+- ✅ **Facts must be verified** against official SORA sources (Wiki, docs, on-chain data)
+- ✅ **Educational value only** — no promotional fluff or unverified claims
+- ✅ **Clear and accessible** — complex topics explained simply
+- ✅ **Properly sourced** — cite official documentation when possible
+
+### Code Guidelines
+- ✅ Follow existing patterns and conventions
+- ✅ Ensure `pnpm typecheck` and `pnpm lint` pass
+- ✅ Test changes locally with `pnpm dev`
+- ✅ Keep PRs focused (~300 lines unless migration)
 
 ---
 
@@ -239,10 +287,15 @@ pnpm build
 - **Conventional Commits**: For clear changelog generation
 - **EditorConfig**: Consistent formatting across editors
 
-## Need Help?
+## 💬 Getting Help
 
-- Check the [ARCHITECTURE.md](./ARCHITECTURE.md) for technical details
-- Review [TASKS.md](./TASKS.md) for current project status
+### Community Support
+- **Telegram Chat**: [t.me/Soranauts](https://t.me/Soranauts) — Ask questions, discuss ideas
+- **GitHub Issues**: [Open an issue](https://github.com/soranauts/soranauts/issues/new/choose) for bugs or feature requests
+
+### Documentation
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — Technical architecture details
+- [Contributors Page](/contributors) — Contribution overview and community links
 - Look at existing components in `apps/web/src/components/`
 
 Happy coding! 🚀
