@@ -2,8 +2,8 @@
 
 ## 🚀 **Quick Start**
 ```bash
-# Navigate to the project
-cd /Users/dustinmatlock/Documents/GitHub/soranauts
+# Navigate to the project root
+cd soranauts
 
 # Start the development server
 pnpm dev

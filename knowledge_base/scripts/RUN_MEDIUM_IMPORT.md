@@ -5,21 +5,10 @@
 ### From Repository Root (Recommended)
 
 ```bash
-# Navigate to repo root
-cd /Users/dustinmatlock/Documents/GitHub/soranauts
-
 # Set API key (if needed)
 export OPENAI_API_KEY="sk-proj-..."
 
 # Run the import
-pnpm --filter @soranauts/web kb:sync:medium --urls knowledge_base/scripts/config/medium_urls.txt
-```
-
-### From Any Directory
-
-```bash
-cd /Users/dustinmatlock/Documents/GitHub/soranauts && \
-export OPENAI_API_KEY="sk-proj-..." && \
 pnpm --filter @soranauts/web kb:sync:medium --urls knowledge_base/scripts/config/medium_urls.txt
 ```
 
