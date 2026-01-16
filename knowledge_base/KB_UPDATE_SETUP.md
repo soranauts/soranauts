@@ -25,7 +25,7 @@ Both vector store options require additional setup:
 ### Step 2: Start Chroma Server
 
 ```bash
-cd /Users/dustinmatlock/Documents/GitHub/soranauts
+# From the repository root
 docker-compose -f docker-compose.chroma.yml up -d
 ```
 

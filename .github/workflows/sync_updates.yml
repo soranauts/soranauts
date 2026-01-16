@@ -7,7 +7,7 @@ on:
 
 jobs:
   sync_updates_report:
-    if: github.repository_owner == 'dustinmatlock'
+    if: github.repository_owner == 'soranauts'
     runs-on: ubuntu-latest
     permissions:
       contents: read
