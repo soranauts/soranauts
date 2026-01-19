@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "cheerio": "^1.1.2",
-    "chromadb": "^1.10.5",
+    "chromadb": "^3.2.2",
     "commander": "^14.0.2",
     "duckdb": "^1.4.3",
     "glob": "^13.0.0",

@@ -22,8 +22,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       chromadb:
-        specifier: ^1.10.5
-        version: 1.10.5(encoding@0.1.13)(openai@4.104.0(encoding@0.1.13)(zod@3.25.76))
+        specifier: ^3.2.2
+        version: 3.2.2
       commander:
         specifier: ^14.0.2
         version: 14.0.2
@@ -152,8 +152,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       chromadb:
-        specifier: ^1.10.5
-        version: 1.10.5(encoding@0.1.13)(openai@4.104.0(encoding@0.1.13)(zod@3.25.76))
+        specifier: ^3.2.2
+        version: 3.2.2
       cli-table3:
         specifier: ^0.6.5
         version: 0.6.5
@@ -2427,26 +2427,40 @@ packages:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
     engines: {node: '>=18'}
 
-  chromadb@1.10.5:
-    resolution: {integrity: sha512-+IeTjjf44pKUY3vp1BacwO2tFAPcWCd64zxPZZm98dVj/kbSBeaHKB2D6eX7iRLHS1PTVASuqoR6mAJ+nrsTBg==}
-    engines: {node: '>=14.17.0'}
-    peerDependencies:
-      '@google/generative-ai': ^0.1.1
-      cohere-ai: ^5.0.0 || ^6.0.0 || ^7.0.0
-      ollama: ^0.5.0
-      openai: ^3.0.0 || ^4.0.0
-      voyageai: ^0.0.3-1
-    peerDependenciesMeta:
-      '@google/generative-ai':
-        optional: true
-      cohere-ai:
-        optional: true
-      ollama:
-        optional: true
-      openai:
-        optional: true
-      voyageai:
-        optional: true
+  chromadb-js-bindings-darwin-arm64@1.2.1:
+    resolution: {integrity: sha512-h/xk938Dt/WRUdt8RN/YGMn3BPcRYH0M0dzoEL5R7ZEZRsrdUsGCKtvwUuVMFuh7Zi7+nmE79I2m7cqnFHh7oQ==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+
+  chromadb-js-bindings-darwin-x64@1.2.1:
+    resolution: {integrity: sha512-yIlee4W36hw3g2nn85dbYsggda3kzse47/3My8+bsa2dFH/W/LPpQlVy1kWEZMffRV8GHt1Zrpsv83TApIcggw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+
+  chromadb-js-bindings-linux-arm64-gnu@1.2.1:
+    resolution: {integrity: sha512-oAJSsiXhlgWOmIG7gMu16YjI2n2Vz8NSsooCq/ZnkEYoYbaU0KQZmMLLh0dFt63SEAHrabfTttwDhIjIkJ+/dw==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+
+  chromadb-js-bindings-linux-x64-gnu@1.2.1:
+    resolution: {integrity: sha512-hu9Wg8J9narhYDbckNtTT4H3xt7oN37XMKjC2YenA8JFxaPDT8JXoX3NcA/64eqi33SB8tf7Dn12Ys90Jp60GA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+
+  chromadb-js-bindings-win32-x64-msvc@1.2.1:
+    resolution: {integrity: sha512-4Eect14iwSNJ9vuh8PQMwKkf2YqlnIvcJ2h0wSEiCD4qUFw9WeSsNvP7U/fRiRhSMhEKBCNnhe0AGiOX9XMN2w==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+
+  chromadb@3.2.2:
+    resolution: {integrity: sha512-0Jp0uX1cr74hcK3N/Uk55ae/lqjDi3PY3g0ggplojlLCJ1elwbTU4V1gfzDenxZLrqoFWvmRa7JZPAFBA0oklQ==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   ci-info@4.3.1:
     resolution: {integrity: sha512-Wdy2Igu8OcBpI2pZePZ5oWjPC38tmDVx5WKUXKwlLYkA0ozo85sLsLvkBbBn/sZaSCMFOGZJ14fvW9t5/d7kdA==}
@@ -3329,9 +3343,6 @@ packages:
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
-
-  isomorphic-fetch@3.0.0:
-    resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
 
   jiti@1.21.7:
     resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==}
@@ -5158,9 +5169,6 @@ packages:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
     engines: {node: '>=18'}
     deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
-
-  whatwg-fetch@3.6.20:
-    resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
 
   whatwg-mimetype@4.0.0:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}
@@ -7622,14 +7630,30 @@ snapshots:
 
   chownr@3.0.0: {}
 
-  chromadb@1.10.5(encoding@0.1.13)(openai@4.104.0(encoding@0.1.13)(zod@3.25.76)):
+  chromadb-js-bindings-darwin-arm64@1.2.1:
+    optional: true
+
+  chromadb-js-bindings-darwin-x64@1.2.1:
+    optional: true
+
+  chromadb-js-bindings-linux-arm64-gnu@1.2.1:
+    optional: true
+
+  chromadb-js-bindings-linux-x64-gnu@1.2.1:
+    optional: true
+
+  chromadb-js-bindings-win32-x64-msvc@1.2.1:
+    optional: true
+
+  chromadb@3.2.2:
     dependencies:
-      cliui: 8.0.1
-      isomorphic-fetch: 3.0.0(encoding@0.1.13)
+      semver: 7.7.3
     optionalDependencies:
-      openai: 4.104.0(encoding@0.1.13)(zod@3.25.76)
-    transitivePeerDependencies:
-      - encoding
+      chromadb-js-bindings-darwin-arm64: 1.2.1
+      chromadb-js-bindings-darwin-x64: 1.2.1
+      chromadb-js-bindings-linux-arm64-gnu: 1.2.1
+      chromadb-js-bindings-linux-x64-gnu: 1.2.1
+      chromadb-js-bindings-win32-x64-msvc: 1.2.1
 
   ci-info@4.3.1: {}
 
@@ -8693,13 +8717,6 @@ snapshots:
       is-inside-container: 1.0.0
 
   isexe@2.0.0: {}
-
-  isomorphic-fetch@3.0.0(encoding@0.1.13):
-    dependencies:
-      node-fetch: 2.7.0(encoding@0.1.13)
-      whatwg-fetch: 3.6.20
-    transitivePeerDependencies:
-      - encoding
 
   jiti@1.21.7: {}
 
@@ -10844,8 +10861,6 @@ snapshots:
   whatwg-encoding@3.1.1:
     dependencies:
       iconv-lite: 0.6.3
-
-  whatwg-fetch@3.6.20: {}
 
   whatwg-mimetype@4.0.0: {}
 
