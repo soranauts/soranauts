@@ -5,6 +5,10 @@ on:
     paths:
       - 'apps/web/src/content/post/**'
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   backtest:
     runs-on: ubuntu-latest

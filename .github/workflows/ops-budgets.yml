@@ -11,6 +11,10 @@ on:
         required: false
         default: 'https://soranauts.com'
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   lighthouse:
     name: Lighthouse Performance Audit

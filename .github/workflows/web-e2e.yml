@@ -11,6 +11,9 @@ on:
       - ".github/workflows/web-e2e.yml"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   e2e:
     runs-on: ubuntu-latest
