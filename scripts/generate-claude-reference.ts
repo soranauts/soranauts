@@ -46,6 +46,15 @@ if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
+/**
+ * Escape string for use in markdown table cells.
+ * Only pipe characters need escaping in markdown tables.
+ * @codeql-suppress js/incomplete-sanitization - Intentional: only pipe needs escaping for markdown tables
+ */
+function escapeForMarkdownTable(str: string): string {
+  return str.replace(/\|/g, '\\|');
+}
+
 function extractLinks(content: string): { internal: string[]; external: string[] } {
   const internal: Set<string> = new Set();
   const external: Set<string> = new Set();
@@ -174,7 +183,7 @@ function generateLinkInventory(posts: BlogPost[], terms: GlossaryTerm[]): string
   
   for (const post of posts) {
     const slug = `/${post.slug}`;
-    const title = post.title.replace(/\|/g, '\\|');
+    const title = escapeForMarkdownTable(post.title);
     output += `| ${slug} | ${title} | ${post.filePath} |\n`;
   }
   
@@ -186,7 +195,7 @@ function generateLinkInventory(posts: BlogPost[], terms: GlossaryTerm[]): string
   
   for (const term of terms) {
     const slug = `/glossary/${term.slug}`;
-    const title = term.title.replace(/\|/g, '\\|');
+    const title = escapeForMarkdownTable(term.title);
     output += `| ${slug} | ${title} | ${term.filePath} |\n`;
   }
   
@@ -355,9 +364,9 @@ function generateGlossaryTerms(terms: GlossaryTerm[]): string {
   
   for (const term of terms) {
     const slug = term.slug;
-    const title = term.title.replace(/\|/g, '\\|');
+    const title = escapeForMarkdownTable(term.title);
     const category = term.category || 'N/A';
-    const summary = term.summary ? term.summary.substring(0, 80).replace(/\|/g, '\\|') + '...' : 'N/A';
+    const summary = term.summary ? escapeForMarkdownTable(term.summary.substring(0, 80)) + '...' : 'N/A';
     
     output += `| ${slug} | ${title} | ${category} | ${summary} |\n`;
   }

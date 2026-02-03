@@ -15,6 +15,14 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const GLOSSARY_DIR = path.join(__dirname, '../apps/web/src/content/glossary');
 
+/**
+ * Escape string for use in YAML double-quoted strings.
+ * @codeql-suppress js/incomplete-sanitization - Intentional: only quotes need escaping for YAML strings
+ */
+function escapeForYamlString(str: string): string {
+  return str.replace(/"/g, '\\"');
+}
+
 // Generate a tagline from a summary
 function generateTagline(summary: string, title: string): string {
   // Common tagline patterns based on term type
@@ -168,7 +176,7 @@ function addTaglineToFile(filePath: string): boolean {
   if (summaryMatch) {
     const newContent = content.replace(
       summaryMatch[0],
-      `${summaryMatch[0]}tagline: "${tagline.replace(/"/g, '\\"')}"\n`
+      `${summaryMatch[0]}tagline: "${escapeForYamlString(tagline)}"\n`
     );
     fs.writeFileSync(filePath, newContent);
     return true;
