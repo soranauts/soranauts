@@ -4,14 +4,14 @@ slug: commitwindow
 category: "Consensus"
 tags:
   - "Nexus Architecture"
-summary: "The bounded number of slots (Delta <= 2) within which SUMERAGI must finalize a proposal, ensuring predictable finality even under adversarial network conditions."
-tagline: "Essential component of the SORA Nexus architecture."
+summary: "Configured slot budget for proofs and DA bundles to arrive before a transaction aborts, encoded in commit timing parameters."
+tagline: "Defines how long the system waits for required proofs or DA evidence."
 related:
+  - "Commitments"
+  - "Data Availability"
+  - "DA Certificates"
+  - "Sumeragi"
   - "Propose-Validate-Vote-Commit"
-  - "Epoch Beacon"
-  - "Lane Finality"
-  - "Locked QC"
-  - "NEW_VIEW"
 links:
   - label: "Nexus Whitepaper"
     url: "/documents/sora_nexus_whitepaper.pdf"

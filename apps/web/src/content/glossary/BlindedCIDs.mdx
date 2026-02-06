@@ -4,8 +4,8 @@ slug: blindedcids
 category: "Networking"
 tags:
   - "Nexus Architecture"
-summary: "Obfuscated content identifiers within SoraNet that preserve privacy by hiding the underlying data reference while still allowing routing and settlement."
-tagline: "Preserve privacy by hiding the underlying data reference while still allowing routing and settlement."
+summary: "Blinded content identifiers derived from a canonical CID and a published salt (domain-separated BLAKE3) so gateways can resolve content without exposing the original ID."
+tagline: "Allows gateway requests without revealing canonical manifest identifiers."
 related:
   - "Exit Caches"
   - "Fixed-Size Cells"
