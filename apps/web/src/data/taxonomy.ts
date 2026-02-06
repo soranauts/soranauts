@@ -1,15 +1,36 @@
 // Unified taxonomy dataset for glossary terms, entities, versions, and tags.
 
-import tagsData from './taxonomy-tags.json';
-import rawTagStats from './tag-stats.json';
-import { tagHubMetadata, type TagHubMetadataEntry } from './tag-hub.config';
+import type { TagHubMetadataEntry } from './tag-hub.config';
 type TagStatsEntry = {
   count: number;
   firstSeen?: string;
   lastSeen?: string;
 };
 
+async function importJson<T>(specifier: string): Promise<T> {
+  // Node 25+ requires import attributes for JSON modules, while older toolchains
+  // (and Vite/Astro) may handle JSON without them.
+  try {
+    const mod = await import(specifier, { with: { type: 'json' } } as unknown as undefined);
+    return (mod as { default: T }).default;
+  } catch {
+    try {
+      const mod = await import(specifier, { assert: { type: 'json' } } as unknown as undefined);
+      return (mod as { default: T }).default;
+    } catch {
+      const mod = await import(specifier);
+      return (mod as { default: T }).default;
+    }
+  }
+}
+
+const tagsData = await importJson<{ tags?: unknown }>('./taxonomy-tags.json');
+const rawTagStats = await importJson<Record<string, TagStatsEntry>>('./tag-stats.json');
 const tagStats = rawTagStats as Record<string, TagStatsEntry>;
+
+// Node's ESM loader (including type-stripped TS execution) requires explicit extensions.
+// Keep a dynamic import so bundlers can still resolve this module as usual.
+const { tagHubMetadata } = await import('./tag-hub.config.ts');
 
 
 export type TaxonomyNodeType = 'term' | 'entity' | 'version' | 'tag';
@@ -1274,8 +1295,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "Iroha Special Instructions",
     "type": "term",
     "category": "technology",
-    "summary": "Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic…",
-    "definition": "Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic and domain-specific operations, providing a flexible framework for building complex decentralized applications on SORA v3. This represents a key advancement over Hyperledger Iroha 2, offering enhanced programmability and interoperability.",
+    "summary": "Iroha Special Instructions (ISIs) are the syscall surface that IVM smart contracts use to call into the host ledger in Hyperledger Iroha 3, enabling deterministic and metered operations.",
+    "definition": "In Hyperledger Iroha 3, smart contracts execute as IVM bytecode and interact with the host ledger via the SCALL instruction; its immediate selects an Iroha Special Instruction (ISI). ISIs define the deterministic, metered operations available to contracts and governance logic, while the host/executor defines the exact semantics and gas costs. This syscall surface is the programmable interface used across SORA v3/Nexus for domain-specific behavior and governed automation.",
     "aliases": [
       "Iroha Special Instructions",
       "ISIs"
@@ -5040,8 +5061,8 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "title": "WASM (WebAssembly)",
     "type": "term",
     "category": "technology",
-    "summary": "A portable binary instruction format that enables high-performance smart contracts and runtime modules.",
-    "definition": "WebAssembly lets blockchain runtimes execute code securely and efficiently across platforms. Hyperledger Iroha 3 uses WASM for domain-specific smart instructions, and many SORA ecosystem tools compile to WASM for browser compatibility.",
+    "summary": "A portable binary instruction format used for sandboxed, high-performance execution (often for smart contracts and blockchain runtime modules).",
+    "definition": "WebAssembly lets runtimes execute code securely and efficiently across platforms. Many blockchain ecosystems (including Substrate-based chains) use WASM for runtimes or smart contracts. SORA v3 / Hyperledger Iroha 3 executes on-ledger programmable logic as IVM bytecode (Kotodama) rather than general-purpose WASM modules.",
     "aliases": [
       "WASM",
       "WebAssembly"

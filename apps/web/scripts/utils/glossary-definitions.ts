@@ -1,5 +1,7 @@
-import { taxonomy } from '../../src/data/taxonomy';
-import { GLOSSARY_TERMS } from '../../src/data/glossary.config';
+// This module is imported by build-time scripts. Use dynamic imports with explicit
+// extensions so it can run under Node's ESM loader (including type-stripped TS execution).
+const { taxonomy } = await import('../../src/data/taxonomy.ts');
+const { GLOSSARY_TERMS } = await import('../../src/data/glossary.config.ts');
 
 const aliasSources = new Map<string, string[]>();
 
@@ -131,9 +133,9 @@ const FALLBACK_ENTRIES: Record<string, FallbackEntry> = {
     whyItMatters: 'Enables permissionless access to DeFi markets with competitive rates.',
   },
   hyperledgeriroha3: {
-    definition: 'Hyperledger Iroha 3 is the next-generation version of the Iroha framework, featuring enhanced performance, WASM smart contracts, and improved developer tooling. SORA v3 architecture draws from Iroha 3 innovations for enterprise-grade blockchain infrastructure.',
+    definition: 'Hyperledger Iroha 3 is the next-generation version of the Iroha framework that underpins SORA v3 (SORA Nexus). It introduces a redesigned data model, improved performance, and deterministic smart-contract execution via the Iroha Virtual Machine (IVM), where contracts are deployed as IVM bytecode (.to) and interact with the host ledger through Iroha Special Instructions (ISIs).',
     category: 'technology',
-    whyItMatters: 'Delivers next-generation performance and developer experience for SORA v3.',
+    whyItMatters: 'Provides the deterministic, enterprise-grade execution and governance foundation for SORA v3 (Nexus).',
   },
   community: {
     definition: 'The SORA community comprises developers, validators, liquidity providers, governance participants, and users who collectively shape the network direction through proposals, discussions, and on-chain voting.',
@@ -198,7 +200,7 @@ const FALLBACK_ENTRIES: Record<string, FallbackEntry> = {
     whyItMatters: 'Foundation for all SORA applications and economic activity.',
   },
   smartcontracts: {
-    definition: 'Smart contracts are self-executing programs stored on blockchain that automatically enforce agreement terms. SORA supports smart contracts through Ink! (Rust-based) and future WASM execution environments.',
+    definition: 'Smart contracts are programs executed deterministically by a blockchain network. In SORA v3 (SORA Nexus), contract logic is written in Kotodama and deployed as IVM bytecode, with on-ledger effects performed through Iroha Special Instructions (ISIs) and metered by gas schedules.',
     category: 'technology',
     whyItMatters: 'Enables trustless automation of complex financial agreements.',
   },
@@ -443,4 +445,3 @@ export const getWhyItMattersForSlug = (slug: string): string | null => {
 };
 
 export { FALLBACK_ENTRIES };
-

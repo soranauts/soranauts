@@ -192,6 +192,7 @@ const ACRONYMS = new Set([
   'JSON', 'HTTP', 'HTTPS', 'TCP', 'UDP', 'TLS', 'SSL', 'DNS', 'URL', 'URI',
   'UUID', 'GUID', 'RPC', 'ZK', 'TVL', 'APY', 'APR', 'TON', 'ETH', 'BTC',
   'TONSWAP', 'HASHI', 'KUSD',
+  'IH58', 'UAID',
 ]);
 
 // Crypto algorithms with special casing
@@ -239,6 +240,11 @@ const COMPOUND_TERM_OVERRIDES: Record<string, string> = {
   'merkleproof': 'Merkle Proof',
   'stateroot': 'State Root',
   'transactionpool': 'Transaction Pool',
+  'dualsig': 'Dual-Sig',
+  'mldsa44': 'ML-DSA-44',
+  'mldsa65': 'ML-DSA-65',
+  'mldsa87': 'ML-DSA-87',
+  'mlkem768': 'ML-KEM-768',
   'crosschain': 'Cross-Chain',
   'sidechain': 'Sidechain',
   'parachain': 'Parachain',
@@ -568,8 +574,10 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
         definition: term.definition,
         category,
         aliases: (term.aliases || []).map((a) => a.toLowerCase()),
-        tags: (term.relatedTags || []).map((t) => normalizeTag(t)),
-        relatedTerms: (term.seeAlso || []).map((s) => normalizeSlug(s.toLowerCase().replace(/\s+/g, ''))),
+        tags: stableSortDedupe((term.relatedTags || []).map((t) => normalizeTag(t))),
+        relatedTerms: stableSortDedupe(
+          (term.seeAlso || []).map((s) => normalizeSlug(s.toLowerCase().replace(/\s+/g, '')))
+        ),
         examples: term.examples || [],
         links: term.links || [],
         tagline,
@@ -621,8 +629,8 @@ async function loadTaxonomyTerms(): Promise<CanonicalTerm[]> {
           definition,
           category,
           aliases: [],
-          tags: metadata?.traits || [],
-          relatedTerms,
+          tags: stableSortDedupe(metadata?.traits || []),
+          relatedTerms: stableSortDedupe(relatedTerms),
           examples: [],
           links,
           tagline,
@@ -856,6 +864,13 @@ async function main() {
 
   // 8. Sort canonical terms by slug (deterministic)
   canonicalTerms.sort((a, b) => a.slug.localeCompare(b.slug));
+
+  // 9. Ensure relatedTerms only reference existing canonical slugs.
+  // MDX terms already validate related terms; taxonomy-derived terms may not.
+  const canonicalSlugSet = new Set(canonicalTerms.map((t) => t.slug));
+  for (const term of canonicalTerms) {
+    term.relatedTerms = stableSortDedupe(term.relatedTerms.filter((slug) => canonicalSlugSet.has(slug)));
+  }
 
   // 10. Build alias array
   const aliases: AliasTerm[] = Array.from(aliasMap.entries())

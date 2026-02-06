@@ -2,13 +2,10 @@
 /**
  * Generate comprehensive reference files for Claude article editing sessions
  * Creates documentation about site structure, content inventory, and linking patterns
-<<<<<<< HEAD
-=======
  *
  * CodeQL: Safe - This build script processes only trusted internal MDX content
  * from the repository. All string operations (escaping, replacement) handle
  * content authored by repository maintainers, not external user input.
->>>>>>> origin/main
  */
 
 import fs from 'fs';
@@ -49,8 +46,6 @@ if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-<<<<<<< HEAD
-=======
 /**
  * Escape string for use in markdown table cells.
  * Only pipe characters need escaping in markdown tables.
@@ -60,7 +55,6 @@ function escapeForMarkdownTable(str: string): string {
   return str.replace(/\|/g, '\\|');
 }
 
->>>>>>> origin/main
 function extractLinks(content: string): { internal: string[]; external: string[] } {
   const internal: Set<string> = new Set();
   const external: Set<string> = new Set();
@@ -189,11 +183,7 @@ function generateLinkInventory(posts: BlogPost[], terms: GlossaryTerm[]): string
   
   for (const post of posts) {
     const slug = `/${post.slug}`;
-<<<<<<< HEAD
-    const title = post.title.replace(/\|/g, '\\|');
-=======
     const title = escapeForMarkdownTable(post.title);
->>>>>>> origin/main
     output += `| ${slug} | ${title} | ${post.filePath} |\n`;
   }
   
@@ -205,11 +195,7 @@ function generateLinkInventory(posts: BlogPost[], terms: GlossaryTerm[]): string
   
   for (const term of terms) {
     const slug = `/glossary/${term.slug}`;
-<<<<<<< HEAD
-    const title = term.title.replace(/\|/g, '\\|');
-=======
     const title = escapeForMarkdownTable(term.title);
->>>>>>> origin/main
     output += `| ${slug} | ${title} | ${term.filePath} |\n`;
   }
   
@@ -378,15 +364,9 @@ function generateGlossaryTerms(terms: GlossaryTerm[]): string {
   
   for (const term of terms) {
     const slug = term.slug;
-<<<<<<< HEAD
-    const title = term.title.replace(/\|/g, '\\|');
-    const category = term.category || 'N/A';
-    const summary = term.summary ? term.summary.substring(0, 80).replace(/\|/g, '\\|') + '...' : 'N/A';
-=======
     const title = escapeForMarkdownTable(term.title);
     const category = term.category || 'N/A';
     const summary = term.summary ? escapeForMarkdownTable(term.summary.substring(0, 80)) + '...' : 'N/A';
->>>>>>> origin/main
     
     output += `| ${slug} | ${title} | ${category} | ${summary} |\n`;
   }

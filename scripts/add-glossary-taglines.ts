@@ -2,13 +2,10 @@
 /**
  * Script to add tagline field to MDX files that are missing it.
  * Generates taglines from the summary field.
-<<<<<<< HEAD
-=======
  *
  * CodeQL: Safe - This build script processes only trusted internal MDX content
  * from the repository. All string operations handle content authored by
  * repository maintainers, not external user input.
->>>>>>> origin/main
  */
 
 import * as fs from 'fs';
@@ -18,8 +15,6 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const GLOSSARY_DIR = path.join(__dirname, '../apps/web/src/content/glossary');
 
-<<<<<<< HEAD
-=======
 /**
  * Escape string for use in YAML double-quoted strings.
  * @codeql-suppress js/incomplete-sanitization - Intentional: only quotes need escaping for YAML strings
@@ -28,7 +23,6 @@ function escapeForYamlString(str: string): string {
   return str.replace(/"/g, '\\"');
 }
 
->>>>>>> origin/main
 // Generate a tagline from a summary
 function generateTagline(summary: string, title: string): string {
   // Common tagline patterns based on term type
@@ -182,11 +176,7 @@ function addTaglineToFile(filePath: string): boolean {
   if (summaryMatch) {
     const newContent = content.replace(
       summaryMatch[0],
-<<<<<<< HEAD
-      `${summaryMatch[0]}tagline: "${tagline.replace(/"/g, '\\"')}"\n`
-=======
       `${summaryMatch[0]}tagline: "${escapeForYamlString(tagline)}"\n`
->>>>>>> origin/main
     );
     fs.writeFileSync(filePath, newContent);
     return true;
