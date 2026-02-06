@@ -10,6 +10,12 @@ on:
       - "apps/web/scripts/verify-glossary-redirects.sh"
       - ".github/workflows/redirects-guard.yml"
 
+<<<<<<< HEAD
+=======
+permissions:
+  contents: read
+
+>>>>>>> origin/main
 jobs:
   verify:
     strategy:

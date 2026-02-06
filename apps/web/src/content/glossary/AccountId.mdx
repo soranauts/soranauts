@@ -4,8 +4,13 @@ slug: accountid
 category: "Accounts & Identity"
 tags:
   - "Nexus Architecture"
+<<<<<<< HEAD
 summary: "Identifier for an Iroha account composed of the domain it belongs to and the account controller (single key or multisig policy) that authorizes actions."
 tagline: "Binds an account to its domain and authorization controller for deterministic identity resolution."
+=======
+summary: "An Account ID is a typed Norito pointer that uniquely identifies a Nexus account across all networks, data spaces, and execution lanes. It encodes the network identifier, the data-space UUID, the domain, the human-readable account name, and a checksum that prevents malformed or ambiguous identifiers. This structured format ensures deterministic routing and stable identity resolution throughout SORA Nexus."
+tagline: "Account IDs allow Nexus applications, smart contracts, validators, and users to reference accounts safely and consistently. The checksum prevents mis-addressing, the namespace fields prevent cross-domain collisions, and the typed Norito format ensures that account references behave identically across all lanes and data spaces. This enables reliable interoperability, secure transaction routing, and clear identity governance across the entire network."
+>>>>>>> origin/main
 related:
   - "Account Lifecycle"
   - "AssetDefinitionId"

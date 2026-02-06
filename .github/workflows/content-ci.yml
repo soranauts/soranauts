@@ -9,6 +9,13 @@ on:
       - 'scripts/build-nexus-glossary-json.ts'
       - 'schemas/**'
 
+<<<<<<< HEAD
+=======
+permissions:
+  contents: read
+  pull-requests: write
+
+>>>>>>> origin/main
 jobs:
   content-checks:
     name: Content Quality Checks

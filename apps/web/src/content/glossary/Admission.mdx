@@ -4,6 +4,7 @@ slug: admission
 category: "Execution"
 tags:
   - "Nexus Architecture"
+<<<<<<< HEAD
 summary: "Torii admission stage that validates transaction envelopes (Norito decode, signatures, chain ID, TTL, size limits) before enqueueing and gossip."
 tagline: "Rejects malformed or unauthorized transactions at the edge to protect the pipeline."
 related:
@@ -12,6 +13,16 @@ related:
   - "Transaction Lifecycle"
   - "Sumeragi"
   - "Propose-Validate-Vote-Commit"
+=======
+summary: "The transaction intake stage where gateways and validators enforce roles, quotas, fees, and Start-Time Fair Queuing so only policy-compliant work enters execution."
+tagline: "Provides seamless access to SORA Nexus services."
+related:
+  - "Action"
+  - "Activation Slot"
+  - "Aggregation"
+  - "Automation"
+  - "Compute Lane"
+>>>>>>> origin/main
 links:
   - label: "Nexus Whitepaper"
     url: "/documents/sora_nexus_whitepaper.pdf"

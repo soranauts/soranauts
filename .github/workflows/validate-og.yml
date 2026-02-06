@@ -2,6 +2,13 @@ name: Validate OG Images
 on:
   pull_request:
     branches: [main]
+<<<<<<< HEAD
+=======
+
+permissions:
+  contents: read
+
+>>>>>>> origin/main
 jobs:
   validate:
     runs-on: ubuntu-latest

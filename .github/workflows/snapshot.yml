@@ -11,6 +11,12 @@ on:
         required: false
         default: 'false'
 
+<<<<<<< HEAD
+=======
+permissions:
+  contents: write
+
+>>>>>>> origin/main
 jobs:
   snapshot:
     name: Create Glossary Snapshot

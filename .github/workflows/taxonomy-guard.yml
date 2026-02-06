@@ -14,6 +14,12 @@ on:
       - "docs/taxonomy-audit.md"
       - ".github/workflows/taxonomy-guard.yml"
 
+<<<<<<< HEAD
+=======
+permissions:
+  contents: read
+
+>>>>>>> origin/main
 jobs:
   taxonomy-guard:
     runs-on: ubuntu-latest
