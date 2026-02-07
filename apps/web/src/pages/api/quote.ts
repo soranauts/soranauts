@@ -105,9 +105,8 @@ export const GET: APIRoute = async (context) => {
     const payload: Record<string, unknown> = {
       error: isValidationError ? 'Invalid request' : 'Failed to get quote',
     };
-    if (isDev) {
-      payload.details = error instanceof Error ? error.message : String(error);
-    }
+    // Do not include error message or stack trace details in the client response.
+    // Detailed information is already logged server-side via console.error above.
 
     return new Response(JSON.stringify(payload), {
       status,
