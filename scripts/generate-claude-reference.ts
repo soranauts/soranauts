@@ -48,11 +48,10 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 
 /**
  * Escape string for use in markdown table cells.
- * Only pipe characters need escaping in markdown tables.
- * @codeql-suppress js/incomplete-sanitization - Intentional: only pipe needs escaping for markdown tables
+ * Escapes backslashes first, then pipe characters to avoid incomplete sanitization.
  */
 function escapeForMarkdownTable(str: string): string {
-  return str.replace(/\|/g, '\\|');
+  return str.replaceAll('\\', '\\\\').replaceAll('|', '\\|');
 }
 
 function extractLinks(content: string): { internal: string[]; external: string[] } {
@@ -100,12 +99,11 @@ function extractLinks(content: string): { internal: string[]; external: string[]
 }
 
 function countWords(content: string): number {
-  // Remove frontmatter, code blocks, and HTML tags
-  const cleaned = content
-    .replace(/^---[\s\S]*?---/, '')
-    .replace(/```[\s\S]*?```/g, '')
-    .replace(/<[^>]+>/g, '')
-    .replace(/[#*_`]/g, '');
+  // Remove frontmatter, code blocks, HTML tags, and markdown punctuation in one pass
+  const cleaned = content.replace(
+    /^---[\s\S]*?---|```[\s\S]*?```|<[^>]+>|[#*_`]/g,
+    ''
+  );
   
   const words = cleaned.trim().split(/\s+/).filter(w => w.length > 0);
   return words.length;

@@ -96,8 +96,9 @@
       "diff@<8.0.3": ">=8.0.3",
       "tar@<=7.5.3": ">=7.5.4",
       "fast-xml-parser@<5.3.4": ">=5.3.4",
-      "lodash@<4.17.23": ">=4.17.23"
+      "lodash@<4.17.23": ">=4.17.23",
+      "@isaacs/brace-expansion@<5.0.1": ">=5.0.1"
     },
-    "pnpmOverridesNotes": "h3 and diff overrides added 2026-01-15. tar override updated 2026-02-02 to fix CVE-2026-23950 (race condition) and hardlink traversal CVEs. fast-xml-parser override added 2026-02-02 to fix CVE-2026-25128. lodash override added 2026-02-02 to fix CVE-2025-13465 (prototype pollution in _.unset/_.omit). Remove after upstream deps update. Check with: pnpm why h3 diff tar fast-xml-parser lodash -r"
+    "pnpmOverridesNotes": "h3 and diff overrides added 2026-01-15. tar override updated 2026-02-02 to fix CVE-2026-23950 (race condition) and hardlink traversal CVEs. fast-xml-parser override added 2026-02-02 to fix CVE-2026-25128. lodash override added 2026-02-02 to fix CVE-2025-13465 (prototype pollution in _.unset/_.omit). @isaacs/brace-expansion override added 2026-02-07 to fix CVE-2025-5889 (ReDoS). Remove after upstream deps update. Check with: pnpm why h3 diff tar fast-xml-parser lodash @isaacs/brace-expansion -r"
   }
 }

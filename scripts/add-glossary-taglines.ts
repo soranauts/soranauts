@@ -17,10 +17,10 @@ const GLOSSARY_DIR = path.join(__dirname, '../apps/web/src/content/glossary');
 
 /**
  * Escape string for use in YAML double-quoted strings.
- * @codeql-suppress js/incomplete-sanitization - Intentional: only quotes need escaping for YAML strings
+ * Escapes backslashes first, then double quotes to avoid incomplete sanitization.
  */
 function escapeForYamlString(str: string): string {
-  return str.replace(/"/g, '\\"');
+  return str.replaceAll('\\', '\\\\').replaceAll('"', '\\"');
 }
 
 // Generate a tagline from a summary
