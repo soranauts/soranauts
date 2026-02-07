@@ -11,6 +11,15 @@
     <script type="module">
         import { search } from './dist/pagefind/pagefind.js';
         
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+        
         const searchInput = document.getElementById('searchInput');
         const results = document.getElementById('results');
         
@@ -39,7 +48,8 @@
                 results.innerHTML = html;
             } catch (error) {
                 console.error('Search error:', error);
-                results.innerHTML = '<p>Error: ' + error.message + '</p>';
+                const message = (error && error.message) ? error.message : String(error);
+                results.innerHTML = '<p>Error: ' + escapeHtml(message) + '</p>';
             }
         });
     </script>
