@@ -4,14 +4,14 @@ slug: epochbeacon
 category: "Consensus"
 tags:
   - "Nexus Architecture"
-summary: "A randomness source in SORA Nexus derived from VRF aggregates each epoch, feeding leader rotation and sortition processes to ensure fair and unpredictable validator selection."
-tagline: "Ensures fair, unpredictable validator selection that no single party can manipulate."
+summary: "A deterministic epoch randomness beacon built by aggregating VRF outputs; inputs bind the epoch number and previous finalized block hash to remove grinding."
+tagline: "Deterministic VRF beacon per epoch."
 related:
   - "Seed Beacon"
   - "VRF Sortition"
   - "Sumeragi"
-  - "Lane Finality"
   - "Locked QC"
+  - "NPoS Variant"
 links:
   - label: "Nexus Whitepaper"
     url: "/documents/sora_nexus_whitepaper.pdf"

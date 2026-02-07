@@ -4,36 +4,36 @@
       "slug": "accountid",
       "title": "Account ID",
       "category": "Accounts & Identity",
-      "summary": "An Account ID is a typed Norito pointer that uniquely identifies a Nexus account across all networks, data spaces, and execution lanes. It encodes the network identifier, the data-space UUID, the domain, the human-readable account name, and a checksum that prevents malformed or ambiguous identifiers. This structured format ensures deterministic routing and stable identity resolution throughout SORA Nexus.",
-      "tagline": "Account IDs allow Nexus applications, smart contracts, validators, and users to reference accounts safely and consistently. The checksum prevents mis-addressing, the namespace fields prevent cross-domain collisions, and the typed Norito format ensures that account references behave identically across all lanes and data spaces. This enables reliable interoperability, secure transaction routing, and clear identity governance across the entire network."
+      "summary": "Identifier for an Iroha account composed of the domain it belongs to and the account controller (single key or multisig policy) that authorizes actions.",
+      "tagline": "Binds an account to its domain and authorization controller for deterministic identity resolution."
     },
     {
       "slug": "accountlifecycle",
       "title": "Account Lifecycle",
       "category": "Accounts & Identity",
-      "summary": "The governed process that creates, updates, and retires Nexus accounts, ensuring every change is validated by the Iroha Virtual Machine and the hosting data space's policy.",
-      "tagline": "Ensures every account creation, update, and retirement is validated and auditable, preventing unauthorized identity changes across the network."
+      "summary": "The sequence of register, update, rekey, and unregister operations that define how Iroha accounts are created and managed, enforced by on-chain permissions and admission policy.",
+      "tagline": "Defines how accounts are created, modified, and retired under deterministic on-chain rules."
     },
     {
       "slug": "action",
       "title": "Action",
       "category": "Execution",
-      "summary": "The executable portion of a trigger or automation, defining which Iroha Special Instructions or Kotodama call runs when conditions are met.",
-      "tagline": "Separates logic from scheduling, making smart contracts easier to audit and compose."
+      "summary": "Trigger action payload that bundles the executable, repeats policy, authority, filter, and metadata defining what runs and when.",
+      "tagline": "Encapsulates the logic, authority, and firing policy behind a trigger."
     },
     {
       "slug": "activationslot",
       "title": "Activation Slot",
-      "category": "Execution",
-      "summary": "The ledger slot pre-scheduled in a governed manifest where an approved runtime upgrade or configuration change becomes active across all lanes.",
-      "tagline": "Enables parallel transaction processing for higher throughput."
+      "category": "Governance",
+      "summary": "Scheduled activation height or epoch for staged changes (for example, consensus mode, validator set, or manifest updates) so every node flips at the same block.",
+      "tagline": "Lets governance stage changes for deterministic activation at a future height."
     },
     {
       "slug": "admission",
       "title": "Admission",
       "category": "Execution",
-      "summary": "The transaction intake stage where gateways and validators enforce roles, quotas, fees, and Start-Time Fair Queuing so only policy-compliant work enters execution.",
-      "tagline": "Provides seamless access to SORA Nexus services."
+      "summary": "Torii admission stage that validates transaction envelopes (Norito decode, signatures, chain ID, TTL, size limits) before enqueueing and gossip.",
+      "tagline": "Rejects malformed or unauthorized transactions at the edge to protect the pipeline."
     },
     {
       "slug": "adoption",
@@ -46,8 +46,8 @@
       "slug": "aggregation",
       "title": "Aggregation",
       "category": "Execution",
-      "summary": "The bundling phase collecting each data space's state roots, proofs, and data-availability artifacts into lane blocks prior to consensus.",
-      "tagline": "Combines parallel lane outputs into a single verifiable state transition."
+      "summary": "Oracle aggregation step that combines observations into a consensus value using `AggregationRule` (median/MAD or percentile) after outlier and cap checks.",
+      "tagline": "Turns multiple oracle reports into a single deterministic feed outcome."
     },
     {
       "slug": "agilecoretime",
@@ -89,16 +89,16 @@
     {
       "slug": "assembly",
       "title": "Assembly",
-      "category": "Governance",
-      "summary": "One of SORA Parliament's two chambers, representing the wider stakeholder base with stake-weighted or one-person-one-vote selection and on-chain proposal rights.",
-      "tagline": "Gives token holders direct influence over network upgrades and policy changes."
+      "category": "Consensus",
+      "summary": "Proposal assembly stage in the Sumeragi pipeline where the leader selects pending transactions, runs stateless/stateful checks, and builds a block proposal.",
+      "tagline": "Builds a deterministic proposal from the pending set before voting begins."
     },
     {
       "slug": "assetdefinitionid",
       "title": "Asset Definition ID",
-      "category": "Accounts & Identity",
-      "summary": "A typed handle that points to an asset schema within a data space, allowing contracts to reference assets without ambiguous string parsing.",
-      "tagline": "Points to an asset schema within a data space."
+      "category": "Economics",
+      "summary": "Identifier of an asset definition composed of the asset name and domain, rendered as `name#domain`.",
+      "tagline": "Defines an asset type within a domain for minting and transfers."
     },
     {
       "slug": "assettokenization",
@@ -116,15 +116,15 @@
       "slug": "attestations",
       "title": "Attestations",
       "category": "Governance",
-      "summary": "Signed statements - typically using ML-DSA-87 - that certify new data spaces, DA proofs, or governance actions before the network accepts them.",
-      "tagline": "Empowers the community to shape the network's evolution."
+      "summary": "Signed payloads used by Iroha subsystems (oracle binding, alias updates, jurisdiction policies, provider admission) to certify a claim under a defined schema and policy.",
+      "tagline": "Provide verifiable claims that can be validated on-chain or by gateways."
     },
     {
       "slug": "attesters",
       "title": "Attesters",
       "category": "Data Availability",
-      "summary": "Specialized actors who verify erasure-coded shards and proofs, then issue DA certificates so validators can rely on the data without downloading everything.",
-      "tagline": "Guarantees that transaction data remains accessible and verifiable."
+      "summary": "Authorized signers or committees whose keys are configured to issue attestations (for example, DA sampling attesters, fraud monitoring engines, or alias attesters).",
+      "tagline": "Only attestations from registered attesters are accepted by policy."
     },
     {
       "slug": "auctions",
@@ -136,8 +136,8 @@
       "slug": "automation",
       "title": "Automation",
       "category": "Execution",
-      "summary": "Deterministic, on-ledger workflows composed of conditions, actions, and budgets that let operators schedule recurring payments or policy checks without off-chain bots.",
-      "tagline": "Ensures fair resource allocation across the network."
+      "summary": "Deterministic on-chain workflows built with triggers: an executable plus filter and repeat policy that runs on schedules or events.",
+      "tagline": "Runs recurring or event-driven logic without off-chain bots."
     },
     {
       "slug": "bakong",
@@ -155,8 +155,8 @@
       "slug": "bech32format",
       "title": "Bech32 Format",
       "category": "Accounts & Identity",
-      "summary": "The human-readable string encoding used for Nexus account addresses, derived from the canonical binary layout and protected with a Blake2b checksum.",
-      "tagline": "Enables Nexus account addresses."
+      "summary": "Bech32m-derived checksum envelope used in IH58/Iroha account addresses, providing a human-readable prefix and strong error detection.",
+      "tagline": "Gives account identifiers a QR-friendly, checksum-protected format."
     },
     {
       "slug": "bftconsensus",
@@ -174,15 +174,15 @@
       "slug": "blake2b",
       "title": "BLAKE2b",
       "category": "Cryptography",
-      "summary": "The fast hash function used for tasks like leader selection, account checksums, and pseudo-randomness inside the SUMERAGI pipeline.",
-      "tagline": "Ensures data integrity and enables secure verification across the network."
+      "summary": "Fast cryptographic hash function used throughout Iroha/Nexus for deterministic fingerprints and identifiers (for example, policy digests, proposal IDs, and content hashes).",
+      "tagline": "Fast, secure hashing for deterministic IDs and fingerprints."
     },
     {
       "slug": "blindedcids",
       "title": "Blinded CIDs",
       "category": "Networking",
-      "summary": "Obfuscated content identifiers within SoraNet that preserve privacy by hiding the underlying data reference while still allowing routing and settlement.",
-      "tagline": "Preserve privacy by hiding the underlying data reference while still allowing routing and settlement."
+      "summary": "Blinded content identifiers derived from a canonical CID and a published salt (domain-separated BLAKE3) so gateways can resolve content without exposing the original ID.",
+      "tagline": "Allows gateway requests without revealing canonical manifest identifiers."
     },
     {
       "slug": "blockchain",
@@ -255,8 +255,8 @@
       "slug": "budget",
       "title": "Budget",
       "category": "Economics",
-      "summary": "The TEU and fee allowance in SORA Nexus assigned to triggers or automations, preventing unlimited compute or bandwidth consumption and ensuring predictable resource usage.",
-      "tagline": "Caps resource usage per operation so no single transaction can monopolize the network."
+      "summary": "Configured resource caps (TEU budgets, gas limits, or subsystem quotas) that bound work per transaction or lane and keep scheduling deterministic.",
+      "tagline": "Prevents any workflow from exceeding its allowed resource ceiling."
     },
     {
       "slug": "bullmarket",
@@ -280,8 +280,8 @@
       "slug": "canonicalprimitives",
       "title": "Canonical Primitives",
       "category": "Cryptography",
-      "summary": "The curated list of cryptographic algorithms (Poseidon2, DEEP-FRI, ML-DSA-87, etc.) that SORA Nexus mandates to keep security assumptions consistent across data spaces.",
-      "tagline": "SORA Nexus mandates to keep security assumptions consistent across data spaces."
+      "summary": "Canonical encodings and algorithm choices baked into Iroha (hashing, signatures, Norito layouts) to keep deterministic outputs across nodes.",
+      "tagline": "Keeps hashes, signatures, and encodings stable across the network."
     },
     {
       "slug": "cbdc",
@@ -297,6 +297,20 @@
       "tagline": "Provides essential DeFi infrastructure for projects building on SORA."
     },
     {
+      "slug": "chaindiscriminant",
+      "title": "Chain Discriminant",
+      "category": "Accounts & Identity",
+      "summary": "Per-network 16-bit value reused as the IH58 network prefix so account addresses self-identify their Sora Nexus chain and avoid cross-network collisions.",
+      "tagline": "The numeric network prefix embedded in IH58 addresses."
+    },
+    {
+      "slug": "chainid",
+      "title": "Chain ID",
+      "category": "Consensus",
+      "summary": "Unique chain identifier configured per network and checked in transaction/admission flows to bind artifacts to the intended ledger and prevent cross-chain replay.",
+      "tagline": "Binds transactions and consensus artifacts to a specific network."
+    },
+    {
       "slug": "chainlink",
       "title": "Chainlink",
       "category": "Technology",
@@ -306,15 +320,15 @@
       "slug": "circuitbreakers",
       "title": "Circuit Breakers",
       "category": "Observability & Operations",
-      "summary": "Automated controls that throttle lane admission, message sizes, or DA limits when the system detects stress, preventing resource exhaustion.",
-      "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
+      "summary": "Safety guardrails that halt or restrict execution when liquidity, governance, or oracle policies trip, surfaced as circuit-breaker errors.",
+      "tagline": "Stops execution when safety guards are active."
     },
     {
       "slug": "circuitbreakerstate",
       "title": "Circuit-Breaker State",
       "category": "Observability & Operations",
-      "summary": "The telemetry surface exposing which circuit breakers are engaged, letting operators observe throttling events and recovery in real time.",
-      "tagline": "Ensures privacy by routing traffic through multiple relay nodes."
+      "summary": "State and telemetry describing which circuit breaker kind is active for a dataspace, surfaced in error context and monitoring APIs.",
+      "tagline": "Explains why execution was halted and when it can resume."
     },
     {
       "slug": "citizenship",
@@ -339,15 +353,15 @@
       "slug": "commitments",
       "title": "Commitments",
       "category": "Cryptography",
-      "summary": "Cryptographic bindings (Merkle roots, Poseidon2 hashes) tying execution traces, memory, or DA shards to a block for auditing without re-running computation.",
-      "tagline": "Lets anyone verify state correctness by checking a small proof instead of replaying all transactions."
+      "summary": "Canonical DA commitment records and bundles that bind manifest hashes, chunk roots, and proof schemes to a block and are hashed into the block header.",
+      "tagline": "Bind data-availability proofs and metadata to blocks for auditing."
     },
     {
       "slug": "commitwindow",
       "title": "Commit Window",
       "category": "Consensus",
-      "summary": "The bounded number of slots (Delta <= 2) within which SUMERAGI must finalize a proposal, ensuring predictable finality even under adversarial network conditions.",
-      "tagline": "Essential component of the SORA Nexus architecture."
+      "summary": "Configured slot budget for proofs and DA bundles to arrive before a transaction aborts, encoded in commit timing parameters.",
+      "tagline": "Defines how long the system waits for required proofs or DA evidence."
     },
     {
       "slug": "community",
@@ -359,15 +373,15 @@
       "slug": "computelane",
       "title": "Compute Lane",
       "category": "Execution",
-      "summary": "A dedicated lane running governed compute manifests—like SoraNet streaming or heavy analytics—without interfering with core transaction lanes.",
-      "tagline": "Isolates resource-intensive workloads so they don't slow down regular transactions."
+      "summary": "A lane that accepts deterministic HTTP-style compute calls, routes them to Kotodama entrypoints via a manifest, and records metering/receipts for billing and governance review.",
+      "tagline": "Deterministic compute routes with sandbox rules and metering."
     },
     {
       "slug": "computemanifest",
       "title": "Compute Manifest",
       "category": "Execution",
-      "summary": "The on-chain specification describing which workloads a compute lane accepts, how they're routed, and which data spaces they can access.",
-      "tagline": "Enables parallel transaction processing for higher throughput."
+      "summary": "A manifest binding service/method routes to Kotodama entrypoints with a namespace, ABI version, sandbox guardrails, codec allowlists, and per-route limits (TTL, gas, size, auth, determinism).",
+      "tagline": "Defines which compute routes are allowed and how they execute."
     },
     {
       "slug": "concurrency",
@@ -379,8 +393,8 @@
       "slug": "condition",
       "title": "Condition",
       "category": "Execution",
-      "summary": "The predicate part of a trigger (time-based, event-based, or receipt-based) that must evaluate true before its actions consume TEU budget.",
-      "tagline": "Ensures fair resource allocation across the network."
+      "summary": "The event filter attached to a trigger action that decides when the executable fires (data events, pipeline events, or time events).",
+      "tagline": "Filters events before a trigger action executes."
     },
     {
       "slug": "consensus",
@@ -411,8 +425,8 @@
       "slug": "crossbordercorridors",
       "title": "Cross-Border Corridors",
       "category": "Use Cases",
-      "summary": "A highlighted use case where Nexus hosts multi-jurisdiction payment networks with deterministic policy enforcement and shared liquidity.",
-      "tagline": "Essential component of the SORA Nexus architecture."
+      "summary": "A deployment pattern that connects multiple jurisdictions or payment systems using Nexus lanes and ISO 20022 connectors; corridor rules and liquidity live in governance and applications, not core protocol types.",
+      "tagline": "A business corridor built on lanes plus ISO 20022 integration."
     },
     {
       "slug": "crossborderpayments",
@@ -448,78 +462,78 @@
       "slug": "curve25519",
       "title": "Curve25519",
       "category": "Cryptography",
-      "summary": "The elliptic-curve key exchange primitive in SORA Nexus paired with Kyber768 in the hybrid post-quantum handshake, providing classical security alongside lattice-based protection.",
-      "tagline": "Foundation for secure key exchange and digital signatures."
+      "summary": "The elliptic curve underlying Ed25519 signatures (and X25519 key agreement), used by Iroha's default signature scheme.",
+      "tagline": "The curve behind Ed25519."
     },
     {
       "slug": "dacertificates",
       "title": "DA Certificates",
       "category": "Data Availability",
-      "summary": "Signed attestations from validators or attesters confirming that required data-availability samples were checked and can be reconstructed.",
-      "tagline": "Guarantees that transaction data remains accessible and verifiable."
+      "summary": "Attester-signed certificates that sampled and verified erasure-coded shards for a data space, used by the nexus committee to accept DA without pulling shards.",
+      "tagline": "Proof that DA sampling succeeded in-slot."
     },
     {
       "slug": "dasampling",
       "title": "DA Sampling",
       "category": "Data Availability",
-      "summary": "Fetching a limited number of erasure-coded shards per data space to statistically guarantee recoverability without downloading entire envelopes.",
-      "tagline": "Reduces bandwidth requirements for validators while maintaining strong availability guarantees."
+      "summary": "VRF-sampled attesters check a subset of erasure-coded shards each slot and sign availability; sample size and thresholds are deterministic config.",
+      "tagline": "Randomized shard checks to detect withholding."
     },
     {
       "slug": "dasamplingbudget",
       "title": "DA Sampling Budget",
       "category": "Data Availability",
-      "summary": "The governance cap (e.g., q_total <= 2048) on how many DA samples can be performed per slot so verification stays within hardware limits.",
-      "tagline": "Ensures fair resource allocation across the network."
+      "summary": "Deterministic caps on in-slot DA signatures per lane and per dataspace, plus per-attester shard checks, so sampling work stays bounded.",
+      "tagline": "Limits DA sampling work per slot."
     },
     {
       "slug": "dasamplingconfidence",
       "title": "DA Sampling Confidence",
       "category": "Data Availability",
-      "summary": "The probability, computed via combinatorics, that malicious withholding will be detected given the chosen sample count and committee size.",
-      "tagline": "Guarantees that transaction data remains accessible and verifiable."
+      "summary": "The sampling confidence target derived from sample sizes (S) and threshold (T) for DA certificates, controlling how many attester signatures are required.",
+      "tagline": "Sets how much sampling is enough to accept availability."
     },
     {
       "slug": "dataavailability",
       "title": "Data Availability",
       "category": "Data Availability",
-      "summary": "The guarantee in SORA Nexus that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline, preventing data withholding attacks.",
-      "tagline": "Prevents data withholding attacks that could halt chain progress or hide fraud."
+      "summary": "Erasure-coded Kura/WSV blobs with Merkle commitments in headers; DA attesters sample shards and issue certificates so blocks can commit without downloading full data.",
+      "tagline": "Commitments plus sampling make blobs retrievable."
     },
     {
       "slug": "dataavailabilitylayer",
       "title": "Data Availability Layer",
       "category": "Data Availability",
-      "summary": "The combined erasure-coding, sampling, proving, and attestation system enforcing data availability across public and private data spaces.",
-      "tagline": "Lets light clients verify block data exists without downloading entire blocks."
+      "summary": "The DA subsystem: erasure-coded storage, shard sampling, attester certificates, and retrieval policies for public vs private data spaces.",
+      "tagline": "Provides retrievability for blobs while preserving privacy boundaries."
     },
     {
       "slug": "dataenvelope",
       "title": "Data Envelope",
-      "category": "Data Availability",
-      "summary": "The serialized bundle of transactions, proofs, and metadata that a data space contributes to a lane block before erasure coding.",
-      "tagline": "Enables parallel transaction processing for higher throughput."
+      "category": "Serialization & Encoding",
+      "summary": "An ISO 20022 wrapper element (DataEnvelope/DataPDU/Body) that the IVM canonicalizer strips when deriving message paths and hashes.",
+      "tagline": "Outer ISO 20022 wrapper ignored for canonical paths."
     },
     {
       "slug": "dataspacedirectory",
       "title": "Data Space Directory",
       "category": "Governance",
-      "summary": "The on-chain registry mapping DSIDs to owners, routing endpoints, and policy metadata so gateways know how to handle each space.",
-      "tagline": "Provides seamless access to SORA Nexus services."
+      "summary": "On-chain registry of Space Directory manifests (AssetPermissionManifest) keyed by UAID and DataSpaceId, with publish/revoke/expire lifecycle.",
+      "tagline": "Registry of capability manifests per data space."
     },
     {
       "slug": "dataspaceid",
       "title": "Data Space ID",
       "category": "Governance",
-      "summary": "A typed pointer that identifies which data space an account, asset, or instruction belongs to, enabling cross-space safety checks.",
-      "tagline": "Identifies which data space an account."
+      "summary": "A 64-bit identifier for a data space; GLOBAL is 0 and IDs can be derived from a stable 32-byte hash.",
+      "tagline": "Typed identifier for a data space."
     },
     {
       "slug": "dataspaces",
       "title": "Data Spaces",
       "category": "Governance",
-      "summary": "Sovereignty-preserving partitions in SORA Nexus that allow different jurisdictions or applications to share the same ledger without sharing private data, enabling both enterprise privacy and public transparency on one network.",
-      "tagline": "Enables enterprises and regulators to participate in SORA while maintaining data isolation."
+      "summary": "Governance buckets that group one or more lanes under shared compliance, routing, and settlement policies; lanes can be public or restricted.",
+      "tagline": "Groups lanes by policy and governance."
     },
     {
       "slug": "decentralization",
@@ -538,8 +552,8 @@
       "slug": "deepfri",
       "title": "Deep-fri",
       "category": "Cryptography",
-      "summary": "The low-degree testing protocol inside FASTPQ STARK proofs that lets verifiers check massive execution traces with logarithmic work.",
-      "tagline": "Lets verifiers check massive execution traces with logarithmic work."
+      "summary": "The low-degree testing protocol used in STARK-style proofs (including FASTPQ-ISI) so verifiers can check large execution traces efficiently.",
+      "tagline": "Low-degree test for STARK-style proofs."
     },
     {
       "slug": "defi",
@@ -569,22 +583,22 @@
       "slug": "deterministicbudgets",
       "title": "Deterministic Budgets",
       "category": "Execution",
-      "summary": "Governed resource ceilings - like TEU per lane or DA sample counts - that avoid nondeterministic scheduling and make performance predictable.",
-      "tagline": "Enables parallel transaction processing for higher throughput."
+      "summary": "Governed limits (TEU per lane, DA sampling caps, compute gas ceilings) that keep scheduling and billing deterministic across nodes.",
+      "tagline": "Deterministic caps keep execution and fees reproducible."
     },
     {
       "slug": "deterministicruntime",
       "title": "Deterministic Runtime",
       "category": "Execution",
-      "summary": "The IVM design principle: no floating point, no non-deterministic syscalls, and explicit memory models for bit-for-bit reproducible execution.",
-      "tagline": "Guarantees every validator reaches the same result, enabling fraud proofs and cross-chain verification."
+      "summary": "IVM determinism guarantees: fixed ABI/syscall surface, no nondeterministic syscalls, deterministic memory model, and deterministic gas accounting so all validators replay identically.",
+      "tagline": "Reproducible execution across all hosts."
     },
     {
       "slug": "developerexperience",
       "title": "Developer Experience",
       "category": "Developer Experience",
-      "summary": "The suite of Norito-first SDKs, REST/gRPC gateways, and deterministic builders that let teams integrate without learning low-level ledger internals.",
-      "tagline": "Provides seamless access to SORA Nexus services."
+      "summary": "DX in Iroha is built around Norito-first types, CLI/SDK fixture parity, and REST/gRPC gateways so apps can integrate without custom binary plumbing.",
+      "tagline": "SDKs and tooling share canonical fixtures and codecs."
     },
     {
       "slug": "dex",
@@ -614,15 +628,15 @@
       "slug": "dsid",
       "title": "DSID",
       "category": "Governance",
-      "summary": "A UUID-style identifier in SORA Nexus assigned to every data space, used for transaction routing, policy lookup, and cross-space access control throughout the network.",
-      "tagline": "Provides a universal address for any data space, enabling validators and applications to route transactions and enforce policies without ambiguity."
+      "summary": "Short for DataSpaceId; used in Nexus descriptors and proofs to label which data space a transaction or artifact belongs to.",
+      "tagline": "Alias for DataSpaceId in Nexus routing and proofs."
     },
     {
       "slug": "dualsig",
-      "title": "Dual-sig",
-      "category": "Accounts & Identity",
-      "summary": "A policy pattern requiring two distinct signatures - often offline plus online or regulator plus operator - to authorize sensitive transactions.",
-      "tagline": "Provides cryptographic authentication for transactions and attestations."
+      "title": "Dual-Sig",
+      "category": "Cryptography",
+      "summary": "Requirement to attach both a classical Ed25519 signature and a post-quantum ML-DSA signature to the same artifact (for example, SoraNet relay certificates), with rollout phases that can allow, prefer, or require dual signatures.",
+      "tagline": "Classical plus PQ signatures on the same payload."
     },
     {
       "slug": "economicconditions",
@@ -634,8 +648,8 @@
       "slug": "economicmodel",
       "title": "Economic Model",
       "category": "Economics",
-      "summary": "The XOR-denominated fee, reward, and bonding framework in SORA Nexus that harmonizes economic incentives across public and private data spaces for sustainable operation.",
-      "tagline": "Aligns validator, developer, and user incentives to maintain network security and growth."
+      "summary": "The fee schedule and billing policy that prices transactions and execution (base, per-byte, per-instruction, and per-gas fees) with optional sponsorship and lane-specific settlement policies.",
+      "tagline": "Deterministic fee and billing policy for execution."
     },
     {
       "slug": "economics",
@@ -660,8 +674,8 @@
       "slug": "ed25519",
       "title": "Ed25519",
       "category": "Cryptography",
-      "summary": "The default signature scheme in SORA Nexus for end-user transactions and public DA samples, chosen for its speed, security, and wide tooling support across platforms.",
-      "tagline": "Provides cryptographic authentication for transactions and attestations."
+      "summary": "The default signature scheme for Iroha transactions and many attestations, built on Curve25519 with wide tooling support.",
+      "tagline": "Default signature scheme for transactions."
     },
     {
       "slug": "elasticsupply",
@@ -680,36 +694,36 @@
       "slug": "epochbeacon",
       "title": "Epoch Beacon",
       "category": "Consensus",
-      "summary": "A randomness source in SORA Nexus derived from VRF aggregates each epoch, feeding leader rotation and sortition processes to ensure fair and unpredictable validator selection.",
-      "tagline": "Ensures fair, unpredictable validator selection that no single party can manipulate."
+      "summary": "A deterministic epoch randomness beacon built by aggregating VRF outputs; inputs bind the epoch number and previous finalized block hash to remove grinding.",
+      "tagline": "Deterministic VRF beacon per epoch."
     },
     {
       "slug": "erasurecodedkura",
       "title": "Erasure-Coded Kura",
       "category": "Data Availability",
-      "summary": "The historical storage (Kura) extended with Reed - Solomon coding so archived blocks stay recoverable even with partial failures.",
-      "tagline": "Essential component of the SORA Nexus architecture."
+      "summary": "Kura block bodies stored as erasure-coded blobs with Merkle commitments so public data remains retrievable even after partial shard loss.",
+      "tagline": "Erasure-coded block storage for retrievability."
     },
     {
       "slug": "erasurecodedwsv",
       "title": "Erasure-Coded WSV",
       "category": "Data Availability",
-      "summary": "World State View snapshots in SORA Nexus protected by erasure coding, enabling resilient state recovery across validators even when some nodes are offline or corrupted.",
-      "tagline": "Allows the network to recover full state even if some validators fail or go offline."
+      "summary": "WSV snapshots are chunked and erasure-coded with commitments recorded in headers; public snapshots are widely sharded while private snapshots stay within permissioned validators.",
+      "tagline": "Erasure-coded state snapshots with commitments."
     },
     {
       "slug": "execution",
       "title": "Execution",
       "category": "Execution",
-      "summary": "The IVM phase in SORA Nexus where admitted instructions mutate the World State View under deterministic gas metering and syscall rules, ensuring identical results across validators.",
-      "tagline": "Essential component of the SORA Nexus architecture."
+      "summary": "The pipeline phase where the on-chain executor (IVM) applies instructions in a StateBlock overlay with deterministic gas metering and syscalls.",
+      "tagline": "IVM executes instructions deterministically before commit."
     },
     {
       "slug": "exitcaches",
       "title": "Exit Caches",
       "category": "Networking",
-      "summary": "SORA Nexus network components that hold recent ciphertexts near egress points, smoothing traffic patterns and hiding timing correlations to protect user privacy.",
-      "tagline": "Enables secure symmetric encryption for sensitive data."
+      "summary": "SoraNet exit relays and gateways cache recently fetched content keyed by blinded CIDs to reduce repeat fetch latency and smooth egress patterns.",
+      "tagline": "Exit-side caching to smooth egress and protect privacy."
     },
     {
       "slug": "explorer",
@@ -722,8 +736,8 @@
       "slug": "exposure",
       "title": "Exposure",
       "category": "Execution",
-      "summary": "The final lifecycle step where receipts, Merkle proofs, and ISO-aligned outputs are delivered back to users and connectors.",
-      "tagline": "Essential component of the SORA Nexus architecture."
+      "summary": "The post-commit exposure step where Torii streams events/receipts and queries so clients observe finalized outcomes.",
+      "tagline": "Post-commit events and receipts for clients."
     },
     {
       "slug": "fastpq",
@@ -758,7 +772,7 @@
       "title": "FASTPQ Proof Composition",
       "category": "Cryptography",
       "summary": "The ordered phases - trace commitment, challenge derivation, DEEP-FRI folding, and Merkle openings - that create a FASTPQ proof.",
-      "tagline": "Defines the exact sequence of cryptographic steps so that any validator can verify a proof independently, ensuring trustless auditability across the network."
+      "tagline": "Defines the steps verifiers replay to validate a FASTPQ proof."
     },
     {
       "slug": "fastpqzkstarkproofs",
@@ -770,9 +784,9 @@
     {
       "slug": "fearlesswallet",
       "title": "Fearless Wallet",
-      "category": "Ecosystem",
-      "summary": "Fearless Wallet is a mobile-first application by SORAMITSU that lets users manage Polkadot, Kusama, and SORA assets with staking, swaps, and governance support.",
-      "tagline": "Provides secure, user-friendly access to SORA DeFi on mobile devices."
+      "category": "DeFi",
+      "summary": "Fearless Wallet is a non-custodial mobile wallet by SORAMITSU for managing Polkadot, Kusama, and SORA ecosystem assets with staking, DeFi access, and governance participation.",
+      "tagline": "Provides the primary mobile gateway to SORA DeFi, enabling secure self-custody, staking rewards, and ecosystem participation without desktop access."
     },
     {
       "slug": "fiatshamirtranscript",
@@ -832,7 +846,7 @@
       "title": "Geo-redundancy",
       "category": "Observability & Operations",
       "summary": "Operational guidance for running validators, provers, and storage nodes across multiple regions to survive localized outages.",
-      "tagline": "Protects the network against regional outages, natural disasters, and infrastructure failures by distributing critical nodes across multiple geographic locations."
+      "tagline": "Keeps Nexus online by distributing critical nodes across regions."
     },
     {
       "slug": "goldilocksfield",
@@ -882,6 +896,12 @@
       "tagline": "Provides seamless access to SORA Nexus services."
     },
     {
+      "slug": "hacks",
+      "title": "Hacks",
+      "category": "Technology",
+      "summary": "Security exploits, vulnerabilities, and attack vectors in the crypto ecosystem, plus how SORA architecture mitigates common threats."
+    },
+    {
       "slug": "halo2circuits",
       "title": "Halo2 Circuits",
       "category": "Cryptography",
@@ -918,7 +938,7 @@
       "slug": "hybridpqhandshake",
       "title": "Hybrid PQ Handshake",
       "category": "Networking",
-      "summary": "SoraNet's combination of Curve25519 and Kyber768 during session setup, providing classical and post-quantum security simultaneously.",
+      "summary": "SoraNet's hybrid session setup combining Curve25519 (X25519) with ML-KEM-768 (Kyber768), providing classical and post-quantum security simultaneously.",
       "tagline": "Future-proofs connections against quantum computing attacks."
     },
     {
@@ -938,7 +958,14 @@
       "slug": "hyperledgeriroha3",
       "title": "Hyperledger Iroha3",
       "category": "Technology",
-      "summary": "Hyperledger Iroha 3 is the next-generation version of the Iroha framework, featuring enhanced performance, WASM smart contracts, and improved developer tooling. SORA v3 architecture draws from Iroha 3 innovations for enterprise-grade blockchain infrastructure."
+      "summary": "Hyperledger Iroha 3 is the next-generation version of the Iroha framework that underpins SORA v3 (SORA Nexus). It introduces a redesigned data model, improved performance, and deterministic smart-contract execution via the Iroha Virtual Machine (IVM), where contracts are deployed as IVM bytecode (.to) and interact with the host ledger through Iroha Special Instructions (ISIs)."
+    },
+    {
+      "slug": "ih58",
+      "title": "IH58",
+      "category": "Accounts & Identity",
+      "summary": "Base58 account-address envelope that prepends the chain discriminant and appends a short Blake2b checksum over the canonical address payload, yielding a human-friendly, self-identifying address string.",
+      "tagline": "Canonical, checksum-protected account address encoding."
     },
     {
       "slug": "impermanentloss",
@@ -1003,7 +1030,7 @@
       "slug": "irohaspecialinstructions",
       "title": "Iroha Special Instructions",
       "category": "Technology",
-      "summary": "Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic…"
+      "summary": "Iroha Special Instructions (ISIs) are the syscall surface that IVM smart contracts use to call into the host ledger in Hyperledger Iroha 3, enabling deterministic and metered operations."
     },
     {
       "slug": "irohavirtualmachineivm",
@@ -1038,7 +1065,7 @@
       "title": "IVM Bytecode",
       "category": "Execution",
       "summary": "The compiled Kotodama program format in SORA Nexus (.to files) containing headers, ABI versions, and vector tables that the IVM loads and executes deterministically.",
-      "tagline": "Provides a portable, versioned format for smart contracts that guarantees identical execution across all validators regardless of hardware or operating system."
+      "tagline": "Versioned .to format for deterministic IVM execution across validators."
     },
     {
       "slug": "kaigi",
@@ -1058,8 +1085,8 @@
       "slug": "kotodama",
       "title": "Kotodama",
       "category": "Execution",
-      "summary": "The instruction set and runtime for SORA Nexus smart contracts, compiled to deterministic bytecode that the IVM executes with predictable gas costs and typed inputs.",
-      "tagline": "Powers programmable logic on SORA without the unpredictability of Turing-complete VMs."
+      "summary": "A high-level smart contract language for SORA Nexus that compiles to IVM bytecode (.to), executed deterministically with explicit gas metering and typed inputs/outputs.",
+      "tagline": "High-level smart contracts compiled to IVM bytecode for deterministic execution."
     },
     {
       "slug": "kotodamabytecode",
@@ -1073,7 +1100,7 @@
       "title": "Kotodama Runtime",
       "category": "Execution",
       "summary": "The toolchain in SORA Nexus that validates Kotodama contracts before deployment, ensuring pointer ABIs and gas tables are compatible with the current network version.",
-      "tagline": "Catches incompatible or malformed contracts before deployment, preventing costly on-chain failures and ensuring all deployed code meets network standards."
+      "tagline": "Validates contracts and ABI/gas compatibility before deployment."
     },
     {
       "slug": "kura",
@@ -1099,8 +1126,8 @@
       "slug": "kyber768",
       "title": "Kyber768",
       "category": "Cryptography",
-      "summary": "The lattice-based key encapsulation mechanism used in SORA Nexus's hybrid handshake to provide post-quantum security for network communications against future quantum attacks.",
-      "tagline": "Essential component of the SORA Nexus architecture."
+      "summary": "The lattice-based key encapsulation mechanism (now standardized as ML-KEM-768) used in SoraNet hybrid handshakes to provide post-quantum security for network communications.",
+      "tagline": "Post-quantum key agreement for hybrid handshakes."
     },
     {
       "slug": "lambdaexit",
@@ -1120,7 +1147,7 @@
       "slug": "laneanddabudgets",
       "title": "Lane and DA Budgets",
       "category": "Observability & Operations",
-      "summary": "The combined constraints governing how much transaction work and DA sampling a slot may perform. Lane TEU budgets default to ~20,000 TEU/s per lane, while DA budgets limit signatures per public data space (6-16 range) with a total cap of 2,048 samples. These budgets ensure predictable performance with DA verification under 300ms and lane proof verification under 200ms.",
+      "summary": "The combined constraints on how much transaction work and DA sampling a slot may perform. Lane TEU budgets cap throughput per lane, while DA budgets cap signatures/samples per public data space to keep verification latency predictable.",
       "tagline": "Prevents any single lane from starving others of compute resources."
     },
     {
@@ -1275,17 +1302,38 @@
       "tagline": "Allow succinct verification of state changes."
     },
     {
+      "slug": "merkleproof",
+      "title": "Merkle Proof",
+      "category": "Cryptography",
+      "summary": "An inclusion proof that a value is part of a Merkle tree committed by a known root hash, allowing verification without the full dataset.",
+      "tagline": "Verifies inclusion against a state root with a short authentication path."
+    },
+    {
       "slug": "mining",
       "title": "Mining",
       "category": "Technology",
       "summary": "The process of validating transactions and producing blocks in proof-of-work systems."
     },
     {
-      "slug": "mldsa87",
-      "title": "Ml-dsa-87",
+      "slug": "mldsa44",
+      "title": "ML-DSA-44",
       "category": "Cryptography",
-      "summary": "The post-quantum signature suite in SORA Nexus used for consensus votes, data-space attestations, and private-domain proofs, providing resistance against quantum computer attacks.",
-      "tagline": "Provides cryptographic authentication for transactions and attestations."
+      "summary": "The ML-DSA-44 (Dilithium2) post-quantum signature suite used in SoraNet admission flows (for example, signing proof-of-work access tickets).",
+      "tagline": "Compact post-quantum signatures for admission and ticketing."
+    },
+    {
+      "slug": "mldsa65",
+      "title": "ML-DSA-65",
+      "category": "Cryptography",
+      "summary": "The ML-DSA-65 (Dilithium3) post-quantum signature suite used for SoraNet dual-signed relay certificates and other quantum-resistant authentication flows.",
+      "tagline": "Post-quantum signatures used for dual-signed SoraNet artifacts."
+    },
+    {
+      "slug": "mldsa87",
+      "title": "ML-DSA-87",
+      "category": "Cryptography",
+      "summary": "The ML-DSA-87 (Dilithium5) post-quantum signature suite supported by SoraNet/Nexus tooling for quantum-resistant authentication.",
+      "tagline": "Post-quantum signatures (Dilithium5 parameter set)."
     },
     {
       "slug": "mobile",
@@ -1422,6 +1470,13 @@
       "tagline": "Provides seamless access to SORA Nexus services."
     },
     {
+      "slug": "opaqueaccountid",
+      "title": "Opaque Account ID",
+      "category": "Accounts & Identity",
+      "summary": "Hash-based identifier (rendered `opaque:<hex>`) that can be resolved to a UAID without disclosing raw PII, enabling privacy-preserving external account references and directory lookups.",
+      "tagline": "Privacy-preserving identifier that maps to UAIDs."
+    },
+    {
       "slug": "opengov",
       "title": "Opengov",
       "category": "Governance",
@@ -1543,6 +1598,13 @@
       "category": "Cryptography",
       "summary": "The algebraic hash function optimized for zero-knowledge circuits in SORA Nexus, used extensively in FASTPQ commitments, Sparse Merkle Trees, and state proofs.",
       "tagline": "Ensures data integrity and enables secure verification across the network."
+    },
+    {
+      "slug": "powticket",
+      "title": "PoW Ticket",
+      "category": "Networking",
+      "summary": "Hashcash-style proof-of-work token attached to SoraNet circuit establishment, containing difficulty, expiry, and nonces; relays validate it to throttle abuse and gate certain capabilities.",
+      "tagline": "Proof-of-work admission token for circuits."
     },
     {
       "slug": "preauthorizedvouchers",
@@ -1817,7 +1879,7 @@
       "slug": "sha3",
       "title": "Sha-3",
       "category": "Cryptography",
-      "summary": "A Keccak-based cryptographic hash function available in SORA Nexus for domains requiring NIST-standardized hashing. While Poseidon2 over Goldilocks is used for internal traces and sparse Merkle trees, SHA-3 provides compatibility with external systems and regulatory requirements that mandate NIST-approved algorithms.",
+      "summary": "A Keccak-based (NIST SHA-3) cryptographic hash function available in SORA Nexus for NIST-standardized hashing and external compatibility, while internal traces use Poseidon2.",
       "tagline": "Provides NIST-standardized hashing for regulatory compliance and external interoperability."
     },
     {
@@ -1852,6 +1914,13 @@
       "category": "Serialization & Encoding",
       "summary": "The versioned wire format for distributing and persisting blocks, including headers, signatures, and Norito payload references.",
       "tagline": "Provides cryptographic authentication for transactions and attestations."
+    },
+    {
+      "slug": "signedticket",
+      "title": "Signed Ticket",
+      "category": "Networking",
+      "summary": "Relay-issued token that signs a PoW ticket (or a difficulty-0 grant) with ML-DSA-44, binding it to a relay id and optional transcript hash so clients can reuse admission proofs while preventing replay across relays and sessions.",
+      "tagline": "Relay-signed fast pass derived from PoW tickets."
     },
     {
       "slug": "slashing",
@@ -1897,13 +1966,20 @@
       "slug": "smartcontracts",
       "title": "Smart Contracts",
       "category": "Technology",
-      "summary": "Smart contracts are self-executing programs stored on blockchain that automatically enforce agreement terms. SORA supports smart contracts through Ink! (Rust-based) and future WASM execution environments."
+      "summary": "Smart contracts are programs executed deterministically by a blockchain network. In SORA v3 (SORA Nexus), contract logic is written in Kotodama and deployed as IVM bytecode, with on-ledger effects performed through Iroha Special Instructions (ISIs) and metered by gas schedules."
     },
     {
       "slug": "smartrouting",
       "title": "Smart Routing",
       "category": "DeFi",
       "summary": "An algorithm that automatically finds the optimal path for trading to minimize slippage and maximize returns. Polkaswap's smart routing analyzes multiple liquidity sources and a…"
+    },
+    {
+      "slug": "snxhrp",
+      "title": "SNX HRP",
+      "category": "Accounts & Identity",
+      "summary": "Human-readable prefix (`snx`) used in the Bech32m-style checksum for Sora-only compressed account addresses, improving error detection and keeping the checksum domain-separated from other formats.",
+      "tagline": "Bech32m checksum prefix for compressed Sora addresses."
     },
     {
       "slug": "solana",
@@ -1921,7 +1997,7 @@
       "slug": "sora",
       "title": "SORA",
       "category": "Ecosystem",
-      "summary": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament.",
+      "summary": "SORA is a decentralized economic network featuring XOR elastic supply tokenomics, Polkaswap DEX, HASHI cross-chain bridge, and democratic governance through SORA Parliament. The network is transitioning from Substrate (SORA v2) to Hyperledger Iroha 3 (SORA v3/Nexus).",
       "tagline": "Foundation for a new decentralized world economy with programmable finance and democratic governance."
     },
     {
@@ -1981,7 +2057,7 @@
       "title": "SORA Nexus",
       "category": "Governance",
       "summary": "The single logical ledger built on Hyperledger Iroha 3 that unifies private data spaces, public domains, and modern cryptography.",
-      "tagline": "Delivers a unified global ledger where enterprises, governments, and individuals transact on equal footing with sub-second finality and post-quantum security."
+      "tagline": "Unified ledger on Iroha 3 for public domains and private data spaces."
     },
     {
       "slug": "soraparliament",
@@ -1989,6 +2065,13 @@
       "category": "Governance",
       "summary": "The future democratic governance system of SORA using multi-body sortition with clear separation of powers. The SORA Parliament will replace the current Governance V1 system, im…",
       "tagline": "Gives the community direct control over network upgrades and treasury spending."
+    },
+    {
+      "slug": "soraprofile",
+      "title": "Sora Profile",
+      "category": "Developer Experience",
+      "summary": "Irohad feature profile enabled via `--sora` or `IROHA_SORA_PROFILE`, applying Sora Nexus defaults and requiring the flag when Sora-only config overrides (SoraFS, multi-lane routing) are present.",
+      "tagline": "Turns on Sora Nexus features and guards against misconfiguration."
     },
     {
       "slug": "sorav2",
@@ -2020,6 +2103,13 @@
       "category": "Governance",
       "summary": "Data spaces that let entities maintain jurisdictional control over privacy, routing, and compliance while sharing the global ledger.",
       "tagline": "Let entities maintain jurisdictional control over privacy."
+    },
+    {
+      "slug": "srcv2relaycertificate",
+      "title": "SoraNet Relay Certificate (SRCv2)",
+      "category": "Networking",
+      "summary": "Directory-published CBOR certificate describing a SoraNet relay (identity keys, endpoints, capabilities, validity window, and PQ KEM policy), signed with Ed25519 and ML-DSA-65 for hybrid security.",
+      "tagline": "How relays prove identity and advertise capabilities to the directory."
     },
     {
       "slug": "stableasset",
@@ -2067,6 +2157,13 @@
       "category": "Execution",
       "summary": "The deterministic process in SORA Nexus of applying validated instructions to the World State View after consensus confirms a block, updating balances and metadata.",
       "tagline": "Essential component of the SORA Nexus architecture."
+    },
+    {
+      "slug": "stateroot",
+      "title": "State Root",
+      "category": "Consensus",
+      "summary": "A cryptographic commitment (hash) to the post-block ledger state, used by consensus and light clients to verify that all nodes reached the same result.",
+      "tagline": "Commits to the ledger state so it can be verified without downloading everything."
     },
     {
       "slug": "submission",
@@ -2275,6 +2372,13 @@
       "tagline": "Essential component of the SORA Nexus architecture."
     },
     {
+      "slug": "uaid",
+      "title": "UAID",
+      "category": "Accounts & Identity",
+      "summary": "Short for UniversalAccountId; a hash-based universal account identifier (rendered `uaid:<hex>`) used as a stable capability anchor across Nexus dataspaces and lanes, including Space Directory manifests keyed by UAID + DataSpaceId.",
+      "tagline": "A universal account anchor shared across data spaces."
+    },
+    {
       "slug": "val",
       "title": "VAL",
       "category": "Token",
@@ -2343,7 +2447,7 @@
       "slug": "wasm",
       "title": "WASM (WebAssembly)",
       "category": "Technology",
-      "summary": "A portable binary instruction format that enables high-performance smart contracts and runtime modules."
+      "summary": "A portable binary instruction format used for sandboxed, high-performance execution (often for smart contracts and blockchain runtime modules)."
     },
     {
       "slug": "web3",
@@ -2432,8 +2536,8 @@
       "tagline": "FASTPQ can run in audit (non-zk) or privacy (zk) modes while sharing the same verifier logic."
     }
   ],
-  "canonicalCount": 369,
-  "aliasCount": 39,
+  "canonicalCount": 384,
+  "aliasCount": 41,
   "version": 2025,
-  "lastUpdated": "2025-12-12T13:37:54.467Z"
+  "lastUpdated": "2026-02-06T19:10:38.270Z"
 }
