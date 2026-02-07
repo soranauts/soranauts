@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { execSync, type ExecException } from 'node:child_process';
+import { execFileSync, type ExecException } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 interface ParsedMatrix {
@@ -199,14 +199,14 @@ function printDiff(original: string, updated: string): void {
   fs.writeFileSync(tmpPath, updated, 'utf8');
 
   try {
-    const diffOutput = execSync(`diff -u "${CONFIG_PATH}" "${tmpPath}"`, {
+    const diffOutput = execFileSync('diff', ['-u', CONFIG_PATH, tmpPath], {
       encoding: 'utf8',
     });
     console.log(diffOutput);
   } catch (error) {
     if (isExecDiffError(error)) {
       if (error.stdout) {
-        console.log(error.stdout);
+        console.log(typeof error.stdout === 'string' ? error.stdout : error.stdout.toString('utf8'));
       }
     } else {
       throw error;
@@ -328,4 +328,3 @@ function isExecDiffError(error: unknown): error is DiffExecError {
   const candidate = error as Partial<DiffExecError>;
   return typeof candidate.status === 'number' && candidate.status === 1;
 }
-

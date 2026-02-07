@@ -11,12 +11,9 @@ on:
         required: false
         default: 'false'
 
-<<<<<<< HEAD
-=======
 permissions:
   contents: write
 
->>>>>>> origin/main
 jobs:
   snapshot:
     name: Create Glossary Snapshot
@@ -87,5 +84,4 @@ jobs:
             echo "❌ Glossary snapshot failed"
             exit 1
           fi
-
 

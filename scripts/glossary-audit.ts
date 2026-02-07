@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import fg from 'fast-glob';
 import { createTwoFilesPatch } from 'diff';
 
@@ -324,8 +324,12 @@ function getChangedFiles(options: CliOptions): string[] {
     return [];
   }
   const range = options.since ? ref : `${ref}...HEAD`;
+  if (range.startsWith('-')) {
+    // Avoid accidental option parsing if an invalid ref is provided.
+    return [];
+  }
   try {
-    const output = execSync(`git diff --name-only ${range}`, {
+    const output = execFileSync('git', ['diff', '--name-only', range], {
       cwd: repoRoot,
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'ignore'],

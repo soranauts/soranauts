@@ -1,10 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { createRateLimit, quoteRateLimit } from '../rate-limit';
+import { __resetRateLimitStoreForTests, createRateLimit, quoteRateLimit } from '../rate-limit';
 
 describe('Rate Limiter', () => {
   beforeEach(() => {
-    // Clear the rate limit store before each test
-    // Note: In a real test environment, you'd want to mock or reset the store
+    __resetRateLimitStoreForTests();
   });
 
   describe('createRateLimit', () => {
@@ -101,44 +100,48 @@ describe('Rate Limiter', () => {
       const request = new Request('https://example.com/api/quote');
       
       // Should allow up to 30 requests per minute
-      const result = quoteRateLimit(request);
+      const result = quoteRateLimit(request, { clientAddress: '203.0.113.1' });
       expect(result.allowed).toBe(true);
       expect(result.remaining).toBe(29);
     });
 
-    it('should use IP-based keys', () => {
-      // Mock request with IP header
+    it('should rate limit per clientAddress', () => {
       const request = new Request('https://example.com/api/quote', {
         headers: {
-          'x-forwarded-for': '192.168.1.1'
+          'x-forwarded-for': '203.0.113.195', // ignored by default in unit tests
         }
       });
       
-      const result = quoteRateLimit(request);
-      expect(result.allowed).toBe(true);
-      expect(result.remaining).toBe(29);
+      // First 30 requests should be allowed.
+      for (let i = 0; i < 30; i++) {
+        const result = quoteRateLimit(request, { clientAddress: '203.0.113.2' });
+        expect(result.allowed).toBe(true);
+      }
+
+      // 31st request should be blocked.
+      const blocked = quoteRateLimit(request, { clientAddress: '203.0.113.2' });
+      expect(blocked.allowed).toBe(false);
+      expect(blocked.remaining).toBe(0);
     });
 
-    it('should handle multiple IP addresses in x-forwarded-for', () => {
-      const request = new Request('https://example.com/api/quote', {
+    it('should ignore forwarded headers by default', () => {
+      // Unless TRUST_PROXY_HEADERS is enabled, x-forwarded-for should not affect keying.
+      const requestWithForwarded = new Request('https://example.com/api/quote', {
         headers: {
-          'x-forwarded-for': '203.0.113.195, 70.41.3.18, 150.172.238.178'
-        }
+          'x-forwarded-for': '192.168.1.1',
+        },
       });
-      
-      const result = quoteRateLimit(request);
-      expect(result.allowed).toBe(true);
-      expect(result.remaining).toBe(29);
-    });
+      const requestWithoutForwarded = new Request('https://example.com/api/quote');
 
-    it('should fallback to development key when no IP headers', () => {
-      const request = new Request('https://example.com/api/quote');
+      // Both should map to the same key ("quote:unknown") when clientAddress is not supplied.
+      const first = quoteRateLimit(requestWithForwarded);
+      expect(first.allowed).toBe(true);
+      expect(first.remaining).toBe(29);
       
-      const result = quoteRateLimit(request);
-      expect(result.allowed).toBe(true);
-      expect(result.remaining).toBe(29);
+      const second = quoteRateLimit(requestWithoutForwarded);
+      expect(second.allowed).toBe(true);
+      expect(second.remaining).toBe(28);
     });
   });
 });
-
 

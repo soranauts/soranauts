@@ -13,6 +13,7 @@ import robotsParser from 'robots-parser';
 import { Command } from 'commander';
 import { env } from './env';
 import { createProvenance, currentSnapshotId } from './utils/provenance';
+import { isSafePublicHttpUrl } from './utils/url-safety';
 
 const program = new Command();
 program
@@ -213,6 +214,7 @@ async function saveImages($: any): Promise<void> {
   $('img[src]').each((_i: unknown, el: any) => {
     const src = $(el).attr('src');
     if (!src || !/^https?:\/\//.test(src)) return;
+    if (!isSafePublicHttpUrl(src)) return;
     
     jobs.push((async () => {
       try {

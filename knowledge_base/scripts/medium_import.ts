@@ -11,6 +11,7 @@ import { Command } from 'commander';
 import pQueue from 'p-queue';
 import { env } from './env';
 import { createProvenance, currentSnapshotId } from './utils/provenance';
+import { isSafePublicHttpUrl } from './utils/url-safety';
 
 const program = new Command();
 program
@@ -61,6 +62,10 @@ const sha = (s: string) => createHash('sha256').update(s).digest('hex');
 
 async function dl(url: string) {
   try {
+    if (!isSafePublicHttpUrl(url)) {
+      console.warn(`  ⚠ Skipping unsafe image URL: ${url}`);
+      return url;
+    }
     const buf = await got(url, {
       headers: { 'User-Agent': env.USER_AGENT },
       timeout: { request: env.REQUEST_TIMEOUT },

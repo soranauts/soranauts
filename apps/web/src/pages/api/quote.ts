@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { z } from 'zod';
+import { ZodError, z } from 'zod';
 import { env } from '../../server/env';
 import { quoteRateLimit } from '../../server/rate-limit';
 
@@ -24,7 +24,7 @@ export const GET: APIRoute = async (context) => {
     const { request, url } = context;
 
     // Check rate limit
-    const rateLimitResult = quoteRateLimit(request);
+    const rateLimitResult = quoteRateLimit(request, { clientAddress: context.clientAddress });
     if (!rateLimitResult.allowed) {
       return new Response(
         JSON.stringify({ 
@@ -98,18 +98,22 @@ export const GET: APIRoute = async (context) => {
     });
   } catch (error) {
     console.error('Quote API error:', error);
-    
-    return new Response(
-      JSON.stringify({ 
-        error: 'Failed to get quote',
-        details: error instanceof Error ? error.message : 'Unknown error'
-      }),
-      {
-        status: 400,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+
+    const isDev = import.meta.env.DEV;
+    const isValidationError = error instanceof ZodError;
+    const status = isValidationError ? 400 : 502;
+    const payload: Record<string, unknown> = {
+      error: isValidationError ? 'Invalid request' : 'Failed to get quote',
+    };
+    if (isDev) {
+      payload.details = error instanceof Error ? error.message : String(error);
+    }
+
+    return new Response(JSON.stringify(payload), {
+      status,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 };

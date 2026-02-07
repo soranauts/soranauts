@@ -14,7 +14,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -166,16 +166,22 @@ function parseFrontMatter(content: string): TermData | null {
 
   if (!titleMatch || !slugMatch || !categoryMatch) return null;
 
+  const slug = slugMatch[1].trim().replace(/^["']|["']$/g, '');
+  // Slug is used as a filename; reject anything that could lead to path traversal or unsafe output paths.
+  if (!/^[a-z0-9-]+$/i.test(slug) || slug.includes('..') || slug.includes('/') || slug.includes('\\')) {
+    return null;
+  }
+
   return {
     title: titleMatch[1].trim(),
-    slug: slugMatch[1].trim().replace(/^["']|["']$/g, ''),
+    slug,
     category: categoryMatch[1].trim(),
   };
 }
 
 function getChangedFiles(): Set<string> {
   try {
-    const output = execSync('git diff --name-only HEAD~1 HEAD', { encoding: 'utf-8' });
+    const output = execFileSync('git', ['diff', '--name-only', 'HEAD~1', 'HEAD'], { encoding: 'utf-8' });
     const files = output.split('\n').filter(f => f.endsWith('.mdx'));
     return new Set(files.map(f => path.basename(f)));
   } catch {
@@ -262,5 +268,3 @@ main().catch((err) => {
   console.error('❌ OG generation failed:', err);
   process.exit(1);
 });
-
-

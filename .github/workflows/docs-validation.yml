@@ -27,12 +27,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-<<<<<<< HEAD
-=======
 permissions:
   contents: read
 
->>>>>>> origin/main
 jobs:
   validate:
     name: Validate Documentation

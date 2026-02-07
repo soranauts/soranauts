@@ -2,12 +2,9 @@ name: Guard large files
 
 on: [pull_request]
 
-<<<<<<< HEAD
-=======
 permissions:
   contents: read
 
->>>>>>> origin/main
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -25,7 +22,6 @@ jobs:
               exit 1
             fi
           done
-
 
 
 

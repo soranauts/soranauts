@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 
 const tagName = process.argv[2] ?? 'glossary-v2025-release';
 
@@ -15,20 +15,27 @@ const tagMessage = `Glossary v2025 release
 - Phase 13: cross-system tests
 - Phase 14: release prep & lockdown`;
 
-const commands = [
-  'git fetch --all --tags',
-  'git checkout main',
-  'git pull --ff-only',
-  `git tag -a ${tagName} -m "${tagMessage}"`,
-  `git push origin ${tagName}`,
-];
+function isSafeTagName(value) {
+  // Conservative: avoid option injection and unsafe characters.
+  // Git tag rules are broader, but this covers typical release tags safely.
+  return /^[A-Za-z0-9][A-Za-z0-9._/-]{0,100}$/.test(value) && !value.includes('..') && !value.includes('@{');
+}
+
+if (!isSafeTagName(tagName)) {
+  console.error(`[release-tag] Invalid tag name: ${tagName}`);
+  process.exit(1);
+}
+
+function git(args) {
+  execFileSync('git', args, { stdio: 'inherit' });
+}
 
 console.log(`\n[release-tag] Preparing Glossary v2025 tag: ${tagName}\n`);
 
-for (const cmd of commands) {
-  console.log(`[release-tag] $ ${cmd}`);
-  execSync(cmd, { stdio: 'inherit' });
-}
+git(['fetch', '--all', '--tags']);
+git(['checkout', 'main']);
+git(['pull', '--ff-only']);
+git(['tag', '-a', tagName, '-m', tagMessage]);
+git(['push', 'origin', tagName]);
 
 console.log('\n[release-tag] Tagging complete. Commands executed above.\n');
-

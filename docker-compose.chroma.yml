@@ -5,13 +5,14 @@ services:
     image: ghcr.io/chroma-core/chroma:latest
     container_name: soranauts-chroma
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     volumes:
       - chroma-data:/chroma/chroma
     environment:
       - CHROMA_SERVER_HOST=0.0.0.0
       - CHROMA_SERVER_HTTP_PORT=8000
-      - ALLOW_RESET=TRUE
+      # Safer default: only allow reset when explicitly enabled for local/dev workflows.
+      - ALLOW_RESET=${CHROMA_ALLOW_RESET:-FALSE}
       - IS_PERSISTENT=TRUE
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]

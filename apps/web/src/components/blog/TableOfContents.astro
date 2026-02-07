@@ -97,43 +97,51 @@
         return;
       }
 
-      const tocHTML = actualHeadings
-        .map((heading) => {
-          if (!(heading instanceof HTMLElement)) {
-            return '';
-          }
+      // Build the TOC using DOM APIs to avoid HTML injection sinks.
+      tocListEl.textContent = '';
 
-          const level = parseInt(heading.tagName.charAt(1));
-          const text = heading.textContent || '';
-          const id = heading.id || text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
+      actualHeadings.forEach((rawHeading) => {
+        if (!(rawHeading instanceof HTMLElement)) {
+          return;
+        }
+        const heading = rawHeading;
 
-          if (!text || text.trim().length < 3) {
-            return '';
-          }
+        const level = parseInt(heading.tagName.charAt(1), 10);
+        const text = heading.textContent || '';
+        const id =
+          heading.id ||
+          text
+            .toLowerCase()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .trim();
 
-          if (!heading.id) {
-            heading.id = id;
-          }
+        if (!text || text.trim().length < 3) {
+          return;
+        }
 
-          const indentClass = level > 2 ? 'ml-4' : level > 3 ? 'ml-8' : '';
-          const fontClass = level === 1 ? 'font-semibold' : level === 2 ? 'font-medium' : '';
+        if (!heading.id) {
+          heading.id = id;
+        }
 
-          return `
-            <li class="${indentClass}">
-              <a
-                href="#${id}"
-                class="toc-link ${fontClass}"
-                data-target-id="${id}"
-              >
-                ${text}
-              </a>
-            </li>
-          `;
-        })
-        .filter(Boolean)
-        .join('');
+        const indentClass = level > 3 ? 'ml-8' : level > 2 ? 'ml-4' : '';
+        const fontClass = level === 1 ? 'font-semibold' : level === 2 ? 'font-medium' : '';
 
-      tocListEl.innerHTML = tocHTML;
+        const li = document.createElement('li');
+        if (indentClass) {
+          li.className = indentClass;
+        }
+
+        const a = document.createElement('a');
+        a.href = `#${id}`;
+        a.className = `toc-link${fontClass ? ` ${fontClass}` : ''}`;
+        a.setAttribute('data-target-id', id);
+        a.textContent = text;
+
+        li.appendChild(a);
+        tocListEl.appendChild(li);
+      });
 
       currentTocLinks = Array.from(tocListEl.querySelectorAll('.toc-link'));
       currentHeadingElements = actualHeadings;

@@ -1,46 +1,80 @@
-# build output
-dist/
-.output/
-
-# Backup files
-*.backup
-*.bak
-
-# Content lint reports (generated)
-content-lint-report.md
-
-# Generated OG images (regenerated on demand)
-apps/web/public/og/glossary/
-
-# Glossary backups (managed by ops:snapshot)
-backups/
-
-# Generated reports
-monitoring-report.md
-content-gaps-report.md
-content-gaps-report.csv
-glossary-link-fixes.md
-
-# dependencies
+# --- Dependencies ---
 node_modules/
 
-# logs
+# --- Build output (Astro / Node) ---
+dist/
+.output/
+.astro/
+.vercel/
+.netlify/
+
+# --- Test output ---
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+blob-report/
+
+# --- Caches / temp ---
+.cache/
+.corepack/
+.pnpm-store/
+.turbo/
+.vite/
+.eslintcache
+*.tsbuildinfo
+.last-run*.json
+.tmp_taxonomy_snapshot/
+
+# --- Logs ---
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# --- Env ---
+.env*
+!.env.example
 
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
-.DS_Store
-
+# --- Lockfiles (this repo uses pnpm) ---
 package-lock.json
+npm-shrinkwrap.json
+yarn.lock
+bun.lockb
 
-.astro
+# --- OS files ---
+.DS_Store
+Thumbs.db
+
+# --- Backups ---
+*.backup
+*.bak
+backups/
+
+# --- Generated content / reports (repo-specific) ---
+content-lint-report.md
+monitoring-report.md
+content-gaps-report.md
+content-gaps-report.csv
+glossary-link-fixes.md
+glossary-audit-bundle.md
+explorer-audit-bundle.md
+
+# Generated OG images (regenerated on demand)
+apps/web/public/og/glossary/
+
+# Prevent accidental content file creation (use the intended canonical docs)
+apps/web/src/pages/changelog.astro
+apps/web/src/pages/improvements.md
+
+# --- AI assistant / tooling ---
+.claude/
+docs/claude-reference/00-START-HERE.md
+docs/claude-reference/CHECKLIST.md
+docs/claude-reference/COMMANDS.md
+docs/claude-reference/GENERATION_SUMMARY.md
+docs/claude-reference/INDEX.md
 
 # --- Soranauts KB (local artifacts, do not commit) ---
 # Build artifacts (reproducible from curated content)
@@ -91,32 +125,3 @@ knowledge_base/curated/community-memos/**/*.pdf
 # Keep root-level documentation files
 !knowledge_base/*.md
 !BACKUP_INFO_*.txt
-
-# Prevent changelog.astro from being created (changelog.md is the correct file)
-apps/web/src/pages/changelog.astro
-
-# Prevent improvements.md from being created (redirects to /changelog, use changelog.md instead)
-apps/web/src/pages/improvements.md
-test-results/
-.last-run*.json
-.tmp_taxonomy_snapshot/
-
-# AI assistant configuration files
-.cursorrules
-.claude/
-apps/web/test-results/.last-run.json
-
-# Auto-generated documentation files
-docs/claude-reference/00-START-HERE.md
-docs/claude-reference/CHECKLIST.md
-docs/claude-reference/COMMANDS.md
-docs/claude-reference/GENERATION_SUMMARY.md
-docs/claude-reference/INDEX.md
-glossary-audit-bundle.md
-
-# Generated reports
-content-gaps-report.md
-content-lint-report.md
-monitoring-report.md
-explorer-audit-bundle.md
-apps/web/.env.local

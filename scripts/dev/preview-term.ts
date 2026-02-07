@@ -9,13 +9,13 @@
  * Example: pnpm author:preview xor
  */
 
-import { exec, spawn } from 'node:child_process';
+import { execFile, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,7 +31,7 @@ const DEV_URL = `http://localhost:${DEV_PORT}`;
 
 async function isPortInUse(port: number): Promise<boolean> {
   try {
-    await execAsync(`lsof -i :${port} | grep LISTEN`);
+    await execFileAsync('lsof', ['-nP', `-iTCP:${port}`, '-sTCP:LISTEN']);
     return true;
   } catch {
     return false;
@@ -58,18 +58,29 @@ async function waitForServer(url: string, maxWait = 30000): Promise<boolean> {
 
 async function openBrowser(url: string): Promise<void> {
   const platform = process.platform;
-  
+
   try {
+    // Basic sanity check so we don't hand arbitrary strings to OS-level URL handlers.
+    const parsed = new URL(url);
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+      throw new Error(`Unsupported URL protocol: ${parsed.protocol}`);
+    }
+
     if (platform === 'darwin') {
-      await execAsync(`open "${url}"`);
+      await execFileAsync('open', [url]);
     } else if (platform === 'win32') {
-      await execAsync(`start "${url}"`);
+      // "start" is a cmd built-in, so invoke via cmd.exe with explicit args.
+      await execFileAsync('cmd', ['/c', 'start', '', url]);
     } else {
-      await execAsync(`xdg-open "${url}"`);
+      await execFileAsync('xdg-open', [url]);
     }
   } catch (error) {
     console.log(`\n🔗 Open manually: ${url}`);
   }
+}
+
+function isSafeSlug(value: string): boolean {
+  return /^[a-z0-9-]+$/.test(value);
 }
 
 function findTermSlug(input: string): string | null {
@@ -81,7 +92,10 @@ function findTermSlug(input: string): string | null {
     const slugMatch = content.match(/^slug:\s*(\S+)/m);
     
     if (slugMatch) {
-      const slug = slugMatch[1].replace(/^["']|["']$/g, '');
+      const slug = slugMatch[1].replace(/^["']|["']$/g, '').trim().toLowerCase();
+      if (!isSafeSlug(slug)) {
+        continue;
+      }
       if (slug === input.toLowerCase()) {
         return slug;
       }
@@ -96,7 +110,8 @@ function findTermSlug(input: string): string | null {
       const content = fs.readFileSync(path.join(CONTENT_DIR, file), 'utf-8');
       const slugMatch = content.match(/^slug:\s*(\S+)/m);
       if (slugMatch) {
-        return slugMatch[1].replace(/^["']|["']$/g, '');
+        const slug = slugMatch[1].replace(/^["']|["']$/g, '').trim().toLowerCase();
+        return isSafeSlug(slug) ? slug : null;
       }
     }
   }
@@ -166,7 +181,8 @@ async function main() {
   }
   
   // Build preview URL with Quick-View deep-link
-  const previewUrl = `${DEV_URL}/glossary/${slug}?term=${slug}&preview=author`;
+  const encodedSlug = encodeURIComponent(slug);
+  const previewUrl = `${DEV_URL}/glossary/${encodedSlug}?term=${encodedSlug}&preview=author`;
   
   console.log(`🔗 Opening: ${previewUrl}\n`);
   
@@ -183,5 +199,3 @@ main().catch((err) => {
   console.error('❌ Preview failed:', err);
   process.exit(1);
 });
-
-

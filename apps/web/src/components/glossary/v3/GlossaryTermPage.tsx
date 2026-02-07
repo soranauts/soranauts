@@ -19,6 +19,7 @@ export interface GlossaryTermPageProps {
   categoryLabel?: string | null;
   explorerUrl?: string | null;
   explorerDomainLabel?: string | null;
+  // Must be sanitized before passing (e.g., allowlist sanitizer); this component renders via dangerouslySetInnerHTML.
   definitionHtml?: string;
   lastUpdate?: string;
 }
@@ -167,6 +168,17 @@ const GlossaryTermPage = ({
     scrollToSection(sectionId);
   };
 
+  const renderedDefinitionHtml = useMemo(() => {
+    const html = definitionHtml ?? `<p>${escapeHtml(definition)}</p>`;
+    // Defensive check: sanitization is expected upstream; catch accidental unsafe inputs during development.
+    if (import.meta.env.DEV && definitionHtml) {
+      if (/<script\b/i.test(html) || /\son\w+=/i.test(html)) {
+        console.warn('[glossary] definitionHtml appears unsafe; ensure it is sanitized before rendering.');
+      }
+    }
+    return html;
+  }, [definitionHtml, definition]);
+
   return (
     <div className="glossary-v3">
       <button
@@ -203,7 +215,7 @@ const GlossaryTermPage = ({
             </header>
             <div
               className="prose prose-slate dark:prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: definitionHtml ?? `<p>${escapeHtml(definition)}</p>` }}
+              dangerouslySetInnerHTML={{ __html: renderedDefinitionHtml }}
             />
           </section>
 
@@ -245,4 +257,3 @@ const GlossaryTermPage = ({
 };
 
 export default GlossaryTermPage;
-

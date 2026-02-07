@@ -5,13 +5,10 @@ on:
     paths:
       - 'apps/web/src/content/post/**'
 
-<<<<<<< HEAD
-=======
 permissions:
   contents: read
   security-events: write
 
->>>>>>> origin/main
 jobs:
   backtest:
     runs-on: ubuntu-latest
@@ -66,4 +63,3 @@ jobs:
         with:
           name: backtest-report
           path: reports/backtest/*.json
-

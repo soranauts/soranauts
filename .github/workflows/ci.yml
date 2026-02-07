@@ -5,12 +5,9 @@ on:
   push:
     branches: [ main ]
 
-<<<<<<< HEAD
-=======
 permissions:
   contents: read
 
->>>>>>> origin/main
 jobs:
   build-test:
     runs-on: ubuntu-latest

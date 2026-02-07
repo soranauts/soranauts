@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import sanitizeHtml from 'sanitize-html';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/widgets/Header.astro';
 import Footer from '../../components/widgets/Footer.astro';
@@ -338,6 +339,39 @@ const buildAutoLinkTargets = () => {
 const autoLinkTargets = buildAutoLinkTargets();
 const definitionHasHtml = /<\/?[a-z][\s>]/i.test(displayDefinition);
 
+const sanitizeDefinitionHtml = (rawHtml: string): string =>
+  sanitizeHtml(rawHtml, {
+    allowedTags: [
+      'p',
+      'br',
+      'strong',
+      'em',
+      'code',
+      'pre',
+      'ul',
+      'ol',
+      'li',
+      'blockquote',
+      'a',
+    ],
+    allowedAttributes: {
+      a: ['href', 'title', 'target', 'rel'],
+    },
+    allowedSchemes: ['http', 'https', 'mailto'],
+    allowProtocolRelative: false,
+    transformTags: {
+      a: (tagName, attribs) => {
+        const next = { ...attribs };
+        if (next.target === '_blank') {
+          next.rel = 'noopener noreferrer';
+        }
+        return { tagName, attribs: next };
+      },
+    },
+    // Keep markup minimal; discard anything not explicitly allowed.
+    disallowedTagsMode: 'discard',
+  });
+
 const linkParagraph = (paragraph: string) => {
   if (!autoLinkTargets.length) {
     return escapeHtml(paragraph);
@@ -383,7 +417,7 @@ const linkParagraph = (paragraph: string) => {
 
 const buildDefinitionHtml = () => {
   if (definitionHasHtml) {
-    return displayDefinition;
+    return sanitizeDefinitionHtml(displayDefinition);
   }
   const paragraphs = displayDefinition.split(/\n{2,}/).map((block) => block.trim()).filter(Boolean);
   if (!paragraphs.length) {

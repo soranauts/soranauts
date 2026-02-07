@@ -11,13 +11,10 @@ on:
         required: false
         default: 'https://soranauts.com'
 
-<<<<<<< HEAD
-=======
 permissions:
   contents: read
   issues: write
 
->>>>>>> origin/main
 jobs:
   lighthouse:
     name: Lighthouse Performance Audit
@@ -187,5 +184,4 @@ jobs:
                 labels: ['performance', 'automated', 'needs-triage']
               });
             }
-
 

@@ -21,6 +21,11 @@ const envSchema = z.object({
   KB_DIR: z.string().default('./knowledge_base'),
   INDEX_DIR: z.string().default('./knowledge_base/.kb_index'),
   USER_AGENT: z.string().default('SoranautsBot/1.0 (+https://soranauts.com)'),
+  TRUST_PROXY_HEADERS: z
+    .string()
+    .transform((val) => val === '1' || val === 'true')
+    .pipe(z.boolean())
+    .default('false'),
   REQUEST_TIMEOUT: z.string().transform((val) => parseInt(val, 10)).pipe(z.number()).default('12000'),
   MEDIUM_FEED_URL: z.string().url().default('https://sora-xor.medium.com/feed'),
   POLKASWAP_FEED_URL: z.string().url().default('https://polkaswap.medium.com/feed'),
@@ -88,5 +93,4 @@ const envSchema = z.object({
 });
 
 export const env = envSchema.parse(process.env);
-
 
