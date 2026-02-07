@@ -4,14 +4,14 @@ slug: erasurecodedwsv
 category: "Data Availability"
 tags:
   - "Nexus Architecture"
-summary: "World State View snapshots in SORA Nexus protected by erasure coding, enabling resilient state recovery across validators even when some nodes are offline or corrupted."
-tagline: "Allows the network to recover full state even if some validators fail or go offline."
+summary: "WSV snapshots are chunked and erasure-coded with commitments recorded in headers; public snapshots are widely sharded while private snapshots stay within permissioned validators."
+tagline: "Erasure-coded state snapshots with commitments."
 related:
   - "Erasure-Coded Kura"
-  - "Two-Dimensional Erasure Coding"
   - "World State View (WSV)"
   - "Reed-Solomon"
   - "Data Availability"
+  - "Merkle Commitments"
 links:
   - label: "Nexus Whitepaper"
     url: "/documents/sora_nexus_whitepaper.pdf"

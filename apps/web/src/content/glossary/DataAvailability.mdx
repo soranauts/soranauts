@@ -4,14 +4,14 @@ slug: dataavailability
 category: "Data Availability"
 tags:
   - "Nexus Architecture"
-summary: "The guarantee in SORA Nexus that every transaction's payload can be reconstructed by honest parties, even when the original submitter goes offline, preventing data withholding attacks."
-tagline: "Prevents data withholding attacks that could halt chain progress or hide fraud."
+summary: "Erasure-coded Kura/WSV blobs with Merkle commitments in headers; DA attesters sample shards and issue certificates so blocks can commit without downloading full data."
+tagline: "Commitments plus sampling make blobs retrievable."
 related:
   - "Data Availability Layer"
   - "DA Certificates"
   - "DA Sampling"
+  - "Erasure-Coded Kura"
   - "Erasure-Coded WSV"
-  - "Reed-Solomon"
 links:
   - label: "Nexus Whitepaper"
     url: "/documents/sora_nexus_whitepaper.pdf"

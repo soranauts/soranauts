@@ -4,14 +4,14 @@ slug: dasampling
 category: "Data Availability"
 tags:
   - "Nexus Architecture"
-summary: "Fetching a limited number of erasure-coded shards per data space to statistically guarantee recoverability without downloading entire envelopes."
-tagline: "Reduces bandwidth requirements for validators while maintaining strong availability guarantees."
+summary: "VRF-sampled attesters check a subset of erasure-coded shards each slot and sign availability; sample size and thresholds are deterministic config."
+tagline: "Randomized shard checks to detect withholding."
 related:
+  - "Data Availability"
+  - "DA Certificates"
   - "DA Sampling Budget"
   - "DA Sampling Confidence"
-  - "DA Certificates"
-  - "Data Availability"
-  - "Reed-Solomon"
+  - "Attesters"
 links:
   - label: "Nexus Whitepaper"
     url: "/documents/sora_nexus_whitepaper.pdf"

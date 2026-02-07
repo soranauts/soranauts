@@ -4,14 +4,14 @@ slug: execution
 category: "Execution"
 tags:
   - "Nexus Architecture"
-summary: "The IVM phase in SORA Nexus where admitted instructions mutate the World State View under deterministic gas metering and syscall rules, ensuring identical results across validators."
-tagline: "Essential component of the SORA Nexus architecture."
+summary: "The pipeline phase where the on-chain executor (IVM) applies instructions in a StateBlock overlay with deterministic gas metering and syscalls."
+tagline: "IVM executes instructions deterministically before commit."
 related:
   - "Transaction Execution Units (TEU)"
-  - "Action"
-  - "Activation Slot"
-  - "Admission"
-  - "Aggregation"
+  - "Transaction Lifecycle"
+  - "State Application"
+  - "Iroha Virtual Machine (IVM)"
+  - "Deterministic Runtime"
 links:
   - label: "Nexus Whitepaper"
     url: "/documents/sora_nexus_whitepaper.pdf"
