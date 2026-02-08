@@ -1275,7 +1275,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "type": "term",
     "category": "technology",
     "summary": "Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic…",
-    "definition": "Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic and domain-specific operations, providing a flexible framework for building complex decentralized applications on SORA v3. This represents a key advancement over Hyperledger Iroha 2, offering enhanced programmability and interoperability.",
+    "definition": "Syscall surface that IVM smart contracts use via the SCALL instruction; ISIs define deterministic, metered operations available to contracts.",
     "aliases": [
       "Iroha Special Instructions",
       "ISIs"
@@ -5041,7 +5041,7 @@ const baseTaxonomy: Record<string, TaxonomyNode> = {
     "type": "term",
     "category": "technology",
     "summary": "A portable binary instruction format that enables high-performance smart contracts and runtime modules.",
-    "definition": "WebAssembly lets blockchain runtimes execute code securely and efficiently across platforms. Hyperledger Iroha 3 uses WASM for domain-specific smart instructions, and many SORA ecosystem tools compile to WASM for browser compatibility.",
+    "definition": "WebAssembly lets blockchain runtimes execute code securely and efficiently across platforms. SORA v3 / Hyperledger Iroha 3 executes on-ledger programmable logic as IVM bytecode (Kotodama) rather than general-purpose WASM modules. Many SORA ecosystem tools still compile to WASM for browser compatibility.",
     "aliases": [
       "WASM",
       "WebAssembly"

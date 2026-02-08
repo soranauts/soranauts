@@ -7,6 +7,11 @@ const envSchema = z.object({
   KV_URL: z.string().url().default('http://localhost:8787/kv'),
   KV_TOKEN: z.string().default('dev'),
   SENTRY_DSN: z.string().optional(),
+  TRUST_PROXY_HEADERS: z
+    .string()
+    .transform((val) => val === '1' || val === 'true')
+    .pipe(z.boolean())
+    .default('false'),
   NEXT_PUBLIC_SITE_URL: z.string().url().default('http://localhost:4321'),
   TAG_HUB_V1: z
     .string()
