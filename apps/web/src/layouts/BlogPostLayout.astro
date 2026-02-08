@@ -143,7 +143,8 @@ const enhancedMetadata = {
         currentArticle={{
           slug: post.slug,
           tags: post.tags || [],
-          category: post.category || ''
+          category: post.category || '',
+          relatedArticles: post.relatedArticles || []
         }}
         allArticles={allPosts.map(p => ({
           slug: p.slug,

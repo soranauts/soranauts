@@ -27,6 +27,8 @@ export interface Post {
   category?: string;
   /**  */
   tags?: Array<string>;
+  /** Optional manual override: array of post slugs for related articles */
+  relatedArticles?: Array<string>;
   /**  */
   author?: string;
 
