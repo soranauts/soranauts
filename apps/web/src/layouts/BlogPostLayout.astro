@@ -34,13 +34,7 @@ const wordCount = post.content ? post.content.split(/\s+/).filter(word => word.l
 // Calculate reading time if not available
 // Calculate reading time with proper rounding (always round up)
 let actualReadingTime = post.readingTime || Math.ceil(wordCount / 200);
-// Override specific articles with known correct values
-if (post.title?.includes('SORAMITSU')) {
-  actualReadingTime = 8;
-} else if (post.title?.includes('SORA v3 Vision')) {
-  actualReadingTime = 4; // 601 words = 4 minutes
-} else if (actualReadingTime && actualReadingTime < 4 && wordCount > 500) {
-  // For articles with 500+ words showing less than 4 minutes, recalculate
+if (actualReadingTime && actualReadingTime < 2 && wordCount > 300) {
   actualReadingTime = Math.ceil(wordCount / 200);
 }
 
