@@ -40,7 +40,7 @@ See `PUSH_SAFETY_CHECK.md` for the complete checklist. Key points:
 
 ## 📐 Architecture Understanding Required
 
-### Glossary System (368 terms)
+### Glossary System (384 terms)
 The user is learning software architecture. **Always explain your reasoning.**
 
 **Read these files to understand the system:**
@@ -51,7 +51,7 @@ The user is learning software architecture. **Always explain your reasoning.**
 **Three-layer architecture:**
 1. **MDX files** (`apps/web/src/content/glossary/*.mdx`) - Individual pages
 2. **Taxonomy** (`apps/web/src/data/taxonomy.ts`) - Master data (137 core terms)
-3. **JSON files** (`apps/web/public/data/*.json`) - Build outputs (368 terms total)
+3. **JSON files** (`apps/web/public/data/*.json`) - Build outputs (384 terms total)
 
 **NEVER manually edit JSON files** - they are generated during build.
 
@@ -261,7 +261,7 @@ pnpm lint             # Check code quality
 ```bash
 pnpm build
 # Check output for errors
-# Verify glossary count: should be 368 terms
+# Verify glossary count: should be 384 terms
 ```
 
 ---

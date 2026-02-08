@@ -1,7 +1,7 @@
 # Soranauts Glossary Architecture Explained
 
 ## Overview
-You have **368 canonical glossary terms** in your system right now. The confusion you're experiencing comes from the fact that your glossary exists in **multiple places with different purposes**, and understanding how they connect is key to working with it effectively.
+You have **384 canonical glossary terms** in your system right now. The confusion you're experiencing comes from the fact that your glossary exists in **multiple places with different purposes**, and understanding how they connect is key to working with it effectively.
 
 ## The Three-Layer System
 
@@ -53,7 +53,7 @@ The taxonomy is what powers:
 These are **generated files** created during your build process:
 
 - `glossary.v2025.json` (333KB)
-  - **368 canonical terms**
+  - **384 canonical terms**
   - **39 aliases**
   - **0 deprecated terms**
   - Full structured data for the glossary
@@ -71,7 +71,7 @@ These are **generated files** created during your build process:
 ## How They Connect
 
 ```
-MDX Files (179)              Taxonomy (137 + tags)           JSON Files (368)
+MDX Files (179)              Taxonomy (137 + tags)           JSON Files (384)
     │                              │                              │
     ├─> Provides detailed    ──>  Combined with        ──>   Compiled into
     │   page content              core data                   runtime files
@@ -92,9 +92,9 @@ You mentioned files got separated - here's what likely happened:
 
 1. **Original terms** were added to `taxonomy.ts` manually (137 terms)
 2. **New terms** were added as MDX files only (179 files total)
-3. **Build process** combined both sources into the JSON output (368 terms)
+3. **Build process** combined both sources into the JSON output (384 terms)
 
-The **368 terms** in `glossary.v2025.json` is the **complete, current glossary**. This is the number that matters.
+The **384 terms** in `glossary.v2025.json` is the **complete, current glossary**. This is the number that matters.
 
 ## Understanding the Data Flow
 
@@ -129,14 +129,14 @@ const mode = FEATURE_GLOSSARY_V2025 ? 'v2025' : 'legacy';
 ```
 
 This lets you switch between:
-- **v2025**: New system (368 terms in `glossary.v2025.json`)
+- **v2025**: New system (384 terms in `glossary.v2025.json`)
 - **legacy**: Old system (`glossary.json`)
 
-You're currently using the **v2025 system** which is why your term count is 368.
+You're currently using the **v2025 system** which is why your term count is 384.
 
 ## Common Confusion Points
 
-### "Why do I have 137 in taxonomy but 368 in JSON?"
+### "Why do I have 137 in taxonomy but 384 in JSON?"
 The taxonomy is the **core** set. The JSON includes:
 - All 137 taxonomy terms
 - Additional terms from MDX files
@@ -150,7 +150,7 @@ Because they serve different purposes:
 - **JSON** = Runtime performance
 
 ### "How do I know which is the source of truth?"
-For the **current count**: `glossary.v2025.json` (368 terms)
+For the **current count**: `glossary.v2025.json` (384 terms)
 For **editing**: Depends on what you're changing:
   - Core definition → `taxonomy.ts`
   - Page content → MDX file
@@ -170,7 +170,7 @@ These create a **knowledge graph** where terms connect to each other.
 ## What You Should Do Next
 
 ### To understand your current system:
-1. Look at `glossary.v2025.json` - this is your complete glossary (368 terms)
+1. Look at `glossary.v2025.json` - this is your complete glossary (384 terms)
 2. Pick a term and trace it through:
    - Does it exist in `taxonomy.ts`?
    - Does it have an MDX file?
@@ -274,7 +274,7 @@ That's exactly what this document is helping you build toward.
 
 ## Summary
 
-- **You have 368 terms** (not separated, just distributed across layers)
+- **You have 384 terms** (not separated, just distributed across layers)
 - **The architecture is sound** (taxonomy → loader → JSON → runtime)
 - **Your confusion is normal** (complex systems take time to understand)
 - **You're on the right path** (asking architectural questions is exactly right)

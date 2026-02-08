@@ -31,7 +31,7 @@ Migrate Soranauts knowledge base to Starlight documentation framework with:
 - ✅ Curated documentation derived from KB sources
 
 ### What Stays the Same
-- ✅ `/glossary/*` (368 terms, all features intact)
+- ✅ `/glossary/*` (384 terms, all features intact)
 - ✅ `taxonomy.ts` (5000 lines, untouched)
 - ✅ `/blog/*`, `/tag-hub/*`
 - ✅ Design tokens, Tailwind config
@@ -45,7 +45,7 @@ Migrate Soranauts knowledge base to Starlight documentation framework with:
 soranauts.org/
 ├── /                           # Homepage (Astro)
 ├── /blog/*                     # Blog posts (unchanged)
-├── /glossary/*                 # 368 terms (UNCHANGED)
+├── /glossary/*                 # 384 terms (UNCHANGED)
 ├── /tag-hub/*                  # Tag system (unchanged)
 └── /docs/*                     # NEW: Starlight documentation
     ├── /fundamentals/          # Level 1: Official (from Wiki)
@@ -969,7 +969,7 @@ I'm implementing Starlight documentation for Soranauts.
 
 Context:
 - Astro 5.x site with React islands
-- 368-term glossary at /glossary/* (don't touch)
+- 384-term glossary at /glossary/* (don't touch)
 - Design tokens in Tailwind config
 - Need /docs/* routes for Starlight
 

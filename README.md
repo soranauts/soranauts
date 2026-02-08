@@ -117,7 +117,7 @@ The site uses minimal JavaScript for core functionality while maintaining excell
 **Key Features:**
 - **Monorepo Architecture**: Shared packages for chain interactions, configurations, and UI components
 - **React Islands**: Interactive components using Astro's React integration
-- **Glossary System**: 370 terms with Pagefind search and category filtering
+- **Glossary System**: 384 terms with Pagefind search and category filtering
 - **API Endpoints**: Rate-limited endpoints for blockchain interactions
 
 <br>
@@ -223,7 +223,7 @@ Soranauts specializes in comprehensive coverage of:
 - **Risk management** and security best practices
 
 ### 📚 Interactive Glossary
-- **370 SORA ecosystem terms** with comprehensive definitions
+- **384 SORA ecosystem terms** with comprehensive definitions
 - **Pagefind-powered search** with instant results
 - **18 categories**: Accounts & Identity, Consensus, Cryptography, Data Availability, DeFi, Developer Experience, Economics, Ecosystem, Execution, Governance, Network, Networking, Observability & Operations, Serialization & Encoding, Storage, Technology, Token, Use Cases
 - **Auto-linking** in blog posts with tooltips
@@ -238,7 +238,7 @@ Soranauts specializes in comprehensive coverage of:
 ## Recent Updates
 
 ### 🔧 Technical Improvements (Latest)
-- ✅ **Interactive Glossary** - 370 terms with Pagefind search and category filtering
+- ✅ **Interactive Glossary** - 384 terms with Pagefind search and category filtering
 - ✅ **React Islands Architecture** - Implemented Astro React islands for interactive components
 - ✅ **Monorepo Structure** - Migrated to pnpm monorepo with shared packages and configurations
 - ✅ **API Endpoints** - Added rate-limited quote API with proper error handling

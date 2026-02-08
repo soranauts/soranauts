@@ -63,7 +63,7 @@ soranauts/
 | Blog | `apps/web/src/content/post/` | 45 | MDX |
 | Docs | `apps/web/src/content/docs/` | 26 | MDX |
 
-**Note:** Canonical glossary terms (370) exceed MDX pages (179). Some terms are rendered from JSON without dedicated MDX files.
+**Note:** Canonical glossary terms (384) exceed MDX pages (179). Some terms are rendered from JSON without dedicated MDX files.
 
 ---
 
@@ -104,7 +104,7 @@ These routes should not break:
 ## Data Flow
 
 ```
-glossary.v2025.json (370 terms)
+glossary.v2025.json (384 terms)
         │
         ├──> MDX pages (179 files in src/content/glossary/)
         │

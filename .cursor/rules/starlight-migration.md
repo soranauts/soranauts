@@ -19,7 +19,7 @@ You are helping implement a Starlight documentation system for Soranauts, an edu
 ## Architecture Rules
 
 ### What NOT to Touch
-- `/glossary/*` routes and pages - Working perfectly, 368 terms
+- `/glossary/*` routes and pages - Working perfectly, 384 terms
 - `src/data/taxonomy.ts` - 5000 lines, do not modify
 - `src/components/glossary/*` - Existing glossary components
 - `GlossarySearchV2.tsx` - Keep this, integrate into unified search
@@ -221,7 +221,7 @@ Write new, concise content synthesized from these sources.
 ```
 apps/web/src/
 ├── content/
-│   ├── glossary/        # 368 MDX files - DON'T TOUCH
+│   ├── glossary/        # 384 MDX files - DON'T TOUCH
 │   ├── post/            # Blog posts
 │   ├── kb/              # Current KB (will coexist)
 │   └── docs/            # NEW: Starlight docs

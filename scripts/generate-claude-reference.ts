@@ -446,7 +446,7 @@ function generateSiteStructure(posts: BlogPost[], terms: GlossaryTerm[]): string
   output += `### Three-Layer Glossary System\n`;
   output += `1. **MDX files** (\`apps/web/src/content/glossary/*.mdx\`) - Individual pages\n`;
   output += `2. **Taxonomy** (\`apps/web/src/data/taxonomy.ts\`) - Master data (137 core terms)\n`;
-  output += `3. **JSON files** (\`apps/web/public/data/*.json\`) - Build outputs (368 terms total)\n\n`;
+  output += `3. **JSON files** (\`apps/web/public/data/*.json\`) - Build outputs (384 terms total)\n\n`;
   
   output += `### Technology Stack\n`;
   output += `- **Framework**: Astro 5.x\n`;

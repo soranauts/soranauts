@@ -83,7 +83,7 @@
 
 ### Content
 - [ ] Backfill glossary summaries (many are "TODO")
-- [ ] Add missing MDX pages (370 terms vs 179 MDX files)
+- [ ] Add missing MDX pages (384 terms vs 179 MDX files)
 
 ### Technical Debt
 - [ ] Resolve 61 TODO comments

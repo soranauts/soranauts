@@ -14,7 +14,7 @@ Over the past three months, Soranauts has undergone a complete transformation fr
 | **Lines of code removed** | 327,031 |
 | **Net new lines** | +421,145 |
 | **Blog articles** | 45 |
-| **Glossary terms (total searchable)** | 370 |
+| **Glossary terms (total searchable)** | 384 |
 | **Glossary articles (canonical MDX)** | 179 |
 | **Documentation pages** | 26 |
 | **Components** | 105 |
@@ -199,7 +199,7 @@ Every single article on Soranauts has been modernized with:
 
 ### Comprehensive Glossary System
 
-The glossary now features **370 searchable terms** in the unified glossary JSON, composed of:
+The glossary now features **384 searchable terms** in the unified glossary JSON, composed of:
 - **179 canonical MDX articles**: Hand-written, comprehensive glossary pages with full definitions, examples, and related terms
 - **~191 taxonomy-sourced terms**: Auto-generated entries from the SORA ecosystem taxonomy, tags, and FALLBACK_ENTRIES
 - **40+ alias redirects**: Alternative names that redirect to canonical terms
@@ -520,7 +520,7 @@ Benefits: Better code sharing, atomic commits, unified tooling.
 
 **After (December 2025):**
 - 45 articles (all updated, many rewritten)
-- 370 glossary terms (comprehensive Nexus coverage)
+- 384 glossary terms (comprehensive Nexus coverage)
 - 26 documentation pages
 - 9 curated learning paths
 - Unified navigation and search

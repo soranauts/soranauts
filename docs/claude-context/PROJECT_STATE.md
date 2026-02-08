@@ -9,7 +9,7 @@
 
 | Metric | Value | Verification Command |
 |--------|-------|---------------------|
-| Glossary terms | 370 canonical | `jq '.terms \| length' apps/web/public/data/glossary.v2025.json` |
+| Glossary terms | 384 canonical | `jq '.terms \| length' apps/web/public/data/glossary.v2025.json` |
 | Aliases | 1 | `jq 'length' apps/web/public/glossary.aliases.v2025.json` |
 | MDX glossary pages | 179 | `ls apps/web/src/content/glossary/*.mdx \| wc -l` |
 | Categories | 18 | `jq '[.terms[].category] \| unique \| length'` |
@@ -32,7 +32,7 @@
 ### What Works
 
 - [x] Production site: https://soranauts.com
-- [x] Glossary system: 370 terms, 18 categories
+- [x] Glossary system: 384 terms, 18 categories
 - [x] Build: 667 pages in 16.80s
 - [x] CI workflows: 15 active workflows
 - [x] E2E tests: 15 test files
@@ -52,7 +52,7 @@
 
 - [ ] 61 TODO comments in `apps/web/src/`
 - [ ] 1 FIXME comment in `apps/web/src/`
-- [ ] MDX pages (179) vs canonical terms (370) mismatch — some terms may not have dedicated MDX pages
+- [ ] MDX pages (179) vs canonical terms (384) mismatch — some terms may not have dedicated MDX pages
 - [ ] pnpm.overrides for h3/diff — remove after Astro update
 
 ---
@@ -90,7 +90,7 @@
 
 | File | Purpose | Verified |
 |------|---------|----------|
-| `apps/web/public/data/glossary.v2025.json` | Canonical glossary terms (370) | Yes |
+| `apps/web/public/data/glossary.v2025.json` | Canonical glossary terms (384) | Yes |
 | `apps/web/public/glossary.aliases.v2025.json` | Alias redirects (1) | Yes |
 | `apps/web/src/data/taxonomy.ts` | Taxonomy definitions | Yes |
 | `apps/web/src/lib/taxonomy.ts` | Taxonomy utilities | Yes |
