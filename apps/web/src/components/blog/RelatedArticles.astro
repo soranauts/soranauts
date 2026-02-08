@@ -9,6 +9,7 @@ export interface Props {
     slug: string;
     tags: string[];
     category: string;
+    relatedArticles?: string[];
   };
   allArticles: Array<{
     slug: string;
@@ -39,47 +40,106 @@ let relatedArticles: Array<{
   score?: number;
   signals?: Record<string, number>;
   label?: string;
+  topSharedTag?: string;
 }> = [];
 
-if (RELATED_V2) {
-  // New hybrid recommender logic
-  try {
-    const allPosts = await fetchPosts();
-    const currentPost = allPosts.find((p) => p.slug === currentArticle.slug);
-    
-    if (currentPost) {
-      const { articles: results, tagIdf } = await getRelatedArticles(currentPost, maxArticles);
-      
-      // Debug in development
-      if (import.meta.env.DEV) {
-        debugRelatedArticles(currentPost, results, tagIdf);
+/** Humanize a slugified tag for display: "sora-v3" → "Sora V3", "cbdc" → "CBDC" */
+function humanizeTag(slug: string): string {
+  // Known uppercase acronyms
+  const acronyms = new Set(['cbdc', 'defi', 'dex', 'nft', 'nfts', 'xcm', 'xor', 'val', 'pswap', 'kusd', 'tbcd', 'evm', 'ivm', 'wasm', 'ipfs', 'ton']);
+  if (acronyms.has(slug)) return slug.toUpperCase();
+  return slug
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
+/** Find the highest-IDF shared tag between current article and a candidate */
+function getTopSharedTag(
+  currentTags: string[],
+  candidateTags: string[],
+  tagIdf: Map<string, number>
+): string | undefined {
+  const current = new Set(currentTags.map((t) => t.toLowerCase()));
+  let bestTag: string | undefined;
+  let bestIdf = -1;
+  for (const tag of candidateTags) {
+    const normalized = tag.toLowerCase();
+    if (current.has(normalized)) {
+      const idf = tagIdf.get(normalized) || 0;
+      if (idf > bestIdf) {
+        bestIdf = idf;
+        bestTag = normalized;
       }
-      
-      // Convert to component format
-      relatedArticles = results.map((r) => ({
-        slug: r.slug,
-        title: r.title,
-        excerpt: r.excerpt,
-        tags: r.tags,
-        category: r.category,
-        publishDate: r.publishDate,
-        updateDate: r.updateDate,
-        score: r.score,
-        signals: {
-          tagMatch: r.signals.tagMatch,
-          foundationalBonus: r.signals.foundationalBonus,
-          glossaryOverlap: r.signals.glossaryOverlap,
-          titleKeyword: r.signals.titleKeyword,
-          sameSection: r.signals.sameSection,
-          recency: r.signals.recency,
-        },
-        label: r.label,
+    }
+  }
+  return bestTag;
+}
+
+if (RELATED_V2) {
+  // Manual override: if author specified related articles, use those
+  if (currentArticle.relatedArticles?.length) {
+    const allPosts = await fetchPosts();
+    const manualPicks = currentArticle.relatedArticles
+      .map((slug) => allPosts.find((p) => p.slug === slug))
+      .filter((p): p is Post => p != null)
+      .slice(0, maxArticles);
+
+    if (manualPicks.length > 0) {
+      relatedArticles = manualPicks.map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        excerpt: p.excerpt || '',
+        tags: p.tags || [],
+        category: p.category || '',
+        publishDate: p.publishDate,
+        updateDate: p.updateDate,
+        label: 'manual',
       }));
     }
-  } catch (error) {
-    console.error('[RelatedArticles] Error in RELATED_V2 logic:', error);
-    // Fall through to legacy logic
-    RELATED_V2 = false;
+  }
+
+  // Algorithmic fallback (skip if manual override already populated)
+  if (relatedArticles.length === 0) {
+    try {
+      const allPosts = await fetchPosts();
+      const currentPost = allPosts.find((p) => p.slug === currentArticle.slug);
+      
+      if (currentPost) {
+        const { articles: results, tagIdf } = await getRelatedArticles(currentPost, maxArticles);
+        
+        // Debug in development
+        if (import.meta.env.DEV) {
+          debugRelatedArticles(currentPost, results, tagIdf);
+        }
+        
+        // Convert to component format with top shared tag for pill display
+        relatedArticles = results.map((r) => ({
+          slug: r.slug,
+          title: r.title,
+          excerpt: r.excerpt,
+          tags: r.tags,
+          category: r.category,
+          publishDate: r.publishDate,
+          updateDate: r.updateDate,
+          score: r.score,
+          signals: {
+            tagMatch: r.signals.tagMatch,
+            foundationalBonus: r.signals.foundationalBonus,
+            glossaryOverlap: r.signals.glossaryOverlap,
+            titleKeyword: r.signals.titleKeyword,
+            sameSection: r.signals.sameSection,
+            recency: r.signals.recency,
+          },
+          label: r.label,
+          topSharedTag: getTopSharedTag(currentArticle.tags, r.tags, tagIdf),
+        }));
+      }
+    } catch (error) {
+      console.error('[RelatedArticles] Error in RELATED_V2 logic:', error);
+      // Fall through to legacy logic
+      RELATED_V2 = false;
+    }
   }
 }
 
@@ -141,6 +201,11 @@ const shouldShow = RELATED_V2
             data-rel-score={score}
             data-rel-signals={signals}
           >
+            {article.label === 'manual' ? (
+              <span class="related-articles__tag-pill related-articles__tag-pill--curated">Recommended</span>
+            ) : article.topSharedTag ? (
+              <span class="related-articles__tag-pill">{humanizeTag(article.topSharedTag)}</span>
+            ) : null}
             <h4 class="card-link__title">
               {article.title}
             </h4>
@@ -188,6 +253,7 @@ const shouldShow = RELATED_V2
     transition:
       background-color var(--motion-duration-fast, 150ms) cubic-bezier(0.25, 0.1, 0.25, 1),
       border-color var(--motion-duration-fast, 150ms) cubic-bezier(0.25, 0.1, 0.25, 1),
+      box-shadow var(--motion-duration-fast, 150ms) cubic-bezier(0.25, 0.1, 0.25, 1),
       transform var(--motion-duration-fast, 150ms) cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
@@ -201,6 +267,7 @@ const shouldShow = RELATED_V2
   .related-link:focus-visible {
     background-color: var(--overlay-subtle);
     border-color: color-mix(in srgb, var(--color-border-subtle) 65%, var(--overlay-subtle) 35%);
+    box-shadow: inset 3px 0 0 var(--color-accent);
     transform: translateY(-1px);
   }
 
@@ -233,6 +300,24 @@ const shouldShow = RELATED_V2
     font-size: 0.82rem;
     line-height: 1.5;
     color: var(--color-text-muted);
+  }
+
+  .related-articles__tag-pill {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 2px 10px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    border-radius: var(--radius-full);
+    background-color: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface) 88%);
+    color: var(--color-accent);
+  }
+
+  .related-articles__tag-pill--curated {
+    background-color: color-mix(in srgb, var(--color-accent) 18%, var(--color-surface) 82%);
   }
 
   /* Note: CSS custom properties cannot be used in @media conditions — hardcode breakpoint value */
