@@ -170,6 +170,27 @@ const SEARCH_ALIAS_MICROCOPY =
     xor: 'XOR',
   };
 
+  function escapeHtml(str) {
+    if (typeof str !== 'string') return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function sanitizeHref(url) {
+    if (typeof url !== 'string') return '#';
+    const trimmed = url.trim().toLowerCase();
+    if (trimmed.startsWith('javascript:')) return '#';
+    if (trimmed.startsWith('//')) return '#';
+    if (url.startsWith('/') || url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    return '#';
+  }
+
   class SearchModal {
     constructor() {
       this.modal = document.getElementById('search-modal');
@@ -1041,22 +1062,22 @@ const SEARCH_ALIAS_MICROCOPY =
             data-filter-value="all"
             aria-pressed="${activeCategory === 'all'}"
           >
-            <span class="search-filter-chip__label">${allLabel}</span>
+            <span class="search-filter-chip__label">${escapeHtml(allLabel)}</span>
             <span class="search-filter-chip__count">${total}</span>
           </button>
         `,
         ...categories.map((category) => {
-          const value = category.label.toLowerCase();
+          const value = String(category.label || '').toLowerCase();
           const isActive = activeCategory.toLowerCase() === value;
           return `
             <button
               type="button"
               class="search-filter-chip${isActive ? ' search-filter-chip--active' : ''}"
               data-filter-group="category"
-              data-filter-value="${value}"
+              data-filter-value="${escapeHtml(value)}"
               aria-pressed="${isActive}"
             >
-              <span class="search-filter-chip__label">${category.label}</span>
+              <span class="search-filter-chip__label">${escapeHtml(category.label)}</span>
               <span class="search-filter-chip__count">${category.count}</span>
             </button>
           `;
@@ -1293,24 +1314,24 @@ const SEARCH_ALIAS_MICROCOPY =
       const snippetSource = item.snippet || item.summary || item.definition || '';
       const snippet = this.highlightText(this.trimSnippet(this.cleanSnippet(snippetSource)), this.currentQuery);
       const aliases = Array.isArray(item.aliases) ? item.aliases.filter(Boolean) : [];
-      const aliasChips = aliases.slice(0, 3).map((alias) => `<span class="search-modal__meta-badge">${alias}</span>`).join('');
+      const aliasChips = aliases.slice(0, 3).map((alias) => `<span class="search-modal__meta-badge">${escapeHtml(alias)}</span>`).join('');
       const aliasMicrocopy =
         GLOSSARY_ALIAS_MICROCOPY && item.matchedAlias
-          ? `<div class="search-result-alias">via alias ${item.matchedAlias}</div>`
+          ? `<div class="search-result-alias">via alias ${escapeHtml(item.matchedAlias)}</div>`
           : '';
 
       return `
         <a
-          href="${item.url}"
+          href="${sanitizeHref(item.url)}"
           class="search-modal__result search-modal__result--glossary"
           data-result-type="glossary"
           data-result-rank="${index + 1}"
-          data-result-category="${item.categoryRaw || ''}"
-          data-glossary-status="${item.status || ''}"
-          data-glossary-slug="${item.slug || ''}"
-          data-glossary-target="${item.targetSlug || ''}"
+          data-result-category="${escapeHtml(item.categoryRaw || '')}"
+          data-glossary-status="${escapeHtml(item.status || '')}"
+          data-glossary-slug="${escapeHtml(item.slug || '')}"
+          data-glossary-target="${escapeHtml(item.targetSlug || '')}"
         >
-          <div class="search-modal__result-kicker">${item.category || 'Glossary'}</div>
+          <div class="search-modal__result-kicker">${escapeHtml(item.category || 'Glossary')}</div>
           <h4 class="search-modal__result-title">${this.highlightText(item.term, this.currentQuery)}</h4>
           ${aliasMicrocopy}
           <p class="search-modal__result-body">${snippet}</p>
@@ -1322,24 +1343,24 @@ const SEARCH_ALIAS_MICROCOPY =
     buildTagCard(item, index) {
       const snippet = this.highlightText(this.trimSnippet(this.cleanSnippet(item.summary || '')), this.currentQuery);
       const traits = Array.isArray(item.traits) ? item.traits.slice(0, 3) : [];
-      const traitChips = traits.map((trait) => `<span class="search-modal__meta-badge">${trait.replace(/-/g, ' ')}</span>`).join('');
+      const traitChips = traits.map((trait) => `<span class="search-modal__meta-badge">${escapeHtml(trait.replace(/-/g, ' '))}</span>`).join('');
       const usageLabel = item.usageCount === 1 ? '1 article' : `${item.usageCount} articles`;
       const lastUpdated = item.lastUpdated ? this.formatDate(item.lastUpdated) : null;
 
       return `
         <a
-          href="${item.url}"
+          href="${sanitizeHref(item.url)}"
           class="search-modal__result search-modal__result--tag"
           data-result-type="tags"
           data-result-rank="${index + 1}"
-          data-result-category="${item.domainRaw || ''}"
+          data-result-category="${escapeHtml(item.domainRaw || '')}"
         >
-          <div class="search-modal__result-kicker">${item.domain || 'Tag'}</div>
+          <div class="search-modal__result-kicker">${escapeHtml(item.domain || 'Tag')}</div>
           <h4 class="search-modal__result-title">${this.highlightText(item.title, this.currentQuery)}</h4>
           <p class="search-modal__result-body">${snippet}</p>
           <div class="search-modal__result-meta">
-            <span class="search-modal__meta-badge">${usageLabel}</span>
-            ${lastUpdated ? `<span class="search-modal__meta-badge">Updated ${lastUpdated}</span>` : ''}
+            <span class="search-modal__meta-badge">${escapeHtml(usageLabel)}</span>
+            ${lastUpdated ? `<span class="search-modal__meta-badge">Updated ${escapeHtml(lastUpdated)}</span>` : ''}
             ${traitChips}
           </div>
         </a>
@@ -1352,29 +1373,30 @@ const SEARCH_ALIAS_MICROCOPY =
       const metaParts = [];
       const formattedDate = this.formatDate(item.publishedAt || null);
       if (formattedDate) {
-        metaParts.push(formattedDate);
+        metaParts.push(escapeHtml(formattedDate));
       }
       const readingTimeLabel = this.formatReadingTime(item.readingTime);
       if (readingTimeLabel) {
-        metaParts.push(readingTimeLabel);
+        metaParts.push(escapeHtml(readingTimeLabel));
       }
 
       const tags = (Array.isArray(item.tags) ? item.tags : []).slice(0, 2);
+      const safeTags = tags.map((tag) => escapeHtml(tag));
 
       return `
         <a
-          href="${item.url}"
+          href="${sanitizeHref(item.url)}"
           class="search-modal__result search-modal__result--article"
           data-result-type="article"
           data-result-rank="${index + 1}"
-          data-result-category="${item.categoryRaw || ''}"
+          data-result-category="${escapeHtml(item.categoryRaw || '')}"
         >
-          <div class="search-modal__result-kicker">${item.category || 'Article'}</div>
+          <div class="search-modal__result-kicker">${escapeHtml(item.category || 'Article')}</div>
           <h4 class="search-modal__result-title">${this.highlightText(item.title, this.currentQuery)}</h4>
-          ${metaParts.length || tags.length ? `
+          ${metaParts.length || safeTags.length ? `
             <div class="search-modal__result-meta">
               ${metaParts.length ? `<span>${metaParts.join(' • ')}</span>` : ''}
-              ${tags.length ? `<span class="search-modal__meta-badge">${tags.join(' • ')}</span>` : ''}
+              ${safeTags.length ? `<span class="search-modal__meta-badge">${safeTags.join(' • ')}</span>` : ''}
             </div>
           ` : ''}
           <p class="search-modal__result-body">${snippet}</p>
@@ -1404,20 +1426,21 @@ const SEARCH_ALIAS_MICROCOPY =
     }
     
     highlightText(text, query) {
-      if (!query || !text) return text;
+      const rawText = typeof text === 'string' ? text : String(text ?? '');
+      if (!query || !rawText) return escapeHtml(rawText);
       const tokens = this.getHighlightTokens(query);
       if (!tokens.length) {
-        return text;
+        return escapeHtml(rawText);
       }
       const pattern = tokens.map((token) => this.escapeRegExp(token)).join('|');
       const regex = new RegExp(`(${pattern})`, 'gi');
       const ranges = [];
 
       let match;
-      while ((match = regex.exec(text)) !== null) {
+      while ((match = regex.exec(rawText)) !== null) {
         const start = match.index;
         const end = start + match[0].length;
-        ranges.push(this.expandHighlightRange(text, start, end));
+        ranges.push(this.expandHighlightRange(rawText, start, end));
 
         if (match[0].length === 0) {
           regex.lastIndex += 1;
@@ -1425,7 +1448,7 @@ const SEARCH_ALIAS_MICROCOPY =
       }
 
       if (!ranges.length) {
-        return text;
+        return escapeHtml(rawText);
       }
 
       const merged = this.mergeHighlightRanges(ranges);
@@ -1433,11 +1456,11 @@ const SEARCH_ALIAS_MICROCOPY =
       let result = '';
       let lastIndex = 0;
       for (const [start, end] of merged) {
-        result += text.slice(lastIndex, start);
-        result += `<mark class="search-highlight">${text.slice(start, end)}</mark>`;
+        result += escapeHtml(rawText.slice(lastIndex, start));
+        result += `<mark class="search-highlight">${escapeHtml(rawText.slice(start, end))}</mark>`;
         lastIndex = end;
       }
-      result += text.slice(lastIndex);
+      result += escapeHtml(rawText.slice(lastIndex));
       return result;
     }
 
