@@ -1,0 +1,18 @@
+---
+export interface Props {
+  count: number;
+}
+
+const { count } = Astro.props;
+---
+
+<div class="not-prose sources-list" data-no-glossary>
+  <details>
+    <summary class="sources-list__summary">
+      📚 Sources ({count})
+    </summary>
+    <div class="sources-list__content">
+      <slot />
+    </div>
+  </details>
+</div>

@@ -10,5 +10,6 @@
 @import "./components/layout.css" layer(components);
 @import "./components/callout.css" layer(components);
 @import "./components/status-badge.css" layer(components);
+@import "./components/sources-list.css" layer(components);
 @import "./utilities.css" layer(utilities);
 
