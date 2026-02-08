@@ -80,4 +80,13 @@
   .callout--error { --callout-accent: var(--color-error); }
   .callout--info-tone { --callout-accent: var(--color-info); }
   .callout--brand { --callout-accent: var(--color-brand-500); }
+
+  .callout--purple {
+    --callout-accent: #7C3AED;
+    /* TODO: tokenize as --color-purple when added to tokens.css */
+  }
+  .callout--cyan {
+    --callout-accent: #38BDF8;
+    /* TODO: tokenize — currently matches --color-info, may want distinct value */
+  }
 }

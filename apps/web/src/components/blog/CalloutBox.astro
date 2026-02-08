@@ -1,0 +1,43 @@
+---
+export interface Props {
+  color: 'red' | 'amber' | 'blue' | 'green' | 'purple' | 'cyan' | 'accent';
+  variant?: 'banner' | 'callout' | 'info' | 'highlight';
+  icon?: string;
+  title?: string;
+}
+
+const { color, variant = 'callout', icon, title } = Astro.props;
+
+// Map variant prop to CSS class
+const variantClass: Record<string, string> = {
+  banner: 'callout--banner',
+  callout: 'callout--callout',
+  info: 'callout--info',
+  highlight: 'callout--highlight',
+};
+
+// Map color prop to CSS tone modifier class
+const toneClass: Record<string, string> = {
+  red: 'callout--error',
+  amber: 'callout--warning',
+  blue: 'callout--info-tone',
+  green: 'callout--success',
+  accent: 'callout--brand',
+  purple: 'callout--purple',
+  cyan: 'callout--cyan',
+};
+
+const classes = ['not-prose', 'callout', variantClass[variant], toneClass[color]].join(' ');
+const titleContent = [icon, title].filter(Boolean).join(' ');
+---
+
+<aside class={classes}>
+  {title && (
+    <div class="callout__head">
+      <p class="callout__title">{titleContent}</p>
+    </div>
+  )}
+  <div class="callout__body">
+    <slot />
+  </div>
+</aside>
