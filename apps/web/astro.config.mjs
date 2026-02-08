@@ -126,105 +126,109 @@ export default defineConfig({
         // Redirect Starlight 404 to main site 404
         NotFound: './src/components/starlight/NotFound.astro',
       },
-      // Minimal sidebar for initial setup - will expand in Week 2
-      sidebar: [
-        {
-          label: 'Fundamentals',
-          items: [
-            { label: 'SORA Overview', slug: 'docs/fundamentals' },
-            { label: 'Tokenomics', slug: 'docs/fundamentals/tokenomics' },
-            { label: 'Governance', slug: 'docs/fundamentals/governance' },
-            { label: 'SORA Nexus', slug: 'docs/fundamentals/sora-nexus' },
-          ],
-        },
-        {
-          label: 'Products',
-          items: [
-            { label: 'Polkaswap', slug: 'docs/products/polkaswap' },
-            { label: 'Fearless Wallet', slug: 'docs/products/fearless-wallet' },
-            { label: 'SORA Card', slug: 'docs/products/sora-card' },
-            {
-              label: 'TONSWAP',
-              items: [
-                { label: 'Overview', slug: 'docs/products/tonswap' },
-                { label: 'Features', slug: 'docs/products/tonswap/features' },
-              ],
-            },
-          ],
-        },
-        {
-          label: 'Technical',
-          collapsed: true,
-          items: [
-            {
-              label: 'Iroha',
-              items: [
-                { label: 'Overview', slug: 'docs/technical/iroha' },
-                { label: 'Sumeragi Consensus', slug: 'docs/technical/iroha/consensus' },
-                { label: 'Smart Contracts', slug: 'docs/technical/iroha/smart-contracts' },
-              ],
-            },
-            {
-              label: 'Bridges',
-              items: [
-                { label: 'Ethereum (HASHI)', slug: 'docs/technical/bridges/ethereum' },
-                { label: 'Polkadot (XCM)', slug: 'docs/technical/bridges/polkadot' },
-                { label: 'TON Bridge', slug: 'docs/technical/bridges/ton' },
-              ],
-            },
-            {
-              label: 'Integration',
-              items: [
-                { label: 'Getting Started', slug: 'docs/technical/integration/getting-started' },
-              ],
-            },
-          ],
-        },
-        {
-          label: 'Guides',
-          collapsed: true,
-          autogenerate: { directory: 'docs/guides' },
-        },
-        {
-          label: 'Archive',
-          collapsed: true,
-          badge: { text: 'Historical', variant: 'caution' },
-          items: [
-            { label: 'Timeline', slug: 'docs/archive' },
-            {
-              label: '2025',
-              items: [
-                { label: 'Nexus Announcement', slug: 'docs/archive/2025/sora-nexus-launch' },
-              ],
-            },
-            {
-              label: '2024',
-              items: [
-                { label: 'SORA Card Launch', slug: 'docs/archive/2024/sora-card-launch' },
-                { label: 'Year in Review', slug: 'docs/archive/2024/year-review' },
-              ],
-            },
-            {
-              label: '2023',
-              items: [
-                { label: 'Polkaswap 2.0', slug: 'docs/archive/2023/polkaswap-v2' },
-              ],
-            },
-            {
-              label: '2022',
-              items: [
-                { label: 'Kusama Parachain', slug: 'docs/archive/2022/kusama-parachain' },
-              ],
-            },
-            {
-              label: '2021',
-              items: [
-                { label: 'SORA v2 Launch', slug: 'docs/archive/2021/sora-v2-launch' },
-              ],
-            },
-          ],
-        },
-      ],
+      // TODO: Restore sidebar when Starlight docs content pages are created.
+      // Commented out — these docs/* slugs don't exist yet (unfinished migration).
+      // See: docs/starlight-migration/MIGRATION_PLAN.md
+      sidebar: [],
+      // --- Original sidebar (preserved for future use) ---
+      // sidebar: [
+      //   {
+      //     label: 'Fundamentals',
+      //     items: [
+      //       { label: 'SORA Overview', slug: 'docs/fundamentals' },
+      //       { label: 'Tokenomics', slug: 'docs/fundamentals/tokenomics' },
+      //       { label: 'Governance', slug: 'docs/fundamentals/governance' },
+      //       { label: 'SORA Nexus', slug: 'docs/fundamentals/sora-nexus' },
+      //     ],
+      //   },
+      //   {
+      //     label: 'Products',
+      //     items: [
+      //       { label: 'Polkaswap', slug: 'docs/products/polkaswap' },
+      //       { label: 'Fearless Wallet', slug: 'docs/products/fearless-wallet' },
+      //       { label: 'SORA Card', slug: 'docs/products/sora-card' },
+      //       {
+      //         label: 'TONSWAP',
+      //         items: [
+      //           { label: 'Overview', slug: 'docs/products/tonswap' },
+      //           { label: 'Features', slug: 'docs/products/tonswap/features' },
+      //         ],
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     label: 'Technical',
+      //     collapsed: true,
+      //     items: [
+      //       {
+      //         label: 'Iroha',
+      //         items: [
+      //           { label: 'Overview', slug: 'docs/technical/iroha' },
+      //           { label: 'Sumeragi Consensus', slug: 'docs/technical/iroha/consensus' },
+      //           { label: 'Smart Contracts', slug: 'docs/technical/iroha/smart-contracts' },
+      //         ],
+      //       },
+      //       {
+      //         label: 'Bridges',
+      //         items: [
+      //           { label: 'Ethereum (HASHI)', slug: 'docs/technical/bridges/ethereum' },
+      //           { label: 'Polkadot (XCM)', slug: 'docs/technical/bridges/polkadot' },
+      //           { label: 'TON Bridge', slug: 'docs/technical/bridges/ton' },
+      //         ],
+      //       },
+      //       {
+      //         label: 'Integration',
+      //         items: [
+      //           { label: 'Getting Started', slug: 'docs/technical/integration/getting-started' },
+      //         ],
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     label: 'Guides',
+      //     collapsed: true,
+      //     autogenerate: { directory: 'docs/guides' },
+      //   },
+      //   {
+      //     label: 'Archive',
+      //     collapsed: true,
+      //     badge: { text: 'Historical', variant: 'caution' },
+      //     items: [
+      //       { label: 'Timeline', slug: 'docs/archive' },
+      //       {
+      //         label: '2025',
+      //         items: [
+      //           { label: 'Nexus Announcement', slug: 'docs/archive/2025/sora-nexus-launch' },
+      //         ],
+      //       },
+      //       {
+      //         label: '2024',
+      //         items: [
+      //           { label: 'SORA Card Launch', slug: 'docs/archive/2024/sora-card-launch' },
+      //           { label: 'Year in Review', slug: 'docs/archive/2024/year-review' },
+      //         ],
+      //       },
+      //       {
+      //         label: '2023',
+      //         items: [
+      //           { label: 'Polkaswap 2.0', slug: 'docs/archive/2023/polkaswap-v2' },
+      //         ],
+      //       },
+      //       {
+      //         label: '2022',
+      //         items: [
+      //           { label: 'Kusama Parachain', slug: 'docs/archive/2022/kusama-parachain' },
+      //         ],
+      //       },
+      //       {
+      //         label: '2021',
+      //         items: [
+      //           { label: 'SORA v2 Launch', slug: 'docs/archive/2021/sora-v2-launch' },
+      //         ],
+      //       },
+      //     ],
+      //   },
+      // ],
     }),
     tailwind({
       applyBaseStyles: false,
