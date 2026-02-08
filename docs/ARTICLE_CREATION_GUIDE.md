@@ -78,6 +78,10 @@ When writing technical content, verify facts using this authority order:
 6. Conclusion
    └── Brief recap
    └── Forward-looking statement or CTA
+
+7. Sources (for articles with citations)
+   └── Use <SourcesList count={N}> component
+   └── All cited sources in numbered list
 ```
 
 ### Opening Hook Rules
@@ -263,28 +267,24 @@ Always clarify version context:
 - Placement location
 - Relevance rationale
 
-### External Links
+### External Links (3–5 max, selective)
 
-**Whitelisted domains** (use HTML `<a target="_blank" rel="noopener noreferrer">`):
-```
-wiki.sora.org
-soramitsu.co.jp
-hyperledger.github.io/iroha-2-docs
-polkaswap.io
-kensetsu.io
-tonswap.io
-wiki.polkadot.network
-docs.substrate.io
-guide.kusama.network
-```
+Format: `<a href="URL" target="_blank" rel="noopener noreferrer">anchor text</a>`
 
-**Non-whitelisted sources:** Summarize information; do not link.
+**Tiered approach — link selectively based on source authority:**
+- **Tier 1** (IMF, BIS, World Bank, Federal Reserve, central bank publications): Dofollow link in article body
+- **Tier 2** (sora.org whitepaper, wiki.sora.org, soramitsu.co.jp, bakong.nbc.gov.kh): Dofollow link in article body
+- **Tier 3** (Quality journalism — Reuters, Forbes): Rarely link, only when essential
+- **Tier 4** (Industry blogs, LinkedIn, YouTube, aggregators): **No link** — cite in bibliography only
+
+**Never nofollow editorial links** — Google treats this as unnatural.
 
 ### Glossary Integration
 - **NEVER manually link glossary terms**
 - Auto-linker handles plain text automatically
-- Write terms naturally; system links them
-- If auto-linking causes issues in FAQs, wrap with `<div data-no-glossary>`
+- Glossary links are automatically suppressed inside `<CalloutBox>`, `<StyledTable>`, `<TableCaption>`, `<SourcesList>`, and `<FaqSection>`
+- For inline HTML blocks needing suppression, wrap with `<div data-no-glossary>`
+- To add new components to the skip list, edit `SKIP_ELEMENTS` in `glossary-auto-link.mjs`
 
 ---
 
@@ -330,25 +330,34 @@ guide.kusama.network
 
 ---
 
-## 11. Tables & Visual Elements
+## 11. Tables, Callouts & Visual Components
 
-### When to Use Tables
-- Comparing multiple items across same attributes
-- Listing specifications or parameters
-- Feature comparisons
-- Quick-reference information
+### Component Reference
+For complete component documentation with props, examples, and copy-paste skeletons, see `COMPONENT_REFERENCE.md`.
 
-### Table Best Practices
-- Clear headers
-- Consistent data formatting
-- Mobile-friendly (not too wide)
-- Alt text for accessibility
+### Quick Reference — Which Component to Use
 
-### Suggested Table Types
-- **Comparison tables:** "X vs Y vs Z"
-- **Specification tables:** Technical parameters
-- **Feature matrices:** What's included in each tier/version
-- **Timeline tables:** Roadmap or historical progression
+| Content Type | Component | Example |
+|-------------|-----------|---------|
+| Development status warning | `<CalloutBox color="amber" variant="banner">` | "This feature is in development" |
+| TL;DR summary | `<CalloutBox color="accent" variant="highlight">` | Key takeaways box |
+| Key finding or quote | `<CalloutBox color="red" variant="callout">` | Federal Reserve finding |
+| Informational tip | `<CalloutBox color="blue" variant="info">` | "Good to know" sidebar |
+| Data table | `<StyledTable>` wrapper + table HTML | Comparison tables, spec tables |
+| Table attribution | `<TableCaption>` | "Sources: ..." line below table |
+| Bibliography | `<SourcesList count={N}>` | Collapsible source list at end |
+| FAQ accordion | `<FaqSection>` | Q&A section |
+
+### Table Token Classes (use instead of hardcoded grays)
+
+| Element | Use | Don't Use |
+|---------|-----|-----------|
+| Header row bg | `bg-soft` | `bg-gray-800/50` |
+| Header text | `text-text-main` | `text-gray-200` |
+| Body dividers | `divide-y divide-border-subtle` | `divide-y divide-gray-700/50` |
+| Row hover | `hover:bg-soft/50` | `hover:bg-gray-800/30` |
+| Cell text (primary) | `text-text-main` | `text-gray-200` |
+| Cell text (secondary) | `text-text-muted` | `text-gray-300` |
 
 ---
 
@@ -427,9 +436,12 @@ news, updates, community, announcements
 
 ### Formatting & Components
 - [ ] No manual glossary links
+- [ ] Callout boxes use `<CalloutBox>` component (not inline div HTML)
+- [ ] Tables wrapped in `<StyledTable>` with token classes (not hardcoded grays)
+- [ ] Table captions use `<TableCaption>` component
+- [ ] Sources in `<SourcesList count={N}>` component (for articles with citations)
 - [ ] FAQ uses correct `<FaqSection>` syntax
-- [ ] Tables are mobile-friendly
-- [ ] Code blocks formatted correctly (if any)
+- [ ] All component imports present at top of file
 
 ### Metadata
 - [ ] All frontmatter fields complete

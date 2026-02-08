@@ -62,7 +62,9 @@ When verifying or updating technical details, use this authority order (highest 
 ### D. Glossary Enforcement
 - **NEVER add manual glossary links**
 - Glossary auto-linker operates on plain text automatically
-- If auto-linking misfires inside FAQs, suggest wrapping with `<div data-no-glossary>`
+- Glossary links are automatically suppressed inside `<CalloutBox>`, `<StyledTable>`, `<TableCaption>`, `<SourcesList>`, and `<FaqSection>` — no manual wrapping needed
+- For inline HTML blocks needing suppression, use `<div data-no-glossary>`
+- The `SKIP_ELEMENTS` Set in `glossary-auto-link.mjs` controls build-time suppression
 
 ### E. Internal Linking Rules
 All internal links must use real slugs only: `/slug-name`
@@ -81,18 +83,15 @@ Provide **3–6 internal links** with:
 - Relevance rationale
 
 ### F. External Link Rules
-**Whitelisted domains** (use HTML `<a>` with `target="_blank" rel="noopener noreferrer">`):
-- wiki.sora.org (SORA Wiki)
-- soramitsu.co.jp
-- hyperledger.github.io/iroha-2-docs
-- polkaswap.io
-- kensetsu.io (if applicable)
-- tonswap.io
-- wiki.polkadot.network
-- docs.substrate.io
-- guide.kusama.network
+Format: `<a href="URL" target="_blank" rel="noopener noreferrer">anchor text</a>`
 
-**Non-whitelisted sources:** Summarize the information; do not link.
+**Tiered approach — link selectively based on source authority:**
+- **Tier 1** (IMF, BIS, World Bank, Federal Reserve, central bank publications): Dofollow link in article body
+- **Tier 2** (sora.org whitepaper, wiki.sora.org, soramitsu.co.jp, bakong.nbc.gov.kh): Dofollow link in article body
+- **Tier 3** (Quality journalism — Reuters, Forbes): Rarely link, only when essential
+- **Tier 4** (Industry blogs, LinkedIn, YouTube, aggregators): **No link** — cite in bibliography only
+
+**Never nofollow editorial links** — Google treats this as unnatural.
 
 ### G. Tag & Metadata Rules
 - Use Tag Matrix only (see Section 6)
@@ -144,7 +143,8 @@ When referencing Nexus mechanisms, use phrases like:
 ### Glossary
 - No manual `[term](/glossary/term)` links ever
 - Auto-linker handles plain text automatically
-- Avoid glossary terms inside `<details><summary>` tags (causes issues)
+- Glossary links are automatically suppressed inside blog components (`<CalloutBox>`, `<StyledTable>`, `<FaqSection>`, etc.)
+- For inline HTML blocks, use `<div data-no-glossary>` wrapper
 
 ### FAQ Component
 Use `<FaqSection>` with literal `<details>` children:
@@ -291,6 +291,7 @@ Output sections in **this exact order**:
 - Pre-publish checklist
 - Specific items to verify
 - Regression concerns
+- Component migration status (are callouts/tables using `<CalloutBox>`/`<StyledTable>` or still inline HTML?)
 
 ### ✅ Final Review Summary
 Brief checklist confirming Edit Plan completeness.
