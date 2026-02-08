@@ -70,7 +70,7 @@ describe('getRelatedArticles', () => {
       createMockPost('other-post-2', { tags: ['sora'] })
     );
 
-    const results = await getRelatedArticles(currentPost, 5);
+    const { articles: results } = await getRelatedArticles(currentPost, 5);
 
     expect(results.every((r) => r.slug !== 'current-post')).toBe(true);
     expect(results.length).toBeGreaterThan(0);
@@ -86,7 +86,7 @@ describe('getRelatedArticles', () => {
       createMockPost('published-post', { tags: ['sora'], draft: false })
     );
 
-    const results = await getRelatedArticles(currentPost, 5);
+    const { articles: results } = await getRelatedArticles(currentPost, 5);
 
     expect(results.every((r) => r.slug !== 'draft-post')).toBe(true);
     expect(results.some((r) => r.slug === 'published-post')).toBe(true);
@@ -107,7 +107,7 @@ describe('getRelatedArticles', () => {
       createMockPost('normal-post', { tags: ['sora'] })
     );
 
-    const results = await getRelatedArticles(currentPost, 5);
+    const { articles: results } = await getRelatedArticles(currentPost, 5);
 
     expect(results.every((r) => r.slug !== 'canonical-post')).toBe(true);
     expect(results.some((r) => r.slug === 'normal-post')).toBe(true);
@@ -142,7 +142,7 @@ describe('getRelatedArticles', () => {
       })
     );
 
-    const results = await getRelatedArticles(currentPost, 10);
+    const { articles: results } = await getRelatedArticles(currentPost, 10);
 
     // High score should come first
     expect(results[0].slug).toBe('high-score');
@@ -167,7 +167,7 @@ describe('getRelatedArticles', () => {
       createMockPost('other-post', { tags: ['sora'] })
     );
 
-    const results = await getRelatedArticles(currentPost, 10);
+    const { articles: results } = await getRelatedArticles(currentPost, 10);
 
     const seriesPosts = results.filter((r) => r.slug.startsWith('sora-v3-part-'));
     expect(seriesPosts.length).toBeLessThanOrEqual(1);
@@ -183,7 +183,7 @@ describe('getRelatedArticles', () => {
       createMockPost('low-score', { tags: [] })
     );
 
-    const results = await getRelatedArticles(currentPost, 10);
+    const { articles: results } = await getRelatedArticles(currentPost, 10);
 
     // Low score posts should be filtered out if below threshold
     const lowScorePost = results.find((r) => r.slug === 'low-score');
@@ -217,7 +217,7 @@ describe('getRelatedArticles', () => {
       })
     );
 
-    const results = await getRelatedArticles(currentPost, 5);
+    const { articles: results } = await getRelatedArticles(currentPost, 5);
 
     // Should have backfilled results
     expect(results.length).toBeGreaterThanOrEqual(relatedConfig.minResultsCount);
@@ -244,7 +244,7 @@ describe('getRelatedArticles', () => {
       );
     }
 
-    const results = await getRelatedArticles(currentPost, 5);
+    const { articles: results } = await getRelatedArticles(currentPost, 5);
 
     expect(results.length).toBeLessThanOrEqual(5);
   });
@@ -264,7 +264,7 @@ describe('getRelatedArticles', () => {
       })
     );
 
-    const results = await getRelatedArticles(currentPost, 5);
+    const { articles: results } = await getRelatedArticles(currentPost, 5);
 
     expect(results.length).toBeGreaterThan(0);
     const first = results[0];
@@ -293,7 +293,7 @@ describe('getRelatedArticles', () => {
       })
     );
 
-    const results = await getRelatedArticles(currentPost, 5);
+    const { articles: results } = await getRelatedArticles(currentPost, 5);
 
     // Should still return results (via title keywords, section, recency)
     expect(Array.isArray(results)).toBe(true);
@@ -307,7 +307,7 @@ describe('getRelatedArticles', () => {
     // No other posts
     mockPosts.length = 0;
 
-    const results = await getRelatedArticles(currentPost, 5);
+    const { articles: results } = await getRelatedArticles(currentPost, 5);
 
     expect(results).toEqual([]);
   });

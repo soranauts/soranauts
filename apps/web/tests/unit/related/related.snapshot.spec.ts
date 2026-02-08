@@ -106,7 +106,7 @@ describe('getRelatedArticles snapshot', () => {
       })
     );
 
-    const results = await getRelatedArticles(currentPost, 5);
+    const { articles: results } = await getRelatedArticles(currentPost, 5);
 
     // Snapshot the results structure (slugs, scores, signals)
     const snapshot = results.map((r) => ({
@@ -155,7 +155,7 @@ describe('getRelatedArticles snapshot', () => {
       })
     );
 
-    const results = await getRelatedArticles(currentPost, 5);
+    const { articles: results } = await getRelatedArticles(currentPost, 5);
 
     const snapshot = results.map((r) => ({
       slug: r.slug,
