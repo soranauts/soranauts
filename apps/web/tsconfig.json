@@ -10,6 +10,7 @@
     }
   },
   "exclude": [
+    "dist/**",
     "src/components/glossary/**",
     "src/layouts/BlogPostLayout.astro",
     "src/layouts/Layout.astro",
