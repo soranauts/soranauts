@@ -4,6 +4,16 @@ import { visitParents } from 'unist-util-visit-parents';
 import { getAllTerms, getAliasEntries } from '../lib/glossary/glossary-loader.ts';
 import { resolveAutoLinkConfig } from '../lib/glossary/autoLinkConfig.ts';
 const TABLE_TYPES = new Set(['table', 'tableRow', 'tableCell', 'thead', 'tbody', 'tr', 'th', 'td']);
+const SKIP_ELEMENTS = new Set([
+  'summary',
+  'details',
+  'faqsection',
+  'calloutbox',
+  'styledtable',
+  'tablecaption',
+  'sourceslist',
+  'pre',
+]);
 const URL_REGEX = /https?:\/\/[^\s)]+/gi;
 const MAX_LINKS_PER_PARAGRAPH = 2;
 // Removed #definition anchor - it skips headers on glossary pages
@@ -39,9 +49,7 @@ const isSkippable = (ancestors) => {
 
     if (ancestor.type === 'mdxJsxFlowElement' || ancestor.type === 'mdxJsxTextElement') {
       const elementName = typeof ancestor.name === 'string' ? ancestor.name.toLowerCase() : '';
-      if (elementName === 'summary' || elementName === 'details' || elementName === 'faqsection' || elementName === 'pre') {
-        return true;
-      }
+      if (SKIP_ELEMENTS.has(elementName)) return true;
       if (hasNoGlossaryAttribute(ancestor)) return true;
     }
   }
