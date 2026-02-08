@@ -25,8 +25,8 @@ const ROOT = path.resolve(__dirname, '../..');
 // Configuration
 // ─────────────────────────────────────────────────────────────────────────────
 
-const EXPECTED_CANONICAL_COUNT = 179;
-const EXPECTED_MIN_ALIAS_COUNT = 13;
+const EXPECTED_CANONICAL_COUNT = 370;
+const EXPECTED_MIN_ALIAS_COUNT = 40;
 const REQUIRED_NODE_MAJOR = 20;
 const REQUIRED_PNPM_MAJOR = 9;
 
