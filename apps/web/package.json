@@ -14,7 +14,7 @@
     "index:glossary": "pnpm generate:glossary",
     "glossary:typesense": "node scripts/switch-glossary.js typesense",
     "glossary:fallback": "node scripts/switch-glossary.js fallback",
-    "prebuild": "pnpm generate:glossary && pnpm web:glossary:redirects && pnpm web:tags:build && tsx scripts/validate-taxonomy.ts && pnpm og:build && pnpm og:manifest && (node -e \"if(process.env.SKIP_OG_VALIDATION) process.exit(0)\" || true) && pnpm og:validate",
+    "prebuild": "pnpm web:tags:build && pnpm generate:glossary && pnpm web:glossary:redirects && tsx scripts/validate-taxonomy.ts && pnpm og:build && pnpm og:manifest && (node -e \"if(process.env.SKIP_OG_VALIDATION) process.exit(0)\" || true) && pnpm og:validate",
     "sitemap:glossary": "tsx scripts/generate-glossary-sitemaps.ts",
     "verify:og": "tsx scripts/validate-og.ts",
     "verify:nexus": "bash ../../tools/verify_nexus_glossary.sh https://soranauts.com",
