@@ -1,0 +1,39 @@
+@layer components {
+  .status-badge {
+    --badge-color: var(--color-info);
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: none;
+    white-space: nowrap;
+    padding-inline: var(--space-2-5);
+    padding-block: var(--space-0-5);
+    border-radius: var(--radius-full);
+    color: var(--badge-color);
+    border: 1px solid color-mix(in srgb, var(--badge-color) 45%, var(--color-border) 55%);
+    background: color-mix(in srgb, var(--badge-color) 14%, var(--color-surface) 86%);
+  }
+
+  .status-badge--dot::before {
+    content: '';
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: var(--radius-full);
+    background: currentColor;
+    display: inline-block;
+    margin-right: var(--space-1);
+    vertical-align: middle;
+  }
+
+  .status-badge--solid {
+    background: color-mix(in srgb, var(--badge-color) 26%, var(--color-surface) 74%);
+    border-color: color-mix(in srgb, var(--badge-color) 60%, var(--color-border) 40%);
+  }
+
+  .status-badge--success { --badge-color: var(--color-success); }
+  .status-badge--warning { --badge-color: var(--color-warning); }
+  .status-badge--error { --badge-color: var(--color-error); }
+  .status-badge--info { --badge-color: var(--color-info); }
+}
