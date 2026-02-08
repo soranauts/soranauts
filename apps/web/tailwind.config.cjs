@@ -6,6 +6,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        accent: 'var(--color-accent)',
         brand: {
           400: 'var(--color-brand-400)',
           500: 'var(--color-brand-500)',
