@@ -1,0 +1,10 @@
+---
+// StyledTable.astro
+// Consistent wrapper for HTML tables in MDX blog posts.
+// Provides overflow scrolling and standardized spacing.
+// The inner <table> markup is written directly in MDX via the slot.
+---
+
+<div class="not-prose my-8 overflow-x-auto rounded-xl border border-border-subtle bg-surface">
+  <slot />
+</div>
