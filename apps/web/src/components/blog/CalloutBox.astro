@@ -31,7 +31,7 @@ const classes = ['not-prose', 'callout', variantClass[variant], toneClass[color]
 const titleContent = [icon, title].filter(Boolean).join(' ');
 ---
 
-<aside class={classes}>
+<aside class={classes} data-no-glossary>
   {title && (
     <div class="callout__head">
       <p class="callout__title">{titleContent}</p>
