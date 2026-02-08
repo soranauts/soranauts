@@ -151,12 +151,35 @@ function getSeriesKey(slug: string): string | null {
 }
 
 /**
+ * Build inverse document frequency map for tags.
+ * Tags appearing in fewer articles get higher weight.
+ * Formula: log2(totalPosts / postsWithTag)
+ * A tag in 2 of 50 articles scores ~4.6, a tag in 25 of 50 scores 1.0
+ */
+function buildTagIdf(allPosts: Array<{ tags: string[] }>): Map<string, number> {
+  const tagCounts = new Map<string, number>();
+  for (const post of allPosts) {
+    for (const tag of post.tags) {
+      const normalized = tag.toLowerCase().trim();
+      tagCounts.set(normalized, (tagCounts.get(normalized) || 0) + 1);
+    }
+  }
+  const total = allPosts.length;
+  const idf = new Map<string, number>();
+  for (const [tag, count] of tagCounts) {
+    idf.set(tag, Math.log2(total / count));
+  }
+  return idf;
+}
+
+/**
  * Compute all signals for a candidate post
  */
 function computeSignals(
   currentPost: Post,
   candidatePost: Post,
-  currentGlossaryTerms: Set<string>
+  currentGlossaryTerms: Set<string>,
+  tagIdf: Map<string, number>
 ): RelatedSignals {
   const signals: RelatedSignals = {
     tagMatch: 0,
@@ -167,22 +190,22 @@ function computeSignals(
     recency: 0,
   };
 
-  // Tag matching: exact slug equality, case-insensitive
+  // Tag matching: IDF-weighted sum (rare shared tags score higher)
   const currentTags = new Set((currentPost.tags || []).map((t) => t.toLowerCase()));
   const candidateTags = new Set((candidatePost.tags || []).map((t) => t.toLowerCase()));
-  let tagMatches = 0;
+  let tagMatchIdfSum = 0;
   let hasFoundational = false;
 
   for (const tag of candidateTags) {
     if (currentTags.has(tag)) {
-      tagMatches++;
+      tagMatchIdfSum += tagIdf.get(tag) || 1.0;
       if (isFoundationalTag(tag)) {
         hasFoundational = true;
       }
     }
   }
 
-  signals.tagMatch = tagMatches;
+  signals.tagMatch = tagMatchIdfSum;
   signals.foundationalBonus = hasFoundational ? 1 : 0;
 
   // Glossary overlap: count intersections
@@ -234,8 +257,9 @@ function calculateScore(signals: RelatedSignals): number {
 export async function getRelatedArticles(
   currentPost: Post,
   maxResults: number = minResults
-): Promise<RelatedArticle[]> {
+): Promise<{ articles: RelatedArticle[]; tagIdf: Map<string, number> }> {
   const allPosts = await fetchPosts();
+  const tagIdf = buildTagIdf(allPosts.map((p) => ({ tags: p.tags || [] })));
   const currentGlossaryTerms = extractGlossaryTermsFromPost(currentPost);
 
   // Filter candidates: exclude current post, drafts, canonicalized-out posts
@@ -261,7 +285,7 @@ export async function getRelatedArticles(
   }> = [];
 
   for (const post of candidates) {
-    const signals = computeSignals(currentPost, post, currentGlossaryTerms);
+    const signals = computeSignals(currentPost, post, currentGlossaryTerms, tagIdf);
     const score = calculateScore(signals);
     
     scored.push({
@@ -347,7 +371,7 @@ export async function getRelatedArticles(
     topResults.push(...backfillCandidates);
   }
 
-  return topResults.slice(0, maxResults);
+  return { articles: topResults.slice(0, maxResults), tagIdf };
 }
 
 /**
@@ -357,6 +381,7 @@ export async function getRelatedArticles(
 export function debugRelatedArticles(
   currentPost: Post,
   results: RelatedArticle[],
+  tagIdf?: Map<string, number>,
   topN: number = 10
 ): void {
   // Only expose in development (check import.meta.env.DEV and process.env.NODE_ENV)
@@ -380,6 +405,7 @@ export function debugRelatedArticles(
   console.log(`\n[related] Top ${Math.min(topN, results.length)} candidates for: ${currentPost.title}`);
   console.log(`[related] Current post tags: ${(currentPost.tags || []).join(', ')}`);
   console.log(`[related] Current post category: ${currentPost.category || 'blog'}`);
+
   console.log('─'.repeat(100));
 
   for (const item of results.slice(0, topN)) {

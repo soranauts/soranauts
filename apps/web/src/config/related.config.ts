@@ -27,7 +27,7 @@ export interface RelatedConfig {
 }
 
 export const relatedConfig: RelatedConfig = {
-  tagMatch: 3.0,
+  tagMatch: 1.5,
   foundationalBonus: 0.4,
   glossaryOverlap: 1.6,
   titleKeyword: 1.2,

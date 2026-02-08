@@ -48,11 +48,11 @@ if (RELATED_V2) {
     const currentPost = allPosts.find((p) => p.slug === currentArticle.slug);
     
     if (currentPost) {
-      const results = await getRelatedArticles(currentPost, maxArticles);
+      const { articles: results, tagIdf } = await getRelatedArticles(currentPost, maxArticles);
       
       // Debug in development
       if (import.meta.env.DEV) {
-        debugRelatedArticles(currentPost, results);
+        debugRelatedArticles(currentPost, results, tagIdf);
       }
       
       // Convert to component format
