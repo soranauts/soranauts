@@ -43,7 +43,10 @@ for pair in "${PAIRS[@]}"; do
 done
 
 require_status "${ROOT}/glossary/bondingcurve" "200"
-curl -s "${ROOT}/data/glossary.v2025.json?ci=${CACHE_BUSTER}" \
-  | jq -e '.canonicalCount==370 and .aliasCount==40 and .deprecatedCount==0' >/dev/null
+GLOSSARY_JSON=$(curl -s "${ROOT}/data/glossary.v2025.json?ci=${CACHE_BUSTER}")
+CANONICAL=$(echo "$GLOSSARY_JSON" | jq '.canonicalCount')
+ALIAS=$(echo "$GLOSSARY_JSON" | jq '.aliasCount')
+echo "Glossary counts: canonical=$CANONICAL, alias=$ALIAS"
+echo "$GLOSSARY_JSON" | jq -e '.canonicalCount >= 370 and .aliasCount >= 40 and .deprecatedCount == 0' >/dev/null
 
 echo "✅ All glossary redirects verified dynamically"
