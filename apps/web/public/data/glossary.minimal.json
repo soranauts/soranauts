@@ -633,7 +633,7 @@
     },
     {
       "slug": "dualsig",
-      "title": "Dual-Sig",
+      "title": "Dual-sig",
       "category": "Cryptography",
       "summary": "Requirement to attach both a classical Ed25519 signature and a post-quantum ML-DSA signature to the same artifact (for example, SoraNet relay certificates), with rollout phases that can allow, prefer, or require dual signatures.",
       "tagline": "Classical plus PQ signatures on the same payload."
@@ -958,11 +958,11 @@
       "slug": "hyperledgeriroha3",
       "title": "Hyperledger Iroha3",
       "category": "Technology",
-      "summary": "Hyperledger Iroha 3 is the next-generation version of the Iroha framework that underpins SORA v3 (SORA Nexus). It introduces a redesigned data model, improved performance, and deterministic smart-contract execution via the Iroha Virtual Machine (IVM), where contracts are deployed as IVM bytecode (.to) and interact with the host ledger through Iroha Special Instructions (ISIs)."
+      "summary": "Hyperledger Iroha 3 is the next-generation version of the Iroha framework, featuring enhanced performance, WASM smart contracts, and improved developer tooling. SORA v3 architecture draws from Iroha 3 innovations for enterprise-grade blockchain infrastructure."
     },
     {
       "slug": "ih58",
-      "title": "IH58",
+      "title": "Ih58",
       "category": "Accounts & Identity",
       "summary": "Base58 account-address envelope that prepends the chain discriminant and appends a short Blake2b checksum over the canonical address payload, yielding a human-friendly, self-identifying address string.",
       "tagline": "Canonical, checksum-protected account address encoding."
@@ -1030,7 +1030,7 @@
       "slug": "irohaspecialinstructions",
       "title": "Iroha Special Instructions",
       "category": "Technology",
-      "summary": "Iroha Special Instructions (ISIs) are the syscall surface that IVM smart contracts use to call into the host ledger in Hyperledger Iroha 3, enabling deterministic and metered operations."
+      "summary": "Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic…"
     },
     {
       "slug": "irohavirtualmachineivm",
@@ -1316,21 +1316,21 @@
     },
     {
       "slug": "mldsa44",
-      "title": "ML-DSA-44",
+      "title": "Ml-dsa-44",
       "category": "Cryptography",
       "summary": "The ML-DSA-44 (Dilithium2) post-quantum signature suite used in SoraNet admission flows (for example, signing proof-of-work access tickets).",
       "tagline": "Compact post-quantum signatures for admission and ticketing."
     },
     {
       "slug": "mldsa65",
-      "title": "ML-DSA-65",
+      "title": "Ml-dsa-65",
       "category": "Cryptography",
       "summary": "The ML-DSA-65 (Dilithium3) post-quantum signature suite used for SoraNet dual-signed relay certificates and other quantum-resistant authentication flows.",
       "tagline": "Post-quantum signatures used for dual-signed SoraNet artifacts."
     },
     {
       "slug": "mldsa87",
-      "title": "ML-DSA-87",
+      "title": "Ml-dsa-87",
       "category": "Cryptography",
       "summary": "The ML-DSA-87 (Dilithium5) post-quantum signature suite supported by SoraNet/Nexus tooling for quantum-resistant authentication.",
       "tagline": "Post-quantum signatures (Dilithium5 parameter set)."
@@ -1966,7 +1966,7 @@
       "slug": "smartcontracts",
       "title": "Smart Contracts",
       "category": "Technology",
-      "summary": "Smart contracts are programs executed deterministically by a blockchain network. In SORA v3 (SORA Nexus), contract logic is written in Kotodama and deployed as IVM bytecode, with on-ledger effects performed through Iroha Special Instructions (ISIs) and metered by gas schedules."
+      "summary": "Smart contracts are self-executing programs stored on blockchain that automatically enforce agreement terms. SORA supports smart contracts through Ink! (Rust-based) and future WASM execution environments."
     },
     {
       "slug": "smartrouting",
@@ -2373,7 +2373,7 @@
     },
     {
       "slug": "uaid",
-      "title": "UAID",
+      "title": "Uaid",
       "category": "Accounts & Identity",
       "summary": "Short for UniversalAccountId; a hash-based universal account identifier (rendered `uaid:<hex>`) used as a stable capability anchor across Nexus dataspaces and lanes, including Space Directory manifests keyed by UAID + DataSpaceId.",
       "tagline": "A universal account anchor shared across data spaces."
@@ -2447,7 +2447,7 @@
       "slug": "wasm",
       "title": "WASM (WebAssembly)",
       "category": "Technology",
-      "summary": "A portable binary instruction format used for sandboxed, high-performance execution (often for smart contracts and blockchain runtime modules)."
+      "summary": "A portable binary instruction format that enables high-performance smart contracts and runtime modules."
     },
     {
       "slug": "web3",
@@ -2539,5 +2539,5 @@
   "canonicalCount": 384,
   "aliasCount": 41,
   "version": 2025,
-  "lastUpdated": "2026-02-06T19:10:38.270Z"
+  "lastUpdated": "2026-02-08T14:34:16.680Z"
 }

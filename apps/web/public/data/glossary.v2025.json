@@ -172,15 +172,15 @@
         "agile coretime"
       ],
       "tags": [
-        "auctions",
         "coretime",
         "parachains",
+        "auctions",
         "slot leases"
       ],
       "relatedTerms": [
-        "auctions",
         "coretime",
         "parachain",
+        "auctions",
         "slotleases"
       ],
       "examples": [],
@@ -204,14 +204,14 @@
         "algorithmic stability"
       ],
       "tags": [
-        "monetary systems",
+        "token bonding curve",
         "scarcity economics",
-        "token bonding curve"
+        "monetary systems"
       ],
       "relatedTerms": [
-        "monetarysystems",
+        "tokenbondingcurve",
         "scarcityeconomics",
-        "tokenbondingcurve"
+        "monetarysystems"
       ],
       "examples": [],
       "links": [
@@ -234,18 +234,18 @@
         "amm"
       ],
       "tags": [
-        "impermanent loss",
-        "liquidity pool",
         "polkaswap",
-        "trading",
-        "xyk pools"
+        "liquidity pool",
+        "impermanent loss",
+        "xyk pools",
+        "trading"
       ],
       "relatedTerms": [
-        "impermanentloss",
-        "liquiditypool",
         "polkaswap",
-        "trading",
-        "xykpools"
+        "liquiditypool",
+        "impermanentloss",
+        "xykpools",
+        "trading"
       ],
       "examples": [
         "Automated pricing",
@@ -295,6 +295,7 @@
       ],
       "relatedTerms": [
         "apollotoken",
+        "soraroadmap",
         "tokenrepackaging"
       ],
       "examples": [],
@@ -325,7 +326,8 @@
       ],
       "relatedTerms": [
         "apolloprotocol",
-        "tokenomics"
+        "tokenomics",
+        "soraroadmap"
       ],
       "examples": [],
       "links": [
@@ -396,16 +398,16 @@
         "asset tokenization"
       ],
       "tags": [
-        "chainlink",
-        "defi",
         "real-world assets",
-        "tokenization"
+        "tokenization",
+        "chainlink",
+        "defi"
       ],
       "relatedTerms": [
-        "chainlink",
-        "defi",
         "realworldassets",
-        "tokenization"
+        "tokenization",
+        "chainlink",
+        "defi"
       ],
       "examples": [],
       "links": [
@@ -428,14 +430,14 @@
         "asynchronous backing"
       ],
       "tags": [
-        "agile coretime",
-        "coretime",
         "parachains",
+        "coretime",
+        "agile coretime",
         "Polkadot"
       ],
       "relatedTerms": [
-        "agilecoretime",
         "coretime",
+        "agilecoretime",
         "parachain",
         "polkadot"
       ],
@@ -509,16 +511,16 @@
         "auctions"
       ],
       "tags": [
-        "coretime",
         "crowdloans",
-        "Polkadot",
-        "slot leases"
+        "slot leases",
+        "coretime",
+        "Polkadot"
       ],
       "relatedTerms": [
         "crowdloans",
-        "kusama",
+        "slotleases",
         "polkadot",
-        "slotleases"
+        "kusama"
       ],
       "examples": [],
       "links": [
@@ -566,17 +568,17 @@
       ],
       "tags": [
         "cbdc",
-        "cross-border payments",
+        "soramitsu",
         "digital currency",
         "financial inclusion",
-        "soramitsu"
+        "cross-border payments"
       ],
       "relatedTerms": [
         "cbdc",
-        "crossborderpayments",
+        "soramitsu",
         "digitalcurrency",
         "financialinclusion",
-        "soramitsu"
+        "crossborderpayments"
       ],
       "examples": [
         "National digital payments",
@@ -605,8 +607,8 @@
       ],
       "tags": [
         "bull market",
-        "crypto market cycles",
-        "market psychology"
+        "market psychology",
+        "crypto market cycles"
       ],
       "relatedTerms": [
         "bullmarket",
@@ -658,19 +660,20 @@
         "bft consensus"
       ],
       "tags": [
-        "byzantine fault tolerance",
         "consensus",
-        "finality",
+        "byzantine fault tolerance",
         "hyperledger iroha 3",
-        "security",
-        "sora v3"
+        "sora v3",
+        "finality",
+        "security"
       ],
       "relatedTerms": [
-        "byzantinefaulttolerance",
         "consensus",
+        "byzantinefaulttolerance",
         "hyperledgeriroha3",
-        "security",
-        "sorav3"
+        "sorav3",
+        "finality",
+        "security"
       ],
       "examples": [
         "Transaction validation",
@@ -703,15 +706,15 @@
         "btc"
       ],
       "tags": [
-        "bear market",
-        "bull market",
+        "market cycles",
         "halving",
-        "market cycles"
+        "bear market",
+        "bull market"
       ],
       "relatedTerms": [
-        "bearmarket",
-        "bullmarket",
         "cryptomarketcycles",
+        "bullmarket",
+        "bearmarket",
         "halving"
       ],
       "examples": [],
@@ -787,17 +790,18 @@
         "blockchain"
       ],
       "tags": [
-        "cryptography",
-        "decentralization",
         "distributed ledger",
+        "cryptography",
+        "substrate",
         "hyperledger iroha",
-        "substrate"
+        "decentralization"
       ],
       "relatedTerms": [
+        "distributedledger",
         "cryptography",
-        "decentralization",
+        "substrate",
         "hyperledgeriroha",
-        "substrate"
+        "decentralization"
       ],
       "examples": [
         "Transaction records",
@@ -828,18 +832,18 @@
         "blockchain architecture"
       ],
       "tags": [
-        "asynchronous backing",
-        "coretime",
-        "Hyperledger Iroha",
         "Polkadot",
-        "rollups"
+        "Hyperledger Iroha",
+        "rollups",
+        "asynchronous backing",
+        "coretime"
       ],
       "relatedTerms": [
-        "asynchronousbacking",
-        "coretime",
-        "hyperledgeriroha",
         "polkadot",
-        "rollups"
+        "hyperledgeriroha",
+        "rollups",
+        "asynchronousbacking",
+        "coretime"
       ],
       "examples": [],
       "links": [
@@ -866,13 +870,15 @@
         "blockchain culture"
       ],
       "tags": [
-        "community",
         "meme coins",
+        "community",
         "SORA ecosystem"
       ],
       "relatedTerms": [
-        "bonk",
-        "soshiba"
+        "soshiba",
+        "dogecoindoge",
+        "shibainushib",
+        "bonk"
       ],
       "examples": [],
       "links": [
@@ -895,16 +901,16 @@
         "blockchain development"
       ],
       "tags": [
-        "decentralized exchange",
         "programming",
         "rust",
-        "web3"
+        "web3",
+        "decentralized exchange"
       ],
       "relatedTerms": [
-        "dex",
         "programming",
         "rust",
-        "web3"
+        "web3",
+        "dex"
       ],
       "examples": [],
       "links": [
@@ -931,16 +937,16 @@
         "blockchain economics"
       ],
       "tags": [
-        "elastic supply",
+        "tokenomics",
         "monetary systems",
         "token repackaging",
-        "tokenomics"
+        "elastic supply"
       ],
       "relatedTerms": [
-        "elasticsupply",
         "monetarysystems",
-        "tokenomics",
-        "tokenrepackaging"
+        "tokenrepackaging",
+        "elasticsupply",
+        "tokenomics"
       ],
       "examples": [],
       "links": [
@@ -963,17 +969,17 @@
         "bokolo cash"
       ],
       "tags": [
+        "solomon islands",
         "cbdc",
         "mobile payments",
         "qr payments",
-        "solomon islands",
         "soramitsu"
       ],
       "relatedTerms": [
+        "solomonislands",
         "cbdc",
         "mobilepayments",
         "qrpayments",
-        "solomonislands",
         "soramitsu"
       ],
       "examples": [],
@@ -1013,14 +1019,16 @@
         "bonk"
       ],
       "tags": [
-        "blockchain culture",
         "meme coins",
-        "tokenomics",
-        "volatility"
+        "volatility",
+        "blockchain culture",
+        "tokenomics"
       ],
       "relatedTerms": [
-        "pepe",
-        "soshiba"
+        "soshiba",
+        "dogecoindoge",
+        "shibainushib",
+        "pepe"
       ],
       "examples": [],
       "links": [
@@ -1062,16 +1070,16 @@
         "borrowing"
       ],
       "tags": [
-        "collateral",
         "lending",
-        "money market",
-        "vaults"
+        "collateral",
+        "vaults",
+        "money market"
       ],
       "relatedTerms": [
-        "collateral",
         "lending",
-        "moneymarket",
-        "vaults"
+        "collateral",
+        "vaults",
+        "moneymarket"
       ],
       "examples": [],
       "links": [
@@ -1135,8 +1143,8 @@
       ],
       "tags": [
         "bear market",
-        "crypto market cycles",
-        "market psychology"
+        "market psychology",
+        "crypto market cycles"
       ],
       "relatedTerms": [
         "bearmarket",
@@ -1164,18 +1172,18 @@
         "buyback-and-burn"
       ],
       "tags": [
-        "deflationary",
         "pswap",
-        "supply reduction",
+        "deflationary",
         "token burning",
-        "trading fees"
+        "trading fees",
+        "supply reduction"
       ],
       "relatedTerms": [
-        "deflationary",
         "pswap",
-        "supplyreduction",
+        "deflationary",
         "tokenburning",
-        "tradingfees"
+        "tradingfees",
+        "supplyreduction"
       ],
       "examples": [
         "PSWAP fee buybacks",
@@ -1241,19 +1249,20 @@
         "cbdc"
       ],
       "tags": [
+        "soramitsu",
         "bakong",
-        "central bank",
-        "cross-border payments",
         "digital currency",
+        "central bank",
         "financial inclusion",
-        "soramitsu"
+        "cross-border payments"
       ],
       "relatedTerms": [
+        "soramitsu",
         "bakong",
-        "crossborderpayments",
         "digitalcurrency",
+        "centralbank",
         "financialinclusion",
-        "soramitsu"
+        "crossborderpayments"
       ],
       "examples": [
         "Bakong (Cambodia)",
@@ -1290,14 +1299,14 @@
         "ceres"
       ],
       "tags": [
-        "DeFi",
+        "SORA ecosystem",
         "Polkaswap",
-        "SORA ecosystem"
+        "DeFi"
       ],
       "relatedTerms": [
-        "defi",
+        "soraecosystem",
         "polkaswap",
-        "soraecosystem"
+        "defi"
       ],
       "examples": [],
       "links": [
@@ -1370,14 +1379,15 @@
       ],
       "tags": [
         "asset tokenization",
+        "real-world assets",
         "defi",
-        "oracles",
-        "real-world assets"
+        "oracles"
       ],
       "relatedTerms": [
         "assettokenization",
+        "realworldassets",
         "defi",
-        "realworldassets"
+        "oracles"
       ],
       "examples": [],
       "links": [
@@ -1448,17 +1458,18 @@
         "citizenship"
       ],
       "tags": [
-        "bond",
-        "governance",
         "sora parliament",
+        "xor",
         "sortition",
-        "xor"
+        "governance",
+        "bond"
       ],
       "relatedTerms": [
-        "governance",
         "soraparliament",
+        "xor",
         "sortition",
-        "xor"
+        "governance",
+        "bond"
       ],
       "examples": [
         "XOR bond posting",
@@ -1485,16 +1496,16 @@
         "collateral"
       ],
       "tags": [
-        "borrowing",
         "lending",
-        "money market",
-        "vaults"
+        "borrowing",
+        "vaults",
+        "money market"
       ],
       "relatedTerms": [
-        "borrowing",
         "lending",
-        "moneymarket",
-        "vaults"
+        "borrowing",
+        "vaults",
+        "moneymarket"
       ],
       "examples": [],
       "links": [
@@ -1652,13 +1663,13 @@
         "concurrency"
       ],
       "tags": [
-        "performance",
         "rust",
+        "performance",
         "wasm"
       ],
       "relatedTerms": [
-        "performance",
         "rust",
+        "performance",
         "wasm"
       ],
       "examples": [],
@@ -1708,25 +1719,26 @@
         "consensus mechanisms"
       ],
       "tags": [
+        "validator",
+        "security",
         "bft consensus",
         "byzantine fault tolerance",
+        "substrate",
         "hyperledger iroha",
         "npos",
-        "security",
         "sora v2",
-        "sora v3",
-        "substrate",
-        "validator"
+        "sora v3"
       ],
       "relatedTerms": [
+        "validator",
+        "security",
         "bftconsensus",
         "byzantinefaulttolerance",
-        "hyperledgeriroha",
-        "security",
-        "sorav2",
-        "sorav3",
         "substrate",
-        "validator"
+        "hyperledgeriroha",
+        "npos",
+        "sorav2",
+        "sorav3"
       ],
       "examples": [
         "Transaction validation",
@@ -1754,15 +1766,15 @@
         "coretime"
       ],
       "tags": [
+        "parachains",
         "agile coretime",
         "auctions",
-        "parachains",
         "slot leases"
       ],
       "relatedTerms": [
         "agilecoretime",
-        "auctions",
         "parachain",
+        "auctions",
         "slotleases"
       ],
       "examples": [],
@@ -1802,17 +1814,18 @@
         "council motion"
       ],
       "tags": [
+        "sora council",
+        "referendum",
         "democracy",
         "governance",
-        "proposals",
-        "referendum",
-        "sora council"
+        "proposals"
       ],
       "relatedTerms": [
+        "soracouncil",
+        "referendum",
         "democracy",
         "governance",
-        "referendum",
-        "soracouncil"
+        "proposals"
       ],
       "examples": [
         "Council proposals",
@@ -1863,14 +1876,16 @@
         "cross-border payments"
       ],
       "tags": [
-        "blockchain",
         "cbdc",
+        "remittances",
         "international transfer",
-        "remittances"
+        "blockchain"
       ],
       "relatedTerms": [
-        "blockchain",
-        "cbdc"
+        "cbdc",
+        "remittances",
+        "internationaltransfer",
+        "blockchain"
       ],
       "examples": [
         "Bakong remittances",
@@ -1897,15 +1912,16 @@
         "cross-chain"
       ],
       "tags": [
-        "blockchain networks",
+        "polkaswap",
         "bridges",
         "interoperability",
-        "polkaswap"
+        "blockchain networks"
       ],
       "relatedTerms": [
+        "polkaswap",
         "bridges",
         "interoperability",
-        "polkaswap"
+        "blockchainnetworks"
       ],
       "examples": [
         "Cross-chain trading",
@@ -1933,14 +1949,14 @@
       ],
       "tags": [
         "auctions",
-        "Kusama",
         "Polkadot",
+        "Kusama",
         "slot leases"
       ],
       "relatedTerms": [
         "auctions",
-        "kusama",
         "polkadot",
+        "kusama",
         "slotleases"
       ],
       "examples": [],
@@ -1979,16 +1995,16 @@
         "crypto market cycles"
       ],
       "tags": [
-        "defi",
+        "trading strategy",
         "market timing",
         "tokenomics",
-        "trading strategy"
+        "defi"
       ],
       "relatedTerms": [
-        "defi",
+        "tradingstrategy",
         "markettiming",
         "tokenomics",
-        "tradingstrategy"
+        "defi"
       ],
       "examples": [],
       "links": [
@@ -2330,18 +2346,18 @@
         "defi"
       ],
       "tags": [
-        "dex",
-        "liquidity pool",
         "polkaswap",
-        "smart contracts",
-        "yield farming"
+        "yield farming",
+        "liquidity pool",
+        "dex",
+        "smart contracts"
       ],
       "relatedTerms": [
-        "dex",
-        "liquiditypool",
         "polkaswap",
-        "smartcontracts",
-        "yieldfarming"
+        "yieldfarming",
+        "liquiditypool",
+        "dex",
+        "smartcontracts"
       ],
       "examples": [
         "Decentralized trading",
@@ -2369,18 +2385,18 @@
         "deflationary"
       ],
       "tags": [
+        "val",
         "pswap",
-        "scarcity",
-        "supply reduction",
         "token burning",
-        "val"
+        "scarcity",
+        "supply reduction"
       ],
       "relatedTerms": [
+        "val",
         "pswap",
-        "scarcity",
-        "supplyreduction",
         "tokenburning",
-        "val"
+        "scarcity",
+        "supplyreduction"
       ],
       "examples": [
         "VAL transaction burning",
@@ -2422,18 +2438,18 @@
         "democracy"
       ],
       "tags": [
-        "citizenship",
-        "governance",
-        "referendum",
         "sora parliament",
-        "sortition"
+        "referendum",
+        "sortition",
+        "citizenship",
+        "governance"
       ],
       "relatedTerms": [
-        "citizenship",
-        "governance",
-        "referendum",
         "soraparliament",
-        "sortition"
+        "referendum",
+        "sortition",
+        "citizenship",
+        "governance"
       ],
       "examples": [
         "Referendum voting",
@@ -2533,18 +2549,18 @@
         "dex"
       ],
       "tags": [
-        "cross-chain",
-        "liquidity pool",
         "polkaswap",
-        "smart contracts",
-        "trading"
+        "liquidity pool",
+        "trading",
+        "cross-chain",
+        "smart contracts"
       ],
       "relatedTerms": [
-        "crosschain",
-        "liquiditypool",
         "polkaswap",
-        "smartcontracts",
-        "trading"
+        "liquiditypool",
+        "trading",
+        "crosschain",
+        "smartcontracts"
       ],
       "examples": [
         "Polkaswap trading",
@@ -2586,13 +2602,14 @@
         "digital ownership"
       ],
       "tags": [
-        "blockchain development",
         "NFTs",
-        "tokenization"
+        "tokenization",
+        "blockchain development"
       ],
       "relatedTerms": [
-        "blockchaindevelopment",
-        "tokenization"
+        "nfts",
+        "tokenization",
+        "blockchaindevelopment"
       ],
       "examples": [],
       "links": [
@@ -2616,15 +2633,15 @@
         "doge"
       ],
       "tags": [
-        "blockchain culture",
         "meme coins",
-        "trading strategy",
-        "volatility"
+        "volatility",
+        "blockchain culture",
+        "trading strategy"
       ],
       "relatedTerms": [
-        "bonk",
-        "pepe",
         "soshiba",
+        "pepe",
+        "bonk",
         "volatility"
       ],
       "examples": [],
@@ -2666,7 +2683,7 @@
     },
     {
       "slug": "dualsig",
-      "title": "Dual-Sig",
+      "title": "Dual-sig",
       "summary": "Requirement to attach both a classical Ed25519 signature and a post-quantum ML-DSA signature to the same artifact (for example, SoraNet relay certificates), with rollout phases that can allow, prefer, or require dual signatures.",
       "status": "canonical",
       "targetSlug": null,
@@ -2701,14 +2718,15 @@
       ],
       "tags": [
         "elastic supply",
-        "market conditions",
+        "token bonding curve",
         "price stability",
-        "token bonding curve"
+        "market conditions"
       ],
       "relatedTerms": [
         "elasticsupply",
+        "tokenbondingcurve",
         "pricestability",
-        "tokenbondingcurve"
+        "marketconditions"
       ],
       "examples": [
         "Growth periods",
@@ -2775,17 +2793,18 @@
         "economic sovereignty"
       ],
       "tags": [
-        "borderless finance",
-        "cbdc",
         "sora v3",
+        "cbdc",
+        "supranational platform",
         "sovereignty",
-        "supranational platform"
+        "borderless finance"
       ],
       "relatedTerms": [
-        "borderlessfinance",
-        "cbdc",
         "sorav3",
-        "supranationalplatform"
+        "cbdc",
+        "supranationalplatform",
+        "sovereignty",
+        "borderlessfinance"
       ],
       "examples": [
         "CBDC creation",
@@ -2813,13 +2832,13 @@
         "economic systems"
       ],
       "tags": [
-        "blockchain economics",
         "monetary systems",
+        "blockchain economics",
         "token repackaging"
       ],
       "relatedTerms": [
-        "blockchaineconomics",
         "monetarysystems",
+        "blockchaineconomics",
         "tokenrepackaging"
       ],
       "examples": [],
@@ -2868,19 +2887,20 @@
         "elastic supply"
       ],
       "tags": [
-        "economic conditions",
+        "xor",
+        "token bonding curve",
         "monetary policy",
         "price stability",
         "smart contract",
-        "token bonding curve",
-        "xor"
+        "economic conditions"
       ],
       "relatedTerms": [
-        "economicconditions",
+        "xor",
+        "tokenbondingcurve",
+        "monetarypolicy",
         "pricestability",
         "smartcontract",
-        "tokenbondingcurve",
-        "xor"
+        "economicconditions"
       ],
       "examples": [
         "Supply expansion during growth",
@@ -3229,20 +3249,20 @@
         "fearless"
       ],
       "tags": [
-        "kusama",
-        "polkadot",
         "polkaswap",
         "sora",
         "staking",
+        "polkadot",
+        "kusama",
         "xor"
       ],
       "relatedTerms": [
-        "kusama",
-        "polkadot",
         "polkaswap",
         "sora",
         "soracard",
         "staking",
+        "polkadot",
+        "kusama",
         "xor"
       ],
       "examples": [],
@@ -3335,13 +3355,16 @@
         "financial inclusion"
       ],
       "tags": [
-        "banking access",
         "cbdc",
         "digital payments",
+        "banking access",
         "underserved populations"
       ],
       "relatedTerms": [
-        "cbdc"
+        "cbdc",
+        "digitalpayments",
+        "bankingaccess",
+        "underservedpopulations"
       ],
       "examples": [
         "Bakong digital payments",
@@ -3392,15 +3415,15 @@
         "forkless upgrades"
       ],
       "tags": [
-        "governance",
-        "Kusama",
         "Polkadot",
+        "Kusama",
+        "governance",
         "runtime upgrades"
       ],
       "relatedTerms": [
-        "governance",
+        "polkadot",
         "kusama",
-        "polkadot"
+        "governance"
       ],
       "examples": [],
       "links": [
@@ -3423,19 +3446,20 @@
         "fujiwara testnet"
       ],
       "tags": [
+        "sora v3",
+        "hyperledger iroha",
+        "sora parliament",
         "defi",
         "governance",
-        "hyperledger iroha",
-        "public blockchain",
-        "sora parliament",
-        "sora v3"
+        "public blockchain"
       ],
       "relatedTerms": [
-        "defi",
-        "governance",
+        "sorav3",
         "hyperledgeriroha",
         "soraparliament",
-        "sorav3"
+        "defi",
+        "governance",
+        "publicblockchain"
       ],
       "examples": [
         "DeFi experimentation",
@@ -3583,21 +3607,21 @@
         "governance"
       ],
       "tags": [
-        "council",
-        "democracy",
-        "governance v1",
-        "polkadot governance",
-        "referendum",
         "sora parliament",
+        "polkadot governance",
+        "governance v1",
+        "democracy",
+        "referendum",
+        "council",
         "sortition"
       ],
       "relatedTerms": [
-        "council",
-        "democracy",
-        "governancev1",
-        "polkadotgovernance",
-        "referendum",
         "soraparliament",
+        "polkadotgovernance",
+        "governancev1",
+        "democracy",
+        "referendum",
+        "council",
         "sortition"
       ],
       "examples": [
@@ -3651,20 +3675,20 @@
         "governance v1"
       ],
       "tags": [
-        "council",
         "governance",
-        "opengov",
         "polkadot governance",
+        "council",
         "referendum",
-        "sora parliament"
+        "sora parliament",
+        "opengov"
       ],
       "relatedTerms": [
-        "council",
         "governance",
-        "opengov",
         "polkadotgovernance",
+        "council",
         "referendum",
-        "soraparliament"
+        "soraparliament",
+        "opengov"
       ],
       "examples": [
         "Council proposals",
@@ -3807,12 +3831,13 @@
       ],
       "tags": [
         "bitcoin",
-        "market cycles",
-        "scarcity economics"
+        "scarcity economics",
+        "market cycles"
       ],
       "relatedTerms": [
-        "cryptomarketcycles",
-        "scarcityeconomics"
+        "bitcoinbtc",
+        "scarcityeconomics",
+        "cryptomarketcycles"
       ],
       "examples": [],
       "links": [
@@ -3835,19 +3860,22 @@
         "hashi"
       ],
       "tags": [
-        "bridges",
         "cross-chain",
-        "erc-20",
-        "ethereum",
+        "bridges",
         "interoperability",
+        "ethereum",
+        "erc-20",
         "polkaswap",
         "trustless"
       ],
       "relatedTerms": [
-        "bridges",
         "crosschain",
+        "bridges",
         "interoperability",
-        "polkaswap"
+        "ethereum",
+        "erc20",
+        "polkaswap",
+        "trustless"
       ],
       "examples": [
         "ETH to SORA transfers",
@@ -3880,20 +3908,21 @@
         "hub chain"
       ],
       "tags": [
-        "cross-chain",
-        "hubchain",
-        "interoperability",
-        "nexus",
-        "permissioned subnets",
         "sora v3",
+        "hubchain",
+        "nexus",
+        "cross-chain",
+        "interoperability",
+        "permissioned subnets",
         "supranational platform"
       ],
       "relatedTerms": [
-        "crosschain",
-        "hubchain",
-        "interoperability",
-        "nexus",
         "sorav3",
+        "hubchain",
+        "nexus",
+        "crosschain",
+        "interoperability",
+        "permissionedsubnets",
         "supranationalplatform"
       ],
       "examples": [
@@ -3968,10 +3997,10 @@
     {
       "slug": "hyperledgeriroha3",
       "title": "Hyperledger Iroha3",
-      "summary": "Hyperledger Iroha 3 is the next-generation version of the Iroha framework that underpins SORA v3 (SORA Nexus). It introduces a redesigned data model, improved performance, and deterministic smart-contract execution via the Iroha Virtual Machine (IVM), where contracts are deployed as IVM bytecode (.to) and interact with the host ledger through Iroha Special Instructions (ISIs).",
+      "summary": "Hyperledger Iroha 3 is the next-generation version of the Iroha framework, featuring enhanced performance, WASM smart contracts, and improved developer tooling. SORA v3 architecture draws from Iroha 3 innovations for enterprise-grade blockchain infrastructure.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Hyperledger Iroha 3 is the next-generation version of the Iroha framework that underpins SORA v3 (SORA Nexus). It introduces a redesigned data model, improved performance, and deterministic smart-contract execution via the Iroha Virtual Machine (IVM), where contracts are deployed as IVM bytecode (.to) and interact with the host ledger through Iroha Special Instructions (ISIs).",
+      "definition": "Hyperledger Iroha 3 is the next-generation version of the Iroha framework, featuring enhanced performance, WASM smart contracts, and improved developer tooling. SORA v3 architecture draws from Iroha 3 innovations for enterprise-grade blockchain infrastructure.",
       "category": "Technology",
       "aliases": [],
       "tags": [],
@@ -3982,7 +4011,7 @@
     },
     {
       "slug": "ih58",
-      "title": "IH58",
+      "title": "Ih58",
       "summary": "Base58 account-address envelope that prepends the chain discriminant and appends a short Blake2b checksum over the canonical address payload, yielding a human-friendly, self-identifying address string.",
       "status": "canonical",
       "targetSlug": null,
@@ -4016,14 +4045,16 @@
         "impermanent loss"
       ],
       "tags": [
-        "amm",
         "liquidity",
+        "amm",
         "price volatility",
         "risk"
       ],
       "relatedTerms": [
+        "liquidity",
         "amm",
-        "liquidity"
+        "pricevolatility",
+        "risk"
       ],
       "examples": [
         "Liquidity provision risk",
@@ -4054,16 +4085,18 @@
         "integrated plan"
       ],
       "tags": [
-        "cross-chain",
-        "development roadmap",
-        "infrastructure",
+        "sora v3",
         "sora parliament",
-        "sora v3"
+        "development roadmap",
+        "cross-chain",
+        "infrastructure"
       ],
       "relatedTerms": [
-        "crosschain",
+        "sorav3",
         "soraparliament",
-        "sorav3"
+        "developmentroadmap",
+        "crosschain",
+        "infrastructure"
       ],
       "examples": [
         "Business partnerships",
@@ -4154,16 +4187,20 @@
         "interplanetary file system"
       ],
       "tags": [
-        "blockchain",
-        "content addressing",
+        "nft",
         "decentralized storage",
-        "digital assets",
         "metadata",
-        "nft"
+        "content addressing",
+        "blockchain",
+        "digital assets"
       ],
       "relatedTerms": [
+        "nft",
+        "decentralizedstorage",
+        "metadata",
+        "contentaddressing",
         "blockchain",
-        "nft"
+        "digitalassets"
       ],
       "examples": [
         "NFT image storage",
@@ -4241,29 +4278,30 @@
     {
       "slug": "irohaspecialinstructions",
       "title": "Iroha Special Instructions",
-      "summary": "Iroha Special Instructions (ISIs) are the syscall surface that IVM smart contracts use to call into the host ledger in Hyperledger Iroha 3, enabling deterministic and metered operations.",
+      "summary": "Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic…",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "In Hyperledger Iroha 3, smart contracts execute as IVM bytecode and interact with the host ledger via the SCALL instruction; its immediate selects an Iroha Special Instruction (ISI). ISIs define the deterministic, metered operations available to contracts and governance logic, while the host/executor defines the exact semantics and gas costs. This syscall surface is the programmable interface used across SORA v3/Nexus for domain-specific behavior and governed automation.",
+      "definition": "Iroha Special Instructions (ISIs) are domain-oriented command sets in Hyperledger Iroha 3 that enable deterministic smart-contract logic. ISIs allow for modular governance logic and domain-specific operations, providing a flexible framework for building complex decentralized applications on SORA v3. This represents a key advancement over Hyperledger Iroha 2, offering enhanced programmability and interoperability.",
       "category": "Technology",
       "aliases": [
         "iroha special instructions",
         "isis"
       ],
       "tags": [
-        "deterministic",
-        "governance",
-        "hyperledger iroha",
         "hyperledger iroha 3",
         "smart contract",
-        "sora v3"
+        "sora v3",
+        "hyperledger iroha",
+        "governance",
+        "deterministic"
       ],
       "relatedTerms": [
-        "governance",
-        "hyperledgeriroha",
         "hyperledgeriroha3",
         "smartcontract",
-        "sorav3"
+        "sorav3",
+        "hyperledgeriroha",
+        "governance",
+        "deterministic"
       ],
       "examples": [
         "Governance modules",
@@ -4434,20 +4472,20 @@
         "kensetsu"
       ],
       "tags": [
-        "defi",
         "kusd",
         "makerdao",
+        "vault",
         "over-collateralized",
         "stablecoin",
-        "vault"
+        "defi"
       ],
       "relatedTerms": [
-        "defi",
         "kusd",
         "makerdao",
+        "vault",
         "overcollateralized",
         "stablecoin",
-        "vault"
+        "defi"
       ],
       "examples": [
         "Vault creation",
@@ -4574,17 +4612,17 @@
         "kusama"
       ],
       "tags": [
-        "auctions",
-        "crowdloans",
-        "OpenGov",
         "parachains",
-        "XCMP"
+        "crowdloans",
+        "auctions",
+        "XCMP",
+        "OpenGov"
       ],
       "relatedTerms": [
-        "auctions",
-        "crowdloans",
-        "parachain",
         "polkadot",
+        "parachain",
+        "crowdloans",
+        "auctions",
         "xcmp"
       ],
       "examples": [],
@@ -4612,25 +4650,28 @@
         "kusd"
       ],
       "tags": [
+        "sora economy",
+        "stable asset",
+        "kensetsu",
+        "makerdao",
         "builders",
         "funding",
-        "kensetsu",
-        "makerdao",
         "over-collateralized",
-        "sora economy",
-        "sora v3",
-        "stable asset",
+        "vault",
         "tbcd",
-        "vault"
+        "sora v3"
       ],
       "relatedTerms": [
+        "soraeconomy",
+        "stableasset",
         "kensetsu",
         "makerdao",
+        "builders",
+        "funding",
         "overcollateralized",
-        "sorav3",
-        "stableasset",
+        "vault",
         "tbcd",
-        "vault"
+        "sorav3"
       ],
       "examples": [
         "Builder funding in SORA v3",
@@ -4952,14 +4993,14 @@
       ],
       "tags": [
         "borrowing",
-        "collateral",
         "money market",
+        "collateral",
         "vaults"
       ],
       "relatedTerms": [
         "borrowing",
-        "collateral",
         "moneymarket",
+        "collateral",
         "vaults"
       ],
       "examples": [],
@@ -4983,16 +5024,18 @@
         "liquidity"
       ],
       "tags": [
-        "liquidity pool",
         "polkaswap",
-        "price discovery",
+        "liquidity pool",
+        "trading",
         "slippage",
-        "trading"
+        "price discovery"
       ],
       "relatedTerms": [
-        "liquiditypool",
         "polkaswap",
-        "trading"
+        "liquiditypool",
+        "trading",
+        "slippage",
+        "pricediscovery"
       ],
       "examples": [
         "Pool liquidity provision",
@@ -5019,17 +5062,18 @@
         "liquidity aggregation"
       ],
       "tags": [
-        "liquidity pool",
-        "multi-source",
         "polkaswap",
+        "liquidity pool",
+        "smart routing",
         "price optimization",
-        "smart routing"
+        "multi-source"
       ],
       "relatedTerms": [
-        "liquiditypool",
         "polkaswap",
+        "liquiditypool",
+        "smartrouting",
         "priceoptimization",
-        "smartrouting"
+        "multisource"
       ],
       "examples": [
         "Multi-source liquidity",
@@ -5057,19 +5101,19 @@
       ],
       "tags": [
         "dex",
-        "impermanent loss",
         "liquidity aggregation",
-        "smart routing",
         "trading fees",
-        "yield farming"
+        "yield farming",
+        "smart routing",
+        "impermanent loss"
       ],
       "relatedTerms": [
         "dex",
-        "impermanentloss",
         "liquidityaggregation",
-        "smartrouting",
         "tradingfees",
-        "yieldfarming"
+        "yieldfarming",
+        "smartrouting",
+        "impermanentloss"
       ],
       "examples": [
         "XYK pools on Polkaswap",
@@ -5167,16 +5211,16 @@
         "market psychology"
       ],
       "tags": [
-        "bear market",
-        "bull market",
         "crypto market cycles",
-        "trading strategy"
+        "trading strategy",
+        "bull market",
+        "bear market"
       ],
       "relatedTerms": [
-        "bearmarket",
-        "bullmarket",
         "cryptomarketcycles",
-        "tradingstrategy"
+        "tradingstrategy",
+        "bullmarket",
+        "bearmarket"
       ],
       "examples": [],
       "links": [
@@ -5200,14 +5244,15 @@
       ],
       "tags": [
         "crypto market cycles",
-        "tokenomics",
         "trading strategy",
+        "tokenomics",
         "treasury"
       ],
       "relatedTerms": [
         "cryptomarketcycles",
+        "tradingstrategy",
         "tokenomics",
-        "tradingstrategy"
+        "treasury"
       ],
       "examples": [],
       "links": [
@@ -5269,14 +5314,14 @@
         "memory safety"
       ],
       "tags": [
-        "concurrency",
+        "rust",
         "performance",
-        "rust"
+        "concurrency"
       ],
       "relatedTerms": [
-        "concurrency",
+        "rust",
         "performance",
-        "rust"
+        "concurrency"
       ],
       "examples": [],
       "links": [
@@ -5369,13 +5414,14 @@
         "mining"
       ],
       "tags": [
-        "bitcoin",
+        "proof of work",
         "energy",
-        "proof of work"
+        "bitcoin"
       ],
       "relatedTerms": [
-        "energy",
-        "proofofwork"
+        "proofofwork",
+        "bitcoinbtc",
+        "energy"
       ],
       "examples": [],
       "links": [
@@ -5388,7 +5434,7 @@
     },
     {
       "slug": "mldsa44",
-      "title": "ML-DSA-44",
+      "title": "Ml-dsa-44",
       "summary": "The ML-DSA-44 (Dilithium2) post-quantum signature suite used in SoraNet admission flows (for example, signing proof-of-work access tickets).",
       "status": "canonical",
       "targetSlug": null,
@@ -5410,7 +5456,7 @@
     },
     {
       "slug": "mldsa65",
-      "title": "ML-DSA-65",
+      "title": "Ml-dsa-65",
       "summary": "The ML-DSA-65 (Dilithium3) post-quantum signature suite used for SoraNet dual-signed relay certificates and other quantum-resistant authentication flows.",
       "status": "canonical",
       "targetSlug": null,
@@ -5432,7 +5478,7 @@
     },
     {
       "slug": "mldsa87",
-      "title": "ML-DSA-87",
+      "title": "Ml-dsa-87",
       "summary": "The ML-DSA-87 (Dilithium5) post-quantum signature suite supported by SoraNet/Nexus tooling for quantum-resistant authentication.",
       "status": "canonical",
       "targetSlug": null,
@@ -5482,18 +5528,18 @@
         "mobile payments"
       ],
       "tags": [
+        "sora card",
         "bokolo cash",
-        "digital currency",
-        "financial inclusion",
         "qr payments",
-        "sora card"
+        "financial inclusion",
+        "digital currency"
       ],
       "relatedTerms": [
+        "soracard",
         "bokolocash",
-        "digitalcurrency",
-        "financialinclusion",
         "qrpayments",
-        "soracard"
+        "financialinclusion",
+        "digitalcurrency"
       ],
       "examples": [],
       "links": [
@@ -5518,17 +5564,18 @@
         "monetary system"
       ],
       "tags": [
+        "token bonding curve",
+        "redenomination",
         "economic governance",
         "elastic supply",
-        "price stability",
-        "redenomination",
-        "token bonding curve"
+        "price stability"
       ],
       "relatedTerms": [
-        "elasticsupply",
-        "pricestability",
+        "tokenbondingcurve",
         "redenomination",
-        "tokenbondingcurve"
+        "elasticsupply",
+        "economicgovernance",
+        "pricestability"
       ],
       "examples": [],
       "links": [
@@ -5551,16 +5598,16 @@
         "money market"
       ],
       "tags": [
-        "borrowing",
-        "collateral",
         "lending",
-        "vaults"
+        "borrowing",
+        "vaults",
+        "collateral"
       ],
       "relatedTerms": [
-        "borrowing",
-        "collateral",
         "lending",
-        "vaults"
+        "borrowing",
+        "vaults",
+        "collateral"
       ],
       "examples": [],
       "links": [
@@ -5716,17 +5763,20 @@
         "non-fungible tokens"
       ],
       "tags": [
-        "blockchain",
-        "digital asset",
-        "divisible",
-        "extensible supply",
+        "polkaswap",
         "ipfs",
-        "polkaswap"
+        "digital asset",
+        "blockchain",
+        "divisible",
+        "extensible supply"
       ],
       "relatedTerms": [
-        "blockchain",
+        "polkaswap",
         "ipfs",
-        "polkaswap"
+        "digitalasset",
+        "blockchain",
+        "divisible",
+        "extensiblesupply"
       ],
       "examples": [
         "Digital art",
@@ -6031,20 +6081,20 @@
         "parachains"
       ],
       "tags": [
-        "cross-chain",
-        "parallel processing",
         "polkadot",
         "relay chain",
+        "xcm",
         "shared security",
-        "xcm"
+        "parallel processing",
+        "cross-chain"
       ],
       "relatedTerms": [
-        "crosschain",
-        "parallelprocessing",
         "polkadot",
         "relaychain",
+        "xcm",
         "sharedsecurity",
-        "xcm"
+        "parallelprocessing",
+        "crosschain"
       ],
       "examples": [
         "SORA parachain",
@@ -6113,12 +6163,13 @@
       "tags": [
         "parachain",
         "polkadot",
-        "scalability",
-        "throughput"
+        "throughput",
+        "scalability"
       ],
       "relatedTerms": [
         "parachain",
         "polkadot",
+        "throughput",
         "scalability"
       ],
       "examples": [
@@ -6170,15 +6221,15 @@
         "parathreads"
       ],
       "tags": [
-        "agile coretime",
-        "coretime",
         "parachains",
+        "coretime",
+        "agile coretime",
         "slot leases"
       ],
       "relatedTerms": [
-        "agilecoretime",
-        "coretime",
         "parachain",
+        "coretime",
+        "agilecoretime",
         "slotleases"
       ],
       "examples": [],
@@ -6235,11 +6286,13 @@
         "pepe"
       ],
       "tags": [
-        "blockchain culture",
         "meme coins",
-        "volatility"
+        "volatility",
+        "blockchain culture"
       ],
       "relatedTerms": [
+        "dogecoindoge",
+        "shibainushib",
         "bonk",
         "soshiba"
       ],
@@ -6264,13 +6317,13 @@
         "performance"
       ],
       "tags": [
-        "concurrency",
         "rust",
+        "concurrency",
         "wasm"
       ],
       "relatedTerms": [
-        "concurrency",
         "rust",
+        "concurrency",
         "wasm"
       ],
       "examples": [],
@@ -6366,20 +6419,20 @@
         "polkadot"
       ],
       "tags": [
-        "cross-chain",
         "parachain",
         "relay chain",
+        "xcm",
         "shared security",
-        "substrate",
-        "xcm"
+        "cross-chain",
+        "substrate"
       ],
       "relatedTerms": [
-        "crosschain",
         "parachain",
         "relaychain",
+        "xcm",
         "sharedsecurity",
-        "substrate",
-        "xcm"
+        "crosschain",
+        "substrate"
       ],
       "examples": [
         "Multi-chain network",
@@ -6406,22 +6459,22 @@
         "polkadot governance"
       ],
       "tags": [
+        "sora council",
+        "referendum",
         "democracy",
         "governance",
         "governance v1",
-        "opengov",
         "polkadot",
-        "referendum",
-        "sora council"
+        "opengov"
       ],
       "relatedTerms": [
+        "soracouncil",
+        "referendum",
         "democracy",
         "governance",
         "governancev1",
-        "opengov",
         "polkadot",
-        "referendum",
-        "soracouncil"
+        "opengov"
       ],
       "examples": [
         "Council elections",
@@ -6451,8 +6504,8 @@
         "sora dex"
       ],
       "tags": [
-        "cross-chain",
         "dex",
+        "cross-chain",
         "liquidity aggregation",
         "pswap",
         "smart routing",
@@ -6460,8 +6513,8 @@
         "tonswap"
       ],
       "relatedTerms": [
-        "crosschain",
         "dex",
+        "crosschain",
         "liquidityaggregation",
         "pswap",
         "smartrouting",
@@ -6586,16 +6639,16 @@
         "price stability"
       ],
       "tags": [
-        "economic conditions",
         "elastic supply",
-        "supply management",
-        "token bonding curve"
+        "token bonding curve",
+        "economic conditions",
+        "supply management"
       ],
       "relatedTerms": [
-        "economicconditions",
         "elasticsupply",
-        "supplymanagement",
-        "tokenbondingcurve"
+        "tokenbondingcurve",
+        "economicconditions",
+        "supplymanagement"
       ],
       "examples": [
         "Automatic supply adjustment",
@@ -6701,14 +6754,14 @@
         "pos"
       ],
       "tags": [
-        "consensus",
         "staking",
-        "validator"
+        "validator",
+        "consensus"
       ],
       "relatedTerms": [
-        "consensus",
         "staking",
-        "validator"
+        "validator",
+        "consensus"
       ],
       "examples": [],
       "links": [
@@ -6732,13 +6785,14 @@
         "pow"
       ],
       "tags": [
-        "bitcoin",
+        "mining",
         "energy",
-        "mining"
+        "bitcoin"
       ],
       "relatedTerms": [
-        "consensus",
-        "mining"
+        "mining",
+        "bitcoinbtc",
+        "consensus"
       ],
       "examples": [],
       "links": [
@@ -6873,22 +6927,22 @@
         "pswap"
       ],
       "tags": [
-        "buyback-and-burn",
-        "deflationary",
+        "xor",
+        "val",
+        "polkaswap",
         "dex",
         "liquidity",
-        "polkaswap",
-        "val",
-        "xor"
+        "deflationary",
+        "buyback-and-burn"
       ],
       "relatedTerms": [
-        "buybackandburn",
-        "deflationary",
+        "xor",
+        "val",
+        "polkaswap",
         "dex",
         "liquidity",
-        "polkaswap",
-        "val",
-        "xor"
+        "deflationary",
+        "buybackandburn"
       ],
       "examples": [
         "Liquidity provider rewards",
@@ -6945,16 +6999,16 @@
         "qr payment"
       ],
       "tags": [
-        "bokolo cash",
-        "financial inclusion",
         "mobile payments",
-        "sora card"
+        "sora card",
+        "bokolo cash",
+        "financial inclusion"
       ],
       "relatedTerms": [
-        "bokolocash",
-        "financialinclusion",
         "mobilepayments",
-        "soracard"
+        "soracard",
+        "bokolocash",
+        "financialinclusion"
       ],
       "examples": [],
       "links": [
@@ -7004,15 +7058,15 @@
       ],
       "tags": [
         "asset tokenization",
+        "tokenization",
         "chainlink",
-        "defi",
-        "tokenization"
+        "defi"
       ],
       "relatedTerms": [
         "assettokenization",
+        "tokenization",
         "chainlink",
-        "defi",
-        "tokenization"
+        "defi"
       ],
       "examples": [],
       "links": [
@@ -7035,16 +7089,16 @@
         "redenomination"
       ],
       "tags": [
-        "elastic supply",
         "monetary systems",
         "token repackaging",
+        "elastic supply",
         "tokenomics"
       ],
       "relatedTerms": [
-        "elasticsupply",
         "monetarysystems",
-        "tokenomics",
-        "tokenrepackaging"
+        "tokenrepackaging",
+        "elasticsupply",
+        "tokenomics"
       ],
       "examples": [],
       "links": [
@@ -7091,18 +7145,18 @@
         "referendum"
       ],
       "tags": [
+        "sora council",
         "council motion",
-        "democracy",
-        "governance v1",
         "polkadot governance",
-        "sora council"
+        "governance v1",
+        "democracy"
       ],
       "relatedTerms": [
+        "soracouncil",
         "councilmotion",
-        "democracy",
-        "governancev1",
         "polkadotgovernance",
-        "soracouncil"
+        "governancev1",
+        "democracy"
       ],
       "examples": [
         "Network fee changes",
@@ -7130,18 +7184,18 @@
         "relay chain"
       ],
       "tags": [
-        "consensus",
-        "cross-chain",
-        "parachain",
         "polkadot",
-        "shared security"
+        "parachain",
+        "shared security",
+        "consensus",
+        "cross-chain"
       ],
       "relatedTerms": [
-        "consensus",
-        "crosschain",
-        "parachain",
         "polkadot",
-        "sharedsecurity"
+        "parachain",
+        "sharedsecurity",
+        "consensus",
+        "crosschain"
       ],
       "examples": [
         "Network coordination",
@@ -7216,18 +7270,18 @@
         "rewards"
       ],
       "tags": [
-        "governance",
-        "pswap",
-        "staking",
         "validator",
-        "yield farming"
+        "staking",
+        "pswap",
+        "yield farming",
+        "governance"
       ],
       "relatedTerms": [
-        "governance",
-        "pswap",
-        "staking",
         "validator",
-        "yieldfarming"
+        "staking",
+        "pswap",
+        "yieldfarming",
+        "governance"
       ],
       "examples": [
         "Validator rewards",
@@ -7294,15 +7348,15 @@
         "rollups"
       ],
       "tags": [
+        "scalability",
         "blockchain architecture",
-        "Hyperledger Iroha",
         "Polkadot",
-        "scalability"
+        "Hyperledger Iroha"
       ],
       "relatedTerms": [
         "blockchainarchitecture",
-        "hyperledgeriroha",
-        "polkadot"
+        "polkadot",
+        "hyperledgeriroha"
       ],
       "examples": [],
       "links": [
@@ -7386,15 +7440,16 @@
         "rust"
       ],
       "tags": [
-        "concurrency",
         "memory safety",
         "performance",
+        "concurrency",
         "webassembly"
       ],
       "relatedTerms": [
-        "concurrency",
         "memorysafety",
-        "performance"
+        "performance",
+        "concurrency",
+        "webassembly"
       ],
       "examples": [],
       "links": [
@@ -7475,14 +7530,14 @@
         "scarcity economics"
       ],
       "tags": [
-        "halving",
+        "token bonding curve",
         "monetary systems",
-        "token bonding curve"
+        "halving"
       ],
       "relatedTerms": [
-        "halving",
+        "tokenbondingcurve",
         "monetarysystems",
-        "tokenbondingcurve"
+        "halving"
       ],
       "examples": [],
       "links": [
@@ -7553,17 +7608,18 @@
         "security"
       ],
       "tags": [
+        "validator",
         "consensus",
-        "cryptography",
-        "network protection",
         "shared security",
-        "validator"
+        "cryptography",
+        "network protection"
       ],
       "relatedTerms": [
+        "validator",
         "consensus",
-        "cryptography",
         "sharedsecurity",
-        "validator"
+        "cryptography",
+        "networkprotection"
       ],
       "examples": [
         "Attack prevention",
@@ -7662,16 +7718,16 @@
         "shared security"
       ],
       "tags": [
-        "parachain",
         "polkadot",
         "relay chain",
+        "parachain",
         "security",
         "validators"
       ],
       "relatedTerms": [
-        "parachain",
         "polkadot",
         "relaychain",
+        "parachain",
         "security",
         "validators"
       ],
@@ -7701,14 +7757,15 @@
         "shib"
       ],
       "tags": [
-        "blockchain culture",
         "meme coins",
-        "tokenomics",
-        "volatility"
+        "volatility",
+        "blockchain culture",
+        "tokenomics"
       ],
       "relatedTerms": [
-        "bonk",
+        "dogecoindoge",
         "pepe",
+        "bonk",
         "soshiba"
       ],
       "examples": [],
@@ -7857,14 +7914,14 @@
       ],
       "tags": [
         "auctions",
-        "coretime",
         "crowdloans",
+        "coretime",
         "Polkadot"
       ],
       "relatedTerms": [
         "auctions",
-        "coretime",
         "crowdloans",
+        "coretime",
         "polkadot"
       ],
       "examples": [],
@@ -7960,15 +8017,16 @@
         "smart contract"
       ],
       "tags": [
+        "token bonding curve",
         "automation",
-        "blockchain",
         "code",
-        "token bonding curve"
+        "blockchain"
       ],
       "relatedTerms": [
+        "tokenbondingcurve",
         "automation",
-        "blockchain",
-        "tokenbondingcurve"
+        "code",
+        "blockchain"
       ],
       "examples": [
         "Token Bonding Curve",
@@ -7981,10 +8039,10 @@
     {
       "slug": "smartcontracts",
       "title": "Smart Contracts",
-      "summary": "Smart contracts are programs executed deterministically by a blockchain network. In SORA v3 (SORA Nexus), contract logic is written in Kotodama and deployed as IVM bytecode, with on-ledger effects performed through Iroha Special Instructions (ISIs) and metered by gas schedules.",
+      "summary": "Smart contracts are self-executing programs stored on blockchain that automatically enforce agreement terms. SORA supports smart contracts through Ink! (Rust-based) and future WASM execution environments.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "Smart contracts are programs executed deterministically by a blockchain network. In SORA v3 (SORA Nexus), contract logic is written in Kotodama and deployed as IVM bytecode, with on-ledger effects performed through Iroha Special Instructions (ISIs) and metered by gas schedules.",
+      "definition": "Smart contracts are self-executing programs stored on blockchain that automatically enforce agreement terms. SORA supports smart contracts through Ink! (Rust-based) and future WASM execution environments.",
       "category": "Technology",
       "aliases": [],
       "tags": [],
@@ -8005,16 +8063,18 @@
         "smart routing"
       ],
       "tags": [
-        "algorithm",
-        "liquidity aggregation",
         "polkaswap",
+        "liquidity aggregation",
         "price optimization",
-        "slippage reduction"
+        "slippage reduction",
+        "algorithm"
       ],
       "relatedTerms": [
-        "liquidityaggregation",
         "polkaswap",
-        "priceoptimization"
+        "liquidityaggregation",
+        "priceoptimization",
+        "slippagereduction",
+        "algorithm"
       ],
       "examples": [
         "Optimal trade routing",
@@ -8071,8 +8131,8 @@
       ],
       "relatedTerms": [
         "bonk",
-        "memecoins",
-        "performance"
+        "performance",
+        "memecoins"
       ],
       "examples": [],
       "links": [
@@ -8101,15 +8161,15 @@
       "tags": [
         "bokolo cash",
         "cbdc",
-        "financial inclusion",
         "mobile payments",
+        "financial inclusion",
         "soramitsu"
       ],
       "relatedTerms": [
         "bokolocash",
         "cbdc",
-        "financialinclusion",
         "mobilepayments",
+        "financialinclusion",
         "soramitsu"
       ],
       "examples": [],
@@ -8131,19 +8191,19 @@
       "category": "Ecosystem",
       "aliases": [],
       "tags": [
-        "beginner-friendly",
         "foundational",
-        "glossary-linked"
+        "glossary-linked",
+        "beginner-friendly"
       ],
       "relatedTerms": [
-        "fearlesswallet",
-        "hashi",
-        "kensetsu",
-        "polkaswap",
-        "pswap",
-        "soraparliament",
+        "xor",
         "val",
-        "xor"
+        "pswap",
+        "polkaswap",
+        "hashi",
+        "soraparliament",
+        "kensetsu",
+        "fearlesswallet"
       ],
       "examples": [],
       "links": [
@@ -8199,15 +8259,18 @@
         "sora card"
       ],
       "tags": [
-        "cryptocurrency",
-        "decentralized finance",
+        "xor",
         "polkaswap",
+        "decentralized finance",
         "real-world payments",
-        "xor"
+        "cryptocurrency"
       ],
       "relatedTerms": [
+        "xor",
         "polkaswap",
-        "xor"
+        "decentralizedfinance",
+        "realworldpayments",
+        "cryptocurrency"
       ],
       "examples": [
         "Online purchases",
@@ -8264,18 +8327,18 @@
         "sora council"
       ],
       "tags": [
-        "council motion",
-        "democracy",
-        "governance",
         "polkadot governance",
-        "referendum"
+        "referendum",
+        "council motion",
+        "governance",
+        "democracy"
       ],
       "relatedTerms": [
-        "councilmotion",
-        "democracy",
-        "governance",
         "polkadotgovernance",
-        "referendum"
+        "referendum",
+        "councilmotion",
+        "governance",
+        "democracy"
       ],
       "examples": [
         "Proposal vetting",
@@ -8338,17 +8401,18 @@
         "soramitsu"
       ],
       "tags": [
-        "bakong",
-        "blockchain infrastructure",
+        "sora network",
         "cbdc",
+        "bakong",
         "hyperledger iroha",
-        "sora network"
+        "blockchain infrastructure"
       ],
       "relatedTerms": [
-        "bakong",
+        "soranetwork",
         "cbdc",
+        "bakong",
         "hyperledgeriroha",
-        "soranetwork"
+        "blockchaininfrastructure"
       ],
       "examples": [
         "SORA network development",
@@ -8438,25 +8502,28 @@
         "sora parliament"
       ],
       "tags": [
+        "xor",
+        "val",
+        "sortition",
         "citizenship",
+        "multi-body governance",
+        "supranational",
         "governance v1",
         "iroha special instructions",
         "isi",
-        "multi-body governance",
-        "sora v3",
-        "sortition",
-        "supranational",
-        "val",
-        "xor"
+        "sora v3"
       ],
       "relatedTerms": [
+        "xor",
+        "val",
+        "sortition",
         "citizenship",
+        "multibodygovernance",
+        "supranational",
         "governancev1",
         "irohaspecialinstructions",
-        "sorav3",
-        "sortition",
-        "val",
-        "xor"
+        "isi",
+        "sorav3"
       ],
       "examples": [
         "Random citizen selection",
@@ -8514,18 +8581,18 @@
         "sora v2"
       ],
       "tags": [
-        "hyperledger iroha",
-        "parachain",
+        "substrate",
         "polkadot",
+        "parachain",
         "sora v3",
-        "substrate"
+        "hyperledger iroha"
       ],
       "relatedTerms": [
-        "hyperledgeriroha",
-        "parachain",
+        "substrate",
         "polkadot",
+        "parachain",
         "sorav3",
-        "substrate"
+        "hyperledgeriroha"
       ],
       "examples": [
         "Current SORA network",
@@ -8555,30 +8622,32 @@
         "hyperledger iroha 3"
       ],
       "tags": [
-        "cbdc",
-        "economic sovereignty",
-        "fujiwara testnet",
-        "hub chain",
-        "hubchain",
         "hyperledger iroha",
         "hyperledger iroha 2",
         "hyperledger iroha 3",
-        "kusd",
+        "cbdc",
+        "hub chain",
+        "hubchain",
         "nexus",
-        "sora v2",
-        "supranational platform"
+        "economic sovereignty",
+        "kusd",
+        "fujiwara testnet",
+        "supranational platform",
+        "sora v2"
       ],
       "relatedTerms": [
-        "cbdc",
-        "economicsovereignty",
-        "fujiwaratestnet",
-        "hubchain",
         "hyperledgeriroha",
+        "hyperledgeriroha2",
         "hyperledgeriroha3",
-        "kusd",
+        "cbdc",
+        "hubchain",
+        "hubchain",
         "nexus",
-        "sorav2",
-        "supranationalplatform"
+        "economicsovereignty",
+        "kusd",
+        "fujiwaratestnet",
+        "supranationalplatform",
+        "sorav2"
       ],
       "examples": [
         "Central bank digital currencies",
@@ -8607,17 +8676,18 @@
         "sortition"
       ],
       "tags": [
-        "citizenship",
-        "democracy",
+        "sora parliament",
         "governance",
         "random selection",
-        "sora parliament"
+        "democracy",
+        "citizenship"
       ],
       "relatedTerms": [
-        "citizenship",
-        "democracy",
+        "soraparliament",
         "governance",
-        "soraparliament"
+        "randomselection",
+        "democracy",
+        "citizenship"
       ],
       "examples": [
         "Random citizen selection",
@@ -8644,14 +8714,16 @@
         "soshiba"
       ],
       "tags": [
-        "community",
         "meme coins",
         "Polkaswap",
+        "community",
         "volatility"
       ],
       "relatedTerms": [
-        "bonk",
-        "pepe"
+        "dogecoindoge",
+        "shibainushib",
+        "pepe",
+        "bonk"
       ],
       "examples": [],
       "links": [
@@ -8753,15 +8825,15 @@
         "staking"
       ],
       "tags": [
+        "validator",
         "rewards",
         "security",
-        "validator",
         "xor"
       ],
       "relatedTerms": [
+        "validator",
         "rewards",
         "security",
-        "validator",
         "xor"
       ],
       "examples": [
@@ -8931,22 +9003,22 @@
         "substrate"
       ],
       "tags": [
-        "cross-chain",
-        "hyperledger iroha",
-        "hyperledger iroha 3",
-        "parachain",
         "polkadot",
+        "parachain",
+        "cross-chain",
         "sora v2",
-        "sora v3"
+        "sora v3",
+        "hyperledger iroha",
+        "hyperledger iroha 3"
       ],
       "relatedTerms": [
-        "crosschain",
-        "hyperledgeriroha",
-        "hyperledgeriroha3",
-        "parachain",
         "polkadot",
+        "parachain",
+        "crosschain",
         "sorav2",
-        "sorav3"
+        "sorav3",
+        "hyperledgeriroha",
+        "hyperledgeriroha3"
       ],
       "examples": [
         "Polkadot parachain",
@@ -9076,17 +9148,18 @@
         "supranational platform"
       ],
       "tags": [
-        "borderless finance",
+        "sora v3",
         "cbdc",
         "economic sovereignty",
         "global transactions",
-        "sora v3"
+        "borderless finance"
       ],
       "relatedTerms": [
-        "borderlessfinance",
+        "sorav3",
         "cbdc",
         "economicsovereignty",
-        "sorav3"
+        "globaltransactions",
+        "borderlessfinance"
       ],
       "examples": [
         "CBDC deployment",
@@ -9162,20 +9235,22 @@
         "tbcd"
       ],
       "tags": [
-        "kusd",
-        "on-chain governance",
-        "reserve asset",
-        "sora v3",
-        "stable asset",
         "token bonding curve",
-        "xor"
+        "stable asset",
+        "xor",
+        "reserve asset",
+        "on-chain governance",
+        "sora v3",
+        "kusd"
       ],
       "relatedTerms": [
-        "kusd",
-        "sorav3",
-        "stableasset",
         "tokenbondingcurve",
-        "xor"
+        "stableasset",
+        "xor",
+        "reserveasset",
+        "onchaingovernance",
+        "sorav3",
+        "kusd"
       ],
       "examples": [
         "Builder funding via governance",
@@ -9272,18 +9347,18 @@
         "token bonding curve"
       ],
       "tags": [
+        "xor",
         "elastic supply",
-        "price stability",
         "smart contract",
-        "supply management",
-        "xor"
+        "price stability",
+        "supply management"
       ],
       "relatedTerms": [
+        "xor",
         "elasticsupply",
-        "pricestability",
         "smartcontract",
-        "supplymanagement",
-        "xor"
+        "pricestability",
+        "supplymanagement"
       ],
       "examples": [
         "Automated supply adjustment",
@@ -9311,18 +9386,18 @@
         "token burning"
       ],
       "tags": [
-        "deflationary",
+        "val",
         "pswap",
-        "scarcity",
+        "deflationary",
         "supply reduction",
-        "val"
+        "scarcity"
       ],
       "relatedTerms": [
-        "deflationary",
+        "val",
         "pswap",
-        "scarcity",
+        "deflationary",
         "supplyreduction",
-        "val"
+        "scarcity"
       ],
       "examples": [
         "VAL transaction burning",
@@ -9350,15 +9425,15 @@
       ],
       "tags": [
         "asset tokenization",
+        "real-world assets",
         "chainlink",
-        "defi",
-        "real-world assets"
+        "defi"
       ],
       "relatedTerms": [
         "assettokenization",
+        "realworldassets",
         "chainlink",
-        "defi",
-        "realworldassets"
+        "defi"
       ],
       "examples": [],
       "links": [
@@ -9421,18 +9496,18 @@
         "token repackaging"
       ],
       "tags": [
-        "PSWAP",
         "redenomination",
         "tokenomics",
-        "VAL",
-        "XOR"
+        "XOR",
+        "PSWAP",
+        "VAL"
       ],
       "relatedTerms": [
-        "pswap",
         "redenomination",
         "tokenomics",
-        "val",
-        "xor"
+        "xor",
+        "pswap",
+        "val"
       ],
       "examples": [],
       "links": [
@@ -9474,31 +9549,34 @@
         "ts dex"
       ],
       "tags": [
-        "bridge",
-        "buyback-and-burn",
-        "clmm",
-        "cross-chain",
         "dex",
-        "launchpad",
-        "liquidity",
-        "mobile",
-        "polkaswap",
-        "sora",
-        "telegram",
         "ton",
-        "xor"
+        "sora",
+        "cross-chain",
+        "polkaswap",
+        "telegram",
+        "mobile",
+        "liquidity",
+        "bridge",
+        "launchpad",
+        "clmm",
+        "xor",
+        "buyback-and-burn"
       ],
       "relatedTerms": [
-        "buybackandburn",
-        "crosschain",
         "dex",
-        "liquidity",
-        "mobile",
-        "polkaswap",
-        "sora",
-        "telegram",
         "ton",
-        "xor"
+        "sora",
+        "crosschain",
+        "polkaswap",
+        "telegram",
+        "mobile",
+        "liquidity",
+        "bridge",
+        "launchpad",
+        "clmm",
+        "xor",
+        "buybackandburn"
       ],
       "examples": [
         "Mobile trading via Telegram",
@@ -9576,18 +9654,18 @@
         "trading fees"
       ],
       "tags": [
-        "buyback-and-burn",
         "polkaswap",
         "pswap",
-        "trading",
-        "validators"
+        "buyback-and-burn",
+        "validators",
+        "trading"
       ],
       "relatedTerms": [
-        "buybackandburn",
         "polkaswap",
         "pswap",
-        "trading",
-        "validators"
+        "buybackandburn",
+        "validators",
+        "trading"
       ],
       "examples": [
         "Transaction charges",
@@ -9614,16 +9692,16 @@
         "trading strategy"
       ],
       "tags": [
+        "market timing",
         "crypto market cycles",
-        "defi",
         "liquidity",
-        "market timing"
+        "defi"
       ],
       "relatedTerms": [
+        "markettiming",
         "cryptomarketcycles",
-        "defi",
         "liquidity",
-        "markettiming"
+        "defi"
       ],
       "examples": [],
       "links": [
@@ -9718,28 +9796,28 @@
         "ts"
       ],
       "tags": [
-        "buyback-and-burn",
-        "cross-chain",
-        "deflationary",
+        "tonswap",
+        "ton",
+        "xor",
         "dex",
         "governance",
         "liquidity",
-        "smart contract",
-        "ton",
-        "tonswap",
-        "xor"
+        "deflationary",
+        "cross-chain",
+        "buyback-and-burn",
+        "smart contract"
       ],
       "relatedTerms": [
-        "buybackandburn",
-        "crosschain",
-        "deflationary",
+        "tonswap",
+        "ton",
+        "xor",
         "dex",
         "governance",
         "liquidity",
-        "smartcontract",
-        "ton",
-        "tonswap",
-        "xor"
+        "deflationary",
+        "crosschain",
+        "buybackandburn",
+        "smartcontract"
       ],
       "examples": [
         "Platform governance",
@@ -9786,7 +9864,7 @@
     },
     {
       "slug": "uaid",
-      "title": "UAID",
+      "title": "Uaid",
       "summary": "Short for UniversalAccountId; a hash-based universal account identifier (rendered `uaid:<hex>`) used as a stable capability anchor across Nexus dataspaces and lanes, including Space Directory manifests keyed by UAID + DataSpaceId.",
       "status": "canonical",
       "targetSlug": null,
@@ -9820,20 +9898,20 @@
         "val"
       ],
       "tags": [
-        "deflationary",
-        "hashi",
+        "xor",
         "pswap",
-        "staking",
         "validator",
-        "xor"
+        "staking",
+        "deflationary",
+        "hashi"
       ],
       "relatedTerms": [
-        "deflationary",
-        "hashi",
+        "xor",
         "pswap",
-        "staking",
         "validator",
-        "xor"
+        "staking",
+        "deflationary",
+        "hashi"
       ],
       "examples": [
         "Validator rewards",
@@ -9865,16 +9943,16 @@
         "validator"
       ],
       "tags": [
+        "staking",
         "consensus",
-        "rewards",
         "security",
-        "staking"
+        "rewards"
       ],
       "relatedTerms": [
+        "staking",
         "consensus",
-        "rewards",
         "security",
-        "staking"
+        "rewards"
       ],
       "examples": [
         "Transaction validation",
@@ -9931,15 +10009,15 @@
         "vaults"
       ],
       "tags": [
-        "borrowing",
         "collateral",
         "lending",
+        "borrowing",
         "money market"
       ],
       "relatedTerms": [
-        "borrowing",
         "collateral",
         "lending",
+        "borrowing",
         "moneymarket"
       ],
       "examples": [],
@@ -9964,15 +10042,15 @@
       ],
       "tags": [
         "crypto market cycles",
+        "trading strategy",
         "market timing",
-        "risk management",
-        "trading strategy"
+        "risk management"
       ],
       "relatedTerms": [
         "cryptomarketcycles",
+        "tradingstrategy",
         "markettiming",
-        "soshiba",
-        "tradingstrategy"
+        "soshiba"
       ],
       "examples": [],
       "links": [
@@ -10066,24 +10144,24 @@
     {
       "slug": "wasm",
       "title": "WASM (WebAssembly)",
-      "summary": "A portable binary instruction format used for sandboxed, high-performance execution (often for smart contracts and blockchain runtime modules).",
+      "summary": "A portable binary instruction format that enables high-performance smart contracts and runtime modules.",
       "status": "canonical",
       "targetSlug": null,
-      "definition": "WebAssembly lets runtimes execute code securely and efficiently across platforms. Many blockchain ecosystems (including Substrate-based chains) use WASM for runtimes or smart contracts. SORA v3 / Hyperledger Iroha 3 executes on-ledger programmable logic as IVM bytecode (Kotodama) rather than general-purpose WASM modules.",
+      "definition": "WebAssembly lets blockchain runtimes execute code securely and efficiently across platforms. Hyperledger Iroha 3 uses WASM for domain-specific smart instructions, and many SORA ecosystem tools compile to WASM for browser compatibility.",
       "category": "Technology",
       "aliases": [
         "wasm",
         "webassembly"
       ],
       "tags": [
-        "concurrency",
+        "rust",
         "performance",
-        "rust"
+        "concurrency"
       ],
       "relatedTerms": [
-        "concurrency",
+        "rust",
         "performance",
-        "rust"
+        "concurrency"
       ],
       "examples": [],
       "links": [
@@ -10106,14 +10184,14 @@
         "web3"
       ],
       "tags": [
-        "decentralized exchange",
         "digital ownership",
-        "tokenization"
+        "tokenization",
+        "decentralized exchange"
       ],
       "relatedTerms": [
-        "dex",
         "digitalownership",
-        "tokenization"
+        "tokenization",
+        "dex"
       ],
       "examples": [],
       "links": [
@@ -10160,18 +10238,18 @@
         "xcm"
       ],
       "tags": [
-        "consensus",
+        "polkadot",
+        "parachain",
         "cross-chain",
         "interoperability",
-        "parachain",
-        "polkadot"
+        "consensus"
       ],
       "relatedTerms": [
-        "consensus",
+        "polkadot",
+        "parachain",
         "crosschain",
         "interoperability",
-        "parachain",
-        "polkadot"
+        "consensus"
       ],
       "examples": [
         "Parachain communication",
@@ -10198,16 +10276,16 @@
         "xcmp"
       ],
       "tags": [
-        "coretime",
-        "interoperability",
         "parachains",
-        "Polkadot"
+        "Polkadot",
+        "interoperability",
+        "coretime"
       ],
       "relatedTerms": [
-        "asynchronousbacking",
-        "coretime",
         "parachain",
-        "polkadot"
+        "polkadot",
+        "coretime",
+        "asynchronousbacking"
       ],
       "examples": [],
       "links": [
@@ -10230,18 +10308,18 @@
         "xor"
       ],
       "tags": [
-        "elastic supply",
-        "polkaswap",
+        "val",
         "pswap",
         "token bonding curve",
-        "val"
+        "elastic supply",
+        "polkaswap"
       ],
       "relatedTerms": [
-        "elasticsupply",
-        "polkaswap",
+        "val",
         "pswap",
         "tokenbondingcurve",
-        "val"
+        "elasticsupply",
+        "polkaswap"
       ],
       "examples": [
         "Transaction fees",
@@ -10350,17 +10428,18 @@
         "xyk pools"
       ],
       "tags": [
-        "constant product",
-        "liquidity pool",
         "polkaswap",
+        "liquidity pool",
+        "yield farming",
         "pswap",
-        "yield farming"
+        "constant product"
       ],
       "relatedTerms": [
-        "liquiditypool",
         "polkaswap",
+        "liquiditypool",
+        "yieldfarming",
         "pswap",
-        "yieldfarming"
+        "constantproduct"
       ],
       "examples": [
         "ETH/PSWAP pool",
@@ -10387,17 +10466,18 @@
         "yield farming"
       ],
       "tags": [
-        "impermanent loss",
-        "liquidity aggregation",
         "liquidity provision",
         "pswap",
-        "xyk pools"
+        "xyk pools",
+        "liquidity aggregation",
+        "impermanent loss"
       ],
       "relatedTerms": [
-        "impermanentloss",
-        "liquidityaggregation",
+        "liquidityprovision",
         "pswap",
-        "xykpools"
+        "xykpools",
+        "liquidityaggregation",
+        "impermanentloss"
       ],
       "examples": [
         "PSWAP token rewards",
@@ -10490,5 +10570,5 @@
   "aliasCount": 41,
   "deprecatedCount": 0,
   "version": 2025,
-  "lastUpdated": "2026-02-06T19:10:38.222Z"
+  "lastUpdated": "2026-02-08T14:34:16.645Z"
 }
