@@ -379,6 +379,13 @@ author: "Soranauts Team"  # or specific author
 image:
   src: "@/assets/images/your-image-name.png"
   alt: "Descriptive alt text with keywords"
+relatedArticles:  # Optional: pin specific related articles by slug
+  - slug-one
+  - slug-two
+  - slug-three
+  # If omitted, Related Articles are selected automatically using
+  # IDF-weighted tag matching. Use this to override when the algorithm
+  # picks poorly, especially for pillar content.
 draft: false
 ---
 ```

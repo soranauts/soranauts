@@ -206,6 +206,12 @@ ecosystem, community, updates
 - Do not modify existing image paths unless broken
 - Alt text must be descriptive and include keywords
 
+### Related Articles (Optional)
+- `relatedArticles`: Array of article slugs to pin as recommendations
+- When set, overrides the automatic IDF-weighted algorithm
+- Use for pillar articles where editorial control matters
+- Verify slugs exist in LINK_INVENTORY.md before adding
+
 ---
 
 ## 7. TL;DR Guidelines

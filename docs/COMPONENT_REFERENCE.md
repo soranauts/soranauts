@@ -281,39 +281,53 @@ Format: `<a href="URL" target="_blank" rel="noopener noreferrer">anchor text</a>
 
 ---
 
-## Related Articles Grid (inline pattern, not yet componentized)
+## Related Articles (Layout Component)
 
-```jsx
-<div class="not-prose my-12" data-no-glossary>
-  <h3 class="text-lg font-semibold text-gray-200 mb-4">📖 Related Reading</h3>
-  <div class="grid gap-3 sm:grid-cols-2">
-    <a href="/slug" class="block rounded-lg border border-gray-700 bg-gray-800/40 p-4 hover:border-blue-500/50 hover:bg-gray-800/60 transition-all">
-      <span class="font-medium text-gray-200">Article Title</span>
-      <span class="block text-sm text-gray-400 mt-1">Brief description</span>
-    </a>
-  </div>
-</div>
+The Related Articles component appears automatically at the bottom of every blog post. It is NOT imported in MDX — it's wired into `BlogPostLayout.astro`. Authors interact with it only through the optional `relatedArticles` frontmatter field.
+
+### Algorithm (V2 Hybrid Scorer)
+
+Six signals with configurable weights (see `config/related.config.ts`):
+
+| Signal | Weight | Description |
+|--------|--------|-------------|
+| Tag Match (IDF-weighted) | 1.5 × IDF sum | Rare shared tags score higher than common ones |
+| Foundational Bonus | 0.4 (once) | Boost for tags with high priority or glossary refs |
+| Glossary Overlap | 1.6 per term | Shared glossary terms between articles |
+| Title Keywords | 1.2 per word | Shared meaningful words in titles |
+| Same Category | 0.6 (once) | Bonus if articles share a category |
+| Recency | 0.0–0.8 | Curve favoring articles updated within 90 days |
+
+Tag IDF formula: `log2(totalArticles / articlesWithThisTag)`. A tag used by 2 of 46 articles scores ~4.5. A tag used by 40 scores ~0.2.
+
+### Frontmatter Override
+
+Pin specific articles when the algorithm picks poorly:
+
+```yaml
+relatedArticles:
+  - sora-nexus-complete-guide
+  - sora-ecosystem-explained
+  - deep-dive-into-xor-val-and-pswap
 ```
 
-Note: This pattern still uses hardcoded grays. Future migration to tokens is planned.
+When set, articles appear in exact order and the algorithm is skipped. When omitted, the IDF-weighted scorer runs automatically.
 
----
+### Card Display
 
-## Stay Connected Grid (inline pattern, not yet componentized)
+Each card shows:
+- **Tag pill** — highest-IDF shared tag (e.g., "CBDC", "Nexus"). Manual picks show "Recommended"
+- **Title** — links to the article
+- **Excerpt** — from frontmatter description
 
-```jsx
-<div class="not-prose my-8" data-no-glossary>
-  <h3 class="text-lg font-semibold text-gray-200 mb-4">🌐 Stay Connected</h3>
-  <div class="grid gap-3 sm:grid-cols-2">
-    <a href="URL" target="_blank" rel="noopener noreferrer" class="block rounded-lg border border-gray-700 bg-gray-800/40 p-4 hover:border-blue-500/50 hover:bg-gray-800/60 transition-all">
-      <span class="font-medium text-gray-200">Link Name</span>
-      <span class="block text-sm text-gray-400 mt-1">Description</span>
-    </a>
-  </div>
-</div>
-```
+3 cards shown by default. On hover: inset left accent via box-shadow, title transitions to brand color.
 
-Note: This pattern still uses hardcoded grays. Future migration to tokens is planned.
+### Configuration
+
+- Algorithm weights: `apps/web/src/config/related.config.ts`
+- Scoring engine: `apps/web/src/utils/related.ts`
+- Component: `apps/web/src/components/blog/RelatedArticles.astro`
+- Layout wiring: `apps/web/src/layouts/BlogPostLayout.astro`
 
 ---
 
