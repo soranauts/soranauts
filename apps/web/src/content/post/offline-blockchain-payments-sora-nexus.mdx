@@ -26,6 +26,7 @@ import FaqSection from '~/components/blog/FaqSection.astro';
 import CalloutBox from '~/components/blog/CalloutBox.astro';
 import StyledTable from '~/components/blog/StyledTable.astro';
 import TableCaption from '~/components/blog/TableCaption.astro';
+import SourcesList from '~/components/blog/SourcesList.astro';
 
 <CalloutBox color="amber" variant="banner" icon="⚠️" title="Development Status">
   <p>This article discusses SORA Nexus's offline payment architecture as described in the November 2025 whitepaper. Nexus is built on Hyperledger Iroha 3 and is currently in development. The offline voucher system is a design specification and has not been deployed to production. SORAMITSU's current live systems (including Bakong) are online-first platforms.</p>
@@ -609,7 +610,7 @@ What's clear is that the next generation of digital payment infrastructure will 
 
 ---
 
-## Sources
+<SourcesList count={56}>
 
 1. Reuters — "Super Typhoon Yagi roars into China's Hainan, disrupting lives of millions" (September 2024)
 2. Center for Disaster Philanthropy — "2024 Super Typhoon Yagi" / Wikipedia — "Effects of Typhoon Yagi in Vietnam"
@@ -667,3 +668,5 @@ What's clear is that the next generation of digital payment infrastructure will 
 54. FStech — "BIS Collaborates with Central Banks to Test Post-Quantum Cryptography in Payments" (Project Leap Phase 2)
 55. Wultra — "Message from BIS: Start Post-Quantum Migration Now" (BIS Paper No. 158)
 56. PostQuantum.com — "Quantum-Readiness Roadmap: BIS Calls Finance to Prepare"
+
+</SourcesList>
