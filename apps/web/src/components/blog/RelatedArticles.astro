@@ -25,8 +25,8 @@ export interface Props {
 
 const { currentArticle, allArticles, maxArticles = 3, sectionLabel = 'Related Articles' } = Astro.props;
 
-// Feature flag: RELATED_V2 (default true in dev, false in prod unless explicitly set)
-let RELATED_V2 = import.meta.env.RELATED_V2 !== 'false' && (import.meta.env.DEV || import.meta.env.RELATED_V2 === 'true');
+// Feature flag: RELATED_V2 (ON by default; set RELATED_V2=false in env to disable)
+let RELATED_V2 = import.meta.env.RELATED_V2 !== 'false';
 
 let relatedArticles: Array<{
   slug: string;
@@ -235,7 +235,8 @@ const shouldShow = RELATED_V2
     color: var(--color-text-muted);
   }
 
-  @media (min-width: var(--bp-md)) {
+  /* Note: CSS custom properties cannot be used in @media conditions — hardcode breakpoint value */
+  @media (min-width: 768px) {
     .related-articles__list {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }

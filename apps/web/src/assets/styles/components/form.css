@@ -75,7 +75,8 @@
     gap: var(--space-3);
   }
 
-  @media (min-width: var(--bp-md)) {
+  /* Note: CSS custom properties cannot be used in @media conditions — hardcode breakpoint value */
+  @media (min-width: 768px) {
     .field--inline {
       grid-template-columns: minmax(0, 1fr) 2fr;
       align-items: center;
