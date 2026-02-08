@@ -1,0 +1,669 @@
+---
+publishDate: 2026-02-08T00:00:00Z
+updateDate: 2026-02-08T00:00:00Z
+title: "Offline Payments for the Unbanked: The SORA Nexus Approach"
+excerpt: "2.6 billion people lack internet. No offline payment system works at scale. Here's how SORA Nexus's voucher model is designed to change that."
+image: ~/assets/images/offline-blockchain-payments-sora-nexus.jpg
+category: "Guides"
+tags:
+  - nexus
+  - cbdc
+  - iroha3
+  - soramitsu
+  - guides
+  - enterprise
+  - interoperability
+  - bridges
+  - defi
+  - governance
+  - ecosystem
+  - blockchain
+canonicalURL: https://soranauts.com/offline-blockchain-payments-sora-nexus
+customSlug: offline-blockchain-payments-sora-nexus
+---
+
+import FaqSection from '~/components/blog/FaqSection.astro';
+import CalloutBox from '~/components/blog/CalloutBox.astro';
+import StyledTable from '~/components/blog/StyledTable.astro';
+import TableCaption from '~/components/blog/TableCaption.astro';
+
+<CalloutBox color="amber" variant="banner" icon="⚠️" title="Development Status">
+  <p>This article discusses SORA Nexus's offline payment architecture as described in the November 2025 whitepaper. Nexus is built on Hyperledger Iroha 3 and is currently in development. The offline voucher system is a design specification and has not been deployed to production. SORAMITSU's current live systems (including Bakong) are online-first platforms.</p>
+</CalloutBox>
+
+The market stalls are still standing, but the economy isn't. A typhoon tore through two days ago, and the cell towers went with it. The nearest ATM is forty kilometers away and out of cash anyway. Vendors have produce to sell. Families need food. Everyone has a phone in their pocket — but without a signal, every digital wallet, every QR code, every payment app is just a black screen.
+
+This isn't a thought experiment. In September 2024, Super Typhoon Yagi struck China's Hainan island and exposed a critical flaw in its near-cashless society: without electricity, mobile wallets stopped working entirely.<sup>[1]</sup> The storm then devastated Vietnam, damaging 237,000 homes and leaving businesses unable to process 100 trillion VND in loan repayments.<sup>[2]</sup> In April 2025, an electrical blackout across Spain and Portugal disabled every ATM, every payment terminal, every retail transaction — an entire peninsula reduced to cash-only for the duration.<sup>[3]</sup> In July 2025, card payment failures hit Denmark and the Nordic region with silent failures that gave merchants no error messages at all.<sup>[3]</sup>
+
+The pattern is clear: digital payments work beautifully until they don't. And for the 2.6 billion people worldwide who lack reliable internet access,<sup>[4]</sup> "until they don't" is the default state.
+
+---
+
+<CalloutBox color="accent" variant="highlight" title="TL;DR">
+  <ul class="space-y-2">
+    <li>• <strong>A 2024 Federal Reserve analysis</strong> found no evidence of fully offline digital payment systems in production at scale today.</li>
+    <li>• <strong>Existing solutions</strong> like China's e-CNY and India's UPI Lite X offer partial offline capabilities but face strict limits, hardware requirements, and adoption challenges.</li>
+    <li>• <strong>91% of the world's central banks</strong> are exploring digital currencies, with over half considering offline functionality as a core design feature.</li>
+    <li>• <strong>SORA Nexus</strong>, built on Hyperledger Iroha 3, describes a pre-authorized voucher architecture for offline-offline payments — but it remains a whitepaper specification, not a deployed system.</li>
+    <li>• <strong>SORAMITSU</strong>, the company behind Nexus, has the strongest real-world CBDC track record of any blockchain firm, with Bakong processing $150.61 billion in Cambodia in 2024 alone.</li>
+  </ul>
+</CalloutBox>
+
+---
+
+## The $118 Billion Problem
+
+### Who's Left Out
+
+The International Telecommunication Union estimated that approximately 2.6 billion people remained fully offline as of 2024, roughly one-third of the global population.<sup>[4]</sup> But the connectivity gap is worse than that headline suggests. The GSMA reports that an additional 3.1 billion people live within mobile internet coverage areas but don't use mobile internet — a "usage gap" driven by affordability, digital literacy, and relevance.<sup>[5]</sup> This means that even where towers exist, the infrastructure for always-online digital payments serves barely half the population.
+
+The disparities are sharpest in the regions where financial inclusion matters most. Southeast Asia's internet penetration averages around 80%, but that regional number hides enormous gaps: Cambodia has fewer than 3 fixed broadband subscriptions per 100 inhabitants, and Laos has approximately 2 per 100.<sup>[6]</sup>
+
+The Pacific Islands face far more severe exclusion:
+
+<StyledTable>
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Country</th>
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Internet Penetration</th>
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">4G Coverage</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Papua New Guinea</td>
+        <td class="p-4 text-text-muted">13.1%</td>
+        <td class="p-4 text-text-muted">70%</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Solomon Islands</td>
+        <td class="p-4 text-text-muted">23–42.5%</td>
+        <td class="p-4 text-text-muted">29.5%</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Tuvalu</td>
+        <td class="p-4 text-text-muted">N/A</td>
+        <td class="p-4 text-text-muted">27%</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Micronesia (FSM)</td>
+        <td class="p-4 text-text-muted">N/A</td>
+        <td class="p-4 text-text-muted">30%</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Fiji</td>
+        <td class="p-4 text-text-muted">71.2%</td>
+        <td class="p-4 text-text-muted">92.9%</td>
+      </tr>
+    </tbody>
+  </table>
+</StyledTable>
+
+<TableCaption>Sources: DataReportal, Pacific E-Commerce, Solomon Star News<sup>[7][8][9]</sup></TableCaption>
+
+In the Solomon Islands, approximately 75% of the population lives in regions with limited or outdated connectivity. Under the national broadband infrastructure project, 161 towers are planned — but as of mid-2025, only 13 were operational.<sup>[9]</sup>
+
+### Who's Unbanked
+
+The World Bank's <a href="https://www.worldbank.org/en/publication/globalfindex" target="_blank" rel="noopener noreferrer">Global Findex 2025</a> report reveals that 1.3 billion adults remain outside the formal financial system.<sup>[10]</sup> Over half of these — 650 million — are concentrated in just eight countries. Of the total unbanked, 55% are women, 52% come from the poorest 40% of households, and 62% have only a primary education.<sup>[10]</sup>
+
+In the countries where SORAMITSU has active CBDC projects, the numbers are stark: Indonesia's banked population sits at roughly 51.8%, Cambodia's at approximately 33.4%, and Laos at about 37.3%.<sup>[11][12][13]</sup> The United Nations Secretary-General's Special Advocate for Inclusive Finance has emphasized that adults in small island developing states face heightened risk from extreme weather and could greatly benefit from a secure, affordable place to store money outside their homes.<sup>[14]</sup>
+
+### When Payments Break
+
+Failed payments cost the global economy an estimated $118.5 billion annually, with false payment declines adding an additional $443 billion in losses, according to industry analysis.<sup>[3]</sup> In Kenya, when M-Pesa experiences even brief downtime, the entire economy feels it — interrupted sales, delayed family remittances, and broken API-dependent applications.<sup>[15]</sup>
+
+These aren't edge cases. They're the predictable consequence of building payment infrastructure that assumes connectivity will always be there. For the Pacific Ring of Fire countries — where typhoons, earthquakes, and volcanic eruptions routinely destroy telecommunications infrastructure — this assumption is a design flaw.
+
+---
+
+## What Exists Today — And Why It's Not Enough
+
+<CalloutBox color="red" variant="callout" icon="📊" title="Federal Reserve Finding (2024)">
+  <p>"No evidence of fully offline digital payment systems in production today. Many services branded as 'offline' are more accurately classified as hybrid solutions."</p>
+</CalloutBox>
+
+A 2024 Federal Reserve analysis found no evidence of fully offline digital payment systems in production today.<sup>[16]</sup> Many services branded as "offline" are more accurately classified as hybrid solutions because they ultimately require internet access for clearing and settlement.<sup>[16]</sup>
+
+That doesn't mean nobody's trying. Here's what's been built, and where each approach falls short.
+
+### China's e-CNY (Digital Yuan)
+
+The e-CNY offers dual offline payments via NFC. Its "Tap to Pay" function activates smartphone hardware to effectively turn the phone into a hardware wallet that can function even when powered off.<sup>[17]</sup> By November 2025, the system had processed 3.48 billion transactions totaling 16.7 trillion yuan, with 230 million personal wallets open.<sup>[18]</sup>
+
+The offline capability, however, is heavily constrained. Reported limits cap offline sessions at approximately 500 RMB (around $70 USD) with up to 10 payments before requiring reconciliation, and the feature is available only on Android devices in limited geographies.<sup>[17]</sup> More fundamentally, the e-CNY has struggled with adoption — in pilot cities of nearly 10 million people, some use cases attracted only around 8,000 daily users, as consumers see little practical difference from Alipay or WeChat Pay.<sup>[19]</sup>
+
+Starting January 2026, the e-CNY is transitioning from a "digital cash" model to a deposit-based digital currency where balances are treated as bank liabilities with interest and deposit insurance — a significant philosophical shift away from its original cash-like design.<sup>[18]</sup>
+
+### India's UPI Lite and UPI Lite X
+
+India's approach splits into two tiers. UPI Lite handles online-initiated, PIN-less small payments with a per-transaction limit raised to ₹1,000 and a total wallet capacity of ₹5,000 following the Reserve Bank of India's December 2024 update.<sup>[20][21]</sup> UPI Lite X provides true offline NFC capability — but with a lower ₹500 cap, and both sender and receiver must have UPI Lite X enabled.<sup>[22]</sup>
+
+The system operates on a "debit-first, settle-later" model where the payer's offline wallet is debited instantly and settlement occurs when connectivity returns. The RBI's framework explicitly treats offline mode as bounded risk: small values, strict caps, and mandatory online replenishment with additional factor authentication.<sup>[23]</sup>
+
+UPI Lite X remains in limited rollout, with device compatibility and merchant awareness still barriers to scale.
+
+### M-Pesa (Kenya/East Africa)
+
+M-Pesa launched an offline mode in its super app to cater to limited internet access, enabling users to access core services when data is switched off, exhausted, or intermittent.<sup>[24]</sup> However, M-Pesa fundamentally relies on server connectivity for clearing. It's a USSD/SMS-based hybrid rather than a true offline system. When M-Pesa's servers go down for planned maintenance or outages, all transactions halt — creating real economic disruption in a country where mobile money is the default payment rail.<sup>[15]</sup>
+
+### Other Notable Systems
+
+**Nigeria's eNaira** added USSD access in 2022 for unbanked users, but adoption remains around 20% due to persistent outages and invasive identity verification requirements.<sup>[25]</sup>
+
+**Jamaica's JAM-DEX** takes a different approach entirely — it's not built on blockchain or distributed ledger technology. It uses a centralized ledger with digital bearer tokens that can transfer without any connection to the holder's identity or the central bank's ledger, functioning more like digital cash.<sup>[26]</sup> Notably, it has the highest rural adoption among launched CBDCs at 68%.<sup>[25]</sup>
+
+**Giesecke+Devrient's Filia® platform** powered offline pilots in Ghana and Thailand. In Ghana's Sefwi Asafo region — selected specifically for its limited telecommunications — 173 participants tested consecutive offline payments using smart cards and POS devices.<sup>[27]</sup> The pilot won a 2024 innovation award, but a revealing statistic: offline transactions accounted for just 0.004% of total pilot transaction value.<sup>[27]</sup>
+
+**Crunchfish** announced a Reserve-Pay-Settle model in May 2025 where users' offline wallets are assigned reserved value on the online ledger, and offline payments generate cryptographically signed digital IOUs settled upon reconnection. The system supports NFC, Bluetooth, ultrasound, and QR interactions within a Virtual Secure Element.<sup>[28][29]</sup>
+
+**Payala** was field-tested with World Vision International in Timor-Leste for humanitarian aid distribution during 2018–19 flooding, moving $207,973 with an average transaction of around $33.64. The IMF documented this trial as a notable case of robust offline transactability.<sup>[30][31]</sup>
+
+### How They Compare
+
+<StyledTable>
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">System</th>
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Offline Type</th>
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Transaction Limit</th>
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Double-Spend Prevention</th>
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Status</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">e-CNY</td>
+        <td class="p-4 text-text-muted">Dual offline NFC</td>
+        <td class="p-4 text-text-muted">~500 RMB / ~10 txns</td>
+        <td class="p-4 text-text-muted">Secure element + limits</td>
+        <td class="p-4 text-text-muted">Massive pilot</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">UPI Lite X</td>
+        <td class="p-4 text-text-muted">Offline NFC P2P</td>
+        <td class="p-4 text-text-muted">₹500/txn</td>
+        <td class="p-4 text-text-muted">Wallet-level debit</td>
+        <td class="p-4 text-text-muted">Limited rollout</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">M-Pesa</td>
+        <td class="p-4 text-text-muted">Hybrid (USSD/SMS)</td>
+        <td class="p-4 text-text-muted">~$3,000/day</td>
+        <td class="p-4 text-text-muted">Server-side</td>
+        <td class="p-4 text-text-muted">Live (not truly offline)</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">G+D Filia®</td>
+        <td class="p-4 text-text-muted">Card-based offline</td>
+        <td class="p-4 text-text-muted">Configurable</td>
+        <td class="p-4 text-text-muted">Hardware secure element</td>
+        <td class="p-4 text-text-muted">Pilot (Ghana, Thailand)</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Crunchfish</td>
+        <td class="p-4 text-text-muted">Layer-2 wallet</td>
+        <td class="p-4 text-text-muted">Configurable</td>
+        <td class="p-4 text-text-muted">Reserve-Pay-Settle</td>
+        <td class="p-4 text-text-muted">Pilot (India)</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-accent">SORA Nexus</td>
+        <td class="p-4 text-accent">Pre-authorized vouchers</td>
+        <td class="p-4 text-accent">Policy-configurable</td>
+        <td class="p-4 text-accent">Collateralized locks + circuit breakers</td>
+        <td class="p-4 font-semibold text-accent">Whitepaper specification</td>
+      </tr>
+    </tbody>
+  </table>
+</StyledTable>
+
+<p class="text-xs text-gray-500 mt-2 italic">Note: SORA Nexus's offline capability is described in the November 2025 whitepaper. It has not yet been deployed in production.</p>
+
+---
+
+## What Central Banks Actually Need
+
+The question isn't just whether offline payments are technically possible — it's whether they meet the requirements that central banks are setting for production digital currencies.
+
+### The IMF Framework
+
+The <a href="https://www.imf.org/en/Publications/fintech-notes/Issues/2025/08/04/Technology-Solutions-to-Support-Central-Bank-Digital-Currency-with-Limited-Connectivity-Review-559498" target="_blank" rel="noopener noreferrer">IMF Fintech Note 2025/005</a>, published in August 2025, explores CBDC implementation in connectivity-limited environments based on interviews with payment platforms, central banks, and industry experts.<sup>[31][32]</sup> It categorizes the connectivity challenge as a spectrum: from complete disconnection (rural areas, disaster zones) through cellular-only (SMS/USSD, no data) to intermittent and unreliable internet access.<sup>[31]</sup>
+
+The note identifies three architecture types for offline systems. Staged offline systems don't allow the payee to spend until they've connected for reconciliation. Intermittently offline systems let the payee spend within issuer-defined limits on value, volume, and the number of "hops" — sequential transfers without ledger verification. Fully offline systems impose no limits on transactions or amounts.<sup>[31]</sup>
+
+A crucial finding: no single form factor meets all needs. Central banks should adopt multi-form-factor strategies based on smartphone penetration, feature phone prevalence, network connectivity, implementation costs, and user preferences.<sup>[31]</sup>
+
+On security, the expert consensus from IMF interviews was candid: "Complete secure systems will probably never exist. But you can make it harder to break, more expensive, less impactful, less scalable, and more visible."<sup>[31]</sup>
+
+### BIS Project Polaris and the 2024 Survey
+
+The Bank for International Settlements' <a href="https://www.bis.org/publ/othp80.htm" target="_blank" rel="noopener noreferrer">Project Polaris</a>, published in October 2023, serves as the most comprehensive design guide for offline CBDC payments, developed through workshops with 12 solution vendors (including Google, IBM, and G+D) and 6 observing central banks.<sup>[33][34]</sup> Its key finding is blunt: "Solutions for offline payments with CBDCs are still evolving. Currently, very few are production-ready or working at scale in a live environment."<sup>[33]</sup>
+
+The 2024 BIS survey (BIS Papers No. 159), conducted across 93 central banks, found that 91% were exploring either retail, wholesale, or both types of CBDC.<sup>[35][36]</sup> Among those working on retail CBDCs, 56% of advanced economy and 58% of emerging market central banks are considering offline payments as a design feature.<sup>[36]</sup> Financial inclusion is a particularly important driver in emerging markets, and more than one third of central banks working on CBDCs intensified their efforts due to stablecoin developments.<sup>[36]</sup>
+
+### The Requirements Checklist
+
+Synthesizing across BIS Polaris, the IMF Note, and the BIS survey, the requirements that central banks consistently set include configurable offline duration (some mandate reconnection after a set number of hops, others envision fully offline operation), transaction and holding limits (60% of emerging market central banks are considering caps), reconciliation windows with periodic synchronization, device certification with hardware security trade-offs, cash-like privacy for small transactions with regulatory compliance for larger ones, and interoperability with domestic payment systems (56–79% of central banks want this).<sup>[31][33][36]</sup>
+
+---
+
+## SORAMITSU: From Bakong to the Pacific
+
+Before examining how [SORA Nexus](/sora-nexus-complete-guide) approaches the offline problem, it's worth understanding why SORAMITSU has a credible claim to solve it. The company has more real-world CBDC deployments than nearly any other blockchain firm.
+
+### Bakong (Cambodia) — The Proof That It Works
+
+<a href="https://soramitsu.co.jp/centralbanking" target="_blank" rel="noopener noreferrer">Bakong</a> is the most mature SORAMITSU deployment and one of the most successful blockchain-based payment systems in the world. Built on Hyperledger Iroha and launched in production with the National Bank of Cambodia in 2020, its 2024 statistics are remarkable: $150.61 billion in total transaction volume — approximately 330% of Cambodia's GDP — across 608 million transactions, representing a 95% annual increase.<sup>[37][38]</sup> The system serves over 30 million wallets and 4.5 million merchants, supports dual currency (US Dollar and Khmer Riel), processes more than 2,000 transactions per second with settlement under five seconds, and has cross-border QR payment links with Thailand, Vietnam, and Laos.<sup>[37][39][40]</sup>
+
+However — and this matters for honesty — Bakong does not currently have native offline payment capability. It operates as an online-first QR-code and wallet-based platform requiring connectivity.<sup>[41]</sup>
+
+### The Pacific Pipeline
+
+SORAMITSU's work extends across the Pacific in a clear progression from research to production:
+
+**Digital Kina (Papua New Guinea):** The Bank of PNG conducted a CBDC proof-of-concept from December 2024 to January 2025 in partnership with SORAMITSU, Mitsubishi, and JICA. Governor Elizabeth Genia announced the successful completion, stating that a CBDC could "enhance payment systems and improve financial inclusion."<sup>[42][43]</sup> With PNG's 13.1% internet penetration, offline capabilities will be essential for any production deployment.
+
+**Bokolo Cash (Solomon Islands):** The [Central Bank of Solomon Islands](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc) began a proof-of-concept in November 2023, built on Hyperledger Iroha 2. Each Bokolo is worth one Solomon Islands Dollar, accepted as legal tender within the PoC. The pilot tested person-to-person transfers, merchant QR payments, interbank settlements, and — notably — simulated cross-border remittances by bridging Bokolo Cash tokens to the SORA public blockchain via Fearless Wallet.<sup>[44][45][46]</sup> This hybrid public-private blockchain approach is novel among CBDC pilots.
+
+**Palau:** In July 2024, SORAMITSU announced development of a blockchain-based savings bond issuance system for Palau's Ministry of Finance, using Hyperledger Iroha to reduce costs and direct funds toward infrastructure investment.<sup>[47]</sup>
+
+Additional research-stage activities have been confirmed in Laos (preliminary CBDC survey and PoC with the Bank of the Lao PDR, supported by JICA), as well as Vietnam, Indonesia, and Fiji.<sup>[47][48]</sup>
+
+The progression tells a story: Bakong proved SORAMITSU could build national-scale payment infrastructure. The Pacific deployments are proving it can adapt to small, connectivity-challenged economies. But none of these systems solve the offline problem. That's what SORA Nexus is designed to address.
+
+---
+
+## How SORA Nexus Approaches Offline Payments
+
+The <a href="https://sora.org/sora_nexus_whitepaper.pdf" target="_blank" rel="noopener noreferrer">SORA Nexus whitepaper</a>, published in November 2025 and built on Hyperledger Iroha 3, describes a pre-authorized voucher architecture for what it calls "always-on payments" — exchanges of value between offline devices with deterministic reconciliation once connectivity returns.<sup>[49]</sup>
+
+This section describes the whitepaper's design specification. No production deployment of Nexus offline payments has been announced.
+
+### The Idea (Plain English)
+
+Think of pre-authorized vouchers like pre-signed checks with an expiration date. Before going offline, a user creates vouchers while still connected — essentially preparing a set of payment instruments backed by locked funds. These vouchers can then be exchanged between two completely offline devices. When either device eventually reconnects, gateways reconcile the transactions with the main ledger.
+
+The key difference from other approaches: the funds are locked before disconnection, not merely tracked. You can't write more checks than the money you've set aside.
+
+### The Mechanism (How It Works)
+
+The Nexus whitepaper specifies several interlocking components for offline transactions:<sup>[49][50]</sup>
+
+**Collateralized locks** ensure that funds backing vouchers are escrowed on-chain before the user goes offline. This provides a mathematical settlement guarantee — the voucher cannot exceed what's locked.
+
+**Revocation windows** define bounded time intervals during which vouchers remain valid. After the window expires, unspent vouchers can be reclaimed. This prevents indefinitely circulating offline value.
+
+**Replay protection** is built into the voucher design to prevent the same voucher from being submitted to the ledger multiple times.
+
+**Circuit breakers** provide automatic safeguards that trigger if the system detects anomalies during reconciliation, pausing processing until the issue is resolved.
+
+**Policy caps** allow governance to set maximum voucher values, counts, and offline durations — tunable parameters rather than hardcoded limits.
+
+**Dual-signature options** enable policies where some vouchers require two distinct signatures, such as offline plus online verification, or operator plus regulator authorization.
+
+### The Technical Layer (For Advanced Readers)
+
+At the cryptographic level, Nexus's offline architecture connects to the broader system in several ways. FASTPQ zk-STARKs — the zero-knowledge proof system described in the whitepaper — can verify compliance without revealing the underlying transaction details, with a target verification time under 100 milliseconds on consumer hardware.<sup>[49]</sup> The proofs use hash-based cryptography rather than elliptic curves, making them post-quantum secure by design.
+
+Data Spaces provide sovereignty-preserving partitions: a CBDC runs in its own space with its own rules, while still being part of the single Nexus ledger. This means a central bank can operate its own regulatory environment for offline payments without affecting other jurisdictions on the same network.<sup>[49]</sup>
+
+ML-DSA-87, the post-quantum signature suite, handles consensus votes and data-space attestations, while ISO 20022 alignment through the Norito codec enables interoperability with existing payment messaging standards.<sup>[49]</sup>
+
+### How This Maps to What Central Banks Want
+
+<StyledTable>
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Requirement (IMF / BIS)</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Nexus Design Response</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 text-text-muted">Configurable offline duration</td>
+        <td class="p-4 text-accent">Revocation windows (governance-set)</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 text-text-muted">Transaction and holding limits</td>
+        <td class="p-4 text-accent">Policy caps (per data space)</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 text-text-muted">Double-spend prevention</td>
+        <td class="p-4 text-accent">Collateralized locks + circuit breakers</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 text-text-muted">Privacy for small transactions</td>
+        <td class="p-4 text-accent">FASTPQ zk-STARKs + Data Spaces</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 text-text-muted">Device certification</td>
+        <td class="p-4 text-accent">SDK support for secure elements; hardware-agnostic</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 text-text-muted">Reconciliation windows</td>
+        <td class="p-4 text-accent">Gateway-mediated, deterministic</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 text-text-muted">Post-quantum readiness</td>
+        <td class="p-4 text-accent">ML-DSA-87 signatures, FASTPQ (hash-based)</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 text-text-muted">Interoperability</td>
+        <td class="p-4 text-accent">Cross-border corridors via Norito / ISO 20022</td>
+      </tr>
+    </tbody>
+  </table>
+</StyledTable>
+
+---
+
+## The Double-Spend Problem — An Honest Look
+
+Every offline payment system must answer the same question: without a live ledger, how do you know someone hasn't already spent those funds?
+
+This is the central unsolved challenge of offline digital payments, and no approach eliminates the risk entirely. A 2024 academic paper on the digital euro's offline modality put it plainly: "A compromised secure device would allow an adversary to create an infinite amount of counterfeit money undetectedly" — hardware alone is insufficient.<sup>[51]</sup>
+
+### How Different Systems Handle It
+
+<StyledTable>
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Approach</th>
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Mechanism</th>
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Trade-off</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Hardware secure elements</td>
+        <td class="p-4 text-text-muted">Tamper-resistant chips prevent wallet state rollback</td>
+        <td class="p-4 text-text-muted">Costly, hard to scale, single point of failure if compromised</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Transaction limits / hops</td>
+        <td class="p-4 text-text-muted">Cap offline count, value, and duration</td>
+        <td class="p-4 text-text-muted">Bounds exposure but limits usability</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Reserve-Pay-Settle (Crunchfish)</td>
+        <td class="p-4 text-text-muted">Pre-fund online, IOU offline, settle on reconnect</td>
+        <td class="p-4 text-text-muted">Requires pre-funding; limits spontaneity</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Collateralized locks (Nexus design)</td>
+        <td class="p-4 text-text-muted">Escrowed funds back vouchers on-chain</td>
+        <td class="p-4 text-text-muted">Requires being online once to set up collateral</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Fraud detection on sync</td>
+        <td class="p-4 text-text-muted">Detect and penalize double-spends after reconnection</td>
+        <td class="p-4 text-text-muted">Doesn't prevent initial fraud</td>
+      </tr>
+    </tbody>
+  </table>
+</StyledTable>
+
+Nexus's collateralized lock approach provides a mathematical guarantee: you cannot create vouchers worth more than what's locked on-chain. The trade-off is that you must be online at least once to establish the collateral. "Fully offline from birth" — creating value without ever connecting to the ledger — isn't possible in this model, and that's a deliberate design choice. It bounds the system's risk exposure rather than trying to eliminate risk through hardware alone.<sup>[50]</sup>
+
+---
+
+## What's Live, What's Planned
+
+Transparency about development status is essential. Here's the honest breakdown:
+
+<StyledTable>
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Component</th>
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Status</th>
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Evidence</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Bakong (Hyperledger Iroha)</td>
+        <td class="p-4 text-green-400 font-semibold">Live — national scale since 2020</td>
+        <td class="p-4 text-text-muted">NBC annual reports; $150.61B in 2024</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Bokolo Cash (Iroha 2)</td>
+        <td class="p-4 text-blue-400 font-semibold">PoC completed</td>
+        <td class="p-4 text-text-muted">CBSI and SORAMITSU announcements</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Digital Kina (Iroha 2)</td>
+        <td class="p-4 text-blue-400 font-semibold">PoC completed</td>
+        <td class="p-4 text-text-muted">BPNG governor statement; JICA press release</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Palau savings bonds</td>
+        <td class="p-4 text-yellow-400 font-semibold">In development</td>
+        <td class="p-4 text-text-muted">SORAMITSU announcement, July 2024</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">SORA Nexus / Iroha 3</td>
+        <td class="p-4 text-amber-400 font-semibold">Whitepaper published (Nov 2025)</td>
+        <td class="p-4 text-text-muted">sora.org/sora_nexus_whitepaper.pdf</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Nexus offline vouchers</td>
+        <td class="p-4 text-amber-400 font-semibold">Design specification</td>
+        <td class="p-4 text-text-muted">Whitepaper Section 16.4</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">FASTPQ zk-STARKs</td>
+        <td class="p-4 text-amber-400 font-semibold">Design specification</td>
+        <td class="p-4 text-text-muted">Whitepaper Sections 17, 20.5–20.9</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Cross-border corridors</td>
+        <td class="p-4 text-yellow-400 font-semibold">Partially live (Bakong) / Designed (Nexus)</td>
+        <td class="p-4 text-text-muted">NBC cross-border announcements</td>
+      </tr>
+    </tbody>
+  </table>
+</StyledTable>
+
+<CalloutBox color="amber" variant="callout" icon="⚠️" title="Important Distinction">
+  <p>The Nexus whitepaper describes what the system is designed to do, not what it has been tested doing. No field trials, benchmarks, or third-party audits of the offline voucher mechanism have been published.</p>
+</CalloutBox>
+
+---
+
+## The Road Ahead: Zero-Knowledge and Post-Quantum
+
+Two technical frontiers will shape whether offline digital payments can meet central bank requirements at production scale: zero-knowledge proofs and post-quantum cryptography.
+
+### Zero-Knowledge Proofs in Offline Payments
+
+A December 2025 academic paper on offline CBDC design principles identified zero-knowledge proofs as serving four critical functions: non-traceability (hiding transaction details from the issuer), unlinkability (preventing offline transfers from being correlated), confidentiality (proving validity without revealing amounts), and user anonymity (protecting identity during transfers and redemption).<sup>[52]</sup>
+
+The Nexus whitepaper describes FASTPQ zk-STARKs as its approach — proofs that use hash-based cryptography rather than elliptic curves, targeting verification under 100 milliseconds, and capable of proving regulatory compliance without revealing underlying data.<sup>[49]</sup> Combined with blind signature schemes, such proofs could theoretically provide cash-like privacy for small offline transactions while maintaining auditability for regulators.<sup>[52][53]</sup>
+
+Real-world implementations of ZKPs in offline payment systems remain limited. The gap between academic design and field deployment is significant.
+
+### Post-Quantum Readiness
+
+BIS Project Leap has taken the lead on testing post-quantum cryptography in operational payment systems. In its second phase, the BIS, Bank of Italy, Bank of France, Deutsche Bundesbank, and others successfully replaced traditional digital signatures with post-quantum algorithms when sending liquidity transfers in an active European payment system.<sup>[54]</sup>
+
+BIS Paper No. 158, published in July 2025, urges financial institutions to start migrating to post-quantum cryptography now, warning that the transition is "not a flip the switch moment" but a painstaking overhaul spanning an extended period.<sup>[55][56]</sup> Recommended approaches include cryptographic agility (systems designed to swap algorithms as threats evolve), hybrid encryption combining classical and post-quantum schemes, and coordinated international migration timelines.<sup>[56]</sup>
+
+For offline payment devices specifically, IMF expert interviews offered a sobering assessment: "Quantum-safe cryptography exists, but it's slow. You'd need a new chip generation to make it feasible in the field."<sup>[31]</sup>
+
+Nexus takes a different position. Because Iroha 3 is being built from the ground up rather than retrofitting an existing system, it uses ML-DSA-87 for consensus and attestations and FASTPQ STARKs for proofs — both post-quantum by design rather than by migration.<sup>[49]</sup> Whether this architectural advantage translates to a practical one will depend on the hardware available when Nexus enters production.
+
+---
+
+## Conclusion
+
+The offline payments problem is real, large, and unsolved. Two and a half billion people can't reliably connect to the internet. Another three billion have coverage but don't use it. No production system handles fully offline digital payments at scale — the Federal Reserve and BIS both confirm this. Central banks want it, with over half actively exploring offline CBDC design. But every existing approach trades off security, usability, or inclusiveness in ways that limit its reach.
+
+SORA Nexus's pre-authorized voucher architecture represents one of the most technically detailed proposals for addressing this gap. Its collateralized lock model provides mathematical guarantees against double-spending. Its post-quantum cryptographic design avoids the migration debt that will burden every existing system. And SORAMITSU's track record — Bakong at national scale, Pacific Island PoCs in the world's most connectivity-challenged regions — provides a credibility foundation that most blockchain projects lack.
+
+But design specifications are not deployments. The whitepaper describes what Nexus is intended to do, not what it has done. The hard work — field testing with real users on real devices in real connectivity gaps — lies ahead.
+
+What's clear is that the next generation of digital payment infrastructure will be measured not by how fast it processes transactions in a data center, but by whether it works when the towers go down, the power goes out, and a farmer on an island needs to buy rice.
+
+<FaqSection>
+  <details>
+    <summary>What does "offline payment" actually mean in blockchain?</summary>
+    An offline payment is a transfer of digital value between devices that does not require a connection to any ledger system at the time of the transaction. The BIS defines it as device-to-device value transfer without ledger connectivity. This is distinct from "hybrid" systems like M-Pesa that may use USSD or SMS but still require server-side clearing.
+  </details>
+  <details>
+    <summary>Can any digital payment system work completely without internet?</summary>
+    As of early 2026, no fully offline digital payment system operates at production scale. A 2024 Federal Reserve analysis confirmed this finding. Several systems offer partial offline capability — China's e-CNY and India's UPI Lite X use NFC for limited offline transactions, and G+D's Filia platform has been piloted with smart cards — but all require eventual reconnection for settlement and have strict value limits.
+  </details>
+  <details>
+    <summary>How does SORA Nexus handle offline payments differently from e-CNY or UPI?</summary>
+    The Nexus whitepaper describes a pre-authorized voucher model where funds are collateralized (locked) on-chain before a user goes offline. Vouchers are then exchanged between offline devices, with deterministic reconciliation when either device reconnects. Unlike the e-CNY's hardware-dependent approach or UPI's wallet-debit model, Nexus uses collateralized locks as the primary double-spend prevention mechanism, with governance-configurable policy caps rather than hardcoded limits.
+  </details>
+  <details>
+    <summary>What prevents someone from spending the same money twice while offline?</summary>
+    Different systems take different approaches. Hardware secure elements use tamper-resistant chips to prevent wallet rollback. Transaction limits cap offline spending to bound exposure. Nexus's collateralized lock model escrows funds before disconnection, mathematically preventing vouchers from exceeding locked value. No approach eliminates the risk entirely — a compromised hardware device could theoretically create counterfeit value — which is why most systems combine multiple protections.
+  </details>
+  <details>
+    <summary>What happens when an offline device reconnects — can transactions be rejected?</summary>
+    When devices reconnect, gateways or ledger systems reconcile offline transactions. In staged systems, all transactions are uploaded and validated before the user can spend again. In intermittent systems, batches of cryptographically signed transactions are verified for double-spends and anomalies. "Torn transactions" — where a transfer is interrupted mid-process — are handled through retransmission protocols and claim or compensation mechanisms.
+  </details>
+  <details>
+    <summary>Is SORA Nexus's offline capability live or still in development?</summary>
+    The offline voucher system is a design specification in the SORA Nexus whitepaper, published in November 2025. It has not been deployed in production. SORAMITSU's current live systems — including Bakong in Cambodia — are online-first platforms without native offline capability. The progression from whitepaper to production deployment has not been given a public timeline.
+  </details>
+  <details>
+    <summary>How does Bakong relate to SORA Nexus?</summary>
+    Bakong was built on Hyperledger Iroha (version 1, later 2) and is operated by the National Bank of Cambodia. SORA Nexus is built on Hyperledger Iroha 3, the next-generation architecture. They are built by the same company (SORAMITSU) but are separate systems. Bakong's success — $150.61 billion processed in 2024 — demonstrates SORAMITSU's capability to deliver production-grade payment infrastructure, which informs confidence in Nexus's design.
+  </details>
+  <details>
+    <summary>What role do zero-knowledge proofs play in offline payments?</summary>
+    Zero-knowledge proofs can enable privacy-preserving verification in offline payment systems — proving a transaction is valid, that balances are sufficient, or that regulatory rules are met without revealing the underlying data. The Nexus whitepaper describes FASTPQ zk-STARKs for this purpose. Academic research identifies ZKPs as enabling non-traceability, unlinkability, confidentiality, and user anonymity in offline CBDCs. Real-world implementations remain limited.
+  </details>
+  <details>
+    <summary>Are offline payment systems quantum-safe?</summary>
+    Most existing offline payment systems, including the e-CNY and UPI, rely on classical cryptography that is theoretically vulnerable to quantum computing attacks. The BIS has urged financial institutions to begin migrating to post-quantum cryptography. SORA Nexus is designed with post-quantum security from the ground up, using ML-DSA-87 signatures and hash-based FASTPQ STARKs. However, experts note that current hardware cannot efficiently run post-quantum algorithms in field devices.
+  </details>
+  <details>
+    <summary>Which countries are most likely to need offline CBDC?</summary>
+    Countries with low internet penetration, large unbanked populations, and high natural disaster exposure are the strongest candidates. In the Asia-Pacific region, this includes Papua New Guinea (13.1% internet penetration), the Solomon Islands (23–42.5%), Cambodia (33.4% banked), and Laos (37.3% banked). SORAMITSU has active CBDC projects in all four countries. The BIS survey found that financial inclusion is a particularly important driver for CBDC development in emerging markets.
+  </details>
+  <details>
+    <summary>What is the IMF's position on offline CBDC?</summary>
+    The IMF's Fintech Note 2025/005 explores CBDC implementation in connectivity-limited environments and identifies offline capability as essential for financial inclusion. It categorizes three architecture types (staged, intermittent, and fully offline), recommends multi-form-factor strategies, and concludes that while solutions are still evolving, central banks should adopt a risk-based approach from the earliest design stages. The note does not endorse any specific technology or vendor.
+  </details>
+  <details>
+    <summary>Can SORA Nexus work with existing payment infrastructure like UPI or M-Pesa?</summary>
+    The Nexus whitepaper describes ISO 20022 alignment through its Norito codec, which maps standard financial messaging formats (pacs, pain, camt) to Nexus ledger operations. This is designed to enable interoperability with existing payment rails. Cross-border corridors are listed as a core use case. However, actual integration with specific systems like UPI or M-Pesa would depend on bilateral agreements and technical implementation work that has not been announced.
+  </details>
+</FaqSection>
+
+---
+
+## 📚 Related Articles
+
+<div data-no-glossary class="not-prose my-6 grid gap-3 sm:grid-cols-2">
+  <a href="/sora-nexus-complete-guide" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🔗</span>
+    <span class="text-gray-200 font-medium">SORA Nexus: Complete Guide</span>
+  </a>
+  <a href="/soramitsu-pilots-central-bank-of-solomon-islands-cbdc" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🏦</span>
+    <span class="text-gray-200 font-medium">Solomon Islands CBDC Pilot</span>
+  </a>
+  <a href="/sora-blockchain-new-world-economic-order" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🌍</span>
+    <span class="text-gray-200 font-medium">SORA: New World Economic Order</span>
+  </a>
+  <a href="/deep-dive-into-xor-val-and-pswap" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">💎</span>
+    <span class="text-gray-200 font-medium">XOR, VAL & PSWAP Deep Dive</span>
+  </a>
+</div>
+
+---
+
+**Stay Connected:**
+
+<div data-no-glossary class="not-prose my-6 grid gap-3 sm:grid-cols-2">
+  <a href="https://twitter.com/sora_xor" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">🐦</span>
+    <span class="text-gray-200 font-medium">@sora_xor on X</span>
+  </a>
+  <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">💬</span>
+    <span class="text-gray-200 font-medium">SORA Telegram</span>
+  </a>
+  <a href="https://sora-xor.medium.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">📝</span>
+    <span class="text-gray-200 font-medium">SORA Medium Blog</span>
+  </a>
+  <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
+    <span class="text-xl">📚</span>
+    <span class="text-gray-200 font-medium">SORA Wiki</span>
+  </a>
+</div>
+
+---
+
+## Sources
+
+1. Reuters — "Super Typhoon Yagi roars into China's Hainan, disrupting lives of millions" (September 2024)
+2. Center for Disaster Philanthropy — "2024 Super Typhoon Yagi" / Wikipedia — "Effects of Typhoon Yagi in Vietnam"
+3. Crafting Software — "The Real Cost of Failed Payments" (industry analysis)
+4. International Telecommunication Union — Facts and Figures 2024: Internet Use
+5. GSMA — "New GSMA Report Shows Mobile Internet Connectivity Continues to Grow Globally but Barriers for 3.45 Billion Unconnected People Remain" (2024); GSMA 2025 update on usage gap
+6. OECD — "Extending Broadband Connectivity in Southeast Asia" (2023)
+7. DataReportal — "Digital 2025: The Solomon Islands"
+8. Pacific E-Commerce Initiative — "4G Internet Coverage in Pacific Island Countries"
+9. Solomon Star News — "SI Ranked 160th in Global Internet Use"
+10. World Bank — Global Findex 2025 Report (survey year 2024)
+11. World Bank Digital Finance — Indonesia country snapshot
+12. World Bank Digital Finance — Cambodia country snapshot
+13. World Population Review — "Banked Population by Country 2026"
+14. UNSGSA — Financial Inclusion Policy Note 2024 (Small Island Developing States)
+15. LinkedIn / Safaricom commentary — "When M-Pesa goes down, Kenya literally pauses" (November 2025)
+16. Federal Reserve FEDS Notes — "Offline Payments: Implications for Reliability and Resiliency in Digital Payment Systems" (August 2024)
+17. Finextra — "China's e-CNY App Launches Offline Payments"
+18. Chinascope / Xinhua — "China's Digital Currency Enters a New Phase" (January 2026 transition)
+19. DL News — "Why China's Rocky CBDC Rollout Is a 'Severe' Warning Sign to Europe"
+20. Taxmann — "RBI Raises Limits for Small Value Offline UPI Lite Transactions to Rs 1,000 Per Payment"
+21. Times of India — "RBI Increases UPI Lite Wallet, Transaction Limits" (December 2024)
+22. The Federal — "New UPI Transaction Limits: All You Need to Know"
+23. RBI / NPCI — "Framework for Facilitating Small Value Digital Payments in Offline Mode" (2022); December 2024 circular
+24. M-Pesa App — Offline Mode documentation (YouTube / Safaricom)
+25. EMAC International — "CBDC Pilots: Government Testbeds and Findings" (December 2025)
+26. Kansas City Fed — "Observations from the Retail CBDCs of the Caribbean"
+27. Bank of Ghana — "The eCedi Report" (2024)
+28. Crunchfish — "Groundbreaking Approach to Offline Payments" (May 2025)
+29. Crunchfish — "Offline Payments: Digital Cash" (product documentation)
+30. Payala — "Use Cases" (World Vision Timor-Leste field test results)
+31. IMF Fintech Note 2025/005 — "Technology Solutions to Support Central Bank Digital Currency with Limited Connectivity: Review of Existing Approaches" (August 2025)
+32. IMF eLibrary — Fintech Notes Volume 2025, Issue 005
+33. BIS Innovation Hub — "Project Polaris: High-Level Design Guide for Offline Payments" (October 2023)
+34. Central Banking — "BIS Releases Guide to Tackle 'Complex' Offline CBDC Design"
+35. BIS — "Results of the 2024 BIS Survey on Central Bank Digital Currencies" (BIS Papers No. 159)
+36. BIS Papers No. 159 (PDF) — "Advancing in Tandem" (August 2025)
+37. Forbes — "Why The CBDC Fever Has Cooled In Southeast Asia" (November 2025)
+38. Yuanta Cambodia — "Bakong Transaction Volume Surpasses Cambodia's GDP by 300%"
+39. TransFi — "Cambodia's Payment Rails & How They Work — Bakong, KHQR"
+40. Bakong official site — bakong.nbc.gov.kh
+41. Bakong official site — system description (online-first QR/wallet platform)
+42. JICA — "JICA Participates PoC of the Future Payments in PNG — Digital Kina"
+43. Bank of Papua New Guinea — "Central Bank Digital Currency (CBDC) Proof of Concept" (Governor's statement)
+44. SORAMITSU — "Central Bank of Solomon Islands Collaborates with Soramitsu on Bokolo Cash"
+45. Central Banking — "Solomon Islands Launches CBDC Pilot with Soramitsu"
+46. Journals of the Physical Society of Japan — "Blockchain for Empowering Central Bank Digital Currencies (CBDCs)" (Bokolo Cash test cases)
+47. SORAMITSU — "Initiates Development of Palau's Blockchain-Based Savings Bonds" (July 2024)
+48. SORAMITSU — 2021 Year in Review (Laos and Oceania CBDC research milestones)
+49. SORA Nexus Whitepaper — "Hyperledger Iroha 3: SORA Nexus" (November 2025) — sora.org/sora_nexus_whitepaper.pdf
+50. Soranauts Knowledge Base — Glossary terms: Pre-Authorized Vouchers, Collateralized Locks, Revocation Windows, Offline-Offline Transactions
+51. PayOff: A Regulated Central Bank Digital Currency with Private Offline Payments (arXiv, August 2024)
+52. "Objectives and Design Principles in Offline Payments with Central Bank Digital Currencies" (arXiv, December 2025)
+53. FIME — "Securing Privacy in Offline Payment for Retail Central Bank Digital Currency"
+54. FStech — "BIS Collaborates with Central Banks to Test Post-Quantum Cryptography in Payments" (Project Leap Phase 2)
+55. Wultra — "Message from BIS: Start Post-Quantum Migration Now" (BIS Paper No. 158)
+56. PostQuantum.com — "Quantum-Readiness Roadmap: BIS Calls Finance to Prepare"
