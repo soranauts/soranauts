@@ -185,7 +185,7 @@ const SEARCH_ALIAS_MICROCOPY =
     const trimmed = url.trim().toLowerCase();
     if (trimmed.startsWith('javascript:')) return '#';
     if (trimmed.startsWith('//')) return '#';
-    if (url.startsWith('/') || url.startsWith('http://') || url.startsWith('https://')) {
+    if (trimmed.startsWith('/') || trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
       return url;
     }
     return '#';
