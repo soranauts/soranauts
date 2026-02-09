@@ -10,24 +10,25 @@ canonicalURL: https://soranauts.com/tonswap-telegram-defi-hub-on-ton-complete-gu
 ---
 
 import FaqSection from '~/components/blog/FaqSection.astro';
+import CalloutBox from '~/components/blog/CalloutBox.astro';
+import StyledTable from '~/components/blog/StyledTable.astro';
 
-<div class="not-prose my-8 rounded-lg border border-amber-500/30 bg-amber-500/10 p-6">
-  <p class="text-sm text-amber-200">Recent large-scale liquidation events across DeFi (2024–2025) exposed how fragile markets become when risk controls fail. TONSWAP's answer is a fully on-chain risk engine designed to respond autonomously without human intervention. This isn't just another DEX; it's one of the first full-stack DeFi hubs built natively for Telegram, targeting up to one billion users.</p>
-</div>
+<CalloutBox color="amber" variant="info">
+  <p>Recent large-scale liquidation events across DeFi (2024–2025) exposed how fragile markets become when risk controls fail. TONSWAP's answer is a fully on-chain risk engine designed to respond autonomously without human intervention. This isn't just another DEX; it's one of the first full-stack DeFi hubs built natively for Telegram, targeting up to one billion users.</p>
+</CalloutBox>
 
 ---
 
-<div class="not-prose my-8 rounded-lg border-l-4 border-accent bg-accent/10 p-6">
-  <p class="font-semibold text-lg mb-3">TL;DR</p>
-  <ul class="text-sm text-gray-300 space-y-2">
+<CalloutBox color="accent" variant="highlight" title="TL;DR">
+  <ul class="space-y-2">
     <li>• <strong>Mass adoption:</strong> DeFi directly in Telegram for up to 1B users</li>
     <li>• <strong>Complete suite:</strong> CLMM DEX, Launchpad, Perps (100×), Options, LP Protection, Risk Engine</li>
-    <li>• <strong>TON blockchain:</strong> Sub-second finality, fees <code class="px-1 py-0.5 rounded bg-gray-800">≤ $0.01</code>, throughput <code class="px-1 py-0.5 rounded bg-gray-800">100,000+ TPS</code> (theoretical)</li>
+    <li>• <strong>TON blockchain:</strong> Sub-second finality, fees <code class="px-1 py-0.5 rounded bg-soft">≤ $0.01</code>, throughput <code class="px-1 py-0.5 rounded bg-soft">100,000+ TPS</code> (theoretical)</li>
     <li>• <strong>$TS tokenomics:</strong> 100M supply (70M launch), deflationary buy-and-burn, 10% XOR integration</li>
     <li>• <strong>SORA bridge:</strong> Cross-chain liquidity with <a href="/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge" class="text-accent hover:underline">SORA v3</a></li>
     <li>• <strong>Play MeowFi:</strong> <a href="https://t.me/tonswap_org_bot" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">@tonswap_org_bot</a> — earn points before launch</li>
   </ul>
-</div>
+</CalloutBox>
 
 ---
 
@@ -37,66 +38,66 @@ TONSWAP represents a paradigm shift: **DeFi that feels like texting.** No browse
 
 The platform combines six major DeFi modules into one unified ecosystem—all powered by an autonomous on-chain risk engine built after 2025's major liquidation events.
 
-<div class="not-prose my-6 grid gap-4 sm:grid-cols-3">
-  <div class="rounded-lg border-l-4 border-green-500 bg-gray-800/40 p-4">
+<div data-no-glossary class="not-prose my-6 grid gap-4 sm:grid-cols-3">
+  <div class="rounded-lg border-l-4 border-green-500 bg-soft p-4">
     <p class="font-semibold text-green-400 mb-1">👤 For Users</p>
-    <p class="text-sm text-gray-300">Swap, trade, launch, and earn without leaving Telegram.</p>
+    <p class="text-sm text-text-muted">Swap, trade, launch, and earn without leaving Telegram.</p>
   </div>
-  <div class="rounded-lg border-l-4 border-blue-500 bg-gray-800/40 p-4">
+  <div class="rounded-lg border-l-4 border-blue-500 bg-soft p-4">
     <p class="font-semibold text-blue-400 mb-1">💎 For DeFi</p>
-    <p class="text-sm text-gray-300">Sophisticated tools accessible to anyone.</p>
+    <p class="text-sm text-text-muted">Sophisticated tools accessible to anyone.</p>
   </div>
-  <div class="rounded-lg border-l-4 border-purple-500 bg-gray-800/40 p-4">
+  <div class="rounded-lg border-l-4 border-purple-500 bg-soft p-4">
     <p class="font-semibold text-purple-400 mb-1">⚡ For TON</p>
-    <p class="text-sm text-gray-300">Infrastructure for mass crypto adoption.</p>
+    <p class="text-sm text-text-muted">Infrastructure for mass crypto adoption.</p>
   </div>
 </div>
 
 First announced in 2024 as ["the DEX for mass adoption"](/introducing-tonswap-the-dex-for-mass-adoption-on-ton), TONSWAP has evolved into a **complete DeFi hub** targeting launch in Q1–Q2 2026 (subject to development progress).
 
-<div class="not-prose my-8 overflow-x-auto">
+<StyledTable>
   <table class="w-full text-sm border-collapse">
     <thead>
-      <tr class="bg-gray-800/50">
-        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Feature</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Description</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Why It Matters</th>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Feature</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Description</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Why It Matters</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-gray-700/50">
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">CLMM DEX</td>
-        <td class="p-4 text-gray-300">Concentrated liquidity with T3 stablecoin hub</td>
-        <td class="p-4 text-gray-300">Capital efficiency, minimal slippage</td>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">CLMM DEX</td>
+        <td class="p-4 text-text-muted">Concentrated liquidity with T3 stablecoin hub</td>
+        <td class="p-4 text-text-muted">Capital efficiency, minimal slippage</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Launchpad</td>
-        <td class="p-4 text-gray-300">Permissionless token sales and instant listings</td>
-        <td class="p-4 text-gray-300">One-click token creation for communities</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Launchpad</td>
+        <td class="p-4 text-text-muted">Permissionless token sales and instant listings</td>
+        <td class="p-4 text-text-muted">One-click token creation for communities</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Perpetual Futures</td>
-        <td class="p-4 text-gray-300">Up to 100× leverage, on-chain liquidation</td>
-        <td class="p-4 text-gray-300">Advanced trading inside Telegram</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Perpetual Futures</td>
+        <td class="p-4 text-text-muted">Up to 100× leverage, on-chain liquidation</td>
+        <td class="p-4 text-text-muted">Advanced trading inside Telegram</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Options & Derivatives</td>
-        <td class="p-4 text-gray-300">Shout, outperformance, and volatility perps</td>
-        <td class="p-4 text-gray-300">Wall Street tools, mobile UX</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Options & Derivatives</td>
+        <td class="p-4 text-text-muted">Shout, outperformance, and volatility perps</td>
+        <td class="p-4 text-text-muted">Wall Street tools, mobile UX</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">LP Protection</td>
-        <td class="p-4 text-gray-300">Parisian-style time-based IL insurance</td>
-        <td class="p-4 text-gray-300">Safety net for LPs</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">LP Protection</td>
+        <td class="p-4 text-text-muted">Parisian-style time-based IL insurance</td>
+        <td class="p-4 text-text-muted">Safety net for LPs</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Risk Engine</td>
-        <td class="p-4 text-gray-300">Fully on-chain autonomous management</td>
-        <td class="p-4 text-gray-300">Instant market-response system</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Risk Engine</td>
+        <td class="p-4 text-text-muted">Fully on-chain autonomous management</td>
+        <td class="p-4 text-text-muted">Instant market-response system</td>
       </tr>
     </tbody>
   </table>
-</div>
+</StyledTable>
 
 ---
 
@@ -104,39 +105,39 @@ First announced in 2024 as ["the DEX for mass adoption"](/introducing-tonswap-th
 
 TON offers the perfect base for mass-adopted DeFi: **sub-second finality, negligible fees, and native Telegram integration.** It meets users where they already are—no browser wallets, no friction.
 
-<div class="not-prose my-8 overflow-x-auto">
+<StyledTable>
   <table class="w-full text-sm border-collapse">
     <thead>
-      <tr class="bg-gray-800/50">
-        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Metric</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">TON Performance</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Impact on TONSWAP</th>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Metric</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">TON Performance</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Impact on TONSWAP</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-gray-700/50">
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Block Finality</td>
-        <td class="p-4 text-gray-300"><code class="px-1 py-0.5 rounded bg-gray-700">≤ 1 second</code></td>
-        <td class="p-4 text-gray-300">Near-instant confirmations</td>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Block Finality</td>
+        <td class="p-4 text-text-muted"><code class="px-1 py-0.5 rounded bg-soft">≤ 1 second</code></td>
+        <td class="p-4 text-text-muted">Near-instant confirmations</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Fees</td>
-        <td class="p-4 text-gray-300"><code class="px-1 py-0.5 rounded bg-gray-700">≤ $0.01</code></td>
-        <td class="p-4 text-gray-300">Affordable for micro-traders</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Fees</td>
+        <td class="p-4 text-text-muted"><code class="px-1 py-0.5 rounded bg-soft">≤ $0.01</code></td>
+        <td class="p-4 text-text-muted">Affordable for micro-traders</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Throughput</td>
-        <td class="p-4 text-gray-300"><code class="px-1 py-0.5 rounded bg-gray-700">100,000+ TPS</code> (theoretical peak)</td>
-        <td class="p-4 text-gray-300">Scales to mass adoption</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Throughput</td>
+        <td class="p-4 text-text-muted"><code class="px-1 py-0.5 rounded bg-soft">100,000+ TPS</code> (theoretical peak)</td>
+        <td class="p-4 text-text-muted">Scales to mass adoption</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Integration</td>
-        <td class="p-4 text-gray-300">Native Telegram mini-apps & wallet</td>
-        <td class="p-4 text-gray-300">Seamless onboarding experience</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Integration</td>
+        <td class="p-4 text-text-muted">Native Telegram mini-apps & wallet</td>
+        <td class="p-4 text-text-muted">Seamless onboarding experience</td>
       </tr>
     </tbody>
   </table>
-</div>
+</StyledTable>
 
 The <a href="https://docs.ton.org/" target="_blank" rel="noopener noreferrer">TON blockchain</a>, originally conceived by Telegram, bridges social media and crypto. Combined with <a href="https://core.telegram.org/bots/webapps" target="_blank" rel="noopener noreferrer">Telegram Mini Apps</a>, TONSWAP delivers smooth blockchain interactions directly in chat.
 
@@ -153,19 +154,19 @@ T3 is a **composite stablecoin** (USDT + USDC + SORA's KUSD). Every pool routes 
 <div class="not-prose my-4 space-y-2">
   <div class="flex items-start gap-2">
     <span class="text-green-400 mt-0.5">✓</span>
-    <span class="text-sm text-gray-300">Unified liquidity backbone</span>
+    <span class="text-sm text-text-muted">Unified liquidity backbone</span>
   </div>
   <div class="flex items-start gap-2">
     <span class="text-green-400 mt-0.5">✓</span>
-    <span class="text-sm text-gray-300">Minimal impermanent loss (volatility on one side only)</span>
+    <span class="text-sm text-text-muted">Minimal impermanent loss (volatility on one side only)</span>
   </div>
   <div class="flex items-start gap-2">
     <span class="text-green-400 mt-0.5">✓</span>
-    <span class="text-sm text-gray-300">CEX-level execution on-chain</span>
+    <span class="text-sm text-text-muted">CEX-level execution on-chain</span>
   </div>
   <div class="flex items-start gap-2">
     <span class="text-green-400 mt-0.5">✓</span>
-    <span class="text-sm text-gray-300">High capital efficiency via CLMM</span>
+    <span class="text-sm text-text-muted">High capital efficiency via CLMM</span>
   </div>
 </div>
 
@@ -221,44 +222,44 @@ Algorithms include Peg Control, Fee Allocation, Gas PI Controller, Perps LQR, an
 
 **Result:** The system is designed to tighten leverage, raise fees, and stabilize markets—**autonomously and on-chain.**
 
-<div class="not-prose my-8 overflow-x-auto">
+<StyledTable>
   <table class="w-full text-sm border-collapse">
     <thead>
-      <tr class="bg-gray-800/50">
-        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Feature</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Traditional DeFi</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">TONSWAP Risk Engine</th>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Feature</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Traditional DeFi</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">TONSWAP Risk Engine</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-gray-700/50">
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Risk Detection</td>
-        <td class="p-4 text-gray-300">Off-chain keepers</td>
-        <td class="p-4 text-gray-300">Fully on-chain</td>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Risk Detection</td>
+        <td class="p-4 text-text-muted">Off-chain keepers</td>
+        <td class="p-4 text-text-muted">Fully on-chain</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Response Time</td>
-        <td class="p-4 text-gray-300">Minutes–hours</td>
-        <td class="p-4 text-gray-300">Seconds</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Response Time</td>
+        <td class="p-4 text-text-muted">Minutes–hours</td>
+        <td class="p-4 text-text-muted">Seconds</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Transparency</td>
-        <td class="p-4 text-gray-300">Limited</td>
-        <td class="p-4 text-gray-300">Full on-chain logic</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Transparency</td>
+        <td class="p-4 text-text-muted">Limited</td>
+        <td class="p-4 text-text-muted">Full on-chain logic</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Human Dependency</td>
-        <td class="p-4 text-gray-300">Manual</td>
-        <td class="p-4 text-gray-300">Autonomous</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Human Dependency</td>
+        <td class="p-4 text-text-muted">Manual</td>
+        <td class="p-4 text-text-muted">Autonomous</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Risk Levels</td>
-        <td class="p-4 text-gray-300">Binary (on/off)</td>
-        <td class="p-4 text-gray-300">Four-tier (Green→Black)</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Risk Levels</td>
+        <td class="p-4 text-text-muted">Binary (on/off)</td>
+        <td class="p-4 text-text-muted">Four-tier (Green→Black)</td>
       </tr>
     </tbody>
   </table>
-</div>
+</StyledTable>
 
 ---
 
@@ -266,44 +267,44 @@ Algorithms include Peg Control, Fee Allocation, Gas PI Controller, Perps LQR, an
 
 According to TONSWAP's token design, $TS (Tonswap Token) is intended to power the protocol with a deflationary supply model.
 
-<div class="not-prose my-8 overflow-x-auto">
+<StyledTable>
   <table class="w-full text-sm border-collapse">
     <thead>
-      <tr class="bg-gray-800/50">
-        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Mechanism</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Details</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Purpose</th>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Mechanism</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Details</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Purpose</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-gray-700/50">
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Total Supply</td>
-        <td class="p-4 text-gray-300">100M (70M launch, 30M incentives)</td>
-        <td class="p-4 text-gray-300">Fixed cap</td>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Total Supply</td>
+        <td class="p-4 text-text-muted">100M (70M launch, 30M incentives)</td>
+        <td class="p-4 text-text-muted">Fixed cap</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Buy-Back-and-Burn</td>
-        <td class="p-4 text-gray-300">0.3% swap fee buys & burns $TS</td>
-        <td class="p-4 text-gray-300">Continuous deflation</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Buy-Back-and-Burn</td>
+        <td class="p-4 text-text-muted">0.3% swap fee buys & burns $TS</td>
+        <td class="p-4 text-text-muted">Continuous deflation</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Daily Burn/Re-Mint</td>
-        <td class="p-4 text-gray-300">Of burned $TS: 90% re-minted, 10% burned forever (subject to governance parameters)</td>
-        <td class="p-4 text-gray-300">Net deflation</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Daily Burn/Re-Mint</td>
+        <td class="p-4 text-text-muted">Of burned $TS: 90% re-minted, 10% burned forever (subject to governance parameters)</td>
+        <td class="p-4 text-text-muted">Net deflation</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Re-Mint Distribution</td>
-        <td class="p-4 text-gray-300">70% to LPs · 10% to DAO · 10% to XOR buy-and-burn (pending cross-chain activation)</td>
-        <td class="p-4 text-gray-300">Aligns with SORA</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Re-Mint Distribution</td>
+        <td class="p-4 text-text-muted">70% to LPs · 10% to DAO · 10% to XOR buy-and-burn (pending cross-chain activation)</td>
+        <td class="p-4 text-text-muted">Aligns with SORA</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Governance</td>
-        <td class="p-4 text-gray-300">Community voting</td>
-        <td class="p-4 text-gray-300">DAO-controlled</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Governance</td>
+        <td class="p-4 text-text-muted">Community voting</td>
+        <td class="p-4 text-text-muted">DAO-controlled</td>
       </tr>
     </tbody>
   </table>
-</div>
+</StyledTable>
 
 The [buy-and-burn model](/sora-xor-token-supply-explained) creates positive feedback: more trading → more burns → greater scarcity. The XOR allocation links TONSWAP to the [SORA ecosystem](/sora-ecosystem-explained), fusing two economies.
 
@@ -323,14 +324,14 @@ Join the <a href="https://t.me/tonswap_org" target="_blank" rel="noopener norefe
 
 <div class="not-prose my-8 rounded-lg border border-pink-500/30 bg-pink-500/10 p-6">
   <p class="font-semibold text-pink-400 text-lg mb-2">🐱 MeowFi: Gamified Pre-Launch Experience</p>
-  <p class="text-sm text-gray-300 mb-3">While TONSWAP finalizes, <strong>MeowFi</strong> builds community through gameplay. Play as Meowkoto, the samurai trader cat.</p>
-  <div class="text-sm text-gray-300 mb-4 space-y-1">
+  <p class="text-sm text-text-muted mb-3">While TONSWAP finalizes, <strong>MeowFi</strong> builds community through gameplay. Play as Meowkoto, the samurai trader cat.</p>
+  <div class="text-sm text-text-muted mb-4 space-y-1">
     <p>• Earn TSP (Tonswap Points)</p>
     <p>• 5-level referral system</p>
     <p>• Daily rewards & leaderboards</p>
     <p>• Idle tax for inactive players</p>
   </div>
-  <p class="text-sm text-gray-300 mb-3">A fun on-ramp to DeFi, similar to other <a href="/soratopia-play-to-earn-telegram-game-in-the-sora-ecosystem" class="text-pink-300 hover:underline">SORA mini-apps</a>.</p>
+  <p class="text-sm text-text-muted mb-3">A fun on-ramp to DeFi, similar to other <a href="/soratopia-play-to-earn-telegram-game-in-the-sora-ecosystem" class="text-pink-300 hover:underline">SORA mini-apps</a>.</p>
   <a href="https://t.me/tonswap_org_bot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-500/20 text-pink-300 hover:bg-pink-500/30 transition-colors text-sm font-medium no-underline">
     ▶️ Start Playing @tonswap_org_bot
   </a>
@@ -352,59 +353,59 @@ TONSWAP connects to SORA through a trust-minimized bridge (TON→SORA live; SORA
 
 ## TONSWAP vs Traditional DEXs
 
-<div class="not-prose my-8 overflow-x-auto">
+<StyledTable>
   <table class="w-full text-sm border-collapse">
     <thead>
-      <tr class="bg-gray-800/50">
-        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Feature</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Traditional DEXs</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">TONSWAP</th>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Feature</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Traditional DEXs</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">TONSWAP</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-gray-700/50">
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Access</td>
-        <td class="p-4 text-gray-300">Browser extensions</td>
-        <td class="p-4 text-gray-300">Telegram mini-app</td>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Access</td>
+        <td class="p-4 text-text-muted">Browser extensions</td>
+        <td class="p-4 text-text-muted">Telegram mini-app</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Onboarding</td>
-        <td class="p-4 text-gray-300">Complex setup</td>
-        <td class="p-4 text-gray-300">As simple as texting</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Onboarding</td>
+        <td class="p-4 text-text-muted">Complex setup</td>
+        <td class="p-4 text-text-muted">As simple as texting</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Risk Control</td>
-        <td class="p-4 text-gray-300">Off-chain, manual</td>
-        <td class="p-4 text-gray-300">Fully on-chain</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Risk Control</td>
+        <td class="p-4 text-text-muted">Off-chain, manual</td>
+        <td class="p-4 text-text-muted">Fully on-chain</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">User Base</td>
-        <td class="p-4 text-gray-300">Crypto natives</td>
-        <td class="p-4 text-gray-300">Up to 1B Telegram users</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">User Base</td>
+        <td class="p-4 text-text-muted">Crypto natives</td>
+        <td class="p-4 text-text-muted">Up to 1B Telegram users</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">LP Protection</td>
-        <td class="p-4 text-gray-300">Rare</td>
-        <td class="p-4 text-gray-300">Parisian insurance</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">LP Protection</td>
+        <td class="p-4 text-text-muted">Rare</td>
+        <td class="p-4 text-text-muted">Parisian insurance</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Launchpad</td>
-        <td class="p-4 text-gray-300">External</td>
-        <td class="p-4 text-gray-300">Integrated</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Launchpad</td>
+        <td class="p-4 text-text-muted">External</td>
+        <td class="p-4 text-text-muted">Integrated</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Derivatives</td>
-        <td class="p-4 text-gray-300">Limited</td>
-        <td class="p-4 text-gray-300">Perps + Options</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Derivatives</td>
+        <td class="p-4 text-text-muted">Limited</td>
+        <td class="p-4 text-text-muted">Perps + Options</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Fees</td>
-        <td class="p-4 text-gray-300">Variable</td>
-        <td class="p-4 text-gray-300"><code class="px-1 py-0.5 rounded bg-gray-700">≤ $0.01</code> on TON</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Fees</td>
+        <td class="p-4 text-text-muted">Variable</td>
+        <td class="p-4 text-text-muted"><code class="px-1 py-0.5 rounded bg-soft">≤ $0.01</code> on TON</td>
       </tr>
     </tbody>
   </table>
-</div>
+</StyledTable>
 
 ---
 
@@ -422,39 +423,39 @@ TONSWAP connects to SORA through a trust-minimized bridge (TON→SORA live; SORA
   <details>
     <summary>How does TONSWAP differ from Polkaswap?</summary>
     <div class="faq-answer">
-      <div class="not-prose overflow-x-auto">
+      <StyledTable>
         <table class="w-full text-sm border-collapse">
           <thead>
-            <tr class="bg-gray-800/50">
-              <th class="text-left p-3 font-semibold text-gray-200 border-b border-gray-700">Feature</th>
-              <th class="text-left p-3 font-semibold text-accent border-b border-gray-700">TONSWAP (TON)</th>
-              <th class="text-left p-3 font-semibold text-accent border-b border-gray-700">Polkaswap (SORA)</th>
+            <tr class="bg-soft">
+              <th class="text-left p-3 font-semibold text-text-main border-b border-border-subtle">Feature</th>
+              <th class="text-left p-3 font-semibold text-accent border-b border-border-subtle">TONSWAP (TON)</th>
+              <th class="text-left p-3 font-semibold text-accent border-b border-border-subtle">Polkaswap (SORA)</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-700/50">
-            <tr class="hover:bg-gray-800/30 transition-colors">
-              <td class="p-3 font-medium text-gray-300">Interface</td>
-              <td class="p-3 text-gray-300">Telegram mini-app</td>
-              <td class="p-3 text-gray-300">Web DEX</td>
+          <tbody class="divide-y divide-border-subtle">
+            <tr class="hover:bg-soft/50 transition-colors">
+              <td class="p-3 font-medium text-text-muted">Interface</td>
+              <td class="p-3 text-text-muted">Telegram mini-app</td>
+              <td class="p-3 text-text-muted">Web DEX</td>
             </tr>
-            <tr class="hover:bg-gray-800/30 transition-colors">
-              <td class="p-3 font-medium text-gray-300">Focus</td>
-              <td class="p-3 text-gray-300">Mass adoption</td>
-              <td class="p-3 text-gray-300">Cross-chain liquidity</td>
+            <tr class="hover:bg-soft/50 transition-colors">
+              <td class="p-3 font-medium text-text-muted">Focus</td>
+              <td class="p-3 text-text-muted">Mass adoption</td>
+              <td class="p-3 text-text-muted">Cross-chain liquidity</td>
             </tr>
-            <tr class="hover:bg-gray-800/30 transition-colors">
-              <td class="p-3 font-medium text-gray-300">Token</td>
-              <td class="p-3 text-gray-300">$TS (deflationary, buy-back)</td>
-              <td class="p-3 text-gray-300">$PSWAP (deflationary, remint)</td>
+            <tr class="hover:bg-soft/50 transition-colors">
+              <td class="p-3 font-medium text-text-muted">Token</td>
+              <td class="p-3 text-text-muted">$TS (deflationary, buy-back)</td>
+              <td class="p-3 text-text-muted">$PSWAP (deflationary, remint)</td>
             </tr>
-            <tr class="hover:bg-gray-800/30 transition-colors">
-              <td class="p-3 font-medium text-gray-300">Bridge</td>
-              <td class="p-3 text-gray-300">TON↔SORA</td>
-              <td class="p-3 text-gray-300">SORA↔Polkadot/Ethereum</td>
+            <tr class="hover:bg-soft/50 transition-colors">
+              <td class="p-3 font-medium text-text-muted">Bridge</td>
+              <td class="p-3 text-text-muted">TON↔SORA</td>
+              <td class="p-3 text-text-muted">SORA↔Polkadot/Ethereum</td>
             </tr>
           </tbody>
         </table>
-      </div>
+      </StyledTable>
       <p class="mt-3">They complement each other through the <a href="/how-polkaswap-and-tonswap-work-together-on-sora" class="text-accent hover:underline">SORA bridge</a>.</p>
     </div>
   </details>
@@ -494,53 +495,3 @@ The 2025 crash exposed DeFi's weaknesses; TONSWAP encodes the solution.
 With TON's speed, Telegram's reach, and SORA's bridge, it could onboard the next billion users.
 
 **Explore the [SORA ecosystem](/sora-ecosystem-explained)** and watch TONSWAP reshape DeFi accessibility.
-
----
-
-## 📚 Further Reading
-
-**Official Resources**
-
-<div data-no-glossary class="not-prose my-6 grid gap-3 sm:grid-cols-2">
-  <a href="https://tonswap.org/blog" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">📝</span>
-    <span class="text-gray-200 font-medium">TONSWAP Blog</span>
-  </a>
-  <a href="https://tonswap.org/blog/risk-engine" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">🛡️</span>
-    <span class="text-gray-200 font-medium">TONSWAP Risk Engine</span>
-  </a>
-  <a href="https://docs.ton.org/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">📖</span>
-    <span class="text-gray-200 font-medium">TON Documentation</span>
-  </a>
-  <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">📚</span>
-    <span class="text-gray-200 font-medium">SORA Wiki</span>
-  </a>
-  <a href="https://sora.org" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">🌐</span>
-    <span class="text-gray-200 font-medium">SORA Network</span>
-  </a>
-</div>
-
-**Related Soranauts Articles**
-
-<div data-no-glossary class="not-prose my-6 grid gap-3 sm:grid-cols-2">
-  <a href="/how-polkaswap-and-tonswap-work-together-on-sora" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">🔗</span>
-    <span class="text-gray-200 font-medium">How Polkaswap and TONSWAP Work Together</span>
-  </a>
-  <a href="/best-decentralized-exchanges-dexs" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">💱</span>
-    <span class="text-gray-200 font-medium">Best Decentralized Exchanges</span>
-  </a>
-  <a href="/sora-v3-guide-fujiwara-testnet-xor-fees-and-ton-bridge" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">🚀</span>
-    <span class="text-gray-200 font-medium">SORA v3 Guide</span>
-  </a>
-</div>
-
----
-
-*Join the community, play MeowFi, and get ready—DeFi on Telegram starts here.* 🚀
