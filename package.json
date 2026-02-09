@@ -63,7 +63,7 @@
     "minisearch": "^7.2.0",
     "openai": "^4.104.0",
     "p-queue": "^8.1.1",
-    "p-retry": "^6.2.1",
+    "p-retry": "^7.1.1",
     "pdf-parse": "^1.1.4",
     "robots-parser": "^3.0.1",
     "rss-parser": "^3.13.0",
