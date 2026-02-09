@@ -23,11 +23,12 @@ customSlug: sora-nexus-complete-guide
 ---
 
 import FaqSection from '~/components/blog/FaqSection.astro';
+import CalloutBox from '~/components/blog/CalloutBox.astro';
+import StyledTable from '~/components/blog/StyledTable.astro';
 
-<div class="not-prose my-8 rounded-lg border border-amber-500/30 bg-amber-500/10 p-6">
-  <p class="font-semibold text-amber-300 mb-2">⚠️ Development Status</p>
-  <p class="text-sm text-amber-200">SORA Nexus represents the vision and architecture for SORA v3, currently in active development. The Fujiwara testnet runs on Hyperledger Iroha 2, with migration to Hyperledger Iroha 3 under evaluation. Features described here reflect design specifications from the SORA Nexus whitepaper and ongoing development; some capabilities are aspirational and not yet deployed to production.</p>
-</div>
+<CalloutBox color="amber" variant="banner" icon="⚠️" title="Development Status">
+  <p>SORA Nexus represents the vision and architecture for SORA v3, currently in active development. The Fujiwara testnet runs on Hyperledger Iroha 2, with migration to Hyperledger Iroha 3 under evaluation. Features described here reflect design specifications from the SORA Nexus whitepaper and ongoing development; some capabilities are aspirational and not yet deployed to production.</p>
+</CalloutBox>
 
 With over $150 billion processed through Cambodia's Bakong CBDC in 2024—representing 330% of the country's GDP—the question isn't whether blockchain can handle real finance. The question is which architecture will ultimately host the world's economic activity. SORA Nexus answers that question with a bold claim: one ledger is all humanity needs.
 
@@ -37,9 +38,8 @@ This guide explains everything you need to know about SORA Nexus: its architectu
 
 ---
 
-<div class="not-prose my-8 rounded-lg border-l-4 border-accent bg-accent/10 p-6">
-  <p class="font-semibold text-lg mb-3">TL;DR</p>
-  <ul class="text-sm text-gray-300 space-y-2">
+<CalloutBox color="accent" variant="highlight" title="TL;DR">
+  <ul class="space-y-2">
     <li>• <strong>SORA Nexus (SORA v3)</strong> is a unified blockchain designed to run on Hyperledger Iroha 3 (currently testing on Iroha 2 via Fujiwara testnet), aiming to replace fragmented chains with one infinite-scale ledger for DeFi, CBDCs, and enterprise applications.</li>
     <li>• <strong>The Iroha Virtual Machine (IVM)</strong> is designed to deliver fully deterministic smart contract execution—every node produces identical results, eliminating the quirks that plague other blockchain VMs.</li>
     <li>• <strong>Data Spaces</strong> are designed to let organizations run private, governed environments (like CBDCs) alongside public DeFi on the same network without sacrificing composability.</li>
@@ -48,7 +48,7 @@ This guide explains everything you need to know about SORA Nexus: its architectu
     <li>• <strong>SUMERAGI consensus</strong> will use BFT with deterministic leader rotation, producing blocks only when transactions exist and targeting rapid finality with ML-DSA-87 post-quantum signatures.</li>
     <li>• <strong>XOR</strong> remains the universal utility token for fees, staking, governance, and economic coordination across all data spaces.</li>
   </ul>
-</div>
+</CalloutBox>
 
 ---
 
@@ -58,18 +58,18 @@ Every time you bridge tokens between chains, you're paying a tax on blockchain's
 
 This fragmentation creates real costs, as explored in our guide on [how SORA's blockchain approach differs](/sora-blockchain-new-world-economic-order):
 
-<div class="not-prose my-6 grid gap-4 sm:grid-cols-3">
-  <div class="rounded-lg border-l-4 border-red-500 bg-gray-800/40 p-4">
+<div data-no-glossary class="not-prose my-6 grid gap-4 sm:grid-cols-3">
+  <div class="rounded-lg border-l-4 border-red-500 bg-soft p-4">
     <p class="font-semibold text-red-400 mb-1">💸 Liquidity Fragmentation</p>
-    <p class="text-sm text-gray-300">Capital splits across dozens of chains, reducing depth and increasing slippage.</p>
+    <p class="text-sm text-text-muted">Capital splits across dozens of chains, reducing depth and increasing slippage.</p>
   </div>
-  <div class="rounded-lg border-l-4 border-orange-500 bg-gray-800/40 p-4">
+  <div class="rounded-lg border-l-4 border-orange-500 bg-soft p-4">
     <p class="font-semibold text-orange-400 mb-1">😵 UX Nightmare</p>
-    <p class="text-sm text-gray-300">Managing wallets, bridges, and gas tokens across networks confuses mainstream users.</p>
+    <p class="text-sm text-text-muted">Managing wallets, bridges, and gas tokens across networks confuses mainstream users.</p>
   </div>
-  <div class="rounded-lg border-l-4 border-yellow-500 bg-gray-800/40 p-4">
+  <div class="rounded-lg border-l-4 border-yellow-500 bg-soft p-4">
     <p class="font-semibold text-yellow-400 mb-1">⚙️ Developer Overhead</p>
-    <p class="text-sm text-gray-300">Teams must choose a chain, then rebuild if they bet wrong or want multichain presence.</p>
+    <p class="text-sm text-text-muted">Teams must choose a chain, then rebuild if they bet wrong or want multichain presence.</p>
   </div>
 </div>
 
@@ -100,22 +100,22 @@ The following diagram illustrates how SORA Nexus addresses blockchain's fragment
 
 SORA Nexus combines several innovations into a cohesive architecture. Let's explore each component.
 
-<div class="not-prose my-6 grid gap-4 sm:grid-cols-2">
-  <div class="rounded-lg border-l-4 border-blue-500 bg-gray-800/40 p-4">
+<div data-no-glossary class="not-prose my-6 grid gap-4 sm:grid-cols-2">
+  <div class="rounded-lg border-l-4 border-blue-500 bg-soft p-4">
     <p class="font-semibold text-blue-400 mb-1">🏢 Data Spaces</p>
-    <p class="text-sm text-gray-300">Sovereign partitions for private CBDCs and public DeFi on one network.</p>
+    <p class="text-sm text-text-muted">Sovereign partitions for private CBDCs and public DeFi on one network.</p>
   </div>
-  <div class="rounded-lg border-l-4 border-green-500 bg-gray-800/40 p-4">
+  <div class="rounded-lg border-l-4 border-green-500 bg-soft p-4">
     <p class="font-semibold text-green-400 mb-1">🛤️ Parallel Lanes</p>
-    <p class="text-sm text-gray-300">Multiple transaction pipelines merge into unified finality.</p>
+    <p class="text-sm text-text-muted">Multiple transaction pipelines merge into unified finality.</p>
   </div>
-  <div class="rounded-lg border-l-4 border-purple-500 bg-gray-800/40 p-4">
+  <div class="rounded-lg border-l-4 border-purple-500 bg-soft p-4">
     <p class="font-semibold text-purple-400 mb-1">⚙️ IVM</p>
-    <p class="text-sm text-gray-300">Fully deterministic smart contract execution—identical results everywhere.</p>
+    <p class="text-sm text-text-muted">Fully deterministic smart contract execution—identical results everywhere.</p>
   </div>
-  <div class="rounded-lg border-l-4 border-cyan-500 bg-gray-800/40 p-4">
+  <div class="rounded-lg border-l-4 border-cyan-500 bg-soft p-4">
     <p class="font-semibold text-cyan-400 mb-1">🔐 SUMERAGI</p>
-    <p class="text-sm text-gray-300">BFT consensus with post-quantum signatures targeting ~1s finality.</p>
+    <p class="text-sm text-text-muted">BFT consensus with post-quantum signatures targeting ~1s finality.</p>
   </div>
 </div>
 
@@ -171,70 +171,70 @@ For public data spaces, validators are designed to sample 8 shards per data spac
 
 ## SORA Nexus vs. Current Blockchain Approaches
 
-<div class="not-prose my-8 overflow-x-auto">
+<StyledTable>
   <table class="w-full text-sm border-collapse">
     <thead>
-      <tr class="bg-gray-800/50">
-        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Feature</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">SORA Nexus</th>
-        <th class="text-left p-4 font-semibold text-gray-400 border-b border-gray-700">Ethereum + L2s</th>
-        <th class="text-left p-4 font-semibold text-gray-400 border-b border-gray-700">Polkadot</th>
-        <th class="text-left p-4 font-semibold text-gray-400 border-b border-gray-700">Cosmos</th>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Feature</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">SORA Nexus</th>
+        <th class="text-left p-4 font-semibold text-text-muted border-b border-border-subtle">Ethereum + L2s</th>
+        <th class="text-left p-4 font-semibold text-text-muted border-b border-border-subtle">Polkadot</th>
+        <th class="text-left p-4 font-semibold text-text-muted border-b border-border-subtle">Cosmos</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-gray-700/50">
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Architecture</td>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Architecture</td>
         <td class="p-4 text-accent">Single ledger + Data Spaces</td>
-        <td class="p-4 text-gray-400">Main chain + Rollups</td>
-        <td class="p-4 text-gray-400">Relay chain + Parachains</td>
-        <td class="p-4 text-gray-400">Hub + Zones</td>
+        <td class="p-4 text-text-muted">Main chain + Rollups</td>
+        <td class="p-4 text-text-muted">Relay chain + Parachains</td>
+        <td class="p-4 text-text-muted">Hub + Zones</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Finality</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Finality</td>
         <td class="p-4 text-accent">~1 second (target)</td>
-        <td class="p-4 text-gray-400">12+ seconds (+ L2 delays)</td>
-        <td class="p-4 text-gray-400">12-60 seconds</td>
-        <td class="p-4 text-gray-400">7+ seconds</td>
+        <td class="p-4 text-text-muted">12+ seconds (+ L2 delays)</td>
+        <td class="p-4 text-text-muted">12-60 seconds</td>
+        <td class="p-4 text-text-muted">7+ seconds</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Privacy Model</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Privacy Model</td>
         <td class="p-4 text-accent">Native private data spaces</td>
-        <td class="p-4 text-gray-400">Limited (zk-rollups)</td>
-        <td class="p-4 text-gray-400">Per-parachain</td>
-        <td class="p-4 text-gray-400">Per-chain</td>
+        <td class="p-4 text-text-muted">Limited (zk-rollups)</td>
+        <td class="p-4 text-text-muted">Per-parachain</td>
+        <td class="p-4 text-text-muted">Per-chain</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Determinism</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Determinism</td>
         <td class="p-4 text-accent">Full (IVM)</td>
-        <td class="p-4 text-gray-400">Near-full (EVM quirks)</td>
-        <td class="p-4 text-gray-400">Varies</td>
-        <td class="p-4 text-gray-400">Varies</td>
+        <td class="p-4 text-text-muted">Near-full (EVM quirks)</td>
+        <td class="p-4 text-text-muted">Varies</td>
+        <td class="p-4 text-text-muted">Varies</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Scalability</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Scalability</td>
         <td class="p-4 text-accent">Infinite (lanes + merge ledger)</td>
-        <td class="p-4 text-gray-400">L2-dependent</td>
-        <td class="p-4 text-gray-400">Limited slots (100)</td>
-        <td class="p-4 text-gray-400">Unlimited zones</td>
+        <td class="p-4 text-text-muted">L2-dependent</td>
+        <td class="p-4 text-text-muted">Limited slots (100)</td>
+        <td class="p-4 text-text-muted">Unlimited zones</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">CBDC Ready</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">CBDC Ready</td>
         <td class="p-4 text-accent">Yes (proven deployments)</td>
-        <td class="p-4 text-gray-400">No</td>
-        <td class="p-4 text-gray-400">No</td>
-        <td class="p-4 text-gray-400">Limited</td>
+        <td class="p-4 text-text-muted">No</td>
+        <td class="p-4 text-text-muted">No</td>
+        <td class="p-4 text-text-muted">Limited</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Post-Quantum Security</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Post-Quantum Security</td>
         <td class="p-4 text-accent">Yes (ML-DSA-87)</td>
-        <td class="p-4 text-gray-400">No</td>
-        <td class="p-4 text-gray-400">No</td>
-        <td class="p-4 text-gray-400">No</td>
+        <td class="p-4 text-text-muted">No</td>
+        <td class="p-4 text-text-muted">No</td>
+        <td class="p-4 text-text-muted">No</td>
       </tr>
     </tbody>
   </table>
-</div>
+</StyledTable>
 
 ### Why Not Just Use Ethereum?
 
@@ -258,130 +258,130 @@ Cosmos zones communicate via IBC messaging, but each zone maintains fully indepe
 
 **Design specifications from the SORA Nexus whitepaper. These represent targets; actual performance will be validated as development progresses and mainnet deployment approaches.**
 
-<div class="not-prose my-8 overflow-x-auto">
+<StyledTable>
   <table class="w-full text-sm border-collapse">
     <thead>
-      <tr class="bg-gray-800/50">
-        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Parameter</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Specification (Target)</th>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Parameter</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Specification (Target)</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-gray-700/50">
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Lane Finality Target</td>
-        <td class="p-4 text-gray-300">≤1 second between non-empty blocks</td>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Lane Finality Target</td>
+        <td class="p-4 text-text-muted">≤1 second between non-empty blocks</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Commit Window</td>
-        <td class="p-4 text-gray-300">≤2 slots for DA and proof completion</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Commit Window</td>
+        <td class="p-4 text-text-muted">≤2 slots for DA and proof completion</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Default Lane Count</td>
-        <td class="p-4 text-gray-300">4 lanes (auto-fuses under low load)</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Default Lane Count</td>
+        <td class="p-4 text-text-muted">4 lanes (auto-fuses under low load)</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Lane TEU Budget</td>
-        <td class="p-4 text-gray-300">20,000 transfer-equivalent units/second</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Lane TEU Budget</td>
+        <td class="p-4 text-text-muted">20,000 transfer-equivalent units/second</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Envelope Size</td>
-        <td class="p-4 text-gray-300">Typical ≤16 MB; hard cap 32 MB</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Envelope Size</td>
+        <td class="p-4 text-text-muted">Typical ≤16 MB; hard cap 32 MB</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Proof Verification</td>
-        <td class="p-4 text-gray-300">100-200 ms per lane committee</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Proof Verification</td>
+        <td class="p-4 text-text-muted">100-200 ms per lane committee</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Validator Quorum</td>
-        <td class="p-4 text-gray-300">22 validators per lane (f=7 fault tolerance)</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Validator Quorum</td>
+        <td class="p-4 text-text-muted">22 validators per lane (f=7 fault tolerance)</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Consensus Security</td>
-        <td class="p-4 text-gray-300">Post-quantum (ML-DSA-87)</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Consensus Security</td>
+        <td class="p-4 text-text-muted">Post-quantum (ML-DSA-87)</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">DA Sample Target</td>
-        <td class="p-4 text-gray-300">≤300ms verification window</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">DA Sample Target</td>
+        <td class="p-4 text-text-muted">≤300ms verification window</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">DA Samples per Public DS</td>
-        <td class="p-4 text-gray-300">8 samples per slot</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">DA Samples per Public DS</td>
+        <td class="p-4 text-text-muted">8 samples per slot</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Total DA Samples</td>
-        <td class="p-4 text-gray-300">≤2,048 across all lanes</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Total DA Samples</td>
+        <td class="p-4 text-text-muted">≤2,048 across all lanes</td>
       </tr>
     </tbody>
   </table>
-</div>
+</StyledTable>
 
 ---
 
 ## Key Components at a Glance
 
-<div class="not-prose my-8 overflow-x-auto">
+<StyledTable>
   <table class="w-full text-sm border-collapse">
     <thead>
-      <tr class="bg-gray-800/50">
-        <th class="text-left p-4 font-semibold text-gray-200 border-b border-gray-700">Component</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Purpose</th>
-        <th class="text-left p-4 font-semibold text-accent border-b border-gray-700">Plain English Analogy</th>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Component</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Purpose</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Plain English Analogy</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-gray-700/50">
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">IVM <span class="text-gray-500">(Iroha Virtual Machine)</span></td>
-        <td class="p-4 text-gray-300">Smart contract execution</td>
-        <td class="p-4 text-gray-300">A universal calculator that always gives the same answer</td>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">IVM <span class="text-text-soft">(Iroha Virtual Machine)</span></td>
+        <td class="p-4 text-text-muted">Smart contract execution</td>
+        <td class="p-4 text-text-muted">A universal calculator that always gives the same answer</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Data Spaces</td>
-        <td class="p-4 text-gray-300">Privacy/governance zones</td>
-        <td class="p-4 text-gray-300">Private offices in a shared building</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Data Spaces</td>
+        <td class="p-4 text-text-muted">Privacy/governance zones</td>
+        <td class="p-4 text-text-muted">Private offices in a shared building</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Lanes</td>
-        <td class="p-4 text-gray-300">Parallel processing</td>
-        <td class="p-4 text-gray-300">Multiple checkout lanes at a store</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Lanes</td>
+        <td class="p-4 text-text-muted">Parallel processing</td>
+        <td class="p-4 text-text-muted">Multiple checkout lanes at a store</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Merge Ledger</td>
-        <td class="p-4 text-gray-300">Unified ordering</td>
-        <td class="p-4 text-gray-300">The receipt that combines all registers</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Merge Ledger</td>
+        <td class="p-4 text-text-muted">Unified ordering</td>
+        <td class="p-4 text-text-muted">The receipt that combines all registers</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">FASTPQ</td>
-        <td class="p-4 text-gray-300">Zero-knowledge proofs</td>
-        <td class="p-4 text-gray-300">Proving your age without showing your ID</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">FASTPQ</td>
+        <td class="p-4 text-text-muted">Zero-knowledge proofs</td>
+        <td class="p-4 text-text-muted">Proving your age without showing your ID</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Kura</td>
-        <td class="p-4 text-gray-300">Block storage (history)</td>
-        <td class="p-4 text-gray-300">A filing cabinet for all past transactions</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Kura</td>
+        <td class="p-4 text-text-muted">Block storage (history)</td>
+        <td class="p-4 text-text-muted">A filing cabinet for all past transactions</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">WSV <span class="text-gray-500">(World State View)</span></td>
-        <td class="p-4 text-gray-300">Current state</td>
-        <td class="p-4 text-gray-300">The current balance sheet—what exists now</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">WSV <span class="text-text-soft">(World State View)</span></td>
+        <td class="p-4 text-text-muted">Current state</td>
+        <td class="p-4 text-text-muted">The current balance sheet—what exists now</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">SUMERAGI</td>
-        <td class="p-4 text-gray-300">Consensus mechanism</td>
-        <td class="p-4 text-gray-300">A voting system where validators agree</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">SUMERAGI</td>
+        <td class="p-4 text-text-muted">Consensus mechanism</td>
+        <td class="p-4 text-text-muted">A voting system where validators agree</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Norito</td>
-        <td class="p-4 text-gray-300">Serialization format</td>
-        <td class="p-4 text-gray-300">The "language" all data speaks on Nexus</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Norito</td>
+        <td class="p-4 text-text-muted">Serialization format</td>
+        <td class="p-4 text-text-muted">The "language" all data speaks on Nexus</td>
       </tr>
-      <tr class="hover:bg-gray-800/30 transition-colors">
-        <td class="p-4 font-medium text-gray-300">Kotodama</td>
-        <td class="p-4 text-gray-300">Smart contract bytecode</td>
-        <td class="p-4 text-gray-300">Compiled instructions that run on IVM</td>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Kotodama</td>
+        <td class="p-4 text-text-muted">Smart contract bytecode</td>
+        <td class="p-4 text-text-muted">Compiled instructions that run on IVM</td>
       </tr>
     </tbody>
   </table>
-</div>
+</StyledTable>
 
 ---
 
@@ -391,14 +391,13 @@ Cosmos zones communicate via IBC messaging, but each zone maintains fully indepe
 
 SORA's architecture isn't theoretical—it powers real central bank deployments:
 
-<div class="not-prose my-8 rounded-lg border border-green-500/30 bg-green-500/10 p-6">
-  <p class="font-semibold text-green-400 text-lg mb-2">✅ Proven in Production</p>
-  <p class="text-sm text-gray-300 mb-3">Cambodia's <a href="https://soramitsu.co.jp/centralbanking" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:underline">Bakong</a> CBDC processed transactions equivalent to <strong class="text-green-300">330% of the country's GDP</strong> in 2024. SORAMITSU has engaged with <strong class="text-green-300">80+ central banks</strong> worldwide.</p>
-  <div class="text-sm text-gray-300 space-y-1">
+<CalloutBox color="green" variant="callout" icon="✅" title="Proven in Production">
+  <p class="mb-3">Cambodia's <a href="https://soramitsu.co.jp/centralbanking" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:underline">Bakong</a> CBDC processed transactions equivalent to <strong class="text-green-300">330% of the country's GDP</strong> in 2024. SORAMITSU has engaged with <strong class="text-green-300">80+ central banks</strong> worldwide.</p>
+  <div class="space-y-1">
     <p><strong>• Digital Kina (Papua New Guinea):</strong> Proof-of-concept demonstrating 24/7 instant payments and programmable money.</p>
     <p><strong>• Solomon Islands & Palau:</strong> CBDC pilots showcasing national settlement integration.</p>
   </div>
-</div>
+</CalloutBox>
 
 Read more about the [Solomon Islands CBDC pilot](/soramitsu-pilots-central-bank-of-solomon-islands-cbdc).
 
@@ -571,57 +570,3 @@ One ledger, many domains, infinite scale isn't just marketing—it describes how
 For developers and DeFi builders, SORA Nexus offers a canvas for next-generation applications that seamlessly integrate with regulated finance. For institutions and governments, it provides a governed, auditable, private-by-design solution that doesn't sacrifice global connectivity. And for the industry at large, it signals that we may not need countless isolated blockchains—we can grow one network organically to meet any requirement.
 
 The vision of SORA Nexus invites us to imagine a world where all economic activity lives on a single, interoperable ledger—much like all documents reside on the internet or all information flows through the web. That world is now within reach.
-
----
-
-## 📚 Related Articles
-
-<div data-no-glossary class="not-prose my-6 grid gap-3 sm:grid-cols-2">
-  <a href="/sora-blockchain-new-world-economic-order" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">🌍</span>
-    <span class="text-gray-200 font-medium">SORA: New World Economic Order</span>
-  </a>
-  <a href="/how-polkaswap-and-tonswap-work-together-on-sora" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">🔗</span>
-    <span class="text-gray-200 font-medium">Polkaswap & TONSWAP Integration</span>
-  </a>
-  <a href="/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">🧪</span>
-    <span class="text-gray-200 font-medium">Fujiwara Testnet Guide</span>
-  </a>
-  <a href="/deep-dive-into-xor-val-and-pswap" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">💎</span>
-    <span class="text-gray-200 font-medium">XOR, VAL & PSWAP Deep Dive</span>
-  </a>
-  <a href="/polkadot-architecture-guide" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">🔷</span>
-    <span class="text-gray-200 font-medium">Polkadot Architecture Guide</span>
-  </a>
-  <a href="/best-decentralized-exchanges-dexs" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">💱</span>
-    <span class="text-gray-200 font-medium">Best Decentralized Exchanges</span>
-  </a>
-</div>
-
----
-
-**Stay Connected:**
-
-<div data-no-glossary class="not-prose my-6 grid gap-3 sm:grid-cols-2">
-  <a href="https://twitter.com/sora_xor" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">🐦</span>
-    <span class="text-gray-200 font-medium">@sora_xor on X</span>
-  </a>
-  <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">💬</span>
-    <span class="text-gray-200 font-medium">SORA Telegram</span>
-  </a>
-  <a href="https://sora-xor.medium.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">📝</span>
-    <span class="text-gray-200 font-medium">SORA Medium Blog</span>
-  </a>
-  <a href="https://wiki.sora.org" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg bg-gray-800/40 border border-gray-700 p-4 hover:bg-gray-800/60 transition-colors no-underline">
-    <span class="text-xl">📚</span>
-    <span class="text-gray-200 font-medium">SORA Wiki</span>
-  </a>
-</div>
