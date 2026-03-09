@@ -36,6 +36,19 @@ In SORA Nexus, the blockchain fragmentation problem—thousands of L1s, L2s, sid
 
 This guide explains everything you need to know about SORA Nexus: its architecture, key components, real-world applications, and why its creators call it "the end of history" for blockchain infrastructure.
 
+<div class="my-8">
+  <video 
+    controls 
+    preload="metadata" 
+    class="w-full rounded-xl shadow-lg"
+    poster="/sora-nexus-explainer-poster.webp"
+  >
+    <source src="/sora-nexus-explainer.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <p class="text-center text-sm text-text-muted mt-2">90-second overview of SORA Nexus architecture</p>
+</div>
+
 ---
 
 <CalloutBox color="accent" variant="highlight" title="TL;DR">
@@ -459,6 +472,98 @@ For existing SORA (v2) users:
 - **Application compatibility:** The Kotodama compiler provides migration paths for existing smart contracts.
 
 The testnet also validates performance budgets—lane finality, TEU quotas, DA sampling—ensuring the mainnet launch meets specification targets.
+
+---
+
+## Building on Taira: Developer Quick Start
+
+For teams building serious integrations, the Taira testnet provides the foundation for production confidence. These technical details define how your client should reason about status queries, transaction routing, observability, and failure handling.
+
+### Taira Technical Profile
+
+<StyledTable>
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="bg-soft">
+        <th class="text-left p-4 font-semibold text-text-main border-b border-border-subtle">Parameter</th>
+        <th class="text-left p-4 font-semibold text-accent border-b border-border-subtle">Value</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border-subtle">
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Torii Endpoint</td>
+        <td class="p-4 text-text-muted"><a href="https://taira.sora.org" target="_blank" rel="noopener noreferrer" class="text-link hover:text-link-hover">https://taira.sora.org</a></td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Testnet Explorer</td>
+        <td class="p-4 text-text-muted"><a href="https://taira-explorer.sora.org" target="_blank" rel="noopener noreferrer" class="text-link hover:text-link-hover">https://taira-explorer.sora.org</a></td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Sample Wallet</td>
+        <td class="p-4 text-text-muted"><a href="https://github.com/soramitsu/iroha-demo-javascript" target="_blank" rel="noopener noreferrer" class="text-link hover:text-link-hover">github.com/soramitsu/iroha-demo-javascript</a></td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Testnet Chain UUID</td>
+        <td class="p-4 text-text-muted"><code>809574f5-fee7-5e69-bfcf-52451e42d50f</code></td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Lane Count</td>
+        <td class="p-4 text-text-muted">3</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Lane Catalogue</td>
+        <td class="p-4 text-text-muted"><strong>core</strong> (primary execution), <strong>governance</strong> (parliament/governance traffic), <strong>zk</strong> (proof/deployment-oriented tracking)</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Dataspace Catalog</td>
+        <td class="p-4 text-text-muted">universal, governance, zk</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">Default Routing</td>
+        <td class="p-4 text-text-muted"><code>default_lane = core</code> with governance and contract-deploy matchers routed to dedicated lanes</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">DA Mode</td>
+        <td class="p-4 text-text-muted">Enabled (<code>sumeragi.da.enabled = true</code>)</td>
+      </tr>
+      <tr class="hover:bg-soft/50 transition-colors">
+        <td class="p-4 font-medium text-text-muted">SoraFS Discovery</td>
+        <td class="p-4 text-text-muted">Enabled for admission/capability-based workflows</td>
+      </tr>
+    </tbody>
+  </table>
+</StyledTable>
+
+### What Builders Can Do Today
+
+If you are integrating wallets, services, data pipelines, or internal tooling, the first step is simple: point your client stack to Taira's Torii API endpoint.
+
+```bash
+export NEXUS_TORII_URL="https://taira.sora.org"
+export NEXUS_PIPELINE_URL="https://taira.sora.org/v1/pipeline"
+
+# Example: check consensus status
+curl -s "$NEXUS_TORII_URL/v1/sumeragi/status"
+```
+
+From there, use your normal SDK and validate three things early:
+
+1. **Read-path stability** — status queries, telemetry ingestion, observability
+2. **Write-path behavior** — realistic retry and timeout assumptions
+3. **Lane-aware expectations** — governance and contract-heavy flows route to dedicated lanes
+
+The right mindset for Taira is not "demo success." It is **production confidence earned on testnet**.
+
+### What This Unlocks for SORA Nexus
+
+Taira is where the ecosystem closes the gap between protocol intent and operational certainty. When teams use it the right way, four outcomes follow:
+
+- **Faster launch cycles.** Integration issues are found before they become release blockers.
+- **Safer governance transitions.** Policy and routing changes are rehearsed against live infrastructure.
+- **Cleaner operator handoff.** Telemetry, alerting assumptions, and runbooks are validated in advance.
+- **Higher developer trust.** Teams can build with fewer unknowns because endpoint behavior is observable and repeatable.
+
+This is exactly how Nexus should mature: by building confidence through open, testable execution.
 
 ---
 
