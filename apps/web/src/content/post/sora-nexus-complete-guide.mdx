@@ -1,8 +1,8 @@
 ---
 publishDate: 2025-12-09T00:00:00Z
-updateDate: 2025-12-21T00:00:00Z
+updateDate: 2026-03-09T00:00:00Z
 title: "SORA Nexus: Complete Guide to Blockchain's End of History"
-excerpt: "Discover SORA Nexus (SORA v3), a next-generation blockchain built on Hyperledger Iroha to unite DeFi, CBDCs, and enterprises on a single scalable ledger."
+excerpt: "Discover SORA Nexus (SORA v3), a next-generation blockchain built on Hyperledger Iroha 3 to unite DeFi, CBDCs, and enterprises on a single scalable ledger."
 image: ~/assets/images/sora-nexus-complete-guide.jpg
 category: "Guides"
 tags:
@@ -27,12 +27,12 @@ import CalloutBox from '~/components/blog/CalloutBox.astro';
 import StyledTable from '~/components/blog/StyledTable.astro';
 
 <CalloutBox color="amber" variant="banner" icon="⚠️" title="Development Status">
-  <p>SORA Nexus represents the vision and architecture for SORA v3, currently in active development. The Fujiwara testnet runs on Hyperledger Iroha 2, with migration to Hyperledger Iroha 3 under evaluation. Features described here reflect design specifications from the SORA Nexus whitepaper and ongoing development; some capabilities are aspirational and not yet deployed to production.</p>
+  <p>Status as of March 2026: The Fujiwara testnet has been upgraded to the Taira testnet (<code>taira.sora.org</code>), which is publicly accessible. Development is active on the Hyperledger Iroha <code>i23-staging</code> branch; no stable Hyperledger Iroha 3.x release has been tagged as of this date. The correct SDK for Taira development is <code>@iroha/iroha-js</code>, built from source from the <code>i23-staging</code> branch — the JSR packages (<code>@iroha/core</code>, <code>@iroha/client</code>) are deprecated for Nexus-era work.</p>
 </CalloutBox>
 
-With over $150 billion processed through Cambodia's Bakong CBDC in 2024—representing 330% of the country's GDP—the question isn't whether blockchain can handle real finance. The question is which architecture will ultimately host the world's economic activity. SORA Nexus answers that question with a bold claim: one ledger is all humanity needs.
+With over $150 billion processed through Cambodia's Bakong system by 2025—representing approximately 330% of Cambodia's 2024 GDP—the question isn't whether blockchain can handle real finance. The question is which architecture will ultimately host the world's economic activity. SORA Nexus answers that question with a bold claim: one ledger is all humanity needs.
 
-In SORA Nexus, the blockchain fragmentation problem—thousands of L1s, L2s, sidechains, and appchains competing for liquidity and developer attention—finally meets its solution. Building on Hyperledger Iroha technology (currently testing on Iroha 2 via the Fujiwara testnet, with migration to Iroha 3 underway), SORA Nexus introduces a unified architecture where central bank digital currencies, permissionless DeFi, and enterprise applications are designed to coexist on a single network with sub-second finality.
+In SORA Nexus, the blockchain fragmentation problem—thousands of L1s, L2s, sidechains, and appchains competing for liquidity and developer attention—finally meets its solution. Building on Hyperledger Iroha technology (currently validated on the Taira testnet at taira.sora.org, with development active on the i23-staging branch), SORA Nexus introduces a unified architecture where central bank digital currencies, permissionless DeFi, and enterprise applications are designed to coexist on a single network with sub-second finality.
 
 This guide explains everything you need to know about SORA Nexus: its architecture, key components, real-world applications, and why its creators call it "the end of history" for blockchain infrastructure.
 
@@ -40,12 +40,12 @@ This guide explains everything you need to know about SORA Nexus: its architectu
 
 <CalloutBox color="accent" variant="highlight" title="TL;DR">
   <ul class="space-y-2">
-    <li>• <strong>SORA Nexus (SORA v3)</strong> is a unified blockchain designed to run on Hyperledger Iroha 3 (currently testing on Iroha 2 via Fujiwara testnet), aiming to replace fragmented chains with one infinite-scale ledger for DeFi, CBDCs, and enterprise applications.</li>
+    <li>• <strong>SORA Nexus (SORA v3)</strong> is a unified blockchain designed to run on Hyperledger Iroha 3 (currently validated on the Taira testnet at taira.sora.org), aiming to replace fragmented chains with one infinite-scale ledger for DeFi, CBDCs, and enterprise applications.</li>
     <li>• <strong>The Iroha Virtual Machine (IVM)</strong> is designed to deliver fully deterministic smart contract execution—every node produces identical results, eliminating the quirks that plague other blockchain VMs.</li>
     <li>• <strong>Data Spaces</strong> are designed to let organizations run private, governed environments (like CBDCs) alongside public DeFi on the same network without sacrificing composability.</li>
     <li>• <strong>Parallel Lanes + Merge Ledger</strong> provide horizontal scalability—multiple transaction pipelines process work simultaneously, then unify into a single canonical timeline, targeting sub-second finality.</li>
     <li>• <strong>FASTPQ zk-STARK proofs</strong> enable privacy-preserving auditability: prove your books balance without revealing individual transactions, all with post-quantum security.</li>
-    <li>• <strong>SUMERAGI consensus</strong> will use BFT with deterministic leader rotation, producing blocks only when transactions exist and targeting rapid finality with ML-DSA-87 post-quantum signatures.</li>
+    <li>• <strong>SUMERAGI consensus</strong> uses BFT with deterministic leader rotation, producing blocks only when transactions exist and targeting rapid finality with ML-DSA-87 post-quantum signatures.</li>
     <li>• <strong>XOR</strong> remains the universal utility token for fees, staking, governance, and economic coordination across all data spaces.</li>
   </ul>
 </CalloutBox>
@@ -157,7 +157,7 @@ Each lane is designed to maintain a committee of 22 validators (tolerating up to
 
 **Plain English:** Imagine proving to a bouncer that you're over 21 without showing your actual ID. You just show them a special stamp that mathematically proves your age without revealing your birthdate, address, or anything else. FASTPQ proofs do the same thing for financial data—a central bank can prove their books balance perfectly without revealing any individual transaction.
 
-FASTPQ uses zk-STARKs (zero-knowledge Scalable Transparent Arguments of Knowledge) over the Goldilocks field with Poseidon2 hashing. The proof system is designed to achieve ≥128-bit security and verify in 100-200 milliseconds per lane committee on consumer hardware. Because STARKs rely only on hash-based cryptography rather than elliptic curves, they're inherently post-quantum secure.
+FASTPQ uses zk-STARKs (zero-knowledge Scalable Transparent Arguments of Knowledge) over the Goldilocks field with Poseidon2 hashing. The proof system is designed to achieve ≥128-bit security and verify aggregated lane-level proofs in 100–200 ms per lane committee per slot (hard cap: t_proof ≤ 200 ms); individual per-data-space proofs target verification in &lt;100 ms on consumer hardware. Because STARKs rely only on hash-based cryptography rather than elliptic curves, they're inherently post-quantum secure.
 
 This enables a powerful combination: **privacy by design with integrity guarantees**. Institutions can prove compliance and correctness without exposing confidential data.
 
@@ -289,11 +289,11 @@ Cosmos zones communicate via IBC messaging, but each zone maintains fully indepe
       </tr>
       <tr class="hover:bg-soft/50 transition-colors">
         <td class="p-4 font-medium text-text-muted">Proof Verification</td>
-        <td class="p-4 text-text-muted">100-200 ms per lane committee</td>
+        <td class="p-4 text-text-muted">100–200 ms per lane committee for aggregated lane-level proofs (hard cap: t_proof ≤ 200 ms); individual per-proof verification target: &lt;100 ms on consumer hardware</td>
       </tr>
       <tr class="hover:bg-soft/50 transition-colors">
         <td class="p-4 font-medium text-text-muted">Validator Quorum</td>
-        <td class="p-4 text-text-muted">22 validators per lane (f=7 fault tolerance)</td>
+        <td class="p-4 text-text-muted">Example: 22 validators per lane (f = 7); formula N = 3f + 1; QC threshold: |QC| ≥ 2f + 1 = 15 signatures (illustrative default, §19)</td>
       </tr>
       <tr class="hover:bg-soft/50 transition-colors">
         <td class="p-4 font-medium text-text-muted">Consensus Security</td>
@@ -392,7 +392,7 @@ Cosmos zones communicate via IBC messaging, but each zone maintains fully indepe
 SORA's architecture isn't theoretical—it powers real central bank deployments:
 
 <CalloutBox color="green" variant="callout" icon="✅" title="Proven in Production">
-  <p class="mb-3">Cambodia's <a href="https://soramitsu.co.jp/centralbanking" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:underline">Bakong</a> CBDC processed transactions equivalent to <strong class="text-green-300">330% of the country's GDP</strong> in 2024. SORAMITSU has engaged with <strong class="text-green-300">80+ central banks</strong> worldwide.</p>
+  <p class="mb-3">By 2025, Cambodia's <a href="https://soramitsu.co.jp/centralbanking" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:underline">Bakong</a> system processed over <strong class="text-green-300">USD 152.8 billion</strong> in transaction value — approximately <strong class="text-green-300">330% of Cambodia's 2024 GDP</strong> (~USD 46.35B). The implied 2024 volume was approximately USD 102–103 billion (~220% of 2024 GDP). In a world where over <strong class="text-green-300">130 central banks</strong> are exploring CBDCs, SORAMITSU brings proven deployment experience from Bakong and multiple CBDC pilots.</p>
   <div class="space-y-1">
     <p><strong>• Digital Kina (Papua New Guinea):</strong> Proof-of-concept demonstrating 24/7 instant payments and programmable money.</p>
     <p><strong>• Solomon Islands & Palau:</strong> CBDC pilots showcasing national settlement integration.</p>
@@ -421,12 +421,19 @@ Beyond CBDCs, SORA Nexus targets:
 
 ### SORA Parliament
 
-SORA Nexus evolves through on-chain governance rather than hard forks. The planned SORA Parliament includes two bodies:
+SORA Parliament is the planned Nexus-era governance system (§16.1), not yet live on mainnet as of March 2026. It uses sortition (random selection) over a bonded XOR citizen pool — not token-weighted voting — with the following bodies:
 
-- **Council:** Fixed seats filled through NPoS nomination or appointment, handling day-to-day governance decisions.
-- **Assembly:** Stake-weighted or one-person-one-vote participation for major network changes.
+- **Citizenship:** XOR bond (slashable), providing Sybil resistance for participation.
+- **Rules Committee:** Proposes rule changes; sortition-selected from the citizen pool.
+- **Monetary Policy Committee (MPC):** Proposes economic parameters; sortition-selected.
+- **Agenda Council:** Filters proposals for compliance; randomly selected rotating panels.
+- **Interest / Expert Panels:** Non-binding analysis from subject-matter experts.
+- **Review Panel:** Synthesizes panel findings into a single view for the jury.
+- **Policy Jury:** Randomly selected one-time panel making final binding decisions.
+- **Oversight Council:** Monitors for violations; triggers slashing.
+- **Financial Markets Authority (FMA):** Supervises financial markets and Polkaswap.
 
-Proposals are Norito-encoded and enacted deterministically via IVM execution. This means upgrades—even to cryptographic algorithms or consensus parameters—happen through transparent, auditable governance flows.
+Proposals are Norito-encoded and enacted deterministically via IVM execution. Every rule change must be ratified by a Policy Jury. This means upgrades—even to cryptographic algorithms or consensus parameters—happen through transparent, auditable governance flows, not token-weighted elections.
 
 ### XOR Utility in Nexus
 
@@ -443,7 +450,7 @@ The Token Bonding Curve is designed to manage XOR supply elastically, with the s
 
 ## Migration Path from SORA v2
 
-The [Fujiwara testnet](/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future) serves as SORA Nexus's proving ground. Running on Hyperledger Iroha 2, validators, provers, and gateway teams rehearse multi-lane scheduling, ISI governance flows, and bridge logic before mainnet activation.
+The [Taira testnet](/the-fujiwara-testnet-pioneering-sora-v3s-decentralized-future) (taira.sora.org), upgraded from Fujiwara, serves as SORA Nexus's proving ground. Running on the i23-staging branch of Hyperledger Iroha, validators, provers, and gateway teams rehearse multi-lane scheduling, ISI governance flows, and bridge logic before mainnet activation.
 
 For existing SORA (v2) users:
 
@@ -463,7 +470,7 @@ SoraFS provides the storage layer for erasure-coded Kura blocks and WSV snapshot
 
 ### SoraNet: Privacy Overlay
 
-SoraNet is a decentralized CDN and privacy overlay using three-hop QUIC circuits with hybrid post-quantum handshakes (Curve25519 + Kyber768). It enables confidential data transmission while maintaining network performance.
+SoraNet is a network overlay for a decentralized internet, using three-hop QUIC circuits with a TLS-exporter-bound Noise XX hybrid handshake (Curve25519 + Kyber768), with Sora relays acting as a global CDN. It enables confidential data transmission while maintaining network performance.
 
 ### Soracles: Deterministic Oracles
 
@@ -492,7 +499,7 @@ Receipts and proofs align directly with protocol primitives, enabling applicatio
 <FaqSection>
   <details>
     <summary>What is SORA Nexus?</summary>
-    SORA Nexus is the third major version of the SORA network, designed to run on Hyperledger Iroha 3 (currently testing on Iroha 2 via the Fujiwara testnet). It introduces a unified ledger architecture with data spaces, parallel lanes, and the Iroha Virtual Machine (IVM) for deterministic smart contract execution. The vision is "One World, One Economy, One Ledger"—a single network capable of hosting DeFi, CBDCs, and enterprise applications without fragmentation.
+    SORA Nexus is the third major version of the SORA network, designed to run on Hyperledger Iroha 3 (currently validated on the Taira testnet at taira.sora.org). It introduces a unified ledger architecture with data spaces, parallel lanes, and the Iroha Virtual Machine (IVM) for deterministic smart contract execution. The vision is "One World, One Economy, One Ledger"—a single network capable of hosting DeFi, CBDCs, and enterprise applications without fragmentation.
   </details>
 
   <details>
@@ -517,12 +524,12 @@ Receipts and proofs align directly with protocol primitives, enabling applicatio
 
   <details>
     <summary>What are FASTPQ proofs and why do they matter?</summary>
-    FASTPQ uses zk-STARKs (zero-knowledge Scalable Transparent Arguments of Knowledge) to prove computational correctness without revealing underlying data. A central bank can prove all balances are consistent without exposing individual transactions. Because STARKs rely on hash-based cryptography rather than elliptic curves, they're post-quantum secure. Proofs are designed to verify in 100-200ms on consumer hardware.
+    FASTPQ uses zk-STARKs (zero-knowledge Scalable Transparent Arguments of Knowledge) to prove computational correctness without revealing underlying data. A central bank can prove all balances are consistent without exposing individual transactions. Because STARKs rely on hash-based cryptography rather than elliptic curves, they're post-quantum secure. Proofs are designed to verify aggregated lane-level proofs in 100–200 ms per lane committee per slot, while individual proofs target verification in under 100 ms on consumer hardware.
   </details>
 
   <details>
     <summary>Is SORA Nexus suitable for CBDCs?</summary>
-    Yes—SORA Nexus is one of the most CBDC-ready platforms available. SORAMITSU built Cambodia's Bakong (processing 330% of GDP in 2024), Papua New Guinea's Digital Kina PoC, and pilots in Solomon Islands and Palau. The team has engaged with 80+ central banks. Private data spaces provide the sovereignty and compliance controls institutions require.
+    Yes—SORA Nexus is one of the most CBDC-ready platforms available. SORAMITSU built Cambodia's Bakong (processing over USD 152.8 billion by 2025 — ~330% of Cambodia's 2024 GDP), Papua New Guinea's Digital Kina PoC, and pilots in Solomon Islands and Palau. In a world where over 130 central banks are exploring CBDCs, SORAMITSU brings proven deployment experience. Private data spaces provide the sovereignty and compliance controls institutions require.
   </details>
 
   <details>
@@ -532,12 +539,12 @@ Receipts and proofs align directly with protocol primitives, enabling applicatio
 
   <details>
     <summary>How does governance work in SORA Nexus?</summary>
-    SORA Nexus uses on-chain governance through the planned SORA Parliament, consisting of a Council (fixed seats via NPoS/appointment) and Assembly (stake-weighted or 1p1v). Proposals are Norito-encoded and enacted deterministically via IVM execution. This enables upgrades—even to cryptography or consensus—without hard forks or community splits.
+    SORA Nexus uses on-chain governance through the planned SORA Parliament, a multi-body sortition-based system using random citizen selection from a bonded XOR pool, including a Rules Committee, Monetary Policy Committee, Agenda Council, Policy Jury, Oversight Council, and Financial Markets Authority. Proposals are Norito-encoded and enacted deterministically via IVM execution. This enables upgrades—even to cryptography or consensus—without hard forks or community splits.
   </details>
 
   <details>
     <summary>When will SORA Nexus launch?</summary>
-    The Fujiwara testnet is currently operational on Hyperledger Iroha 2, allowing validators, provers, and developers to test multi-lane scheduling, governance flows, and bridge logic. Migration to Iroha 3 is under evaluation. Mainnet activation follows successful testnet validation. Check the official <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer">SORA Telegram</a> and <a href="https://twitter.com/sora_xor" target="_blank" rel="noopener noreferrer">@sora_xor on X</a> for timeline updates.
+    The Taira testnet (taira.sora.org), upgraded from Fujiwara, is currently operational on the i23-staging branch of Hyperledger Iroha, allowing validators, provers, and developers to test multi-lane scheduling, governance flows, and bridge logic. Mainnet activation follows successful testnet validation. Check the official <a href="https://t.me/sora_xor" target="_blank" rel="noopener noreferrer">SORA Telegram</a> and <a href="https://twitter.com/sora_xor" target="_blank" rel="noopener noreferrer">@sora_xor on X</a> for timeline updates.
   </details>
 
   <details>
@@ -557,7 +564,7 @@ Receipts and proofs align directly with protocol primitives, enabling applicatio
 
   <details>
     <summary>Can existing SORA (v2) users migrate to Nexus?</summary>
-    Yes. XOR remains the native token with deterministic migration. Balances and positions transfer through governed bridge mechanisms. The Fujiwara testnet validates these migration paths before mainnet activation. Existing Polkaswap liquidity and Kensetsu positions have planned migration support.
+    Yes. XOR remains the native token with deterministic migration. Balances and positions transfer through governed bridge mechanisms. The Taira testnet validates these migration paths before mainnet activation. Existing Polkaswap liquidity and Kensetsu positions have planned migration support.
   </details>
 </FaqSection>
 
