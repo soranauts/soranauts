@@ -62,7 +62,7 @@
     "got": "^14.6.6",
     "minisearch": "^7.2.0",
     "openai": "^4.104.0",
-    "p-queue": "^8.1.1",
+    "p-queue": "^9.1.0",
     "p-retry": "^6.2.1",
     "pdf-parse": "^1.1.4",
     "robots-parser": "^3.0.1",
