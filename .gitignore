@@ -110,7 +110,8 @@ test-results/
 
 # AI assistant configuration files
 .cursorrules
-.claude/
+.claude/settings.local.json
+.claude/settings.json
 apps/web/test-results/.last-run.json
 
 # Auto-generated documentation files
@@ -127,3 +128,7 @@ content-lint-report.md
 monitoring-report.md
 explorer-audit-bundle.md
 apps/web/.env.local
+
+# LEAD-V framework (ephemeral artifacts)
+/HANDOFF.md
+docs/handoffs/
