@@ -13,23 +13,23 @@ jobs:
   backtest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
           
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
           version: 9.12.2
           
       - run: pnpm install --frozen-lockfile
       
       - name: Restore index cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: knowledge_base/index
           key: kb-index-${{ runner.os }}-${{ hashFiles('knowledge_base/index/manifest.json') }}
@@ -52,14 +52,14 @@ jobs:
           
       - name: Upload SARIF
         if: always()
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: reports/backtest/*.sarif
           continue-on-error: true
           
       - name: Upload backtest report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: backtest-report
           path: reports/backtest/*.json

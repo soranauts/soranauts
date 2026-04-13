@@ -61,11 +61,11 @@ jobs:
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Detect relevant changes
         id: paths
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@v4
         with:
           filters: |
             kb:
@@ -81,20 +81,20 @@ jobs:
 
       - name: Setup pnpm
         if: steps.paths.outputs.kb == 'true'
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           version: 9.12.2
 
       - name: Setup Node.js
         if: steps.paths.outputs.kb == 'true'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
 
       - name: Restore KB index cache
         if: steps.paths.outputs.kb == 'true'
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: knowledge_base/.kb_index
           key: kb-index-${{ runner.os }}-${{ hashFiles('knowledge_base/curated/**', 'knowledge_base/scripts/**') }}
@@ -140,7 +140,7 @@ jobs:
 
       - name: Upload KB manifest
         if: always() && steps.paths.outputs.kb == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: kb-index-manifest
           path: knowledge_base/.kb_index/manifest.json

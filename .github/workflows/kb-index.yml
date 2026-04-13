@@ -52,15 +52,15 @@ jobs:
           echo "INGEST_ENABLED=${INGEST_ENABLED:-unset}; skipping."
           exit 0
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           version: 9.12.2
           
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -102,7 +102,7 @@ jobs:
           fi
           
       - name: Restore index cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: knowledge_base/.kb_index
           key: kb-index-${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}-${{ vars.TOKENIZER || 'tiktoken-cl100k' }}-${{ hashFiles('knowledge_base/curated/**') }}
@@ -130,7 +130,7 @@ jobs:
           
       - name: Upload index manifest
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: kb-index-manifest
           path: knowledge_base/.kb_index/manifest.json
@@ -139,7 +139,7 @@ jobs:
           
       - name: Cache index
         if: success()
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: knowledge_base/.kb_index
           key: kb-index-${{ vars.EMBED_MODEL || 'text-embedding-3-large' }}-${{ vars.TOKENIZER || 'tiktoken-cl100k' }}-${{ hashFiles('knowledge_base/curated/**') }}
